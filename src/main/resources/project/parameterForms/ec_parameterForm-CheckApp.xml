@@ -1,0 +1,7 @@
+<editor>	<help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CheckApp</help>	<formElement>		<type>entry</type>		<label>Application Name:</label>		<property>appname</property>		<documentation>Name of the web application to be checked. i.e: 'webapp'. </documentation>		<required>1</required>	</formElement>				<formElement>
+		<type>entry</type>
+		<label>Wsadmin Absolute Path:</label>
+		<property>wsadminabspath</property>
+		<required>1</required>
+		<documentation>Absolute path of wsadmin, including filename and extension. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'. </documentation>	</formElement>		<formElement>		<type>entry</type>		<label>Configuration Name:</label>		<property>configname</property>		<documentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.</documentation>		<required>0</required>	</formElement>
+</editor>

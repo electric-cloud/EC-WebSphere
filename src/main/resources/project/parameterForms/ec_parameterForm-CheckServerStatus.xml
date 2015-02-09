@@ -1,0 +1,12 @@
+<editor>	<help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CheckServerStatus</help>	<formElement>
+		<type>entry</type>
+		<label>Configuration Name:</label>
+		<property>configname</property>
+		<required>1</required>
+		<documentation>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration. </documentation>	</formElement>
+	<formElement>
+		<type>entry</type>
+		<label>Maximum Elapsed Time:</label>
+		<property>maxelapsedtime</property>
+		<documentation>Defines the maximum time in seconds that the job will try to check into the server. Blank implies no wait time (URL only checked one time).</documentation>		<required>0</required>	</formElement>	<formElement>		<type>select</type>		<label>Success Criteria:</label>		<property>successcriteria</property>		<required>0</required>		<documentation>Indicates the expected correct result to be obtained when running checking the server.</documentation>		<option><name>Server responds</name><value>response</value></option>		<option><name>Server doesn't respond</name><value>noresponse</value></option>	</formElement>
+</editor>

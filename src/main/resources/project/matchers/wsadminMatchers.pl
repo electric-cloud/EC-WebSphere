@@ -1,0 +1,101 @@
+
+push (@::gMatchers,
+  {
+   id =>        "appInstalled",
+   pattern =>          q{^ADMA5013I(.+)},
+   action =>           q{
+    
+              my $description = "$1";
+                              
+              setProperty("summary", $description . "\n");
+    
+   },
+  },
+  
+  {
+   id =>        "appNameExists",
+   pattern =>          q{(.*)WASX7279E(.+)},
+   action =>           q{
+    
+              my $description = ((defined $::gProperties{"summary"}) ? 
+                    $::gProperties{"summary"} : '');
+                    
+              $description .= "Install failure, application name already exists.";
+                              
+              setProperty("summary", $description . "\n");
+    
+   },
+  },
+  
+  {
+   id =>        "scriptError",
+   pattern =>          q{^WASX7017E(.+)},
+   action =>           q{
+    
+              my $description = ((defined $::gProperties{"summary"}) ? 
+                    $::gProperties{"summary"} : '');
+                    
+              $description .= "Error detected while executing the script.";
+                              
+              setProperty("summary", $description . "\n");
+    
+   },
+  },
+  
+  {
+   id =>        "appUninstalled",
+   pattern =>          q{^ADMA5106I(.+)},
+   action =>           q{
+    
+              my $description = ((defined $::gProperties{"summary"}) ? 
+                    $::gProperties{"summary"} : '');
+                    
+              $description .= "Application uninstalled successfully.";
+                              
+              setProperty("summary", $description . "\n");
+    
+   },  
+  },
+  
+  {
+   id =>        "unvalidCredentials",
+   pattern =>          q{^ADMN0022E(.+)},
+   action =>           q{
+    
+              my $description = ((defined $::gProperties{"summary"}) ? 
+                    $::gProperties{"summary"} : '');
+                    
+              $description .= "Authentification error, unvalid or empty credentials.";
+                              
+              setProperty("summary", $description . "\n");
+    
+   },  
+  },
+  
+  {
+   id =>        "exceptionMsg",
+   pattern =>          q{^Exception message \(if any\):(.+)},
+   action =>           q{
+    
+              my $description = "$1";
+                              
+              setProperty("summary", $description . "\n");
+    
+   },  
+  },
+  
+  {
+   id =>        "licenseExpired",
+   pattern =>          q{^WSVR0028I:(.+)},
+   action =>           q{
+    
+              my $description = "$1 Cannot continue.";
+                              
+              setProperty("summary", $description . "\n");
+    
+   },  
+  },
+  
+  
+);
+

@@ -1,0 +1,25 @@
+<editor>
+	<formElement>
+        <type>entry</type>
+        <label>WebSphere Url:</label>
+        <property>websphere_url</property>
+        <value></value>
+        <documentation>Url of WebSphere server</documentation>
+		<required>1</required>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Wsadmin Port:</label>
+        <property>websphere_port</property>
+        <value></value>
+        <documentation>Port of WebSphere Admin Console</documentation>
+		<required>0</required>
+    </formElement>
+    <formElement>
+        <type>credential</type>
+        <label>Login as:</label>
+        <property>credential</property>
+        <value></value>
+        <required>0</required>
+    </formElement>
+</editor>

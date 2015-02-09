@@ -1,0 +1,7 @@
+<editor>	<help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#StartServer</help>	<formElement>		<type>entry</type>		<label>Instance name:</label>		<property>instancename</property>		<required>1</required>		<documentation>The name of the instance of the server to be started. i.e: 'server01'. </documentation>	</formElement>		<formElement>
+		<type>entry</type>
+		<label>Wsadmin Absolute Path:</label>
+		<property>scriptlocation</property>
+		<required>1</required>
+		<documentation>Absolute path of the start server script, including filename and extension. i.e: 'startServer.bat' or '/path/to/startServer.sh' or 'C:\Program Files\IBM\WebSphere\AppServer\bin\startServer.bat'. </documentation>	</formElement>	<formElement>		<type>textarea</type>		<label>Additional Commands:</label>		<property>additionalcommands</property>		<documentation>Additional commands to be entered for the startup of the server.</documentation>		<required>0</required>	</formElement>
+</editor>
