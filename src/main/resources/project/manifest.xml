@@ -45,6 +45,10 @@
         <xpath>//property[propertyName=&quot;jdbcprovider_matchers&quot;]/value</xpath>
         <path>matchers/jdbcProviderMatchers.pl</path>
     </file>
+    <file>
+        <xpath>//property[propertyName=&quot;createcluster_matchers&quot;]/value</xpath>
+        <path>matchers/creatClusterMatcher.pl</path>
+    </file>
 
     <file>
         <xpath>//procedure[procedureName=&quot;StartServer&quot;]/step[stepName=&quot;StartInstance&quot;]/command</xpath>
@@ -101,6 +105,10 @@
     <file>
         <xpath>//procedure[procedureName=&quot;DeleteJDBCProvider&quot;]/step[stepName=&quot;DeleteJDBCProvider&quot;]/command</xpath>
         <path>server/deleteJDBCProvider.pl</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/step[stepName=&quot;CreateCluster&quot;]/command</xpath>
+        <path>server/createCluster.pl</path>
     </file>
 
     <file>
@@ -174,6 +182,10 @@
     <file>
         <xpath>//procedure[procedureName=&quot;UndeployApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ec_parameterForm-UndeployApp.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/ec_parameterForm-CreateCluster.xml</path>
     </file>
 
 </fileset>
