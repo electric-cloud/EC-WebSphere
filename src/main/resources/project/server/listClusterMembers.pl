@@ -89,9 +89,9 @@ sub main() {
       . $::gClusterName . '")';
     $ScriptFile .= "\n" . 'print result';
 
-    if ( $::gConfigurationName ne '' ) {
-        %configuration = getConfiguration( $ec, $::gConfigurationName );
-    }
+
+    %configuration = getConfiguration( $ec, $::gConfigurationName );
+
 
     push( @args, '"' . $::gWSAdminAbsPath . '"' );
 
@@ -107,34 +107,33 @@ sub main() {
         push( @args, '-conntype ' . $::gConnectionType );
     }
 
-    #inject config...
-    if (%configuration) {
-        my $hostParamName;
 
-        if ( $::gConnectionType eq IPC_CONNECTION_TYPE ) {
-            $hostParamName = '-ipchost';
-        }
-        else {
-            $hostParamName = '-host';
-        }
+    my $hostParamName;
 
-        if ( $configuration{'websphere_url'} ne '' ) {
-            push( @args,
-                $hostParamName . ' ' . $configuration{'websphere_url'} );
-        }
-
-        if ( $configuration{'websphere_port'} ne '' ) {
-            push( @args, '-port ' . $configuration{'websphere_port'} );
-        }
-
-        if ( $configuration{'user'} ne '' ) {
-            push( @args, '-user ' . $configuration{'user'} );
-        }
-
-        if ( $configuration{'password'} ne '' ) {
-            push( @args, '-password ' . $configuration{'password'} );
-        }
+    if ( $::gConnectionType eq IPC_CONNECTION_TYPE ) {
+        $hostParamName = '-ipchost';
     }
+    else {
+        $hostParamName = '-host';
+    }
+
+    if ( $configuration{'websphere_url'} ne '' ) {
+        push( @args,
+            $hostParamName . ' ' . $configuration{'websphere_url'} );
+    }
+
+    if ( $configuration{'websphere_port'} ne '' ) {
+        push( @args, '-port ' . $configuration{'websphere_port'} );
+    }
+
+    if ( $configuration{'user'} ne '' ) {
+        push( @args, '-user ' . $configuration{'user'} );
+    }
+
+    if ( $configuration{'password'} ne '' ) {
+        push( @args, '-password ' . $configuration{'password'} );
+    }
+
 
     my $cmdLine = createCommandLine( \@args );
     my $escapedCmdLine = maskPassword( $cmdLine, $configuration{'password'} );
