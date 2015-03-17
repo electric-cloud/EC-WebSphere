@@ -110,7 +110,6 @@
         <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/step[stepName=&quot;CreateCluster&quot;]/command</xpath>
         <path>server/createCluster.pl</path>
     </file>
-
     <file>
         <xpath>//procedure[procedureName=&quot;CreateConfiguration&quot;]/step[stepName=&quot;CreateConfiguration&quot;]/command</xpath>
         <path>conf/createcfg.pl</path>
