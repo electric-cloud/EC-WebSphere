@@ -92,6 +92,14 @@ my %deleteJDBCProvider = (
     description => "Deletes a JDBC Provider using the wsadmin tool",
     category    => "Application Server"
 );
+
+my %removeClusterMembers = (
+    label       => "WebSphere - Remove Cluster Members",
+    procedure   => "RemoveClusterMembers",
+    description => "Removes list of application servers from existing cluster",
+    category    => "Application Server"
+);
+
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy App");
@@ -112,6 +120,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create D
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Datasource");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JDBC Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JDBC Provider");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Remove Cluster Members");
 
 @::createStepPickerSteps = (\%checkPageStatus, \%checkServerStatus,
                             \%startServer, \%stopServer,
@@ -119,7 +128,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete J
                             \%stopApp, \%deployApp,
                             \%undeployApp, \%checkApp, 
 							\%createDatasource, \%deleteDatasource,
-							\%createJDBCProvider, \%deleteJDBCProvider);
+							\%createJDBCProvider, \%deleteJDBCProvider, \%removeClusterMembers);
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
@@ -249,6 +258,11 @@ if ($upgradeAction eq "upgrade") {
                 stepName => 'DeleteJDBCProvider'
             });
 
+             # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'RemoveClusterMembers',
+                stepName => 'RemoveClusterMembers'
+            });
         }
     }
 }
