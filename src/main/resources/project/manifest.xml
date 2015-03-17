@@ -47,6 +47,11 @@
     </file>
 
     <file>
+        <xpath>//property[propertyName=&quot;listClusterMembers_matchers&quot;]/value</xpath>
+        <path>matchers/listClusterMembersMatchers.pl</path>
+    </file>
+
+    <file>
         <xpath>//procedure[procedureName=&quot;StartServer&quot;]/step[stepName=&quot;StartInstance&quot;]/command</xpath>
         <path>server/startServer.pl</path>
     </file>
@@ -101,6 +106,10 @@
     <file>
         <xpath>//procedure[procedureName=&quot;DeleteJDBCProvider&quot;]/step[stepName=&quot;DeleteJDBCProvider&quot;]/command</xpath>
         <path>server/deleteJDBCProvider.pl</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;ListClusterMembers&quot;]/step[stepName=&quot;ListClusterMembers&quot;]/command</xpath>
+        <path>server/listClusterMembers.pl</path>
     </file>
 
     <file>
@@ -174,6 +183,10 @@
     <file>
         <xpath>//procedure[procedureName=&quot;UndeployApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ec_parameterForm-UndeployApp.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;ListClusterMembers&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/ec_parameterForm-ListClusterMembers.xml</path>
     </file>
 
 </fileset>
