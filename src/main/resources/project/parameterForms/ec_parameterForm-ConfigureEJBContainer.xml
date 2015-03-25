@@ -1,0 +1,102 @@
+<editor>
+	<help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#ConfigEJBContainer</help>
+	<formElement>
+		<type>entry</type>
+		<label>Wsadmin Absolute Path:</label>
+		<property>wsadminAbsPath</property>
+		<required>1</required>
+		<documentation>Absolute path of wsadmin, including filename and extension. Optional if the location of wsadmin is in the PATH environment variable. E.g., '/path/to/wsadmin.sh' or 'wsadmin.bat'.</documentation>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Cell Name:</label>
+		<property>cellName</property>
+		<documentation>Name of cell to which EJB container belongs to. </documentation>
+		<required>0</required>
+	</formElement>
+	
+	<formElement>
+		<type>entry</type>
+		<label>Node Name:</label>
+		<property>nodeName</property>
+		<documentation>Name of node to which EJB container belongs to. </documentation>
+		<required>0</required>
+	</formElement>
+	
+	<formElement>
+		<type>entry</type>
+		<label>Server Name:</label>
+		<property>serverName</property>
+		<documentation>Name of application server to which EJB container belongs to.</documentation>
+		<required>1</required>
+	</formElement>
+	
+	<formElement>
+		<type>entry</type>
+		<label>Passivation Directory:</label>
+		<property>passivationDirectory</property>
+		<documentation>Specifies the directory into which the container saves the persistent state of passivated stateful session beans. This directory must already exist. It is not automatically created.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Inactive Pool Cleanup Interval:</label>
+		<property>inactivePoolCleanupInterval</property>
+		<documentation>Specifies the interval at which the container examines the pools of available bean instances to determine if some instances can be deleted to reduce memory usage.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<label>Enable stateful session bean fail over using memory-to-memory replication?:</label>
+		<property>enableSFSBFailover</property>
+		<value/>
+		<documentation>Specifies that failover is enabled for all stateful session beans installed in this EJB container.Replication domains must already exist to failover feature to work.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Replication domain:</label>
+		<property>messageBrokerDomainName</property>
+		<documentation>Specifies the replication domain in which HTTP sessions are replicated.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<type>select</type>
+		<label>Replication mode:</label>
+		<property>dataReplicationMode</property>
+		<required>0</required>
+		<documentation>The mode specifies whether data is only sent (client), only received (server), or both. Select client if sessions need to be replicated. Select server if sessions need to be stored. Select both client and server if sessions need to be replicated and stored. The default is both.</documentation>
+		<option><name>Client only</name><value>client</value></option>
+		<option><name>Server only</name><value>server</value></option>
+		<option><name>Both client and server</name><value>both</value></option>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Configuration Name:</label>
+		<property>configName</property>
+		<documentation>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</documentation>
+		<required>1</required>
+	</formElement>
+
+	<formElement>
+		<type>select</type>
+		<label>Connection Type:</label>
+		<property>connectionType</property>
+		<required>0</required>
+		<documentation>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</documentation>
+		<option><name>None</name><value>none</value></option>
+		<option><name>SOAP</name><value>soap</value></option>
+		<option><name>RMI</name><value>rmi</value></option>
+		<option><name>JSR160RMI</name><value>jsr160rmi</value></option>
+		<option><name>IPC</name><value>ipc</value></option>
+	</formElement>
+
+</editor>
