@@ -68,6 +68,12 @@
            <value></value>
            <expandable>0</expandable>
        </property>
+
+        <property>
+            <propertyName>configejbcontainer_matchers</propertyName>
+            <value></value>
+            <expandable>0</expandable>
+        </property>
 	   
        <property>
         <propertyName>ui_forms</propertyName>
@@ -5113,7 +5119,7 @@
             <exclusive>0</exclusive>
             <logFileName />
             <parallel>0</parallel>
-            <postProcessor>postp --loadProperty /myProject/wsadmin_matchers</postProcessor>
+            <postProcessor>postp --loadProperty /myProject/configejbcontainer_matchers</postProcessor>
             <releaseExclusive>0</releaseExclusive>
             <resourceName />
             <retries>0</retries>

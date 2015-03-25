@@ -45,6 +45,10 @@
         <xpath>//property[propertyName=&quot;jdbcprovider_matchers&quot;]/value</xpath>
         <path>matchers/jdbcProviderMatchers.pl</path>
     </file>
+    <file>
+        <xpath>//property[propertyName=&quot;configejbcontainer_matchers&quot;]/value</xpath>
+        <path>matchers/configEJBContainerMatchers.pl</path>
+    </file>
 
     <file>
         <xpath>//procedure[procedureName=&quot;StartServer&quot;]/step[stepName=&quot;StartInstance&quot;]/command</xpath>
