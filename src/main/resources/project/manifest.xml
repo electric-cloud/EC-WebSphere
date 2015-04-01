@@ -102,6 +102,10 @@
         <xpath>//procedure[procedureName=&quot;DeleteJDBCProvider&quot;]/step[stepName=&quot;DeleteJDBCProvider&quot;]/command</xpath>
         <path>server/deleteJDBCProvider.pl</path>
     </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateEndToEndMailProvider&quot;]/step[stepName=&quot;CreateEndToEndMailProvider&quot;]/command</xpath>
+        <path>server/createEndToEndMailProvider.pl</path>
+    </file>
 
     <file>
         <xpath>//procedure[procedureName=&quot;CreateConfiguration&quot;]/step[stepName=&quot;CreateConfiguration&quot;]/command</xpath>
@@ -174,6 +178,10 @@
     <file>
         <xpath>//procedure[procedureName=&quot;UndeployApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ec_parameterForm-UndeployApp.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateEndToEndMailProvider&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/ec_parameterForm-CreateEndToEndMailProvider.xml</path>
     </file>
 
 </fileset>

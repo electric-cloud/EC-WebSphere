@@ -92,6 +92,14 @@ my %deleteJDBCProvider = (
     description => "Deletes a JDBC Provider using the wsadmin tool",
     category    => "Application Server"
 );
+
+my %createEndToEndMailProvider = (
+    label       => "WebSphere - Create end to end Mail Provider",
+    procedure   => "CreateEndToEndMailProvider",
+    description => "Creates a mail provider along with protocol provider and mail session.",
+    category    => "Application Server"
+);
+
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy App");
@@ -112,6 +120,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create D
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Datasource");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JDBC Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JDBC Provider");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create end to end Mail Provider");
 
 @::createStepPickerSteps = (\%checkPageStatus, \%checkServerStatus,
                             \%startServer, \%stopServer,
@@ -119,7 +128,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete J
                             \%stopApp, \%deployApp,
                             \%undeployApp, \%checkApp, 
 							\%createDatasource, \%deleteDatasource,
-							\%createJDBCProvider, \%deleteJDBCProvider);
+							\%createJDBCProvider, \%deleteJDBCProvider, \%createEndToEndMailProvider);
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
@@ -248,6 +257,12 @@ if ($upgradeAction eq "upgrade") {
                 procedureName => 'DeleteJDBCProvider',
                 stepName => 'DeleteJDBCProvider'
             });
+
+             # Attach the credential to the appropriate steps
+             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateEndToEndMailProvider',
+                stepName => 'CreateEndToEndMailProvider'
+             });
 
         }
     }
