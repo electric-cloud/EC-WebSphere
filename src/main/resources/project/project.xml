@@ -4700,6 +4700,18 @@
                         <propertySheet>
 
                             <property>
+                                <propertyName>configName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+
+                            <property>
                                 <propertyName>wsadminAbsPath</propertyName>
                                 <propertySheet>
                                     <property>
@@ -4788,62 +4800,25 @@
                             <property>
                                 <propertyName>isolatedClassLoader</propertyName>
                                 <propertySheet>
-
                                     <property>
-                                        <propertyName>options</propertyName>
-                                        <propertySheet>
-                                            <property>
-                                                <propertyName>option1</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>True</value>
-
-                                                    </property>
-
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>true</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-
-                                                <propertyName>option2</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>False</value>
-                                                    </property>
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>false</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-
-                                            <property>
-
-                                                <propertyName>optionCount</propertyName>
-                                                <expandable>1</expandable>
-                                                <value>2</value>
-                                            </property>
-                                            <property>
-                                                <propertyName>type</propertyName>
-                                                <expandable>1</expandable>
-                                                <value>list</value>
-                                            </property>
-                                        </propertySheet>
+                                        <propertyName>checkedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>1</value>
                                     </property>
                                     <property>
                                         <propertyName>formType</propertyName>
                                         <expandable>1</expandable>
                                         <value>standard</value>
-
+                                    </property>
+                                    <property>
+                                        <propertyName>initiallyChecked</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>0</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>uncheckedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>0</value>
                                     </property>
                                 </propertySheet>
                             </property>
@@ -4887,75 +4862,25 @@
                             <property>
                                 <propertyName>supportsASF</propertyName>
                                 <propertySheet>
-
                                     <property>
-                                        <propertyName>options</propertyName>
-                                        <propertySheet>
-                                            <property>
-                                                <propertyName>option1</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>True</value>
-
-                                                    </property>
-
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>true</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-
-                                                <propertyName>option2</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>False</value>
-                                                    </property>
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>false</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-
-                                            <property>
-
-                                                <propertyName>optionCount</propertyName>
-                                                <expandable>1</expandable>
-                                                <value>2</value>
-                                            </property>
-                                            <property>
-                                                <propertyName>type</propertyName>
-                                                <expandable>1</expandable>
-                                                <value>list</value>
-                                            </property>
-                                        </propertySheet>
+                                        <propertyName>checkedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>1</value>
                                     </property>
                                     <property>
                                         <propertyName>formType</propertyName>
                                         <expandable>1</expandable>
                                         <value>standard</value>
-
                                     </property>
-                                </propertySheet>
-                            </property>
-
-
-
-                            <property>
-                                <propertyName>configName</propertyName>
-                                <propertySheet>
                                     <property>
-                                        <propertyName>formType</propertyName>
+                                        <propertyName>initiallyChecked</propertyName>
                                         <expandable>1</expandable>
-                                        <value>standard</value>
+                                        <value>0</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>uncheckedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>0</value>
                                     </property>
                                 </propertySheet>
                             </property>
@@ -5079,6 +5004,14 @@
         </propertySheet>
 
         <formalParameter>
+            <formalParameterName>configName</formalParameterName>
+            <defaultValue />
+            <description>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
             <formalParameterName>wsadminAbsPath</formalParameterName>
             <defaultValue />
             <description>Absolute path of wsadmin, including filename and extension. Optional if the location of wsadmin is in the PATH environment variable. E.g., '/path/to/wsadmin.sh' or 'wsadmin.bat'.</description>
@@ -5139,10 +5072,10 @@
 
         <formalParameter>
             <formalParameterName>isolatedClassLoader</formalParameterName>
-            <defaultValue />
+            <defaultValue/>
             <description>If set to true, specifies that the resource provider is loaded in its own class loader.</description>
             <required>0</required>
-            <type>select</type>
+            <type>entry</type>
         </formalParameter>
 
         <formalParameter>
@@ -5171,17 +5104,9 @@
 
         <formalParameter>
             <formalParameterName>supportsASF</formalParameterName>
-            <defaultValue />
+            <defaultValue/>
             <description>If set to true, specifies that the JMS provider supports Application Server Facilities (ASF), which provides concurrency and transactional support for applications.</description>
             <required>0</required>
-            <type>select</type>
-        </formalParameter>
-
-        <formalParameter>
-            <formalParameterName>configName</formalParameterName>
-            <defaultValue />
-            <description>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</description>
-            <required>1</required>
             <type>entry</type>
         </formalParameter>
 

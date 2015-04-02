@@ -83,6 +83,7 @@ sub main() {
     my %configuration;
     my $ScriptFile;
     my $optionalArgsSupplied;
+    my $firstOptionalArg;
 
     #get an EC object
     my $ec = new ElectricCommander();
@@ -93,11 +94,11 @@ sub main() {
     push( @args, '"' . $::gWSAdminAbsPath . '"' );
 
     $ScriptFile =
-        "AdminJMS. createJMSProviderAtScope (\""
-      . $::gScope . "\",\""
-      . $::gJmsProvider . "\",\""
-      . $::gExtContextFactory . "\",\""
-      . $::gExtProviderURL . "\"";
+        qq(AdminJMS.createJMSProviderAtScope\(")
+      . $::gScope . qq(",")
+      . $::gJmsProvider . qq(",")
+      . $::gExtContextFactory . qq(",")
+      . $::gExtProviderURL . qq(");
 
     if (   $::gClasspath
         || $::gDescription
@@ -111,43 +112,88 @@ sub main() {
         $optionalArgsSupplied = 'true';
     }
 
+    ## This flag, if true, indicates that the next argument is the first optional argument.
+    $firstOptionalArg = 'true';
+
     if ($optionalArgsSupplied) {
         $ScriptFile .= ",[";
     }
     if ($::gClasspath) {
         $ScriptFile .= "['classpath','" . $::gClasspath . "']";
+        $firstOptionalArg = 'false';
     }
 
     if ($::gDescription) {
-        $ScriptFile .= ",['description','" . $::gDescription . "']";
+        if($firstOptionalArg eq 'false'){
+            $ScriptFile .= qq(,);
+        }
+        $ScriptFile .= "['description','" . $::gDescription . "']";
+        $firstOptionalArg = 'false';
     }
 
-    if ($::gIsolatedClassLoader) {
+
+    if($::gIsolatedClassLoader eq 1){
+        if($firstOptionalArg eq 'false'){
+                    $ScriptFile .= qq(,);
+        }
         $ScriptFile .=
-          ",['isolatedClassLoader','" . $::gIsolatedClassLoader . "']";
+          "['isolatedClassLoader','true']";
+          $firstOptionalArg = 'false';
+    }else{
+        if($firstOptionalArg eq 'false'){
+                  $ScriptFile .= qq(,);
+         }
+    $ScriptFile .=
+              "['isolatedClassLoader','false']";
+        $firstOptionalArg = 'false';
     }
 
     if ($::gNativepath) {
-        $ScriptFile .= ",['nativepath','" . $::gNativepath . "']";
+        if($firstOptionalArg eq 'false'){
+            $ScriptFile .= qq(,);
+        }
+        $ScriptFile .= "['nativepath','" . $::gNativepath . "']";
+        $firstOptionalArg = 'false';
     }
 
     if ($::gPropertySet) {
-        $ScriptFile .= ",['propertySet',[['resourceProperties',"
+        if($firstOptionalArg eq 'false'){
+           $ScriptFile .= qq(,);
+        }
+        $ScriptFile .= "['propertySet',[['resourceProperties',"
           . $::gPropertySet . "]]]";
+        $firstOptionalArg = 'false';
     }
 
     if ($::gProviderType) {
-        $ScriptFile .= ",['providerType','" . $::gProviderType . "']";
+        if($firstOptionalArg eq 'false'){
+                   $ScriptFile .= qq(,);
+        }
+        $ScriptFile .= "['providerType','" . $::gProviderType . "']";
+         $firstOptionalArg = 'false';
     }
 
-    if ($::gSupportsASF) {
-        $ScriptFile .= ",['supportsASF','" . $::gSupportsASF . "']";
+    if($::gSupportsASF eq 1){
+         if($firstOptionalArg eq 'false'){
+                $ScriptFile .= qq(,);
+          }
+
+         $ScriptFile .= "['supportsASF','true']";
+         $firstOptionalArg = 'false';
+    }else{
+         if($firstOptionalArg eq 'false'){
+                        $ScriptFile .= qq(,);
+         }
+         $ScriptFile .= "['supportsASF','false']";
+         $firstOptionalArg = 'false';
     }
+
+
 
     if ($optionalArgsSupplied) {
         $ScriptFile .= "]";
     }
-    $ScriptFile .= ")\n";
+    $ScriptFile .= "\)\n";
 
     open( MYFILE, '>createJMSProvider_script.jython' );
 
