@@ -47,6 +47,11 @@
     </file>
 
     <file>
+        <xpath>//property[propertyName=&quot;deployosgi_matchers&quot;]/value</xpath>
+        <path>matchers/deployOSGiMatchers.pl</path>
+    </file>
+
+    <file>
         <xpath>//procedure[procedureName=&quot;StartServer&quot;]/step[stepName=&quot;StartInstance&quot;]/command</xpath>
         <path>server/startServer.pl</path>
     </file>
@@ -101,6 +106,10 @@
     <file>
         <xpath>//procedure[procedureName=&quot;DeleteJDBCProvider&quot;]/step[stepName=&quot;DeleteJDBCProvider&quot;]/command</xpath>
         <path>server/deleteJDBCProvider.pl</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeployOSGi&quot;]/step[stepName=&quot;DeployOSGi&quot;]/command</xpath>
+        <path>server/deployOSGi.pl</path>
     </file>
 
     <file>
@@ -174,6 +183,10 @@
     <file>
         <xpath>//procedure[procedureName=&quot;UndeployApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ec_parameterForm-UndeployApp.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeployOSGi&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/ec_parameterForm-DeployOSGi.xml</path>
     </file>
 
 </fileset>

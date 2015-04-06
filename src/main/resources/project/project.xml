@@ -68,6 +68,12 @@
            <value></value>
            <expandable>0</expandable>
        </property>
+
+        <property>
+            <propertyName>deployosgi_matchers</propertyName>
+            <value></value>
+            <expandable>0</expandable>
+        </property>
 	   
        <property>
         <propertyName>ui_forms</propertyName>
@@ -4659,6 +4665,404 @@
 			</propertySheet>
 		</step>
     </procedure>
+
+
+    <procedure>
+
+        <procedureName>DeployOSGi</procedureName>
+
+        <description>Deploy OSGi application using the wsadmin tool</description>
+
+        <jobNameTemplate>websphere-DeployOSGi-$[jobId]</jobNameTemplate>
+
+        <resourceName />
+
+        <workspaceName />
+
+        <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+
+        <propertySheet>
+
+            <property>
+                <propertyName>ec_parameterForm</propertyName>
+                <expandable>1</expandable>
+                <value></value>
+            </property>
+            <property>
+
+                <propertyName>ec_customEditorData</propertyName>
+
+                <propertySheet>
+
+                    <property>
+
+                        <propertyName>parameters</propertyName>
+
+                        <propertySheet>
+
+
+
+                            <property>
+                                <propertyName>wsadminAbsPath</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>addExternalRepo</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>checkedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>1</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>initiallyChecked</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>0</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>uncheckedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>0</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+
+                            <property>
+                                <propertyName>externalRepoName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+
+                                <propertyName>externalRepoURL</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+
+                            <property>
+                                <propertyName>localRepoBundleList</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>ebaPath</propertyName>
+                                <propertySheet>
+                                    <property>
+
+                                        <propertyName>formType</propertyName>
+
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>appName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>deployUnit</propertyName>
+                                <propertySheet>
+                                    <property>
+
+                                        <propertyName>formType</propertyName>
+
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>configName</propertyName>
+                                <propertySheet>
+                                    <property>
+
+                                        <propertyName>formType</propertyName>
+
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>connectionType</propertyName>
+                                <propertySheet>
+
+                                    <property>
+                                        <propertyName>options</propertyName>
+                                        <propertySheet>
+                                            <property>
+                                                <propertyName>option1</propertyName>
+                                                <propertySheet>
+                                                    <property>
+                                                        <propertyName>text</propertyName>
+                                                        <expandable>1</expandable>
+                                                        <value>None</value>
+
+                                                    </property>
+
+                                                    <property>
+                                                        <propertyName>value</propertyName>
+                                                        <expandable>1</expandable>
+                                                        <value>NONE</value>
+                                                    </property>
+                                                </propertySheet>
+                                            </property>
+                                            <property>
+
+                                                <propertyName>option2</propertyName>
+                                                <propertySheet>
+                                                    <property>
+                                                        <propertyName>text</propertyName>
+                                                        <expandable>1</expandable>
+                                                        <value>SOAP</value>
+                                                    </property>
+                                                    <property>
+                                                        <propertyName>value</propertyName>
+                                                        <expandable>1</expandable>
+                                                        <value>soap</value>
+                                                    </property>
+                                                </propertySheet>
+                                            </property>
+                                            <property>
+                                                <propertyName>option3</propertyName>
+                                                <propertySheet>
+                                                    <property>
+                                                        <propertyName>text</propertyName>
+                                                        <expandable>1</expandable>
+                                                        <value>RMI</value>
+                                                    </property>
+                                                    <property>
+                                                        <propertyName>value</propertyName>
+                                                        <expandable>1</expandable>
+                                                        <value>rmi</value>
+                                                    </property>
+                                                </propertySheet>
+                                            </property>
+                                            <property>
+
+                                                <propertyName>option4</propertyName>
+                                                <propertySheet>
+                                                    <property>
+                                                        <propertyName>text</propertyName>
+                                                        <expandable>1</expandable>
+
+                                                        <value>JSR160RMI</value>
+                                                    </property>
+                                                    <property>
+                                                        <propertyName>value</propertyName>
+                                                        <expandable>1</expandable>
+                                                        <value>jsr160rmi</value>
+                                                    </property>
+                                                </propertySheet>
+                                            </property>
+                                            <property>
+
+                                                <propertyName>option5</propertyName>
+                                                <propertySheet>
+                                                    <property>
+                                                        <propertyName>text</propertyName>
+                                                        <expandable>1</expandable>
+                                                        <value>IPC</value>
+                                                    </property>
+                                                    <property>
+                                                        <propertyName>value</propertyName>
+                                                        <expandable>1</expandable>
+                                                        <value>ipc</value>
+                                                    </property>
+                                                </propertySheet>
+                                            </property>
+                                            <property>
+
+                                                <propertyName>optionCount</propertyName>
+                                                <expandable>1</expandable>
+                                                <value>5</value>
+                                            </property>
+                                            <property>
+                                                <propertyName>type</propertyName>
+                                                <expandable>1</expandable>
+                                                <value>list</value>
+                                            </property>
+                                        </propertySheet>
+                                    </property>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                        </propertySheet>
+                    </property>
+
+                </propertySheet>
+            </property>
+        </propertySheet>
+
+        <formalParameter>
+            <formalParameterName>wsadminAbsPath</formalParameterName>
+            <defaultValue />
+            <description>Absolute path of wsadmin, including filename and extension. Optional if the location of wsadmin is in the PATH environment variable. E.g., '/path/to/wsadmin.sh' or 'wsadmin.bat'.</description>
+            <required>1</required>
+            <type>textarea</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>addExternalRepo</formalParameterName>
+            <defaultValue/>
+            <description/>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>externalRepoName</formalParameterName>
+            <defaultValue />
+            <description>Name of the external bundle repository to configure. </description>
+            <required>0</required>
+            <type>textarea</type>
+        </formalParameter>
+
+
+        <formalParameter>
+            <formalParameterName>externalRepoURL</formalParameterName>
+            <defaultValue />
+            <description>URL of the external bundle repository to configure.</description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>localRepoBundleList</formalParameterName>
+            <defaultValue />
+            <description>Comma separated list of bundles to add to internal bundle repository. E.g. C:/installableApps/com.ibm.samples.websphere.osgi.logging.api.jar,C:/installableApps/com.ibm.samples.websphere.osgi.logging.impl.jar </description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+
+
+        <formalParameter>
+            <formalParameterName>ebaPath</formalParameterName>
+            <defaultValue />
+            <description>>Absolute path of the OSGi application to deploy. i.e: '/path/to/blog.eba' or 'c:/mydir/blog.eba'. </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>appName</formalParameterName>
+            <defaultValue />
+            <description>Name to be given to newly deployed OSGi application.</description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>deployUnit</formalParameterName>
+            <defaultValue />
+            <description>Deployment Unit on which to deploy the OSGi application. For e.g cluster=cluster1 or node=node01,server=server1</description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>configName</formalParameterName>
+            <defaultValue />
+            <description>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>connectionType</formalParameterName>
+            <defaultValue />
+            <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
+            <required>0</required>
+            <type>select</type>
+        </formalParameter>
+
+        <step>
+            <stepName>DeployOSGi</stepName>
+            <alwaysRun>0</alwaysRun>
+            <broadcast>0</broadcast>
+            <command></command>
+            <condition />
+            <description>Deploy OSGi application using the wsadmin tool</description>
+            <errorHandling>failProcedure</errorHandling>
+            <exclusive>0</exclusive>
+            <logFileName />
+            <parallel>0</parallel>
+            <postProcessor>postp --loadProperty /myProject/deployosgi_matchers</postProcessor>
+            <releaseExclusive>0</releaseExclusive>
+            <resourceName />
+            <retries>0</retries>
+            <shell>ec-perl</shell>
+            <timeLimit>5</timeLimit>
+            <timeLimitUnits>minutes</timeLimitUnits>
+            <workingDirectory />
+            <workspaceName />
+            <procedureName>DeployOSGi</procedureName>
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>formType</propertyName>
+                            <expandable>1</expandable>
+                            <value>command</value>
+                        </property>
+                    </propertySheet>
+                </property>
+            </propertySheet>
+        </step>
+    </procedure>
+
 </project>
   
 </exportedData>
