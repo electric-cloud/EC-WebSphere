@@ -94,16 +94,11 @@ sub main() {
 
     push( @args, '"' . $::gWSAdminAbsPath . '"' );
 
-    if ( $::gAdditionalOptions && $::gAdditionalOptions ne '' ) {
-        push( @args, $::gAdditionalOptions );
-    }
-
     $ScriptFile =
       'AdminApplication.configureSessionManagementForAnApplication("'
       . $::gAppName . '",';
 
     if (   $::gEnableCookie
-        && $::gEnableCookie ne ""
         && $::gEnableCookie ne "default" )
     {
         $ScriptFile .= '"' . $::gEnableCookie . '",';
@@ -113,7 +108,6 @@ sub main() {
     }
 
     if (   $::gEnableProtocolSwitching
-        && $::gEnableProtocolSwitching ne ""
         && $::gEnableProtocolSwitching ne "default" )
     {
         $ScriptFile .= '"' . $::gEnableProtocolSwitching . '",';
@@ -123,7 +117,6 @@ sub main() {
     }
 
     if (   $::gEnableURLRewriting
-        && $::gEnableURLRewriting ne ""
         && $::gEnableURLRewriting ne "default" )
     {
         $ScriptFile .= '"' . $::gEnableURLRewriting . '",';
@@ -133,7 +126,6 @@ sub main() {
     }
 
     if (   $::gEnableSSLTracking
-        && $::gEnableSSLTracking ne ""
         && $::gEnableSSLTracking ne "default" )
     {
         $ScriptFile .= '"' . $::gEnableSSLTracking . '",';
@@ -143,7 +135,6 @@ sub main() {
     }
 
     if (   $::gEnableSerializedSession
-        && $::gEnableSerializedSession ne ""
         && $::gEnableSerializedSession ne "default" )
     {
         $ScriptFile .= '"' . $::gEnableSerializedSession . '",';
@@ -167,7 +158,6 @@ sub main() {
     }
 
     if (   $::gSessionPersistMode
-        && $::gSessionPersistMode ne ""
         && $::gSessionPersistMode ne "default" )
     {
         $ScriptFile .= '"' . uc($::gSessionPersistMode) . '",';
@@ -177,7 +167,6 @@ sub main() {
     }
 
     if (   $::gAllowOverflow
-        && $::gAllowOverflow ne ""
         && $::gAllowOverflow ne "default" )
     {
         $ScriptFile .= '"' . $::gAllowOverflow . '",';
@@ -186,14 +175,14 @@ sub main() {
         $ScriptFile .= '"",';
     }
 
-    if ( $::gMaxInMemorySessionCount && $::gMaxInMemorySessionCount ne "" ) {
+    if ( $::gMaxInMemorySessionCount ) {
         $ScriptFile .= '"' . $::gMaxInMemorySessionCount . '",';
     }
     else {
         $ScriptFile .= '"",';
     }
 
-    if ( $::gInvalidTimeout && $::gInvalidTimeout ne "" ) {
+    if ( $::gInvalidTimeout ) {
         $ScriptFile .= '"' . $::gInvalidTimeout . '",';
     }
     else {
@@ -201,7 +190,6 @@ sub main() {
     }
 
     if (   $::gSessionEnable
-        && $::gSessionEnable ne ""
         && $::gSessionEnable ne "default" )
     {
         $ScriptFile .= '"' . $::gSessionEnable . '")';

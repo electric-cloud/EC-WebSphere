@@ -104,7 +104,7 @@
     </file>
 
     <file>
-        <xpath>//procedure[procedureName=&quot;ConfigSession&quot;]/step[stepName=&quot;ConfigSession&quot;]/command</xpath>
+        <xpath>//procedure[procedureName=&quot;ConfigureSession&quot;]/step[stepName=&quot;ConfigureSession&quot;]/command</xpath>
         <path>server/configureSessionManagement.pl</path>
     </file>
 
@@ -181,7 +181,7 @@
         <path>parameterForms/ec_parameterForm-UndeployApp.xml</path>
     </file>
     <file>
-        <xpath>//procedure[procedureName=&quot;ConfigSession&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <xpath>//procedure[procedureName=&quot;ConfigureSession&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ec_parameterForm-ConfigureSessionManagement.xml</path>
     </file>
 

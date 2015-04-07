@@ -81,8 +81,8 @@ $xpath = $ec->attachCredential($projName, $credName,
 $errors .= $ec->checkAllErrors($xpath);
 
 $xpath = $ec->attachCredential($projName, $credName,
-    {procedureName => 'ConfigSession',
-     stepName => 'ConfigSession'});
+    {procedureName => 'ConfigureSession',
+     stepName => 'ConfigureSession'});
 $errors .= $ec->checkAllErrors($xpath);
 
 if ($errors ne '') {

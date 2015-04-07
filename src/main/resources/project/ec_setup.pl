@@ -95,8 +95,8 @@ my %deleteJDBCProvider = (
 
 my %configureSessionManagement = (
     label       => "WebSphere - Configure Session Management",
-    procedure   => "ConfigSession",
-    description => "Configures the session management for deployed application.",
+    procedure   => "ConfigureSession",
+    description => "Configures the session management properties for the deployed application.",
     category    => "Application Server"
 );
 
@@ -260,8 +260,8 @@ if ($upgradeAction eq "upgrade") {
 
             # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'ConfigSession',
-                stepName => 'ConfigSession'
+                procedureName => 'ConfigureSession',
+                stepName => 'ConfigureSession'
             });
 
         }

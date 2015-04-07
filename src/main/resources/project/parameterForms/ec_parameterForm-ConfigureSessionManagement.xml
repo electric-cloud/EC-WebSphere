@@ -1,5 +1,5 @@
 <editor>
-	<help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#ConfigSession</help>
+	<help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#ConfigureSession</help>
 	
 	<formElement>
 		<type>entry</type>
@@ -7,6 +7,27 @@
 		<property>wsadminAbsPath</property>
 		<required>1</required>
 		<documentation>Absolute path of wsadmin, including filename and extension. Optional if the location of wsadmin is in the PATH environment variable. E.g., '/path/to/wsadmin.sh' or 'wsadmin.bat'.</documentation>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Configuration Name:</label>
+		<property>configName</property>
+		<documentation>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</documentation>
+		<required>1</required>
+	</formElement>
+
+	<formElement>
+		<type>select</type>
+		<label>Connection Type:</label>
+		<property>connectionType</property>
+		<required>0</required>
+		<documentation>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</documentation>
+		<option><name>None</name><value>none</value></option>
+		<option><name>SOAP</name><value>soap</value></option>
+		<option><name>RMI</name><value>rmi</value></option>
+		<option><name>JSR160RMI</name><value>jsr160rmi</value></option>
+		<option><name>IPC</name><value>ipc</value></option>
 	</formElement>
 
 	<formElement>
@@ -33,7 +54,7 @@
 		<label>Enable Protocol Switching:</label>
 		<property>enableProtocolSwitching</property>
 		<required>0</required>
-		<documentation>Specifies whether session tracking uses cookies to carry session IDs. If cookies are enabled, session tracking recognizes session IDs that arrive as cookies and tries to use cookies for sending session IDs. If cookies are not enabled, session tracking uses Uniform Resource Identifier (URL) rewriting instead of cookies (if URL rewriting is enabled).</documentation>
+		<documentation>Specifies whether session tracking uses cookies to carry session IDs. If cookies are enabled, session tracking recognizes session IDs that arrive as cookies and tries to use cookies for sending session IDs. If cookies are not enabled, session tracking uses URL rewriting instead of cookies (if URL rewriting is enabled).</documentation>
 		<option><name>Keep Unchanged</name><value>default</value></option>
 		<option><name>True</name><value>true</value></option>
 		<option><name>False</name><value>false</value></option>
@@ -137,29 +158,10 @@
 		<type>entry</type>
 		<label>Invalid Timeout:</label>
 		<property>invalidTimeout</property>
-		<documentation>Specifies the amount of time, in minutes, before a timeout occurs that is not valid.</documentation>
+		<documentation>Specifies how long(in minutes) a session can go unused before it is no longer valid.</documentation>
 		<required>0</required>
 	</formElement>
 
-	<formElement>
-		<type>entry</type>
-		<label>Configuration Name:</label>
-		<property>configName</property>
-		<documentation>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</documentation>
-		<required>1</required>
-	</formElement>
-	
-	<formElement>
-		<type>select</type>
-		<label>Connection Type:</label>
-		<property>connectionType</property>
-		<required>0</required>
-		<documentation>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</documentation>
-		<option><name>None</name><value>none</value></option>
-		<option><name>SOAP</name><value>soap</value></option>
-		<option><name>RMI</name><value>rmi</value></option>
-		<option><name>JSR160RMI</name><value>jsr160rmi</value></option>
-		<option><name>IPC</name><value>ipc</value></option>
-	</formElement>
+
 
 </editor>
