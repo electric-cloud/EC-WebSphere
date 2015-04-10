@@ -24,6 +24,7 @@ $::gOperation         = trim(q($[operation]));
 $::gContent           = trim(q($[content]));
 $::gContentURI        = trim(q($[contentURI]));
 $::gConnectionType    = trim(q($[connectionType]));
+$::gAdditionalParams    = trim(q($[additionalParams]));
 $::gConfigurationName = "$[configname]";
 
 # -------------------------------------------------------------------------
@@ -53,8 +54,18 @@ sub main() {
       . " -contents "
       . $::gContent
       . " -contenturi "
-      . $::gContentURI
-      . " ]')\n"
+      . $::gContentURI;
+
+    if($::gAdditionalParams) {
+        ## If optional parameters are supplied
+
+        ## Sanitize any \r \n from the parameters
+         $::gAdditionalParams =~ s/\n/ /g;
+         $::gAdditionalParams  =~ s/\r/ /g;
+        $ScriptFile .= " " . $::gAdditionalParams;
+    }
+
+    $ScriptFile .= " ]')\n"
       . "print result\n"
       . "AdminConfig.save()\n"
       . "result = AdminApp.isAppReady('"
@@ -132,7 +143,10 @@ sub main() {
               . "appstatus = AdminControl.completeObjectName('type=Application,name="
               . $::gAppName
               . ",*')\n"
-              . "print 'Application status = ' + appstatus\n";
+              . "if appstatus:\n"
+              . "\tprint 'Application is UP!'\n"
+              . "else:\n"
+              . "\tprint 'Application is not UP.'\n";
 
         }
         else {

@@ -1,1 +1,117 @@
-<editor>	<help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#UpdateApp</help>		<formElement>		<type>entry</type>		<label>Wsadmin Absolute Path:</label>		<property>wsadminAbsPath</property>		<required>1</required>		<documentation>Absolute path of wsadmin, including filename and extension. Optional if the location of wsadmin is in the PATH environment variable. E.g., '/path/to/wsadmin.sh' or 'wsadmin.bat'</documentation>	</formElement>	<formElement>		<type>entry</type>		<label>Application Name:</label>		<property>appName</property>		<documentation>Name of the web application to be updated. i.e: 'webapp'. </documentation>		<required>1</required>	</formElement>	<formElement>		<type>select</type>		<label>Content Type:</label>		<property>contentType</property>		<required>1</required>		<documentation>Specifies to type of content to update.</documentation>		<option><name>File</name><value>file</value></option>	</formElement>	<formElement>		<type>select</type>		<label>Operation:</label>		<property>operation</property>		<required>1</required>		<documentation>Specifies to type of operation to perform as part of update procedure. E.g. Add new content,remove existing content, update existing content</documentation>		<option><name>Add</name><value>add</value></option>		<option><name>Update</name><value>update</value></option>		<option><name>Delete</name><value>delete</value></option>	</formElement>	<formElement>		<type>entry</type>		<label>Content:</label>		<property>content</property>		<documentation>Location of the content to be updated with on file system.Mandatory for add and update operations.</documentation>		<required>1</required>	</formElement>	<formElement>		<type>entry</type>		<label>Content URI:</label>		<property>contentURI</property>		<documentation>The relative path beginning with the installed application archive file to the file to be replaced or added. For example, if the file is located at com/company/greeting.class in module hello.jar, specify hello.jar/com/company/greeting.class for the relative path</documentation>		<required>1</required>	</formElement>	<formElement>		<label>Is the application deployed on cluster?:</label>		<property>isAppOnCluster</property>		<value/>		<documentation>Select this checkbox if the application to be updated is deployed on cluster.</documentation>		<required>0</required>		<type>checkbox</type>		<checkedValue>1</checkedValue>		<uncheckedValue>0</uncheckedValue>	</formElement>	<formElement>		<type>entry</type>		<label>Cluster Name:</label>		<property>clusterName</property>		<documentation>Name of the cluster on which application is deployed.</documentation>		<required>0</required>	</formElement>	<formElement>		<type>entry</type>		<label>Server Name:</label>		<property>serverName</property>		<documentation>Name of the server on which application is deployed.</documentation>		<required>0</required>	</formElement>	<formElement>		<type>entry</type>		<label>Configuration Name:</label>		<property>configName</property>		<documentation>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</documentation>		<required>1</required>	</formElement>		<formElement>		<type>select</type>		<label>Connection Type:</label>		<property>connectionType</property>		<required>0</required>		<documentation>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</documentation>		<option><name>None</name><value>none</value></option>		<option><name>SOAP</name><value>soap</value></option>		<option><name>RMI</name><value>rmi</value></option>		<option><name>JSR160RMI</name><value>jsr160rmi</value></option>		<option><name>IPC</name><value>ipc</value></option>	</formElement></editor>
+<editor>
+	<help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#UpdateApp</help>
+
+	<formElement>
+		<type>entry</type>
+		<label>Configuration Name:</label>
+		<property>configName</property>
+		<documentation>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</documentation>
+		<required>1</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Wsadmin Absolute Path:</label>
+		<property>wsadminAbsPath</property>
+		<required>1</required>
+		<documentation>Absolute path of wsadmin, including filename and extension. Optional if the location of wsadmin is in the PATH environment variable. E.g., '/path/to/wsadmin.sh' or 'wsadmin.bat'</documentation>
+	</formElement>
+
+	<formElement>
+		<type>select</type>
+		<label>Connection Type:</label>
+		<property>connectionType</property>
+		<required>0</required>
+		<documentation>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</documentation>
+		<option><name>None</name><value>none</value></option>
+		<option><name>SOAP</name><value>soap</value></option>
+		<option><name>RMI</name><value>rmi</value></option>
+		<option><name>JSR160RMI</name><value>jsr160rmi</value></option>
+		<option><name>IPC</name><value>ipc</value></option>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Application Name:</label>
+		<property>appName</property>
+		<documentation>Name of the web application to be updated. i.e: 'webapp'. </documentation>
+		<required>1</required>
+	</formElement>
+
+	<formElement>
+		<type>select</type>
+		<label>Content Type:</label>
+		<property>contentType</property>
+		<required>1</required>
+		<documentation>Specifies to type of content to update. Use File option for updating a single file, Partial Application option for updating application partially, Module option to add/update a module to the deployed application, Application option for updating the entire deployed application.</documentation>
+		<option><name>File</name><value>file</value></option>
+		<option><name>Partial Application</name><value>partialapp</value></option>
+		<option><name>Module</name><value>modulefile</value></option>
+		<option><name>Application</name><value>app</value></option>
+	</formElement>
+
+	<formElement>
+		<type>select</type>
+		<label>Operation:</label>
+		<property>operation</property>
+		<required>1</required>
+		<documentation>Specifies to type of operation to perform as part of update procedure. Use Add option to  add new content, Update option to update existing content, AddUpdate option to add content and to replace if already exist, Delete option to remove existing content respectively. </documentation>
+		<option><name>Add</name><value>add</value></option>
+		<option><name>Update</name><value>update</value></option>
+		<option><name>AddUpdate</name><value>addupdate</value></option>
+		<option><name>Delete</name><value>delete</value></option>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Content:</label>
+		<property>content</property>
+		<documentation>Specifies the file that contains the content that you want to update. For example, depending on the content type, the file could be an EAR file, a module, a partial zip, or a single file.Not required for Delete operation.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Content URI:</label>
+		<property>contentURI</property>
+		<documentation>The relative path beginning with the installed application archive file to the file to be replaced or added. For example, if the file is located at com/company/greeting.class in module hello.jar, specify hello.jar/com/company/greeting.class for the relative path</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<label>Is the application deployed on cluster?:</label>
+		<property>isAppOnCluster</property>
+		<value/>
+		<documentation>Select this checkbox if the application to be updated is deployed on cluster.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Cluster Name:</label>
+		<property>clusterName</property>
+		<documentation>Name of the cluster on which application is deployed.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Server Name:</label>
+		<property>serverName</property>
+		<documentation>Name of the server on which application is deployed.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<type>textarea</type>
+		<label>Additional Parameters:</label>
+		<property>additionalParams</property>
+		<documentation>Additional parameters to pass while updating entire application or module/s, if required. For e.g. -nodeployejb, -BindJndiForEJBNonMessageBinding etc.</documentation>
+		<required>0</required>
+	</formElement>
+
+
+</editor>
