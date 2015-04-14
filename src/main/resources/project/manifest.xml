@@ -83,6 +83,10 @@
         <path>server/deployApp.pl</path>
     </file>
     <file>
+        <xpath>//procedure[procedureName=&quot;DeployEnterpriseApp&quot;]/step[stepName=&quot;DeployEnterpriseApp&quot;]/command</xpath>
+        <path>server/deployEnterpriseApp.pl</path>
+    </file>
+    <file>
         <xpath>//procedure[procedureName=&quot;UndeployApp&quot;]/step[stepName=&quot;UndeployApp&quot;]/command</xpath>
         <path>server/undeployApp.pl</path>
     </file>
@@ -170,6 +174,10 @@
     <file>
         <xpath>//procedure[procedureName=&quot;DeployApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ec_parameterForm-DeployApp.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeployEnterpriseApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/ec_parameterForm-DeployEnterpriseApp.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;UndeployApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>

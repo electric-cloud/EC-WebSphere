@@ -51,6 +51,13 @@ my %deployApp = (
     category    => "Application Server"
 );
 
+my %deployEnterpriseApp = (
+    label       => "WebSphere - Deploy Enterprise Application",
+    procedure   => "DeployEnterpriseApp",
+    description => "Deploys an enterprise application using wsadmin tool",
+    category    => "Application Server"
+);
+
 my %undeployApp = (
     label       => "WebSphere - Undeploy Application",
     procedure   => "UndeployApp",
@@ -87,11 +94,14 @@ my %createJDBCProvider = (
 );
 
 my %deleteJDBCProvider = (
-    label       => "WebSphere - Delete JDBC Provider",
-    procedure   => "DeleteJDBCProvider",
-    description => "Deletes a JDBC Provider using the wsadmin tool",
-    category    => "Application Server"
-);
+      label       => "WebSphere - Delete JDBC Provider",
+      procedure   => "DeleteJDBCProvider",
+      description => "Deletes a JDBC Provider using the wsadmin tool",
+      category    => "Application Server"
+  );
+
+
+
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy App");
@@ -119,7 +129,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete J
                             \%stopApp, \%deployApp,
                             \%undeployApp, \%checkApp, 
 							\%createDatasource, \%deleteDatasource,
-							\%createJDBCProvider, \%deleteJDBCProvider);
+							\%createJDBCProvider, \%deleteJDBCProvider, \%deployEnterpriseApp);
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
@@ -247,6 +257,12 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DeleteJDBCProvider',
                 stepName => 'DeleteJDBCProvider'
+            });
+
+            # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'DeployEnterpriseApp',
+                stepName => 'DeployEnterpriseApp'
             });
 
         }
