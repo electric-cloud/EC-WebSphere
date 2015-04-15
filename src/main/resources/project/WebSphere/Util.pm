@@ -137,7 +137,7 @@ sub maskPassword {
     return $line;
 }
 
-sub maskPassword1 {
+sub maskPasswordsForMailProviders {
     my ($line, $password) = @_;
     return $line unless defined $password && length($password);
 

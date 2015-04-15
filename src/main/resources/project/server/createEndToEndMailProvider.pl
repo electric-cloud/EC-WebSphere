@@ -379,8 +379,8 @@ sub main() {
 
     #execute command
     my $content = `$cmdLine`;
-    $escapedCmdLine = maskPassword( $content, $mailStorePassword );
-    $escapedCmdLine = maskPassword( $escapedCmdLine, $mailTransportPassword );
+    $escapedCmdLine = maskPasswordsForMailProviders( $content, $mailStorePassword );
+    $escapedCmdLine = maskPasswordsForMailProviders( $escapedCmdLine, $mailTransportPassword );
 
     #print log
     print "$escapedCmdLine \n ";
