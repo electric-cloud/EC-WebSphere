@@ -43,6 +43,8 @@ $::gNodeName                    = trim(q($[nodeName]));
 $::gServerName                  = trim(q($[serverName]));
 $::gPassivationDirectory        = trim(q($[passivationDirectory]));
 $::gInactivePoolCleanupInterval = trim(q($[inactivePoolCleanupInterval]));
+$::gCacheSize                   = trim(q($[cacheSize]));
+$::gCleanupInterval             = trim(q($[cleanupInterval]));
 $::gEnableSFSBFailover          = trim(q($[enableSFSBFailover]));
 $::gMessageBrokerDomainName     = trim(q($[messageBrokerDomainName]));
 $::gDataReplicationMode         = trim(q($[dataReplicationMode]));
@@ -79,6 +81,7 @@ sub main() {
     my %props;
     my %configuration;
     my $ScriptFile;
+    my $anotherOptionalParam = 0;
 
     #get an EC object
     my $ec = new ElectricCommander();
@@ -106,30 +109,82 @@ sub main() {
 
     $ScriptFile .= "ejbc1 = AdminConfig.list('EJBContainer', serv1)\n";
     $ScriptFile .= "print ejbc1\n";
-    $ScriptFile .=
-        "AdminConfig.modify(ejbc1, [['passivationDirectory','"
-      . $::gPassivationDirectory
-      . "'],['inactivePoolCleanupInterval',"
-      . $::gInactivePoolCleanupInterval . "],"
-      . "['enableSFSBFailover',";
+    $ScriptFile .= "AdminConfig.modify(ejbc1, [";
+    if ($::gPassivationDirectory) {
+        $ScriptFile .=
+          "['passivationDirectory','" . $::gPassivationDirectory . "']";
+        $anotherOptionalParam = 1;
+    }
 
+    ## EJB container memory consumption feature.
+    if ( $::gCacheSize eq '' ) {
+        ## Set default value
+        $::gCacheSize = '2053';
+    }
+    if ( $::gCleanupInterval eq '' ) {
+        ## Set default value
+        $::gCleanupInterval = '3000';
+    }
+    if ( $anotherOptionalParam == 1 ) {
+        $ScriptFile .= ",";
+    }
+    $ScriptFile .=
+        "['cacheSettings',[['cacheSize','"
+      . $::gCacheSize
+      . "'],['cleanupInterval','"
+      . $::gCleanupInterval . "']]]";
+
+    if ($::gInactivePoolCleanupInterval) {
+        if ( $anotherOptionalParam == 1 ) {
+            $ScriptFile .= ",";
+        }
+        $ScriptFile .= "['inactivePoolCleanupInterval','"
+          . $::gInactivePoolCleanupInterval . "']";
+        $anotherOptionalParam = 1;
+    }
+
+    ## Stateful session bean failover feature.
     if ($::gEnableSFSBFailover) {
-        $ScriptFile .= "'true'],";
+
+        if ( $anotherOptionalParam == 1 ) {
+            $ScriptFile .= ",";
+        }
+        $anotherOptionalParam = 1;
+
+        # Check if user has specified replication domain.
+        if ( $::gMessageBrokerDomainName eq '' ) {
+            die
+"Error : Replication domain not provided.To enable stateful session bean failover, replication domain is must. ";
+        }
+
+  # Check if replication mode is specifed by user. Other wise set it to default.
+        if ( $::gDataReplicationMode eq '' ) {
+            print
+"Replication mode not specified. Defaulting to Both client and server mode.";
+            $::gDataReplicationMode = 'both';
+        }
+
+        $ScriptFile .=
+"['enableSFSBFailover','true'],['drsSettings',[['dataReplicationMode','"
+          . uc($::gDataReplicationMode) . "'],"
+          . "['ids',[]],"
+          . "['messageBrokerDomainName','"
+          . $::gMessageBrokerDomainName . "'],"
+          . "['overrideHostConnectionPoints',[]],"
+          . "['properties',[]]]]])\n";
+
     }
     else {
-        $ScriptFile .= "'false'],";
+        if ( $anotherOptionalParam == 1 ) {
+            $ScriptFile .= ",";
+        }
+        $anotherOptionalParam = 1;
+        $ScriptFile .= "['enableSFSBFailover','false'],";
     }
 
-    $ScriptFile .=
-        "['drsSettings',[['dataReplicationMode','"
-      . uc($::gDataReplicationMode) . "'],"
-      . "['ids',[]],"
-      . "['messageBrokerDomainName','"
-      . $::gMessageBrokerDomainName . "'],"
-      . "['overrideHostConnectionPoints',[]],"
-      . "['properties',[]]]]])\n";
-
     $ScriptFile .= "AdminConfig.save()\n";
+    $ScriptFile .= "print 'EJB container settings set successfully.'\n";
+    $ScriptFile .= "print AdminConfig.showall(ejbc1)\n";
 
     open( MYFILE, '>configureEJBContainer_script.jython' );
 
@@ -173,25 +228,11 @@ sub main() {
     print "WSAdmin command line: $escapedCmdLine\n";
 
     #execute command
-    my $content = `$cmdLine`;
-
-    #print log
-    print "$content\n";
+    system($cmdLine);
 
     #evaluates if exit was successful to mark it as a success or fail the step
     if ( $? == SUCCESS ) {
-
         $ec->setProperty( "/myJobStep/outcome", 'success' );
-
-        #set any additional error or warning conditions here
-        #there may be cases that an error occurs and the exit code is 0.
-        #we want to set to correct outcome for the running step
-        if ( $content =~ m/WSVR0028I:/ ) {
-
-            #license expired warning
-            $ec->setProperty( "/myJobStep/outcome", 'warning' );
-        }
-
     }
     else {
         $ec->setProperty( "/myJobStep/outcome", 'error' );
