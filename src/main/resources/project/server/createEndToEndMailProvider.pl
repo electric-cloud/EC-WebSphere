@@ -37,33 +37,32 @@ $| = 1;
 # -------------------------------------------------------------------------
 # Variables
 # -------------------------------------------------------------------------
-$::gScope                 = trim(q($[scope]));
-$::gMailProviderName      = trim(q($[mailProviderName]));
-$::gMailProviderDesc      = trim(q($[mailProviderDesc]));
-$::gIsolatedClassLoader   = trim(q($[isolatedClassLoader]));
-$::gClasspath             = trim(q($[classpath]));
-$::gCustPropName          = trim(q($[custPropName]));
-$::gCustPropValue         = trim(q($[custPropValue]));
-$::gProtocolProviderName  = trim(q($[protocolProviderName]));
-$::gClassName             = trim(q($[className]));
-$::gProtocolProviderType  = trim(q($[protocolProviderType]));
-$::gMailSessionName       = trim(q($[mailSessionName]));
-$::gMailSessionJNDIName   = trim(q($[mailSessionJNDIName]));
-$::gCategory              = trim(q($[category]));
-$::gDebug                 = trim(q($[debug]));
-$::gMailSessionDesc       = trim(q($[mailSessionDesc]));
-$::gMailStoreHost         = trim(q($[mailStoreHost]));
-$::gMailStorePort         = trim(q($[mailStorePort]));
-$::gMailStoreUser         = trim(q($[mailStoreUser]));
-$::gMailStorePassword     = trim(q($[mailStorePassword]));
-$::gMailTransportHost     = trim(q($[mailTransportHost]));
-$::gMailTransportPort     = trim(q($[mailTransportPort]));
-$::gMailTransportUser     = trim(q($[mailTransportUser]));
-$::gMailTransportPassword = trim(q($[mailTransportPassword]));
-$::gStrict                = trim(q($[strict]));
-$::gWSAdminAbsPath        = trim(q($[wsadminAbsPath]));
-$::gConnectionType        = trim(q($[connectiontype]));
-$::gConfigurationName     = "$[configname]";
+$::gScope                = trim(q($[scope]));
+$::gMailProviderName     = trim(q($[mailProviderName]));
+$::gMailProviderDesc     = trim(q($[mailProviderDesc]));
+$::gIsolatedClassLoader  = trim(q($[isolatedClassLoader]));
+$::gClasspath            = trim(q($[classpath]));
+$::gCustPropName         = trim(q($[custPropName]));
+$::gCustPropValue        = trim(q($[custPropValue]));
+$::gProtocolProviderName = trim(q($[protocolProviderName]));
+$::gClassName            = trim(q($[className]));
+$::gProtocolProviderType = trim(q($[protocolProviderType]));
+$::gMailSessionName      = trim(q($[mailSessionName]));
+$::gMailSessionJNDIName  = trim(q($[mailSessionJNDIName]));
+$::gCategory             = trim(q($[category]));
+$::gDebug                = trim(q($[debug]));
+$::gMailSessionDesc      = trim(q($[mailSessionDesc]));
+$::gMailStoreHost        = trim(q($[mailStoreHost]));
+$::gMailStorePort        = trim(q($[mailStorePort]));
+$::gMailStoreUser        = trim(q($[mailStoreUser]));
+$::gMailTransportHost    = trim(q($[mailTransportHost]));
+$::gMailTransportPort    = trim(q($[mailTransportPort]));
+$::gMailTransportUser    = trim(q($[mailTransportUser]));
+$::gStrict               = trim(q($[strict]));
+$::gWSAdminAbsPath       = trim(q($[wsadminAbsPath]));
+$::gConnectionType       = trim(q($[connectiontype]));
+$::gConfigurationName    = "$[configname]";
+
 # -------------------------------------------------------------------------
 # Main functions
 # -------------------------------------------------------------------------
@@ -94,6 +93,10 @@ sub main() {
     my %props;
     my %configuration;
     my $ScriptFile = "";
+    my $xpath;
+    my $username;
+    my $mailStorePassword;
+    my $mailTransportPassword;
 
     #get an EC object
     my $ec = new ElectricCommander();
@@ -215,16 +218,34 @@ sub main() {
             ## This is not a first optional argument. Append , here .
             $ScriptFile .= ",";
         }
-        $ScriptFile .= "['mailStoreUser','" . $::gMailStoreUser . "']";
-        $mailSessionOptArgsProvided = 1;
-    }
 
-    if ($::gMailStorePassword) {
-        if ( $mailSessionOptArgsProvided != 0 ) {
-            ## This is not a first optional argument. Append , here .
-            $ScriptFile .= ",";
+        # Returns an xPath object containing the userName.
+        $xpath =
+          $ec->getFullCredential( $::gMailStoreUser, { value => "userName" } );
+
+        # Parse userName from response.
+        $username = $xpath->find("//userName");
+
+        if ( defined $username && "$username" eq "" ) {
+            print "Empty username found in '"
+              . $::gMailStoreUser
+              . "' credential object.\n";
         }
-        $ScriptFile .= "['mailStorePassword','" . $::gMailStorePassword . "']";
+        $ScriptFile .= "['mailStoreUser','" . $username . "']";
+
+        # Returns an xPath object containing the password.
+        $xpath =
+          $ec->getFullCredential( $::gMailStoreUser, { value => "password" } );
+
+        # Parse password from response.
+        $mailStorePassword = $xpath->find("//password");
+
+        if ( defined $mailStorePassword && "$mailStorePassword" eq "" ) {
+            print "Empty password found in '"
+              . $::gMailStoreUser
+              . "' credential object.\n";
+        }
+        $ScriptFile .= ",['mailStorePassword','" . $mailStorePassword . "']";
         $mailSessionOptArgsProvided = 1;
     }
 
@@ -250,17 +271,39 @@ sub main() {
             ## This is not a first optional argument. Append , here .
             $ScriptFile .= ",";
         }
-        $ScriptFile .= "['mailTransportUser','" . $::gMailTransportUser . "']";
-        $mailSessionOptArgsProvided = 1;
-    }
 
-    if ($::gMailTransportPassword) {
-        if ( $mailSessionOptArgsProvided != 0 ) {
-            ## This is not a first optional argument. Append , here .
-            $ScriptFile .= ",";
+        # Returns an xPath object containing the userName.
+        $xpath =
+          $ec->getFullCredential( $::gMailTransportUser,
+            { value => "userName" } );
+
+        # Parse userName from response.
+        $username = $xpath->find("//userName");
+
+        if ( defined $username && "$username" eq "" ) {
+            print "Empty username found in '"
+              . $::gMailTransportUser
+              . "' credential object.\n";
         }
-        $ScriptFile .=
-          "['mailTransportPassword','" . $::gMailTransportPassword . "']";
+        $ScriptFile .= "['mailTransportUser','" . $username . "']";
+
+        # Returns an xPath object containing the password.
+        $xpath =
+          $ec->getFullCredential( $::gMailTransportUser,
+            { value => "password" } );
+
+        print "XPATH for transport user password:" . $xpath;
+
+        # Parse password from response.
+        $mailTransportPassword = $xpath->find("//password");
+        print "Mail transport password:" . $mailTransportPassword;
+
+        if ( defined $mailTransportPassword && "$mailTransportPassword" eq "" ) {
+            print "Empty password found in '"
+              . $::gMailTransportUser
+              . "' credential object.\n";
+        }
+        $ScriptFile .= ",['mailTransportPassword','" . $mailTransportPassword . "']";
         $mailSessionOptArgsProvided = 1;
     }
 
@@ -283,75 +326,83 @@ sub main() {
 
     $ScriptFile .= "])\n";
     $ScriptFile .= "AdminConfig.save()\n";
+    $ScriptFile .=
+        "print 'Mail provider "
+      . $::gMailProviderName
+      . " created successfully.'\n";
 
-push( @args, '"' . $::gWSAdminAbsPath . '"' );
+    push( @args, '"' . $::gWSAdminAbsPath . '"' );
 
-open (MYFILE, '>createCompleteMailProvider_script.jython');
-print MYFILE "$ScriptFile ";
-close (MYFILE);
+    open( MYFILE, '>createCompleteMailProvider_script.jython' );
+    print MYFILE "$ScriptFile ";
+    close(MYFILE);
 
-push(@args, '-f createCompleteMailProvider_script.jython');
-push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
+    push( @args, '-f createCompleteMailProvider_script.jython' );
+    push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
 
-  if($::gConnectionType && $::gConnectionType ne '') {
-      push(@args, '-conntype ' . $::gConnectionType);
-  }
+    if ( $::gConnectionType && $::gConnectionType ne '' ) {
+        push( @args, '-conntype ' . $::gConnectionType );
+    }
 
-      my $hostParamName;
+    my $hostParamName;
 
-      if($::gConnectionType eq IPC_CONNECTION_TYPE){
-         $hostParamName = '-ipchost';
-      }else{
-         $hostParamName = '-host';
-      }
+    if ( $::gConnectionType eq IPC_CONNECTION_TYPE ) {
+        $hostParamName = '-ipchost';
+    }
+    else {
+        $hostParamName = '-host';
+    }
 
-      if($configuration{'websphere_url'} ne ''){
-          push(@args, $hostParamName . ' ' . $configuration{'websphere_url'});
-      }
+    if ( $configuration{'websphere_url'} ne '' ) {
+        push( @args, $hostParamName . ' ' . $configuration{'websphere_url'} );
+    }
 
-      if($configuration{'websphere_port'} ne ''){
-          push(@args, '-port ' . $configuration{'websphere_port'});
-      }
+    if ( $configuration{'websphere_port'} ne '' ) {
+        push( @args, '-port ' . $configuration{'websphere_port'} );
+    }
 
-      if($configuration{'user'} ne ''){
-          push(@args, '-user ' . $configuration{'user'});
-      }
+    if ( $configuration{'user'} ne '' ) {
+        push( @args, '-user ' . $configuration{'user'} );
+    }
 
-      if($configuration{'password'} ne ''){
-          push(@args, '-password ' . $configuration{'password'});
-      }
+    if ( $configuration{'password'} ne '' ) {
+        push( @args, '-password ' . $configuration{'password'} );
+    }
 
+    my $cmdLine = createCommandLine( \@args );
+    my $escapedCmdLine = maskPassword( $cmdLine, $configuration{'password'} );
 
-  my $cmdLine = createCommandLine(\@args);
-  my $escapedCmdLine = maskPassword($cmdLine, $configuration{'password'});
+    $props{'createCompleteMailProviderLine'} = $escapedCmdLine;
+    setProperties( $ec, \%props );
 
-  $props{'createCompleteMailProviderLine'} = $escapedCmdLine;
-  setProperties($ec, \%props);
+    print " WSAdmin command line : $escapedCmdLine \n ";
 
-  print " WSAdmin command line : $escapedCmdLine \n ";
+    #execute command
+    my $content = `$cmdLine`;
+    $escapedCmdLine = maskPassword( $content, $mailStorePassword );
+    $escapedCmdLine = maskPassword( $escapedCmdLine, $mailTransportPassword );
 
-  #execute command
-  my $content = `$cmdLine`;
+    #print log
+    print "$escapedCmdLine \n ";
 
-  #print log
-  print "$content \n ";
+    #evaluates if exit was successful to mark it as a success or fail the step
+    if ( $? == SUCCESS ) {
 
-  #evaluates if exit was successful to mark it as a success or fail the step
-  if($? == SUCCESS){
+        $ec->setProperty( "/myJobStep/outcome", 'success' );
 
-      $ec->setProperty(" / myJobStep / outcome ", 'success');
+        #set any additional error or warning conditions here
+        #there may be cases that an error occurs and the exit code is 0.
+        #we want to set to correct outcome for the running step
+        if ( $content =~ m/WSVR0028I:/ ) {
 
-      #set any additional error or warning conditions here
-      #there may be cases that an error occurs and the exit code is 0.
-      #we want to set to correct outcome for the running step
-      if($content =~ m/WSVR0028I:/){
-          #license expired warning
-          $ec->setProperty(" / myJobStep / outcome ", 'warning');
-      }
+            #license expired warning
+            $ec->setProperty( "/myJobStep/outcome", 'warning' );
+        }
 
-  }else{
-      $ec->setProperty(" / myJobStep / outcome ", 'error');
-  }
+    }
+    else {
+        $ec->setProperty( "/myJobStep/outcome", 'error' );
+    }
 
 }
 

@@ -1,207 +1,5 @@
 <editor>
 	<help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CreateEndToEndMailProvider</help>
-	<formElement>
-		<type>entry</type>
-		<label>Scope:</label>
-		<property>scope</property>
-		<required>1</required>
-		<documentation>Specifies the scope in which the mail provider supports installed mail applications.</documentation>
-	</formElement>
-	
-	<formElement>
-		<type>entry</type>
-		<label>Mail provider name:</label>
-		<property>mailProviderName</property>
-		<required>1</required>
-		<documentation>Specifies the name to be givent to the new mail provider .</documentation>
-	</formElement>
-
-	<formElement>
-		<type>textarea</type>
-		<label>Mail provider description:</label>
-		<property>mailProviderDesc</property>
-		<required>0</required>
-		<documentation>Specifies the mail provider description.</documentation>
-	</formElement>
-
-	<formElement>
-		<label>Isolate this mail provider?:</label>
-		<property>isolatedClassLoader</property>
-		<value/>
-		<documentation>Specifies that this mail provider will be loaded in its own class loader. This allows the application server to load different versions or implementations of the same mail provider in the same Java Virtual Machine. Give each version or implementation of the mail provider a unique class path in following (Mail provider classpath) field that is appropriate for that version or implementation.</documentation>
-		<required>0</required>
-		<type>checkbox</type>
-		<checkedValue>1</checkedValue>
-		<uncheckedValue>0</uncheckedValue>
-	</formElement>
-
-	<formElement>
-		<type>entry</type>
-		<label>Mail provider classpath:</label>
-		<property>classpath</property>
-		<documentation>Specifies the class path to a Java archive (JAR) file that contains the implementation classes for this mail provider.</documentation>
-		<required>0</required>
-	</formElement>
-
-	<formElement>
-		<type>entry</type>
-		<label>Custome property name:</label>
-		<property>custPropName</property>
-		<required>0</required>
-		<documentation>Specifies the name of custom property to create.</documentation>
-	</formElement>
-
-	<formElement>
-		<type>entry</type>
-		<label>Custome property value:</label>
-		<property>custPropValue</property>
-		<required>0</required>
-		<documentation>Specifies the value to associate with this custom property of the resource.</documentation>
-	</formElement>
-	
-	<formElement>
-		<type>entry</type>
-		<label>Protocol provider name:</label>
-		<property>protocolProviderName</property>
-		<required>1</required>
-		<documentation>Specifies the name to be given to the new protocol provider .</documentation>
-	</formElement>
-
-	<formElement>
-		<type>entry</type>
-		<label>Protocol provider class name:</label>
-		<property>className</property>
-		<documentation>Specifies the implementation class of this protocol provider. </documentation>
-		<required>1</required>
-	</formElement>
-
-	<formElement>
-		<type>select</type>
-		<label>Protocol provider type:</label>
-		<property>protocolProviderType</property>
-		<required>1</required>
-		<documentation>Specifies the type of protocol provider. Valid options are STORE(for incoming protocol provider) or TRANSPORT(for outgoing protocol provider).</documentation>
-		<option><name>STORE</name><value>STORE</value></option>
-		<option><name>TRANSPORT</name><value>TRANSPORT</value></option>
-	</formElement>
-	
-	<formElement>
-		<type>entry</type>
-		<label>Mail session name:</label>
-		<property>mailSessionName</property>
-		<documentation>Specifies the administrative name of the JavaMail session object.</documentation>
-		<required>1</required>
-	</formElement>
-
-	<formElement>
-		<type>entry</type>
-		<label>Mail session JNDI name:</label>
-		<property>mailSessionJNDIName</property>
-		<documentation>Specifies the Java Naming and Directory Interface (JNDI) name for the resource, including any naming subcontexts.</documentation>
-		<required>1</required>
-	</formElement>
-
-	<formElement>
-		<type>entry</type>
-		<label>Category:</label>
-		<property>category</property>
-		<documentation>Optional string to use while classifying or grouping the resources.</documentation>
-		<required>0</required>
-	</formElement>
-
-	<formElement>
-		<label>Enable debug mode?:</label>
-		<property>debug</property>
-		<value/>
-		<documentation>Select to print the interaction between mail application and mail server as well as the properties of this mail session to System.Out.log file.</documentation>
-		<required>0</required>
-		<type>checkbox</type>
-		<checkedValue>1</checkedValue>
-		<uncheckedValue>0</uncheckedValue>
-	</formElement>
-
-	<formElement>
-		<type>textarea</type>
-		<label>Mail session description:</label>
-		<property>mailSessionDesc</property>
-		<required>0</required>
-		<documentation>Specifies optional description for mail session.</documentation>
-	</formElement>
-
-	<formElement>
-		<type>entry</type>
-		<label>Incoming mail server:</label>
-		<property>mailStoreHost</property>
-		<documentation>Specifies the host name server that is accessed when receiving mail.</documentation>
-		<required>0</required>
-	</formElement>
-
-	<formElement>
-		<type>entry</type>
-		<label>Incoming mail server port:</label>
-		<property>mailStorePort</property>
-		<documentation>Specifies the port of the server that is accessed when receiving mail.</documentation>
-		<required>0</required>
-	</formElement>
-
-	<formElement>
-		<type>entry</type>
-		<label>Incoming mail server username:</label>
-		<property>mailStoreUser</property>
-		<documentation>Specifies the user of the mail account when the incoming mail server requires authentication.</documentation>
-		<required>0</required>
-	</formElement>
-
-	<formElement>
-		<type>password</type>
-		<label>Incoming mail server password:</label>
-		<property>mailStorePassword</property>
-		<documentation>Specifies the password to use when the incoming mail server requires authentication.</documentation>
-		<required>0</required>
-	</formElement>
-
-	<formElement>
-		<type>entry</type>
-		<label>Outgoing mail server:</label>
-		<property>mailTransportHost</property>
-		<documentation>Specifies the host name of server that is accessed when sending mail.</documentation>
-		<required>0</required>
-	</formElement>
-
-	<formElement>
-		<type>entry</type>
-		<label>Outgoing mail server port:</label>
-		<property>mailTransportPort</property>
-		<documentation>Specifies the port of the server that is accessed when sending mail.</documentation>
-		<required>0</required>
-	</formElement>
-
-	<formElement>
-		<type>entry</type>
-		<label>Outgoing mail server username:</label>
-		<property>mailTransportUser</property>
-		<documentation>Specifies the user of the mail account when the outgoing mail server requires authentication.</documentation>
-		<required>0</required>
-	</formElement>
-
-	<formElement>
-		<type>password</type>
-		<label>Outgoing mail server password:</label>
-		<property>mailTransportPassword</property>
-		<documentation>Specifies the password to use when the outgoing mail server requires authentication.</documentation>
-		<required>0</required>
-	</formElement>
-
-	<formElement>
-		<label>Enable strict Internet address parsing?:</label>
-		<property>strict</property>
-		<value/>
-		<documentation>Specifies whether the recipient addresses must be parsed in strict compliance with RFC 822.</documentation>
-		<required>0</required>
-		<type>checkbox</type>
-		<checkedValue>1</checkedValue>
-		<uncheckedValue>0</uncheckedValue>
-	</formElement>
 
 	<formElement>
 		<type>entry</type>
@@ -230,6 +28,193 @@
 		<option><name>RMI</name><value>rmi</value></option>
 		<option><name>JSR160RMI</name><value>jsr160rmi</value></option>
 		<option><name>IPC</name><value>ipc</value></option>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Scope:</label>
+		<property>scope</property>
+		<required>1</required>
+		<documentation>Specifies the scope in which the mail provider supports installed mail applications.</documentation>
+	</formElement>
+	
+	<formElement>
+		<type>entry</type>
+		<label>Mail Provider Name:</label>
+		<property>mailProviderName</property>
+		<required>1</required>
+		<documentation>Specifies the name to be givent to the new mail provider .</documentation>
+	</formElement>
+
+	<formElement>
+		<type>textarea</type>
+		<label>Mail Provider Description:</label>
+		<property>mailProviderDesc</property>
+		<required>0</required>
+		<documentation>Specifies the mail provider description.</documentation>
+	</formElement>
+
+	<formElement>
+		<label>Isolate this mail provider?:</label>
+		<property>isolatedClassLoader</property>
+		<value/>
+		<documentation>Specifies that this mail provider will be loaded in its own class loader. This allows the application server to load different versions or implementations of the same mail provider in the same Java Virtual Machine. Give each version or implementation of the mail provider a unique class path in following (Mail provider classpath) field that is appropriate for that version or implementation.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Mail Provider Classpath:</label>
+		<property>classpath</property>
+		<documentation>Specifies the class path to a Java archive (JAR) file that contains the implementation classes for this mail provider.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Custom Property Name:</label>
+		<property>custPropName</property>
+		<required>0</required>
+		<documentation>Specifies the name of custom property to create.</documentation>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Custom Property Value:</label>
+		<property>custPropValue</property>
+		<required>0</required>
+		<documentation>Specifies the value to associate with this custom property of the resource.</documentation>
+	</formElement>
+	
+	<formElement>
+		<type>entry</type>
+		<label>Protocol Provider Name:</label>
+		<property>protocolProviderName</property>
+		<required>1</required>
+		<documentation>Specifies the name to be given to the new protocol provider .</documentation>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Protocol Provider Class Name:</label>
+		<property>className</property>
+		<documentation>Specifies the implementation class of this protocol provider. </documentation>
+		<required>1</required>
+	</formElement>
+
+	<formElement>
+		<type>select</type>
+		<label>Protocol Provider Type:</label>
+		<property>protocolProviderType</property>
+		<required>1</required>
+		<documentation>Specifies the type of protocol provider. Valid options are STORE(for incoming protocol provider) or TRANSPORT(for outgoing protocol provider).</documentation>
+		<option><name>STORE</name><value>STORE</value></option>
+		<option><name>TRANSPORT</name><value>TRANSPORT</value></option>
+	</formElement>
+	
+	<formElement>
+		<type>entry</type>
+		<label>Mail Session Name:</label>
+		<property>mailSessionName</property>
+		<documentation>Specifies the administrative name of the JavaMail session object.</documentation>
+		<required>1</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Mail Session JNDI Name:</label>
+		<property>mailSessionJNDIName</property>
+		<documentation>Specifies the Java Naming and Directory Interface (JNDI) name for the resource, including any naming subcontexts.</documentation>
+		<required>1</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Category:</label>
+		<property>category</property>
+		<documentation>Optional string to use while classifying or grouping the resources.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<label>Enable Debug Mode?:</label>
+		<property>debug</property>
+		<value/>
+		<documentation>Select to print the interaction between mail application and mail server as well as the properties of this mail session to System.Out.log file.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<type>textarea</type>
+		<label>Mail Session Description:</label>
+		<property>mailSessionDesc</property>
+		<required>0</required>
+		<documentation>Specifies optional description for mail session.</documentation>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Incoming Mail Server:</label>
+		<property>mailStoreHost</property>
+		<documentation>Specifies the host name server that is accessed when receiving mail.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Incoming Mail Server Port:</label>
+		<property>mailStorePort</property>
+		<documentation>Specifies the port of the server that is accessed when receiving mail.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<type>credential</type>
+		<label>Incoming Mail Server Credentials:</label>
+		<property>mailStoreUser</property>
+		<documentation>Specifies the credential for the mail account when the incoming mail server requires authentication.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Outgoing Mail Server:</label>
+		<property>mailTransportHost</property>
+		<documentation>Specifies the host name of server that is accessed when sending mail.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Outgoing Mail Server Port:</label>
+		<property>mailTransportPort</property>
+		<documentation>Specifies the port of the server that is accessed when sending mail.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<type>credential</type>
+		<label>Outgoing Mail Server Credential:</label>
+		<property>mailTransportUser</property>
+		<documentation>Specifies the user of the mail account when the outgoing mail server requires authentication.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<label>Enable Strict Internet Address Parsing?:</label>
+		<property>strict</property>
+		<value/>
+		<documentation>Specifies whether the recipient addresses must be parsed in strict compliance with RFC 822.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
 	</formElement>
 
 </editor>

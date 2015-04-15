@@ -26,6 +26,10 @@
         <path>matchers/wsadminMatchers.pl</path>
     </file>
     <file>
+        <xpath>//property[propertyName=&quot;mailprovider_matchers&quot;]/value</xpath>
+        <path>matchers/createMailProviderMatchers.pl</path>
+    </file>
+    <file>
         <xpath>//property[propertyName=&quot;checkserver_matchers&quot;]/value</xpath>
         <path>matchers/checkServerMatchers.pl</path>
     </file>
