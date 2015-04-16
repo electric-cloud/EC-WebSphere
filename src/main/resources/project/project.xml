@@ -4700,127 +4700,22 @@
 
                         <propertySheet>
 
-
+                            <property>
+                                <propertyName>configName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
 
                             <property>
                                 <propertyName>wsadminAbsPath</propertyName>
                                 <propertySheet>
                                     <property>
                                         <propertyName>formType</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>standard</value>
-                                    </property>
-                                </propertySheet>
-                            </property>
-
-                            <property>
-                                <propertyName>addExternalRepo</propertyName>
-                                <propertySheet>
-                                    <property>
-                                        <propertyName>checkedValue</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>1</value>
-                                    </property>
-                                    <property>
-                                        <propertyName>formType</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>standard</value>
-                                    </property>
-                                    <property>
-                                        <propertyName>initiallyChecked</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>0</value>
-                                    </property>
-                                    <property>
-                                        <propertyName>uncheckedValue</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>0</value>
-                                    </property>
-                                </propertySheet>
-                            </property>
-
-
-                            <property>
-                                <propertyName>externalRepoName</propertyName>
-                                <propertySheet>
-                                    <property>
-                                        <propertyName>formType</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>standard</value>
-                                    </property>
-                                </propertySheet>
-                            </property>
-
-                            <property>
-
-                                <propertyName>externalRepoURL</propertyName>
-                                <propertySheet>
-                                    <property>
-                                        <propertyName>formType</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>standard</value>
-                                    </property>
-                                </propertySheet>
-                            </property>
-
-
-                            <property>
-                                <propertyName>localRepoBundleList</propertyName>
-                                <propertySheet>
-                                    <property>
-                                        <propertyName>formType</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>standard</value>
-                                    </property>
-
-                                </propertySheet>
-                            </property>
-
-                            <property>
-                                <propertyName>ebaPath</propertyName>
-                                <propertySheet>
-                                    <property>
-
-                                        <propertyName>formType</propertyName>
-
-                                        <expandable>1</expandable>
-                                        <value>standard</value>
-                                    </property>
-                                </propertySheet>
-                            </property>
-
-                            <property>
-                                <propertyName>appName</propertyName>
-                                <propertySheet>
-                                    <property>
-                                        <propertyName>formType</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>standard</value>
-
-                                    </property>
-                                </propertySheet>
-                            </property>
-
-                            <property>
-                                <propertyName>deployUnit</propertyName>
-                                <propertySheet>
-                                    <property>
-
-                                        <propertyName>formType</propertyName>
-
-                                        <expandable>1</expandable>
-                                        <value>standard</value>
-                                    </property>
-                                </propertySheet>
-                            </property>
-
-                            <property>
-                                <propertyName>configName</propertyName>
-                                <propertySheet>
-                                    <property>
-
-                                        <propertyName>formType</propertyName>
-
                                         <expandable>1</expandable>
                                         <value>standard</value>
                                     </property>
@@ -4937,6 +4832,107 @@
                                 </propertySheet>
                             </property>
 
+                            <property>
+                                <propertyName>addExternalRepo</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>checkedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>1</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>initiallyChecked</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>0</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>uncheckedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>0</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+
+                            <property>
+                                <propertyName>externalRepoName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+
+                                <propertyName>externalRepoURL</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+
+                            <property>
+                                <propertyName>localRepoBundleList</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>ebaPath</propertyName>
+                                <propertySheet>
+                                    <property>
+
+                                        <propertyName>formType</propertyName>
+
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>appName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>deployUnit</propertyName>
+                                <propertySheet>
+                                    <property>
+
+                                        <propertyName>formType</propertyName>
+
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
                         </propertySheet>
                     </property>
 
@@ -4945,11 +4941,27 @@
         </propertySheet>
 
         <formalParameter>
+            <formalParameterName>configName</formalParameterName>
+            <defaultValue />
+            <description>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
             <formalParameterName>wsadminAbsPath</formalParameterName>
             <defaultValue />
             <description>Absolute path of wsadmin, including filename and extension. Optional if the location of wsadmin is in the PATH environment variable. E.g., '/path/to/wsadmin.sh' or 'wsadmin.bat'.</description>
             <required>1</required>
             <type>textarea</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>connectionType</formalParameterName>
+            <defaultValue />
+            <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
+            <required>0</required>
+            <type>select</type>
         </formalParameter>
 
         <formalParameter>
@@ -5008,22 +5020,6 @@
             <description>Deployment Unit on which to deploy the OSGi application. For e.g cluster=cluster1 or node=node01,server=server1</description>
             <required>1</required>
             <type>entry</type>
-        </formalParameter>
-
-        <formalParameter>
-            <formalParameterName>configName</formalParameterName>
-            <defaultValue />
-            <description>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</description>
-            <required>1</required>
-            <type>entry</type>
-        </formalParameter>
-
-        <formalParameter>
-            <formalParameterName>connectionType</formalParameterName>
-            <defaultValue />
-            <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
-            <required>0</required>
-            <type>select</type>
         </formalParameter>
 
         <step>

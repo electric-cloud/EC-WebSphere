@@ -77,13 +77,10 @@ sub main() {
 
     # create args array
     my @args = ();
-    my %props;
     my %configuration;
     my $ScriptFile;
-    my $optionalArgsSupplied;
-    my $firstOptionalArg;
     my $assetName = $::gEbaPath;
-
+    my %props;
     #get an EC object
     my $ec = new ElectricCommander();
     $ec->abortOnError(0);
@@ -109,6 +106,7 @@ sub main() {
           . $::gExternalRepoURL
           . " ]')\n"
           . "AdminConfig.save()\n";
+         $ScriptFile .= "print 'External bundle repository added successfully.'\n";
     }
 
     my @localBundles = split( ",", $::gLocalRepoBundleList );
@@ -120,15 +118,16 @@ sub main() {
           . "print 'Adding bundle ' + bundleToInstall + ' to internal bundle repository'\n"
           . "AdminTask.addLocalRepositoryBundle('[-file ' + bundleToInstall + ' ]')\n"
           . "AdminConfig.save()\n";
+           $ScriptFile .= "print 'Added " . $_ . " to internal bundle repository successfully.'\n";
     }
 
     $ScriptFile .=
         "print 'Importing Asset:'\n"
-      . "AdminTask.importAsset([\"-storageType\", \"FULL\", \"-source\", \""
+      . 'AdminTask.importAsset(["-storageType", "FULL", "-source", "'
       . $::gEbaPath
       . "\"])\n"
       . "AdminConfig.save()\n"
-      . "print \"- Done\"\n";
+      . "print 'Imported asset " . $::gEbaPath . " successfully.'\n";
 
     ## Asset name is derived by omitting file base path from full .eba file path.
     $assetName =~ s{.*/}{}g;    ## Remove base directory path
@@ -143,17 +142,18 @@ sub main() {
       . "\tdownloadsComplete = AdminControl.invoke(bcmObjectName, 'areAllDownloadsComplete')\n"
       . "\tloopCount += 1\n"
       . "\tif loopCount == 150:\n"
-      . "\t\tprint '- The bundle cache manager is indicating problems'\n"
+      . "\t\tprint 'Error : The bundle cache manager is indicating problems'\n"
       . "\t\tbundles = AdminControl.invoke(bcmObjectName, 'getAllBundles').splitlines()\n"
       . "\t\tfor bundleName in bundles:\n"
       . "\t\t\tprint bundleName + ' status: ' + AdminControl.invoke(bcmObjectName, 'getBundleDownloadState', bundleName)\n"
       . "\t\t\tbreak\n"
-      . "print 'Creating Business Level Application:'\n"
+      . "print 'All bundles downloaded successfully.'\n"
+      . "print 'Creating Business Level Application.'\n"
       . "AdminTask.createEmptyBLA(['-name','"
       . $::gAppName . "'])\n"
       . "AdminConfig.save()\n"
-      . "print '- Done'\n"
-      . "print 'Creating Composition Unit:'\n"
+      . "print 'Created business level application " . $::gAppName . " successfully.'\n"
+      . "print 'Creating Composition Unit.'\n"
       . "AdminTask.addCompUnit(['-blaID', 'WebSphere:blaname="
       . $::gAppName
       . "', '-cuSourceID', 'WebSphere:assetname="
@@ -162,11 +162,12 @@ sub main() {
       . $::gDeployUnit
       . "]]'])\n"
       . "AdminConfig.save()\n"
+      . "print 'Added asset " . $assetName . " to BLA " . $::gAppName . ".'\n"
       . "AdminNodeManagement.syncActiveNodes()\n"
       . "print '- Done'\n"
       . "AdminTask.startBLA(['-blaID', 'WebSphere:blaname="
       . $::gAppName . "'])\n"
-      . "print 'SETUP COMPLETE'\n";
+      . "print 'Started application " . $::gAppName . " successfully.'\n";
 
     open( MYFILE, '>deployOSGi_script.jython' );
 
@@ -210,24 +211,12 @@ sub main() {
     print "WSAdmin command line: $escapedCmdLine\n";
 
     #execute command
-    my $content = `$cmdLine`;
-
-    #print log
-    print "$content\n";
+    system($cmdLine);
 
     #evaluates if exit was successful to mark it as a success or fail the step
     if ( $? == SUCCESS ) {
 
         $ec->setProperty( "/myJobStep/outcome", 'success' );
-
-        #set any additional error or warning conditions here
-        #there may be cases that an error occurs and the exit code is 0.
-        #we want to set to correct outcome for the running step
-        if ( $content =~ m/WSVR0028I:/ ) {
-
-            #license expired warning
-            $ec->setProperty( "/myJobStep/outcome", 'warning' );
-        }
 
     }
     else {
