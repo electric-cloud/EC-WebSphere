@@ -68,6 +68,12 @@
            <value></value>
            <expandable>0</expandable>
        </property>
+
+        <property>
+            <propertyName>jmsprovider_matchers</propertyName>
+            <value></value>
+            <expandable>0</expandable>
+        </property>
 	   
        <property>
         <propertyName>ui_forms</propertyName>
@@ -4659,6 +4665,496 @@
 			</propertySheet>
 		</step>
     </procedure>
+
+    <procedure>
+
+        <procedureName>CreateJMSProvider</procedureName>
+
+        <description>Creates a JMS Provider using the wsadmin tool</description>
+
+        <jobNameTemplate>websphere-CreateJMSProvider-$[jobId]</jobNameTemplate>
+
+        <resourceName />
+
+        <workspaceName />
+
+        <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+
+        <propertySheet>
+
+            <property>
+                <propertyName>ec_parameterForm</propertyName>
+                <expandable>1</expandable>
+                <value></value>
+            </property>
+            <property>
+
+                <propertyName>ec_customEditorData</propertyName>
+
+                <propertySheet>
+
+                    <property>
+
+                        <propertyName>parameters</propertyName>
+
+                        <propertySheet>
+
+                            <property>
+                                <propertyName>configName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+
+                            <property>
+                                <propertyName>wsadminAbsPath</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+
+                                </propertySheet>
+                            </property>
+
+
+                            <property>
+                                <propertyName>scope</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+
+                                <propertyName>jmsProvider</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+
+                            <property>
+                                <propertyName>extContextFactory</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>extProviderURL</propertyName>
+                                <propertySheet>
+                                    <property>
+
+                                        <propertyName>formType</propertyName>
+
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>classpath</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>description</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>isolatedClassLoader</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>checkedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>1</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>initiallyChecked</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>0</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>uncheckedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>0</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>nativepath</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>providerType</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>propertySet</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>supportsASF</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>checkedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>1</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>initiallyChecked</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>0</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>uncheckedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>0</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>connectionType</propertyName>
+                                <propertySheet>
+
+                                    <property>
+                                        <propertyName>options</propertyName>
+                                        <propertySheet>
+                                            <property>
+                                                <propertyName>option1</propertyName>
+                                                <propertySheet>
+                                                    <property>
+                                                        <propertyName>text</propertyName>
+                                                        <expandable>1</expandable>
+                                                        <value>None</value>
+
+                                                    </property>
+
+                                                    <property>
+                                                        <propertyName>value</propertyName>
+                                                        <expandable>1</expandable>
+                                                        <value>NONE</value>
+                                                    </property>
+                                                </propertySheet>
+                                            </property>
+                                            <property>
+
+                                                <propertyName>option2</propertyName>
+                                                <propertySheet>
+                                                    <property>
+                                                        <propertyName>text</propertyName>
+                                                        <expandable>1</expandable>
+                                                        <value>SOAP</value>
+                                                    </property>
+                                                    <property>
+                                                        <propertyName>value</propertyName>
+                                                        <expandable>1</expandable>
+                                                        <value>soap</value>
+                                                    </property>
+                                                </propertySheet>
+                                            </property>
+                                            <property>
+                                                <propertyName>option3</propertyName>
+                                                <propertySheet>
+                                                    <property>
+                                                        <propertyName>text</propertyName>
+                                                        <expandable>1</expandable>
+                                                        <value>RMI</value>
+                                                    </property>
+                                                    <property>
+                                                        <propertyName>value</propertyName>
+                                                        <expandable>1</expandable>
+                                                        <value>rmi</value>
+                                                    </property>
+                                                </propertySheet>
+                                            </property>
+                                            <property>
+
+                                                <propertyName>option4</propertyName>
+                                                <propertySheet>
+                                                    <property>
+                                                        <propertyName>text</propertyName>
+                                                        <expandable>1</expandable>
+
+                                                        <value>JSR160RMI</value>
+                                                    </property>
+                                                    <property>
+                                                        <propertyName>value</propertyName>
+                                                        <expandable>1</expandable>
+                                                        <value>jsr160rmi</value>
+                                                    </property>
+                                                </propertySheet>
+                                            </property>
+                                            <property>
+
+                                                <propertyName>option5</propertyName>
+                                                <propertySheet>
+                                                    <property>
+                                                        <propertyName>text</propertyName>
+                                                        <expandable>1</expandable>
+                                                        <value>IPC</value>
+                                                    </property>
+                                                    <property>
+                                                        <propertyName>value</propertyName>
+                                                        <expandable>1</expandable>
+                                                        <value>ipc</value>
+                                                    </property>
+                                                </propertySheet>
+                                            </property>
+                                            <property>
+
+                                                <propertyName>optionCount</propertyName>
+                                                <expandable>1</expandable>
+                                                <value>5</value>
+                                            </property>
+                                            <property>
+                                                <propertyName>type</propertyName>
+                                                <expandable>1</expandable>
+                                                <value>list</value>
+                                            </property>
+                                        </propertySheet>
+                                    </property>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                        </propertySheet>
+                    </property>
+
+
+                </propertySheet>
+            </property>
+        </propertySheet>
+
+        <formalParameter>
+            <formalParameterName>configName</formalParameterName>
+            <defaultValue />
+            <description>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>wsadminAbsPath</formalParameterName>
+            <defaultValue />
+            <description>Absolute path of wsadmin, including filename and extension. Optional if the location of wsadmin is in the PATH environment variable. E.g., '/path/to/wsadmin.sh' or 'wsadmin.bat'.</description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>scope</formalParameterName>
+            <defaultValue />
+            <description>Specifies a scope of cell, node, server, or cluster for the JMS provider. E.g. Cell=Cell01,Node=Node01,Server=server1</description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+
+            <formalParameterName>jmsProvider</formalParameterName>
+            <defaultValue />
+            <description>Specifies the name to assign to the new JMS provider.</description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+
+
+        <formalParameter>
+            <formalParameterName>extContextFactory</formalParameterName>
+            <defaultValue />
+            <description>Specifies the Java class name of the initial context factory for the JMS provider. </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>extProviderURL</formalParameterName>
+            <defaultValue />
+            <description>Specifies the JMS provider URL for external JNDI lookups. </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+
+
+        <formalParameter>
+            <formalParameterName>classpath</formalParameterName>
+            <defaultValue />
+            <description>Specifies a list of paths or Java archive (JAR) file names which together form the location for the resource provider classes. Use a semicolon (;) to separate class paths. </description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>description</formalParameterName>
+            <defaultValue />
+            <description>Specifies a description of the JMS Provider.</description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>isolatedClassLoader</formalParameterName>
+            <defaultValue/>
+            <description>If set to true, specifies that the resource provider is loaded in its own class loader.</description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>nativepath</formalParameterName>
+            <defaultValue />
+            <description>Specifies an optional path to any native libraries, such as *.dll and *.so. Native path entries are separated by a semicolon (;).</description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>providerType</formalParameterName>
+            <defaultValue />
+            <description>Specifies the JMS provider type that this JMS provider uses.</description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>propertySet</formalParameterName>
+            <defaultValue />
+            <description>Specifies resource properties in the following format: [[[name1 nameValue1][type1 typeValue1][value1 valueValue1]]... [[namen nameValuen][typen typeValuen][valuen valueValuen]] ]</description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>supportsASF</formalParameterName>
+            <defaultValue/>
+            <description>If set to true, specifies that the JMS provider supports Application Server Facilities (ASF), which provides concurrency and transactional support for applications.</description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>connectionType</formalParameterName>
+            <defaultValue />
+            <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE.</description>
+            <required>1</required>
+            <type>select</type>
+        </formalParameter>
+
+        <step>
+            <stepName>CreateJMSProvider</stepName>
+            <alwaysRun>0</alwaysRun>
+            <broadcast>0</broadcast>
+            <command></command>
+            <condition />
+            <description>Deploys an application using AdminApp.install</description>
+            <errorHandling>failProcedure</errorHandling>
+            <exclusive>0</exclusive>
+            <logFileName />
+            <parallel>0</parallel>
+            <postProcessor>postp --loadProperty /myProject/jmsprovider_matchers</postProcessor>
+            <releaseExclusive>0</releaseExclusive>
+            <resourceName />
+            <retries>0</retries>
+            <shell>ec-perl</shell>
+            <timeLimit>5</timeLimit>
+            <timeLimitUnits>minutes</timeLimitUnits>
+            <workingDirectory />
+            <workspaceName />
+            <procedureName>CreateJMSProvider</procedureName>
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>formType</propertyName>
+                            <expandable>1</expandable>
+                            <value>command</value>
+                        </property>
+                    </propertySheet>
+                </property>
+            </propertySheet>
+        </step>
+    </procedure>
+
 </project>
   
 </exportedData>
