@@ -1,3 +1,25 @@
+=head1 NAME
+
+removeClusterMembers.pl - a perl library to deregister application server from a cluster.
+
+=head1 SYNOPSIS
+
+=head1 DESCRIPTION
+
+a perl library to deregister application server from a cluster.
+
+=head1 LICENSE
+
+Copyright (c) 2014 Electric Cloud, Inc.
+All rights reserved.
+
+=head1 AUTHOR
+
+    ---
+
+=head2 METHODS
+
+=cut
 
 # -------------------------------------------------------------------------
 # Includes
@@ -23,6 +45,25 @@ $::gConfigurationName = "$[configname]";
 # -------------------------------------------------------------------------
 # Main functions
 # -------------------------------------------------------------------------
+
+=over
+
+=item B<main>
+
+main - contains the whole process to be done by the plugin, it builds
+       the command line, sets the properties and the working directory
+
+B<Params:>
+
+none
+
+B<Returns:>
+
+none
+
+=back
+
+=cut
 
 sub main() {
 
@@ -60,7 +101,7 @@ sub main() {
 
     push( @args, '"' . $::gWSAdminAbsPath . '"' );
 
-    open( MYFILE, '>>removeClusterMembers_script.jython' );
+    open( MYFILE, '>removeClusterMembers_script.jython' );
 
     print MYFILE "$ScriptFile";
     close(MYFILE);
