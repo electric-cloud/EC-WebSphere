@@ -1,13 +1,25 @@
-# -------------------------------------------------------------------------
-# File
-#    runCustomJob.pl
-#
-# Dependencies
-#    None
-#
-# Copyright (c) 2014 Electric Cloud, Inc.
-# All rights reserved
-# -------------------------------------------------------------------------
+=head1 NAME
+
+publishWSDL.pl - a perl library to that publishes WSDL files.
+
+=head1 SYNOPSIS
+
+=head1 DESCRIPTION
+
+a perl library to that publishes WSDL files in each web services-enabled module to the file system location.
+
+=head1 LICENSE
+
+Copyright (c) 2014 Electric Cloud, Inc.
+All rights reserved.
+
+=head1 AUTHOR
+
+    ---
+
+=head2 METHODS
+
+=cut
 
 
 # -------------------------------------------------------------------------
@@ -29,7 +41,8 @@ $|=1;
 $::gCommands = q($[commands]);
 $::gAppName = trim(q($[appname]));
 $::gpublish_location = trim(q($[publish_location]));
-$::gScriptFile = 'AdminApp.publishWSDL(\'' . $::gAppName . '\',\'' . $::gpublish_location . '\')' . "\n";
+$::gScriptFile = 'AdminApp.publishWSDL(\'' . $::gAppName . '\',\'' . $::gpublish_location . '\')' . "\n"
+                . "print 'WSDL files for " . $::gAppName . " published successfully'";
 $::gWSAdminAbsPath = trim(q($[wsadminabspath]));
 $::gClasspath = trim(q($[classpath]));
 $::gConnectionType = trim(q($[connectiontype]));
@@ -41,18 +54,25 @@ $::gAdditionalOptions = "$[additionalcommands]";
 # Main functions
 # -------------------------------------------------------------------------
 
+=over
 
-########################################################################
-# main - contains the whole process to be done by the plugin, it builds 
-#        the command line, sets the properties and the working directory
-#
-# Arguments:
-#   none
-#
-# Returns:
-#   none
-#
-########################################################################
+=item B<main>
+
+main - contains the whole process to be done by the plugin, it builds
+       the command line, sets the properties and the working directory
+
+B<Params:>
+
+none
+
+B<Returns:>
+
+none
+
+=back
+
+=cut
+
 sub main() {
     
   # create args array
@@ -63,10 +83,9 @@ sub main() {
   #get an EC object
   my $ec = new ElectricCommander();
   $ec->abortOnError(0);
-  
-  if($::gConfigurationName ne ''){
-      %configuration = getConfiguration($ec, $::gConfigurationName);
-  }
+
+  %configuration = getConfiguration($ec, $::gConfigurationName);
+
   
   push(@args, '"'.$::gWSAdminAbsPath.'"');
 
@@ -74,12 +93,12 @@ sub main() {
       push(@args, $::gAdditionalOptions);
   }
   
-  open (MYFILE, '>>deployapp_script.jython');
+  open (MYFILE, '>publishWSDL_script.jython');
   
 print MYFILE "$::gScriptFile";
 close (MYFILE);
       
-push(@args, '-f deployapp_script.jython');
+push(@args, '-f publishWSDL_script.jython');
 push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
 
   if($::gClasspath && $::gClasspath ne '') {
@@ -90,32 +109,31 @@ push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
       push(@args, '-conntype ' . $::gConnectionType);
   }
   
-  #inject config...
-  if(%configuration){
-      my $hostParamName;
-      
-      if($::gConnectionType eq IPC_CONNECTION_TYPE){
-         $hostParamName = '-ipchost';
-      }else{         
-         $hostParamName = '-host';
-      }
-      
-      if($configuration{'websphere_url'} ne ''){
-          push(@args, $hostParamName . ' ' . $configuration{'websphere_url'});
-      }
-      
-      if($configuration{'websphere_port'} ne ''){
-          push(@args, '-port ' . $configuration{'websphere_port'});
-      }
-      
-      if($configuration{'user'} ne ''){
-          push(@args, '-user ' . $configuration{'user'});
-      }
-      
-      if($configuration{'password'} ne ''){
-          push(@args, '-password ' . $configuration{'password'});
-      }
+
+  my $hostParamName;
+
+  if($::gConnectionType eq IPC_CONNECTION_TYPE){
+     $hostParamName = '-ipchost';
+  }else{
+     $hostParamName = '-host';
   }
+
+  if($configuration{'websphere_url'} ne ''){
+      push(@args, $hostParamName . ' ' . $configuration{'websphere_url'});
+  }
+
+  if($configuration{'websphere_port'} ne ''){
+      push(@args, '-port ' . $configuration{'websphere_port'});
+  }
+
+  if($configuration{'user'} ne ''){
+      push(@args, '-user ' . $configuration{'user'});
+  }
+
+  if($configuration{'password'} ne ''){
+      push(@args, '-password ' . $configuration{'password'});
+  }
+
   
   if($::gJavaParams && $::gJavaParams ne '') {
       foreach my $param (split(SEPARATOR_CHAR, $::gJavaParams)) {
@@ -132,7 +150,7 @@ push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
   my $cmdLine = createCommandLine(\@args);
   my $escapedCmdLine = maskPassword($cmdLine, $configuration{'password'});
   
-  $props{'deployAppLine'} = $escapedCmdLine;
+  $props{'publishWSDLLine'} = $escapedCmdLine;
   setProperties($ec, \%props);
   
   print "WSAdmin command line: $escapedCmdLine\n";

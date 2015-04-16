@@ -42,6 +42,10 @@
         <path>matchers/datasourceMatchers.pl</path>
     </file>
     <file>
+        <xpath>//property[propertyName=&quot;publishwsdl_matchers&quot;]/value</xpath>
+        <path>matchers/publishWSDLmatchers.pl</path>
+    </file>
+    <file>
         <xpath>//property[propertyName=&quot;jdbcprovider_matchers&quot;]/value</xpath>
         <path>matchers/jdbcProviderMatchers.pl</path>
     </file>
