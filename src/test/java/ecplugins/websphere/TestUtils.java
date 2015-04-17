@@ -11,12 +11,36 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
+import java.io.*;
+import java.util.Properties;
+
 import static org.junit.Assert.*;
 
 
 public class TestUtils {
 
+    static Properties props;
+
+    static {
+
+        props = new Properties();
+        InputStream is = null;
+
+        try {
+            is = new FileInputStream("ecplugin.properties");
+            props.load(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
     /**
      * callRunProcedure
      *
@@ -27,9 +51,10 @@ public class TestUtils {
 
         HttpClient httpClient = new DefaultHttpClient();
         JSONObject result = null;
+
         try {
-            HttpPost httpPostRequest = new HttpPost("http://" + Properties.COMMANDER_USER
-                    + ":" + Properties.COMMANDER_PASSWORD + "@" + Properties.COMMANDER_SERVER
+            HttpPost httpPostRequest = new HttpPost("http://" + props.getProperty(StringConstants.COMMANDER_USER)
+                    + ":" + props.getProperty(StringConstants.COMMANDER_PASSWORD) + "@" + StringConstants.COMMANDER_SERVER
                     + ":8000/rest/v1.0/jobs?request=runProcedure");
             StringEntity input = new StringEntity(jo.toString());
 
@@ -63,8 +88,8 @@ public class TestUtils {
      */
      static String waitForJob(String jobId) throws IOException, JSONException {
 
-        String url = "http://" + Properties.COMMANDER_USER + ":" + Properties.COMMANDER_PASSWORD +
-                "@" + Properties.COMMANDER_SERVER + ":8000/rest/v1.0/jobs/" +
+        String url = "http://" + props.getProperty(StringConstants.COMMANDER_USER) + ":" + props.getProperty(StringConstants.COMMANDER_PASSWORD) +
+                "@" + StringConstants.COMMANDER_SERVER + ":8000/rest/v1.0/jobs/" +
                 jobId + "?request=getJobStatus";
         JSONObject jsonObject = performHTTPGet(url);
 
@@ -117,7 +142,7 @@ public class TestUtils {
         JSONObject parentJSONObject = new JSONObject();
         JSONArray actualParameterArray = new JSONArray();
 
-        parentJSONObject.put("projectName", "EC-WebSphere-" + Properties.PLUGIN_VERSION);
+        parentJSONObject.put("projectName", "EC-WebSphere-" + StringConstants.PLUGIN_VERSION);
         parentJSONObject.put("procedureName", "CreateConfiguration");
 
         actualParameterArray.put(new JSONObject()
@@ -126,11 +151,11 @@ public class TestUtils {
 
         actualParameterArray.put(new JSONObject()
                 .put("actualParameterName", "websphere_url")
-                .put("value", Properties.WEBSPHERE_URL));
+                .put("value", props.getProperty(StringConstants.WEBSPHERE_URL)));
 
         actualParameterArray.put(new JSONObject()
                 .put("actualParameterName", "websphere_port")
-                .put("value", Properties.WEBSPHERE_PORT));
+                .put("value", props.getProperty(StringConstants.WEBSPHERE_PORT)));
 
         actualParameterArray.put(new JSONObject()
                 .put("actualParameterName", "credential")
@@ -142,8 +167,8 @@ public class TestUtils {
 
         credentialArray.put(new JSONObject()
                 .put("credentialName", "web_credentials")
-                .put("userName", Properties.WEBSPHERE_USER)
-                .put("password", Properties.WEBSPHERE_PASSWORD));
+                .put("userName", props.getProperty(StringConstants.WEBSPHERE_USER))
+                .put("password", props.getProperty(StringConstants.WEBSPHERE_PASSWORD)));
 
         parentJSONObject.put("credential", credentialArray);
 
@@ -162,7 +187,7 @@ public class TestUtils {
         String jobId = "";
         JSONObject param1 = new JSONObject();
         JSONObject jo = new JSONObject();
-        jo.put("projectName", "EC-WebSphere-" + Properties.PLUGIN_VERSION);
+        jo.put("projectName", "EC-WebSphere-" + StringConstants.PLUGIN_VERSION);
         jo.put("procedureName", "DeleteConfiguration");
 
         JSONArray actualParameterArray = new JSONArray();
@@ -176,8 +201,8 @@ public class TestUtils {
 
          credentialArray.put(new JSONObject()
                  .put("credentialName", "web_credentials")
-                 .put("userName", Properties.WEBSPHERE_USER)
-                 .put("password", Properties.WEBSPHERE_PASSWORD));
+                 .put("userName", props.getProperty(StringConstants.WEBSPHERE_USER))
+                 .put("password", props.getProperty(StringConstants.WEBSPHERE_PASSWORD)));
 
          jo.put("credential", credentialArray);
 

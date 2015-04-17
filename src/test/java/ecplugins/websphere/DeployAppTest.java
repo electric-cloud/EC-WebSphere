@@ -7,12 +7,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.Properties;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class DeployAppTest {
+
+    private Properties props = TestUtils.props;
 
     @BeforeClass
     public static void setup() throws JSONException, IOException {
@@ -25,11 +28,11 @@ public class DeployAppTest {
     public void deployAppTest() throws JSONException, IOException {
 
         String appName = "automatedTest-testApp";
-        String apppath = Properties.SAMPLE_WAR_LOCATION;
+        String apppath = props.getProperty(StringConstants.SAMPLE_WAR_LOCATION);
 
         JSONObject jo = new JSONObject();
 
-        jo.put("projectName", "EC-WebSphere-" + Properties.PLUGIN_VERSION);
+        jo.put("projectName", "EC-WebSphere-" + StringConstants.PLUGIN_VERSION);
         jo.put("procedureName", "DeployApp");
 
 
