@@ -44,6 +44,12 @@ test {
     systemProperties['COMMANDER_SERVER'] = "$commanderServer"
     systemProperties['COMMANDER_USER'] = props.getProperty("COMMANDER_USER")
     systemProperties['COMMANDER_PASSWORD'] = props.getProperty("COMMANDER_PASSWORD")
+    systemProperties['WEBSPHERE_URL'] = props.getProperty("WEBSPHERE_URL")
+    systemProperties['WEBSPHERE_PORT'] = props.getProperty("WEBSPHERE_PORT")
+    systemProperties['WEBSPHERE_USER'] = props.getProperty("WEBSPHERE_USER")
+    systemProperties['WEBSPHERE_PASSWORD'] = props.getProperty("WEBSPHERE_PASSWORD")
+    systemProperties['SAMPLE_WAR_LOCATION'] = props.getProperty("SAMPLE_WAR_LOCATION")
+    systemProperties['PLUGIN_VERSION'] = version
     //TODO: load properties for WebSphere
 
 
