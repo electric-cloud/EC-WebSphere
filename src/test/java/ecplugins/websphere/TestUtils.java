@@ -23,6 +23,7 @@ public class TestUtils {
 
     static {
 
+        // 1. Load propeties
         props = new Properties();
         InputStream is = null;
 
@@ -40,7 +41,15 @@ public class TestUtils {
                 }
             }
         }
+
+        //2. Create commander workspace
+        createCommanderWorkspace();
+
+        //3. Create commander resource
+        createCommanderResource();
     }
+
+
     /**
      * callRunProcedure
      *
@@ -107,6 +116,95 @@ public class TestUtils {
 
     }
 
+    /**
+     *  Creates a new workspace. If the workspace already exists,It continues.
+     *
+     */
+    static void createCommanderWorkspace(){
+
+        HttpClient httpClient = new DefaultHttpClient();
+        JSONObject jo = new JSONObject();
+        JSONObject result = null;
+
+        try {
+            HttpPost httpPostRequest = new HttpPost("http://" + props.getProperty(StringConstants.COMMANDER_USER)
+                    + ":" + props.getProperty(StringConstants.COMMANDER_PASSWORD) + "@" + StringConstants.COMMANDER_SERVER
+                    + ":8000/rest/v1.0/workspaces/");
+
+            jo.put("workspaceName","testAutomationWorkspace");
+            jo.put("description","testAutomationWorkspace");
+            jo.put("agentDrivePath","C:/Program Files/Electric Cloud/ElectricCommander");
+            jo.put("agentUncPath","C:/Program Files/Electric Cloud/ElectricCommander");
+            jo.put("agentUnixPath","/opt/electriccloud/electriccommander");
+            jo.put("local",true);
+
+            StringEntity input = new StringEntity(jo.toString());
+
+            input.setContentType("application/json");
+            httpPostRequest.setEntity(input);
+            HttpResponse httpResponse = httpClient.execute(httpPostRequest);
+
+            if(httpResponse.getStatusLine().getStatusCode() == 409) {
+                System.out.println("Commander workspace already exists.Continuing....");
+                result = null;
+            } else if (httpResponse.getStatusLine().getStatusCode() >= 400) {
+                throw new RuntimeException("Failed to create commander workspace " +
+                        httpResponse.getStatusLine().getStatusCode() + "-" +
+                        httpResponse.getStatusLine().getReasonPhrase());
+            }
+            result = new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            httpClient.getConnectionManager().shutdown();
+        }
+    }
+
+    /**
+     *
+     * @return
+     */
+    static void createCommanderResource(){
+
+        HttpClient httpClient = new DefaultHttpClient();
+        JSONObject jo = new JSONObject();
+        JSONObject result = null;
+
+        try {
+            HttpPost httpPostRequest = new HttpPost("http://" + props.getProperty(StringConstants.COMMANDER_USER)
+                    + ":" + props.getProperty(StringConstants.COMMANDER_PASSWORD) + "@" + StringConstants.COMMANDER_SERVER
+                    + ":8000/rest/v1.0/resources/");
+
+            jo.put("resourceName","testAutomationResource");
+            jo.put("description","Resource created for test automation");
+            jo.put("hostName",props.getProperty(StringConstants.WEBSPHERE_AGENT_IP));
+            jo.put("port",props.getProperty(StringConstants.WEBSPHERE_AGENT_PORT));
+            jo.put("workspaceName","testAutomationWorkspace");
+            jo.put("pools","default");
+            jo.put("local",true);
+
+            StringEntity input = new StringEntity(jo.toString());
+
+            input.setContentType("application/json");
+            httpPostRequest.setEntity(input);
+            HttpResponse httpResponse = httpClient.execute(httpPostRequest);
+
+            if(httpResponse.getStatusLine().getStatusCode() == 409) {
+                System.out.println("Commander resource already exists.Continuing....");
+                result = null;
+            } else if (httpResponse.getStatusLine().getStatusCode() >= 400) {
+                throw new RuntimeException("Failed to create commander workspace " +
+                        httpResponse.getStatusLine().getStatusCode() + "-" +
+                        httpResponse.getStatusLine().getReasonPhrase());
+            }
+            result = new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            httpClient.getConnectionManager().shutdown();
+        }
+
+    }
     /**
      * Wrapper around a HTTP GET to a REST service
      *
@@ -213,4 +311,5 @@ public class TestUtils {
         // Do not check job status. Delete will error if it does not exist
         // which is OK since that is the expected state.
     }
+
 }

@@ -22,6 +22,7 @@ public class DeployAppTest {
 
         TestUtils.deleteConfiguration();
         TestUtils.createConfiguration();
+
     }
 
     @Test
@@ -56,7 +57,10 @@ public class DeployAppTest {
                 .put("actualParameterName", "connectiontype")
                 .put("value", "soap"));
 
-
+        /*actualParameterArray.put(new JSONObject()
+                .put("actualParameterName", "Resource")
+                .put("value", "testAutomationResource"));
+        */
         jo.put("actualParameter", actualParameterArray);
 
 
