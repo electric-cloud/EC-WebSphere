@@ -325,6 +325,18 @@ sub main() {
 
     $ScriptFile .= "])\n";
     $ScriptFile .= "AdminConfig.save()\n";
+
+    # Obtain deployment manager MBean
+    $ScriptFile .= "dm=AdminControl.queryNames('type=DeploymentManager,*')\n";
+
+    # Synchronization of configuration changes is only required in network deployment.not in standalone server environment.
+     $ScriptFile .= "if dm:\n"
+                   . "\tprint 'Synchronizing configuration repository with nodes. Please wait...'\n"
+                   . "\t" . 'nodes=AdminControl.invoke(dm, "syncActiveNodes", "true")' . "\n"
+                   . "\t" . "print 'The following nodes have been synchronized:'+str(nodes)\n"
+                   . "else:\n"
+                   . "\t" . "print 'Standalone server, no nodes to sync'\n";
+
     $ScriptFile .=
         "print 'Mail provider "
       . $::gMailProviderName
@@ -334,6 +346,8 @@ sub main() {
 
     open( MYFILE, '>createCompleteMailProvider_script.jython' );
     print MYFILE "$ScriptFile ";
+
+
     close(MYFILE);
 
     push( @args, '-f createCompleteMailProvider_script.jython' );
@@ -405,6 +419,15 @@ sub main() {
 
 }
 
+sub maskPasswordsForMailProviders {
+    my ($line, $password) = @_;
+    return $line unless defined $password && length($password);
+
+    $line =~ s/Password\', \'$password\']/Password', '****']/g;
+    return $line;
+}
+
 main();
+
 
 1;

@@ -137,14 +137,6 @@ sub maskPassword {
     return $line;
 }
 
-sub maskPasswordsForMailProviders {
-    my ($line, $password) = @_;
-    return $line unless defined $password && length($password);
-
-    $line =~ s/Password\', \'$password\']/Password', '****']/g;
-    return $line;
-}
-
 ########################################################################
 # setProperties - set a group of properties into the Electric Commander
 #
