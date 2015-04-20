@@ -296,7 +296,6 @@ sub main() {
 
         # Parse password from response.
         $mailTransportPassword = $xpath->find("//password");
-        print "Mail transport password:" . $mailTransportPassword;
 
         if ( defined $mailTransportPassword && "$mailTransportPassword" eq "" ) {
             print "Empty password found in '"

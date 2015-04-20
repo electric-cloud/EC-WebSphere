@@ -22,7 +22,7 @@
 		<label>Connection Type:</label>
 		<property>connectionType</property>
 		<required>0</required>
-		<documentation>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</documentation>
+		<documentation>Specifies the type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</documentation>
 		<option><name>None</name><value>none</value></option>
 		<option><name>SOAP</name><value>soap</value></option>
 		<option><name>RMI</name><value>rmi</value></option>
@@ -43,7 +43,7 @@
 		<label>Mail Provider Name:</label>
 		<property>mailProviderName</property>
 		<required>1</required>
-		<documentation>Specifies the name to be givent to the new mail provider .</documentation>
+		<documentation>Specifies the name to be given to the new mail provider .</documentation>
 	</formElement>
 
 	<formElement>
@@ -55,7 +55,7 @@
 	</formElement>
 
 	<formElement>
-		<label>Isolate this mail provider?:</label>
+		<label>Isolate this mail provider?</label>
 		<property>isolatedClassLoader</property>
 		<value/>
 		<documentation>Specifies that this mail provider will be loaded in its own class loader. This allows the application server to load different versions or implementations of the same mail provider in the same Java Virtual Machine. Give each version or implementation of the mail provider a unique class path in following (Mail provider classpath) field that is appropriate for that version or implementation.</documentation>
@@ -140,7 +140,7 @@
 	</formElement>
 
 	<formElement>
-		<label>Enable Debug Mode?:</label>
+		<label>Enable Debug Mode?</label>
 		<property>debug</property>
 		<value/>
 		<documentation>Select to print the interaction between mail application and mail server as well as the properties of this mail session to System.Out.log file.</documentation>

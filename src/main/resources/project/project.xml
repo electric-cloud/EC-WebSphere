@@ -5221,7 +5221,7 @@
         <formalParameter>
             <formalParameterName>connectionType</formalParameterName>
             <defaultValue />
-            <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
+            <description>Specifies the type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
             <required>0</required>
             <type>select</type>
         </formalParameter>
@@ -5237,7 +5237,7 @@
         <formalParameter>
             <formalParameterName>mailProviderName</formalParameterName>
             <defaultValue />
-            <description>Specifies the name to be givent to the new mail provider .</description>
+            <description>Specifies the name to be given to the new mail provider .</description>
             <required>1</required>
             <type>entry</type>
         </formalParameter>
