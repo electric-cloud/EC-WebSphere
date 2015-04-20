@@ -35,7 +35,7 @@ public class DeployAppTest {
 
         jo.put("projectName", "EC-WebSphere-" + StringConstants.PLUGIN_VERSION);
         jo.put("procedureName", "DeployApp");
-
+        jo.put("resourceName", "testAutomationResource");
 
         JSONArray actualParameterArray = new JSONArray();
         actualParameterArray.put(new JSONObject()
@@ -57,10 +57,6 @@ public class DeployAppTest {
                 .put("actualParameterName", "connectiontype")
                 .put("value", "soap"));
 
-        /*actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "Resource")
-                .put("value", "testAutomationResource"));
-        */
         jo.put("actualParameter", actualParameterArray);
 
 
