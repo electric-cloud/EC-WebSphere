@@ -66,7 +66,7 @@
 		<type>entry</type>
 		<label>Application Name:</label>
 		<property>appName</property>
-		<documentation>Specifies logical name to be given to installing enterprise application. </documentation>
+		<documentation>Specifies logical name to be given to installing enterprise application. Do not include whitespaces in application name. </documentation>
 		<required>1</required>
 	</formElement>
 
@@ -75,8 +75,24 @@
 		<type>entry</type>
 		<label>Application Path:</label>
 		<property>apppath</property>
-		<documentation>Absolute path of the application to deploy. i.e: '/path/to/webapp.war' or 'c:/mydir/webapp.war'. </documentation>
+		<documentation>Absolute path of the application to deploy. i.e: '/path/to/webapp.war' or 'c:/mydir/webapp.war'.</documentation>
 		<required>1</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Target cluster list:</label>
+		<property>clusterList</property>
+		<documentation>Specify comma separated list of clusters on which to deploy enterprise application.Modules contained in an application can be installed on the same deployment target or dispersed among several deployment targets.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Target server list:</label>
+		<property>serverList</property>
+		<documentation>Specify comma separated list of standalone servers on which to deploy enterprise application.Modules contained in an application can be installed on the same deployment target or dispersed among several deployment targets.Specify servers in the form Node=server. For e.g. Node01=Server1,Node02=Server2</documentation>
+		<required>0</required>
 	</formElement>
 
 	<formElement>

@@ -45,6 +45,8 @@ $::gClasspath              = trim(q($[classpath]));
 $::gJavaParams             = trim(q($[javaparams]));
 $::gAdditionalOptions      = trim(q($[additionalcommands]));
 $::gAppName                = trim(q($[appName]));
+$::gClusterList            = trim(q($[clusterList]));
+$::gServerList             = trim(q($[serverList]));
 $::gAppPath                = trim(q($[apppath]));
 $::gPrecompileJSP          = trim(q($[precompileJSP]));
 $::gInstallDir             = trim(q($[installDir]));
@@ -97,6 +99,9 @@ sub main() {
     my %props;
     my %configuration;
     my $ScriptFile;
+    my %NodeServerHash = constructNodeServerHash($::gServerList);;
+    my @clusterList = split( ",", $::gClusterList );
+    my $cluster;
 
     #get an EC object
     my $ec = new ElectricCommander();
@@ -104,7 +109,11 @@ sub main() {
 
     %configuration = getConfiguration( $ec, $::gConfigName );
 
-    $ScriptFile = "print 'Installing " . $::gAppName . " ....'\n";
+    ## replace any whitespaces with underscores in application names.
+    $::gAppName = join '_', split /\s+/,  $::gAppName;
+
+    $ScriptFile = 'import time' . "\n";
+    $ScriptFile .= "print 'Installing " . $::gAppName . " ....'\n";
     $ScriptFile .= "AdminApp.install('" . $::gAppPath . "','[";
 
     if ($::gPrecompileJSP) {
@@ -246,8 +255,40 @@ sub main() {
 
     $ScriptFile .= "]')\n";
     $ScriptFile .= "AdminConfig.save()\n";
+
+    # Obtain deployment manager MBean
+    $ScriptFile .= "dm=AdminControl.queryNames('type=DeploymentManager,*')\n";
+
+    # Synchronization of configuration changes is only required in network deployment.not in standalone server environment.
+    $ScriptFile .= "if dm:\n"
+                   . "\tprint 'Synchronizing configuration repository with nodes. Please wait...'\n"
+                   . "\t" . 'nodes=AdminControl.invoke(dm, "syncActiveNodes", "true")' . "\n"
+                   . "\t" . "print 'The following nodes have been synchronized:'+str(nodes)\n"
+                   . "else:\n"
+                   . "\t" . "print 'Standalone server, no nodes to sync'\n";
+
     $ScriptFile .=
       "print 'Application  " . $::gAppName . " installed completely.'\n";
+
+    $ScriptFile .= "result = AdminApp.isAppReady('"
+          . $::gAppName . "')\n"
+          . "print 'Is App Ready = ' + result\n"
+          . "while result != 'true':\n"
+          . "\tresult = AdminApp.isAppReady('"
+          . $::gAppName . "')\n"
+          . "\tprint 'Is App Ready = ' + result\n"
+          . "\tsleep(3)\n"
+          . "print 'The application is ready to start.'\n";
+
+    foreach my $node ( keys %NodeServerHash ) {
+        $ScriptFile .= "AdminApplication.startApplicationOnSingleServer('" . $::gAppName . "','" . $node . "','" .  $NodeServerHash{$node} . "')\n";
+    }
+
+    foreach $cluster (@clusterList) {
+        $ScriptFile .= "AdminApplication.startApplicationOnCluster('" . $::gAppName . "','" . $cluster . "')\n";
+    }
+
+    $ScriptFile .= "print 'Application " . $::gAppName . " started successfully.'\n";
 
     push( @args, '"' . $::gWsadminAbsPath . '"' );
 
@@ -329,6 +370,45 @@ sub main() {
         $ec->setProperty( "/myJobStep/outcome", 'error' );
     }
 
+}
+
+=over
+
+=item B<constructNodeServerHash>
+
+Constructs key:value pair of node:server hash.
+
+B<Params:>
+
+metadata - comma separated list of keys and values in the
+             form of Node1=server1,Node2=server2
+
+B<Returns:>
+
+hash
+C<[{"Node1" => "server1"}, {"Node2" => "server2"}]>
+
+=back
+
+=cut
+
+sub constructNodeServerHash {
+    my ($metadata) = @_;
+    my $key;
+    my $val;
+
+    # Get each key:value pair
+    my @pairs = split( ",", $metadata );
+
+    # Convert array of key=values into hash
+    my %metadata;
+    foreach (@pairs) {
+        ( $key, $val ) = split "=";
+        $metadata{$key} = $val;
+    }
+
+    # return the resulting hash
+    return %metadata;
 }
 
 main();

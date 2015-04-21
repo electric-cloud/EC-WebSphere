@@ -45,7 +45,10 @@
         <xpath>//property[propertyName=&quot;jdbcprovider_matchers&quot;]/value</xpath>
         <path>matchers/jdbcProviderMatchers.pl</path>
     </file>
-
+    <file>
+        <xpath>//property[propertyName=&quot;deployenterpriseapp_matchers&quot;]/value</xpath>
+        <path>matchers/deployEnterpriseAppMatchers.pl</path>
+    </file>
     <file>
         <xpath>//procedure[procedureName=&quot;StartServer&quot;]/step[stepName=&quot;StartInstance&quot;]/command</xpath>
         <path>server/startServer.pl</path>
