@@ -17,16 +17,9 @@ public class DeployAppTest {
 
     private Properties props = TestUtils.props;
 
-    @BeforeClass
-    public static void setup() throws JSONException, IOException {
-
-        TestUtils.deleteConfiguration();
-        TestUtils.createConfiguration();
-
-    }
-
     @Test
     public void deployAppTest() throws JSONException, IOException {
+
 
         String appName = "automatedTest-testApp";
         String apppath = props.getProperty(StringConstants.SAMPLE_WAR_LOCATION);

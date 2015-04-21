@@ -47,6 +47,24 @@ public class TestUtils {
 
         //3. Create commander resource
         createCommanderResource();
+
+        //4. Delete any existing plugin configuration
+        try {
+            deleteConfiguration();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //5 . Create new pluing configuration
+        try {
+            createConfiguration();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
