@@ -270,22 +270,12 @@ sub main() {
     $ScriptFile .=
       "print 'Application  " . $::gAppName . " installed completely.'\n";
 
-    $ScriptFile .= "result = AdminApp.isAppReady('"
-          . $::gAppName . "')\n"
-          . "print 'Is App Ready = ' + result\n"
-          . "while result != 'true':\n"
-          . "\tresult = AdminApp.isAppReady('"
-          . $::gAppName . "')\n"
-          . "\tprint 'Is App Ready = ' + result\n"
-          . "\tsleep(3)\n"
-          . "print 'The application is ready to start.'\n";
+    foreach $cluster (@clusterList) {
+            $ScriptFile .= "AdminApplication.startApplicationOnCluster('" . $::gAppName . "','" . $cluster . "')\n";
+    }
 
     foreach my $node ( keys %NodeServerHash ) {
         $ScriptFile .= "AdminApplication.startApplicationOnSingleServer('" . $::gAppName . "','" . $node . "','" .  $NodeServerHash{$node} . "')\n";
-    }
-
-    foreach $cluster (@clusterList) {
-        $ScriptFile .= "AdminApplication.startApplicationOnCluster('" . $::gAppName . "','" . $cluster . "')\n";
     }
 
     $ScriptFile .= "print 'Application " . $::gAppName . " started successfully.'\n";

@@ -6,7 +6,7 @@ push (@::gMatchers,
    action =>           q{
               my $description = ((defined $::gProperties{"summary"}) ?
                     $::gProperties{"summary"} : '');
-              $description .= "Error: Can't find wsadmin path.";
+              $description = "Error: Can't find wsadmin path.";
               setProperty("summary", $description . "\n");
    },
   },
@@ -16,7 +16,7 @@ push (@::gMatchers,
        action =>           q{
                   my $description = ((defined $::gProperties{"summary"}) ?
                         $::gProperties{"summary"} : '');
-                  $description .= "Installing $1.";
+                  $description = "Installing $1.";
                   setProperty("summary", $description . "\n");
        },
   },
@@ -26,7 +26,7 @@ push (@::gMatchers,
          action =>           q{
                     my $description = ((defined $::gProperties{"summary"}) ?
                           $::gProperties{"summary"} : '');
-                    $description .= "Synchronizing configuration with nodes.";
+                    $description = "Synchronizing configuration with nodes.";
                     setProperty("summary", $description . "\n");
          },
   },
@@ -36,7 +36,7 @@ push (@::gMatchers,
            action =>           q{
                       my $description = ((defined $::gProperties{"summary"}) ?
                             $::gProperties{"summary"} : '');
-                      $description .= "Application $1 installed completely";
+                      $description = "Application $1 installed completely";
                       setProperty("summary", $description . "\n");
            },
   },
@@ -46,7 +46,7 @@ push (@::gMatchers,
              action =>           q{
                         my $description = ((defined $::gProperties{"summary"}) ?
                               $::gProperties{"summary"} : '');
-                        $description .= "Starting application...";
+                        $description = "Starting application...";
                         setProperty("summary", $description . "\n");
              },
   },
@@ -56,7 +56,7 @@ push (@::gMatchers,
                action =>           q{
                           my $description = ((defined $::gProperties{"summary"}) ?
                                 $::gProperties{"summary"} : '');
-                          $description .= "$1 started successfully.";
+                          $description = "$1 started successfully.";
                           setProperty("summary", $description . "\n");
                },
   },
