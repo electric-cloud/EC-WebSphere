@@ -179,7 +179,7 @@ sub main() {
             $ScriptFile .= ",";
         }
         $anotherOptionalParam = 1;
-        $ScriptFile .= "['enableSFSBFailover','false'],";
+        $ScriptFile .= "['enableSFSBFailover','false']])\n";
     }
 
     $ScriptFile .= "AdminConfig.save()\n";
