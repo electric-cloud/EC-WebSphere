@@ -47,6 +47,11 @@
     </file>
 
     <file>
+        <xpath>//property[propertyName=&quot;configsession_matchers&quot;]/value</xpath>
+        <path>matchers/configSessionMatchers.pl</path>
+    </file>
+
+    <file>
         <xpath>//procedure[procedureName=&quot;StartServer&quot;]/step[stepName=&quot;StartInstance&quot;]/command</xpath>
         <path>server/startServer.pl</path>
     </file>
