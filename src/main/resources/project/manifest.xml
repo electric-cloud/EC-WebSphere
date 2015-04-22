@@ -45,6 +45,10 @@
         <xpath>//property[propertyName=&quot;jdbcprovider_matchers&quot;]/value</xpath>
         <path>matchers/jdbcProviderMatchers.pl</path>
     </file>
+    <file>
+        <xpath>//property[propertyName=&quot;jmsprovider_matchers&quot;]/value</xpath>
+        <path>matchers/JMSProviderMatchers.pl</path>
+    </file>
 
     <file>
         <xpath>//property[propertyName=&quot;configsession_matchers&quot;]/value</xpath>
@@ -111,6 +115,10 @@
     <file>
         <xpath>//procedure[procedureName=&quot;ConfigureSession&quot;]/step[stepName=&quot;ConfigureSession&quot;]/command</xpath>
         <path>server/configureSessionManagement.pl</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateJMSProvider&quot;]/step[stepName=&quot;CreateJMSProvider&quot;]/command</xpath>
+        <path>server/createJMSProvider.pl</path>
     </file>
 
     <file>
@@ -188,6 +196,10 @@
     <file>
         <xpath>//procedure[procedureName=&quot;ConfigureSession&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ec_parameterForm-ConfigureSessionManagement.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateJMSProvider&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/ec_parameterForm-CreateJMSProvider.xml</path>
     </file>
 
 </fileset>
