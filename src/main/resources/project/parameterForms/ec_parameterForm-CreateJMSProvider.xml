@@ -1,0 +1,127 @@
+<editor>
+	<help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CreateJMSProvider</help>
+
+	<formElement>
+		<type>entry</type>
+		<label>Configuration Name:</label>
+		<property>configName</property>
+		<documentation>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</documentation>
+		<required>1</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Wsadmin Absolute Path:</label>
+		<property>wsadminAbsPath</property>
+		<required>1</required>
+		<documentation>Absolute path of wsadmin, including filename and extension. Optional if the location of wsadmin is in the PATH environment variable. E.g., '/path/to/wsadmin.sh' or 'wsadmin.bat'.</documentation>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Scope:</label>
+		<property>scope</property>
+		<documentation>Specifies a scope of cell, node, server, or cluster for the JMS provider. E.g. Cell=Cell01,Node=Node01,Server=server1 </documentation>
+		<required>1</required>
+	</formElement>
+	
+	<formElement>
+		<type>entry</type>
+		<label>JMS Provider Name:</label>
+		<property>jmsProvider</property>
+		<documentation>Specifies the name to assign to the new JMS provider. </documentation>
+		<required>1</required>
+	</formElement>
+	
+	<formElement>
+		<type>entry</type>
+		<label>Initial Context Factory:</label>
+		<property>extContextFactory</property>
+		<documentation>Specifies the Java class name of the initial context factory for the JMS provider.</documentation>
+		<required>1</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>JMS provider URL:</label>
+		<property>extProviderURL</property>
+		<documentation>Specifies the JMS provider URL for external JNDI lookups.</documentation>
+		<required>1</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Classpath:</label>
+		<property>classpath</property>
+		<documentation>Specifies a list of paths or Java archive (JAR) file names which together form the location for the resource provider classes. Use a semicolon (;) to separate class paths.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Description:</label>
+		<property>description</property>
+		<documentation>Specifies a description of the JMS Provider.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<label>Isolated Class Loader:</label>
+		<property>isolatedClassLoader</property>
+		<value/>
+		<documentation>If set to true, specifies that the resource provider is loaded in its own class loader.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Native Path:</label>
+		<property>nativepath</property>
+		<documentation>Specifies an optional path to any native libraries, such as *.dll and *.so. Native path entries are separated by a semicolon (;).</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Provider Type:</label>
+		<property>providerType</property>
+		<documentation>Specifies the JMS provider type that this JMS provider uses.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Property Set:</label>
+		<property>propertySet</property>
+		<documentation>Specifies resource properties in the following format: [[['name','nameValue1'],['type','typeValue1'],['value','valueValue1']]... [['name','nameValuen'],['type','typeValuen'],['value','valueValuen']]]</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<label>Supports ASF:</label>
+		<property>supportsASF</property>
+		<value/>
+		<documentation>If set to true, specifies that the JMS provider supports Application Server Facilities (ASF), which provides concurrency and transactional support for applications.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<type>select</type>
+		<label>Connection Type:</label>
+		<property>connectionType</property>
+		<required>0</required>
+		<documentation>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</documentation>
+		<option><name>None</name><value>none</value></option>
+		<option><name>SOAP</name><value>soap</value></option>
+		<option><name>RMI</name><value>rmi</value></option>
+		<option><name>JSR160RMI</name><value>jsr160rmi</value></option>
+		<option><name>IPC</name><value>ipc</value></option>
+	</formElement>
+
+</editor>

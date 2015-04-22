@@ -93,11 +93,17 @@ my %deleteJDBCProvider = (
     category    => "Application Server"
 );
 
-
 my %updateApp = (
     label       => "WebSphere - Update Application",
     procedure   => "UpdateApp",
     description => "Updates existing application",
+    category    => "Application Server"
+);
+
+my %createJMSProvider = (
+    label       => "WebSphere - Create JMS Provider"
+    procedure   => "CreateJMSProvider",
+    description => "Creates a JMS Provider using the wsadmin tool",
     category    => "Application Server"
 );
 
@@ -122,6 +128,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete D
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JDBC Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JDBC Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Update Application");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JMS Provider");
 
 @::createStepPickerSteps = (\%checkPageStatus, \%checkServerStatus,
                             \%startServer, \%stopServer,
@@ -129,7 +136,8 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Update A
                             \%stopApp, \%deployApp,
                             \%undeployApp, \%checkApp, 
 							\%createDatasource, \%deleteDatasource,
-							\%createJDBCProvider, \%deleteJDBCProvider, \%updateApp);
+							\%createJDBCProvider, \%deleteJDBCProvider, \%createJMSProvider, \%updateApp);
+
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
@@ -259,11 +267,19 @@ if ($upgradeAction eq "upgrade") {
                 stepName => 'DeleteJDBCProvider'
             });
 
+
              # Attach the credential to the appropriate steps
              $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'UpdateApp',
                 stepName => 'UpdateApp'
              });
+
+            # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateJMSProvider',
+                stepName => 'CreateJMSProvider'
+            });
+
 
         }
     }
