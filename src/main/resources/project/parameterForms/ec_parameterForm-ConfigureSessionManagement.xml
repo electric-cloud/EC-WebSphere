@@ -39,69 +39,77 @@
 	</formElement>
 
 	<formElement>
-		<type>select</type>
-		<label>Enable Cookies:</label>
-		<property>enableCookie</property>
-		<required>0</required>
-		<documentation>Specifies whether to enable cookies.</documentation>
-		<option><name>Keep Unchanged</name><value>default</value></option>
-		<option><name>True</name><value>true</value></option>
-		<option><name>False</name><value>false</value></option>
-	</formElement>
-
-	<formElement>
-		<type>select</type>
-		<label>Enable Protocol Switching:</label>
-		<property>enableProtocolSwitching</property>
-		<required>0</required>
-		<documentation>Specifies whether session tracking uses cookies to carry session IDs. If cookies are enabled, session tracking recognizes session IDs that arrive as cookies and tries to use cookies for sending session IDs. If cookies are not enabled, session tracking uses URL rewriting instead of cookies (if URL rewriting is enabled).</documentation>
-		<option><name>Keep Unchanged</name><value>default</value></option>
-		<option><name>True</name><value>true</value></option>
-		<option><name>False</name><value>false</value></option>
-	</formElement>
-
-	<formElement>
-		<type>select</type>
-		<label>Enable URL Rewriting:</label>
-		<property>enableURLRewriting</property>
-		<required>0</required>
-		<documentation>Specifies whether the session management facility uses rewritten URLs to carry the session IDs. If URL rewriting is enabled, the session management facility recognizes session IDs that arrive in the URL if the encodeURL method is called in the servlet.</documentation>
-		<option><name>Keep Unchanged</name><value>default</value></option>
-		<option><name>True</name><value>true</value></option>
-		<option><name>False</name><value>false</value></option>
-	</formElement>
-
-	<formElement>
-		<type>select</type>
 		<label>Enable SSL Tracking:</label>
 		<property>enableSSLTracking</property>
-		<required>0</required>
+		<value/>
 		<documentation>Specifies that session tracking uses Secure Sockets Layer (SSL) information as a session ID. Enabling SSL tracking takes precedence over cookie-based session tracking and URL rewriting.</documentation>
-		<option><name>Keep Unchanged</name><value>default</value></option>
-		<option><name>True</name><value>true</value></option>
-		<option><name>False</name><value>false</value></option>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
 	</formElement>
 
 	<formElement>
-		<type>select</type>
+		<label>Enable Cookies:</label>
+		<property>enableCookie</property>
+		<value/>
+		<documentation>Specifies whether to enable cookies.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<label>Enable URL Rewriting:</label>
+		<property>enableURLRewriting</property>
+		<value/>
+		<documentation>Specifies whether the session management facility uses rewritten URLs to carry the session IDs. If URL rewriting is enabled, the session management facility recognizes session IDs that arrive in the URL if the encodeURL method is called in the servlet.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<label>Enable Protocol Switching:</label>
+		<property>enableProtocolSwitching</property>
+		<value/>
+		<documentation>This option is only applicable when Enable URL rewriting is selected. This option specifies that the session ID is added to a URL when the URL requires a switch from HTTP to HTTPS or from HTTPS to HTTP. If rewriting is enabled, the session ID is required to go between HTTP and HTTPS.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Max in-memory session count:</label>
+		<property>maxInMemorySessionCount</property>
+		<documentation>Specifies the maximum number of sessions to maintain in memory.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<label>Allow Overflow:</label>
+		<property>allowOverflow</property>
+		<value/>
+		<documentation>Specifies whether the number of sessions in memory can exceed the value specified by the Max in-memory session count property. This option is valid only in non-distributed sessions mode..</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
 		<label>Enable Serialized Session:</label>
 		<property>enableSerializedSession</property>
+		<value/>
+		<documentation>If selected, concurrent session access in a given server is not permitted.</documentation>
 		<required>0</required>
-		<documentation>Specifies whether to allow concurrent session access in a given server.</documentation>
-		<option><name>Keep Unchanged</name><value>default</value></option>
-		<option><name>True</name><value>true</value></option>
-		<option><name>False</name><value>false</value></option>
-	</formElement>
-
-	<formElement>
-		<type>select</type>
-		<label>Access Session On Timeout:</label>
-		<property>accessSessionOnTimeout</property>
-		<required>0</required>
-		<documentation>Specifies whether the servlet is started normally or aborted in the event of a timeout. If you specify true, the servlet is started normally. If you specify false, the servlet execution aborts and error logs are generated.</documentation>
-		<option><name>Keep Unchanged</name><value>default</value></option>
-		<option><name>True</name><value>true</value></option>
-		<option><name>False</name><value>false</value></option>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
 	</formElement>
 
 	<formElement>
@@ -110,6 +118,25 @@
 		<property>maxWaitTime</property>
 		<documentation>Specifies the maximum amount of time a servlet request waits on an HTTP session before continuing execution. This parameter is optional and expressed in seconds. The default is 5 seconds. Under normal conditions, a servlet request waiting for access to an HTTP session gets notified by the request that currently owns the given HTTP session when the request finishes.</documentation>
 		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<label>Access Session On Timeout:</label>
+		<property>accessSessionOnTimeout</property>
+		<value/>
+		<documentation>Specifies whether the servlet is started normally or aborted in the event of a timeout. If you specify true, the servlet is started normally. If you specify false, the servlet execution aborts and error logs are generated.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Invalid Timeout:</label>
+		<property>invalidTimeout</property>
+		<documentation>Specifies how long(in minutes) a session can go unused before it is no longer valid.</documentation>
+		<required>1</required>
 	</formElement>
 
 	<formElement>
@@ -123,45 +150,5 @@
 		<option><name>DATA_REPLICATION</name><value>DATA_REPLICATION</value></option>
 		<option><name>NONE</name><value>NONE</value></option>
 	</formElement>
-
-	<formElement>
-		<type>entry</type>
-		<label>Max in-memory session count:</label>
-		<property>maxInMemorySessionCount</property>
-		<documentation>Specifies the maximum number of sessions to maintain in memory.</documentation>
-		<required>0</required>
-	</formElement>
-
-	<formElement>
-		<type>select</type>
-		<label>Allow Overflow:</label>
-		<property>allowOverflow</property>
-		<required>0</required>
-		<documentation>Specifies whether the number of sessions in memory can exceed the value specified by the Max in-memory session count property. This option is valid only in non-distributed sessions mode.</documentation>
-		<option><name>Keep Unchanged</name><value>default</value></option>
-		<option><name>True</name><value>true</value></option>
-		<option><name>False</name><value>false</value></option>
-	</formElement>
-
-	<formElement>
-		<type>select</type>
-		<label>Session Enable:</label>
-		<property>sessionEnable</property>
-		<required>0</required>
-		<documentation>Specifies whether to enable session.</documentation>
-		<option><name>Keep Unchanged</name><value>default</value></option>
-		<option><name>True</name><value>true</value></option>
-		<option><name>False</name><value>false</value></option>
-	</formElement>
-
-	<formElement>
-		<type>entry</type>
-		<label>Invalid Timeout:</label>
-		<property>invalidTimeout</property>
-		<documentation>Specifies how long(in minutes) a session can go unused before it is no longer valid.</documentation>
-		<required>0</required>
-	</formElement>
-
-
 
 </editor>

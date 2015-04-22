@@ -4841,155 +4841,53 @@
                             </property>
 
                             <property>
-                                <propertyName>enableCookie</propertyName>
+                                <propertyName>enableSSLTracking</propertyName>
                                 <propertySheet>
-
                                     <property>
-                                        <propertyName>options</propertyName>
-                                        <propertySheet>
-                                            <property>
-                                                <propertyName>option1</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>Keep Unchanged</value>
-
-                                                    </property>
-
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>default</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-
-                                                <propertyName>option2</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>True</value>
-                                                    </property>
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>true</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-                                                <propertyName>option3</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>False</value>
-                                                    </property>
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>false</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-
-                                                <propertyName>optionCount</propertyName>
-                                                <expandable>1</expandable>
-                                                <value>3</value>
-                                            </property>
-                                            <property>
-                                                <propertyName>type</propertyName>
-                                                <expandable>1</expandable>
-                                                <value>list</value>
-                                            </property>
-                                        </propertySheet>
+                                        <propertyName>checkedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>1</value>
                                     </property>
                                     <property>
                                         <propertyName>formType</propertyName>
                                         <expandable>1</expandable>
                                         <value>standard</value>
-
+                                    </property>
+                                    <property>
+                                        <propertyName>initiallyChecked</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>1</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>uncheckedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>0</value>
                                     </property>
                                 </propertySheet>
                             </property>
 
                             <property>
-                                <propertyName>enableProtocolSwitching</propertyName>
+                                <propertyName>enableCookie</propertyName>
                                 <propertySheet>
-
                                     <property>
-                                        <propertyName>options</propertyName>
-                                        <propertySheet>
-                                            <property>
-                                                <propertyName>option1</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>Keep Unchanged</value>
-
-                                                    </property>
-
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>default</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-
-                                                <propertyName>option2</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>True</value>
-                                                    </property>
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>true</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-                                                <propertyName>option3</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>False</value>
-                                                    </property>
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>false</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-
-                                                <propertyName>optionCount</propertyName>
-                                                <expandable>1</expandable>
-                                                <value>3</value>
-                                            </property>
-                                            <property>
-                                                <propertyName>type</propertyName>
-                                                <expandable>1</expandable>
-                                                <value>list</value>
-                                            </property>
-                                        </propertySheet>
+                                        <propertyName>checkedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>1</value>
                                     </property>
                                     <property>
                                         <propertyName>formType</propertyName>
                                         <expandable>1</expandable>
                                         <value>standard</value>
-
+                                    </property>
+                                    <property>
+                                        <propertyName>initiallyChecked</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>1</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>uncheckedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>0</value>
                                     </property>
                                 </propertySheet>
                             </property>
@@ -4997,71 +4895,58 @@
                             <property>
                                 <propertyName>enableURLRewriting</propertyName>
                                 <propertySheet>
-
                                     <property>
-                                        <propertyName>options</propertyName>
-                                        <propertySheet>
-                                            <property>
-                                                <propertyName>option1</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>Keep Unchanged</value>
-
-                                                    </property>
-
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>default</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-
-                                                <propertyName>option2</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>True</value>
-                                                    </property>
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>true</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-                                                <propertyName>option3</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>False</value>
-                                                    </property>
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>false</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-
-                                                <propertyName>optionCount</propertyName>
-                                                <expandable>1</expandable>
-                                                <value>3</value>
-                                            </property>
-                                            <property>
-                                                <propertyName>type</propertyName>
-                                                <expandable>1</expandable>
-                                                <value>list</value>
-                                            </property>
-                                        </propertySheet>
+                                        <propertyName>checkedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>1</value>
                                     </property>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>initiallyChecked</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>1</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>uncheckedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>0</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>enableProtocolSwitching</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>checkedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>1</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>initiallyChecked</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>1</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>uncheckedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>0</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>maxInMemorySessionCount</propertyName>
+                                <propertySheet>
                                     <property>
                                         <propertyName>formType</propertyName>
                                         <expandable>1</expandable>
@@ -5072,78 +4957,27 @@
                             </property>
 
                             <property>
-                                <propertyName>enableSSLTracking</propertyName>
+                                <propertyName>allowOverflow</propertyName>
                                 <propertySheet>
-
                                     <property>
-                                        <propertyName>options</propertyName>
-                                        <propertySheet>
-                                            <property>
-                                                <propertyName>option1</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>Keep Unchanged</value>
-
-                                                    </property>
-
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>default</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-
-                                                <propertyName>option2</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>True</value>
-                                                    </property>
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>true</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-                                                <propertyName>option3</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>False</value>
-                                                    </property>
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>false</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-
-                                                <propertyName>optionCount</propertyName>
-                                                <expandable>1</expandable>
-                                                <value>3</value>
-                                            </property>
-                                            <property>
-                                                <propertyName>type</propertyName>
-                                                <expandable>1</expandable>
-                                                <value>list</value>
-                                            </property>
-                                        </propertySheet>
+                                        <propertyName>checkedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>1</value>
                                     </property>
                                     <property>
                                         <propertyName>formType</propertyName>
                                         <expandable>1</expandable>
                                         <value>standard</value>
-
+                                    </property>
+                                    <property>
+                                        <propertyName>initiallyChecked</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>1</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>uncheckedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>0</value>
                                     </property>
                                 </propertySheet>
                             </property>
@@ -5151,153 +4985,25 @@
                             <property>
                                 <propertyName>enableSerializedSession</propertyName>
                                 <propertySheet>
-
                                     <property>
-                                        <propertyName>options</propertyName>
-                                        <propertySheet>
-                                            <property>
-                                                <propertyName>option1</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>Keep Unchanged</value>
-
-                                                    </property>
-
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>default</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-
-                                                <propertyName>option2</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>True</value>
-                                                    </property>
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>true</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-                                                <propertyName>option3</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>False</value>
-                                                    </property>
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>false</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-
-                                                <propertyName>optionCount</propertyName>
-                                                <expandable>1</expandable>
-                                                <value>3</value>
-                                            </property>
-                                            <property>
-                                                <propertyName>type</propertyName>
-                                                <expandable>1</expandable>
-                                                <value>list</value>
-                                            </property>
-                                        </propertySheet>
+                                        <propertyName>checkedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>1</value>
                                     </property>
                                     <property>
                                         <propertyName>formType</propertyName>
                                         <expandable>1</expandable>
                                         <value>standard</value>
-
-                                    </property>
-                                </propertySheet>
-                            </property>
-
-                            <property>
-                                <propertyName>accessSessionOnTimeout</propertyName>
-                                <propertySheet>
-
-                                    <property>
-                                        <propertyName>options</propertyName>
-                                        <propertySheet>
-                                            <property>
-                                                <propertyName>option1</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>Keep Unchanged</value>
-
-                                                    </property>
-
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>default</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-
-                                                <propertyName>option2</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>True</value>
-                                                    </property>
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>true</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-                                                <propertyName>option3</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>False</value>
-                                                    </property>
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>false</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-
-                                                <propertyName>optionCount</propertyName>
-                                                <expandable>1</expandable>
-                                                <value>3</value>
-                                            </property>
-                                            <property>
-                                                <propertyName>type</propertyName>
-                                                <expandable>1</expandable>
-                                                <value>list</value>
-                                            </property>
-                                        </propertySheet>
                                     </property>
                                     <property>
-                                        <propertyName>formType</propertyName>
+                                        <propertyName>initiallyChecked</propertyName>
                                         <expandable>1</expandable>
-                                        <value>standard</value>
-
+                                        <value>1</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>uncheckedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>0</value>
                                     </property>
                                 </propertySheet>
                             </property>
@@ -5310,6 +5016,44 @@
                                         <expandable>1</expandable>
                                         <value>standard</value>
 
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+
+                            <property>
+                                <propertyName>invalidTimeout</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>accessSessionOnTimeout</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>checkedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>1</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>initiallyChecked</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>1</value>
+                                    </property>
+                                    <property>
+                                        <propertyName>uncheckedValue</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>0</value>
                                     </property>
                                 </propertySheet>
                             </property>
@@ -5406,188 +5150,6 @@
                                 </propertySheet>
                             </property>
 
-                            <property>
-                                <propertyName>maxInMemorySessionCount</propertyName>
-                                <propertySheet>
-                                    <property>
-                                        <propertyName>formType</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>standard</value>
-
-                                    </property>
-                                </propertySheet>
-                            </property>
-
-
-                            <property>
-                                <propertyName>allowOverflow</propertyName>
-                                <propertySheet>
-
-                                    <property>
-                                        <propertyName>options</propertyName>
-                                        <propertySheet>
-                                            <property>
-                                                <propertyName>option1</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>Keep Unchanged</value>
-
-                                                    </property>
-
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>default</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-
-                                                <propertyName>option2</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>True</value>
-                                                    </property>
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>true</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-                                                <propertyName>option3</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>False</value>
-                                                    </property>
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>false</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-
-                                                <propertyName>optionCount</propertyName>
-                                                <expandable>1</expandable>
-                                                <value>3</value>
-                                            </property>
-                                            <property>
-                                                <propertyName>type</propertyName>
-                                                <expandable>1</expandable>
-                                                <value>list</value>
-                                            </property>
-                                        </propertySheet>
-                                    </property>
-                                    <property>
-                                        <propertyName>formType</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>standard</value>
-
-                                    </property>
-                                </propertySheet>
-                            </property>
-
-                            <property>
-                                <propertyName>sessionEnable</propertyName>
-                                <propertySheet>
-
-                                    <property>
-                                        <propertyName>options</propertyName>
-                                        <propertySheet>
-                                            <property>
-                                                <propertyName>option1</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>Keep Unchanged</value>
-
-                                                    </property>
-
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>default</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-
-                                                <propertyName>option2</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>True</value>
-                                                    </property>
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>true</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-                                                <propertyName>option3</propertyName>
-                                                <propertySheet>
-                                                    <property>
-                                                        <propertyName>text</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>False</value>
-                                                    </property>
-                                                    <property>
-                                                        <propertyName>value</propertyName>
-                                                        <expandable>1</expandable>
-                                                        <value>false</value>
-                                                    </property>
-                                                </propertySheet>
-                                            </property>
-                                            <property>
-
-                                                <propertyName>optionCount</propertyName>
-                                                <expandable>1</expandable>
-                                                <value>3</value>
-                                            </property>
-                                            <property>
-                                                <propertyName>type</propertyName>
-                                                <expandable>1</expandable>
-                                                <value>list</value>
-                                            </property>
-                                        </propertySheet>
-                                    </property>
-                                    <property>
-                                        <propertyName>formType</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>standard</value>
-
-                                    </property>
-                                </propertySheet>
-                            </property>
-
-
-                            <property>
-                                <propertyName>invalidTimeout</propertyName>
-                                <propertySheet>
-                                    <property>
-                                        <propertyName>formType</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>standard</value>
-
-                                    </property>
-                                </propertySheet>
-                            </property>
-
-
-
                         </propertySheet>
                     </property>
 
@@ -5628,19 +5190,18 @@
             <type>entry</type>
         </formalParameter>
 
-
         <formalParameter>
-            <formalParameterName>enableCookie</formalParameterName>
+            <formalParameterName>enableSSLTracking</formalParameterName>
             <defaultValue />
-            <description>Specifies whether to enable cookies.</description>
+            <description>Specifies that session tracking uses Secure Sockets Layer (SSL) information as a session ID. Enabling SSL tracking takes precedence over cookie-based session tracking and URL rewriting.</description>
             <required>0</required>
             <type>entry</type>
         </formalParameter>
 
         <formalParameter>
-            <formalParameterName>enableProtocolSwitching</formalParameterName>
+            <formalParameterName>enableCookie</formalParameterName>
             <defaultValue />
-            <description>Specifies whether session tracking uses cookies to carry session IDs. If cookies are enabled, session tracking recognizes session IDs that arrive as cookies and tries to use cookies for sending session IDs. If cookies are not enabled, session tracking uses Uniform Resource Identifier (URL) rewriting instead of cookies (if URL rewriting is enabled).</description>
+            <description>Specifies whether to enable cookies.</description>
             <required>0</required>
             <type>entry</type>
         </formalParameter>
@@ -5654,41 +5215,9 @@
         </formalParameter>
 
         <formalParameter>
-            <formalParameterName>enableSSLTracking</formalParameterName>
+            <formalParameterName>enableProtocolSwitching</formalParameterName>
             <defaultValue />
-            <description>Specifies that session tracking uses Secure Sockets Layer (SSL) information as a session ID. Enabling SSL tracking takes precedence over cookie-based session tracking and URL rewriting.</description>
-            <required>0</required>
-            <type>entry</type>
-        </formalParameter>
-
-        <formalParameter>
-            <formalParameterName>enableSerializedSession</formalParameterName>
-            <defaultValue />
-            <description>Specifies whether to allow concurrent session access in a given server.</description>
-            <required>0</required>
-            <type>entry</type>
-        </formalParameter>
-
-        <formalParameter>
-            <formalParameterName>accessSessionOnTimeout</formalParameterName>
-            <defaultValue />
-            <description>Specifies whether the servlet is started normally or aborted in the event of a timeout. If you specify true, the servlet is started normally. If you specify false, the servlet execution aborts and error logs are generated.</description>
-            <required>0</required>
-            <type>entry</type>
-        </formalParameter>
-
-        <formalParameter>
-            <formalParameterName>maxWaitTime</formalParameterName>
-            <defaultValue />
-            <description>Specifies the maximum amount of time a servlet request waits on an HTTP session before continuing execution. This parameter is optional and expressed in seconds. The default is 5 seconds. Under normal conditions, a servlet request waiting for access to an HTTP session gets notified by the request that currently owns the given HTTP session when the request finishes.</description>
-            <required>0</required>
-            <type>entry</type>
-        </formalParameter>
-
-        <formalParameter>
-            <formalParameterName>sessionPersistMode</formalParameterName>
-            <defaultValue />
-            <description>Specifies whether to enable session persistence mode.</description>
+            <description>This option is only applicable when Enable URL rewriting is selected. This option specifies that the session ID is added to a URL when the URL requires a switch from HTTP to HTTPS or from HTTPS to HTTP. If rewriting is enabled, the session ID is required to go between HTTP and HTTPS.</description>
             <required>0</required>
             <type>entry</type>
         </formalParameter>
@@ -5710,9 +5239,25 @@
         </formalParameter>
 
         <formalParameter>
-            <formalParameterName>sessionEnable</formalParameterName>
+            <formalParameterName>enableSerializedSession</formalParameterName>
             <defaultValue />
-            <description>Specifies whether to enable session.</description>
+            <description>If selected, concurrent session access in a given server is not permitted.</description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>maxWaitTime</formalParameterName>
+            <defaultValue />
+            <description>Specifies the maximum amount of time a servlet request waits on an HTTP session before continuing execution. This parameter is optional and expressed in seconds. The default is 5 seconds. Under normal conditions, a servlet request waiting for access to an HTTP session gets notified by the request that currently owns the given HTTP session when the request finishes.</description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>accessSessionOnTimeout</formalParameterName>
+            <defaultValue />
+            <description>Specifies whether the servlet is started normally or aborted in the event of a timeout. If you specify true, the servlet is started normally. If you specify false, the servlet execution aborts and error logs are generated.</description>
             <required>0</required>
             <type>entry</type>
         </formalParameter>
@@ -5721,10 +5266,17 @@
             <formalParameterName>invalidTimeout</formalParameterName>
             <defaultValue />
             <description>Specifies how long(in minutes) a session can go unused before it is no longer valid.</description>
-            <required>0</required>
+            <required>1</required>
             <type>entry</type>
         </formalParameter>
 
+        <formalParameter>
+            <formalParameterName>sessionPersistMode</formalParameterName>
+            <defaultValue />
+            <description>Specifies whether to enable session persistence mode.</description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
 
         <step>
             <stepName>ConfigureSession</stepName>

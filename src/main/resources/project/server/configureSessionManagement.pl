@@ -50,7 +50,6 @@ $::gMaxWaitTime             = trim(q($[maxWaitTime]));
 $::gSessionPersistMode      = trim(q($[sessionPersistMode]));
 $::gMaxInMemorySessionCount = trim(q($[maxInMemorySessionCount]));
 $::gAllowOverflow           = trim(q($[allowOverflow]));
-$::gSessionEnable           = trim(q($[sessionEnable]));
 $::gInvalidTimeout          = trim(q($[invalidTimeout]));
 $::gConnectionType          = trim(q($[connectionType]));
 $::gConfigurationName       = trim(q($[configName]));
@@ -98,56 +97,51 @@ sub main() {
       'AdminApplication.configureSessionManagementForAnApplication("'
       . $::gAppName . '",';
 
-    if (   $::gEnableCookie
-        && $::gEnableCookie ne "default" )
+    if ( $::gEnableCookie )
     {
-        $ScriptFile .= '"' . $::gEnableCookie . '",';
+        $ScriptFile .= '"true",';
     }
     else {
-        $ScriptFile .= '"",';
+        $ScriptFile .= '"false",';
     }
 
-    if (   $::gEnableProtocolSwitching
-        && $::gEnableProtocolSwitching ne "default" )
+    if (   $::gEnableProtocolSwitching )
     {
-        $ScriptFile .= '"' . $::gEnableProtocolSwitching . '",';
+        $ScriptFile .= '"true",';
     }
     else {
-        $ScriptFile .= '"",';
+        $ScriptFile .= '"false",';
     }
 
-    if (   $::gEnableURLRewriting
-        && $::gEnableURLRewriting ne "default" )
+    if (   $::gEnableURLRewriting )
     {
-        $ScriptFile .= '"' . $::gEnableURLRewriting . '",';
+        $ScriptFile .= '"true",';
     }
     else {
-        $ScriptFile .= '"",';
+        $ScriptFile .= '"false",';
     }
 
-    if (   $::gEnableSSLTracking
-        && $::gEnableSSLTracking ne "default" )
+    if (   $::gEnableSSLTracking )
     {
-        $ScriptFile .= '"' . $::gEnableSSLTracking . '",';
+        $ScriptFile .= '"true",';
     }
     else {
-        $ScriptFile .= '"",';
+        $ScriptFile .= '"false",';
     }
 
-    if (   $::gEnableSerializedSession
-        && $::gEnableSerializedSession ne "default" )
+    if (   $::gEnableSerializedSession )
     {
-        $ScriptFile .= '"' . $::gEnableSerializedSession . '",';
+        $ScriptFile .= '"true",';
     }
     else {
-        $ScriptFile .= '"",';
+        $ScriptFile .= '"false",';
     }
 
-    if ( $::gAccessSessionOnTimeout && $::gAccessSessionOnTimeout ne "" ) {
-        $ScriptFile .= '"' . $::gAccessSessionOnTimeout . '",';
+    if ( $::gAccessSessionOnTimeout ) {
+        $ScriptFile .= '"true",';
     }
     else {
-        $ScriptFile .= '"",';
+        $ScriptFile .= '"false",';
     }
 
     if ( $::gMaxWaitTime && $::gMaxWaitTime ne "" ) {
@@ -163,16 +157,15 @@ sub main() {
         $ScriptFile .= '"' . uc($::gSessionPersistMode) . '",';
     }
     else {
-        $ScriptFile .= '"",';
+        $ScriptFile .= '"NONE",';
     }
 
-    if (   $::gAllowOverflow
-        && $::gAllowOverflow ne "default" )
+    if (   $::gAllowOverflow )
     {
-        $ScriptFile .= '"' . $::gAllowOverflow . '",';
+        $ScriptFile .= '"true",';
     }
     else {
-        $ScriptFile .= '"",';
+        $ScriptFile .= '"false",';
     }
 
     if ( $::gMaxInMemorySessionCount ) {
@@ -189,16 +182,24 @@ sub main() {
         $ScriptFile .= '"",';
     }
 
-    if (   $::gSessionEnable
-        && $::gSessionEnable ne "default" )
-    {
-        $ScriptFile .= '"' . $::gSessionEnable . '")';
-    }
-    else {
-        $ScriptFile .= '"")';
-    }
+    ## override the session management settings at the application level.
+    $ScriptFile .= '"true")';
 
-    $ScriptFile .= "\nAdminConfig.save()";
+
+    $ScriptFile .= "\nAdminConfig.save()\n";
+
+    # Obtain deployment manager MBean
+    $ScriptFile .= "dm=AdminControl.queryNames('type=DeploymentManager,*')\n";
+
+    # Synchronization of configuration changes is only required in network deployment.not in standalone server environment.
+    $ScriptFile .= "if dm:\n"
+               . "\tprint 'Synchronizing configuration repository with nodes. Please wait...'\n"
+               . "\t" . 'nodes=AdminControl.invoke(dm, "syncActiveNodes", "true")' . "\n"
+               . "\t" . "print 'The following nodes have been synchronized:'+str(nodes)\n"
+               . "else:\n"
+               . "\t" . "print 'Standalone server, no nodes to sync'\n";
+
+    $ScriptFile .= "print 'Session management properties set successfully.'\n";
 
     open( MYFILE, '>configureSessionManagement_script.jython' );
 
@@ -255,7 +256,7 @@ sub main() {
     #evaluates if exit was successful to mark it as a success or fail the step
     if ( $? == SUCCESS ) {
 
-        $ec->setProperty( "/myJobStep/outcome", 'success' );
+        $ec->setProperty( "/myJobStep/result", 'success' );
 
         #set any additional error or warning conditions here
         #there may be cases that an error occurs and the exit code is 0.
@@ -263,12 +264,12 @@ sub main() {
         if ( $content =~ m/WSVR0028I:/ ) {
 
             #license expired warning
-            $ec->setProperty( "/myJobStep/outcome", 'warning' );
+            $ec->setProperty( "/myJobStep/result", 'warning' );
         }
 
     }
     else {
-        $ec->setProperty( "/myJobStep/outcome", 'error' );
+        $ec->setProperty( "/myJobStep/result", 'error' );
     }
 
 }
