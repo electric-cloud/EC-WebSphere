@@ -18,5 +18,19 @@ public class StringConstants {
      final static String WSADMIN_LOCATION = "WSADMIN_LOCATION";
      final static String SAMPLE_WAR_LOCATION = "SAMPLE_WAR_LOCATION";
      final static String APP_NAME = "APP_NAME";
+     final static String CELL_NAME = "CELL_NAME";
+     final static String NODE_NAME = "NODE_NAME";
+     final static String SERVER_NAME = "SERVER_NAME";
+     final static String LOCAL_REPO_BUNDLE_LIST = "LOCAL_REPO_BUNDLE_LIST";
+     final static String EBA_FILE_LOCATION = "EBA_FILE_LOCATION";
+     final static String APP_NAME_TO_UPDATE = "APP_NAME_TO_UPDATE";
+     final static String SRC_FILE_LOCATION = "SRC_FILE_LOCATION";
+     final static String URI_OF_FILE_TO_REPLACE = "URI_OF_FILE_TO_REPLACE";
+     final static String WEBSERVICE_APP_NAME = "WEBSERVICE_APP_NAME";
+     final static String WSDL_LOCATION = "WSDL_LOCATION";
 
+     final static String CLUSTER_CELL_NAME = "CLUSTER_CELL_NAME";
+     final static String CLUSTER_MEMBER_NODE_NAME = "CLUSTER_MEMBER_NODE_NAME";
+     final static String CLUSTER_MEMBER_SERVER_NAME = "CLUSTER_MEMBER_SERVER_NAME";
+     final static String CLUSTER_NAME = "CLUSTER_NAME";
 }

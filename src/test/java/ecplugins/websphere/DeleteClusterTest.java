@@ -4,11 +4,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 import java.util.Properties;
+
 import static org.junit.Assert.assertEquals;
 
 
-public class DeployAppTest {
+public class DeleteClusterTest {
 
     private static Properties props;
 
@@ -25,15 +27,14 @@ public class DeployAppTest {
     }
 
     @Test
-    public void deployAppTest() throws Exception {
+    public void deleteClusterTest() throws Exception {
 
-        String apppath = props.getProperty(StringConstants.SAMPLE_WAR_LOCATION);
         long jobTimeoutMillis = 5 * 60 * 1000;
         JSONObject jo = new JSONObject();
 
         jo.put("projectName", "EC-WebSphere-" + StringConstants.PLUGIN_VERSION);
-        jo.put("procedureName", "DeployApp");
-        jo.put("resourceName", "testAutomationResource");
+        jo.put("procedureName", "DeleteCluster");
+
 
         JSONArray actualParameterArray = new JSONArray();
         actualParameterArray.put(new JSONObject()
@@ -41,20 +42,16 @@ public class DeployAppTest {
                 .put("actualParameterName", "wsadminabspath"));
 
         actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "appname")
-                .put("value", props.getProperty(StringConstants.APP_NAME)));
-
-        actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "apppath")
-                .put("value", apppath));
-
-        actualParameterArray.put(new JSONObject()
                 .put("actualParameterName", "configname")
                 .put("value", "WebCfg"));
 
         actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "connectiontype")
+                .put("actualParameterName", "connectionType")
                 .put("value", "soap"));
+
+        actualParameterArray.put(new JSONObject()
+                .put("actualParameterName", "clusterName")
+                .put("value", props.getProperty(StringConstants.CLUSTER_NAME)));
 
         jo.put("actualParameter", actualParameterArray);
 
@@ -69,36 +66,30 @@ public class DeployAppTest {
 
 
     @Test
-    public void deployAppInvalidWsadminPathTest() throws Exception {
+    public void deleteNonExistentClusterTest() throws Exception {
 
-        String apppath = props.getProperty(StringConstants.SAMPLE_WAR_LOCATION);
         long jobTimeoutMillis = 5 * 60 * 1000;
         JSONObject jo = new JSONObject();
 
         jo.put("projectName", "EC-WebSphere-" + StringConstants.PLUGIN_VERSION);
-        jo.put("procedureName", "DeployApp");
-        jo.put("resourceName", "testAutomationResource");
+        jo.put("procedureName", "DeleteCluster");
 
         JSONArray actualParameterArray = new JSONArray();
         actualParameterArray.put(new JSONObject()
-                .put("value", props.getProperty(StringConstants.WSADMIN_LOCATION) + "someRandomString878*")
+                .put("value", props.getProperty(StringConstants.WSADMIN_LOCATION))
                 .put("actualParameterName", "wsadminabspath"));
-
-        actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "appname")
-                .put("value", props.getProperty(StringConstants.APP_NAME)));
-
-        actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "apppath")
-                .put("value", apppath));
 
         actualParameterArray.put(new JSONObject()
                 .put("actualParameterName", "configname")
                 .put("value", "WebCfg"));
 
         actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "connectiontype")
+                .put("actualParameterName", "connectionType")
                 .put("value", "soap"));
+
+        actualParameterArray.put(new JSONObject()
+                .put("actualParameterName", "clusterName")
+                .put("value", props.getProperty(StringConstants.CLUSTER_NAME) + "sudu&g9*'"));
 
         jo.put("actualParameter", actualParameterArray);
 

@@ -1,14 +1,17 @@
 package ecplugins.websphere;
 
+import org.eclipse.jdt.internal.compiler.impl.StringConstant;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 import java.util.Properties;
+
 import static org.junit.Assert.assertEquals;
 
 
-public class DeployAppTest {
+public class PublishWSDLTest {
 
     private static Properties props;
 
@@ -25,38 +28,40 @@ public class DeployAppTest {
     }
 
     @Test
-    public void deployAppTest() throws Exception {
+    public void publishWSDLTest() throws Exception {
 
-        String apppath = props.getProperty(StringConstants.SAMPLE_WAR_LOCATION);
+
         long jobTimeoutMillis = 5 * 60 * 1000;
         JSONObject jo = new JSONObject();
 
         jo.put("projectName", "EC-WebSphere-" + StringConstants.PLUGIN_VERSION);
-        jo.put("procedureName", "DeployApp");
-        jo.put("resourceName", "testAutomationResource");
+        jo.put("procedureName", "PublishWSDL");
+        jo.put("resourceName", StringConstants.RESOURCE_NAME);
 
         JSONArray actualParameterArray = new JSONArray();
-        actualParameterArray.put(new JSONObject()
-                .put("value", props.getProperty(StringConstants.WSADMIN_LOCATION))
-                .put("actualParameterName", "wsadminabspath"));
-
-        actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "appname")
-                .put("value", props.getProperty(StringConstants.APP_NAME)));
-
-        actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "apppath")
-                .put("value", apppath));
 
         actualParameterArray.put(new JSONObject()
                 .put("actualParameterName", "configname")
                 .put("value", "WebCfg"));
 
         actualParameterArray.put(new JSONObject()
+                .put("value", props.getProperty(StringConstants.WSADMIN_LOCATION))
+                .put("actualParameterName", "wsadminabspath"));
+
+        actualParameterArray.put(new JSONObject()
                 .put("actualParameterName", "connectiontype")
                 .put("value", "soap"));
 
+        actualParameterArray.put(new JSONObject()
+                .put("actualParameterName", "appname")
+                .put("value", props.getProperty(StringConstants.WEBSERVICE_APP_NAME)));
+
+        actualParameterArray.put(new JSONObject()
+                .put("actualParameterName", "publish_location")
+                .put("value", props.getProperty(StringConstants.WSDL_LOCATION)));
+
         jo.put("actualParameter", actualParameterArray);
+
 
         String jobId = TestUtils.callRunProcedure(jo);
 
@@ -67,40 +72,40 @@ public class DeployAppTest {
 
     }
 
-
     @Test
-    public void deployAppInvalidWsadminPathTest() throws Exception {
+    public void publishWSDLInvalidAppNameTest() throws Exception {
 
-        String apppath = props.getProperty(StringConstants.SAMPLE_WAR_LOCATION);
         long jobTimeoutMillis = 5 * 60 * 1000;
         JSONObject jo = new JSONObject();
 
         jo.put("projectName", "EC-WebSphere-" + StringConstants.PLUGIN_VERSION);
-        jo.put("procedureName", "DeployApp");
-        jo.put("resourceName", "testAutomationResource");
+        jo.put("procedureName", "PublishWSDL");
+        jo.put("resourceName", StringConstants.RESOURCE_NAME);
 
         JSONArray actualParameterArray = new JSONArray();
-        actualParameterArray.put(new JSONObject()
-                .put("value", props.getProperty(StringConstants.WSADMIN_LOCATION) + "someRandomString878*")
-                .put("actualParameterName", "wsadminabspath"));
-
-        actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "appname")
-                .put("value", props.getProperty(StringConstants.APP_NAME)));
-
-        actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "apppath")
-                .put("value", apppath));
 
         actualParameterArray.put(new JSONObject()
                 .put("actualParameterName", "configname")
                 .put("value", "WebCfg"));
 
         actualParameterArray.put(new JSONObject()
+                .put("value", props.getProperty(StringConstants.WSADMIN_LOCATION))
+                .put("actualParameterName", "wsadminabspath"));
+
+        actualParameterArray.put(new JSONObject()
                 .put("actualParameterName", "connectiontype")
                 .put("value", "soap"));
 
+        actualParameterArray.put(new JSONObject()
+                .put("actualParameterName", "appname")
+                .put("value", props.getProperty(StringConstants.WEBSERVICE_APP_NAME) + "987$sdf"));
+
+        actualParameterArray.put(new JSONObject()
+                .put("actualParameterName", "publish_location")
+                .put("value", props.getProperty(StringConstants.WSDL_LOCATION)));
+
         jo.put("actualParameter", actualParameterArray);
+
 
         String jobId = TestUtils.callRunProcedure(jo);
 

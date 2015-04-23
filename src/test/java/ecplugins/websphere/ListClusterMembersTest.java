@@ -4,11 +4,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 import java.util.Properties;
+
 import static org.junit.Assert.assertEquals;
 
 
-public class DeployAppTest {
+public class ListClusterMembersTest {
 
     private static Properties props;
 
@@ -25,36 +27,30 @@ public class DeployAppTest {
     }
 
     @Test
-    public void deployAppTest() throws Exception {
+    public void listClusterMembersTest() throws Exception {
 
-        String apppath = props.getProperty(StringConstants.SAMPLE_WAR_LOCATION);
         long jobTimeoutMillis = 5 * 60 * 1000;
         JSONObject jo = new JSONObject();
 
         jo.put("projectName", "EC-WebSphere-" + StringConstants.PLUGIN_VERSION);
-        jo.put("procedureName", "DeployApp");
-        jo.put("resourceName", "testAutomationResource");
+        jo.put("procedureName", "ListClusterMembers");
 
         JSONArray actualParameterArray = new JSONArray();
         actualParameterArray.put(new JSONObject()
-                .put("value", props.getProperty(StringConstants.WSADMIN_LOCATION))
-                .put("actualParameterName", "wsadminabspath"));
-
-        actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "appname")
-                .put("value", props.getProperty(StringConstants.APP_NAME)));
-
-        actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "apppath")
-                .put("value", apppath));
-
-        actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "configname")
+                .put("actualParameterName", "configName")
                 .put("value", "WebCfg"));
 
         actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "connectiontype")
+                .put("value", props.getProperty(StringConstants.WSADMIN_LOCATION))
+                .put("actualParameterName", "wsadminAbsPath"));
+
+        actualParameterArray.put(new JSONObject()
+                .put("actualParameterName", "connectionType")
                 .put("value", "soap"));
+
+        actualParameterArray.put(new JSONObject()
+                .put("actualParameterName", "clusterName")
+                .put("value", props.getProperty(StringConstants.CLUSTER_NAME)));
 
         jo.put("actualParameter", actualParameterArray);
 
@@ -67,38 +63,31 @@ public class DeployAppTest {
 
     }
 
-
     @Test
-    public void deployAppInvalidWsadminPathTest() throws Exception {
+    public void listClusterMembersInvalidClusterNameTest() throws Exception {
 
-        String apppath = props.getProperty(StringConstants.SAMPLE_WAR_LOCATION);
         long jobTimeoutMillis = 5 * 60 * 1000;
         JSONObject jo = new JSONObject();
 
         jo.put("projectName", "EC-WebSphere-" + StringConstants.PLUGIN_VERSION);
-        jo.put("procedureName", "DeployApp");
-        jo.put("resourceName", "testAutomationResource");
+        jo.put("procedureName", "ListClusterMembers");
 
         JSONArray actualParameterArray = new JSONArray();
         actualParameterArray.put(new JSONObject()
-                .put("value", props.getProperty(StringConstants.WSADMIN_LOCATION) + "someRandomString878*")
-                .put("actualParameterName", "wsadminabspath"));
-
-        actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "appname")
-                .put("value", props.getProperty(StringConstants.APP_NAME)));
-
-        actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "apppath")
-                .put("value", apppath));
-
-        actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "configname")
+                .put("actualParameterName", "configName")
                 .put("value", "WebCfg"));
 
         actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "connectiontype")
+                .put("value", props.getProperty(StringConstants.WSADMIN_LOCATION))
+                .put("actualParameterName", "wsadminAbsPath"));
+
+        actualParameterArray.put(new JSONObject()
+                .put("actualParameterName", "connectionType")
                 .put("value", "soap"));
+
+        actualParameterArray.put(new JSONObject()
+                .put("actualParameterName", "clusterName")
+                .put("value", "randomXYZ*&cluster"));
 
         jo.put("actualParameter", actualParameterArray);
 

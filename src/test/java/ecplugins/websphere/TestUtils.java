@@ -4,6 +4,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
@@ -25,6 +26,7 @@ public class TestUtils {
     private static boolean isCommanderResourceCreatedSuccessfully = false;
     private static boolean isConfigDeletedSuccessfully = false;
     private static boolean isConfigCreatedSuccessfully = false;
+    private static boolean isResourceSetSuccessfully = false;
 
     public static Properties getProperties() throws Exception {
 
@@ -39,6 +41,36 @@ public class TestUtils {
         return props;
     }
 
+    public static void setDefaultResourceAndWorkspace() throws Exception {
+
+        if(!isResourceSetSuccessfully){
+
+            HttpClient httpClient = new DefaultHttpClient();
+            JSONObject jo = new JSONObject();
+
+            jo.put("projectName", "EC-WebSphere-" + StringConstants.PLUGIN_VERSION);
+            jo.put("resourceName", StringConstants.RESOURCE_NAME);
+            jo.put("workspaceName", StringConstants.WORKSPACE_NAME);
+
+            HttpPut httpPutRequest = new HttpPut("http://" + props.getProperty(StringConstants.COMMANDER_USER)
+                    + ":" + props.getProperty(StringConstants.COMMANDER_PASSWORD) + "@" + StringConstants.COMMANDER_SERVER
+                    + ":8000/rest/v1.0/projects/" + "EC-WebSphere-" + StringConstants.PLUGIN_VERSION);
+
+            StringEntity input = new StringEntity(jo.toString());
+
+            input.setContentType("application/json");
+            httpPutRequest.setEntity(input);
+            HttpResponse httpResponse = httpClient.execute(httpPutRequest);
+
+            if (httpResponse.getStatusLine().getStatusCode() >= 400) {
+                throw new RuntimeException("Failed to set default resource  " +
+                        StringConstants.RESOURCE_NAME + " to project " +
+                        "EC-WebSphere-" + StringConstants.PLUGIN_VERSION);
+            }
+            System.out.println("Set the default resource as " + StringConstants.RESOURCE_NAME + " and default workspace as " + StringConstants.WORKSPACE_NAME + " successfully.");
+            isResourceSetSuccessfully = true;
+        }
+    }
     /**
      * callRunProcedure
      *
