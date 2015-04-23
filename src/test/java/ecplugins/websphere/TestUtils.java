@@ -19,54 +19,25 @@ import static org.junit.Assert.*;
 
 public class TestUtils {
 
-    static Properties props;
+    private static Properties props;
+    private static final long jobStatusPollIntervalMillis = 15000;
+    private static boolean isCommanderWorkspaceCreatedSuccessfully = false;
+    private static boolean isCommanderResourceCreatedSuccessfully = false;
+    private static boolean isConfigDeletedSuccessfully = false;
+    private static boolean isConfigCreatedSuccessfully = false;
 
-    static {
+    public static Properties getProperties() throws Exception {
 
-        // 1. Load propeties
-        props = new Properties();
-        InputStream is = null;
-
-        try {
+        if(props == null){
+            props = new Properties();
+            InputStream is = null;
             is = new FileInputStream("ecplugin.properties");
             props.load(is);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            is.close();
         }
 
-        //2. Create commander workspace
-        createCommanderWorkspace();
-
-        //3. Create commander resource
-        createCommanderResource();
-
-        //4. Delete any existing plugin configuration
-        try {
-            deleteConfiguration();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        //5 . Create new pluing configuration
-        try {
-            createConfiguration();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return props;
     }
-
 
     /**
      * callRunProcedure
@@ -74,7 +45,7 @@ public class TestUtils {
      * @param jo
      * @return the jobId of the job launched by runProcedure
      */
-    public static String callRunProcedure(JSONObject jo) {
+    public static String callRunProcedure(JSONObject jo) throws Exception {
 
         HttpClient httpClient = new DefaultHttpClient();
         JSONObject result = null;
@@ -90,21 +61,11 @@ public class TestUtils {
             HttpResponse httpResponse = httpClient.execute(httpPostRequest);
 
             result = new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
-        } catch (Exception e) {
-            e.printStackTrace();
+            return result.getString("jobId");
+
         } finally {
             httpClient.getConnectionManager().shutdown();
         }
-
-        if (result != null) {
-            try {
-                return result.getString("jobId");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return "";
 
     }
     /**
@@ -113,24 +74,26 @@ public class TestUtils {
      * @param jobId
      * @return outcome of job
      */
-     static String waitForJob(String jobId) throws IOException, JSONException {
+     static String waitForJob(String jobId, long jobTimeOutMillis) throws Exception {
+
+        long timeTaken = 0;
 
         String url = "http://" + props.getProperty(StringConstants.COMMANDER_USER) + ":" + props.getProperty(StringConstants.COMMANDER_PASSWORD) +
                 "@" + StringConstants.COMMANDER_SERVER + ":8000/rest/v1.0/jobs/" +
                 jobId + "?request=getJobStatus";
         JSONObject jsonObject = performHTTPGet(url);
 
-        try {
-            while (!jsonObject.getString("status").equalsIgnoreCase("completed")) {
-                jsonObject = performHTTPGet(url);
-            }
 
-            return jsonObject.getString("outcome");
-        } catch (JSONException e) {
-            e.printStackTrace();
+        while (!jsonObject.getString("status").equalsIgnoreCase("completed")) {
+            Thread.sleep(jobStatusPollIntervalMillis);
+            jsonObject = performHTTPGet(url);
+            timeTaken += jobStatusPollIntervalMillis;
+            if(timeTaken > jobTimeOutMillis){
+                throw new Exception("Job did not completed within time.");
+            }
         }
 
-        return "";
+        return jsonObject.getString("outcome");
 
     }
 
@@ -138,90 +101,93 @@ public class TestUtils {
      *  Creates a new workspace. If the workspace already exists,It continues.
      *
      */
-    static void createCommanderWorkspace(){
+    static void createCommanderWorkspace() throws Exception {
 
-        HttpClient httpClient = new DefaultHttpClient();
-        JSONObject jo = new JSONObject();
-        JSONObject result = null;
+        if( !isCommanderWorkspaceCreatedSuccessfully ) {
 
-        try {
-            HttpPost httpPostRequest = new HttpPost("http://" + props.getProperty(StringConstants.COMMANDER_USER)
-                    + ":" + props.getProperty(StringConstants.COMMANDER_PASSWORD) + "@" + StringConstants.COMMANDER_SERVER
-                    + ":8000/rest/v1.0/workspaces/");
+            HttpClient httpClient = new DefaultHttpClient();
+            JSONObject jo = new JSONObject();
 
-            jo.put("workspaceName","testAutomationWorkspace");
-            jo.put("description","testAutomationWorkspace");
-            jo.put("agentDrivePath","C:/Program Files/Electric Cloud/ElectricCommander");
-            jo.put("agentUncPath","C:/Program Files/Electric Cloud/ElectricCommander");
-            jo.put("agentUnixPath","/opt/electriccloud/electriccommander");
-            jo.put("local",true);
 
-            StringEntity input = new StringEntity(jo.toString());
+            try {
+                HttpPost httpPostRequest = new HttpPost("http://" + props.getProperty(StringConstants.COMMANDER_USER)
+                        + ":" + props.getProperty(StringConstants.COMMANDER_PASSWORD) + "@" + StringConstants.COMMANDER_SERVER
+                        + ":8000/rest/v1.0/workspaces/");
 
-            input.setContentType("application/json");
-            httpPostRequest.setEntity(input);
-            HttpResponse httpResponse = httpClient.execute(httpPostRequest);
+                jo.put("workspaceName", StringConstants.WORKSPACE_NAME);
+                jo.put("description", "testAutomationWorkspace");
+                jo.put("agentDrivePath", "C:/Program Files/Electric Cloud/ElectricCommander");
+                jo.put("agentUncPath", "C:/Program Files/Electric Cloud/ElectricCommander");
+                jo.put("agentUnixPath", "/opt/electriccloud/electriccommander");
+                jo.put("local", true);
 
-            if(httpResponse.getStatusLine().getStatusCode() == 409) {
-                System.out.println("Commander workspace already exists.Continuing....");
-                result = null;
-            } else if (httpResponse.getStatusLine().getStatusCode() >= 400) {
-                throw new RuntimeException("Failed to create commander workspace " +
-                        httpResponse.getStatusLine().getStatusCode() + "-" +
-                        httpResponse.getStatusLine().getReasonPhrase());
+                StringEntity input = new StringEntity(jo.toString());
+
+                input.setContentType("application/json");
+                httpPostRequest.setEntity(input);
+                HttpResponse httpResponse = httpClient.execute(httpPostRequest);
+
+                if (httpResponse.getStatusLine().getStatusCode() == 409) {
+                    System.out.println("Commander workspace already exists.Continuing....");
+                } else if (httpResponse.getStatusLine().getStatusCode() >= 400) {
+                    throw new RuntimeException("Failed to create commander workspace " +
+                            httpResponse.getStatusLine().getStatusCode() + "-" +
+                            httpResponse.getStatusLine().getReasonPhrase());
+                }
+                // Indicate successful creating of workspace
+                isCommanderWorkspaceCreatedSuccessfully = true;
+
+            } finally {
+                httpClient.getConnectionManager().shutdown();
             }
-            result = new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            httpClient.getConnectionManager().shutdown();
         }
+
     }
 
     /**
      *
      * @return
      */
-    static void createCommanderResource(){
+    static void createCommanderResource() throws Exception {
 
-        HttpClient httpClient = new DefaultHttpClient();
-        JSONObject jo = new JSONObject();
-        JSONObject result = null;
+        if (!isCommanderResourceCreatedSuccessfully) {    // If CommanderResource not created before
 
-        try {
-            HttpPost httpPostRequest = new HttpPost("http://" + props.getProperty(StringConstants.COMMANDER_USER)
-                    + ":" + props.getProperty(StringConstants.COMMANDER_PASSWORD) + "@" + StringConstants.COMMANDER_SERVER
-                    + ":8000/rest/v1.0/resources/");
+            HttpClient httpClient = new DefaultHttpClient();
+            JSONObject jo = new JSONObject();
 
-            jo.put("resourceName","testAutomationResource");
-            jo.put("description","Resource created for test automation");
-            jo.put("hostName",props.getProperty(StringConstants.WEBSPHERE_AGENT_IP));
-            jo.put("port",props.getProperty(StringConstants.WEBSPHERE_AGENT_PORT));
-            jo.put("workspaceName","testAutomationWorkspace");
-            jo.put("pools","default");
-            jo.put("local",true);
+            try {
+                HttpPost httpPostRequest = new HttpPost("http://" + props.getProperty(StringConstants.COMMANDER_USER)
+                        + ":" + props.getProperty(StringConstants.COMMANDER_PASSWORD) + "@" + StringConstants.COMMANDER_SERVER
+                        + ":8000/rest/v1.0/resources/");
 
-            StringEntity input = new StringEntity(jo.toString());
+                jo.put("resourceName", StringConstants.RESOURCE_NAME);
+                jo.put("description", "Resource created for test automation");
+                jo.put("hostName", props.getProperty(StringConstants.WEBSPHERE_AGENT_IP));
+                jo.put("port", props.getProperty(StringConstants.WEBSPHERE_AGENT_PORT));
+                jo.put("workspaceName", StringConstants.WORKSPACE_NAME);
+                jo.put("pools", "default");
+                jo.put("local", true);
 
-            input.setContentType("application/json");
-            httpPostRequest.setEntity(input);
-            HttpResponse httpResponse = httpClient.execute(httpPostRequest);
+                StringEntity input = new StringEntity(jo.toString());
 
-            if(httpResponse.getStatusLine().getStatusCode() == 409) {
-                System.out.println("Commander resource already exists.Continuing....");
-                result = null;
-            } else if (httpResponse.getStatusLine().getStatusCode() >= 400) {
-                throw new RuntimeException("Failed to create commander workspace " +
-                        httpResponse.getStatusLine().getStatusCode() + "-" +
-                        httpResponse.getStatusLine().getReasonPhrase());
+                input.setContentType("application/json");
+                httpPostRequest.setEntity(input);
+                HttpResponse httpResponse = httpClient.execute(httpPostRequest);
+
+                if (httpResponse.getStatusLine().getStatusCode() == 409) {
+                    System.out.println("Commander resource already exists.Continuing....");
+
+                } else if (httpResponse.getStatusLine().getStatusCode() >= 400) {
+                    throw new RuntimeException("Failed to create commander workspace " +
+                            httpResponse.getStatusLine().getStatusCode() + "-" +
+                            httpResponse.getStatusLine().getReasonPhrase());
+                }
+                // Indicate successful creation commander resource.
+                isCommanderResourceCreatedSuccessfully = true;
+            } finally {
+                httpClient.getConnectionManager().shutdown();
             }
-            result = new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            httpClient.getConnectionManager().shutdown();
         }
-
     }
     /**
      * Wrapper around a HTTP GET to a REST service
@@ -252,82 +218,95 @@ public class TestUtils {
     /**
      * Create the openstack configuration used for this test suite
      */
-     static void createConfiguration() throws JSONException, IOException {
+     static void createConfiguration() throws Exception {
 
-        String response = "";
-        JSONObject parentJSONObject = new JSONObject();
-        JSONArray actualParameterArray = new JSONArray();
+         long jobTimeoutMillis = 3 * 60 * 1000;
+         if(isConfigCreatedSuccessfully == false) {
 
-        parentJSONObject.put("projectName", "EC-WebSphere-" + StringConstants.PLUGIN_VERSION);
-        parentJSONObject.put("procedureName", "CreateConfiguration");
+             String response = "";
+             JSONObject parentJSONObject = new JSONObject();
+             JSONArray actualParameterArray = new JSONArray();
 
-        actualParameterArray.put(new JSONObject()
-                .put("value", "WebCfg")
-                .put("actualParameterName", "config"));
+             parentJSONObject.put("projectName", "EC-WebSphere-" + StringConstants.PLUGIN_VERSION);
+             parentJSONObject.put("procedureName", "CreateConfiguration");
 
-        actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "websphere_url")
-                .put("value", props.getProperty(StringConstants.WEBSPHERE_URL)));
+             actualParameterArray.put(new JSONObject()
+                     .put("value", "WebCfg")
+                     .put("actualParameterName", "config"));
 
-        actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "websphere_port")
-                .put("value", props.getProperty(StringConstants.WEBSPHERE_PORT)));
+             actualParameterArray.put(new JSONObject()
+                     .put("actualParameterName", "websphere_url")
+                     .put("value", props.getProperty(StringConstants.WEBSPHERE_URL)));
 
-        actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "credential")
-                .put("value", "web_credentials"));
+             actualParameterArray.put(new JSONObject()
+                     .put("actualParameterName", "websphere_port")
+                     .put("value", props.getProperty(StringConstants.WEBSPHERE_PORT)));
 
-        parentJSONObject.put("actualParameter", actualParameterArray);
+             actualParameterArray.put(new JSONObject()
+                     .put("actualParameterName", "credential")
+                     .put("value", "web_credentials"));
 
-        JSONArray credentialArray = new JSONArray();
+             parentJSONObject.put("actualParameter", actualParameterArray);
 
-        credentialArray.put(new JSONObject()
-                .put("credentialName", "web_credentials")
-                .put("userName", props.getProperty(StringConstants.WEBSPHERE_USER))
-                .put("password", props.getProperty(StringConstants.WEBSPHERE_PASSWORD)));
+             JSONArray credentialArray = new JSONArray();
 
-        parentJSONObject.put("credential", credentialArray);
+             credentialArray.put(new JSONObject()
+                     .put("credentialName", "web_credentials")
+                     .put("userName", props.getProperty(StringConstants.WEBSPHERE_USER))
+                     .put("password", props.getProperty(StringConstants.WEBSPHERE_PASSWORD)));
 
-        String jobId = callRunProcedure(parentJSONObject);
+             parentJSONObject.put("credential", credentialArray);
 
-        response = waitForJob(jobId);
+             String jobId = callRunProcedure(parentJSONObject);
 
-        // Check job status
-        assertEquals("Job completed without errors", "success", response);
+             response = waitForJob(jobId,jobTimeoutMillis);
+
+             // Check job status
+             assertEquals("Job completed without errors", "success", response);
+
+             isConfigCreatedSuccessfully = true;
+         }
     }
 
     /**
      * Delete the WEBSPHERE configuration used for this test suite (clear previous runs)
      */
-     static void deleteConfiguration() throws JSONException, IOException {
-        String jobId = "";
-        JSONObject param1 = new JSONObject();
-        JSONObject jo = new JSONObject();
-        jo.put("projectName", "EC-WebSphere-" + StringConstants.PLUGIN_VERSION);
-        jo.put("procedureName", "DeleteConfiguration");
+     static void deleteConfiguration() throws Exception {
 
-        JSONArray actualParameterArray = new JSONArray();
-        actualParameterArray.put(new JSONObject()
-                .put("value", "WebCfg")
-                .put("actualParameterName", "config"));
+         long jobTimeoutMillis = 3 * 60 * 1000;
+         if (isConfigDeletedSuccessfully == false) {
 
-        jo.put("actualParameter", actualParameterArray);
+             String jobId = "";
+             JSONObject param1 = new JSONObject();
+             JSONObject jo = new JSONObject();
+             jo.put("projectName", "EC-WebSphere-" + StringConstants.PLUGIN_VERSION);
+             jo.put("procedureName", "DeleteConfiguration");
 
-         JSONArray credentialArray = new JSONArray();
+             JSONArray actualParameterArray = new JSONArray();
+             actualParameterArray.put(new JSONObject()
+                     .put("value", "WebCfg")
+                     .put("actualParameterName", "config"));
 
-         credentialArray.put(new JSONObject()
-                 .put("credentialName", "web_credentials")
-                 .put("userName", props.getProperty(StringConstants.WEBSPHERE_USER))
-                 .put("password", props.getProperty(StringConstants.WEBSPHERE_PASSWORD)));
+             jo.put("actualParameter", actualParameterArray);
 
-         jo.put("credential", credentialArray);
+             JSONArray credentialArray = new JSONArray();
 
-         jobId = callRunProcedure(jo);
+             credentialArray.put(new JSONObject()
+                     .put("credentialName", "web_credentials")
+                     .put("userName", props.getProperty(StringConstants.WEBSPHERE_USER))
+                     .put("password", props.getProperty(StringConstants.WEBSPHERE_PASSWORD)));
 
-        // Block on job completion
-        waitForJob(jobId);
-        // Do not check job status. Delete will error if it does not exist
-        // which is OK since that is the expected state.
-    }
+             jo.put("credential", credentialArray);
 
+             jobId = callRunProcedure(jo);
+
+             // Block on job completion
+             waitForJob(jobId,jobTimeoutMillis);
+             // Do not check job status. Delete will error if it does not exist
+             // which is OK since that is the expected state.
+
+            isConfigDeletedSuccessfully = true;
+         }
+
+     }
 }
