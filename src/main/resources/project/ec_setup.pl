@@ -100,6 +100,21 @@ my %listClusterMembers = (
     category    => "Application Server"
 );
 
+my %configureSessionManagement = (
+    label       => "WebSphere - Configure Session Management",
+    procedure   => "ConfigureSession",
+    description => "Configures the session management properties for the deployed application.",
+    category    => "Application Server"
+);
+
+
+my %createJMSProvider = (
+    label       => "WebSphere - Create JMS Provider",
+    procedure   => "CreateJMSProvider",
+    description => "Creates a JMS Provider using the wsadmin tool",
+    category    => "Application Server"
+);
+
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy App");
@@ -121,7 +136,8 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete D
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JDBC Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JDBC Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - List Cluster Members");
-
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Configure Session Management");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JMS Provider");
 
 @::createStepPickerSteps = (\%checkPageStatus, \%checkServerStatus,
                             \%startServer, \%stopServer,
@@ -129,7 +145,8 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - List Clu
                             \%stopApp, \%deployApp,
                             \%undeployApp, \%checkApp, 
 							\%createDatasource, \%deleteDatasource,
-							\%createJDBCProvider, \%deleteJDBCProvider, \%listClusterMembers);
+							\%createJDBCProvider, \%deleteJDBCProvider, \%listClusterMembers, \%configureSessionManagement, \%createJMSProvider);
+
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
@@ -259,13 +276,23 @@ if ($upgradeAction eq "upgrade") {
                 stepName => 'DeleteJDBCProvider'
             });
 
+             # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'ConfigureSession',
+                stepName => 'ConfigureSession'
+            });
+
+            # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateJMSProvider',
+                stepName => 'CreateJMSProvider'
+            });
+
             # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'ListClusterMembers',
                 stepName => 'ListClusterMembers'
             });
-
-
         }
     }
 }

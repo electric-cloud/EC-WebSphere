@@ -33,17 +33,8 @@ dependencies {
 test {
     Properties props = new Properties()
 
-    def propFileName = "ecplugin.properties"
-
-    def propertyFile = new File( propFileName )
-
-    if( propertyFile.exists() ) {
-        props.load(new FileInputStream(propFileName))
-    }
-
     systemProperties['COMMANDER_SERVER'] = "$commanderServer"
-    systemProperties['COMMANDER_USER'] = props.getProperty("COMMANDER_USER")
-    systemProperties['COMMANDER_PASSWORD'] = props.getProperty("COMMANDER_PASSWORD")
+    systemProperties['PLUGIN_VERSION'] = version
     //TODO: load properties for WebSphere
 
 
