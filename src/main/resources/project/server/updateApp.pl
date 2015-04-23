@@ -156,7 +156,7 @@ sub main() {
     }
     push( @args, '"' . $::gWSAdminAbsPath . '"' );
 
-    open( MYFILE, '>>updateapp_script.jython' );
+    open( MYFILE, '>updateapp_script.jython' );
 
     print MYFILE "$ScriptFile";
     close(MYFILE);
@@ -206,10 +206,7 @@ sub main() {
     print "WSAdmin command line: $escapedCmdLine\n";
 
     #execute command
-    my $content = `$cmdLine`;
-
-    #print log
-    print "$content\n";
+    system($cmdLine);
 
     #evaluates if exit was successful to mark it as a success or fail the step
     if ( $? == SUCCESS ) {

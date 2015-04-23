@@ -76,6 +76,12 @@
             </property>
 
             <property>
+                <propertyName>updateapp_matchers</propertyName>
+                <value></value>
+                <expandable>0</expandable>
+            </property>
+
+            <property>
                 <propertyName>ui_forms</propertyName>
                 <description>Property sheet to hold XML specification for forms</description>
                 <propertySheet>
@@ -5680,7 +5686,7 @@
                 <formalParameterName>clusterName</formalParameterName>
                 <defaultValue />
                 <description>Name of the cluster on which application is deployed.</description>
-                <required>1</required>
+                <required>0</required>
                 <type>entry</type>
             </formalParameter>
 
@@ -5688,7 +5694,7 @@
                 <formalParameterName>serverName</formalParameterName>
                 <defaultValue />
                 <description>Name of the server on which application is deployed.</description>
-                <required>1</required>
+                <required>0</required>
                 <type>entry</type>
             </formalParameter>
 
