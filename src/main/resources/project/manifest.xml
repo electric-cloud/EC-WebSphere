@@ -46,6 +46,11 @@
         <path>matchers/jdbcProviderMatchers.pl</path>
     </file>
     <file>
+        <xpath>//property[propertyName=&quot;createcluster_matchers&quot;]/value</xpath>
+        <path>matchers/creatClusterMatcher.pl</path>
+    </file>
+
+    <file>
         <xpath>//property[propertyName=&quot;jmsprovider_matchers&quot;]/value</xpath>
         <path>matchers/JMSProviderMatchers.pl</path>
     </file>
@@ -112,6 +117,10 @@
         <path>server/deleteJDBCProvider.pl</path>
     </file>
 
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/step[stepName=&quot;CreateCluster&quot;]/command</xpath>
+        <path>server/createCluster.pl</path>
+    </file>
     <file>
         <xpath>//procedure[procedureName=&quot;ConfigureSession&quot;]/step[stepName=&quot;ConfigureSession&quot;]/command</xpath>
         <path>server/configureSessionManagement.pl</path>
@@ -192,6 +201,10 @@
     <file>
         <xpath>//procedure[procedureName=&quot;UndeployApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ec_parameterForm-UndeployApp.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/ec_parameterForm-CreateCluster.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;ConfigureSession&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
