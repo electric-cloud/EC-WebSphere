@@ -23,27 +23,27 @@ q{&addSimpleError("Error: Cluster with given name already exits.", "error");}
           '(.+)\(cells\/.+\/clusters\/.+\|cluster.xml#ServerCluster_.+',
         action => q{
 
-                                          my $description = ((defined $::gProperties{"summary"}) ?
-                                                                 $::gProperties{"summary"} : '');
+                      my $description = ((defined $::gProperties{"summary"}) ?
+                                             $::gProperties{"summary"} : '');
 
-                                                           $description .= "Successfully created cluster : $1";
+                                       $description = "Successfully created cluster : $1";
 
-                                                           setProperty("summary", $description . "\n");
+                                       setProperty("summary", $description . "\n");
 
-                                      }
+                  }
     },
     {
         id => "memberCreate",
         pattern =>
           '(.+)\(cells\/.+\/clusters\/.+\|cluster.xml#ClusterMember_.+',
         action => q{
-                                         my $description = ((defined $::gProperties{"summary"}) ?
-                                                                $::gProperties{"summary"} : '');
+                     my $description = ((defined $::gProperties{"summary"}) ?
+                                            $::gProperties{"summary"} : '');
 
-                                                                $description .= "Successfully created cluster member: $1";
+                                            $description = "Successfully created cluster member: $1";
 
-                                                                setProperty("summary", $description . "\n");
-                                     }
+                                            setProperty("summary", $description . "\n");
+                 }
     },
     {
         id      => "clusterStatus",
@@ -63,13 +63,13 @@ q{&addSimpleError("Error: Cluster with given name already exits.", "error");}
         id      => "appdeploy",
         pattern => q{Application\s(.+)\sinstalled successfully.},
         action  => q{
-                                           my $description = ((defined $::gProperties{"summary"}) ?
-                                                                  $::gProperties{"summary"} : '');
+                       my $description = ((defined $::gProperties{"summary"}) ?
+                                              $::gProperties{"summary"} : '');
 
-                                                                  $description .= "Application \'$1\'deployed successfully on cluster.";
+                                              $description .= "Application \'$1\'deployed successfully on cluster.";
 
-                                                                  setProperty("summary", $description . "\n");
-                                      }
+                                              setProperty("summary", $description . "\n");
+                  }
     }
 
 );

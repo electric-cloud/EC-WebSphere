@@ -187,7 +187,7 @@ sub main() {
     $ScriptFile .= "\n\t" . 'else:';
     $ScriptFile .= "\n\t\t" . 'sleep(3)';
 
-    open( MYFILE, '>>createCluster.jython' );
+    open( MYFILE, '>createCluster.jython' );
 
     print MYFILE "$ScriptFile";
     close(MYFILE);
@@ -225,10 +225,15 @@ sub main() {
     print "WSAdmin command line: $escapedCmdLine\n";
 
     #execute command
-    my $content = `$cmdLine`;
+    system($cmdLine);
 
-    #print log
-    print "$content\n";
+    #evaluates if exit was successful to mark it as a success or fail the step
+    if ( $? == SUCCESS ) {
+        $ec->setProperty( "/myJobStep/outcome", 'success' );
+    }
+    else {
+        $ec->setProperty( "/myJobStep/outcome", 'error' );
+    }
 }
 
 main();
