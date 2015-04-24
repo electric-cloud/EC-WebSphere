@@ -100,6 +100,13 @@ my %listClusterMembers = (
     category    => "Application Server"
 );
 
+my %creatCluster = (
+    label       => "WebSphere - Create Application server cluster",
+    procedure   => "CreateCluster",
+    description => "Creates a new Application Server cluster.",
+    category    => "Application Server"
+);
+
 my %configureSessionManagement = (
     label       => "WebSphere - Configure Session Management",
     procedure   => "ConfigureSession",
@@ -136,6 +143,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete D
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JDBC Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JDBC Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - List Cluster Members");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Application server cluster");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Configure Session Management");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JMS Provider");
 
@@ -145,7 +153,11 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create J
                             \%stopApp, \%deployApp,
                             \%undeployApp, \%checkApp, 
 							\%createDatasource, \%deleteDatasource,
-							\%createJDBCProvider, \%deleteJDBCProvider, \%listClusterMembers, \%configureSessionManagement, \%createJMSProvider);
+							\%createJDBCProvider, \%deleteJDBCProvider,
+							\%creatCluster, \%configureSessionManagement,
+							\%createJMSProvider, \%listClusterMembers);
+
+
 
 
 if ($upgradeAction eq "upgrade") {
@@ -274,6 +286,12 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DeleteJDBCProvider',
                 stepName => 'DeleteJDBCProvider'
+            });
+
+             # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateCluster',
+                stepName => 'CreateCluster'
             });
 
              # Attach the credential to the appropriate steps
