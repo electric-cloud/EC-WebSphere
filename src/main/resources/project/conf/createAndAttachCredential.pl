@@ -81,6 +81,11 @@ $xpath = $ec->attachCredential($projName, $credName,
 $errors .= $ec->checkAllErrors($xpath);
 
 $xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'DeleteCluster',
+     stepName => 'DeleteCluster'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
     {procedureName => 'ListClusterMembers',
      stepName => 'ListClusterMembers'});
 $errors .= $ec->checkAllErrors($xpath);

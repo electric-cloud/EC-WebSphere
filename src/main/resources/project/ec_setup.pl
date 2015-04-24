@@ -93,6 +93,14 @@ my %deleteJDBCProvider = (
     category    => "Application Server"
 );
 
+
+my %deleteCluster = (
+    label       => "WebSphere - Delete Application server cluster",
+    procedure   => "DeleteCluster",
+    description => "Deletes an existing Application server cluster.",
+    category    => "Application Server"
+);
+
 my %listClusterMembers = (
     label       => "WebSphere - List Cluster Members",
     procedure   => "ListClusterMembers",
@@ -142,6 +150,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create D
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Datasource");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JDBC Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JDBC Provider");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Application server cluster");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - List Cluster Members");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Application server cluster");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Configure Session Management");
@@ -155,9 +164,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create J
 							\%createDatasource, \%deleteDatasource,
 							\%createJDBCProvider, \%deleteJDBCProvider,
 							\%creatCluster, \%configureSessionManagement,
-							\%createJMSProvider, \%listClusterMembers);
-
-
+							\%createJMSProvider, \%listClusterMembers, \%deleteCluster);
 
 
 if ($upgradeAction eq "upgrade") {
@@ -290,6 +297,12 @@ if ($upgradeAction eq "upgrade") {
 
              # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'DeleteCluster',
+                stepName => 'DeleteCluster'
+            });
+
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'CreateCluster',
                 stepName => 'CreateCluster'
             });
@@ -311,6 +324,7 @@ if ($upgradeAction eq "upgrade") {
                 procedureName => 'ListClusterMembers',
                 stepName => 'ListClusterMembers'
             });
+
         }
     }
 }
