@@ -85,6 +85,26 @@ $xpath = $ec->attachCredential($projName, $credName,
      stepName => 'DeleteCluster'});
 $errors .= $ec->checkAllErrors($xpath);
 
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'ListClusterMembers',
+     stepName => 'ListClusterMembers'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'CreateCluster',
+     stepName => 'CreateCluster'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'ConfigureSession',
+     stepName => 'ConfigureSession'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'CreateJMSProvider',
+     stepName => 'CreateJMSProvider'});
+$errors .= $ec->checkAllErrors($xpath);
+
 if ($errors ne '') {
     
     # Cleanup the partially created configuration we just created

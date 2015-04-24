@@ -49,6 +49,25 @@
         <xpath>//property[propertyName=&quot;deletecluster_matchers&quot;]/value</xpath>
         <path>matchers/deleteClusterMatcher.pl</path>
     </file>
+    <file>
+        <xpath>//property[propertyName=&quot;createcluster_matchers&quot;]/value</xpath>
+        <path>matchers/creatClusterMatcher.pl</path>
+    </file>
+
+    <file>
+        <xpath>//property[propertyName=&quot;jmsprovider_matchers&quot;]/value</xpath>
+        <path>matchers/JMSProviderMatchers.pl</path>
+    </file>
+
+    <file>
+        <xpath>//property[propertyName=&quot;configsession_matchers&quot;]/value</xpath>
+        <path>matchers/configSessionMatchers.pl</path>
+    </file>
+
+    <file>
+        <xpath>//property[propertyName=&quot;listClusterMembers_matchers&quot;]/value</xpath>
+        <path>matchers/listClusterMembersMatchers.pl</path>
+    </file>
 
     <file>
         <xpath>//procedure[procedureName=&quot;StartServer&quot;]/step[stepName=&quot;StartInstance&quot;]/command</xpath>
@@ -109,6 +128,23 @@
     <file>
         <xpath>//procedure[procedureName=&quot;DeleteCluster&quot;]/step[stepName=&quot;DeleteCluster&quot;]/command</xpath>
         <path>server/deleteCluster.pl</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;ListClusterMembers&quot;]/step[stepName=&quot;ListClusterMembers&quot;]/command</xpath>
+        <path>server/listClusterMembers.pl</path>
+    </file>
+
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/step[stepName=&quot;CreateCluster&quot;]/command</xpath>
+        <path>server/createCluster.pl</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;ConfigureSession&quot;]/step[stepName=&quot;ConfigureSession&quot;]/command</xpath>
+        <path>server/configureSessionManagement.pl</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateJMSProvider&quot;]/step[stepName=&quot;CreateJMSProvider&quot;]/command</xpath>
+        <path>server/createJMSProvider.pl</path>
     </file>
 
     <file>
@@ -188,5 +224,21 @@
         <path>parameterForms/ec_parameterForm-DeleteCluster.xml</path>
     </file>
 
+    <file>
+        <xpath>//procedure[procedureName=&quot;ListClusterMembers&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/ec_parameterForm-ListClusterMembers.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/ec_parameterForm-CreateCluster.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;ConfigureSession&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/ec_parameterForm-ConfigureSessionManagement.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateJMSProvider&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/ec_parameterForm-CreateJMSProvider.xml</path>
+    </file>
 
 </fileset>
