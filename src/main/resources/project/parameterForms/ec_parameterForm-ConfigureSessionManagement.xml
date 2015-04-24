@@ -1,0 +1,154 @@
+<editor>
+	<help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#ConfigureSession</help>
+	
+	<formElement>
+		<type>entry</type>
+		<label>Wsadmin Absolute Path:</label>
+		<property>wsadminAbsPath</property>
+		<required>1</required>
+		<documentation>Absolute path of wsadmin, including filename and extension. Optional if the location of wsadmin is in the PATH environment variable. E.g., '/path/to/wsadmin.sh' or 'wsadmin.bat'.</documentation>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Configuration Name:</label>
+		<property>configName</property>
+		<documentation>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</documentation>
+		<required>1</required>
+	</formElement>
+
+	<formElement>
+		<type>select</type>
+		<label>Connection Type:</label>
+		<property>connectionType</property>
+		<required>0</required>
+		<documentation>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</documentation>
+		<option><name>None</name><value>none</value></option>
+		<option><name>SOAP</name><value>soap</value></option>
+		<option><name>RMI</name><value>rmi</value></option>
+		<option><name>JSR160RMI</name><value>jsr160rmi</value></option>
+		<option><name>IPC</name><value>ipc</value></option>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Application Name:</label>
+		<property>appName</property>
+		<documentation>Name of the web application to configure. </documentation>
+		<required>1</required>
+	</formElement>
+
+	<formElement>
+		<label>Enable SSL Tracking:</label>
+		<property>enableSSLTracking</property>
+		<value/>
+		<documentation>Specifies that session tracking uses Secure Sockets Layer (SSL) information as a session ID. Enabling SSL tracking takes precedence over cookie-based session tracking and URL rewriting.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<label>Enable Cookies:</label>
+		<property>enableCookie</property>
+		<value/>
+		<documentation>Specifies whether to enable cookies.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<label>Enable URL Rewriting:</label>
+		<property>enableURLRewriting</property>
+		<value/>
+		<documentation>Specifies whether the session management facility uses rewritten URLs to carry the session IDs. If URL rewriting is enabled, the session management facility recognizes session IDs that arrive in the URL if the encodeURL method is called in the servlet.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<label>Enable Protocol Switching:</label>
+		<property>enableProtocolSwitching</property>
+		<value/>
+		<documentation>This option is only applicable when Enable URL rewriting is selected. This option specifies that the session ID is added to a URL when the URL requires a switch from HTTP to HTTPS or from HTTPS to HTTP. If rewriting is enabled, the session ID is required to go between HTTP and HTTPS.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Max in-memory session count:</label>
+		<property>maxInMemorySessionCount</property>
+		<documentation>Specifies the maximum number of sessions to maintain in memory.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<label>Allow Overflow:</label>
+		<property>allowOverflow</property>
+		<value/>
+		<documentation>Specifies whether the number of sessions in memory can exceed the value specified by the Max in-memory session count property. This option is valid only in non-distributed sessions mode..</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<label>Enable Serialized Session:</label>
+		<property>enableSerializedSession</property>
+		<value/>
+		<documentation>If selected, concurrent session access in a given server is not permitted.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Maximum Wait Time:</label>
+		<property>maxWaitTime</property>
+		<documentation>Specifies the maximum amount of time a servlet request waits on an HTTP session before continuing execution. This parameter is optional and expressed in seconds. The default is 5 seconds. Under normal conditions, a servlet request waiting for access to an HTTP session gets notified by the request that currently owns the given HTTP session when the request finishes.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<label>Access Session On Timeout:</label>
+		<property>accessSessionOnTimeout</property>
+		<value/>
+		<documentation>Specifies whether the servlet is started normally or aborted in the event of a timeout. If you specify true, the servlet is started normally. If you specify false, the servlet execution aborts and error logs are generated.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Invalid Timeout:</label>
+		<property>invalidTimeout</property>
+		<documentation>Specifies how long(in minutes) a session can go unused before it is no longer valid.</documentation>
+		<required>1</required>
+	</formElement>
+
+	<formElement>
+		<type>select</type>
+		<label>Session Persistence Mode:</label>
+		<property>sessionPersistMode</property>
+		<required>0</required>
+		<documentation>Specifies whether to enable session persistence mode.</documentation>
+		<option><name>Keep Unchanged</name><value>default</value></option>
+		<option><name>DATABASE</name><value>DATABASE</value></option>
+		<option><name>DATA_REPLICATION</name><value>DATA_REPLICATION</value></option>
+		<option><name>NONE</name><value>NONE</value></option>
+	</formElement>
+
+</editor>

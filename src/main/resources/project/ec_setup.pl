@@ -93,10 +93,47 @@ my %deleteJDBCProvider = (
     category    => "Application Server"
 );
 
+<<<<<<< HEAD
 my %removeClusterMembers = (
     label       => "WebSphere - Remove Cluster Members",
     procedure   => "RemoveClusterMembers",
     description => "Removes list of application servers from existing cluster",
+=======
+
+my %deleteCluster = (
+    label       => "WebSphere - Delete Application server cluster",
+    procedure   => "DeleteCluster",
+    description => "Deletes an existing Application server cluster.",
+    category    => "Application Server"
+);
+
+my %listClusterMembers = (
+    label       => "WebSphere - List Cluster Members",
+    procedure   => "ListClusterMembers",
+    description => "Lists all cluster members using the wsadmin tool",
+    category    => "Application Server"
+);
+
+my %creatCluster = (
+    label       => "WebSphere - Create Application server cluster",
+    procedure   => "CreateCluster",
+    description => "Creates a new Application Server cluster.",
+    category    => "Application Server"
+);
+
+my %configureSessionManagement = (
+    label       => "WebSphere - Configure Session Management",
+    procedure   => "ConfigureSession",
+    description => "Configures the session management properties for the deployed application.",
+    category    => "Application Server"
+);
+
+
+my %createJMSProvider = (
+    label       => "WebSphere - Create JMS Provider",
+    procedure   => "CreateJMSProvider",
+    description => "Creates a JMS Provider using the wsadmin tool",
+>>>>>>> 188dfdd8f456638dbc26998d438e5030a37cea2c
     category    => "Application Server"
 );
 
@@ -120,7 +157,15 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create D
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Datasource");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JDBC Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JDBC Provider");
+<<<<<<< HEAD
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Remove Cluster Members");
+=======
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Application server cluster");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - List Cluster Members");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Application server cluster");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Configure Session Management");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JMS Provider");
+>>>>>>> 188dfdd8f456638dbc26998d438e5030a37cea2c
 
 @::createStepPickerSteps = (\%checkPageStatus, \%checkServerStatus,
                             \%startServer, \%stopServer,
@@ -128,7 +173,14 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Remove C
                             \%stopApp, \%deployApp,
                             \%undeployApp, \%checkApp, 
 							\%createDatasource, \%deleteDatasource,
+<<<<<<< HEAD
 							\%createJDBCProvider, \%deleteJDBCProvider, \%removeClusterMembers);
+=======
+							\%createJDBCProvider, \%deleteJDBCProvider,
+							\%creatCluster, \%configureSessionManagement,
+							\%createJMSProvider, \%listClusterMembers, \%deleteCluster);
+
+>>>>>>> 188dfdd8f456638dbc26998d438e5030a37cea2c
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
@@ -263,6 +315,37 @@ if ($upgradeAction eq "upgrade") {
                 procedureName => 'RemoveClusterMembers',
                 stepName => 'RemoveClusterMembers'
             });
+
+            # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'DeleteCluster',
+                stepName => 'DeleteCluster'
+            });
+
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateCluster',
+                stepName => 'CreateCluster'
+            });
+
+             # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'ConfigureSession',
+                stepName => 'ConfigureSession'
+            });
+
+            # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateJMSProvider',
+                stepName => 'CreateJMSProvider'
+            });
+
+            # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'ListClusterMembers',
+                stepName => 'ListClusterMembers'
+            });
+
         }
     }
 }
