@@ -101,7 +101,7 @@ my %updateApp = (
 );
 
 my %createJMSProvider = (
-    label       => "WebSphere - Create JMS Provider"
+    label       => "WebSphere - Create JMS Provider",
     procedure   => "CreateJMSProvider",
     description => "Creates a JMS Provider using the wsadmin tool",
     category    => "Application Server"
