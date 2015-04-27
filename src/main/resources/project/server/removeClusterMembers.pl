@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 removeClusterMembers.pl - a perl library to deregister application server from a cluster.
@@ -36,11 +37,11 @@ $| = 1;
 # Variables
 # -------------------------------------------------------------------------
 
-$::gWSAdminAbsPath    = trim(q($[wsadminabspath]));
-$::gConnectionType    = trim(q($[connectiontype]));
-$::gClusterMembers    = trim(q($[clusterMembers]));
-$::gClusterName       = trim(q($[clusterName]));
-$::gConfigurationName = "$[configname]";
+my $gWSAdminAbsPath    = trim(q($[wsadminabspath]));
+my $gConnectionType    = trim(q($[connectiontype]));
+my $gClusterMembers    = trim(q($[clusterMembers]));
+my $gClusterName       = trim(q($[clusterName]));
+my $gConfigurationName = "$[configname]";
 
 # -------------------------------------------------------------------------
 # Main functions
@@ -77,29 +78,29 @@ sub main() {
     my $ec = new ElectricCommander();
     $ec->abortOnError(0);
 
-    %configuration = getConfiguration( $ec, $::gConfigurationName );
+    %configuration = getConfiguration( $ec, $gConfigurationName );
 
-    my %NodeServerHash = constructNodeServerHash($::gClusterMembers);
+    my %NodeServerHash = constructNodeServerHash($gClusterMembers);
 
     ## Validate cluster name
     $ScriptFile .= "result = AdminClusterManagement.checkIfClusterExists(\""
-      . $::gClusterName . "\")\n";
+      . $gClusterName . "\")\n";
     $ScriptFile .= "if result == \"false\":\n";
     $ScriptFile .=
-      "\tprint 'Error : Cluster " . $::gClusterName . " does not exist.'\n";
+      "\tprint 'Error : Cluster " . $gClusterName . " does not exist.'\n";
     $ScriptFile .= "\tsys.exit(1)\n";
 
     foreach my $node ( keys %NodeServerHash ) {
         $ScriptFile .= "\n"
           . 'result = AdminClusterManagement.deleteClusterMember("'
-          . $::gClusterName . '", "'
+          . $gClusterName . '", "'
           . $node . '", "'
           . $NodeServerHash{$node} . '")' . "\n"
           . 'print result';
 
     }
 
-    push( @args, '"' . $::gWSAdminAbsPath . '"' );
+    push( @args, '"' . $gWSAdminAbsPath . '"' );
 
     open( MYFILE, '>removeClusterMembers_script.jython' );
 
@@ -109,13 +110,13 @@ sub main() {
     push( @args, '-f removeClusterMembers_script.jython' );
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
 
-    if ( $::gConnectionType && $::gConnectionType ne '' ) {
-        push( @args, '-conntype ' . $::gConnectionType );
+    if ( $gConnectionType && $gConnectionType ne '' ) {
+        push( @args, '-conntype ' . $gConnectionType );
     }
 
     my $hostParamName;
 
-    if ( $::gConnectionType eq IPC_CONNECTION_TYPE ) {
+    if ( $gConnectionType eq IPC_CONNECTION_TYPE ) {
         $hostParamName = '-ipchost';
     }
     else {
@@ -202,7 +203,12 @@ sub constructNodeServerHash {
     }
 
     # return the resulting hash
-    return %metadata;
+    if ( wantarray() ) {
+        return %metadata;
+    }
+    else {
+        return \%metadata;
+    }
 }
 
 1;

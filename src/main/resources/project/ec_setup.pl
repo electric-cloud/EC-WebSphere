@@ -93,12 +93,13 @@ my %deleteJDBCProvider = (
     category    => "Application Server"
 );
 
-<<<<<<< HEAD
 my %removeClusterMembers = (
     label       => "WebSphere - Remove Cluster Members",
     procedure   => "RemoveClusterMembers",
     description => "Removes list of application servers from existing cluster",
-=======
+    category    => "Application Server"
+);
+
 
 my %deleteCluster = (
     label       => "WebSphere - Delete Application server cluster",
@@ -133,7 +134,6 @@ my %createJMSProvider = (
     label       => "WebSphere - Create JMS Provider",
     procedure   => "CreateJMSProvider",
     description => "Creates a JMS Provider using the wsadmin tool",
->>>>>>> 188dfdd8f456638dbc26998d438e5030a37cea2c
     category    => "Application Server"
 );
 
@@ -157,15 +157,13 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create D
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Datasource");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JDBC Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JDBC Provider");
-<<<<<<< HEAD
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Remove Cluster Members");
-=======
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Application server cluster");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - List Cluster Members");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Application server cluster");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Configure Session Management");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JMS Provider");
->>>>>>> 188dfdd8f456638dbc26998d438e5030a37cea2c
+
 
 @::createStepPickerSteps = (\%checkPageStatus, \%checkServerStatus,
                             \%startServer, \%stopServer,
@@ -173,14 +171,11 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create J
                             \%stopApp, \%deployApp,
                             \%undeployApp, \%checkApp, 
 							\%createDatasource, \%deleteDatasource,
-<<<<<<< HEAD
-							\%createJDBCProvider, \%deleteJDBCProvider, \%removeClusterMembers);
-=======
 							\%createJDBCProvider, \%deleteJDBCProvider,
 							\%creatCluster, \%configureSessionManagement,
-							\%createJMSProvider, \%listClusterMembers, \%deleteCluster);
+							\%createJMSProvider, \%listClusterMembers,
+							\%deleteCluster, \%removeClusterMembers);
 
->>>>>>> 188dfdd8f456638dbc26998d438e5030a37cea2c
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
