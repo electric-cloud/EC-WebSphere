@@ -43,18 +43,19 @@ $| = 1;
 my $ec = new ElectricCommander();
 $ec->abortOnError(0);
 
-$::gWSAdminAbsPath =
+my $gWSAdminAbsPath =
   ( $ec->getProperty("wsadminabspath") )->findvalue("//value");
-$::gClusterName = ( $ec->getProperty("clusterName") )->findvalue("//value");
-$::gClusterMembers =
+my $gClusterName = ( $ec->getProperty("clusterName") )->findvalue("//value");
+my $gClusterMembers =
   ( $ec->getProperty("clusterMembers") )->findvalue("//value");
-$::gDeployApp = ( $ec->getProperty("deployApp") )->findvalue("//value");
-$::gAppName   = ( $ec->getProperty("appname") )->findvalue("//value");
-$::gAppPath   = ( $ec->getProperty("apppath") )->findvalue("//value");
-$::gCellName  = ( $ec->getProperty("cellname") )->findvalue("//value");
-$::gConfigurationName =
+my $gDeployApp = ( $ec->getProperty("deployApp") )->findvalue("//value");
+my $gAppName   = ( $ec->getProperty("appname") )->findvalue("//value");
+my $gAppPath   = ( $ec->getProperty("apppath") )->findvalue("//value");
+my $gContextRoot = ( $ec->getProperty("contextRoot") )->findvalue("//value");
+my $gCellName  = ( $ec->getProperty("cellname") )->findvalue("//value");
+my $gConfigurationName =
   ( $ec->getProperty("configname") )->findvalue("//value");
-$::gConnectionType =
+my $gConnectionType =
   ( $ec->getProperty("connectiontype") )->findvalue("//value");
 
 #-------------------------------------------------------------------------
@@ -88,51 +89,51 @@ sub main() {
     my %configuration;
 
 
-    %configuration = getConfiguration( $ec, $::gConfigurationName );
+    %configuration = getConfiguration( $ec, $gConfigurationName );
 
 
-    push( @args, '"' . $::gWSAdminAbsPath . '"' );
+    push( @args, qq|"$gWSAdminAbsPath"| );
 
-    my %NodeServerHash = constructNodeServerHash($::gClusterMembers);
+    my %NodeServerHash = constructNodeServerHash($gClusterMembers);
 
     my $ScriptFile = 'import time' . "\n";
     $ScriptFile .=
         'result = AdminClusterManagement.createClusterWithoutMember(\''
-      . $::gClusterName . '\')' . "\n"
+      . $gClusterName . '\')' . "\n"
       . 'print result';
 
     foreach my $node ( keys %NodeServerHash ) {
         $ScriptFile .= "\n"
           . 'result = AdminClusterManagement.createClusterMember("'
-          . $::gClusterName . '", "'
+          . $gClusterName . '", "'
           . $node . '", "'
           . $NodeServerHash{$node} . '")' . "\n"
           . 'print result';
 
     }
 
-    if ($::gDeployApp) {
+    if ($gDeployApp) {
 
-        if ( !$::gAppName ) {
+        if ( !$gAppName ) {
             print "Error : Application name missing.";
             return;
         }
-        elsif ( !$::gAppPath ) {
+        elsif ( !$gAppPath ) {
             print "Error : Application path missing.";
             return;
         }
         $ScriptFile .= "\n"
           . 'print \'Deploying an application '
-          . $::gAppName . ' on '
-          . $::gClusterName . '.\'' . "\n"
+          . $gAppName . ' on '
+          . $gClusterName . '.\'' . "\n"
           . 'result = AdminApp.install(\''
-          . $::gAppPath
-          . '\',\'[-usedefaultbindings -contextroot /'
-          . $::gAppName
+          . $gAppPath
+          . '\',\'[-usedefaultbindings -contextroot '
+          . $gContextRoot
           . ' -appname '
-          . $::gAppName
+          . my $gAppName
           . ' -cluster '
-          . $::gClusterName . ']\')' . "\n"
+          . my $gClusterName . ']\')' . "\n"
           . 'print result' . "\n"
           . 'AdminConfig.save()';
 
@@ -146,12 +147,12 @@ sub main() {
     }
 
     $ScriptFile .=
-      "\n\n" . 'print "\nStarting the cluster ' . $::gClusterName . '.\n"';
+      "\n\n" . 'print "\nStarting the cluster ' . $gClusterName . '.\n"';
     $ScriptFile .= "\n"
       . 'cluster = AdminControl.completeObjectName(\'cell='
-      . $::gCellName
+      . $gCellName
       . ',type=Cluster,name='
-      . $::gClusterName . ',*\')';
+      . $gClusterName . ',*\')';
     $ScriptFile .= "\n" . 'print cluster';
     $ScriptFile .= "\n" . 'AdminControl.invoke(cluster, \'start\')';
     $ScriptFile .=
@@ -174,7 +175,7 @@ sub main() {
 
     push( @args, '-f createCluster.jython' );
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
-    push( @args, '-conntype ' . $::gConnectionType );
+    push( @args, '-conntype ' . $gConnectionType );
 
 
     if ( $configuration{'websphere_url'} ne '' ) {
@@ -252,7 +253,12 @@ sub constructNodeServerHash {
     }
 
     # return the resulting hash
-    return %metadata;
+    if (wantarray()) {
+        return %metadata
+    }
+    else {
+        return \%metadata
+    }
 }
 
 1;
