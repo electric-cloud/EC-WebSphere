@@ -26,7 +26,8 @@
 	['//procedure[procedureName="DeleteDatasource"]/step[stepName="DeleteDatasource"]/command' , 'server/deleteDatasource.pl'], 
 	['//procedure[procedureName="CreateJDBCProvider"]/step[stepName="CreateJDBCProvider"]/command' , 'server/createJDBCProvider.pl'], 
 	['//procedure[procedureName="DeleteJDBCProvider"]/step[stepName="DeleteJDBCProvider"]/command' , 'server/deleteJDBCProvider.pl'], 
-	
+	['//procedure[procedureName="PublishWSDL"]/step[stepName="PublishWSDL"]/command' , 'server/publishWSDL.pl'],
+
 	['//procedure[procedureName="CreateConfiguration"]/step[stepName="CreateConfiguration"]/command' , 'conf/createcfg.pl'],
 	['//procedure[procedureName="CreateConfiguration"]/step[stepName="CreateAndAttachCredential"]/command' , 'conf/createAndAttachCredential.pl'],
 	['//procedure[procedureName="DeleteConfiguration"]/step[stepName="DeleteConfiguration"]/command' , 'conf/deletecfg.pl'], 
@@ -46,5 +47,5 @@
 	['//procedure[procedureName="StartApp"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'parameterForms/ec_parameterForm-StartApp.xml'],
 	['//procedure[procedureName="StopApp"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'parameterForms/ec_parameterForm-StopApp.xml'],
 	['//procedure[procedureName="DeployApp"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'parameterForms/ec_parameterForm-DeployApp.xml'],
-	['//procedure[procedureName="UndeployApp"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'parameterForms/ec_parameterForm-UndeployApp.xml'],	
+	['//procedure[procedureName="PublishWSDL"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'parameterForms/ec_parameterForm-PublishWSDL.xml'],
 );

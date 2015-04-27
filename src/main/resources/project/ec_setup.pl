@@ -100,6 +100,57 @@ my %deployOSGi = (
     category    => "Application Server"
 );
 
+my %publishWSDL = (
+    label       => "WebSphere - Publish WSDL file",
+    procedure   => "PublishWSDL",
+    description => "Publishes WSDL files in each web services-enabled module to the file system location",
+    category    => "Application Server"
+);
+
+my %removeClusterMembers = (
+    label       => "WebSphere - Remove Cluster Members",
+    procedure   => "RemoveClusterMembers",
+    description => "Removes list of application servers from existing cluster",
+    category    => "Application Server"
+);
+
+
+my %deleteCluster = (
+    label       => "WebSphere - Delete Application server cluster",
+    procedure   => "DeleteCluster",
+    description => "Deletes an existing Application server cluster.",
+    category    => "Application Server"
+);
+
+my %listClusterMembers = (
+    label       => "WebSphere - List Cluster Members",
+    procedure   => "ListClusterMembers",
+    description => "Lists all cluster members using the wsadmin tool",
+    category    => "Application Server"
+);
+
+my %creatCluster = (
+    label       => "WebSphere - Create Application server cluster",
+    procedure   => "CreateCluster",
+    description => "Creates a new Application Server cluster.",
+    category    => "Application Server"
+);
+
+my %configureSessionManagement = (
+    label       => "WebSphere - Configure Session Management",
+    procedure   => "ConfigureSession",
+    description => "Configures the session management properties for the deployed application.",
+    category    => "Application Server"
+);
+
+
+my %createJMSProvider = (
+    label       => "WebSphere - Create JMS Provider",
+    procedure   => "CreateJMSProvider",
+    description => "Creates a JMS Provider using the wsadmin tool",
+    category    => "Application Server"
+);
+
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy App");
@@ -121,6 +172,14 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete D
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JDBC Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JDBC Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy OSGi Application");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Publish WSDL file");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Remove Cluster Members");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Application server cluster");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - List Cluster Members");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Application server cluster");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Configure Session Management");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JMS Provider");
+
 
 @::createStepPickerSteps = (\%checkPageStatus, \%checkServerStatus,
                             \%startServer, \%stopServer,
@@ -128,7 +187,12 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy O
                             \%stopApp, \%deployApp,
                             \%undeployApp, \%checkApp, 
 							\%createDatasource, \%deleteDatasource,
-							\%createJDBCProvider, \%deleteJDBCProvider, \%deployOSGi);
+							\%createJDBCProvider, \%deleteJDBCProvider,
+							\%creatCluster, \%configureSessionManagement,
+							\%createJMSProvider, \%listClusterMembers,
+							\%deleteCluster, \%removeClusterMembers,
+							\%publishWSDL, \%deployOSGi);
+
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
@@ -258,10 +322,53 @@ if ($upgradeAction eq "upgrade") {
                 stepName => 'DeleteJDBCProvider'
             });
 
+
             # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DeployOSGiApp',
                 stepName => 'DeployOSGiApp'
+            });
+
+            # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'PublishWSDL',
+                stepName => 'PublishWSDL'
+            });
+
+             # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'RemoveClusterMembers',
+                stepName => 'RemoveClusterMembers'
+            });
+
+            # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'DeleteCluster',
+                stepName => 'DeleteCluster'
+            });
+
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateCluster',
+                stepName => 'CreateCluster'
+            });
+
+             # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'ConfigureSession',
+                stepName => 'ConfigureSession'
+            });
+
+            # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateJMSProvider',
+                stepName => 'CreateJMSProvider'
+            });
+
+            # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'ListClusterMembers',
+                stepName => 'ListClusterMembers'
             });
 
         }
