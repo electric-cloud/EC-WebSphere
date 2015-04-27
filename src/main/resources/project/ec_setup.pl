@@ -93,6 +93,12 @@ my %deleteJDBCProvider = (
     category    => "Application Server"
 );
 
+my %deployOSGi = (
+    label       => "WebSphere - Deploy OSGi Application",
+    procedure   => "DeployOSGiApp",
+    description => "Deploy OSGi application using the wsadmin tool",
+    category    => "Application Server"
+);
 
 my %publishWSDL = (
     label       => "WebSphere - Publish WSDL file",
@@ -165,6 +171,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create D
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Datasource");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JDBC Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JDBC Provider");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy OSGi Application");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Publish WSDL file");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Remove Cluster Members");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Application server cluster");
@@ -183,7 +190,9 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create J
 							\%createJDBCProvider, \%deleteJDBCProvider,
 							\%creatCluster, \%configureSessionManagement,
 							\%createJMSProvider, \%listClusterMembers,
-							\%deleteCluster, \%removeClusterMembers, \%publishWSDL);
+							\%deleteCluster, \%removeClusterMembers,
+							\%publishWSDL, \%deployOSGi);
+
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
@@ -313,6 +322,12 @@ if ($upgradeAction eq "upgrade") {
                 stepName => 'DeleteJDBCProvider'
             });
 
+
+            # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'DeployOSGiApp',
+                stepName => 'DeployOSGiApp'
+            });
 
             # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
