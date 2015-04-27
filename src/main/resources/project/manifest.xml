@@ -70,6 +70,11 @@
     </file>
 
     <file>
+        <xpath>//property[propertyName=&quot;removeclustermember_matchers&quot;]/value</xpath>
+        <path>matchers/deleteClusterMembersMatchers.pl</path>
+    </file>
+
+    <file>
         <xpath>//procedure[procedureName=&quot;StartServer&quot;]/step[stepName=&quot;StartInstance&quot;]/command</xpath>
         <path>server/startServer.pl</path>
     </file>
@@ -145,6 +150,11 @@
     <file>
         <xpath>//procedure[procedureName=&quot;CreateJMSProvider&quot;]/step[stepName=&quot;CreateJMSProvider&quot;]/command</xpath>
         <path>server/createJMSProvider.pl</path>
+    </file>
+
+    <file>
+        <xpath>//procedure[procedureName=&quot;RemoveClusterMembers&quot;]/step[stepName=&quot;RemoveClusterMembers&quot;]/command</xpath>
+        <path>server/removeClusterMembers.pl</path>
     </file>
 
     <file>
@@ -239,6 +249,11 @@
     <file>
         <xpath>//procedure[procedureName=&quot;CreateJMSProvider&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ec_parameterForm-CreateJMSProvider.xml</path>
+    </file>
+
+    <file>
+        <xpath>//procedure[procedureName=&quot;RemoveClusterMembers&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/ec_parameterForm-RemoveClusterMembers.xml</path>
     </file>
 
 </fileset>

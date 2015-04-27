@@ -93,6 +93,13 @@ my %deleteJDBCProvider = (
     category    => "Application Server"
 );
 
+my %removeClusterMembers = (
+    label       => "WebSphere - Remove Cluster Members",
+    procedure   => "RemoveClusterMembers",
+    description => "Removes list of application servers from existing cluster",
+    category    => "Application Server"
+);
+
 
 my %deleteCluster = (
     label       => "WebSphere - Delete Application server cluster",
@@ -150,11 +157,13 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create D
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Datasource");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JDBC Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JDBC Provider");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Remove Cluster Members");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Application server cluster");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - List Cluster Members");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Application server cluster");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Configure Session Management");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JMS Provider");
+
 
 @::createStepPickerSteps = (\%checkPageStatus, \%checkServerStatus,
                             \%startServer, \%stopServer,
@@ -164,7 +173,8 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create J
 							\%createDatasource, \%deleteDatasource,
 							\%createJDBCProvider, \%deleteJDBCProvider,
 							\%creatCluster, \%configureSessionManagement,
-							\%createJMSProvider, \%listClusterMembers, \%deleteCluster);
+							\%createJMSProvider, \%listClusterMembers,
+							\%deleteCluster, \%removeClusterMembers);
 
 
 if ($upgradeAction eq "upgrade") {
@@ -296,6 +306,12 @@ if ($upgradeAction eq "upgrade") {
             });
 
              # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'RemoveClusterMembers',
+                stepName => 'RemoveClusterMembers'
+            });
+
+            # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DeleteCluster',
                 stepName => 'DeleteCluster'
