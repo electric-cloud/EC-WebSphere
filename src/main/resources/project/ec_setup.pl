@@ -93,6 +93,14 @@ my %deleteJDBCProvider = (
     category    => "Application Server"
 );
 
+
+my %publishWSDL = (
+    label       => "WebSphere - Publish WSDL file",
+    procedure   => "PublishWSDL",
+    description => "Publishes WSDL files in each web services-enabled module to the file system location",
+    category    => "Application Server"
+);
+
 my %removeClusterMembers = (
     label       => "WebSphere - Remove Cluster Members",
     procedure   => "RemoveClusterMembers",
@@ -157,6 +165,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create D
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Datasource");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JDBC Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JDBC Provider");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Publish WSDL file");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Remove Cluster Members");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Application server cluster");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - List Cluster Members");
@@ -174,8 +183,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create J
 							\%createJDBCProvider, \%deleteJDBCProvider,
 							\%creatCluster, \%configureSessionManagement,
 							\%createJMSProvider, \%listClusterMembers,
-							\%deleteCluster, \%removeClusterMembers);
-
+							\%deleteCluster, \%removeClusterMembers, \%publishWSDL);
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
@@ -303,6 +311,13 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DeleteJDBCProvider',
                 stepName => 'DeleteJDBCProvider'
+            });
+
+
+            # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'PublishWSDL',
+                stepName => 'PublishWSDL'
             });
 
              # Attach the credential to the appropriate steps
