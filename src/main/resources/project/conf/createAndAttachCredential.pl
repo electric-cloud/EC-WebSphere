@@ -81,8 +81,8 @@ $xpath = $ec->attachCredential($projName, $credName,
 $errors .= $ec->checkAllErrors($xpath);
 
 $xpath = $ec->attachCredential($projName, $credName,
-    {procedureName => 'DeployOSGi',
-     stepName => 'DeployOSGi'});
+    {procedureName => 'DeployOSGiApp',
+     stepName => 'DeployOSGiApp'});
 $errors .= $ec->checkAllErrors($xpath);
 
 if ($errors ne '') {

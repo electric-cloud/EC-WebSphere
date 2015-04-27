@@ -108,7 +108,7 @@
         <path>server/deleteJDBCProvider.pl</path>
     </file>
     <file>
-        <xpath>//procedure[procedureName=&quot;DeployOSGi&quot;]/step[stepName=&quot;DeployOSGi&quot;]/command</xpath>
+        <xpath>//procedure[procedureName=&quot;DeployOSGiApp&quot;]/step[stepName=&quot;DeployOSGiApp&quot;]/command</xpath>
         <path>server/deployOSGi.pl</path>
     </file>
 
@@ -185,7 +185,7 @@
         <path>parameterForms/ec_parameterForm-UndeployApp.xml</path>
     </file>
     <file>
-        <xpath>//procedure[procedureName=&quot;DeployOSGi&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <xpath>//procedure[procedureName=&quot;DeployOSGiApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ec_parameterForm-DeployOSGi.xml</path>
     </file>
 

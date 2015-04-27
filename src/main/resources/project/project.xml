@@ -4669,11 +4669,11 @@
 
     <procedure>
 
-        <procedureName>DeployOSGi</procedureName>
+        <procedureName>DeployOSGiApp</procedureName>
 
         <description>Deploy OSGi application using the wsadmin tool</description>
 
-        <jobNameTemplate>websphere-DeployOSGi-$[jobId]</jobNameTemplate>
+        <jobNameTemplate>websphere-DeployOSGiApp-$[jobId]</jobNameTemplate>
 
         <resourceName />
 
@@ -5023,7 +5023,7 @@
         </formalParameter>
 
         <step>
-            <stepName>DeployOSGi</stepName>
+            <stepName>DeployOSGiApp</stepName>
             <alwaysRun>0</alwaysRun>
             <broadcast>0</broadcast>
             <command></command>
@@ -5042,7 +5042,7 @@
             <timeLimitUnits>minutes</timeLimitUnits>
             <workingDirectory />
             <workspaceName />
-            <procedureName>DeployOSGi</procedureName>
+            <procedureName>DeployOSGiApp</procedureName>
             <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
             <propertySheet>
                 <property>

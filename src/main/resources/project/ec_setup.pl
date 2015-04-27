@@ -95,7 +95,7 @@ my %deleteJDBCProvider = (
 
 my %deployOSGi = (
     label       => "WebSphere - Deploy OSGi Application",
-    procedure   => "DeployOSGi",
+    procedure   => "DeployOSGiApp",
     description => "Deploy OSGi application using the wsadmin tool",
     category    => "Application Server"
 );
@@ -260,8 +260,8 @@ if ($upgradeAction eq "upgrade") {
 
             # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'DeployOSGi',
-                stepName => 'DeployOSGi'
+                procedureName => 'DeployOSGiApp',
+                stepName => 'DeployOSGiApp'
             });
 
         }
