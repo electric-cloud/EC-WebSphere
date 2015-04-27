@@ -14,18 +14,18 @@ $| = 1;
 # Variables
 # -------------------------------------------------------------------------
 
-$::gAppName           = trim(q($[appName]));
-$::gIsAppOnCluster    = trim(q($[isAppOnCluster]));
-$::gClusterName       = trim(q($[clusterName]));
-$::gServerName        = trim(q($[serverName]));
-$::gWSAdminAbsPath    = trim(q($[wsadminAbsPath]));
-$::gContentType       = trim(q($[contentType]));
-$::gOperation         = trim(q($[operation]));
-$::gContent           = trim(q($[content]));
-$::gContentURI        = trim(q($[contentURI]));
-$::gConnectionType    = trim(q($[connectionType]));
-$::gAdditionalParams    = trim(q($[additionalParams]));
-$::gConfigurationName = "$[configname]";
+my $gAppName           = trim(q($[appName]));
+my $gIsAppOnCluster    = trim(q($[isAppOnCluster]));
+my $gClusterName       = trim(q($[clusterName]));
+my $gServerName        = trim(q($[serverName]));
+my $gWSAdminAbsPath    = trim(q($[wsadminAbsPath]));
+my $gContentType       = trim(q($[contentType]));
+my $gOperation         = trim(q($[operation]));
+my $gContent           = trim(q($[content]));
+my $gContentURI        = trim(q($[contentURI]));
+my $gConnectionType    = trim(q($[connectionType]));
+my $gAdditionalParams    = trim(q($[additionalParams]));
+my $gConfigurationName = "$[configname]";
 
 # -------------------------------------------------------------------------
 # Main functions
@@ -42,38 +42,38 @@ sub main() {
     my $ec = new ElectricCommander();
     $ec->abortOnError(0);
 
-    %configuration = getConfiguration( $ec, $::gConfigurationName );
+    %configuration = getConfiguration( $ec, $gConfigurationName );
 
     my $ScriptFile =
         "import sys\n"
       . "result = AdminApp.update('"
-      . $::gAppName . "', '"
-      . $::gContentType
+      . $gAppName . "', '"
+      . $gContentType
       . "', '[-operation "
-      . $::gOperation
+      . $gOperation
       . " -contents "
-      . $::gContent
+      . $gContent
       . " -contenturi "
-      . $::gContentURI;
+      . $gContentURI;
 
-    if($::gAdditionalParams) {
+    if($gAdditionalParams) {
         ## If optional parameters are supplied
 
         ## Sanitize any \r \n from the parameters
-         $::gAdditionalParams =~ s/\n/ /g;
-         $::gAdditionalParams  =~ s/\r/ /g;
-        $ScriptFile .= " " . $::gAdditionalParams;
+         $gAdditionalParams =~ s/\n/ /g;
+         $gAdditionalParams  =~ s/\r/ /g;
+        $ScriptFile .= " " . $gAdditionalParams;
     }
 
     $ScriptFile .= " ]')\n"
       . "print result\n"
       . "AdminConfig.save()\n"
       . "result = AdminApp.isAppReady('"
-      . $::gAppName . "')\n"
+      . $gAppName . "')\n"
       . "print 'Is App Ready = ' + result\n"
       . "while result != 'true':\n"
       . "\tresult = AdminApp.isAppReady('"
-      . $::gAppName . "')\n"
+      . $gAppName . "')\n"
       . "\tprint 'Is App Ready = ' + result\n"
       . "\tsleep(3)\n"
       . "print 'The application is ready to restart.'\n";
@@ -81,24 +81,24 @@ sub main() {
     ## If application is deployed on cluster then ripple start the cluster
     ## otherwise restart the application on single server.
 
-    if ($::gIsAppOnCluster) {
+    if ($gIsAppOnCluster) {
         ## If user has supplied the name of cluster on which application is deployed.
 
-        if ($::gClusterName) {
+        if ($gClusterName) {
             ## Validate cluster name
             $ScriptFile .=
               "result = AdminClusterManagement.checkIfClusterExists(\""
-              . $::gClusterName . "\")\n";
+              . $gClusterName . "\")\n";
             $ScriptFile .= "if result == \"false\":\n";
             $ScriptFile .=
                 "\tprint 'Error : Cluster "
-              . $::gClusterName
+              . $gClusterName
               . " does not exist.'\n";
             $ScriptFile .= "\tsys.exit(1)\n";
 
             $ScriptFile .= "\n"
               . 'cluster = AdminControl.completeObjectName(\'type=Cluster,name='
-              . $::gClusterName . ',*\')' . "\n"
+              . $gClusterName . ',*\')' . "\n"
               . 'print cluster';
 
             $ScriptFile .= "\n"
@@ -118,6 +118,7 @@ sub main() {
             $ScriptFile .= "\n\t\t" . 'break';
             $ScriptFile .= "\n\t" . 'else:';
             $ScriptFile .= "\n\t\t" . 'sleep(3)';
+            $ScriptFile .= "\nprint 'Application is UP!'";
 
         }
         else {
@@ -127,21 +128,21 @@ sub main() {
     }
     else {
 
-        if ($::gServerName) {
+        if (my $gServerName) {
 
             $ScriptFile .=
 "appManager = AdminControl.queryNames('type=ApplicationManager,process="
-              . $::gServerName
+              . my $gServerName
               . ",*')\n"
               . "print appManager\n"
               . "result = AdminControl.invoke(appManager,'stopApplication','"
-              . $::gAppName . "')\n"
+              . $gAppName . "')\n"
               . "print result\n"
               . "result = AdminControl.invoke(appManager,'startApplication','"
-              . $::gAppName . "')\n"
+              . $gAppName . "')\n"
               . "print result\n"
               . "appstatus = AdminControl.completeObjectName('type=Application,name="
-              . $::gAppName
+              . $gAppName
               . ",*')\n"
               . "if appstatus:\n"
               . "\tprint 'Application is UP!'\n"
@@ -154,7 +155,7 @@ sub main() {
         }
 
     }
-    push( @args, '"' . $::gWSAdminAbsPath . '"' );
+    push( @args, '"' . $gWSAdminAbsPath . '"' );
 
     open( MYFILE, '>updateapp_script.jython' );
 
@@ -164,15 +165,15 @@ sub main() {
     push( @args, '-f updateapp_script.jython' );
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
 
-    if ( $::gConnectionType && $::gConnectionType ne '' ) {
-        push( @args, '-conntype ' . $::gConnectionType );
+    if ( $gConnectionType && $gConnectionType ne '' ) {
+        push( @args, '-conntype ' . $gConnectionType );
     }
 
     #inject config...
     if (%configuration) {
         my $hostParamName;
 
-        if ( $::gConnectionType eq IPC_CONNECTION_TYPE ) {
+        if ( $gConnectionType eq IPC_CONNECTION_TYPE ) {
             $hostParamName = '-ipchost';
         }
         else {
