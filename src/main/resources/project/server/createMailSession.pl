@@ -396,7 +396,12 @@ sub main() {
     print "$escapedCmdLine \n ";
 
     #evaluates if exit was successful to mark it as a success or fail the step
-    if ( $? == SUCCESS ) {
+    if ($? >> 8 != 0) {
+
+        $ec->setProperty( "/myJobStep/outcome", 'error' );
+
+    }
+    else {
 
         $ec->setProperty( "/myJobStep/outcome", 'success' );
 
@@ -408,10 +413,6 @@ sub main() {
             #license expired warning
             $ec->setProperty( "/myJobStep/outcome", 'warning' );
         }
-
-    }
-    else {
-        $ec->setProperty( "/myJobStep/outcome", 'error' );
     }
 
 }
