@@ -26,6 +26,10 @@
         <path>matchers/wsadminMatchers.pl</path>
     </file>
     <file>
+        <xpath>//property[propertyName=&quot;mailprovider_matchers&quot;]/value</xpath>
+        <path>matchers/createMailProviderMatchers.pl</path>
+    </file>
+    <file>
         <xpath>//property[propertyName=&quot;checkserver_matchers&quot;]/value</xpath>
         <path>matchers/checkServerMatchers.pl</path>
     </file>
@@ -139,6 +143,10 @@
         <path>server/deleteJDBCProvider.pl</path>
     </file>
     <file>
+        <xpath>//procedure[procedureName=&quot;CreateEndToEndMailProvider&quot;]/step[stepName=&quot;CreateEndToEndMailProvider&quot;]/command</xpath>
+        <path>server/createEndToEndMailProvider.pl</path>
+    </file>
+    <file>
         <xpath>//procedure[procedureName=&quot;DeployOSGiApp&quot;]/step[stepName=&quot;DeployOSGiApp&quot;]/command</xpath>
         <path>server/deployOSGi.pl</path>
     </file>
@@ -248,6 +256,10 @@
     <file>
         <xpath>//procedure[procedureName=&quot;UndeployApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ec_parameterForm-UndeployApp.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateEndToEndMailProvider&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/ec_parameterForm-CreateEndToEndMailProvider.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;DeployOSGiApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>

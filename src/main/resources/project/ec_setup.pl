@@ -93,6 +93,14 @@ my %deleteJDBCProvider = (
     category    => "Application Server"
 );
 
+
+my %createEndToEndMailProvider = (
+    label       => "WebSphere - Create end to end Mail Provider",
+    procedure   => "CreateEndToEndMailProvider",
+    description => "Creates a mail provider along with protocol provider and mail session.",
+    category    => "Application Server"
+);
+
 my %deployOSGi = (
     label       => "WebSphere - Deploy OSGi Application",
     procedure   => "DeployOSGiApp",
@@ -171,6 +179,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create D
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Datasource");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JDBC Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JDBC Provider");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create end to end Mail Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy OSGi Application");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Publish WSDL file");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Remove Cluster Members");
@@ -191,8 +200,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create J
 							\%creatCluster, \%configureSessionManagement,
 							\%createJMSProvider, \%listClusterMembers,
 							\%deleteCluster, \%removeClusterMembers,
-							\%publishWSDL, \%deployOSGi);
-
+							\%publishWSDL, \%deployOSGi,  \%createEndToEndMailProvider);
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
@@ -322,6 +330,11 @@ if ($upgradeAction eq "upgrade") {
                 stepName => 'DeleteJDBCProvider'
             });
 
+             # Attach the credential to the appropriate steps
+             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateEndToEndMailProvider',
+                stepName => 'CreateEndToEndMailProvider'
+             });
 
             # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
@@ -370,6 +383,7 @@ if ($upgradeAction eq "upgrade") {
                 procedureName => 'ListClusterMembers',
                 stepName => 'ListClusterMembers'
             });
+
 
         }
     }
