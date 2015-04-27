@@ -37,31 +37,31 @@ $| = 1;
 # -------------------------------------------------------------------------
 # Variables
 # -------------------------------------------------------------------------
-$::gScope                = trim(q($[scope]));
-$::gMailProviderName     = trim(q($[mailProviderName]));
-$::gMailProviderDesc     = trim(q($[mailProviderDesc]));
-$::gIsolatedClassLoader  = trim(q($[isolatedClassLoader]));
-$::gClasspath            = trim(q($[classpath]));
-$::gCustPropName         = trim(q($[custPropName]));
-$::gCustPropValue        = trim(q($[custPropValue]));
-$::gProtocolProviderName = trim(q($[protocolProviderName]));
-$::gClassName            = trim(q($[className]));
-$::gProtocolProviderType = trim(q($[protocolProviderType]));
-$::gMailSessionName      = trim(q($[mailSessionName]));
-$::gMailSessionJNDIName  = trim(q($[mailSessionJNDIName]));
-$::gCategory             = trim(q($[category]));
-$::gDebug                = trim(q($[debug]));
-$::gMailSessionDesc      = trim(q($[mailSessionDesc]));
-$::gMailStoreHost        = trim(q($[mailStoreHost]));
-$::gMailStorePort        = trim(q($[mailStorePort]));
-$::gMailStoreUser        = trim(q($[mailStoreUser]));
-$::gMailTransportHost    = trim(q($[mailTransportHost]));
-$::gMailTransportPort    = trim(q($[mailTransportPort]));
-$::gMailTransportUser    = trim(q($[mailTransportUser]));
-$::gStrict               = trim(q($[strict]));
-$::gWSAdminAbsPath       = trim(q($[wsadminAbsPath]));
-$::gConnectionType       = trim(q($[connectiontype]));
-$::gConfigurationName    = "$[configname]";
+my $gScope                = trim(q($[scope]));
+my $gMailProviderName     = trim(q($[mailProviderName]));
+my $gMailProviderDesc     = trim(q($[mailProviderDesc]));
+my $gIsolatedClassLoader  = trim(q($[isolatedClassLoader]));
+my $gClasspath            = trim(q($[classpath]));
+my $gCustPropName         = trim(q($[custPropName]));
+my $gCustPropValue        = trim(q($[custPropValue]));
+my $gProtocolProviderName = trim(q($[protocolProviderName]));
+my $gClassName            = trim(q($[className]));
+my $gProtocolProviderType = trim(q($[protocolProviderType]));
+my $gMailSessionName      = trim(q($[mailSessionName]));
+my $gMailSessionJNDIName  = trim(q($[mailSessionJNDIName]));
+my $gCategory             = trim(q($[category]));
+my $gDebug                = trim(q($[debug]));
+my $gMailSessionDesc      = trim(q($[mailSessionDesc]));
+my $gMailStoreHost        = trim(q($[mailStoreHost]));
+my $gMailStorePort        = trim(q($[mailStorePort]));
+my $gMailStoreUser        = trim(q($[mailStoreUser]));
+my $gMailTransportHost    = trim(q($[mailTransportHost]));
+my $gMailTransportPort    = trim(q($[mailTransportPort]));
+my $gMailTransportUser    = trim(q($[mailTransportUser]));
+my $gStrict               = trim(q($[strict]));
+my $gWSAdminAbsPath       = trim(q($[wsadminAbsPath]));
+my $gConnectionType       = trim(q($[connectiontype]));
+my $gConfigurationName    = "$[configname]";
 
 # -------------------------------------------------------------------------
 # Main functions
@@ -102,36 +102,35 @@ sub main() {
     my $ec = new ElectricCommander();
     $ec->abortOnError(0);
 
-    %configuration = getConfiguration( $ec, $::gConfigurationName );
+    %configuration = getConfiguration( $ec, $gConfigurationName );
     $ScriptFile =
         'AdminResources.createCompleteMailProviderAtScope("'
-      . $::gScope . '","'
-      . $::gMailProviderName . '"';
+      . $gScope . '","'
+      . $gMailProviderName . '"';
 
     ## Custom property
-    if ( $::gCustPropName && $::gCustPropValue ) {
+    if ( $gCustPropName && $gCustPropValue ) {
         ## User has provided both custom property name and value :: Valid case
-        $ScriptFile .=
-          ',"' . $::gCustPropName . '","' . $::gCustPropValue . '"';
+        $ScriptFile .= ',"' . $gCustPropName . '","' . $gCustPropValue . '"';
 
     }
-    elsif ( $::gCustPropName eq '' && $::gCustPropValue eq '' ) {
+    elsif ( $gCustPropName eq '' && $gCustPropValue eq '' ) {
         ## User don't want to specify any specific custom property :: Valid case
         $ScriptFile .= ',"dummyProp","dummyVal"';
 
     }
-    elsif ( $::gCustPropName eq '' || $::gCustPropValue eq '' ) {
+    elsif ( $gCustPropName eq '' || $gCustPropValue eq '' ) {
         ## User have provided either property name or value :: Invalid case
         die
 "Error : Either provide both property name and value or do not specify anything.";
     }
 
     $ScriptFile .= ',"'
-      . $::gProtocolProviderName . '","'
-      . $::gClassName . '","'
-      . $::gProtocolProviderType . '","'
-      . $::gMailSessionName . '","'
-      . $::gMailSessionJNDIName . '"';
+      . $gProtocolProviderName . '","'
+      . $gClassName . '","'
+      . $gProtocolProviderType . '","'
+      . $gMailSessionName . '","'
+      . $gMailSessionJNDIName . '"';
 
 # a flag to check if the optional arguments for mail session are provided or not.
     my $mailProviderOptArgsProvided = 0;
@@ -139,21 +138,21 @@ sub main() {
     ## Optional arguments for mail provider starts here.
     $ScriptFile .= ",[";
 
-    if ($::gMailProviderDesc) {
-        $ScriptFile .= "['description','" . $::gMailProviderDesc . "']";
+    if ($gMailProviderDesc) {
+        $ScriptFile .= "['description','" . $gMailProviderDesc . "']";
         $mailProviderOptArgsProvided = 1;
     }
 
-    if ($::gIsolatedClassLoader) {
+    if ($gIsolatedClassLoader) {
         ## If user wants to specify separate class loader for mail provider implementation, only then specify its implementation classpath.
 
-        if ($::gClasspath) {
+        if ($gClasspath) {
             if ( $mailProviderOptArgsProvided != 0 ) {
                 $ScriptFile .=
                   ",";    ## isolatedClassLoader is second optional argument.
             }
             $ScriptFile .= "['isolatedClassLoader','true'],['classpath','"
-              . $::gClasspath . "']";
+              . $gClasspath . "']";
             $mailProviderOptArgsProvided = 1;
         }
         else {
@@ -171,13 +170,13 @@ sub main() {
 # a flag to check if the optional arguments for mail session are provided or not.
     my $mailSessionOptArgsProvided = 0;
 
-    if ($::gCategory) {
-        $ScriptFile .= "['category','" . $::gCategory . "']";
+    if ($gCategory) {
+        $ScriptFile .= "['category','" . $gCategory . "']";
         $mailSessionOptArgsProvided = 1;
     }
 
     ## test value for checked and unchecked values. default is false.
-    if ($::gDebug) {
+    if ($gDebug) {
         if ( $mailSessionOptArgsProvided != 0 ) {
             ## This is not a first optional argument. Append , here .
             $ScriptFile .= ",";
@@ -186,34 +185,34 @@ sub main() {
         $mailSessionOptArgsProvided = 1;
     }
 
-    if ($::gMailSessionDesc) {
+    if ($gMailSessionDesc) {
         if ( $mailSessionOptArgsProvided != 0 ) {
             ## This is not a first optional argument. Append , here .
             $ScriptFile .= ",";
         }
-        $ScriptFile .= "['description','" . $::gMailSessionDesc . "']";
+        $ScriptFile .= "['description','" . $gMailSessionDesc . "']";
         $mailSessionOptArgsProvided = 1;
     }
 
-    if ($::gMailStoreHost) {
+    if ($gMailStoreHost) {
         if ( $mailSessionOptArgsProvided != 0 ) {
             ## This is not a first optional argument. Append , here .
             $ScriptFile .= ",";
         }
-        $ScriptFile .= "['mailStoreHost','" . $::gMailStoreHost . "']";
+        $ScriptFile .= "['mailStoreHost','" . $gMailStoreHost . "']";
         $mailSessionOptArgsProvided = 1;
     }
 
-    if ($::gMailStorePort) {
+    if ($gMailStorePort) {
         if ( $mailSessionOptArgsProvided != 0 ) {
             ## This is not a first optional argument. Append , here .
             $ScriptFile .= ",";
         }
-        $ScriptFile .= "['mailStorePort','" . $::gMailStorePort . "']";
+        $ScriptFile .= "['mailStorePort','" . $gMailStorePort . "']";
         $mailSessionOptArgsProvided = 1;
     }
 
-    if ($::gMailStoreUser) {
+    if ($gMailStoreUser) {
         if ( $mailSessionOptArgsProvided != 0 ) {
             ## This is not a first optional argument. Append , here .
             $ScriptFile .= ",";
@@ -221,52 +220,52 @@ sub main() {
 
         # Returns an xPath object containing the userName.
         $xpath =
-          $ec->getFullCredential( $::gMailStoreUser, { value => "userName" } );
+          $ec->getFullCredential( $gMailStoreUser, { value => "userName" } );
 
         # Parse userName from response.
         $username = $xpath->find("//userName");
 
         if ( defined $username && "$username" eq "" ) {
             print "Empty username found in '"
-              . $::gMailStoreUser
+              . $gMailStoreUser
               . "' credential object.\n";
         }
         $ScriptFile .= "['mailStoreUser','" . $username . "']";
 
         # Returns an xPath object containing the password.
         $xpath =
-          $ec->getFullCredential( $::gMailStoreUser, { value => "password" } );
+          $ec->getFullCredential( $gMailStoreUser, { value => "password" } );
 
         # Parse password from response.
         $mailStorePassword = $xpath->find("//password");
 
         if ( defined $mailStorePassword && "$mailStorePassword" eq "" ) {
             print "Empty password found in '"
-              . $::gMailStoreUser
+              . $gMailStoreUser
               . "' credential object.\n";
         }
         $ScriptFile .= ",['mailStorePassword','" . $mailStorePassword . "']";
         $mailSessionOptArgsProvided = 1;
     }
 
-    if ($::gMailTransportHost) {
+    if ($gMailTransportHost) {
         if ( $mailSessionOptArgsProvided != 0 ) {
             ## This is not a first optional argument. Append , here .
             $ScriptFile .= ",";
         }
-        $ScriptFile .= "['mailTransportHost','" . $::gMailTransportHost . "']";
+        $ScriptFile .= "['mailTransportHost','" . $gMailTransportHost . "']";
         $mailSessionOptArgsProvided = 1;
     }
-    if ($::gMailTransportPort) {
+    if ($gMailTransportPort) {
         if ( $mailSessionOptArgsProvided != 0 ) {
             ## This is not a first optional argument. Append , here .
             $ScriptFile .= ",";
         }
-        $ScriptFile .= "['mailTransportPort','" . $::gMailTransportPort . "']";
+        $ScriptFile .= "['mailTransportPort','" . $gMailTransportPort . "']";
         $mailSessionOptArgsProvided = 1;
     }
 
-    if ($::gMailTransportUser) {
+    if ($gMailTransportUser) {
         if ( $mailSessionOptArgsProvided != 0 ) {
             ## This is not a first optional argument. Append , here .
             $ScriptFile .= ",";
@@ -274,7 +273,7 @@ sub main() {
 
         # Returns an xPath object containing the userName.
         $xpath =
-          $ec->getFullCredential( $::gMailTransportUser,
+          $ec->getFullCredential( $gMailTransportUser,
             { value => "userName" } );
 
         # Parse userName from response.
@@ -282,14 +281,14 @@ sub main() {
 
         if ( defined $username && "$username" eq "" ) {
             print "Empty username found in '"
-              . $::gMailTransportUser
+              . $gMailTransportUser
               . "' credential object.\n";
         }
         $ScriptFile .= "['mailTransportUser','" . $username . "']";
 
         # Returns an xPath object containing the password.
         $xpath =
-          $ec->getFullCredential( $::gMailTransportUser,
+          $ec->getFullCredential( $gMailTransportUser,
             { value => "password" } );
 
         print "XPATH for transport user password:" . $xpath;
@@ -297,16 +296,18 @@ sub main() {
         # Parse password from response.
         $mailTransportPassword = $xpath->find("//password");
 
-        if ( defined $mailTransportPassword && "$mailTransportPassword" eq "" ) {
+        if ( defined $mailTransportPassword && "$mailTransportPassword" eq "" )
+        {
             print "Empty password found in '"
-              . $::gMailTransportUser
+              . $gMailTransportUser
               . "' credential object.\n";
         }
-        $ScriptFile .= ",['mailTransportPassword','" . $mailTransportPassword . "']";
+        $ScriptFile .=
+          ",['mailTransportPassword','" . $mailTransportPassword . "']";
         $mailSessionOptArgsProvided = 1;
     }
 
-    if ($::gStrict) {
+    if ($gStrict) {
         if ( $mailSessionOptArgsProvided != 0 ) {
             ## This is not a first optional argument. Append , here .
             $ScriptFile .= ",";
@@ -329,37 +330,38 @@ sub main() {
     # Obtain deployment manager MBean
     $ScriptFile .= "dm=AdminControl.queryNames('type=DeploymentManager,*')\n";
 
-    # Synchronization of configuration changes is only required in network deployment.not in standalone server environment.
-     $ScriptFile .= "if dm:\n"
-                   . "\tprint 'Synchronizing configuration repository with nodes. Please wait...'\n"
-                   . "\t" . 'nodes=AdminControl.invoke(dm, "syncActiveNodes", "true")' . "\n"
-                   . "\t" . "print 'The following nodes have been synchronized:'+str(nodes)\n"
-                   . "else:\n"
-                   . "\t" . "print 'Standalone server, no nodes to sync'\n";
+# Synchronization of configuration changes is only required in network deployment.not in standalone server environment.
+    $ScriptFile .=
+        "if dm:\n"
+      . "\tprint 'Synchronizing configuration repository with nodes. Please wait...'\n"
+      . "\t"
+      . 'nodes=AdminControl.invoke(dm, "syncActiveNodes", "true")' . "\n" . "\t"
+      . "print 'The following nodes have been synchronized:'+str(nodes)\n"
+      . "else:\n" . "\t"
+      . "print 'Standalone server, no nodes to sync'\n";
 
     $ScriptFile .=
         "print 'Mail provider "
-      . $::gMailProviderName
+      . $gMailProviderName
       . " created successfully.'\n";
 
-    push( @args, '"' . $::gWSAdminAbsPath . '"' );
+    push( @args, '"' . $gWSAdminAbsPath . '"' );
 
     open( MYFILE, '>createCompleteMailProvider_script.jython' );
     print MYFILE "$ScriptFile ";
-
 
     close(MYFILE);
 
     push( @args, '-f createCompleteMailProvider_script.jython' );
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
 
-    if ( $::gConnectionType && $::gConnectionType ne '' ) {
-        push( @args, '-conntype ' . $::gConnectionType );
+    if ( $gConnectionType && $gConnectionType ne '' ) {
+        push( @args, '-conntype ' . $gConnectionType );
     }
 
     my $hostParamName;
 
-    if ( $::gConnectionType eq IPC_CONNECTION_TYPE ) {
+    if ( $gConnectionType eq IPC_CONNECTION_TYPE ) {
         $hostParamName = '-ipchost';
     }
     else {
@@ -392,8 +394,10 @@ sub main() {
 
     #execute command
     my $content = `$cmdLine`;
-    $escapedCmdLine = maskPasswordsForMailProviders( $content, $mailStorePassword );
-    $escapedCmdLine = maskPasswordsForMailProviders( $escapedCmdLine, $mailTransportPassword );
+    $escapedCmdLine =
+      maskPasswordsForMailProviders( $content, $mailStorePassword );
+    $escapedCmdLine =
+      maskPasswordsForMailProviders( $escapedCmdLine, $mailTransportPassword );
 
     #print log
     print "$escapedCmdLine \n ";
@@ -420,14 +424,13 @@ sub main() {
 }
 
 sub maskPasswordsForMailProviders {
-    my ($line, $password) = @_;
+    my ( $line, $password ) = @_;
     return $line unless defined $password && length($password);
 
-    $line =~ s/Password\', \'$password\']/Password', '****']/g;
+    $line =~ s/Password',\s'$password'/Password', '****']/g;
     return $line;
 }
 
 main();
-
 
 1;
