@@ -1,0 +1,92 @@
+<editor>
+	<help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#DeployOSGi</help>
+
+	<formElement>
+		<type>entry</type>
+		<label>Configuration Name:</label>
+		<property>configName</property>
+		<documentation>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</documentation>
+		<required>1</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Wsadmin Absolute Path:</label>
+		<property>wsadminAbsPath</property>
+		<required>1</required>
+		<documentation>Absolute path of wsadmin, including filename and extension. Optional if the location of wsadmin is in the PATH environment variable. E.g., '/path/to/wsadmin.sh' or 'wsadmin.bat'.</documentation>
+	</formElement>
+
+	<formElement>
+		<type>select</type>
+		<label>Connection Type:</label>
+		<property>connectionType</property>
+		<required>0</required>
+		<documentation>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</documentation>
+		<option><name>None</name><value>none</value></option>
+		<option><name>SOAP</name><value>soap</value></option>
+		<option><name>RMI</name><value>rmi</value></option>
+		<option><name>JSR160RMI</name><value>jsr160rmi</value></option>
+		<option><name>IPC</name><value>ipc</value></option>
+	</formElement>
+
+	<formElement>
+		<label>Want to add external bundle repository?:</label>
+		<property>addExternalRepo</property>
+		<value/>
+		<documentation>If your OSGi applications reference bundles that are stored in an external bundle repository, you must configure a link (name and URL) to the repository so that the provisioner can retrieve the bundles when required. </documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>External Bundle Repository Name:</label>
+		<property>externalRepoName</property>
+		<documentation>Name of the external bundle repository to configure. </documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>External Bundle Repository URL:</label>
+		<property>externalRepoURL</property>
+		<documentation>URL of the external bundle repository to configure. </documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>List of bundles to add to local repository:</label>
+		<property>localRepoBundleList</property>
+		<documentation>Comma separated list of bundles to add to internal bundle repository.E.g. C:/installableApps/com.ibm.samples.websphere.osgi.logging.api.jar,C:/installableApps/com.ibm.samples.websphere.osgi.logging.impl.jar </documentation>
+		<required>0</required>
+	</formElement>
+	
+	<formElement>
+		<type>entry</type>
+		<label>EBA file Path:</label>
+		<property>ebaPath</property>
+		<documentation>Absolute path of the OSGi application to deploy. i.e: '/path/to/blog.eba' or 'c:/mydir/blog.eba'. </documentation>
+		<required>1</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Application Name:</label>
+		<property>appName</property>
+		<documentation>Name to be given to newly deployed OSGi application. </documentation>
+		<required>1</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Target Deployment Unit:</label>
+		<property>deployUnit</property>
+		<documentation>Deployment Unit on which to deploy the OSGi application. For e.g cluster=cluster1 or node=node01,server=server1</documentation>
+		<required>1</required>
+	</formElement>
+
+</editor>

@@ -10,7 +10,7 @@
 
     <title>Electric Commander Plugin for WebSphere</title>
     <link rel="stylesheet"
-          href="../../plugins/@PLUGIN_KEY@/pluginhelp.css"
+          href="../../plugins/EC-WebSphere/pluginhelp.css"
           type="text/css"
           media="screen" />
 </head>
@@ -19,7 +19,7 @@
     <div class="help">
         <h1>WebSphere Application Server</h1>
 
-        <p>Plugin Version @PLUGIN_VERSION@</p>
+        <p>Plugin Version 2.0.6.0</p>
         <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;"
             noshade="noshade" />
         <!-- The tool description should answer these kinds of
@@ -36,8 +36,13 @@
         application server, is the flagship product in IBM
         WebSphere brand. It provides the flexibility, efficiency,
         and intelligent management required by an agile, cost-effective
-        business.</p>				<p>For more information about WebSphere, go to the <a href="http://www-01.ibm.com/software/websphere/">WebSphere        Home Page</a>.</p>
-    <!--There was an h2 header here: WebSphere Links
+        business.</p>
+		
+		<p>For more information about WebSphere, go to the <a href="http://www-01.ibm.com/software/websphere/">WebSphere
+
+        Home Page</a>.</p>
+
+    <!--There was an h2 header here: WebSphere Links
         <p>
         
         h2 header: Electric Commander Integration to WebSphere -->
@@ -47,7 +52,8 @@
         functionality does the plugin omit? -->
 
         <p>You use this plugin to interact with an IBM
-        WebSphere Server. You can start and stop the server.  		
+        WebSphere Server. You can start and stop the server.  
+		
         You can also manage applications within the server (start,
         deploy, undeploy, stop or custom task) using the provided
         WebSphere scripts in the <i>bin</i> directory under
@@ -55,8 +61,12 @@
         stopServer). You can run Jython scripts that are 
         provided by the user or defined when a procedure is 
         created.</p>
-    <h1>Supported Platforms</h1> 
-        <p>The plugin was developed and tested against WebSphere Version 7.0.</p>	<h1>Plugin Procedures</h1>	   
+
+    <h1>Supported Platforms</h1> 
+        <p>The plugin was developed and tested against WebSphere Version 7.0.</p>
+
+	<h1>Plugin Procedures</h1>
+	   
         <p>IMPORTANT: For all the following parameter descriptions,
         the required parameters are in
         <span class='required'>bold italics</span>.</p>
@@ -72,7 +82,9 @@
             is no configuration for this plugin." -->   
       <p>
         Plugin configurations are sets of parameters that apply
-        across some or all of the plugin procedures. They 				reduce repetition of common values, create
+        across some or all of the plugin procedures. They 
+		
+		reduce repetition of common values, create
         predefined parameter sets for end users, and 
         securely store credentials where needed. Each configuration
         is given a unique name that is entered in designated
@@ -83,8 +95,28 @@
     sentence(s) of the description should be the same as the tooltip (if
     there is one). After that, the parameter description can go into
     greater detail about the parameter including valid value ranges and
-    examples. -->	            <h3>Creating Plugin Configurations</h3>  	
-            <p>To create plugin configurations in ElectricCommander,         do these steps:</p>				<ol>				<li>Go to <b>Administration</b> > <b>Plugins</b> to open the Plugin Manager.</li>				<li>Find the EC-WebSphere row.</li>				<li>Click <b>Configure</b> to open the 				WebSphere Configurations page.</li> 				<li>Click <b>Create Configuration</b>.</li>		<li>To enable Commander to communicate with your WebSphere Application Server, 				enter the following information:<br /> </li>
+    examples. -->
+	
+            <h3>Creating Plugin Configurations</h3>  	
+            <p>To create plugin configurations in ElectricCommander, 
+
+        do these steps:</p>
+		
+		<ol>
+		
+		<li>Go to <b>Administration</b> > <b>Plugins</b> to open the Plugin Manager.</li>
+		
+		<li>Find the EC-WebSphere row.</li>
+		
+		<li>Click <b>Configure</b> to open the 
+		
+		WebSphere Configurations page.</li> 
+		
+		<li>Click <b>Create Configuration</b>.</li>
+
+		<li>To enable Commander to communicate with your WebSphere Application Server, 
+		
+		enter the following information:<br /> </li>
 
             <table class="grid">
                 <thead>
@@ -132,7 +164,41 @@
                         password.</td>
                     </tr>
                 </tbody>
-            </table><img src="../../plugins/EC-WebSphere/images/Config/parameters.png" />						 </ol>			 			<p>The WebSphere Configurations page now shows the new configuration.</p>            <img src="../../plugins/EC-WebSphere/images/CreateConfiguration/NewConfig.png" />	        <h3>Editing Plugin Configurations</h3>  	            <p>To edit plugin configurations in ElectricCommander,         do these steps:</p>				<ol>				<li>Go to <b>Administration</b> > <b>Plugins</b> to open the Plugin Manager.</li>				<li>Find the EC-WebSphere row.</li>				<li>Click <b>Configure</b> to open the 				WebSphere Configurations page.</li> 				<li>Find the configuration that you want to edit.</li>				<li>Click <b>Edit</b>.</li>		<li>Edit the parameters in the configuration.</li>				<li>Click <b>OK</b> to save the modified configuration.</li>		        <img src="../../plugins/EC-WebSphere/images/CreateConfiguration/EditConfig.png" />	         </ol>		
+            </table><img src="../../plugins/EC-WebSphere/images/Config/parameters.png" />
+			
+			 </ol>
+			 
+			<p>The WebSphere Configurations page now shows the new configuration.</p>
+
+            <img src="../../plugins/EC-WebSphere/images/CreateConfiguration/NewConfig.png" />	
+
+        <h3>Editing Plugin Configurations</h3>  	
+
+            <p>To edit plugin configurations in ElectricCommander, 
+
+        do these steps:</p>
+		
+		<ol>
+		
+		<li>Go to <b>Administration</b> > <b>Plugins</b> to open the Plugin Manager.</li>
+		
+		<li>Find the EC-WebSphere row.</li>
+		
+		<li>Click <b>Configure</b> to open the 
+		
+		WebSphere Configurations page.</li> 
+		
+		<li>Find the configuration that you want to edit.</li>
+		
+		<li>Click <b>Edit</b>.</li>
+
+		<li>Edit the parameters in the configuration.</li>
+		
+		<li>Click <b>OK</b> to save the modified configuration.</li>
+		
+        <img src="../../plugins/EC-WebSphere/images/CreateConfiguration/EditConfig.png" />	
+ 
+        </ol>		
             </div>
 
         <div id="CheckApp">
@@ -165,7 +231,9 @@
                         Path</td>
 
                         <td>The absolute path of the wsadmin tool that includes the
-                        filename and extension. <br />												Examples: <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>. </td>
+                        filename and extension. <br />
+						
+						Examples: <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>. </td>
                     </tr>
 
                     <tr>
@@ -176,7 +244,9 @@
                         from this configuration.</td>
                     </tr>
                 </tbody>
-            </table>						<img src="../../plugins/EC-WebSphere/images/CheckApp/CheckAppParameters.png" />
+            </table>
+			
+			<img src="../../plugins/EC-WebSphere/images/CheckApp/CheckAppParameters.png" />
         </div>
 
         <div id="CheckPageStatus">
@@ -202,8 +272,10 @@
 
                         <td>The credentials required to check the
                         status of the page. You must enter a <i>Username</i> and <i>Password</i>.</td>
-                    </tr>
-               					<tr>
+                    </tr>
+
+               
+					<tr>
                         <td class="required">Target URL (also referred to as <i>targeturl</i> in the property view)</td>
 
                         <td>The URL of the page to check.
@@ -226,10 +298,41 @@
                         is checked.</td>
                     </tr>
                 </tbody>
-            </table>						<!--  <img src="../../plugins/EC-WebSphere/images/CheckPageStatus/parametersToEnterBlank.png" /> -->						<h3>Checking the Status of a Page</h3>						<p>To check the status of page at a specific URL, do the following steps:</p> 
+            </table>
+			
+			<!--  <img src="../../plugins/EC-WebSphere/images/CheckPageStatus/parametersToEnterBlank.png" /> -->
+			
+			<h3>Checking the Status of a Page</h3>
+			
+			<p>To check the status of page at a specific URL, do the following steps:</p> 
             <ol>
-            <li>Enter the following parameters:</li>						<img src="../../plugins/EC-WebSphere/images/CheckPageStatus/parametersToEnter.png" />						<li>Click <b>Run</b>. </li>
-          			</ol>						<p>After the job runs, you can view the results, including the following job details,             which show that the criteria was reached:</p>												<img src="../../plugins/EC-WebSphere/images/CheckPageStatus/checkPageStatus5.png" />                         <p>In the <b>CheckPageStatus</b> step, click the Log            icon to see the diagnostic info. The output is similar            to the following diagnostic            report.</p><img src="../../plugins/EC-WebSphere/images/CheckPageStatus/checkPageStatus6.png" />
+            <li>Enter the following parameters:</li>
+			
+			<img src="../../plugins/EC-WebSphere/images/CheckPageStatus/parametersToEnter.png" />
+			
+			<li>Click <b>Run</b>. </li>
+          
+			</ol>
+			
+			<p>After the job runs, you can view the results, including the following job details, 
+
+            which show that the criteria was reached:</p>
+			
+			
+			
+			<img src="../../plugins/EC-WebSphere/images/CheckPageStatus/checkPageStatus5.png" />
+
+             
+
+
+
+            <p>In the <b>CheckPageStatus</b> step, click the Log
+
+            icon to see the diagnostic info. The output is similar
+
+            to the following diagnostic
+
+            report.</p><img src="../../plugins/EC-WebSphere/images/CheckPageStatus/checkPageStatus6.png" />
             </div>
 
         <div id="CheckServerStatus">
@@ -274,9 +377,657 @@
                         is checked.</td>
                     </tr>
                 </tbody>
-            </table>						<img src="../../plugins/EC-WebSphere/images/CheckServerStatus/CSSparameters.png" />
-        </div>
-     		<div id="CreateDatasource">            <a name="CreateDatasource"                 id="CreateDatasource"></a>             <h2>CreateDatasource</h2>            <p>The procedure creates a datasource by using a Jython script.</p>            <h3>CreateDatasource Parameters</h3>            <table class="grid">                <thead>                    <tr>                        <th>Parameter</th>                        <th>Description</th>                    </tr>                </thead>                <tbody>                    <tr>                        <td class="required">Wsadmin Absolute Path</td>                        <td> The absolute path of the wsadmin tool that includes the filename and extension. If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted. Examples of paths are <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>.</td>                    </tr>                    <tr>                        <td class="required">Configuration Name</td>                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>                    </tr>                    <tr>                        <td class="required">JDBC Provider</td>                        <td>The name of an existing JDBC Provider.</td>                    </tr>                    <tr>                        <td class="required">Datasource Name</td>                        <td>The name of the datasource that is unique in the WebSphere domain.</td>                    </tr>                    <tr>                        <td>Datasource Description</td>                        <td>A description of the datasource.</td>                    </tr>                    <tr>                        <td class="required">JNDI Name</td>                        <td>The JNDI path to which this datasource is bound. </td>                    </tr>                    <tr>                        <td class="required">Statement Cache Size</td>                        <td>The number of statements that can be cached per connection. The application server caches a statement after that statement is closed.</td>                    </tr>                    <tr>                        <td class="required">Authentication Alias Name</td>                        <td>The authentication data alias.</td>                    </tr>                    <tr>                        <td class="required">Datasource Helper Class Name</td>                        <td>The datasource helper class name.</td>                    </tr>                    <tr>                        <td class="required">Connection Type</td>                        <td>The type of connection to use when connecting to the application server that you want to administer. The valid options are <b>SOAP</b>, <b>RMI</b>, and <b>NONE</b>.</td>                    </tr>                </tbody>            </table>            <p>To create a datasource, do the following steps:</p>            <ol>						<li>Go to the CreateDataSource procedure.</li>						<!--  <img src="../../plugins/EC-WebSphere/images/CreateDatasource/EC-WebSphereCreateDatasource1.png" /> -->						<li>Enter the following parameters:</li>					<img src="../../plugins/EC-WebSphere/images/CreateDatasource/EC-WebSphereCreateDatasource2.png" />							</ol>      		           			 <p>After the job runs, you can view the results, including the following job details,             which show that the datasource was successfully created:</p>						<img src="../../plugins/EC-WebSphere/images/CreateDatasource/EC-WebSphereCreateDatasource3.png" />                         <p>In the <b>CreateDatasource</b> step, click the Log icon            to see the diagnostic information. The output is similar to            the following diagnostic            report.</p><img src="../../plugins/EC-WebSphere/images/CreateDatasource/EC-WebSphereCreateDatasource4.png" />        </div> 						<div id="CreateJDBCProvider">            <a name="CreateJDBCProvider"                 id="CreateJDBCProvider"></a>             <h2>CreateJDBCProvider</h2>            <p>This procedure creates a JDBC provider using a Jython script.</p>            <h3>CreateJDBCProvider Parameters</h3>            <table class="grid">                <thead>                    <tr>                        <th>Parameter</th>                        <th>Description</th>                    </tr>                </thead>                <tbody>                    <tr>                        <td class="required">Wsadmin Absolute Path</td>                        <td>The absolute path of the wsadmin tool that includes filename and extension. If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted. Examples are <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>.</td>                    </tr>                    <tr>                        <td class="required">Configuration Name</td>                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>                    </tr>                    <tr>                        <td class="required">JDBC Provider Name</td>                        <td>The name of the JDBC Provider.</td>                    </tr>                    <tr>                        <td>JDBC Provider Description</td>                        <td>A description for the JDBC Provider.</td>                    </tr>                    <tr>                        <td>Cell Scope</td>                        <td>The parent object where the JDBC Provider will be created. This determines the visibility scope of the JDBC Provider. If the <i>Cell Scope</i> is specified and the node and server scopes are not specified, the scope will be the <i>Cell</i>. If the node is specified and the server is not, the scope will be the <i>Node</i>. If the server is specified and the node is not, the scope will be the <i>Server</i>. You must specify the <i>Cell</i>, <i>Node</i>, or <i>Server</i> scope must be provided, such as <i>wsaspluginNode01Cell</i>.</td>                    </tr>                    <tr>                        <td>Node Scope</td>                        <td>If the <i>Node Scope</i> is specified and the cell and server scopes are not, the scope will be the <i>node</i>. If the <i>Cell Scope</i> is provided and the server is not, the scope will be the <i>node</i>. If the server is provided and the cell is not, the scope will be the <i>server</i>. An example is <i>wsaspluginNode01</i>.</td>                    </tr>                    <tr>                        <td>Server Scope</td>                        <td>When the <i>Server Scope</i> is provided, the scope will always be <i>node</i> and the <i>server</i>, even if the <i>Node Scope</i> and the <i>Cell Scope</i> are not specified. An example is <i>server1</i>.</td>                    </tr>                    <tr>                        <td class="required">Implementation Class Name</td>                        <td>Java class name of the JDBC provider implementation.</td>                    </tr>                    <tr>                        <td class="required">Driver Class Path</td>                        <td>A path for the resource provider classes.</td>                    </tr>                    <tr>                        <td class="required">Connection Type</td>                        <td>The type of connection used to connect to the application server that you want to administer. The valid options are SOAP, RMI, and NONE.</td>                    </tr>                </tbody>            </table>            <h3>Creating a JDBC Providers</h3>						<p>To create a JDBC provider, do these steps:</p>						<ol>						<li>Go to the CreateJDBCProvider procedure.</li>					 			<!--  <img src="../../plugins/EC-WebSphere/images/CreateJDBCProvider/EC-WebSphereCreateJDBCProvider1.png" /> -->						<li>Enter the following            parameters:</li><img src="../../plugins/EC-WebSphere/images/CreateJDBCProvider/EC-WebSphereCreateJDBCProvider2.png" />						</ol>                                     <p>After the job runs, you can view the results, including the following job details,             which show that JDBC provider was successfully created:</p>						<img src="../../plugins/EC-WebSphere/images/CreateJDBCProvider/EC-WebSphereCreateJDBCProvider3.png" />                         <p>In the <b>CreateJDBCProvider</b> step, click the Log icon            to see the diagnostic information. The output is similar to            the following diagnostic            report.</p><img src="../../plugins/EC-WebSphere/images/CreateJDBCProvider/EC-WebSphereCreateJDBCProvider4.png" />            </div>									<div id="DeleteConfiguration">            <a name="DeleteConfiguration"                 id="DeleteConfiguration"></a>             <h2>DeleteConfiguration</h2>            <p>This procedure deletes a WebSphere configuration.</p>            <table class="grid">                <thead>                    <tr>                        <th>Parameter</th>                        <th>Description</th>                    </tr>                </thead>                <tbody>                    <tr>                        <td class="required">config</td>                        <td>The name of the configuration to delete.</td>                    </tr>                                    </tbody>            </table>            </div>								<div id="DeleteDatasource">            <a name="DeleteDatasource"                 id="DeleteDatasource"></a>             <h2>DeleteDatasource</h2>            <p>This procedure deletes a datasource using a Jython script.</p>            <h3>DeleteDatasource Parameters</h3>            <table class="grid">                <thead>                    <tr>                        <th>Parameter</th>                        <th>Description</th>                    </tr>                </thead>                <tbody>                    <tr>                        <td class="required">Wsadmin Absolute Path</td>                        <td>The absolute path of the wsadmin tool that includes the filename and extension. If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted. Examples are <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>.</td>                    </tr>                    <tr>                        <td class="required">Configuration Name</td>                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>                    </tr>                    <tr>                        <td class="required">Datasource Name</td>                        <td>The name of the datasource that is unique in the WebSphere domain.</td>                    </tr>                    <tr>                        <td class="required">Connection Type</td>                        <td>The type of connection used to connect to the application server that you want to administer. The valid options are SOAP, RMI, and NONE.</td>                    </tr>                </tbody>            </table>            <h3>Deleting Datasources</h3>            <p>To delete a datasource, do these steps:</p>            <ol>            <li>Go to the DeleteDatasource procedure.</li>            			<!--  <img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSphereDeleteDatasource1.png" /> -->						<li>Enter the following parameters:</li>            <img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSphereDeleteDatasource2.png" />                        </ol>			            <p>After the job runs, you can view the results, including the following job details,             which show that the datasource was deleted            successfully:</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSphereDeleteDatasource3.png" />                         <p>In the <b>DeleteDatasource</b> step, click the Log icon            to see the diagnostic information. The output is similar to            the following diagnostic            report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSphereDeleteDatasource4.png" />            </div>								<div id="DeleteJDBCProvider">            <a name="DeleteJDBCProvider"                 id="DeleteJDBCProvider"></a>             <h2>DeleteJDBCProvider</h2>            <p>This procedure deletes a JDBC provider using a Jython script.</p>            <h3>DeleteJDBCProvider Parameters</h3>            <table class="grid">                <thead>                    <tr>                        <th>Parameter</th>                        <th>Description</th>                    </tr>                </thead>                <tbody>                    <tr>                        <td class="required">Wsadmin Absolute Path</td>                        <td>The absolute path of the wsadmin tool that includes the filename and extension. If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted, such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>                    </tr>                    <tr>                        <td class="required">Configuration Name</td>                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>                    </tr>                    <tr>                        <td class="required">JDBC Provider Name</td>                        <td>The name of the JDBC Provider that is unique in the WebSphere domain.</td>                    </tr>                    <tr>                        <td class="required">Connection Type</td>                        <td>The type of connection used to connect to the application server that you want to administer. The valid options are SOAP, RMI, and NONE.</td>                    </tr>                </tbody>            </table>            <h3>Deleting JDBC Providers</h3>            <p>To delete a JDBC provider, do these steps:</p>             <ol> 			 			<li>Go to the DeleteJDBCProvider procedure. </li>			 			<li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeleteJDBCProvider/EC-WebSphereDeleteJDBCProvider2.png" />						</ol>                      <p>After the job runs, you can view the results, including the following job details, which show that             the JDBC provider was deleted successfully:</p>						<img src="../../plugins/EC-WebSphere/images/DeleteJDBCProvider/EC-WebSphereDeleteJDBCProvider3.png" />                         <p>In the <b>DeleteJDBCProvider</b> step, click the Log icon            to see the diagnostic information. The output is similar to            the following diagnostic            report.</p>						<img src="../../plugins/EC-WebSphere/images/DeleteJDBCProvider/EC-WebSphereDeleteJDBCProvider4.png" />            </div>												<div id="DeployApp">
+            </table>
+			
+			<img src="../../plugins/EC-WebSphere/images/CheckServerStatus/CSSparameters.png" />
+        </div>
+
+     
+		<div id="CreateDatasource">
+
+            <a name="CreateDatasource"
+
+                 id="CreateDatasource"></a> 
+
+
+
+            <h2>CreateDatasource</h2>
+
+
+
+            <p>The procedure creates a datasource by using a Jython script.</p>
+
+            <h3>CreateDatasource Parameters</h3>
+
+            <table class="grid">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Parameter</th>
+
+
+
+                        <th>Description</th>
+
+                    </tr>
+
+                </thead>
+
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td class="required">Wsadmin Absolute Path</td>
+
+
+
+                        <td> The absolute path of the wsadmin tool that includes the filename and extension. If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted. Examples of paths are <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">Configuration Name</td>
+
+
+
+                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">JDBC Provider</td>
+
+
+
+                        <td>The name of an existing JDBC Provider.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">Datasource Name</td>
+
+
+
+                        <td>The name of the datasource that is unique in the WebSphere domain.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Datasource Description</td>
+
+
+
+                        <td>A description of the datasource.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">JNDI Name</td>
+
+
+
+                        <td>The JNDI path to which this datasource is bound. </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">Statement Cache Size</td>
+
+
+
+                        <td>The number of statements that can be cached per connection. The application server caches a statement after that statement is closed.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">Authentication Alias Name</td>
+
+
+
+                        <td>The authentication data alias.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">Datasource Helper Class Name</td>
+
+
+
+                        <td>The datasource helper class name.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">Connection Type</td>
+
+
+
+                        <td>The type of connection to use when connecting to the application server that you want to administer. The valid options are <b>SOAP</b>, <b>RMI</b>, and <b>NONE</b>.</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+
+            <p>To create a datasource, do the following steps:</p>
+
+            <ol>
+			
+			<li>Go to the CreateDataSource procedure.</li>
+			
+			<!--  <img src="../../plugins/EC-WebSphere/images/CreateDatasource/EC-WebSphereCreateDatasource1.png" /> -->
+			
+			<li>Enter the following parameters:</li>		
+			<img src="../../plugins/EC-WebSphere/images/CreateDatasource/EC-WebSphereCreateDatasource2.png" />
+				
+			</ol>
+
+      		           
+
+			 <p>After the job runs, you can view the results, including the following job details, 
+
+            which show that the datasource was successfully created:</p>
+			
+			<img src="../../plugins/EC-WebSphere/images/CreateDatasource/EC-WebSphereCreateDatasource3.png" />
+
+             
+
+            <p>In the <b>CreateDatasource</b> step, click the Log icon
+
+            to see the diagnostic information. The output is similar to
+
+            the following diagnostic
+
+            report.</p><img src="../../plugins/EC-WebSphere/images/CreateDatasource/EC-WebSphereCreateDatasource4.png" />
+
+        </div> 
+
+		
+		
+		<div id="CreateJDBCProvider">
+
+            <a name="CreateJDBCProvider"
+
+                 id="CreateJDBCProvider"></a> 
+
+
+
+            <h2>CreateJDBCProvider</h2>
+
+
+
+            <p>This procedure creates a JDBC provider using a Jython script.</p>
+
+            <h3>CreateJDBCProvider Parameters</h3>
+
+            <table class="grid">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Parameter</th>
+
+
+
+                        <th>Description</th>
+
+                    </tr>
+
+                </thead>
+
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td class="required">Wsadmin Absolute Path</td>
+
+
+
+                        <td>The absolute path of the wsadmin tool that includes filename and extension. If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted. Examples are <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">Configuration Name</td>
+
+
+
+                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">JDBC Provider Name</td>
+
+
+
+                        <td>The name of the JDBC Provider.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>JDBC Provider Description</td>
+
+
+
+                        <td>A description for the JDBC Provider.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Cell Scope</td>
+
+
+
+                        <td>The parent object where the JDBC Provider will be created. This determines the visibility scope of the JDBC Provider. If the <i>Cell Scope</i> is specified and the node and server scopes are not specified, the scope will be the <i>Cell</i>. If the node is specified and the server is not, the scope will be the <i>Node</i>. If the server is specified and the node is not, the scope will be the <i>Server</i>. You must specify the <i>Cell</i>, <i>Node</i>, or <i>Server</i> scope must be provided, such as <i>wsaspluginNode01Cell</i>.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Node Scope</td>
+
+
+
+                        <td>If the <i>Node Scope</i> is specified and the cell and server scopes are not, the scope will be the <i>node</i>. If the <i>Cell Scope</i> is provided and the server is not, the scope will be the <i>node</i>. If the server is provided and the cell is not, the scope will be the <i>server</i>. An example is <i>wsaspluginNode01</i>.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Server Scope</td>
+
+
+
+                        <td>When the <i>Server Scope</i> is provided, the scope will always be <i>node</i> and the <i>server</i>, even if the <i>Node Scope</i> and the <i>Cell Scope</i> are not specified. An example is <i>server1</i>.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">Implementation Class Name</td>
+
+
+
+                        <td>Java class name of the JDBC provider implementation.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">Driver Class Path</td>
+
+
+
+                        <td>A path for the resource provider classes.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">Connection Type</td>
+
+
+
+                        <td>The type of connection used to connect to the application server that you want to administer. The valid options are SOAP, RMI, and NONE.</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <h3>Creating a JDBC Providers</h3>
+			
+			<p>To create a JDBC provider, do these steps:</p>
+			
+			<ol>
+			
+			<li>Go to the CreateJDBCProvider procedure.</li>
+					 
+			<!--  <img src="../../plugins/EC-WebSphere/images/CreateJDBCProvider/EC-WebSphereCreateJDBCProvider1.png" /> -->
+			
+			<li>Enter the following
+
+            parameters:</li><img src="../../plugins/EC-WebSphere/images/CreateJDBCProvider/EC-WebSphereCreateJDBCProvider2.png" />
+			
+			</ol>      
+
+                   
+
+            <p>After the job runs, you can view the results, including the following job details, 
+
+            which show that JDBC provider was successfully created:</p>
+			
+			<img src="../../plugins/EC-WebSphere/images/CreateJDBCProvider/EC-WebSphereCreateJDBCProvider3.png" />
+
+             
+
+            <p>In the <b>CreateJDBCProvider</b> step, click the Log icon
+
+            to see the diagnostic information. The output is similar to
+
+            the following diagnostic
+
+            report.</p><img src="../../plugins/EC-WebSphere/images/CreateJDBCProvider/EC-WebSphereCreateJDBCProvider4.png" />
+
+            </div>
+			
+		
+		
+		<div id="DeleteConfiguration">
+
+            <a name="DeleteConfiguration"
+
+                 id="DeleteConfiguration"></a> 
+
+
+
+            <h2>DeleteConfiguration</h2>
+
+
+
+            <p>This procedure deletes a WebSphere configuration.</p>
+
+            <table class="grid">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Parameter</th>
+
+
+
+                        <th>Description</th>
+
+                    </tr>
+
+                </thead>
+
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td class="required">config</td>
+
+
+
+                        <td>The name of the configuration to delete.</td>
+
+                    </tr>
+
+                    
+                </tbody>
+
+            </table>
+
+            </div>
+		
+		
+		
+		<div id="DeleteDatasource">
+
+            <a name="DeleteDatasource"
+
+                 id="DeleteDatasource"></a> 
+
+
+
+            <h2>DeleteDatasource</h2>
+
+
+
+            <p>This procedure deletes a datasource using a Jython script.</p>
+
+            <h3>DeleteDatasource Parameters</h3>
+
+            <table class="grid">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Parameter</th>
+
+
+
+                        <th>Description</th>
+
+                    </tr>
+
+                </thead>
+
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td class="required">Wsadmin Absolute Path</td>
+
+
+
+                        <td>The absolute path of the wsadmin tool that includes the filename and extension. If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted. Examples are <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">Configuration Name</td>
+
+
+
+                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">Datasource Name</td>
+
+
+
+                        <td>The name of the datasource that is unique in the WebSphere domain.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">Connection Type</td>
+
+
+
+                        <td>The type of connection used to connect to the application server that you want to administer. The valid options are SOAP, RMI, and NONE.</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <h3>Deleting Datasources</h3>
+
+            <p>To delete a datasource, do these steps:</p>
+
+            <ol>
+
+            <li>Go to the DeleteDatasource procedure.</li>
+            
+			<!--  <img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSphereDeleteDatasource1.png" /> -->
+			
+			<li>Enter the following parameters:</li>
+
+            <img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSphereDeleteDatasource2.png" />
+            
+            </ol>			
+
+            <p>After the job runs, you can view the results, including the following job details, 
+
+            which show that the datasource was deleted
+
+            successfully:</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSphereDeleteDatasource3.png" />
+
+             
+
+
+
+            <p>In the <b>DeleteDatasource</b> step, click the Log icon
+
+            to see the diagnostic information. The output is similar to
+
+            the following diagnostic
+
+            report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSphereDeleteDatasource4.png" />
+
+            </div>
+		
+		
+		
+		<div id="DeleteJDBCProvider">
+
+            <a name="DeleteJDBCProvider"
+
+                 id="DeleteJDBCProvider"></a> 
+
+
+
+            <h2>DeleteJDBCProvider</h2>
+
+
+
+            <p>This procedure deletes a JDBC provider using a Jython script.</p>
+
+            <h3>DeleteJDBCProvider Parameters</h3>
+
+            <table class="grid">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Parameter</th>
+						
+                        <th>Description</th>
+						
+                    </tr>
+
+                </thead>
+
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td class="required">Wsadmin Absolute Path</td>
+
+
+
+                        <td>The absolute path of the wsadmin tool that includes the filename and extension. If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted, such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">Configuration Name</td>
+
+
+
+                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">JDBC Provider Name</td>
+
+
+
+                        <td>The name of the JDBC Provider that is unique in the WebSphere domain.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">Connection Type</td>
+
+
+
+                        <td>The type of connection used to connect to the application server that you want to administer. The valid options are SOAP, RMI, and NONE.</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <h3>Deleting JDBC Providers</h3>
+
+            <p>To delete a JDBC provider, do these steps:</p>
+
+             <ol> 
+			 
+			<li>Go to the DeleteJDBCProvider procedure. </li>
+			 
+			<li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeleteJDBCProvider/EC-WebSphereDeleteJDBCProvider2.png" />
+			
+			</ol>          
+
+
+
+            <p>After the job runs, you can view the results, including the following job details, which show that 
+
+            the JDBC provider was deleted successfully:</p>
+			
+			<img src="../../plugins/EC-WebSphere/images/DeleteJDBCProvider/EC-WebSphereDeleteJDBCProvider3.png" />
+
+             
+
+
+
+            <p>In the <b>DeleteJDBCProvider</b> step, click the Log icon
+
+            to see the diagnostic information. The output is similar to
+
+            the following diagnostic
+
+            report.</p>
+			
+			<img src="../../plugins/EC-WebSphere/images/DeleteJDBCProvider/EC-WebSphereDeleteJDBCProvider4.png" />
+
+            </div>
+		
+		
+		
+		
+		
+		<div id="DeployApp">
             <a name="DeployApp"
                  id="DeployApp"></a> 
 
@@ -374,7 +1125,15 @@
 <h3>Deploying Applications</h3>
             <p>To deploy an application, do these steps:select the following
             highlighted
-            step:</p>			<ol>						<li>Go to the DeployApp procedure.</li>						<li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeployApp/deployApp2.png" />						</ol>  
+            step:</p>
+
+			<ol>
+			
+			<li>Go to the DeployApp procedure.</li>
+			
+			<li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeployApp/deployApp2.png" />
+			
+			</ol>  
             <p>After the job runs, you can view the results, including the following job details, which show that the 
             application was deployed
             successfully:</p><img src="../../plugins/EC-WebSphere/images/DeployApp/deployApp3.png" />
@@ -465,7 +1224,9 @@
                         <td>The content of the script file when the 
                         <i>New Script File</i> is selected for the <i>Script File
                         Source</i>. This parameter is used only when the
-                        <i>New Script File</i> option in the <i>Script File Source</i> 												is selected.</td>
+                        <i>New Script File</i> option in the <i>Script File Source</i> 
+						
+						is selected.</td>
                     </tr>
 
                     <tr>
@@ -556,7 +1317,8 @@
                     <tr>
                         <td class="required">Application Name</td>
 
-                        <td>The name of the application to start, such as 						
+                        <td>The name of the application to start, such as 
+						
                         <i>webapp</i>. </td>
                     </tr>
 
@@ -588,10 +1350,17 @@
             </table>
             <h3>Starting Applications</h3>
             <p>To start an application, do these steps:</p>
-             <ol>			 			<li>Go to the StartApp procedure.</li>			 			<li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/StartApp/startApp2.png" />			 			 </ol>
+             <ol>
+			 
+			<li>Go to the StartApp procedure.</li>
+			 
+			<li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/StartApp/startApp2.png" />
+			 
+			 </ol>
 
             <p>After the job runs, you can view the results, including the following job details, 
-            			which show that application was started
+            
+			which show that application was started
             successfully:</p><img src="../../plugins/EC-WebSphere/images/StartApp/startApp3.png" />
              
 
@@ -618,7 +1387,22 @@
                     </tr>
                 </thead>
 
-                <tbody>								    <tr>                        <td class="required">Instance Name</td>                        <td>The name of the instance of the server                        to start, such as <i>server01</i>.                        </td>                    </tr>					
+                <tbody>
+				
+				    <tr>
+
+                        <td class="required">Instance Name</td>
+
+
+
+                        <td>The name of the instance of the server
+
+                        to start, such as <i>server01</i>.
+
+                        </td>
+
+                    </tr>
+					
                     <tr>
                         <td class="required">Wsadmin Absolute
                         Path</td>
@@ -634,7 +1418,8 @@
                         Files\IBM\WebSphere\AppServer\bin\startServer.bat</i>.
                         </td>
                     </tr>
-                                     <tr>
+                 
+                    <tr>
                         <td>Additional Commands</td>
 
                         <td>Additional commands to enter when 
@@ -734,7 +1519,14 @@
             </table>
             <h3>Stopping Applications</h3>
             <p>To stop an application, do these steps:</p>
-            <ol>            <li>Go to the StopApp procedure.</li>            <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/StopApp/stopApp2.png" />            			</ol>			
+            <ol>
+
+            <li>Go to the StopApp procedure.</li>
+
+            <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/StopApp/stopApp2.png" />
+            
+			</ol>			
+
              
 
             <p>After the job runs, you can view the results, including the following job details, which show that 
@@ -889,7 +1681,15 @@
             </table>
             <h3> Undeploying Applications</h3>
             <p>To undeploy an application, do these steps:</p>
-            <ol> 		   		    <p>Go to the UndeployApp procedure.</p>		   		    <p>Enter the following parameters: </p><img src="../../plugins/EC-WebSphere/images/UndeployApp/undeployApp2.png" />					   </ol>				       <p>After the job runs, you can view the results, including the following job details, which show that
+            <ol> 
+		   
+		    <p>Go to the UndeployApp procedure.</p>
+		   
+		    <p>Enter the following parameters: </p><img src="../../plugins/EC-WebSphere/images/UndeployApp/undeployApp2.png" />
+			
+		   </ol>
+			
+	       <p>After the job runs, you can view the results, including the following job details, which show that
             the application was undeployed
             successfully:</p><img src="../../plugins/EC-WebSphere/images/UndeployApp/undeployApp3.png" />
             <p>In the <b>UndeployApp</b> step, click the Log icon
@@ -914,7 +1714,26 @@
         World!" message in the output using the <i>Supplied File</i> option
         with an existing script file in a path and using the <i>New
         Script File</i> option with embedded code.</p>
-        <p>To run a custom job: </p>		        <ol>        <li>Select the following step: </li><img src="../../plugins/EC-WebSphere/images/RunCustomJob/runCustomJob1.png" />        <li>Select the <i>Script File Source</i>: a script file route (<i>Supplied File</i>) or an embedded script file (<i>New Script File</i>). </li>				<ul>				<li>Enter the following parameters for the <i>Supplied File</i> option: </li><img src="../../plugins/EC-WebSphere/images/RunCustomJob/runCustomJob2.png" />				<li>Enter the following parameters for the <i>New Script File</i> option: </li><img src="../../plugins/EC-WebSphere/images/RunCustomJob/runCustomJob3.png" />				</ul>        		</ol>				        
+        <p>To run a custom job: </p>
+		
+        <ol>
+
+        <li>Select the following step: </li><img src="../../plugins/EC-WebSphere/images/RunCustomJob/runCustomJob1.png" />
+
+        <li>Select the <i>Script File Source</i>: a script file route (<i>Supplied File</i>) or an embedded script file (<i>New Script File</i>). </li>
+		
+		<ul>
+		
+		<li>Enter the following parameters for the <i>Supplied File</i> option: </li><img src="../../plugins/EC-WebSphere/images/RunCustomJob/runCustomJob2.png" />
+		
+		<li>Enter the following parameters for the <i>New Script File</i> option: </li><img src="../../plugins/EC-WebSphere/images/RunCustomJob/runCustomJob3.png" />
+		
+		</ul>
+        
+		</ol>
+		
+		   
+     
 
         <p>After the job runs, you can view the results, including the following job details, which show that
         the job was run successfully
@@ -933,7 +1752,215 @@
          
 
         
-    </div><h1>What's New for EC-WebSphere 2.0.6</h1>				<h2>Features and Enhancements</h2>				<!-- List any new or revised procedures, new features, enhancements to existing features, changed behaviour, and documentation updates for the latest release.				Replace the examples below with actual new or changed items.-->        <ul>				<!--When available, add these to the list: New procedures in the plugin, Updates for existing procedures, and Changed behaviour and functionality		-->				<li>Starting in EC-WebSphere 2.0.6, add information about the changes in the plugin release, including details about resolved issues, changed behaviour and functionality, and new features, to this document. (NMB-18829)</li>				<li>Restructured the information in this document.</li>				</ul>				<h2>Resolved Issues</h2>        <ul>		    <li>Fixed the DeployApp procedure to not include the password in the log file.</li>		            <li>Fixed the problem about attaching credentials in the CheckApp procedure. <!--Need more information about this bug.--></li>            <li>Fixed the problem where the wsadmin password appeared when you view job step log files and property information.</li>						<li>Fixed instructions to create WebSphere plugin configurations.</li>				    <li>Fixed instructions to access plugins in ElectricCommander. </li>        </ul>    <h1>What's New for Previous EC-WebSphere Releases</h1>  		<h2>EC-WebSphere 2.0.5</h2>		<ul>			<li>Fix minor bugs.</li>		</ul>		<h2>EC-WebSphere 2.0.4</h2>		<ul>			<li>Add four new procedures: CreateDatasources, DeleteDatasources, CreateJDBCProviders, and DeleteJDBCProviders.</li>         <li>Fix minor bugs.</li>		</ul>		<h2>EC-WebSphere 2.0.3</h2>		<ul>			<li>Change the procedure names in the step picker section.</li>		</ul>		        <h2>EC-WebSphere 2.0.2</h2>        <ul>            <li>Make improvements to the help document.</li>        </ul>        <h2>EC-WebSphere 2.0.1</h2>        <ul>            <li>Use the new Parameter Form XML.</li>            <li>Add a link directly to the new help            document.</li>        </ul>        <h2>EC-WebSphere 2.0.0</h2>        <ul>            <li>Use the new help page format.</li>            <li>Add new parameter panels for each procedure.</li>        </ul>        <h2>EC-WebSphere 1.3.0</h2>        <ul>            <li>Add the CheckPageStatus procedure.</li>            <li>Remove the CURL dependency from the            CheckServerStatus procedure.</li>            <li>Fix minor bugs.</li>            <li>The procedures now have only one step using ec-perl            to execute the necessary commands.</li>        </ul>        <h2>EC-WebSphere 1.2.1</h2>        <ul>            <li>Fix a minor bug on the Configuration List page.</li>        </ul>        <h2>EC-WebSphere 1.2.0</h2>        <ul>            <li>Add the StartApp, StopApp, DeployApp, and            UndeployApp procedures.</li>        </ul>        <h2>EC-WebSphere 1.1.1</h2>        <ul>            <li>Jython commands can now be entered manually in the             RunCustomJob procedure.</li>            <li>The absolute path of executable files now requires the path and            filename with an extension.</li>        </ul>        <h2>EC-WebSphere 1.1.0</h2>        <ul>            <li>Add the RunCustomJob procedure.</li>        </ul>	<div id="LegalNotice">            <a name="LegalNotice"                 id="LegalNotice"></a> <h1>Troubleshooting and Getting Help</h1> <p>Contacting Technical Support:</p><p>Before you contact our technical support staff, have the following information available.</p><ol><li>Your name, title, company name, phone number, fax number, and email address</li><li>Operating system and version number</li><li>Product name and release version</li><li>Problem description</li></ol><p>Hours: 9:00 AM to 5:00 PM PST (Monday-Friday, except Holidays) </p><p>Phone: 408-419-4300, Option #2 </p><p>Email: support@electric-cloud.com </p><br /><p>Copyright © 2002 – 2014 Electric Cloud, Inc. All rights reserved. </p><p>Electric Cloud® believes the information in this publication is accurate as of its publication date. The information is subject to change without notice and does not represent a commitment from the vendor. </p> <p>THE INFORMATION IN THIS PUBLICATION IS PROVIDED “AS IS.” ELECTRIC CLOUD, INCORPORATED MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND WITH RESPECT TO THE INFORMATION IN THIS PUBLICATION, AND SPECIFICALLY DISCLAIMS IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. </p> <p>Use, copying, and distribution of any ELECTRIC CLOUD software described in this publication requires an applicable software license. </p> <br /><p><b>Trademarks</b></p> <p>Electric Cloud, ElectricAccelerator, ElectricCommander, ElectricInsight, and Electric Make are registered trademarks or trademarks of Electric Cloud, Incorporated. </p><p>Electric Cloud products—ElectricAccelerator, ElectricCommander, ElectricInsight, and Electric Make—arecommonly referred to by their “short names”—Accelerator, Commander, Insight, and eMake—throughoutvarious types of Electric Cloud product-specific documentation. </p><p>Other product names mentioned in this guide may be trademarks or registered trademarks of their respective owners and are hereby acknowledged. </p></div>		
+    </div>
+
+<h1>What's New for EC-WebSphere 2.0.6</h1>
+		
+		<h2>Features and Enhancements</h2>
+		
+		<!-- List any new or revised procedures, new features, enhancements to existing features, changed behaviour, and documentation updates for the latest release.
+		
+		Replace the examples below with actual new or changed items.-->
+
+        <ul>
+		
+		<!--When available, add these to the list: New procedures in the plugin, Updates for existing procedures, and Changed behaviour and functionality
+		-->
+		
+		<li>Starting in EC-WebSphere 2.0.6, add information about the changes in the plugin release, including details about resolved issues, changed behaviour and functionality, and new features, to this document. (NMB-18829)</li>
+		
+		<li>Restructured the information in this document.</li>
+		
+		</ul>
+		
+		<h2>Resolved Issues</h2>
+
+        <ul>
+
+		    <li>Fixed the DeployApp procedure to not include the password in the log file.</li>
+		
+            <li>Fixed the problem about attaching credentials in the CheckApp procedure. <!--Need more information about this bug.--></li>
+
+            <li>Fixed the problem where the wsadmin password appeared when you view job step log files and property information.</li>
+			
+			<li>Fixed instructions to create WebSphere plugin configurations.</li>
+		
+		    <li>Fixed instructions to access plugins in ElectricCommander. </li>
+
+        </ul>
+
+    <h1>What's New for Previous EC-WebSphere Releases</h1>  
+
+		<h2>EC-WebSphere 2.0.5</h2>
+
+
+
+		<ul>
+
+			<li>Fix minor bugs.</li>
+
+		</ul>
+
+
+
+		<h2>EC-WebSphere 2.0.4</h2>
+
+
+
+		<ul>
+
+			<li>Add four new procedures: CreateDatasources, DeleteDatasources, CreateJDBCProviders, and DeleteJDBCProviders.</li>
+
+         <li>Fix minor bugs.</li>
+
+		</ul>
+
+
+
+		<h2>EC-WebSphere 2.0.3</h2>
+
+
+
+		<ul>
+
+			<li>Change the procedure names in the step picker section.</li>
+
+		</ul>
+
+		
+
+        <h2>EC-WebSphere 2.0.2</h2>
+
+
+
+        <ul>
+
+            <li>Make improvements to the help document.</li>
+
+        </ul>
+
+
+
+        <h2>EC-WebSphere 2.0.1</h2>
+
+
+
+        <ul>
+
+            <li>Use the new Parameter Form XML.</li>
+
+
+
+            <li>Add a link directly to the new help
+
+            document.</li>
+
+        </ul>
+
+
+
+        <h2>EC-WebSphere 2.0.0</h2>
+
+
+
+        <ul>
+
+            <li>Use the new help page format.</li>
+
+
+
+            <li>Add new parameter panels for each procedure.</li>
+
+        </ul>
+
+
+
+        <h2>EC-WebSphere 1.3.0</h2>
+
+
+
+        <ul>
+
+            <li>Add the CheckPageStatus procedure.</li>
+
+
+
+            <li>Remove the CURL dependency from the
+
+            CheckServerStatus procedure.</li>
+
+
+
+            <li>Fix minor bugs.</li>
+
+
+
+            <li>The procedures now have only one step using ec-perl
+
+            to execute the necessary commands.</li>
+
+        </ul>
+
+
+
+        <h2>EC-WebSphere 1.2.1</h2>
+
+
+
+        <ul>
+
+            <li>Fix a minor bug on the Configuration List page.</li>
+
+        </ul>
+
+
+
+        <h2>EC-WebSphere 1.2.0</h2>
+
+
+
+        <ul>
+
+            <li>Add the StartApp, StopApp, DeployApp, and
+
+            UndeployApp procedures.</li>
+
+        </ul>
+
+
+
+        <h2>EC-WebSphere 1.1.1</h2>
+
+
+
+        <ul>
+
+            <li>Jython commands can now be entered manually in the 
+
+            RunCustomJob procedure.</li>
+
+
+
+            <li>The absolute path of executable files now requires the path and
+
+            filename with an extension.</li>
+
+        </ul>
+
+
+
+        <h2>EC-WebSphere 1.1.0</h2>
+
+
+
+        <ul>
+
+            <li>Add the RunCustomJob procedure.</li>
+
+        </ul>
+	
+
+	
 </body>
 </html>
 
