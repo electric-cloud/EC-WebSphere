@@ -87,9 +87,9 @@ sub main() {
     my %props;
     my %configuration;
 
-    if ( $::gConfigurationName ne '' ) {
-        %configuration = getConfiguration( $ec, $::gConfigurationName );
-    }
+
+    %configuration = getConfiguration( $ec, $::gConfigurationName );
+
 
     push( @args, '"' . $::gWSAdminAbsPath . '"' );
 
@@ -167,26 +167,6 @@ sub main() {
     $ScriptFile .= "\n\t" . 'else:';
     $ScriptFile .= "\n\t\t" . 'sleep(3)';
 
-    ## Starting the cluster doesn't result it starting applications on indivisual members of the cluster.
-    ## Restart each cluster member after application is deployed.
-
-    $ScriptFile .= "\n"
-      . 'print "\nRestarting every member of cluster after application deployment.\n"';
-    $ScriptFile .= "\n" . 'AdminControl.invoke(cluster, \'rippleStart\')';
-
-    $ScriptFile .=
-      "\n" . 'status = AdminControl.getAttribute(cluster, \'state\')';
-    $ScriptFile .= "\n" . 'desiredStatus = \'websphere.cluster.running\'';
-    $ScriptFile .= "\n" . 'print \'Cluster status = \' + status';
-    $ScriptFile .= "\n" . 'while 1:';
-    $ScriptFile .=
-      "\n\t" . 'status = AdminControl.getAttribute(cluster, \'state\')';
-    $ScriptFile .= "\n\t" . 'print \'Cluster status = \' + status';
-    $ScriptFile .= "\n\t" . 'if status==desiredStatus:';
-    $ScriptFile .= "\n\t\t" . 'break';
-    $ScriptFile .= "\n\t" . 'else:';
-    $ScriptFile .= "\n\t\t" . 'sleep(3)';
-
     open( MYFILE, '>createCluster.jython' );
 
     print MYFILE "$ScriptFile";
@@ -196,25 +176,23 @@ sub main() {
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
     push( @args, '-conntype ' . $::gConnectionType );
 
-    #inject config...
-    if (%configuration) {
 
-        if ( $configuration{'websphere_url'} ne '' ) {
-            push( @args, '-host ' . $configuration{'websphere_url'} );
-        }
-
-        if ( $configuration{'websphere_port'} ne '' ) {
-            push( @args, '-port ' . $configuration{'websphere_port'} );
-        }
-
-        if ( $configuration{'user'} ne '' ) {
-            push( @args, '-user ' . $configuration{'user'} );
-        }
-
-        if ( $configuration{'password'} ne '' ) {
-            push( @args, '-password ' . $configuration{'password'} );
-        }
+    if ( $configuration{'websphere_url'} ne '' ) {
+        push( @args, '-host ' . $configuration{'websphere_url'} );
     }
+
+    if ( $configuration{'websphere_port'} ne '' ) {
+        push( @args, '-port ' . $configuration{'websphere_port'} );
+    }
+
+    if ( $configuration{'user'} ne '' ) {
+        push( @args, '-user ' . $configuration{'user'} );
+    }
+
+    if ( $configuration{'password'} ne '' ) {
+        push( @args, '-password ' . $configuration{'password'} );
+    }
+
 
     my $cmdLine = createCommandLine( \@args );
     my $escapedCmdLine = maskPassword( $cmdLine, $configuration{'password'} );
