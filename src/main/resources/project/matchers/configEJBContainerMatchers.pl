@@ -28,6 +28,14 @@ push(
                        incValue("errors"); diagnostic("", "error", -1);
                        &addSimpleError("Error: Error occurred while configuring EJB container.", "error");
                     }
+    },
+    {
+        id      => "success",
+        pattern => q{EJB container settings set successfully.},
+        action  => q{
+                   
+                       &addSimpleError("EJB container settings set successfully.", "success");
+                    }
     }
 
 );
