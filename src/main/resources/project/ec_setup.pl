@@ -216,7 +216,8 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create J
 							\%createJMSProvider, \%listClusterMembers,
 							\%deleteCluster, \%removeClusterMembers,
 							\%publishWSDL, \%deployOSGi,
-							\%createEndToEndMailProvider, \%createMailSession, \%configEJBContainer);
+							\%createEndToEndMailProvider, \%createMailSession,
+							\%configEJBContainer);
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
