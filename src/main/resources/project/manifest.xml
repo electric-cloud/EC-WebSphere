@@ -73,6 +73,11 @@
     </file>
 
     <file>
+        <xpath>//property[propertyName=&quot;mailsession_matchers&quot;]/value</xpath>
+        <path>matchers/mailSessionMatchers.pl</path>
+    </file>
+
+    <file>
         <xpath>//property[propertyName=&quot;configsession_matchers&quot;]/value</xpath>
         <path>matchers/configSessionMatchers.pl</path>
     </file>
@@ -174,6 +179,11 @@
     <file>
         <xpath>//procedure[procedureName=&quot;CreateJMSProvider&quot;]/step[stepName=&quot;CreateJMSProvider&quot;]/command</xpath>
         <path>server/createJMSProvider.pl</path>
+    </file>
+
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateMailSession&quot;]/step[stepName=&quot;CreateMailSession&quot;]/command</xpath>
+        <path>server/createMailSession.pl</path>
     </file>
 
     <file>
@@ -286,10 +296,13 @@
         <xpath>//procedure[procedureName=&quot;CreateJMSProvider&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ec_parameterForm-CreateJMSProvider.xml</path>
     </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateMailSession&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/ec_parameterForm-CreateMailSession.xml</path>
+    </file>
 
     <file>
         <xpath>//procedure[procedureName=&quot;RemoveClusterMembers&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ec_parameterForm-RemoveClusterMembers.xml</path>
     </file>
-
 </fileset>

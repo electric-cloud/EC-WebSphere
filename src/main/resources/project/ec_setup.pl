@@ -159,6 +159,13 @@ my %createJMSProvider = (
     category    => "Application Server"
 );
 
+my %createMailSession = (
+    label       => "WebSphere - Create JavaMail session",
+    procedure   => "CreateMailSession",
+    description => "Creates a new JavaMail session using the wsadmin tool",
+    category    => "Application Server"
+);
+
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy App");
@@ -188,6 +195,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - List Clu
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Application server cluster");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Configure Session Management");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JMS Provider");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JavaMail session");
 
 
 @::createStepPickerSteps = (\%checkPageStatus, \%checkServerStatus,
@@ -200,7 +208,8 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create J
 							\%creatCluster, \%configureSessionManagement,
 							\%createJMSProvider, \%listClusterMembers,
 							\%deleteCluster, \%removeClusterMembers,
-							\%publishWSDL, \%deployOSGi,  \%createEndToEndMailProvider);
+							\%publishWSDL, \%deployOSGi,
+							\%createEndToEndMailProvider, \%createMailSession);
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
@@ -380,10 +389,15 @@ if ($upgradeAction eq "upgrade") {
 
             # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateMailSession',
+                stepName => 'CreateMailSession'
+            });
+
+            # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'ListClusterMembers',
                 stepName => 'ListClusterMembers'
             });
-
 
         }
     }
