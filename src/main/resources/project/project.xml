@@ -6075,6 +6075,17 @@
                                 </property>
 
                                 <property>
+                                    <propertyName>contextRoot</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+                                <property>
                                     <propertyName>classpath</propertyName>
                                     <propertySheet>
                                         <property>
@@ -6207,6 +6218,14 @@
                 <formalParameterName>apppath</formalParameterName>
                 <defaultValue />
                 <description>Absolute path of the application to deploy. i.e: '/path/to/webapp.war' or 'c:/mydir/webapp.war. </description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>contextRoot</formalParameterName>
+                <defaultValue />
+                <description>Context root for webmodules. If left empty, any web contexts defined in the deployment descriptors will get picked up. </description>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>
