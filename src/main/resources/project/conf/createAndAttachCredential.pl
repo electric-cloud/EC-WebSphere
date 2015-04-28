@@ -125,6 +125,11 @@ $xpath = $ec->attachCredential($projName, $credName,
      stepName => 'CreateJMSProvider'});
 $errors .= $ec->checkAllErrors($xpath);
 
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'CreateMailSession',
+     stepName => 'CreateMailSession'});
+$errors .= $ec->checkAllErrors($xpath);
+
 if ($errors ne '') {
     
     # Cleanup the partially created configuration we just created
