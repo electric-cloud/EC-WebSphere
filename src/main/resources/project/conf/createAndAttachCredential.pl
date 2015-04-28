@@ -81,6 +81,11 @@ $xpath = $ec->attachCredential($projName, $credName,
 $errors .= $ec->checkAllErrors($xpath);
 
 $xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'ConfigEJBContainer',
+     stepName => 'ConfigEJBContainer'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
     {procedureName => 'CreateEndToEndMailProvider',
      stepName => 'CreateEndToEndMailProvider'});
 $errors .= $ec->checkAllErrors($xpath);

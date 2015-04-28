@@ -94,6 +94,13 @@ my %deleteJDBCProvider = (
 );
 
 
+my %configEJBContainer = (
+    label       => "WebSphere - Configure EJB Container",
+    procedure   => "ConfigEJBContainer",
+    description => "Configures EJB container using the wsadmin tool",
+    category    => "Application Server"
+);
+
 my %createEndToEndMailProvider = (
     label       => "WebSphere - Create end to end Mail Provider",
     procedure   => "CreateEndToEndMailProvider",
@@ -186,6 +193,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create D
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Datasource");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JDBC Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JDBC Provider");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Configure EJB Container");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create end to end Mail Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy OSGi Application");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Publish WSDL file");
@@ -208,7 +216,8 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create J
 							\%createJMSProvider, \%listClusterMembers,
 							\%deleteCluster, \%removeClusterMembers,
 							\%publishWSDL, \%deployOSGi,
-							\%createEndToEndMailProvider, \%createMailSession);
+							\%createEndToEndMailProvider, \%createMailSession,
+							\%configEJBContainer);
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
@@ -336,6 +345,12 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DeleteJDBCProvider',
                 stepName => 'DeleteJDBCProvider'
+            });
+
+            # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'ConfigEJBContainer',
+                stepName => 'ConfigEJBContainer'
             });
 
              # Attach the credential to the appropriate steps
