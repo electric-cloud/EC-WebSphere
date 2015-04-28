@@ -58,6 +58,10 @@
         <path>matchers/updateAppMatchers.pl</path>
     </file>
     <file>
+        <xpath>//property[propertyName=&quot;configejbcontainer_matchers&quot;]/value</xpath>
+        <path>matchers/configEJBContainerMatchers.pl</path>
+    </file>
+    <file>
         <xpath>//property[propertyName=&quot;deletecluster_matchers&quot;]/value</xpath>
         <path>matchers/deleteClusterMatcher.pl</path>
     </file>
@@ -200,6 +204,11 @@
     </file>
 
     <file>
+        <xpath>//procedure[procedureName=&quot;ConfigEJBContainer&quot;]/step[stepName=&quot;ConfigEJBContainer&quot;]/command</xpath>
+        <path>server/configureEJBContainer.pl</path>
+    </file>
+
+    <file>
         <xpath>//procedure[procedureName=&quot;CreateConfiguration&quot;]/step[stepName=&quot;CreateConfiguration&quot;]/command</xpath>
         <path>conf/createcfg.pl</path>
     </file>
@@ -278,6 +287,10 @@
     <file>
         <xpath>//procedure[procedureName=&quot;UndeployApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ec_parameterForm-UndeployApp.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;ConfigEJBContainer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/ec_parameterForm-ConfigureEJBContainer.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;CreateEndToEndMailProvider&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
