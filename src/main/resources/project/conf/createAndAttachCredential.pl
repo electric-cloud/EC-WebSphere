@@ -85,6 +85,66 @@ $xpath = $ec->attachCredential($projName, $credName,
      stepName => 'DeployEnterpriseApp'});
 $errors .= $ec->checkAllErrors($xpath);
 
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'UpdateApp',
+     stepName => 'UpdateApp'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'ConfigEJBContainer',
+     stepName => 'ConfigEJBContainer'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'CreateEndToEndMailProvider',
+     stepName => 'CreateEndToEndMailProvider'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'DeployOSGiApp',
+     stepName => 'DeployOSGiApp'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'publishWSDL',
+     stepName => 'publishWSDL'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'RemoveClusterMembers',
+     stepName => 'RemoveClusterMembers'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'DeleteCluster',
+     stepName => 'DeleteCluster'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'ListClusterMembers',
+     stepName => 'ListClusterMembers'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'CreateCluster',
+     stepName => 'CreateCluster'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'ConfigureSession',
+     stepName => 'ConfigureSession'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'CreateJMSProvider',
+     stepName => 'CreateJMSProvider'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'CreateMailSession',
+     stepName => 'CreateMailSession'});
+$errors .= $ec->checkAllErrors($xpath);
+
 if ($errors ne '') {
     
     # Cleanup the partially created configuration we just created
