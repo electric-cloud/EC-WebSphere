@@ -51,6 +51,13 @@ my %deployApp = (
     category    => "Application Server"
 );
 
+my %deployEnterpriseApp = (
+    label       => "WebSphere - Deploy Enterprise Application",
+    procedure   => "DeployEnterpriseApp",
+    description => "Deploys an enterprise application using wsadmin tool",
+    category    => "Application Server"
+);
+
 my %undeployApp = (
     label       => "WebSphere - Undeploy Application",
     procedure   => "UndeployApp",
@@ -87,11 +94,12 @@ my %createJDBCProvider = (
 );
 
 my %deleteJDBCProvider = (
-    label       => "WebSphere - Delete JDBC Provider",
-    procedure   => "DeleteJDBCProvider",
-    description => "Deletes a JDBC Provider using the wsadmin tool",
-    category    => "Application Server"
-);
+      label       => "WebSphere - Delete JDBC Provider",
+      procedure   => "DeleteJDBCProvider",
+      description => "Deletes a JDBC Provider using the wsadmin tool",
+      category    => "Application Server"
+  );
+
 
 my %updateApp = (
     label       => "WebSphere - Update Application",
@@ -224,7 +232,8 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create J
 							\%deleteCluster, \%removeClusterMembers,
 							\%publishWSDL, \%deployOSGi,
 							\%createEndToEndMailProvider, \%createMailSession,
-							\%configEJBContainer, \%updateApp);
+							\%configEJBContainer, \%updateApp,
+							\%deployEnterpriseApp);
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
@@ -353,6 +362,11 @@ if ($upgradeAction eq "upgrade") {
                 procedureName => 'DeleteJDBCProvider',
                 stepName => 'DeleteJDBCProvider'
             });
+
+            # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'DeployEnterpriseApp',
+                stepName => 'DeployEnterpriseApp'
 
             # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {

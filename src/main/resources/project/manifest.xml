@@ -54,6 +54,10 @@
         <path>matchers/jdbcProviderMatchers.pl</path>
     </file>
     <file>
+        <xpath>//property[propertyName=&quot;deployenterpriseapp_matchers&quot;]/value</xpath>
+        <path>matchers/deployEnterpriseAppMatchers.pl</path>
+    </file>
+    <file>
         <xpath>//property[propertyName=&quot;updateapp_matchers&quot;]/value</xpath>
         <path>matchers/updateAppMatchers.pl</path>
     </file>
@@ -84,7 +88,6 @@
         <xpath>//property[propertyName=&quot;configsession_matchers&quot;]/value</xpath>
         <path>matchers/configSessionMatchers.pl</path>
     </file>
-
     <file>
         <xpath>//property[propertyName=&quot;listClusterMembers_matchers&quot;]/value</xpath>
         <path>matchers/listClusterMembersMatchers.pl</path>
@@ -134,6 +137,10 @@
     <file>
         <xpath>//procedure[procedureName=&quot;DeployApp&quot;]/step[stepName=&quot;DeployApp&quot;]/command</xpath>
         <path>server/deployApp.pl</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeployEnterpriseApp&quot;]/step[stepName=&quot;DeployEnterpriseApp&quot;]/command</xpath>
+        <path>server/deployEnterpriseApp.pl</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;UpdateApp&quot;]/step[stepName=&quot;UpdateApp&quot;]/command</xpath>
@@ -279,6 +286,10 @@
     <file>
         <xpath>//procedure[procedureName=&quot;DeployApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ec_parameterForm-DeployApp.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeployEnterpriseApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/ec_parameterForm-DeployEnterpriseApp.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;UpdateApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>

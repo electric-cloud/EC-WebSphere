@@ -1,0 +1,305 @@
+<editor>
+	<help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#DeployEnterpriseApp</help>
+
+	<formElement>
+		<type>entry</type>
+		<label>Configuration Name:</label>
+		<property>configName</property>
+		<documentation>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</documentation>
+		<required>1</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Wsadmin Absolute Path:</label>
+		<property>wsadminAbsPath</property>
+		<required>1</required>
+		<documentation>Absolute path of wsadmin, including filename and extension. Optional if the location of wsadmin is in the PATH environment variable. E.g., '/path/to/wsadmin.sh' or 'wsadmin.bat'</documentation>
+	</formElement>
+
+	<formElement>
+		<type>select</type>
+		<label>Connection Type:</label>
+		<property>connectionType</property>
+		<required>0</required>
+		<documentation>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</documentation>
+		<option><name>None</name><value>none</value></option>
+		<option><name>SOAP</name><value>soap</value></option>
+		<option><name>RMI</name><value>rmi</value></option>
+		<option><name>JSR160RMI</name><value>jsr160rmi</value></option>
+		<option><name>IPC</name><value>ipc</value></option>
+	</formElement>
+
+	<formElement>
+		<type>textarea</type>
+		<label>Commands:</label>
+		<property>commands</property>
+		<required>0</required>
+		<documentation>Commands to be entered to wsadmin. Use one command per line.</documentation>
+	</formElement>
+
+	<formElement>
+		<type>textarea</type>
+		<label>Classpath:</label>
+		<property>classpath</property>
+		<required>0</required>
+		<documentation>Jars to be passed to the wsadmin classpath. It is a string containing paths (semicolon-separated) the required JARs to execute wsadmin in a particular job. i.e: 'c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar' or '/MyDir/Myjar.jar;/yourdir/yourdir.jar'</documentation>
+	</formElement>
+
+	<formElement>
+		<type>textarea</type>
+		<label>Java Parameters:</label>
+		<property>javaparams</property>
+		<required>0</required>
+		<documentation>	Java options to be passed to wsadmin, separate them using semicolons (;).</documentation>
+	</formElement>
+
+	<formElement>
+		<type>textarea</type>
+		<label>Additional Commands:</label>
+		<property>additionalcommands</property>
+		<documentation>Additional commands to be entered for wsadmin.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Application Name:</label>
+		<property>appName</property>
+		<documentation>Specifies logical name to be given to installing enterprise application. Do not include whitespaces in application name. </documentation>
+		<required>1</required>
+	</formElement>
+
+
+	<formElement>
+		<type>entry</type>
+		<label>Application Path:</label>
+		<property>apppath</property>
+		<documentation>Absolute path of the application to deploy. i.e: '/path/to/webapp.war' or 'c:/mydir/webapp.war'.</documentation>
+		<required>1</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Target cluster list:</label>
+		<property>clusterList</property>
+		<documentation>Specify comma separated list of clusters on which to deploy enterprise application.Modules contained in an application can be installed on the same deployment target or dispersed among several deployment targets.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Target server list:</label>
+		<property>serverList</property>
+		<documentation>Specify comma separated list of standalone servers on which to deploy enterprise application.Modules contained in an application can be installed on the same deployment target or dispersed among several deployment targets.Specify servers in the form Node=server. For e.g. Node01=Server1,Node02=Server2</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<label>Precompile JavaServer Pages files?:</label>
+		<property>precompileJSP</property>
+		<value/>
+		<documentation>Specify whether to precompile JavaServer Pages (JSP) files as a part of installation. The default is not to precompile JSP files.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Directory to install application:</label>
+		<property>installDir</property>
+		<required>0</required>
+		<documentation>Specifies the directory to which the enterprise archive (EAR) file will be installed.Default is profile_root/installedApps/cell_name/application_name.ear directory</documentation>
+	</formElement>
+
+	<formElement>
+		<label>Distribute application?:</label>
+		<property>distributeApp</property>
+		<value/>
+		<documentation>Specifies whether the product expands application binaries in the installation location during installation.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<label>Use binary configuration:</label>
+		<property>binaryConfig</property>
+		<value/>
+		<documentation>Specifies whether the application server uses the binding, extensions, and deployment descriptors located with the application deployment
+			document, the deployment.xml file (default), or those located in the enterprise archive (EAR) file. Default is to use bindings located in deployment.xml.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<label>Deploy enterprise beans?:</label>
+		<property>deployBeans</property>
+		<value/>
+		<documentation>Specifies whether the EJBDeploy tool runs during application installation.Default is false(true for EJB 3.0 modules)</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<label>Create MBeans for resources?:</label>
+		<property>createMBeans</property>
+		<value/>
+		<documentation>Specifies whether to create MBeans for resources such as servlets or JSP files within an application when the application starts.Default is create MBeans.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<label>Override class reloading settings for web and EJB modules?:</label>
+		<property>overrideClassReloading</property>
+		<value/>
+		<documentation>Specifies whether the product run time detects changes to application classes when the application is running. If yes, then on such changes application is stopped and restarted to reload updated classes.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Reload interval in seconds:</label>
+		<property>reloadInterval</property>
+		<required>0</required>
+		<documentation>Specifies the number of seconds to scan the application's file system for updated files.Default is 3 seconds.</documentation>
+	</formElement>
+
+	<formElement>
+		<label>Deploy web services?:</label>
+		<property>deployWS</property>
+		<value/>
+		<documentation>Specifies whether to deploy web services.Default is NO.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<type>select</type>
+		<label>Validate resource references:</label>
+		<property>validateRefs</property>
+		<required>0</required>
+		<documentation>Specifies whether websphere examines the application references specified during application installation or updating and, if validation is
+			enabled, warns you of incorrect references or fails the operation.</documentation>
+		<option><name>Off</name><value>off</value></option>
+		<option><name>Warn</name><value>warn</value></option>
+		<option><name>Fail</name><value>fail</value></option>
+	</formElement>
+
+	<formElement>
+		<label>Process embedded configuration?:</label>
+		<property>processEmbConfig</property>
+		<value/>
+		<documentation>Specifies whether the embedded configuration should be processed. An embedded configuration consists of files such as resource.xml,
+			variables.xml, and deployment.xml.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<type>select</type>
+		<label>File permission:</label>
+		<property>filePermissions</property>
+		<required>0</required>
+		<documentation>Specifies access permissions for application binaries.</documentation>
+		<option><name>Allow all files to be read but not written to(.*=755)</name><value>.*=755</value></option>
+		<option><name>Allow executables to execute (.*\.dll=755#.*\.so=755#.*\.a=755#.*\.sl=755)</name><value>.*\.dll=755#.*\.so=755#.*\.a=755#.*\.sl=755</value></option>
+		<option><name>Allow HTML and image files to be read by everyone(.*\.htm=755#.*\.html=755#.*\.gif=755#.*\.jpg=755)</name><value>.*\.htm=755#.*\.html=755#.*\.gif=755#.*\.jpg=755</value></option>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Customized file permission:</label>
+		<property>customFilePermissions</property>
+		<required>0</required>
+		<documentation>Provide custom file permissions if not listed in File permissions drop down.</documentation>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Business­level application name:</label>
+		<property>blaName</property>
+		<required>0</required>
+		<documentation>Specifies whether websphere creates a new business­level application with the enterprise application that you are installing or makes the enterprise application a composition unit of an existing business­level application.The default is to create a new business­level application</documentation>
+	</formElement>
+
+	<formElement>
+		<label>Allow EJB reference targets to resolve automatically:</label>
+		<property>autoResolveEJBRef</property>
+		<value/>
+		<documentation>Specifies whether the embedded configuration should be processed</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<label>Deploy client modules:</label>
+		<property>deployClientMod</property>
+		<value/>
+		<documentation>Select if the file to deploy has one or more client modules and want to configure environment entries for the client modules.Default is do not enable Client Module</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<type>select</type>
+		<label>Client deployment mode:</label>
+		<property>clientDeployMode</property>
+		<required>0</required>
+		<documentation>Specifies whether to deploy client modules to an isolated deployment target (Isolated), a federated node of a deployment manager (Federated),
+			or an application server (Server Deployed).Default is Isolated</documentation>
+		<option><name>Isolated</name><value>isolated</value></option>
+		<option><name>Federated</name><value>federated</value></option>
+		<option><name>Server Deployed</name><value>server_deployed</value></option>
+	</formElement>
+
+	<formElement>
+		<label>Validate schema:</label>
+		<property>validateSchema</property>
+		<value/>
+		<documentation> Specifies whether to validate the deployment descriptors against published Java EE deployment descriptor schemas.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+	<formElement>
+		<type>textarea</type>
+		<label>Map modules to servers:</label>
+		<property>MapModulesToServers</property>
+		<required>0</required>
+		<documentation>Specify deployment targets where you want to install the modules that are contained in your application. Modules can be installed on the same deployment target or dispersed among several deployment targets.Give input in format [ "Module1Name" Module1URL server1][ "Module2Name" Module2URL server2 ] E.g.[ "Increment EJB module" Increment.jar,META-INF/ejb-jar.xml WebSphere:cell=Cell01,node=Node01,server=singleServer ]</documentation>
+	</formElement>
+
+	<formElement>
+		<type>textarea</type>
+		<label>Additional deployment parameters:</label>
+		<property>additionalDeployParams</property>
+		<required>0</required>
+		<documentation>Specify any additional options for AdminApp.Install object in case not listed in this input form.</documentation>
+	</formElement>
+
+
+</editor>
