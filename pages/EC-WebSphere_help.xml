@@ -10,7 +10,7 @@
 
     <title>Electric Commander Plugin for WebSphere</title>
     <link rel="stylesheet"
-          href="../../plugins/@PLUGIN_KEY@/pluginhelp.css"
+          href="../../plugins/EC-WebSphere/pluginhelp.css"
           type="text/css"
           media="screen" />
 </head>
@@ -932,8 +932,6 @@
                     <tr>
 
                         <th>Parameter</th>
-
-
 
                         <th>Description</th>
 
@@ -2279,7 +2277,7 @@
 
                 <tr>
                     <td >Classpath</td>
-                    <td>>Specifies a list of paths or Java archive (JAR) file names which together form the location for the resource provider classes. Use a semicolon (;) to separate class paths.</td>
+                    <td>Specifies a list of paths or Java archive (JAR) file names which together form the location for the resource provider classes. Use a semicolon (;) to separate class paths.</td>
                 </tr>
 
                 <tr>

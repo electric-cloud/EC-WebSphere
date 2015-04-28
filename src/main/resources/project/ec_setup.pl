@@ -94,6 +94,35 @@ my %deleteJDBCProvider = (
 );
 
 
+my %createEndToEndMailProvider = (
+    label       => "WebSphere - Create end to end Mail Provider",
+    procedure   => "CreateEndToEndMailProvider",
+    description => "Creates a mail provider along with protocol provider and mail session.",
+    category    => "Application Server"
+);
+
+my %deployOSGi = (
+    label       => "WebSphere - Deploy OSGi Application",
+    procedure   => "DeployOSGiApp",
+    description => "Deploy OSGi application using the wsadmin tool",
+    category    => "Application Server"
+);
+
+my %publishWSDL = (
+    label       => "WebSphere - Publish WSDL file",
+    procedure   => "PublishWSDL",
+    description => "Publishes WSDL files in each web services-enabled module to the file system location",
+    category    => "Application Server"
+);
+
+my %removeClusterMembers = (
+    label       => "WebSphere - Remove Cluster Members",
+    procedure   => "RemoveClusterMembers",
+    description => "Removes list of application servers from existing cluster",
+    category    => "Application Server"
+);
+
+
 my %deleteCluster = (
     label       => "WebSphere - Delete Application server cluster",
     procedure   => "DeleteCluster",
@@ -150,11 +179,16 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create D
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Datasource");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JDBC Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JDBC Provider");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create end to end Mail Provider");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy OSGi Application");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Publish WSDL file");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Remove Cluster Members");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Application server cluster");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - List Cluster Members");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Application server cluster");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Configure Session Management");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JMS Provider");
+
 
 @::createStepPickerSteps = (\%checkPageStatus, \%checkServerStatus,
                             \%startServer, \%stopServer,
@@ -164,8 +198,9 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create J
 							\%createDatasource, \%deleteDatasource,
 							\%createJDBCProvider, \%deleteJDBCProvider,
 							\%creatCluster, \%configureSessionManagement,
-							\%createJMSProvider, \%listClusterMembers, \%deleteCluster);
-
+							\%createJMSProvider, \%listClusterMembers,
+							\%deleteCluster, \%removeClusterMembers,
+							\%publishWSDL, \%deployOSGi,  \%createEndToEndMailProvider);
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
@@ -296,6 +331,30 @@ if ($upgradeAction eq "upgrade") {
             });
 
              # Attach the credential to the appropriate steps
+             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateEndToEndMailProvider',
+                stepName => 'CreateEndToEndMailProvider'
+             });
+
+            # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'DeployOSGiApp',
+                stepName => 'DeployOSGiApp'
+            });
+
+            # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'PublishWSDL',
+                stepName => 'PublishWSDL'
+            });
+
+             # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'RemoveClusterMembers',
+                stepName => 'RemoveClusterMembers'
+            });
+
+            # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DeleteCluster',
                 stepName => 'DeleteCluster'
@@ -324,6 +383,7 @@ if ($upgradeAction eq "upgrade") {
                 procedureName => 'ListClusterMembers',
                 stepName => 'ListClusterMembers'
             });
+
 
         }
     }

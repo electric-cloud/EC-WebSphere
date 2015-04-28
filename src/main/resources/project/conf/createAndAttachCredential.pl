@@ -81,6 +81,26 @@ $xpath = $ec->attachCredential($projName, $credName,
 $errors .= $ec->checkAllErrors($xpath);
 
 $xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'CreateEndToEndMailProvider',
+     stepName => 'CreateEndToEndMailProvider'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'DeployOSGiApp',
+     stepName => 'DeployOSGiApp'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'publishWSDL',
+     stepName => 'publishWSDL'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'RemoveClusterMembers',
+     stepName => 'RemoveClusterMembers'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
     {procedureName => 'DeleteCluster',
      stepName => 'DeleteCluster'});
 $errors .= $ec->checkAllErrors($xpath);
