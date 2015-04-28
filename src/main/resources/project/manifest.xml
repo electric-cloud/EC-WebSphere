@@ -54,6 +54,10 @@
         <path>matchers/jdbcProviderMatchers.pl</path>
     </file>
     <file>
+        <xpath>//property[propertyName=&quot;updateapp_matchers&quot;]/value</xpath>
+        <path>matchers/updateAppMatchers.pl</path>
+    </file>
+    <file>
         <xpath>//property[propertyName=&quot;configejbcontainer_matchers&quot;]/value</xpath>
         <path>matchers/configEJBContainerMatchers.pl</path>
     </file>
@@ -130,6 +134,10 @@
     <file>
         <xpath>//procedure[procedureName=&quot;DeployApp&quot;]/step[stepName=&quot;DeployApp&quot;]/command</xpath>
         <path>server/deployApp.pl</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;UpdateApp&quot;]/step[stepName=&quot;UpdateApp&quot;]/command</xpath>
+        <path>server/updateApp.pl</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;UndeployApp&quot;]/step[stepName=&quot;UndeployApp&quot;]/command</xpath>
@@ -271,6 +279,10 @@
     <file>
         <xpath>//procedure[procedureName=&quot;DeployApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ec_parameterForm-DeployApp.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;UpdateApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/ec_parameterForm-UpdateApp.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;UndeployApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>

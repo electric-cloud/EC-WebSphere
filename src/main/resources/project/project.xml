@@ -136,6 +136,12 @@
             </property>
 
             <property>
+                <propertyName>updateapp_matchers</propertyName>
+                <value></value>
+                <expandable>0</expandable>
+            </property>
+
+            <property>
                 <propertyName>ui_forms</propertyName>
                 <description>Property sheet to hold XML specification for forms</description>
                 <propertySheet>
@@ -9614,6 +9620,589 @@
                 <workingDirectory />
                 <workspaceName />
                 <procedureName>ConfigEJBContainer</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+
+        <procedure>
+
+            <procedureName>UpdateApp</procedureName>
+
+            <description>Updates existing application</description>
+
+            <jobNameTemplate>websphere-UpdateApp-$[jobId]</jobNameTemplate>
+
+            <resourceName />
+
+            <workspaceName />
+
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+
+            <propertySheet>
+
+                <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <expandable>1</expandable>
+                    <value></value>
+                </property>
+                <property>
+
+                    <propertyName>ec_customEditorData</propertyName>
+
+                    <propertySheet>
+
+                        <property>
+
+                            <propertyName>parameters</propertyName>
+
+                            <propertySheet>
+
+                                <property>
+                                    <propertyName>configName</propertyName>
+                                    <propertySheet>
+                                        <property>
+
+                                            <propertyName>formType</propertyName>
+
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+                                <property>
+                                    <propertyName>wsadminAbsPath</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+
+                                    </propertySheet>
+                                </property>
+
+                                <property>
+                                    <propertyName>connectionType</propertyName>
+                                    <propertySheet>
+
+                                        <property>
+                                            <propertyName>options</propertyName>
+                                            <propertySheet>
+                                                <property>
+                                                    <propertyName>option1</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>None</value>
+
+                                                        </property>
+
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>NONE</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+
+                                                    <propertyName>option2</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>SOAP</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>soap</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>option3</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>RMI</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>rmi</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+
+                                                    <propertyName>option4</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+
+                                                            <value>JSR160RMI</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>jsr160rmi</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+
+                                                    <propertyName>option5</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>IPC</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>ipc</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+
+                                                    <propertyName>optionCount</propertyName>
+                                                    <expandable>1</expandable>
+                                                    <value>5</value>
+                                                </property>
+                                                <property>
+                                                    <propertyName>type</propertyName>
+                                                    <expandable>1</expandable>
+                                                    <value>list</value>
+                                                </property>
+                                            </propertySheet>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+                                <property>
+                                    <propertyName>appName</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+
+                                    </propertySheet>
+                                </property>
+
+
+                                <property>
+                                    <propertyName>contentType</propertyName>
+                                    <propertySheet>
+
+                                        <property>
+                                            <propertyName>options</propertyName>
+                                            <propertySheet>
+                                                <property>
+                                                    <propertyName>option1</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>File</value>
+
+                                                        </property>
+
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>file</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+
+                                                    <propertyName>option2</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Partial Application</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>partialapp</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+
+                                                <property>
+                                                    <propertyName>option3</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Module</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>modulefile</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+
+                                                <property>
+                                                    <propertyName>option4</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Application</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>app</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+
+                                                <property>
+                                                    <propertyName>optionCount</propertyName>
+                                                    <expandable>1</expandable>
+                                                    <value>4</value>
+                                                </property>
+                                                <property>
+                                                    <propertyName>type</propertyName>
+                                                    <expandable>1</expandable>
+                                                    <value>list</value>
+                                                </property>
+                                            </propertySheet>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+
+                                <property>
+                                    <propertyName>operation</propertyName>
+                                    <propertySheet>
+
+                                        <property>
+                                            <propertyName>options</propertyName>
+                                            <propertySheet>
+
+                                                <property>
+                                                    <propertyName>option1</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Add</value>
+                                                        </property>
+
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>add</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+
+                                                <property>
+                                                    <propertyName>option2</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Update</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>update</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+
+                                                <property>
+                                                    <propertyName>option3</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>AddUpdate</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>addupdate</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+
+                                                <property>
+                                                    <propertyName>option4</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>Delete</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>delete</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+
+                                                <property>
+                                                    <propertyName>optionCount</propertyName>
+                                                    <expandable>1</expandable>
+                                                    <value>4</value>
+                                                </property>
+                                                <property>
+                                                    <propertyName>type</propertyName>
+                                                    <expandable>1</expandable>
+                                                    <value>list</value>
+                                                </property>
+                                            </propertySheet>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+
+                                <property>
+                                    <propertyName>content</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+                                <property>
+                                    <propertyName>contentURI</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+                                <property>
+                                    <propertyName>isAppOnCluster</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+                                <property>
+                                    <propertyName>clusterName</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+
+                                <property>
+                                    <propertyName>serverName</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+                                <property>
+                                    <propertyName>additionalParams</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+                            </propertySheet>
+                        </property>
+                    </propertySheet>
+                </property>
+            </propertySheet>
+
+
+            <formalParameter>
+                <formalParameterName>configName</formalParameterName>
+                <defaultValue />
+                <description>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>wsadminAbsPath</formalParameterName>
+                <defaultValue />
+                <description>Absolute path of wsadmin, including filename and extension. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'. </description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>connectionType</formalParameterName>
+                <defaultValue />
+                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
+                <required>0</required>
+                <type>select</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>appName</formalParameterName>
+                <defaultValue />
+                <description>Name of the application to deploy. i.e: 'webapp'. </description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>contentType</formalParameterName>
+                <defaultValue />
+                <description>Specifies to type of content to update. Specifies to type of content to update. Use File option for updating a single file, Partial Application option for updating application partially, Module option to add/update a module to the deployed application, Application option for updating the entire deployed application.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>operation</formalParameterName>
+                <defaultValue />
+                <description>Specifies to type of operation to perform as part of update procedure. Use Add option to  add new content, Update option to update existing content, AddUpdate option to add content and to replace if already exist, Delete option to remove existing content respectively.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>content</formalParameterName>
+                <defaultValue />
+                <description>Specifies the file that contains the content that you want to update. For example, depending on the content type, the file could be an EAR file, a module, a partial zip, or a single file.Not required for Delete operation.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>contentURI</formalParameterName>
+                <defaultValue />
+                <description>The relative path beginning with the installed application archive file to the file to be replaced or added. For example, if the file is located at com/company/greeting.class in module hello.jar, specify hello.jar/com/company/greeting.class for the relative path</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>isAppOnCluster</formalParameterName>
+                <defaultValue/>
+                <description>Select this checkbox if the application to be updated is deployed on cluster.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>clusterName</formalParameterName>
+                <defaultValue />
+                <description>Name of the cluster on which application is deployed.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>serverName</formalParameterName>
+                <defaultValue />
+                <description>Name of the server on which application is deployed.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>additionalParams</formalParameterName>
+                <defaultValue />
+                <description>Additional parameters to pass, if required, while updating entire application or a module.For e.g. -nodeployejb, -BindJndiForEJBNonMessageBinding etc.</description>
+                <required>0</required>
+                <type>textarea</type>
+            </formalParameter>
+
+            <step>
+                <stepName>UpdateApp</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command></command>
+                <condition />
+                <description>Updates existing application</description>
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/updateapp_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit>5</timeLimit>
+                <timeLimit>5</timeLimit>
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>UpdateApp</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
                     <property>

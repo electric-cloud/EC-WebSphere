@@ -93,6 +93,12 @@ my %deleteJDBCProvider = (
     category    => "Application Server"
 );
 
+my %updateApp = (
+    label       => "WebSphere - Update Application",
+    procedure   => "UpdateApp",
+    description => "Updates existing application",
+    category    => "Application Server"
+);
 
 my %configEJBContainer = (
     label       => "WebSphere - Configure EJB Container",
@@ -158,13 +164,13 @@ my %configureSessionManagement = (
     category    => "Application Server"
 );
 
-
 my %createJMSProvider = (
     label       => "WebSphere - Create JMS Provider",
     procedure   => "CreateJMSProvider",
     description => "Creates a JMS Provider using the wsadmin tool",
     category    => "Application Server"
 );
+
 
 my %createMailSession = (
     label       => "WebSphere - Create JavaMail session",
@@ -193,6 +199,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create D
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Datasource");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JDBC Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JDBC Provider");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Update Application");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Configure EJB Container");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create end to end Mail Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy OSGi Application");
@@ -217,7 +224,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create J
 							\%deleteCluster, \%removeClusterMembers,
 							\%publishWSDL, \%deployOSGi,
 							\%createEndToEndMailProvider, \%createMailSession,
-							\%configEJBContainer);
+							\%configEJBContainer, \%updateApp);
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
@@ -352,6 +359,12 @@ if ($upgradeAction eq "upgrade") {
                 procedureName => 'ConfigEJBContainer',
                 stepName => 'ConfigEJBContainer'
             });
+
+             # Attach the credential to the appropriate steps
+             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'UpdateApp',
+                stepName => 'UpdateApp'
+             });
 
              # Attach the credential to the appropriate steps
              $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
