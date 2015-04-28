@@ -92,7 +92,6 @@
         <path>matchers/deleteClusterMembersMatchers.pl</path>
     </file>
     <file>
->>>>>>> 04189789ae4659a459e40fbb11940efea47d7ee5
         <xpath>//procedure[procedureName=&quot;StartServer&quot;]/step[stepName=&quot;StartInstance&quot;]/command</xpath>
         <path>server/startServer.pl</path>
     </file>
