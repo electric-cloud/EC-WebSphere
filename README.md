@@ -7,7 +7,7 @@ The ElectricCommander WebSphere integration
 
 Run gradlew to compile the plugin
 
-`./gradlew jar`
+`./gradlew`
 
 ## Tests ##
 
