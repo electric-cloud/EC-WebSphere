@@ -121,10 +121,28 @@ sub main() {
         ## Set default value
         $gCacheSize = '2053';
     }
+    elsif ( $gCacheSize < 0 ) {
+        die "Error : Cache size must be positive integer.";
+    }
+
     if ( $gCleanupInterval eq '' ) {
         ## Set default value
         $gCleanupInterval = '3000';
     }
+    elsif ( $gCleanupInterval > 2147483647 or $gCleanupInterval < 0 ) {
+        die "Error : Valid range for clean up interval is 0 to 2147483647.";
+    }
+
+    if (
+        $gInactivePoolCleanupInterval ne ''
+        and (  $gInactivePoolCleanupInterval > 2147483647
+            or $gInactivePoolCleanupInterval < 0 )
+      )
+    {
+        die
+"Error : Valid range for Inactive Pool Cleanup Interval is 0 to 2147483647.";
+    }
+
     if ( $anotherOptionalParam == 1 ) {
         $ScriptFile .= ",";
     }
