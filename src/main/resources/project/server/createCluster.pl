@@ -131,9 +131,9 @@ sub main() {
           . '\',\'[-usedefaultbindings -contextroot '
           . $gContextRoot
           . ' -appname '
-          . my $gAppName
+          . $gAppName
           . ' -cluster '
-          . my $gClusterName . ']\')' . "\n"
+          . $gClusterName . ']\')' . "\n"
           . 'print result' . "\n"
           . 'AdminConfig.save()';
 
