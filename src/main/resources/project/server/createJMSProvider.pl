@@ -100,24 +100,13 @@ sub main() {
       . $::gExtContextFactory . qq(",")
       . $::gExtProviderURL . qq(");
 
-    if (   $::gClasspath
-        || $::gDescription
-        || $::gIsolatedClassLoader
-        || $::gNativepath
-        || $::gProviderType
-        || $::gPropertySet
-        || $::gSupportsASF )
-    {
-        ## if any of the optional arguments are supplied.
-        $optionalArgsSupplied = 'true';
-    }
 
     ## This flag, if true, indicates that the next argument is the first optional argument.
     $firstOptionalArg = 'true';
 
-    if ($optionalArgsSupplied) {
-        $ScriptFile .= ",[";
-    }
+
+    $ScriptFile .= ",[";
+
     if ($::gClasspath) {
         $ScriptFile .= "['classpath','" . $::gClasspath . "']";
         $firstOptionalArg = 'false';
@@ -188,11 +177,8 @@ sub main() {
          $firstOptionalArg = 'false';
     }
 
+    $ScriptFile .= "]";
 
-
-    if ($optionalArgsSupplied) {
-        $ScriptFile .= "]";
-    }
     $ScriptFile .= "\)\n";
 
     open( MYFILE, '>createJMSProvider_script.jython' );
