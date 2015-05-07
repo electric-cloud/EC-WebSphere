@@ -14,7 +14,7 @@
 		<label>Wsadmin Absolute Path:</label>
 		<property>wsadminabspath</property>
 		<required>1</required>
-		<documentation>Absolute path of wsadmin, including filename and extension. If the path in which wsadmin is stored in the path environmental variable, the absolute path is ommited. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'. </documentation>
+		<documentation>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</documentation>
 	</formElement>
 
 	<formElement>
