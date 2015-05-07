@@ -19,7 +19,7 @@
     <div class="help">
         <h1>WebSphere Application Server</h1>
 
-        <p>Plugin Version 2.0.6.0</p>
+        <p>Plugin Version @PLUGIN_VERSION@</p>
         <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;"
             noshade="noshade" />
         <!-- The tool description should answer these kinds of
@@ -382,6 +382,403 @@
 			<img src="../../plugins/EC-WebSphere/images/CheckServerStatus/CSSparameters.png" />
         </div>
 
+        <div id="ConfigEJBContainer">
+
+            <a name="ConfigEJBContainer"
+
+               id="ConfigEJBContainer"></a>
+
+
+
+            <h2>ConfigEJBContainer</h2>
+
+
+            <p>This procedure configures EJB container properites using a Jython script.</p>
+
+            <h3>ConfigEJBContainer Parameters</h3>
+
+            <table class="grid">
+
+                <thead>
+
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Wsadmin Absolute Path</td>
+                        <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Connection Type</td>
+                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Cell Name</td>
+                        <td>Name of cell to which EJB container belongs.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Node Name</td>
+                        <td>Name of node to which EJB container belongs.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Server Name</td>
+                        <td>Name of application server to which EJB container belongs.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Passivation Directory</td>
+                        <td>Specifies the directory into which the container saves the persistent state of passivated stateful session beans. This directory must already exist. It is not automatically created.Default is ${USER_INSTALL_ROOT}/temp.</td>
+                    </tr>
+
+                    <tr>
+                        <td >cache Size</td>
+                        <td>Number of buckets in the active instance list within the EJB container.Input value range - greater than 0. The container selects the next largest prime number equal to or greater than the specified value.Default is 2053</td>
+                    </tr>
+
+                    <tr>
+                        <td>Cleanup Interval</td>
+                        <td>Interval (in milliseconds)at which the container attempts to remove unused items from the cache.Default is 3000. Allowed range is 0 to 2147483647</td>
+                    </tr>
+
+                    <tr>
+                        <td>Inactive Pool Cleanup Interval</td>
+                        <td>Specifies the interval at which the container examines the pools of available bean instances to determine if some instances can be deleted to reduce memory usage.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Enable stateful session bean fail over using memory-to-memory replication?</td>
+                        <td>Specifies that failover is enabled for all stateful session beans installed in this EJB container.Replication domains must already exist to failover feature to work.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Replication domain</td>
+                        <td>Specifies the replication domain in which HTTP sessions are replicated.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Replication Mode</td>
+                        <td>The mode specifies whether data is only sent (client), only received (server), or both. Select client if sessions need to be replicated. Select server if sessions need to be stored. Select both client and server if sessions need to be replicated and stored. The default is both.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <h3>Configure EJB Container</h3>
+
+            <p>To Configure EJB Container, do these steps:</p>
+
+            <ol>
+                <li>Go to the ConfigEJBContainer procedure. </li>
+                <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/ConfigEJBContainer/EC-WebSphereConfigEJBContainer2.png" />
+            </ol>
+
+
+
+            <p>After the job runs, you can view the results, including the following job details, which show that
+
+                EJB container is configured successfully:</p>
+
+            <img src="../../plugins/EC-WebSphere/images/ConfigEJBContainer/EC-WebSphereConfigEJBContainer3.png" />
+
+
+            <p>In the <b>ConfigEJBContainer</b> step, click the Log icon
+
+                to see the diagnostic information. The output is similar to
+
+                the following diagnostic
+
+                report.</p>
+
+            <img src="../../plugins/EC-WebSphere/images/ConfigEJBContainer/EC-WebSphereConfigEJBContainer4.png" />
+        </div>
+
+        <div id="ConfigureSession">
+
+            <a name="ConfigureSession"
+
+               id="ConfigureSession"></a>
+
+
+
+            <h2>ConfigureSession</h2>
+
+
+
+            <p>This procedure configures the session management related properties for deployed application</p>
+
+            <h3>ConfigureSession Parameters</h3>
+
+            <table class="grid">
+
+                <thead>
+
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td class="required">Wsadmin Absolute Path</td>
+                        <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Connection Type</td>
+                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Application Name</td>
+                        <td>Name of the web application to configure.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Enable SSL Tracking</td>
+                        <td>Specifies that session tracking uses Secure Sockets Layer (SSL) information as a session ID. Enabling SSL tracking takes precedence over cookie-based session tracking and URL rewriting.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Enable Cookies</td>
+                        <td>Specifies whether to enable cookies.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Enable URL Rewriting</td>
+                        <td>Specifies whether the session management facility uses rewritten URLs to carry the session IDs. If URL rewriting is enabled, the session management facility recognizes session IDs that arrive in the URL if the encodeURL method is called in the servlet.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Enable Protocol Switching</td>
+                        <td>This option is only applicable when Enable URL rewriting is selected. This option specifies that the session ID is added to a URL when the URL requires a switch from HTTP to HTTPS or from HTTPS to HTTP. If rewriting is enabled, the session ID is required to go between HTTP and HTTPS.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Max in-memory session count</td>
+                        <td>Specifies the maximum number of sessions to maintain in memory.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Allow Overflow</td>
+                        <td>Specifies whether the number of sessions in memory can exceed the value specified by the Max in-memory session count property. This option is valid only in non-distributed sessions mode.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Enable Serialized Session</td>
+                        <td>If selected, concurrent session access in a given server is not permitted.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Maximum Wait Time</td>
+                        <td>Specifies the maximum amount of time a servlet request waits on an HTTP session before continuing execution. This parameter is optional and expressed in seconds. The default is 5 seconds. Under normal conditions, a servlet request waiting for access to an HTTP session gets notified by the request that currently owns the given HTTP session when the request finishes.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Access Session On Timeout</td>
+                        <td>Specifies whether the servlet is started normally or aborted in the event of a timeout. If you specify true, the servlet is started normally. If you specify false, the servlet execution aborts and error logs are generated.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Session Persistence Mode</td>
+                        <td>Specifies whether to enable session persistence mode.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <h3>Configure Session Management for application</h3>
+
+            <p>To Configure Session Management for application, do these steps:</p>
+
+            <ol>
+                <li>Go to the ConfigureSession procedure.</li>
+                <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/ConfigureSession/EC-WebSphereConfigureSession2.png" />
+            </ol>
+
+
+
+            <p>After the job runs, you can view the results, including the following job details, which show that
+
+                the cluster was created successfully:</p>
+
+            <img src="../../plugins/EC-WebSphere/images/ConfigureSession/EC-WebSphereConfigureSession3.png" />
+
+
+
+
+
+            <p>In the <b>ConfigureSession</b> step, click the Log icon
+
+                to see the diagnostic information. The output is similar to
+
+                the following diagnostic
+
+                report.</p>
+
+            <img src="../../plugins/EC-WebSphere/images/ConfigureSession/EC-WebSphereConfigureSession4.png" />
+
+        </div>
+
+        <div id="CreateCluster">
+
+            <a name="CreateCluster"
+
+               id="CreateCluster"></a>
+
+
+
+            <h2>CreateCluster</h2>
+
+
+
+            <p>This procedure creates a cluster, adds members to it, and can deploy an application in it using a Jython script.</p>
+
+            <h3>CreateCluster Parameters</h3>
+
+            <table class="grid">
+
+                <thead>
+
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td class="required">Wsadmin Absolute Path</td>
+                        <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Cell name</td>
+                        <td>Name of the cell in which to create a new cluster.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Cluster Name</td>
+                        <td>Name of the new cluster.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Cluster Members</td>
+                        <td>List of member application servers with their names. For example, server1 on Node01 and server2 on Node02 are members, specify them as Node01=server1,Node02=server2.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Deploy Application on new cluster?</td>
+                        <td>Select the checkbox if you want to deploy an app on new cluster.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Commands</td>
+                        <td>Commands to enter in the wsadmin tool. Enter one command per line.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Java Parameters</td>
+                        <td>Java options to pass to the wsadmin tool, separated by semicolons (:).</td>
+                    </tr>
+
+                    <tr>
+                        <td>Classpath</td>
+                        <td>JARs to pass to the wsdamin classpath. This is a string containing paths with the required JARs, separated by semicolons, to run the wsadmin tool for a specific job, such as <i>c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar</i> or <i>'/MyDir/Myjar.jar;/yourdir/yourdir.jar</i>.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Application Name</td>
+                        <td>Name of the web application to deploy, such as webapp. </td>
+                    </tr>
+
+                    <tr>
+                        <td>Application Path</td>
+                        <td>Absolute path of the application to deploy. Such as, '/path/to/webapp.war' or 'c:/mydir/webapp.war'.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Additional Commands</td>
+                        <td>Additional commands to be entered for wsadmin.</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Connection Type</td>
+                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+            <h3>Create cluster</h3>
+
+            <p>To create new cluster, add application servers as its members and deploy an application on it, do these steps:</p>
+
+            <ol>
+                <li>Go to the CreateCluster procedure.</li>
+                <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateCluster/EC-WebSphereCreateCluster2.png" />
+            </ol>
+
+
+
+            <p>After the job runs, you can view the results, including the following job details, which show that
+
+                the cluster was created successfully:</p>
+
+            <img src="../../plugins/EC-WebSphere/images/CreateCluster/EC-WebSphereCreateCluster3.png" />
+
+
+
+
+
+            <p>In the <b>CreateCluster</b> step, click the Log icon
+
+                to see the diagnostic information. The output is similar to
+
+                the following diagnostic
+
+                report.</p>
+
+            <img src="../../plugins/EC-WebSphere/images/CreateCluster/EC-WebSphereCreateCluster4.png" />
+
+        </div>
      
 		<div id="CreateDatasource">
 
@@ -556,9 +953,195 @@
 
             report.</p><img src="../../plugins/EC-WebSphere/images/CreateDatasource/EC-WebSphereCreateDatasource4.png" />
 
-        </div> 
+        </div>
 
-		
+        <div id="CreateEndToEndMailProvider">
+
+            <a name="CreateEndToEndMailProvider"
+
+               id="CreateEndToEndMailProvider"></a>
+
+
+
+            <h2>CreateEndToEndMailProvider</h2>
+
+
+            <p>This procedure creates mail provider with a protocol provider, a mail session and a
+                custom property in the specified scope.</p>
+
+            <h3>CreateEndToEndMailProvider Parameters</h3>
+
+            <table class="grid">
+
+                <thead>
+
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Wsadmin Absolute Path</td>
+                        <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Connection Type</td>
+                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Scope</td>
+                        <td>Specifies the scope in which the mail provider supports installed mail applications.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Mail Provider Name</td>
+                        <td>Specifies the name to be given to the new mail provider .</td>
+                    </tr>
+
+                    <tr>
+                        <td>Mail Provider Description</td>
+                        <td>Specifies the mail provider description.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Isolate this mail provider?</td>
+                        <td>Specifies that this mail provider will be loaded in its own class loader. This allows the application server to load different versions or implementations of the same mail provider in the same Java Virtual Machine. Give each version or implementation of the mail provider a unique class path in following (Mail provider classpath) field that is appropriate for that version or implementation.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Mail Provider Classpath</td>
+                        <td>Specifies the class path to a Java archive (JAR) file that contains the implementation classes for this mail provider.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Custom Property Name</td>
+                        <td>>Specifies the name of custom property to create.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Custom Property Value</td>
+                        <td>Specifies the value to associate with this custom property of the resource.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Protocol Provider Name</td>
+                        <td>Specifies the name to be given to the new protocol provider .</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Protocol Provider Class Name</td>
+                        <td>Specifies the implementation class of this protocol provider.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Protocol Provider Type</td>
+                        <td>Specifies the type of protocol provider. Valid options are STORE(for incoming protocol provider) or TRANSPORT(for outgoing protocol provider).</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Mail Session Name</td>
+                        <td>Specifies the administrative name of the JavaMail session object.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Mail Session JNDI Name</td>
+                        <td>Specifies the Java Naming and Directory Interface (JNDI) name for the resource, including any naming subcontexts.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Category</td>
+                        <td>Optional string to use while classifying or grouping the resources.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Enable Debug Mode?</td>
+                        <td>Select to print the interaction between mail application and mail server as well as the properties of this mail session to System.Out.log file.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Mail Session Description</td>
+                        <td>Specifies optional description for mail session.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Incoming Mail Server</td>
+                        <td>Specifies the host name server that is accessed when receiving mail.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Incoming Mail Server Port</td>
+                        <td>Specifies the port of the server that is accessed when receiving mail..</td>
+                    </tr>
+
+                    <tr>
+                        <td>Incoming Mail Server Credentials</td>
+                        <td>Specifies the credential for the mail account when the incoming mail server requires authentication.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Outgoing Mail Server</td>
+                        <td>Specifies the host name of server that is accessed when sending mail.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Outgoing Mail Server Port</td>
+                        <td>Specifies the port of the server that is accessed when sending mail.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Outgoing Mail Server Credential</td>
+                        <td>Specifies the user of the mail account when the outgoing mail server requires authentication.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Enable Strict Internet Address Parsing?</td>
+                        <td>Specifies whether the recipient addresses must be parsed in strict compliance with RFC 822.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <h3>CreateEndToEndMailProvider</h3>
+
+            <p>To create a new mail provider along with protocol provider and mail session, do these steps:</p>
+
+            <ol>
+                <li>Go to the CreateEndToEndMailProvider procedure. </li>
+                <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateEndToEndMailProvider/EC-WebSphereCreateEndToEndMailProvider2.png" />
+            </ol>
+
+
+
+            <p>After the job runs, you can view the results, including the following job details, which show that
+
+                OSGi application is deployed successfully:</p>
+
+            <img src="../../plugins/EC-WebSphere/images/CreateEndToEndMailProvider/EC-WebSphereCreateEndToEndMailProvider3.png" />
+
+
+            <p>In the <b>CreateEndToEndMailProvider</b> step, click the Log icon
+
+                to see the diagnostic information. The output is similar to
+
+                the following diagnostic
+
+                report.</p>
+
+            <img src="../../plugins/EC-WebSphere/images/CreateEndToEndMailProvider/EC-WebSphereCreateEndToEndMailProvider4.png" />
+        </div>
 		
 		<div id="CreateJDBCProvider">
 
@@ -735,9 +1318,357 @@
             report.</p><img src="../../plugins/EC-WebSphere/images/CreateJDBCProvider/EC-WebSphereCreateJDBCProvider4.png" />
 
             </div>
-			
-		
-		
+
+        <div id="CreateJMSProvider">
+
+            <a name="CreateJMSProvider"
+
+               id="CreateJMSProvider"></a>
+
+
+
+            <h2>CreateJMSProvider</h2>
+
+
+            <p>This procedure creates a new JMS provider using a Jython script.</p>
+
+            <h3>CreateJMSProvider Parameters</h3>
+
+            <table class="grid">
+
+                <thead>
+
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Wsadmin Absolute Path</td>
+                        <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Scope</td>
+                        <td>Specifies a scope of cell, node, server, or cluster for the JMS provider. For example, Cell=Cell01,Node=Node01,Server=server1</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">JMS Provider Name</td>
+                        <td>Specifies the name to assign to the new JMS provider. </td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Initial Context Factory</td>
+                        <td>Specifies the Java class name of the initial context factory for the JMS provider.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">JMS provider URL</td>
+                        <td>Specifies the JMS provider URL for external JNDI lookups.</td>
+                    </tr>
+
+                    <tr>
+                        <td >Classpath</td>
+                        <td>Specifies a list of paths or Java archive (JAR) file names which together form the location for the resource provider classes. Use a semicolon (;) to separate class paths.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Description</td>
+                        <td>Specifies a description of the JMS Provider.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Isolated Class Loader</td>
+                        <td>If set to true, specifies that the resource provider is loaded in its own class loader.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Native Path</td>
+                        <td>Specifies an optional path to any native libraries, such as *.dll and *.so. Native path entries are separated by a semicolon (;).</td>
+                    </tr>
+
+                    <tr>
+                        <td>Provider Type</td>
+                        <td>Specifies the JMS provider type that this JMS provider uses.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Property Set</td>
+                        <td>Specifies resource properties in the following format: [[['name','nameValue1'],['type','typeValue1'],['value','valueValue1']]... [['name','nameValuen'],['type','typeValuen'],['value','valueValuen']]]</td>
+                    </tr>
+
+                    <tr>
+                        <td>Connection Type</td>
+                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <h3>Create JMS Provider</h3>
+
+            <p>To create a new JMS provider, do these steps:</p>
+
+            <ol>
+                <li>Go to the CreateJMSProvider procedure. </li>
+                <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateJMSProvider/EC-WebSphereCreateJMSProvider2.png" />
+            </ol>
+
+        </div>
+
+
+        <div id="CreateMailSession">
+
+            <a name="CreateMailSession"
+
+               id="CreateMailSession"></a>
+
+
+
+            <h2>CreateMailSession</h2>
+
+
+            <p>This procedure creates a JavaMail session object for default mail provider at specified scope.</p>
+
+            <h3>CreateMailSession Parameters</h3>
+
+            <table class="grid">
+
+                <thead>
+
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Wsadmin Absolute Path</td>
+                        <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Connection Type</td>
+                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Scope</td>
+                        <td>Specifies the scope in which the mail session supports installed mail applications.For For example, /Cell:Cell01/ServerCluster:testCluster/</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Mail Session Name</td>
+                        <td>Specifies the administrative name of the JavaMail session object. </td>
+                    </tr>
+
+                    <tr>
+                        <td>Mail Session Description</td>
+                        <td>Specifies optional description for mail session.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Mail Session JNDI Name</td>
+                        <td>Specifies the Java Naming and Directory Interface (JNDI) name for the resource, including any naming subcontexts.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Category</td>
+                        <td>Optional string to use while classifying or grouping the resources.</td>
+                    </tr>
+
+                    <tr>
+                        <td >Enable Debug Mode?</td>
+                        <td>>Select to print the interaction between mail application and mail server as well as the properties of this mail session to System.Out.log file.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Outgoing Mail Server</td>
+                        <td>Specifies the host name of server that is accessed when sending mail.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Outgoing Mail Server Port</td>
+                        <td>Specifies the port of the server that is accessed when sending mail.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Outgoing Mail Server Protocol</td>
+                        <td>Specifies the protocol to use when sending mail.Valid values are SMTP and SMTP SSL</td>
+                    </tr>
+
+                    <tr>
+                        <td>Outgoing Mail Server Credential</td>
+                        <td>Specifies the user of the mail account when the outgoing mail server requires authentication.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Return E-mail Address</td>
+                        <td>Represents the Internet email address that, by default, displays in the received message in the From or the Reply-To address. The recipient's reply will come to this address.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Incoming Mail Server</td>
+                        <td>Specifies the host name server that is accessed when receiving mail.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Incoming Mail Server Port</td>
+                        <td>Specifies the port of the server that is accessed when receiving mail.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Incoming Mail Server Protocol</td>
+                        <td>Specifies the protocol to use when receiving mail.Valid values are IMAP, IMAP SSL, POP3, POP3 SSL.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Incoming Mail Server Credentials</td>
+                        <td>Specifies the credential for the mail account when the incoming mail server requires authentication.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Enable Strict Internet Address Parsing?</td>
+                        <td>Specifies whether the recipient addresses must be parsed in strict compliance with RFC 822.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <h3>Create Mail Session</h3>
+
+            <p>To create a mail session for default mail provider, do these steps:</p>
+
+            <ol>
+                <li>Go to the CreateMailSession procedure. </li>
+                <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateMailSession/EC-WebSphereCreateMailSession2.png" />
+            </ol>
+
+
+
+            <p>After the job runs, you can view the results, including the following job details, which show that
+
+                mail session is created successfully:</p>
+
+            <img src="../../plugins/EC-WebSphere/images/CreateMailSession/EC-WebSphereCreateMailSession3.png" />
+
+
+            <p>In the <b>CreateMailSession</b> step, click the Log icon
+
+                to see the diagnostic information. The output is similar to
+
+                the following diagnostic
+
+                report.</p>
+
+            <img src="../../plugins/EC-WebSphere/images/CreateMailSession/EC-WebSphereCreateMailSession4.png" />
+        </div>
+
+        <div id="DeleteCluster">
+
+            <a name="DeleteCluster"
+
+               id="DeleteCluster"></a>
+
+
+
+            <h2>DeleteCluster</h2>
+
+
+            <p>This procedure delete the specified cluster.</p>
+
+            <h3>DeleteCluster Parameters</h3>
+
+            <table class="grid">
+
+                <thead>
+
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td class="required">Wsadmin Absolute Path</td>
+                        <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Connection Type</td>
+                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="required">Cluster Name</td>
+                        <td>The name of the cluster to delete.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <h3>Delete Cluster</h3>
+
+            <p>To delete application server cluster, do these steps:</p>
+
+            <ol>
+                <li>Go to the DeleteCluster procedure. </li>
+                <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeleteCluster/EC-WebSphereDeleteCluster2.png" />
+            </ol>
+
+
+
+            <p>After the job runs, you can view the results, including the following job details, which show that
+
+                cluster is deleted successfully:</p>
+
+            <img src="../../plugins/EC-WebSphere/images/DeleteCluster/EC-WebSphereDeleteCluster3.png" />
+
+
+            <p>In the <b>DeleteCluster</b> step, click the Log icon
+
+                to see the diagnostic information. The output is similar to
+
+                the following diagnostic
+
+                report.</p>
+
+            <img src="../../plugins/EC-WebSphere/images/DeleteCluster/EC-WebSphereDeleteCluster4.png" />
+
+        </div>
+
 		<div id="DeleteConfiguration">
 
             <a name="DeleteConfiguration"
@@ -788,9 +1719,7 @@
             </table>
 
             </div>
-		
-		
-		
+
 		<div id="DeleteDatasource">
 
             <a name="DeleteDatasource"
@@ -906,9 +1835,7 @@
             report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSphereDeleteDatasource4.png" />
 
             </div>
-		
-		
-		
+
 		<div id="DeleteJDBCProvider">
 
             <a name="DeleteJDBCProvider"
@@ -932,9 +1859,9 @@
                     <tr>
 
                         <th>Parameter</th>
-						
+
                         <th>Description</th>
-						
+
                     </tr>
 
                 </thead>
@@ -1022,10 +1949,6 @@
 			<img src="../../plugins/EC-WebSphere/images/DeleteJDBCProvider/EC-WebSphereDeleteJDBCProvider4.png" />
 
             </div>
-		
-		
-		
-		
 		
 		<div id="DeployApp">
             <a name="DeployApp"
@@ -1144,6 +2067,606 @@
             following diagnostic
             report.</p><img src="../../plugins/EC-WebSphere/images/DeployApp/deployApp4.png" />
             </div>
+
+        <div id="DeployEnterpriseApp">
+
+            <a name="DeployEnterpriseApp"
+
+               id="DeployEnterpriseApp"></a>
+
+
+
+            <h2>DeployEnterpriseApp</h2>
+
+
+            <p>This procedure deploys and starts java enterprise application (.EAR) on given targets.</p>
+
+            <h3>DeployEnterpriseApp Parameters</h3>
+
+            <table class="grid">
+
+                <thead>
+
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Wsadmin Absolute Path</td>
+                        <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Connection Type</td>
+                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Commands</td>
+                        <td>Commands to be entered to wsadmin. Use one command per line.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Classpath</td>
+                        <td>Jars to be passed to the wsadmin classpath. It is a string containing paths (semicolon-separated) the required JARs to execute wsadmin in a particular job. i.e: 'c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar' or '/MyDir/Myjar.jar;/yourdir/yourdir.jar'</td>
+                    </tr>
+
+                    <tr>
+                        <td>Java Parameters</td>
+                        <td>Java options to be passed to wsadmin, separate them using semicolons (;).</td>
+                    </tr>
+
+                    <tr>
+                        <td>Additional Commands</td>
+                        <td>Additional commands to be entered for wsadmin.</td>
+                    </tr>
+
+                    <tr class="required">
+                        <td>Application Name</td>
+                        <td>Specifies logical name to be given to installing enterprise application. Do not include whitespaces in application name. </td>
+                    </tr>
+
+                    <tr class="required">
+                        <td>Application Path</td>
+                        <td>Absolute path of the application to deploy. i.e: '/path/to/webapp.war' or 'c:/mydir/webapp.war'.</td>
+                    </tr>
+
+                    <tr>
+                        <td >Target cluster list</td>
+                        <td>Specify comma separated list of clusters on which to deploy enterprise application.Modules contained in an application can be installed on the same deployment target or dispersed among several deployment targets.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Target server list</td>
+                        <td>Specify comma separated list of standalone servers on which to deploy enterprise application.Modules contained in an application can be installed on the same deployment target or dispersed among several deployment targets.Specify servers in the form Node=server. For For example, Node01=Server1,Node02=Server2</td>
+                    </tr>
+
+                    <tr>
+                        <td>Precompile JavaServer Pages files?</td>
+                        <td>Specify whether to precompile JavaServer Pages (JSP) files as a part of installation. The default is not to precompile JSP files.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Directory to install application</td>
+                        <td>Specifies the directory to which the enterprise archive (EAR) file will be installed.Default is profile_root/installedApps/cell_name/application_name.ear directory</td>
+                    </tr>
+
+                    <tr>
+                        <td>Distribute application?</td>
+                        <td>Specifies whether the product expands application binaries in the installation location during installation.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Use binary configuration</td>
+                        <td>Specifies whether the application server uses the binding, extensions, and deployment descriptors located with the application deployment
+                            document, the deployment.xml file (default), or those located in the enterprise archive (EAR) file. Default is to use bindings located in deployment.xml.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Create MBeans for resources?</td>
+                        <td>Specifies whether to create MBeans for resources such as servlets or JSP files within an application when the application starts.Default is create MBeans.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Override class reloading settings for web and EJB modules?</td>
+                        <td>Specifies whether the product run time detects changes to application classes when the application is running. If yes, then on such changes application is stopped and restarted to reload updated classes.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Reload interval in seconds</td>
+                        <td>Specifies the number of seconds to scan the application's file system for updated files.Default is 3 seconds.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Deploy web services?</td>
+                        <td>Specifies whether to deploy web services.Default is NO.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Validate resource references</td>
+                        <td>Specifies whether WebSphere examines the application references specified during application installation or updating and, if validation is
+                            enabled, warns you of incorrect references or fails the operation.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Process embedded configuration?</td>
+                        <td>Specifies whether the embedded configuration should be processed. An embedded configuration consists of files such as resource.xml,
+                            variables.xml, and deployment.xml.</td>
+                    </tr>
+
+                    <tr>
+                        <td>File permission</td>
+                        <td>Specifies access permissions for application binaries.Valid values are Allow all files to be read but not written to,Allow executables to execute,Allow HTML and image files to be read by everyone</td>
+                    </tr>
+
+                    <tr>
+                        <td>Customized file permission</td>
+                        <td>Provide custom file permissions if not listed in File permissions drop down.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Business­level application name</td>
+                        <td>Specifies whether WebSphere creates a new business­level application with the enterprise application that you are installing or makes the enterprise application a composition unit of an existing businessÂ­level application.The default is to create a new businessÂ­level application</td>
+                    </tr>
+
+                    <tr>
+                        <td>Allow EJB reference targets to resolve automatically</td>
+                        <td>Specifies whether the product assigns default JNDI values for or automatically resolves incomplete EJB reference targets.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Deploy client modules</td>
+                        <td>Select if the file to deploy has one or more client modules and want to configure environment entries for the client modules.Default is do not enable Client Module</td>
+                    </tr>
+
+                    <tr>
+                        <td>Client deployment mode</td>
+                        <td>Specifies whether to deploy client modules to an isolated deployment target (Isolated), a federated node of a deployment manager (Federated),
+                            or an application server (Server Deployed).Default is Isolated</td>
+                    </tr>
+
+                    <tr>
+                        <td>Validate schema</td>
+                        <td>Specifies whether to validate the deployment descriptors against published Java EE deployment descriptor schemas.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Map modules to servers</td>
+                        <td>Specify deployment targets where you want to install the modules that are contained in your application. Modules can be installed on the same deployment target or dispersed among several deployment targets.Give input in format [ "Module1Name" Module1URL server1][ "Module2Name" Module2URL server2 ] For example,[ "Increment EJB module" Increment.jar,META-INF/ejb-jar.xml WebSphere:cell=Cell01,node=Node01,server=singleServer ]</td>
+                    </tr>
+
+                    <tr>
+                        <td>Additional deployment parameters</td>
+                        <td>Specify any additional options for AdminApp.Install object in case not listed in this input form.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <h3>Deploy Enterprise Application</h3>
+
+            <p>To deploy an enterprise application, do these steps:</p>
+
+            <ol>
+                <li>Go to the DeployEnterpriseApp procedure. </li>
+                <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeployEnterpriseApp/EC-WebSphereDeployEnterpriseApp2.png" />
+            </ol>
+
+
+
+            <p>After the job runs, you can view the results, including the following job details, which show that
+
+                enterprise application is deployed successfully:</p>
+
+            <img src="../../plugins/EC-WebSphere/images/DeployEnterpriseApp/EC-WebSphereDeployEnterpriseApp3.png" />
+
+
+            <p>In the <b>DeployEnterpriseApp</b> step, click the Log icon
+
+                to see the diagnostic information. The output is similar to
+
+                the following diagnostic
+
+                report.</p>
+
+            <img src="../../plugins/EC-WebSphere/images/DeployEnterpriseApp/EC-WebSphereDeployEnterpriseApp4.png" />
+
+        </div>
+
+        <div id="DeployOSGi">
+
+            <a name="DeployOSGi"
+
+               id="DeployOSGi"></a>
+
+
+
+            <h2>DeployOSGiApp</h2>
+
+
+            <p>This procedure deploys the OSGi application.It optionally configures
+                external OSGi bundle library if the application to be deployed reference bundles that are stored in an external bundle repository.
+                This procedure can also add the bundles to internal bundle repository, if required.</p>
+
+            <h3>DeployOSGiApp Parameters</h3>
+
+            <table class="grid">
+
+                <thead>
+
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Wsadmin Absolute Path</td>
+                        <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Connection Type</td>
+                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Want to add external bundle repository?</td>
+                        <td>If your OSGi applications reference bundles stored in an external bundle repository, you must configure a link (name and URL) to the repository so that the provisioner can retrieve the bundles when required.</td>
+                    </tr>
+
+                    <tr>
+                        <td>External Bundle Repository Name</td>
+                        <td>Name of the external bundle repository to configure.  </td>
+                    </tr>
+
+                    <tr>
+                        <td>External Bundle Repository URL</td>
+                        <td>URL of the external bundle repository to configure.</td>
+                    </tr>
+
+                    <tr>
+                        <td>List of bundles to add to local repository</td>
+                        <td>Comma separated list of bundles to add to internal bundle repository.For example, C:/installableApps/com.ibm.samples.websphere.osgi.logging.api.jar,C:/installableApps/com.ibm.samples.websphere.osgi.logging.impl.jar</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">EBA file Path</td>
+                        <td>Absolute path of the OSGi application to deploy. i.e: '/path/to/blog.eba' or 'c:/mydir/blog.eba'.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Application Name</td>
+                        <td>>Name to be given to newly deployed OSGi application.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Target Deployment Unit</td>
+                        <td>Deployment Unit on which to deploy the OSGi application. For e.g cluster=cluster1 or node=node01,server=server1</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <h3>Deploy OSGi Application</h3>
+
+            <p>To deploy an OSGi application, do these steps:</p>
+
+            <ol>
+                <li>Go to the DeployOSGiApp procedure. </li>
+                <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeployOSGi/EC-WebSphereDeployOSGi2.png" />
+            </ol>
+
+
+
+            <p>After the job runs, you can view the results, including the following job details, which show that
+
+                OSGi application is deployed successfully:</p>
+
+            <img src="../../plugins/EC-WebSphere/images/DeployOSGi/EC-WebSphereDeployOSGi3.png" />
+
+
+            <p>In the <b>DeployOSGi</b> step, click the Log icon
+
+                to see the diagnostic information. The output is similar to
+
+                the following diagnostic
+
+                report.</p>
+
+            <img src="../../plugins/EC-WebSphere/images/DeployOSGi/EC-WebSphereDeployOSGi4.png" />
+        </div>
+
+        <div id="ListClusterMembers">
+
+            <a name="ListClusterMembers"
+
+               id="ListClusterMembers"></a>
+
+
+
+            <h2>ListClusterMembers</h2>
+
+
+
+            <p>This procedure lists down all the members (application servers) of the cluster using a Jython script.</p>
+
+            <h3>ListClusterMembers Parameters</h3>
+
+            <table class="grid">
+
+                <thead>
+
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Wsadmin Absolute Path</td>
+                        <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Connection Type</td>
+                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="required">Cluster Name</td>
+                        <td>Name of the cluster.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <h3>List Cluster Members</h3>
+
+            <p>To list all the members of the cluster, do these steps:</p>
+
+            <ol>
+                <li>Go to the ListClusterMembers procedure. </li>
+                <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/ListClusterMembers/EC-WebSphereListClusterMembers2.png" />
+            </ol>
+
+
+
+            <p>After the job runs, you can view the results, including the following job details, which show a list of cluster members:</p>
+
+            <img src="../../plugins/EC-WebSphere/images/ListClusterMembers/EC-WebSphereListClusterMembers3.png" />
+
+
+            <p>In the <b>ListClusterMembers</b> step, click the Log icon
+
+                to see the diagnostic information. The output is similar to
+
+                the following diagnostic
+
+                report.</p>
+
+            <img src="../../plugins/EC-WebSphere/images/ListClusterMembers/EC-WebSphereListClusterMembers4.png" />
+
+        </div>
+
+    <div id="PublishWSDL">
+
+        <a name="PublishWSDL"
+
+           id="PublishWSDL"></a>
+
+
+
+        <h2>PublishWSDL</h2>
+
+
+        <p>This procedure publishes WSDL files in each web services-enabled module to the file system location.</p>
+
+        <h3>PublishWSDL Parameters</h3>
+
+        <table class="grid">
+
+            <thead>
+
+                <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+
+                <tr>
+                    <td class="required">Configuration Name</td>
+                    <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                </tr>
+
+                <tr>
+                    <td class="required">Wsadmin Absolute Path</td>
+                    <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                </tr>
+
+                <tr>
+                    <td>Connection Type</td>
+                    <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
+                </tr>
+
+                <tr>
+                    <td>Commands</td>
+                    <td>Commands to be entered to wsadmin. Enter one command per line.</td>
+                </tr>
+
+                <tr>
+                    <td>Java Parameters</td>
+                    <td>Java options to be passed to wsadmin, separate them using semicolons (;).</td>
+                </tr>
+
+                <tr>
+                    <td>Classpath</td>
+                    <td>Jars to be passed to the wsadmin classpath. It is a string containing paths (semicolon-separated) the required JARs to execute wsadmin in a particular job. i.e: 'c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar' or '/MyDir/Myjar.jar;/yourdir/yourdir.jar'.</td>
+                </tr>
+
+                <tr>
+                    <td class="required">Application Name</td>
+                    <td>Name of the application of which to publish the WSDL file. For example, 'webapp'.</td>
+                </tr>
+
+                <tr>
+                    <td class="required">Location to publish WSDL file</td>
+                    <td>Path on file system where to store the published WSDL files.</td>
+                </tr>
+
+                <tr>
+                    <td>SOAP address prefixes</td>
+                    <td>Give SOAP address prefix in format "{{module {{binding partial-url}}}}"  to customize the WSDL SOAP address for each module.. i.e: '{ {AddressBookJ2WB.war {{http http://localhost:9080}}} {StockQuote.jar {{http https://localhost:9443}}} }'.</td>
+                </tr>
+
+                <tr>
+                    <td>Additional Commands</td>
+                    <td>Additional commands to be entered for wsadmin.</td>
+                </tr>
+
+                <tr>
+                    <td class="required">Target Deployment Unit</td>
+                    <td>Deployment Unit on which to deploy the OSGi application. For e.g cluster=cluster1 or node=node01,server=server1</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <h3>Publish WSDL</h3>
+
+        <p>To publish WSDL files, do these steps:</p>
+
+        <ol>
+            <li>Go to the PublishWSDL procedure.</li>
+            <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/PublishWSDL/EC-WebSpherePublishWSDL2.png" />
+        </ol>
+        </div>
+
+        <div id="RemoveClusterMembers">
+
+            <a name="RemoveClusterMembers"
+
+               id="RemoveClusterMembers"></a>
+
+
+
+            <h2>RemoveClusterMembers</h2>
+
+
+
+            <p>This procedure removes specified application servers from the cluster using a Jython script.</p>
+
+            <h3>RemoveClusterMembers Parameters</h3>
+
+            <table class="grid">
+
+                <thead>
+
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Wsadmin Absolute Path</td>
+                        <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Connection Type</td>
+                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="required">Cluster Name</td>
+                        <td>Name to cluster.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">List of cluster members</td>
+                        <td>List of cluster members in the form Node01=server1,Node02=server2.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <h3>Remove Cluster Members</h3>
+
+            <p>To remove the members from application server cluster, do these steps:</p>
+
+            <ol>
+                <li>Go to the RemoveClusterMembers procedure. </li>
+                <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/RemoveClusterMembers/EC-WebSphereRemoveClusterMembers2.png" />
+            </ol>
+
+
+
+            <p>After the job runs, you can view the results, including the following job details, which show that
+
+                members of the cluster are removed successfully:</p>
+
+            <img src="../../plugins/EC-WebSphere/images/RemoveClusterMembers/EC-WebSphereRemoveClusterMembers3.png" />
+
+
+            <p>In the <b>RemoveClusterMembers</b> step, click the Log icon
+
+                to see the diagnostic information. The output is similar to
+
+                the following diagnostic
+
+                report.</p>
+
+            <img src="../../plugins/EC-WebSphere/images/RemoveClusterMembers/EC-WebSphereRemoveClusterMembers4.png" />
+
+        </div>
 
         <div id="RunCustomJob">
             <a id="RunCustomJob"
@@ -1696,67 +3219,158 @@
             to see the diagnostic information. The output is similar to
             the following diagnostic
             report.</p><img src="../../plugins/EC-WebSphere/images/UndeployApp/undeployApp4.png" />
-        </div>   
-       
+        </div>
 
-        <h1>Examples and Use Cases</h1>
-        <!-- This section is for examples and use cases, including
-        screenshots of the new Parameter Panel with example values
-        filled in. Unfortunately, I can't tell you what exactly to put
-        here, but it's OK to put what seems like too much! Include both
-        parameter values and output where appropriate. Use a separate
-        'h2' header for each example. Under the h2 header try to stay
-        with the style outline used above where possible. -->
+        <div id="UpdateApp">
 
-        <h2>Running Custom Jobs</h2>
+            <a name="UpdateApp"
 
-        <p>This example shows how to print a "Hello
-        World!" message in the output using the <i>Supplied File</i> option
-        with an existing script file in a path and using the <i>New
-        Script File</i> option with embedded code.</p>
-        <p>To run a custom job: </p>
-		
-        <ol>
+               id="UpdateApp"></a>
 
-        <li>Select the following step: </li><img src="../../plugins/EC-WebSphere/images/RunCustomJob/runCustomJob1.png" />
 
-        <li>Select the <i>Script File Source</i>: a script file route (<i>Supplied File</i>) or an embedded script file (<i>New Script File</i>). </li>
-		
-		<ul>
-		
-		<li>Enter the following parameters for the <i>Supplied File</i> option: </li><img src="../../plugins/EC-WebSphere/images/RunCustomJob/runCustomJob2.png" />
-		
-		<li>Enter the following parameters for the <i>New Script File</i> option: </li><img src="../../plugins/EC-WebSphere/images/RunCustomJob/runCustomJob3.png" />
-		
-		</ul>
-        
-		</ol>
-		
-		   
-     
 
-        <p>After the job runs, you can view the results, including the following job details, which show that
-        the job was run successfully
-        execution. The following results applies to both the <i>Supplied File</i> and <i>New Script File</i> options: </p>
-        <img src="../../plugins/EC-WebSphere/images/RunCustomJob/runCustomJob4.png" />
-         
+            <h2>UpdateApp</h2>
 
-        <p>In the <b>RunJob</b> step, click the Log icon to see the
-        log information. It applies to both the <i>Supplied File</i> and <i>New Script File</i> options. 
-        The output is similar to the following sample:</p><img src="../../plugins/EC-WebSphere/images/RunCustomJob/runCustomJob5.png" />
-         
 
-        <p>This is the <i>HelloWorld.jython</i> file
-        used with the <i>Supplied File</i>
-        option:</p><img src="../../plugins/EC-WebSphere/images/RunCustomJob/runCustomJob6.png" />
-         
+            <p>This procedure updates already deployed application in units of files,modules or entire application.</p>
 
-        
-    </div>
+            <h3>UpdateApp Parameters</h3>
 
-<h1>What's New for EC-WebSphere 2.0.6</h1>
-		
-		<h2>Features and Enhancements</h2>
+            <table class="grid">
+
+                <thead>
+
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Wsadmin Absolute Path</td>
+                        <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Connection Type</td>
+                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="required">Application Name</td>
+                        <td>Name of the web application to be updated. i.e: 'webapp'.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Content Type</td>
+                        <td>Specifies to type of content to update. Use File option for updating a single file, Partial Application option for updating application partially, Module option to add/update a module to the deployed application, Application option for updating the entire deployed application.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Operation</td>
+                        <td>Specifies to type of operation to perform as part of update procedure. Use Add option to  add new content, Update option to update existing content, AddUpdate option to add content and to replace if already exist, Delete option to remove existing content respectively. </td>
+                    </tr>
+
+                    <tr>
+                        <td>Content</td>
+                        <td>Specifies the file that contains the content that you want to update. For example, depending on the content type, the file could be an EAR file, a module, a partial zip, or a single file.Not required for Delete operation.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Content URI</td>
+                        <td>The relative path beginning with the installed application archive file to the file to be replaced or added. For example, if the file is located at com/company/greeting.class in module hello.jar, specify hello.jar/com/company/greeting.class for the relative path</td>
+                    </tr>
+
+                    <tr>
+                        <td>Is the application deployed on cluster?</td>
+                        <td>Select this checkbox if the application to be updated is deployed on cluster.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Cluster Name</td>
+                        <td>Name of the cluster on which application is deployed.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Server Name</td>
+                        <td>Name of the server on which application is deployed.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Additional Parameters</td>
+                        <td>Additional parameters to pass while updating entire application or module/s, if required. For example, -nodeployejb, -BindJndiForEJBNonMessageBinding etc.</td>
+                    </tr>
+
+
+
+                </tbody>
+
+            </table>
+
+            <h3>Update Application</h3>
+
+            <p>To update application , do these steps:</p>
+
+            <ol>
+                <li>Go to the UpdateApp procedure. </li>
+                <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/UpdateApp/EC-WebSphereUpdateApp2.png" />
+            </ol>
+
+
+
+            <p>After the job runs, you can view the results, including the following job details, which show that
+
+                WSDL files are published successfully:</p>
+
+            <img src="../../plugins/EC-WebSphere/images/UpdateApp/EC-WebSphereUpdateApp3.png" />
+
+
+            <p>In the <b>UpdateApp</b> step, click the Log icon
+
+                to see the diagnostic information. The output is similar to
+
+                the following diagnostic
+
+                report.</p>
+
+            <img src="../../plugins/EC-WebSphere/images/UpdateApp/EC-WebSphereUpdateApp4.png" />
+        </div>
+
+        <h1>Release Notes</h1>
+
+        <h2>Features and Enhancements in EC-WebSphere 2.0.7.</h2>
+
+        <!-- List any new or revised procedures, new features, enhancements to existing features, changed behaviour, and documentation updates for the latest release.
+
+        Replace the examples below with actual new or changed items.-->
+
+        <ul>
+
+            <!--When available, add these to the list: New procedures in the plugin, Updates for existing procedures, and Changed behaviour and functionality
+            -->
+
+            <li>Added support for WebSphere Network Deployment 8.5</li>
+            <li>Added support to create a cluster, add application servers to it, deploy applications in the cluster, remove cluster members, and delete the cluster.</li>
+            <li>Added support to deploy Java enterprise applications (EARs) and web archives (WARs).</li>
+            <li>Added support to update deployed applications.</li>
+            <li>Added support to deploy OSGi applications and to configure external and internal bundle repositories.</li>
+            <li>Added support to configure session management component for deployed applications..</li>
+            <li>Added support for setting the EJB container properties for improved memory consumption and stateful session bean failover.</li>
+            <li>Added support for the JavaMail session.</li>
+
+        </ul>
+
+        <h2>Features and Enhancements in EC-WebSphere 2.0.6.</h2>
 		
 		<!-- List any new or revised procedures, new features, enhancements to existing features, changed behaviour, and documentation updates for the latest release.
 		
@@ -1773,7 +3387,7 @@
 		
 		</ul>
 		
-		<h2>Resolved Issues</h2>
+		<h2>Resolved Issues in EC-WebSphere 2.0.6</h2>
 
         <ul>
 
@@ -1789,9 +3403,7 @@
 
         </ul>
 
-    <h1>What's New for Previous EC-WebSphere Releases</h1>  
-
-		<h2>EC-WebSphere 2.0.5</h2>
+        <h2>Features and Enhancements in EC-WebSphere 2.0.5.</h2>
 
 
 
@@ -1803,7 +3415,7 @@
 
 
 
-		<h2>EC-WebSphere 2.0.4</h2>
+        <h2>Features and Enhancements in EC-WebSphere 2.0.4.</h2>
 
 
 
@@ -1817,7 +3429,7 @@
 
 
 
-		<h2>EC-WebSphere 2.0.3</h2>
+        <h2>Features and Enhancements in EC-WebSphere 2.0.3.</h2>
 
 
 
@@ -1827,9 +3439,9 @@
 
 		</ul>
 
-		
 
-        <h2>EC-WebSphere 2.0.2</h2>
+
+        <h2>Features and Enhancements in EC-WebSphere 2.0.2.</h2>
 
 
 
@@ -1841,7 +3453,7 @@
 
 
 
-        <h2>EC-WebSphere 2.0.1</h2>
+        <h2>Features and Enhancements in EC-WebSphere 2.0.1.</h2>
 
 
 
@@ -1958,9 +3570,41 @@
             <li>Add the RunCustomJob procedure.</li>
 
         </ul>
-	
 
-	
+    <div id="LegalNotice">
+
+        <a name="LegalNotice"
+
+           id="LegalNotice"></a>
+
+        <h1>Troubleshooting and Getting Help</h1>
+        <p>Contacting Technical Support:</p>
+        <p>Before you contact our technical support staff, have the following information available.</p>
+        <ol>
+            <li>Your name, title, company name, phone number, fax number, and email address</li>
+            <li>Operating system and version number</li>
+            <li>Product name and release version</li>
+            <li>Problem description</li>
+        </ol>
+        <p>Hours: 9:00 AM to 5:00 PM PST (Monday-Friday, except Holidays) </p>
+        <p>Phone: 408-419-4300, Option #2 </p>
+        <p>Email: support@electric-cloud.com </p>
+        <br />
+        <p>Copyright © 2002  2015 Electric Cloud, Inc. All rights reserved. </p>
+        <p>Electric Cloud believes the information in this publication is accurate as of its publication date. The information is subject to change without notice and does not represent a commitment from the vendor. </p>
+        <p>THE INFORMATION IN THIS PUBLICATION IS PROVIDED AS IS. ELECTRIC CLOUD, INCORPORATED MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND WITH RESPECT TO THE INFORMATION IN THIS PUBLICATION, AND SPECIFICALLY DISCLAIMS IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.</p>
+        <p>Use, copying, and distribution of any ELECTRIC CLOUD software described in this publication requires an applicable software license. </p> <br />
+        <p><b>Trademarks</b></p>
+        <p>Electric Cloud, ElectricAccelerator, ElectricCommander, ElectricInsight, and Electric Make are registered trademarks or trademarks of Electric Cloud, Incorporated. </p>
+        <p>Electric Cloud products ElectricAccelerator, ElectricCommander, ElectricInsight, and Electric Make are
+            commonly referred to by their short names Accelerator, Commander, Insight, and Make throughout
+            various types of Electric Cloud product-specific documentation. </p>
+        <p>Other product names mentioned in this guide may be trademarks or registered trademarks of their respective owners and are hereby acknowledged. </p>
+
+
+    </div>
+
+</div>
 </body>
 </html>
 
