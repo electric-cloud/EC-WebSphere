@@ -15,13 +15,13 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath group: 'com.electriccloud.plugins', name: 'flow-gradle-plugin', version: '1.15'
+        classpath group: 'com.electriccloud.plugins', name: 'flow-gradle-plugin', version: '1.+'
     }
 }
 
 group = "com.electriccloud"
 description = "Plugins : EC-WebSphere"
-version = "2.0.6"
+version = "2.1.0"
 
 apply plugin: 'flow-gradle-plugin'
 
