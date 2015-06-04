@@ -145,6 +145,11 @@ $xpath = $ec->attachCredential($projName, $credName,
      stepName => 'CreateMailSession'});
 $errors .= $ec->checkAllErrors($xpath);
 
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'CreateProfile',
+     stepName => 'CreateProfile'});
+$errors .= $ec->checkAllErrors($xpath);
+
 if ($errors ne '') {
     
     # Cleanup the partially created configuration we just created

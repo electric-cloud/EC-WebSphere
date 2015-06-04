@@ -103,8 +103,16 @@
         <path>matchers/deleteClusterMembersMatchers.pl</path>
     </file>
     <file>
+        <xpath>//property[propertyName=&quot;createprofile_matchers&quot;]/value</xpath>
+        <path>matchers/createProfileMatchers.pl</path>
+    </file>
+    <file>
         <xpath>//procedure[procedureName=&quot;StartServer&quot;]/step[stepName=&quot;StartInstance&quot;]/command</xpath>
         <path>server/startServer.pl</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateProfile&quot;]/step[stepName=&quot;CreateProfile&quot;]/command</xpath>
+        <path>server/createProfile.pl</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;StopServer&quot;]/step[stepName=&quot;StopInstance&quot;]/command</xpath>
@@ -254,6 +262,10 @@
     <file>
         <xpath>//procedure[procedureName=&quot;StartServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ec_parameterForm-StartServer.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateProfile&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/ec_parameterForm-CreateProfile.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;StopServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>

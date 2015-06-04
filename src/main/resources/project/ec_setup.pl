@@ -187,6 +187,13 @@ my %createMailSession = (
     category    => "Application Server"
 );
 
+my %createProfile = (
+    label       => "WebSphere - Create Profile",
+    procedure   => "CreateProfile",
+    description => "Creates a new websphere profile",
+    category    => "Application Server"
+);
+
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy App");
@@ -219,6 +226,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create A
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Configure Session Management");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JMS Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JavaMail session");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Profile");
 
 @::createStepPickerSteps = (\%checkPageStatus, \%checkServerStatus,
                             \%startServer, \%stopServer,
@@ -233,7 +241,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create J
 							\%publishWSDL, \%deployOSGi,
 							\%createEndToEndMailProvider, \%createMailSession,
 							\%configEJBContainer, \%updateApp,
-							\%deployEnterpriseApp);
+							\%deployEnterpriseApp, \%createProfile);
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
@@ -439,6 +447,12 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'CreateMailSession',
                 stepName => 'CreateMailSession'
+            });
+
+             # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateProfile',
+                stepName => 'CreateProfile'
             });
 
         }
