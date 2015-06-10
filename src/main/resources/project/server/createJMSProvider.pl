@@ -189,6 +189,10 @@ sub main() {
     push( @args, '-f createJMSProvider_script.jython' );
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
 
+    if ( $::gConnectionType ne '' ) {
+        push( @args, '-conntype ' . $::gConnectionType );
+    }
+
     my $hostParamName;
 
     if ( $::gConnectionType eq IPC_CONNECTION_TYPE ) {

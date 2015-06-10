@@ -177,6 +177,9 @@ sub main() {
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
     push( @args, '-conntype ' . $gConnectionType );
 
+    if ( $gConnectionType ne '' ) {
+        push( @args, '-conntype ' . $gConnectionType );
+    }
 
     if ( $configuration{'websphere_url'} ne '' ) {
         push( @args, '-host ' . $configuration{'websphere_url'} );
