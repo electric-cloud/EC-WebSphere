@@ -3,7 +3,7 @@ push(
     @::gMatchers,
     {
         id      => "error1",
-        pattern => q{is not recognized as an internal or external command},
+        pattern => q{is not recognized as an internal or external command|sh: 1:\s(.+)\snot found},
         action =>
           q{&addSimpleError("Error: Can't find wsadmin path", "error");},
     },

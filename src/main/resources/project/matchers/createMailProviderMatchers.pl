@@ -2,7 +2,7 @@ push (@::gMatchers,
   
   {
    id =>        "error1",
-   pattern =>          q{is not recognized as an internal or external command|The system cannot find the path specified},
+   pattern =>          q{is not recognized as an internal or external command|The system cannot find the path specified|sh: 1:\s(.+)\snot found},
    action =>           q{
     
               my $description = ((defined $::gProperties{"summary"}) ? 
