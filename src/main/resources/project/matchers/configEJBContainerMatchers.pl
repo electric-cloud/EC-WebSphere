@@ -9,7 +9,7 @@ push(
     },
     {
         id      => "error2",
-        pattern => q{The system cannot find the path specified},
+        pattern => q{The system cannot find the path specified|sh: 1:\s(.+)\snot found},
         action =>
           q{&addSimpleError("Error: Can't find wsadmin path", "error");},
     },

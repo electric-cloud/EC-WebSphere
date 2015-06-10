@@ -18,6 +18,17 @@ q{&addSimpleError("Error: Cluster with given name already exits.", "error");}
                                    }
     },
     {
+       id =>        "error2",
+       pattern =>          q{is not recognized as an internal or external command|The system cannot find the path specified|sh: 1:\s(.+)\snot found},
+       action =>           q{
+                  my $description = ((defined $::gProperties{"summary"}) ?
+                        $::gProperties{"summary"} : '');
+                  $description .= "Error: Can't find wsadmin path.";
+                  setProperty("summary", $description . "\n");
+                   incValue("errors"); diagnostic("", "error", -1);
+                  }
+    },
+    {
         id => "clusterCreate",
         pattern =>
           '(.+)\(cells\/.+\/clusters\/.+\|cluster.xml#ServerCluster_.+',
@@ -71,6 +82,7 @@ q{&addSimpleError("Error: Cluster with given name already exits.", "error");}
                                               setProperty("summary", $description . "\n");
                   }
     }
+
 
 );
 
