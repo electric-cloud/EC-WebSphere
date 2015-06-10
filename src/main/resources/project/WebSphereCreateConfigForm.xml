@@ -12,15 +12,15 @@
         <label>WebSphere Host:</label>
         <property>websphere_url</property>
         <value></value>
-        <documentation>Url of WebSphere Server</documentation>
+        <documentation>Hostname of the WebSphere Application Server to administer using wsadmin tool.</documentation>
 		<required>1</required>
     </formElement>
     <formElement>
         <type>entry</type>
-        <label>Wsadmin Port:</label>
+        <label>WebSphere Connector Port:</label>
         <property>websphere_port</property>
         <value></value>
-        <documentation>Port of WebSphere Admin Console</documentation>
+        <documentation>Port of WebSphere Application server to which wsadmin should connect.Give the port number based on the type of connection you choose.For example, if you want to connect to application server using SOAP connection give the port number of SOAP connector of that server.</documentation>
 		<required>0</required>
     </formElement>
     <formElement>

@@ -259,14 +259,14 @@
             <formalParameter>
                 <formalParameterName>websphere_url</formalParameterName>
                 <defaultValue />
-                <description>URL of WebSphere Server. </description>
+                <description>Hostname of the WebSphere Application Server to administer using wsadmin tool.</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
                 <formalParameterName>websphere_port</formalParameterName>
                 <defaultValue />
-                <description>Port of WebSphere Admin Console.</description>
+                <description>Port of WebSphere Application server to which wsadmin should connect.Give the port number based on the type of connection you choose.For example, if you want to connect to application server using SOAP connection give the port number of SOAP connector of that server.</description>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>
