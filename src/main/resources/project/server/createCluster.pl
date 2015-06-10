@@ -137,13 +137,14 @@ sub main() {
           . 'print result' . "\n"
           . 'AdminConfig.save()';
 
-        foreach my $node ( keys %NodeServerHash ) {
-            $ScriptFile .= "\n"
-              . 'Sync1 = AdminControl.completeObjectName(\'type=NodeSync,node='
-              . $node . ',*\')' . "\n"
-              . 'AdminControl.invoke(Sync1, \'sync\')';
+    }
 
-        }
+     foreach my $node ( keys %NodeServerHash ) {
+        $ScriptFile .= "\n"
+          . 'Sync1 = AdminControl.completeObjectName(\'type=NodeSync,node='
+          . $node . ',*\')' . "\n"
+          . 'AdminControl.invoke(Sync1, \'sync\')';
+
     }
 
     $ScriptFile .=
