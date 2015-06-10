@@ -25,9 +25,50 @@ push(
                            incValue("errors"); diagnostic("", "error", -1);
                            &addSimpleError("Error: Error occurred while listing cluster members.", "error");
                       }
-    }
+    },
+     {
+         id      => "listmembers",
+         pattern => q{Cluster member:\s(.+)},
+         action  => q{
+                        my $description;
+                        $description = "$1";
+                       setProperty("clusterMembers", $description );
+                   }
+     },
+     {
+              id      => "listmembers",
+              pattern => q{Cluster member:\s(.+)},
+              action  => q{
+                             my $description;
+                             $description = "$1";
+                            setProperty("clusterMembers", $description );
+                        }
+     },
+     {
+            id      => "memberConfiguration",
+            pattern => q{(\[.+\])},
+            action  => q{
+                           my $description;
+                           $description = "$1";
+                          setProperty("memberConfiguration", $description );
+                      }
+     }
+
 
 );
+
+sub setProperty {
+     my ( $propName, $propValue) = @_;
+
+     my $ec = new ElectricCommander();
+     $ec->abortOnError(0);
+     my $prevPropValue = ( $ec->getProperty("/myJob/" . $propName) )->findvalue("//value");
+     if( $prevPropValue ne '') {
+         $propValue = $prevPropValue . "," . $propValue;
+     }
+     $ec->setProperty( "/myJob/" . $propName, $propValue );
+
+}
 
 sub addSimpleError {
     my ( $customError, $type ) = @_;
