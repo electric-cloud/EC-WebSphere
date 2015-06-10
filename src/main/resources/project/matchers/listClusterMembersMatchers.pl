@@ -36,15 +36,6 @@ push(
                    }
      },
      {
-              id      => "listmembers",
-              pattern => q{Cluster member:\s(.+)},
-              action  => q{
-                             my $description;
-                             $description = "$1";
-                            setProperty("clusterMembers", $description );
-                        }
-     },
-     {
             id      => "memberConfiguration",
             pattern => q{(\[.+\])},
             action  => q{
