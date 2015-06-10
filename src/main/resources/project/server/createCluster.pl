@@ -175,7 +175,7 @@ sub main() {
 
     push( @args, '-f createCluster.jython' );
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
-    push( @args, '-conntype ' . $gConnectionType );
+
 
     if ( $gConnectionType ne '' ) {
         push( @args, '-conntype ' . $gConnectionType );
