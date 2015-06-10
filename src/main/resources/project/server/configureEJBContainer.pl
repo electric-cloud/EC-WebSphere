@@ -229,6 +229,10 @@ sub main() {
         push( @args, '-port ' . $configuration{'websphere_port'} );
     }
 
+    if ( $gConnectionType ne '' ) {
+            push( @args, '-conntype ' . $gConnectionType );
+    }
+
     if ( $configuration{'user'} ne '' ) {
         push( @args, '-user ' . $configuration{'user'} );
     }
