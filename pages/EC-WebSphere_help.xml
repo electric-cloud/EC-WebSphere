@@ -139,17 +139,13 @@
                     <tr>
                         <td class="required">WebSphere Host</td>
 
-                        <td>The URL of the WebSphere Server.  </td>
+                        <td>Hostname of the WebSphere Application Server to administer using wsadmin tool.</td>
                     </tr>
 
                     <tr>
-                        <td>WebSphere Admin Port</td>
+                        <td>WebSphere Connector Port</td>
 
-                        <td>The port for the WebSphere administrative console. This
-                        port is used with the WebSphere URL. 
-                        If it is not specified, ElectricCommander
-                       uses 9043 as the default port. For example, you can specify  
-                       <b>9070</b> as the port.</td>
+                        <td>Port of WebSphere Application server to which wsadmin should connect.Give the port number based on the type of connection you choose.For example, if you want to connect to application server using SOAP connection give the port number of SOAP connector of that server.</td>
                     </tr>
 
                     <tr>
