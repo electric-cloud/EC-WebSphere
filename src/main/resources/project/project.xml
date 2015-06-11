@@ -8359,7 +8359,7 @@
             <formalParameter>
                 <formalParameterName>scope</formalParameterName>
                 <defaultValue />
-                <description>Specifies the scope in which the mail provider supports installed mail applications.</description>
+                <description>Specifies the scope in which the mail provider supports installed mail applications.For example, 'Cell=Cell01,Node=Node01,Server=server1' or 'Cell=Cell01,ServerCluster=testCluster'</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
@@ -8987,7 +8987,7 @@
             <formalParameter>
                 <formalParameterName>scope</formalParameterName>
                 <defaultValue />
-                <description>Specifies the scope in which the mail provider supports installed mail applications.For e.g. /Cell:Cell01/ServerCluster:testCluster/</description>
+                <description>Specifies the scope in which the mail session supports installed mail applications.For e.g. 'Cell=Cell01,Node=Node01,Server=server1' or 'Cell=Cell01,ServerCluster=testCluster'</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>

@@ -998,7 +998,7 @@
 
                     <tr>
                         <td class="required">Scope</td>
-                        <td>Specifies the scope in which the mail provider supports installed mail applications.</td>
+                        <td>Specifies the scope in which the mail provider supports installed mail applications.For example, 'Cell=Cell01,Node=Node01,Server=server1' or 'Cell=Cell01,ServerCluster=testCluster'</td>
                     </tr>
 
                     <tr>
@@ -1471,7 +1471,7 @@
 
                     <tr>
                         <td class="required">Scope</td>
-                        <td>Specifies the scope in which the mail session supports installed mail applications.For For example, /Cell:Cell01/ServerCluster:testCluster/</td>
+                        <td>Specifies the scope in which the mail session supports installed mail applications.For example, 'Cell=Cell01,Node=Node01,Server=server1' or 'Cell=Cell01,ServerCluster=testCluster'</td>
                     </tr>
 
                     <tr>

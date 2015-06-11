@@ -95,6 +95,12 @@ sub main() {
     my $ec = new ElectricCommander();
     $ec->abortOnError(0);
 
+    ## Convert format of scope variable from 'Cell=Cell01,Node=Node01,Server=server1' to required /Cell:Cell01/Node:Node01/Server:server1/
+    $gScope =~ s/=/:/g;
+    $gScope =~ s/,/\//g;
+    $gScope = '/' . $gScope . '/';
+
+
     %configuration = getConfiguration( $ec, $gConfigurationName );
 
     $ScriptFile = "import re\n";
