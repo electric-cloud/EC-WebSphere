@@ -146,6 +146,23 @@ sub main() {
     #execute command
     my $content = `$cmdLine`;
 
+    my @clusterMembers = $content =~ /Cluster member:\s(.+)/mg;
+
+    # Convert array of cluster members into comma separated string
+    my $clusterMembersList = '';
+    foreach my $clusterMember (@clusterMembers) {
+
+        if($clusterMembersList ne '') {
+            $clusterMembersList .= ',';
+        }
+        $clusterMembersList .= $clusterMember;
+
+    }
+    $ec->setProperty( "/myJob/clusterMembers", $clusterMembersList );
+
+    my @memberConfigurations = $content =~ /(\[.+\])/mg;
+    $ec->setProperty( "/myJob/memberConfiguration", $memberConfigurations[0] );
+
     #print log
     print "$content\n";
 
