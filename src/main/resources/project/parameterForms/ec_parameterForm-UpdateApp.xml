@@ -23,12 +23,13 @@
 		<property>connectionType</property>
 		<required>0</required>
 		<documentation>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</documentation>
-		<option><name>None</name><value>none</value></option>
-		<option><name>SOAP</name><value>soap</value></option>
-		<option><name>RMI</name><value>rmi</value></option>
-		<option><name>JSR160RMI</name><value>jsr160rmi</value></option>
-		<option><name>IPC</name><value>ipc</value></option>
+		<option><name>None</name><value>None</value></option>
+		<option><name>SOAP</name><value>SOAP</value></option>
+		<option><name>RMI</name><value>RMI</value></option>
+		<option><name>JSR160RMI</name><value>JSR160RMI</value></option>
+		<option><name>IPC</name><value>IPC</value></option>
 	</formElement>
+
 
 	<formElement>
 		<type>entry</type>

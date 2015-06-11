@@ -56,7 +56,7 @@ my $gCellName  = ( $ec->getProperty("cellname") )->findvalue("//value");
 my $gConfigurationName =
   ( $ec->getProperty("configname") )->findvalue("//value");
 my $gConnectionType =
-  ( $ec->getProperty("connectiontype") )->findvalue("//value");
+  ( $ec->getProperty("connectionType") )->findvalue("//value");
 
 #-------------------------------------------------------------------------
 # Main functions

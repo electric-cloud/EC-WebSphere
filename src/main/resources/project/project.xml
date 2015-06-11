@@ -2443,9 +2443,8 @@
                                 </property>
 
                                 <property>
-                                    <propertyName>connectiontype</propertyName>
+                                    <propertyName>connectionType</propertyName>
                                     <propertySheet>
-
                                         <property>
                                             <propertyName>options</propertyName>
                                             <propertySheet>
@@ -2455,10 +2454,8 @@
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>None</value>
-
+                                                            <value>NONE</value>
                                                         </property>
-
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
@@ -2467,7 +2464,6 @@
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option2</propertyName>
                                                     <propertySheet>
                                                         <property>
@@ -2478,7 +2474,7 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>soap</value>
+                                                            <value>SOAP</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
@@ -2493,29 +2489,26 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>rmi</value>
+                                                            <value>RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option4</propertyName>
                                                     <propertySheet>
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-
                                                             <value>JSR160RMI</value>
                                                         </property>
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>jsr160rmi</value>
+                                                            <value>JSR160RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option5</propertyName>
                                                     <propertySheet>
                                                         <property>
@@ -2526,12 +2519,11 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>ipc</value>
+                                                            <value>IPC</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>optionCount</propertyName>
                                                     <expandable>1</expandable>
                                                     <value>5</value>
@@ -2547,7 +2539,6 @@
                                             <propertyName>formType</propertyName>
                                             <expandable>1</expandable>
                                             <value>standard</value>
-
                                         </property>
                                     </propertySheet>
                                 </property>
@@ -2627,7 +2618,7 @@
             </formalParameter>
 
             <formalParameter>
-                <formalParameterName>connectiontype</formalParameterName>
+                <formalParameterName>connectionType</formalParameterName>
                 <defaultValue />
                 <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
                 <required>0</required>
@@ -4794,11 +4785,9 @@
                                     </propertySheet>
                                 </property>
 
-
                                 <property>
                                     <propertyName>connectionType</propertyName>
                                     <propertySheet>
-
                                         <property>
                                             <propertyName>options</propertyName>
                                             <propertySheet>
@@ -4808,10 +4797,8 @@
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>None</value>
-
+                                                            <value>NONE</value>
                                                         </property>
-
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
@@ -4820,7 +4807,6 @@
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option2</propertyName>
                                                     <propertySheet>
                                                         <property>
@@ -4831,7 +4817,7 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>soap</value>
+                                                            <value>SOAP</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
@@ -4846,29 +4832,26 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>rmi</value>
+                                                            <value>RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option4</propertyName>
                                                     <propertySheet>
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-
                                                             <value>JSR160RMI</value>
                                                         </property>
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>jsr160rmi</value>
+                                                            <value>JSR160RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option5</propertyName>
                                                     <propertySheet>
                                                         <property>
@@ -4879,12 +4862,11 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>ipc</value>
+                                                            <value>IPC</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>optionCount</propertyName>
                                                     <expandable>1</expandable>
                                                     <value>5</value>
@@ -4900,10 +4882,10 @@
                                             <propertyName>formType</propertyName>
                                             <expandable>1</expandable>
                                             <value>standard</value>
-
                                         </property>
                                     </propertySheet>
                                 </property>
+
 
                                 <property>
                                     <propertyName>appName</propertyName>
@@ -5615,7 +5597,6 @@
                                 <property>
                                     <propertyName>connectionType</propertyName>
                                     <propertySheet>
-
                                         <property>
                                             <propertyName>options</propertyName>
                                             <propertySheet>
@@ -5625,10 +5606,8 @@
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>None</value>
-
+                                                            <value>NONE</value>
                                                         </property>
-
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
@@ -5637,7 +5616,6 @@
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option2</propertyName>
                                                     <propertySheet>
                                                         <property>
@@ -5648,7 +5626,7 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>soap</value>
+                                                            <value>SOAP</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
@@ -5663,29 +5641,26 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>rmi</value>
+                                                            <value>RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option4</propertyName>
                                                     <propertySheet>
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-
                                                             <value>JSR160RMI</value>
                                                         </property>
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>jsr160rmi</value>
+                                                            <value>JSR160RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option5</propertyName>
                                                     <propertySheet>
                                                         <property>
@@ -5696,12 +5671,11 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>ipc</value>
+                                                            <value>IPC</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>optionCount</propertyName>
                                                     <expandable>1</expandable>
                                                     <value>5</value>
@@ -5717,7 +5691,6 @@
                                             <propertyName>formType</propertyName>
                                             <expandable>1</expandable>
                                             <value>standard</value>
-
                                         </property>
                                     </propertySheet>
                                 </property>
@@ -5983,7 +5956,7 @@
                                 </property>
 
                                 <property>
-                                    <propertyName>connectiontype</propertyName>
+                                    <propertyName>connectionType</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>options</propertyName>
@@ -5994,10 +5967,8 @@
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>None</value>
-
+                                                            <value>NONE</value>
                                                         </property>
-
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
@@ -6005,7 +5976,6 @@
                                                         </property>
                                                     </propertySheet>
                                                 </property>
-
                                                 <property>
                                                     <propertyName>option2</propertyName>
                                                     <propertySheet>
@@ -6017,11 +5987,10 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>soap</value>
+                                                            <value>SOAP</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
-
                                                 <property>
                                                     <propertyName>option3</propertyName>
                                                     <propertySheet>
@@ -6033,17 +6002,45 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>rmi</value>
+                                                            <value>RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
-
+                                                <property>
+                                                    <propertyName>option4</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>JSR160RMI</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>JSR160RMI</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>option5</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>IPC</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>IPC</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
                                                 <property>
                                                     <propertyName>optionCount</propertyName>
                                                     <expandable>1</expandable>
-                                                    <value>3</value>
+                                                    <value>5</value>
                                                 </property>
-
                                                 <property>
                                                     <propertyName>type</propertyName>
                                                     <expandable>1</expandable>
@@ -6192,7 +6189,7 @@
             </formalParameter>
 
             <formalParameter>
-                <formalParameterName>connectiontype</formalParameterName>
+                <formalParameterName>connectionType</formalParameterName>
                 <defaultValue />
                 <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE.</description>
                 <required>1</required>
@@ -6353,7 +6350,6 @@
                                 <property>
                                     <propertyName>connectionType</propertyName>
                                     <propertySheet>
-
                                         <property>
                                             <propertyName>options</propertyName>
                                             <propertySheet>
@@ -6363,10 +6359,8 @@
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>None</value>
-
+                                                            <value>NONE</value>
                                                         </property>
-
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
@@ -6375,7 +6369,6 @@
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option2</propertyName>
                                                     <propertySheet>
                                                         <property>
@@ -6386,7 +6379,7 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>soap</value>
+                                                            <value>SOAP</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
@@ -6401,29 +6394,26 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>rmi</value>
+                                                            <value>RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option4</propertyName>
                                                     <propertySheet>
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-
                                                             <value>JSR160RMI</value>
                                                         </property>
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>jsr160rmi</value>
+                                                            <value>JSR160RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option5</propertyName>
                                                     <propertySheet>
                                                         <property>
@@ -6434,12 +6424,11 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>ipc</value>
+                                                            <value>IPC</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>optionCount</propertyName>
                                                     <expandable>1</expandable>
                                                     <value>5</value>
@@ -6455,11 +6444,9 @@
                                             <propertyName>formType</propertyName>
                                             <expandable>1</expandable>
                                             <value>standard</value>
-
                                         </property>
                                     </propertySheet>
                                 </property>
-
 
                                 <property>
                                     <propertyName>clusterName</propertyName>
@@ -6615,10 +6602,8 @@
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>None</value>
-
+                                                            <value>NONE</value>
                                                         </property>
-
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
@@ -6626,7 +6611,6 @@
                                                         </property>
                                                     </propertySheet>
                                                 </property>
-
                                                 <property>
                                                     <propertyName>option2</propertyName>
                                                     <propertySheet>
@@ -6638,11 +6622,10 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>soap</value>
+                                                            <value>SOAP</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
-
                                                 <property>
                                                     <propertyName>option3</propertyName>
                                                     <propertySheet>
@@ -6654,17 +6637,45 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>rmi</value>
+                                                            <value>RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
-
+                                                <property>
+                                                    <propertyName>option4</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>JSR160RMI</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>JSR160RMI</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
+                                                <property>
+                                                    <propertyName>option5</propertyName>
+                                                    <propertySheet>
+                                                        <property>
+                                                            <propertyName>text</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>IPC</value>
+                                                        </property>
+                                                        <property>
+                                                            <propertyName>value</propertyName>
+                                                            <expandable>1</expandable>
+                                                            <value>IPC</value>
+                                                        </property>
+                                                    </propertySheet>
+                                                </property>
                                                 <property>
                                                     <propertyName>optionCount</propertyName>
                                                     <expandable>1</expandable>
-                                                    <value>3</value>
+                                                    <value>5</value>
                                                 </property>
-
                                                 <property>
                                                     <propertyName>type</propertyName>
                                                     <expandable>1</expandable>
@@ -6679,6 +6690,7 @@
                                         </property>
                                     </propertySheet>
                                 </property>
+
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -6811,9 +6823,8 @@
                                 </property>
 
                                 <property>
-                                    <propertyName>connectiontype</propertyName>
+                                    <propertyName>connectionType</propertyName>
                                     <propertySheet>
-
                                         <property>
                                             <propertyName>options</propertyName>
                                             <propertySheet>
@@ -6823,10 +6834,8 @@
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>None</value>
-
+                                                            <value>NONE</value>
                                                         </property>
-
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
@@ -6835,7 +6844,6 @@
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option2</propertyName>
                                                     <propertySheet>
                                                         <property>
@@ -6846,7 +6854,7 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>soap</value>
+                                                            <value>SOAP</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
@@ -6861,29 +6869,26 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>rmi</value>
+                                                            <value>RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option4</propertyName>
                                                     <propertySheet>
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-
                                                             <value>JSR160RMI</value>
                                                         </property>
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>jsr160rmi</value>
+                                                            <value>JSR160RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option5</propertyName>
                                                     <propertySheet>
                                                         <property>
@@ -6894,12 +6899,11 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>ipc</value>
+                                                            <value>IPC</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>optionCount</propertyName>
                                                     <expandable>1</expandable>
                                                     <value>5</value>
@@ -6915,12 +6919,9 @@
                                             <propertyName>formType</propertyName>
                                             <expandable>1</expandable>
                                             <value>standard</value>
-
                                         </property>
                                     </propertySheet>
                                 </property>
-
-
 
                                 <property>
                                     <propertyName>clusterName</propertyName>
@@ -7087,9 +7088,8 @@
                                 </property>
 
                                 <property>
-                                    <propertyName>connectiontype</propertyName>
+                                    <propertyName>connectionType</propertyName>
                                     <propertySheet>
-
                                         <property>
                                             <propertyName>options</propertyName>
                                             <propertySheet>
@@ -7099,10 +7099,8 @@
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>None</value>
-
+                                                            <value>NONE</value>
                                                         </property>
-
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
@@ -7111,7 +7109,6 @@
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option2</propertyName>
                                                     <propertySheet>
                                                         <property>
@@ -7122,7 +7119,7 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>soap</value>
+                                                            <value>SOAP</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
@@ -7137,29 +7134,26 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>rmi</value>
+                                                            <value>RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option4</propertyName>
                                                     <propertySheet>
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-
                                                             <value>JSR160RMI</value>
                                                         </property>
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>jsr160rmi</value>
+                                                            <value>JSR160RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option5</propertyName>
                                                     <propertySheet>
                                                         <property>
@@ -7170,12 +7164,11 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>ipc</value>
+                                                            <value>IPC</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>optionCount</propertyName>
                                                     <expandable>1</expandable>
                                                     <value>5</value>
@@ -7191,7 +7184,6 @@
                                             <propertyName>formType</propertyName>
                                             <expandable>1</expandable>
                                             <value>standard</value>
-
                                         </property>
                                     </propertySheet>
                                 </property>
@@ -7302,7 +7294,7 @@
             </formalParameter>
 
             <formalParameter>
-                <formalParameterName>connectiontype</formalParameterName>
+                <formalParameterName>connectionType</formalParameterName>
                 <defaultValue />
                 <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
                 <required>0</required>
@@ -7462,7 +7454,6 @@
                                 <property>
                                     <propertyName>connectionType</propertyName>
                                     <propertySheet>
-
                                         <property>
                                             <propertyName>options</propertyName>
                                             <propertySheet>
@@ -7472,10 +7463,8 @@
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>None</value>
-
+                                                            <value>NONE</value>
                                                         </property>
-
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
@@ -7484,7 +7473,6 @@
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option2</propertyName>
                                                     <propertySheet>
                                                         <property>
@@ -7495,7 +7483,7 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>soap</value>
+                                                            <value>SOAP</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
@@ -7510,29 +7498,26 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>rmi</value>
+                                                            <value>RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option4</propertyName>
                                                     <propertySheet>
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-
                                                             <value>JSR160RMI</value>
                                                         </property>
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>jsr160rmi</value>
+                                                            <value>JSR160RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option5</propertyName>
                                                     <propertySheet>
                                                         <property>
@@ -7543,12 +7528,11 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>ipc</value>
+                                                            <value>IPC</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>optionCount</propertyName>
                                                     <expandable>1</expandable>
                                                     <value>5</value>
@@ -7564,7 +7548,6 @@
                                             <propertyName>formType</propertyName>
                                             <expandable>1</expandable>
                                             <value>standard</value>
-
                                         </property>
                                     </propertySheet>
                                 </property>
@@ -7858,7 +7841,6 @@
                                 <property>
                                     <propertyName>connectionType</propertyName>
                                     <propertySheet>
-
                                         <property>
                                             <propertyName>options</propertyName>
                                             <propertySheet>
@@ -7868,10 +7850,8 @@
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>None</value>
-
+                                                            <value>NONE</value>
                                                         </property>
-
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
@@ -7880,7 +7860,6 @@
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option2</propertyName>
                                                     <propertySheet>
                                                         <property>
@@ -7891,7 +7870,7 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>soap</value>
+                                                            <value>SOAP</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
@@ -7906,29 +7885,26 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>rmi</value>
+                                                            <value>RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option4</propertyName>
                                                     <propertySheet>
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-
                                                             <value>JSR160RMI</value>
                                                         </property>
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>jsr160rmi</value>
+                                                            <value>JSR160RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option5</propertyName>
                                                     <propertySheet>
                                                         <property>
@@ -7939,12 +7915,11 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>ipc</value>
+                                                            <value>IPC</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>optionCount</propertyName>
                                                     <expandable>1</expandable>
                                                     <value>5</value>
@@ -7960,7 +7935,6 @@
                                             <propertyName>formType</propertyName>
                                             <expandable>1</expandable>
                                             <value>standard</value>
-
                                         </property>
                                     </propertySheet>
                                 </property>
@@ -8654,7 +8628,7 @@
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>None</value>
+                                                            <value>NONE</value>
                                                         </property>
                                                         <property>
                                                             <propertyName>value</propertyName>
@@ -8663,7 +8637,6 @@
                                                         </property>
                                                     </propertySheet>
                                                 </property>
-
                                                 <property>
                                                     <propertyName>option2</propertyName>
                                                     <propertySheet>
@@ -8675,7 +8648,7 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>soap</value>
+                                                            <value>SOAP</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
@@ -8690,11 +8663,10 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>rmi</value>
+                                                            <value>RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
-
                                                 <property>
                                                     <propertyName>option4</propertyName>
                                                     <propertySheet>
@@ -8706,11 +8678,10 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>jsr160rmi</value>
+                                                            <value>JSR160RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
-
                                                 <property>
                                                     <propertyName>option5</propertyName>
                                                     <propertySheet>
@@ -8722,11 +8693,10 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>ipc</value>
+                                                            <value>IPC</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
-
                                                 <property>
                                                     <propertyName>optionCount</propertyName>
                                                     <expandable>1</expandable>
@@ -9219,7 +9189,7 @@
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>None</value>
+                                                            <value>NONE</value>
                                                         </property>
                                                         <property>
                                                             <propertyName>value</propertyName>
@@ -9239,7 +9209,7 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>soap</value>
+                                                            <value>SOAP</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
@@ -9254,7 +9224,7 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>rmi</value>
+                                                            <value>RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
@@ -9269,7 +9239,7 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>jsr160rmi</value>
+                                                            <value>JSR160RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
@@ -9284,7 +9254,7 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>ipc</value>
+                                                            <value>IPC</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
@@ -9703,7 +9673,6 @@
                                 <property>
                                     <propertyName>connectionType</propertyName>
                                     <propertySheet>
-
                                         <property>
                                             <propertyName>options</propertyName>
                                             <propertySheet>
@@ -9713,10 +9682,8 @@
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>None</value>
-
+                                                            <value>NONE</value>
                                                         </property>
-
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
@@ -9725,7 +9692,6 @@
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option2</propertyName>
                                                     <propertySheet>
                                                         <property>
@@ -9736,7 +9702,7 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>soap</value>
+                                                            <value>SOAP</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
@@ -9751,29 +9717,26 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>rmi</value>
+                                                            <value>RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option4</propertyName>
                                                     <propertySheet>
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-
                                                             <value>JSR160RMI</value>
                                                         </property>
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>jsr160rmi</value>
+                                                            <value>JSR160RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option5</propertyName>
                                                     <propertySheet>
                                                         <property>
@@ -9784,12 +9747,11 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>ipc</value>
+                                                            <value>IPC</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>optionCount</propertyName>
                                                     <expandable>1</expandable>
                                                     <value>5</value>
@@ -9805,7 +9767,6 @@
                                             <propertyName>formType</propertyName>
                                             <expandable>1</expandable>
                                             <value>standard</value>
-
                                         </property>
                                     </propertySheet>
                                 </property>
@@ -10292,9 +10253,8 @@
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>None</value>
+                                                            <value>NONE</value>
                                                         </property>
-
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
@@ -10303,7 +10263,6 @@
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option2</propertyName>
                                                     <propertySheet>
                                                         <property>
@@ -10314,7 +10273,7 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>soap</value>
+                                                            <value>SOAP</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
@@ -10329,29 +10288,26 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>rmi</value>
+                                                            <value>RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option4</propertyName>
                                                     <propertySheet>
                                                         <property>
                                                             <propertyName>text</propertyName>
                                                             <expandable>1</expandable>
-
                                                             <value>JSR160RMI</value>
                                                         </property>
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>jsr160rmi</value>
+                                                            <value>JSR160RMI</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>option5</propertyName>
                                                     <propertySheet>
                                                         <property>
@@ -10362,12 +10318,11 @@
                                                         <property>
                                                             <propertyName>value</propertyName>
                                                             <expandable>1</expandable>
-                                                            <value>ipc</value>
+                                                            <value>IPC</value>
                                                         </property>
                                                     </propertySheet>
                                                 </property>
                                                 <property>
-
                                                     <propertyName>optionCount</propertyName>
                                                     <expandable>1</expandable>
                                                     <value>5</value>
@@ -10383,7 +10338,6 @@
                                             <propertyName>formType</propertyName>
                                             <expandable>1</expandable>
                                             <value>standard</value>
-
                                         </property>
                                     </propertySheet>
                                 </property>
