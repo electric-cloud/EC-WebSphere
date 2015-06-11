@@ -35,7 +35,7 @@
         <label>Scope:</label>
         <property>scope</property>
         <required>1</required>
-        <documentation>Specifies the scope in which the mail session supports installed mail applications.For e.g. /Cell:Cell01/ServerCluster:testCluster/</documentation>
+        <documentation>Specifies the scope in which the mail session supports installed mail applications.For example, 'Cell=Cell01,Node=Node01,Server=server1' or 'Cell=Cell01,ServerCluster=testCluster'</documentation>
     </formElement>
 
     <formElement>
