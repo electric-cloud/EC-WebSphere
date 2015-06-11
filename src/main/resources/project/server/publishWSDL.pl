@@ -45,7 +45,7 @@ $::gScriptFile = 'AdminApp.publishWSDL(\'' . $::gAppName . '\',\'' . $::gpublish
                 . "print 'WSDL files for " . $::gAppName . " published successfully'";
 $::gWSAdminAbsPath = trim(q($[wsadminabspath]));
 $::gClasspath = trim(q($[classpath]));
-$::gConnectionType = trim(q($[connectiontype]));
+$::gConnectionType = trim(q($[connectionType]));
 $::gJavaParams = trim(q($[javaparams]));
 $::gConfigurationName = "$[configname]";
 $::gAdditionalOptions = "$[additionalcommands]";

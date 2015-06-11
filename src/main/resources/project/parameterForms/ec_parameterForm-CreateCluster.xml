@@ -1,5 +1,14 @@
 <editor>
 	<help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CreateCluster</help>
+
+	<formElement>
+		<type>entry</type>
+		<label>Configuration Name:</label>
+		<property>configname</property>
+		<documentation>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</documentation>
+		<required>1</required>
+	</formElement>
+
 	<formElement>
 		<type>entry</type>
 		<label>Wsadmin Absolute Path:</label>
@@ -7,13 +16,18 @@
 		<required>1</required>
 		<documentation>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. '/path/to/wsadmin.sh' or 'wsadmin.bat'.</documentation>
 	</formElement>
-		
+
 	<formElement>
-		<type>entry</type>
-		<label>Configuration Name:</label>
-		<property>configname</property>
-		<documentation>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</documentation>
-		<required>1</required>
+		<type>select</type>
+		<label>Connection Type:</label>
+		<property>connectionType</property>
+		<required>0</required>
+		<documentation>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</documentation>
+		<option><name>None</name><value>None</value></option>
+		<option><name>SOAP</name><value>SOAP</value></option>
+		<option><name>RMI</name><value>RMI</value></option>
+		<option><name>JSR160RMI</name><value>JSR160RMI</value></option>
+		<option><name>IPC</name><value>IPC</value></option>
 	</formElement>
 
 	<formElement>
@@ -107,15 +121,5 @@
 		<required>0</required>
 	</formElement>
 
-	<formElement>
-		<type>select</type>
-		<label>Connection Type:</label>
-		<property>connectiontype</property>
-		<required>0</required>
-		<documentation>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</documentation>
-		<option><name>None</name><value>none</value></option>
-		<option><name>SOAP</name><value>soap</value></option>
-		<option><name>RMI</name><value>rmi</value></option>
-	</formElement>
 
 </editor>
