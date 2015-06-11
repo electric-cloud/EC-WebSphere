@@ -160,6 +160,7 @@ sub main() {
       "\n" . 'status = AdminControl.getAttribute(cluster, \'state\')';
     $ScriptFile .= "\n" . 'desiredStatus = \'websphere.cluster.running\'';
     $ScriptFile .= "\n" . 'print \'Cluster status = \' + status';
+    $ScriptFile .= "\n" . 'waitTime = 3';
     $ScriptFile .= "\n" . 'while 1:';
     $ScriptFile .=
       "\n\t" . 'status = AdminControl.getAttribute(cluster, \'state\')';
@@ -167,7 +168,9 @@ sub main() {
     $ScriptFile .= "\n\t" . 'if status==desiredStatus:';
     $ScriptFile .= "\n\t\t" . 'break';
     $ScriptFile .= "\n\t" . 'else:';
-    $ScriptFile .= "\n\t\t" . 'sleep(3)';
+    $ScriptFile .= "\n\t\t" . q(println 'Waiting for ' + `waitTime` + ' sec.');
+    $ScriptFile .= "\n\t\t" . 'sleep(waitTime)';
+    $ScriptFile .= "\n\t\t" . 'waitTime = waitTime + 3';
 
     open( MYFILE, '>createCluster.jython' );
 
