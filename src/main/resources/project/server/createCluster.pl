@@ -137,13 +137,14 @@ sub main() {
           . 'print result' . "\n"
           . 'AdminConfig.save()';
 
-        foreach my $node ( keys %NodeServerHash ) {
-            $ScriptFile .= "\n"
-              . 'Sync1 = AdminControl.completeObjectName(\'type=NodeSync,node='
-              . $node . ',*\')' . "\n"
-              . 'AdminControl.invoke(Sync1, \'sync\')';
+    }
 
-        }
+     foreach my $node ( keys %NodeServerHash ) {
+        $ScriptFile .= "\n"
+          . 'Sync1 = AdminControl.completeObjectName(\'type=NodeSync,node='
+          . $node . ',*\')' . "\n"
+          . 'AdminControl.invoke(Sync1, \'sync\')';
+
     }
 
     $ScriptFile .=
@@ -175,8 +176,11 @@ sub main() {
 
     push( @args, '-f createCluster.jython' );
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
-    push( @args, '-conntype ' . $gConnectionType );
 
+
+    if ( $gConnectionType ne '' ) {
+        push( @args, '-conntype ' . $gConnectionType );
+    }
 
     if ( $configuration{'websphere_url'} ne '' ) {
         push( @args, '-host ' . $configuration{'websphere_url'} );
