@@ -44,6 +44,20 @@ sub main() {
 
     %configuration = getConfiguration( $ec, $gConfigurationName );
 
+    if( $gOperation ne 'delete' && $gContent eq ''){
+        print "Error : Content field can not be empty for operation " . $gOperation . ".";
+        return;
+    }
+
+    if( ($gContentType eq 'file' || $gContentType eq 'modulefile') && $gContentURI eq ''){
+        print "Error : Content URI field can not be empty for content type " . $gContentType . ".";
+        return;
+    }
+
+    if( $gContentType eq 'app' && $gOperation ne 'update') {
+        print "Error : Invalid operation " . $gOperation . " for content type APPLICATION.";
+        return;
+    }
     my $ScriptFile =
         "import sys\n"
       . "result = AdminApp.update('"
@@ -122,7 +136,8 @@ sub main() {
 
         }
         else {
-            die "Error : Cluster name not provided.";
+            print "Error : Cluster name not provided.\n";
+            return;
         }
 
     }
@@ -151,7 +166,8 @@ sub main() {
 
         }
         else {
-            die "Error : Server name not provided.";
+            print "Error : Server name not provided.\n";
+            return;
         }
 
     }
