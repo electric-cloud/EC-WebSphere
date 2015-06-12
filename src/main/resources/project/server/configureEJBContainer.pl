@@ -105,10 +105,9 @@ sub main() {
 
     ## ServerName is mandatory parameter, hence not checking it here.
     $ScriptFile .= "/Server:" . $gServerName . "/')\n";
-    $ScriptFile .= "print serv1\n";
 
     $ScriptFile .= "ejbc1 = AdminConfig.list('EJBContainer', serv1)\n";
-    $ScriptFile .= "print ejbc1\n";
+    
     $ScriptFile .= "AdminConfig.modify(ejbc1, [";
     if ($gPassivationDirectory) {
         $ScriptFile .=
@@ -151,6 +150,8 @@ sub main() {
       . $gCacheSize
       . "'],['cleanupInterval','"
       . $gCleanupInterval . "']]]";
+
+    $anotherOptionalParam = 1;
 
     if ($gInactivePoolCleanupInterval) {
         if ( $anotherOptionalParam == 1 ) {
