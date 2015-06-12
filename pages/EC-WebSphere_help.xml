@@ -519,7 +519,8 @@
 
 
 
-            <p>This procedure configures the session management related properties for deployed application</p>
+            <p>This procedure configures the session management related properties for deployed application.
+            For more information on each of the parameter, please refer to the <a href="http://www-01.ibm.com/support/knowledgecenter/SSCKBL_8.5.5/com.ibm.websphere.nd.doc/ae/uprs_rsession_manager.html">WebSphere Knowledge Center Page.</a> </p>
 
             <h3>ConfigureSession Parameters</h3>
 
@@ -2108,26 +2109,6 @@
                         <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
                     </tr>
 
-                    <tr>
-                        <td>Commands</td>
-                        <td>Commands to be entered to wsadmin. Use one command per line.</td>
-                    </tr>
-
-                    <tr>
-                        <td>Classpath</td>
-                        <td>Jars to be passed to the wsadmin classpath. It is a string containing paths (semicolon-separated) the required JARs to execute wsadmin in a particular job. i.e: 'c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar' or '/MyDir/Myjar.jar;/yourdir/yourdir.jar'</td>
-                    </tr>
-
-                    <tr>
-                        <td>Java Parameters</td>
-                        <td>Java options to be passed to wsadmin, separate them using semicolons (;).</td>
-                    </tr>
-
-                    <tr>
-                        <td>Additional Commands</td>
-                        <td>Additional commands to be entered for wsadmin.</td>
-                    </tr>
-
                     <tr class="required">
                         <td>Application Name</td>
                         <td>Specifies logical name to be given to installing enterprise application. Do not include whitespaces in application name. </td>
@@ -2149,8 +2130,13 @@
                     </tr>
 
                     <tr>
-                        <td>Precompile JavaServer Pages files?</td>
-                        <td>Specify whether to precompile JavaServer Pages (JSP) files as a part of installation. The default is not to precompile JSP files.</td>
+                        <td>Map modules to servers</td>
+                        <td>Specify deployment targets where you want to install the modules that are contained in your application. Modules can be installed on the same deployment target or dispersed among several deployment targets.Give input in format [ "Module1Name" Module1URL server1][ "Module2Name" Module2URL server2 ] For example,[ "Increment EJB module" Increment.jar,META-INF/ejb-jar.xml WebSphere:cell=Cell01,node=Node01,server=singleServer ]</td>
+                    </tr>
+
+                    <tr>
+                        <td>Additional deployment parameters</td>
+                        <td>Specify any additional options for AdminApp.Install object in case not listed in this input form.For more information about each of the supported arguments, refer to <a href='http://www-01.ibm.com/support/knowledgecenter/SSAW57_8.5.5/com.ibm.websphere.nd.doc/ae/rxml_taskoptions.html'>IBM WebSphere Knowledge Center.</a></td>
                     </tr>
 
                     <tr>
@@ -2159,14 +2145,24 @@
                     </tr>
 
                     <tr>
+                        <td>Precompile JavaServer Pages files?</td>
+                        <td>Specify whether to precompile JavaServer Pages (JSP) files as a part of installation. The default is not to precompile JSP files.</td>
+                    </tr>
+
+                    <tr>
                         <td>Distribute application?</td>
                         <td>Specifies whether the product expands application binaries in the installation location during installation.</td>
                     </tr>
 
                     <tr>
-                        <td>Use binary configuration</td>
+                        <td>Use binary configuration?</td>
                         <td>Specifies whether the application server uses the binding, extensions, and deployment descriptors located with the application deployment
                             document, the deployment.xml file (default), or those located in the enterprise archive (EAR) file. Default is to use bindings located in deployment.xml.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Deploy enterprise beans?</td>
+                        <td>Specifies whether the EJBDeploy tool runs during application installation.Default is false(true for EJB 3.0 modules)</td>
                     </tr>
 
                     <tr>
@@ -2180,25 +2176,40 @@
                     </tr>
 
                     <tr>
-                        <td>Reload interval in seconds</td>
-                        <td>Specifies the number of seconds to scan the application's file system for updated files.Default is 3 seconds.</td>
-                    </tr>
-
-                    <tr>
                         <td>Deploy web services?</td>
                         <td>Specifies whether to deploy web services.Default is NO.</td>
-                    </tr>
-
-                    <tr>
-                        <td>Validate resource references</td>
-                        <td>Specifies whether WebSphere examines the application references specified during application installation or updating and, if validation is
-                            enabled, warns you of incorrect references or fails the operation.</td>
                     </tr>
 
                     <tr>
                         <td>Process embedded configuration?</td>
                         <td>Specifies whether the embedded configuration should be processed. An embedded configuration consists of files such as resource.xml,
                             variables.xml, and deployment.xml.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Allow EJB reference targets to resolve automatically?</td>
+                        <td>Specifies whether the product assigns default JNDI values for or automatically resolves incomplete EJB reference targets.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Deploy client modules?</td>
+                        <td>Select if the file to deploy has one or more client modules and want to configure environment entries for the client modules.Default is do not enable Client Module</td>
+                    </tr>
+
+                    <tr>
+                        <td>Validate schema?</td>
+                        <td>Specifies whether to validate the deployment descriptors against published Java EE deployment descriptor schemas.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Reload interval in seconds</td>
+                        <td>Specifies the number of seconds to scan the application's file system for updated files.Default is 3 seconds.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Validate resource references</td>
+                        <td>Specifies whether WebSphere examines the application references specified during application installation or updating and, if validation is
+                            enabled, warns you of incorrect references or fails the operation.</td>
                     </tr>
 
                     <tr>
@@ -2217,34 +2228,29 @@
                     </tr>
 
                     <tr>
-                        <td>Allow EJB reference targets to resolve automatically</td>
-                        <td>Specifies whether the product assigns default JNDI values for or automatically resolves incomplete EJB reference targets.</td>
-                    </tr>
-
-                    <tr>
-                        <td>Deploy client modules</td>
-                        <td>Select if the file to deploy has one or more client modules and want to configure environment entries for the client modules.Default is do not enable Client Module</td>
-                    </tr>
-
-                    <tr>
                         <td>Client deployment mode</td>
                         <td>Specifies whether to deploy client modules to an isolated deployment target (Isolated), a federated node of a deployment manager (Federated),
                             or an application server (Server Deployed).Default is Isolated</td>
                     </tr>
 
                     <tr>
-                        <td>Validate schema</td>
-                        <td>Specifies whether to validate the deployment descriptors against published Java EE deployment descriptor schemas.</td>
+                        <td>Wsadmin Commands</td>
+                        <td>Commands to be entered to wsadmin. Use one command per line.</td>
                     </tr>
 
                     <tr>
-                        <td>Map modules to servers</td>
-                        <td>Specify deployment targets where you want to install the modules that are contained in your application. Modules can be installed on the same deployment target or dispersed among several deployment targets.Give input in format [ "Module1Name" Module1URL server1][ "Module2Name" Module2URL server2 ] For example,[ "Increment EJB module" Increment.jar,META-INF/ejb-jar.xml WebSphere:cell=Cell01,node=Node01,server=singleServer ]</td>
+                        <td>Wsadmin Classpath</td>
+                        <td>Jars to be passed to the wsadmin classpath. It is a string containing paths (semicolon-separated) the required JARs to execute wsadmin in a particular job. i.e: 'c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar' or '/MyDir/Myjar.jar;/yourdir/yourdir.jar'</td>
                     </tr>
 
                     <tr>
-                        <td>Additional deployment parameters</td>
-                        <td>Specify any additional options for AdminApp.Install object in case not listed in this input form.</td>
+                        <td>Wsadmin Java Parameters</td>
+                        <td>Java options to be passed to wsadmin, separate them using semicolons (;).</td>
+                    </tr>
+
+                    <tr>
+                        <td>Wsadmin Additional Arguments</td>
+                        <td>Additional arguements to be passed to wsadmin.</td>
                     </tr>
 
                 </tbody>
