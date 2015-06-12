@@ -578,7 +578,7 @@
                     </tr>
 
                     <tr>
-                        <td>Max in-memory session count</td>
+                        <td class="required">Max in-memory session count</td>
                         <td>Specifies the maximum number of sessions to maintain in memory.</td>
                     </tr>
 
@@ -593,13 +593,18 @@
                     </tr>
 
                     <tr>
-                        <td>Maximum Wait Time</td>
+                        <td  class="required">Maximum Wait Time</td>
                         <td>Specifies the maximum amount of time a servlet request waits on an HTTP session before continuing execution. This parameter is optional and expressed in seconds. The default is 5 seconds. Under normal conditions, a servlet request waiting for access to an HTTP session gets notified by the request that currently owns the given HTTP session when the request finishes.</td>
                     </tr>
 
                     <tr>
                         <td>Access Session On Timeout</td>
                         <td>Specifies whether the servlet is started normally or aborted in the event of a timeout. If you specify true, the servlet is started normally. If you specify false, the servlet execution aborts and error logs are generated.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Invalid Timeout</td>
+                        <td>Specifies how long(in minutes) a session can go unused before it is no longer valid.</td>
                     </tr>
 
                     <tr>

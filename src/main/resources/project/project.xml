@@ -5286,7 +5286,7 @@
                 <formalParameterName>maxInMemorySessionCount</formalParameterName>
                 <defaultValue />
                 <description>Specifies the maximum number of sessions to maintain in memory.</description>
-                <required>0</required>
+                <required>1</required>
                 <type>entry</type>
             </formalParameter>
 
@@ -5310,7 +5310,7 @@
                 <formalParameterName>maxWaitTime</formalParameterName>
                 <defaultValue />
                 <description>Specifies the maximum amount of time a servlet request waits on an HTTP session before continuing execution. This parameter is optional and expressed in seconds. The default is 5 seconds. Under normal conditions, a servlet request waiting for access to an HTTP session gets notified by the request that currently owns the given HTTP session when the request finishes.</description>
-                <required>0</required>
+                <required>1</required>
                 <type>entry</type>
             </formalParameter>
 
