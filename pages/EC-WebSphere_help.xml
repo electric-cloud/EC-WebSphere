@@ -2156,7 +2156,6 @@
 
                     <tr>
                         <td>Use binary configuration?</td>
-                        <td>Use binary configuration?</td>
                         <td>Specifies whether the application server uses the binding, extensions, and deployment descriptors located with the application deployment
                             document, the deployment.xml file (default), or those located in the enterprise archive (EAR) file. Default is to use bindings located in deployment.xml.</td>
                     </tr>
