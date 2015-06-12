@@ -594,7 +594,7 @@
 
                     <tr>
                         <td  class="required">Maximum Wait Time</td>
-                        <td>Specifies the maximum amount of time a servlet request waits on an HTTP session before continuing execution. This parameter is optional and expressed in seconds. The default is 5 seconds. Under normal conditions, a servlet request waiting for access to an HTTP session gets notified by the request that currently owns the given HTTP session when the request finishes.</td>
+                        <td>Specifies the maximum amount of time in seconds a servlet request waits on an HTTP session before continuing execution. The default is 5 seconds. Under normal conditions, a servlet request waiting for access to an HTTP session gets notified by the request that currently owns the given HTTP session when the request finishes.</td>
                     </tr>
 
                     <tr>
