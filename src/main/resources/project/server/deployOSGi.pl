@@ -79,6 +79,7 @@ sub main() {
     my @args = ();
     my %configuration;
     my $ScriptFile;
+    $::gEbaPath =~ s$\\$/$g;
     my $assetName = $::gEbaPath;
     my %props;
     #get an EC object
@@ -109,6 +110,7 @@ sub main() {
          $ScriptFile .= "print 'External bundle repository added successfully.'\n";
     }
 
+    $::gLocalRepoBundleList =~ s$\\$/$g;
     my @localBundles = split( ",", $::gLocalRepoBundleList );
 
     foreach (@localBundles) {

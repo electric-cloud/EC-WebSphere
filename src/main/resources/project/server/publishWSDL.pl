@@ -41,6 +41,7 @@ $|=1;
 $::gCommands = q($[commands]);
 $::gAppName = trim(q($[appname]));
 $::gpublish_location = trim(q($[publish_location]));
+$::gpublish_location =~ s$\\$/$g;
 $::gScriptFile = 'AdminApp.publishWSDL(\'' . $::gAppName . '\',\'' . $::gpublish_location . '\')' . "\n"
                 . "print 'WSDL files for " . $::gAppName . " published successfully'";
 $::gWSAdminAbsPath = trim(q($[wsadminabspath]));
@@ -83,6 +84,7 @@ sub main() {
   #get an EC object
   my $ec = new ElectricCommander();
   $ec->abortOnError(0);
+
 
   %configuration = getConfiguration($ec, $::gConfigurationName);
 
