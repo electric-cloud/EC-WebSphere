@@ -7337,7 +7337,7 @@
             <formalParameter>
                 <formalParameterName>publish_location</formalParameterName>
                 <defaultValue />
-                <description>ath on file system where to store the published WSDL files. </description>
+                <description>Filename and absolute path on the filesystem where published WSDL files should get stored.For example, 'C:/webservices/sampleWSDL.zip'</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
