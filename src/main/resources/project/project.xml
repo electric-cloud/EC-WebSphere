@@ -10409,7 +10409,7 @@
                                 </property>
 
                                 <property>
-                                    <propertyName>clusterList</propertyName>
+                                    <propertyName>cluster</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -11084,9 +11084,9 @@
             </formalParameter>
 
             <formalParameter>
-                <formalParameterName>clusterList</formalParameterName>
+                <formalParameterName>cluster</formalParameterName>
                 <defaultValue />
-                <description>Specify comma separated list of clusters on which to deploy enterprise application.Modules contained in an application can be installed on the same deployment target or dispersed among several deployment targets.</description>
+                <description>Name of the cluster on which to deploy enterprise application.Not required in WebSphere Base Edition.Enter either target cluster or target server(s).</description>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>
@@ -11094,7 +11094,7 @@
             <formalParameter>
                 <formalParameterName>serverList</formalParameterName>
                 <defaultValue />
-                <description>Specify comma separated list of standalone servers on which to deploy enterprise application.Modules contained in an application can be installed on the same deployment target or dispersed among several deployment targets.Specify servers in the form Node=server. For e.g. Node01=Server1,Node02=Server2</description>
+                <description>Specify single or list of standalone application servers on which to deploy enterprise application.Specify servers in the form Node=server. For e.g. Node01=Server1,Node02=Server2.Not required in WebSphere Base Edition.</description>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>

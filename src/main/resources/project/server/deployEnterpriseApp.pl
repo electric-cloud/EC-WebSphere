@@ -45,7 +45,7 @@ $::gClasspath              = trim(q($[classpath]));
 $::gJavaParams             = trim(q($[javaparams]));
 $::gAdditionalOptions      = trim(q($[additionalcommands]));
 $::gAppName                = trim(q($[appName]));
-$::gClusterList            = trim(q($[clusterList]));
+$::gCluster                = trim(q($[cluster]));
 $::gServerList             = trim(q($[serverList]));
 $::gAppPath                = trim(q($[apppath]));
 $::gPrecompileJSP          = trim(q($[precompileJSP]));
@@ -100,8 +100,11 @@ sub main() {
     my %configuration;
     my $ScriptFile;
     my %NodeServerHash = constructNodeServerHash($::gServerList);;
-    my @clusterList = split( ",", $::gClusterList );
-    my $cluster;
+
+    if($::gCluster && $::gServerList) {
+        print "Error : Enter either Target Cluster or Target Server(s).";
+        return;
+    }
 
     #get an EC object
     my $ec = new ElectricCommander();
@@ -115,6 +118,22 @@ sub main() {
     $ScriptFile = 'import time' . "\n";
     $ScriptFile .= "print 'Installing " . $::gAppName . " ....'\n";
     $ScriptFile .= "AdminApp.install('" . $::gAppPath . "','[";
+
+    if($::gCluster){
+        $ScriptFile .= " -cluster " . $::gCluster;
+    }
+
+    if($::gServerList){
+        my $targetServers = '';
+
+        foreach my $node ( keys %NodeServerHash ) {
+            if($targetServers ne ''){
+                $targetServers .= '+';
+            }
+            $targetServers .= "WebSphere:node=$node,server=$NodeServerHash{$node}";
+        }
+        $ScriptFile .= " -target " . $targetServers;
+    }
 
     if ($::gPrecompileJSP) {
         $ScriptFile .= " -preCompileJSPs";
@@ -270,12 +289,18 @@ sub main() {
     $ScriptFile .=
       "print 'Application  " . $::gAppName . " installed completely.'\n";
 
-    foreach $cluster (@clusterList) {
-            $ScriptFile .= "AdminApplication.startApplicationOnCluster('" . $::gAppName . "','" . $cluster . "')\n";
+    if($::gCluster){
+        $ScriptFile .= "AdminApplication.startApplicationOnCluster('" . $::gAppName . "','" . $::gCluster . "')\n";
     }
 
     foreach my $node ( keys %NodeServerHash ) {
         $ScriptFile .= "AdminApplication.startApplicationOnSingleServer('" . $::gAppName . "','" . $node . "','" .  $NodeServerHash{$node} . "')\n";
+    }
+
+    if ($::gCluster eq '' && $::gServerList eq '') {
+        ## For WebSphere Base Edition
+            $ScriptFile .= "appmgr = AdminControl.queryNames('name=ApplicationManager,*')\n";
+            $ScriptFile .= "AdminControl.invoke(appmgr,'startApplication','$::gAppName')\n";
     }
 
     $ScriptFile .= "print 'Application " . $::gAppName . " started successfully.'\n";
