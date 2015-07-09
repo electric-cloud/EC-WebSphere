@@ -3374,7 +3374,7 @@
             <li>Added support to configure session management component for deployed applications..</li>
             <li>Added support for setting the EJB container properties for improved memory consumption and stateful session bean failover.</li>
             <li>Added support for the JavaMail session.</li>
-
+            <li>Added link to plugin Configuration Page in plugin step panels.</li>
         </ul>
 
         <h2>Features and Enhancements in EC-WebSphere 2.0.6.</h2>
