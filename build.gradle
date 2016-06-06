@@ -46,9 +46,5 @@ test {
 }
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '2.3'
-}
-
-gwt {
-	modules 'ecplugins.websphere.ConfigurationManagement'
+	gradleVersion = '2.13'
 }

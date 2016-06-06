@@ -20,6 +20,6 @@ Create an ecplugin.properties at the root of this repository with the following 
 These represent secrets that **should not** be checked in.
 
 #### Running tests ####
-Run the `test` task to run the system tests. You may want to specify the ElectricCommander Server to test against by way of the COMMANDER_SERVER environment variable.
+Run the `test` task to run the system tests. You may want to specify the ElectricFlow Server to test against by way of the COMMANDER_SERVER environment variable.
 
-`COMMANDER_SERVER=192.168.158.20 ./gradlew test`
+`COMMANDER_SERVER=<ElectricFlow Server FQDN or IP> ./gradlew test`
