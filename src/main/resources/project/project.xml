@@ -7,6 +7,25 @@
         <description>Integration with WebSphere</description>
         <workspaceName />
         <propertySheet>
+            <!--Begin Discovery metadata-->
+            <property>
+                <propertyName>ec_discovery</propertyName>
+                <description>Property sheet for storing discovery metadata</description>
+                <propertySheet>
+                    <property>
+                        <propertyName>displayName</propertyName>
+                        <value>IBM WebSphere</value>
+                        <description>Display name to use for the plugin in Discovery UI</description>
+                    </property>
+                    <property>
+                        <propertyName>needsConfiguration</propertyName>
+                        <value>true</value>
+                        <description>true since the Discover procedure for the plugin needs the plugin configuration to obtain credentials and connection information in order to run discovery on target resources.</description>
+                    </property>
+                </propertySheet>
+            </property>
+            <!--End Discovery metadata-->
+
             <property>
                 <propertyName>modules</propertyName>
                 <propertySheet>
