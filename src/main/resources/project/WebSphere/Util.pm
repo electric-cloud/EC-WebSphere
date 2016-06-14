@@ -20,7 +20,7 @@ use Exporter;
 
 our @ISA = qw(Exporter);
 our @EXPORT = qw(trim createCommandLine maskPassword setProperties getConfiguration
-                 SUCCESS ERROR PLUGIN_NAME EXECUTABLE CREDENTIAL_ID IPC_CONNECTION_TYPE
+                 SUCCESS ERROR PLUGIN_NAME EXECUTABLE IPC_CONNECTION_TYPE
                  SEPARATOR_CHAR DEFAULT_WSADMIN_LANGUAGE WIN_IDENTIFIER TRUE FALSE);
 
 # -------------------------------------------------------------------------
@@ -35,7 +35,6 @@ use constant {
        
     PLUGIN_NAME => 'EC-WebSphere',
     EXECUTABLE => 'wsadmin',
-    CREDENTIAL_ID => 'credential',
     IPC_CONNECTION_TYPE => 'IPC',
     SEPARATOR_CHAR => ';',
     DEFAULT_WSADMIN_LANGUAGE => 'jython',
@@ -68,7 +67,7 @@ sub getConfiguration {
         print "Error: Configuration '$configName' doesn't exist\n";
         exit ERROR;
     }                                                                                                                                             
-      
+
     # Get user/password out of credential
     my $xpath = $ec->getFullCredential($configRow{credential});
     $configToUse{'user'} = $xpath->findvalue("//userName");
@@ -76,11 +75,11 @@ sub getConfiguration {
       
     foreach my $c (keys %configRow) {
         #getting all values except the credential that was read previously
-        if($c ne CREDENTIAL_ID){
+        if($c ne 'credential'){
             $configToUse{$c} = $configRow{$c};
         }
     }
-      
+
     return %configToUse;
 }
   

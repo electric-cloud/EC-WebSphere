@@ -226,15 +226,7 @@ sub main() {
     system($cmdLine);
 
     #evaluates if exit was successful to mark it as a success or fail the step
-    if ( $? == SUCCESS ) {
-
-        $ec->setProperty( "/myJobStep/outcome", 'success' );
-
-    }
-    else {
-        $ec->setProperty( "/myJobStep/outcome", 'error' );
-    }
-
+    $ec->setProperty( "/myJobStep/outcome", ($? == SUCCESS) ? 'success' : 'error');
 }
 
 main();

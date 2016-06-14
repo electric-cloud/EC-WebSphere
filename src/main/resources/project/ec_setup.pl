@@ -441,6 +441,10 @@ if ($upgradeAction eq "upgrade") {
                 stepName => 'CreateMailSession'
             });
 
+            # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'Discover'
+            });
         }
     }
 }
