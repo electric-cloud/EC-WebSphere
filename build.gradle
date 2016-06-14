@@ -16,6 +16,7 @@ buildscript {
     }
     dependencies {
         classpath group: 'com.electriccloud.plugins', name: 'flow-gradle-plugin', version: '1.+'
+		classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
     }
 }
 
@@ -24,6 +25,12 @@ description = "Plugins : EC-WebSphere"
 version = "2.1.2"
 
 apply plugin: 'flow-gradle-plugin'
+apply plugin: 'license'
+
+license {
+    header = file ('shortHeader.txt')
+    exclude "**/project.xml"
+} 
 
 dependencies {
 	testCompile 'junit:junit:[4,)'
