@@ -32,6 +32,10 @@
                         <propertyName>WebSphere</propertyName>
                         <propertySheet>
                             <property>
+                                <propertyName>WebSphere.pm</propertyName>
+                                <value/>
+                            </property>
+                            <property>
                                 <propertyName>Discovery.pm</propertyName>
                                 <value/>
                             </property>
@@ -40,6 +44,15 @@
                                 <value/>
                             </property>
                         </propertySheet>
+                    </property>
+                </propertySheet>
+            </property>
+            <property>
+                <propertyName>wsadmin_scripts</propertyName>
+                <propertySheet>
+                    <property>
+                        <propertyName>discover.py</propertyName>
+                        <value/>
                     </property>
                 </propertySheet>
             </property>
@@ -613,8 +626,34 @@
             <propertySheet>
                 <property>
                     <propertyName>ec_customEditorData</propertyName>
-                </property>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>configurationName</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                    </propertySheet>
+                    </property>
+                    </propertySheet>
+                    </property>
             </propertySheet>
+
+            <formalParameter>
+                <formalParameterName>configurationName</formalParameterName>
+                <defaultValue/>
+                <description>The plugin's configuration name</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            
             <step>
                 <stepName>DiscoverResource</stepName>
                 <alwaysRun>0</alwaysRun>

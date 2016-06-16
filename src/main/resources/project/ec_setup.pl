@@ -443,7 +443,14 @@ if ($upgradeAction eq "upgrade") {
 
             # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'Discover'
+                procedureName => 'Discover',
+                stepName => 'DiscoverResources'
+            });
+            
+            # Attach the credential to the appropriate steps
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'DiscoverResource',
+                stepName => 'DiscoverResource'
             });
         }
     }

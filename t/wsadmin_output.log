@@ -1,0 +1,2 @@
+WASX7209I: Connected to process "server1" on node win-2008R2-stdNode01 using SOAP connector;  The type of process is: UnManagedProcess
+[ { "DefaultApplication": {"serverName": "Server2"}},{ "ivtApp": {"serverName": "Server2"}},{ "query": {"serverName": "Server2"}},{ "DefaultApplication.ear": {"serverName": "Server2"}} ]

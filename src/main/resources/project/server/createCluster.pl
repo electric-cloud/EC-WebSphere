@@ -43,20 +43,16 @@ $| = 1;
 my $ec = new ElectricCommander();
 $ec->abortOnError(0);
 
-my $gWSAdminAbsPath =
-  ( $ec->getProperty("wsadminabspath") )->findvalue("//value");
-my $gClusterName = ( $ec->getProperty("clusterName") )->findvalue("//value");
-my $gClusterMembers =
-  ( $ec->getProperty("clusterMembers") )->findvalue("//value");
-my $gDeployApp = ( $ec->getProperty("deployApp") )->findvalue("//value");
-my $gAppName   = ( $ec->getProperty("appname") )->findvalue("//value");
-my $gAppPath   = ( $ec->getProperty("apppath") )->findvalue("//value");
-my $gContextRoot = ( $ec->getProperty("contextRoot") )->findvalue("//value");
-my $gCellName  = ( $ec->getProperty("cellname") )->findvalue("//value");
-my $gConfigurationName =
-  ( $ec->getProperty("configname") )->findvalue("//value");
-my $gConnectionType =
-  ( $ec->getProperty("connectionType") )->findvalue("//value");
+my $gWSAdminAbsPath = "$[wsadminabspath]";
+my $gClusterName = "$[clusterName]";
+my $gClusterMembers = "$[clusterMembers]";
+my $gDeployApp = "$[deployApp]";
+my $gAppName   = "$[appname]";
+my $gAppPath   = "$[apppath]";
+my $gContextRoot = "$[contextRoot]";
+my $gCellName  = "$cellname";
+my $gConfigurationName = "$[configname]";
+my $gConnectionType = "$[connectionType]";
 
 #-------------------------------------------------------------------------
 # Main functions

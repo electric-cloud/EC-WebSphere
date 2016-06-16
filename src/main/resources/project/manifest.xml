@@ -1,12 +1,20 @@
 <?xml version='1.0' standalone='yes'?>
 <fileset>
     <file>
+        <xpath>//property[propertyName=&quot;discover.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/discover.py</path>
+    </file>
+    <file>
         <xpath>//property[propertyName=&quot;Util.pm&quot;]/value</xpath>
         <path>WebSphere/Util.pm</path>
     </file>
     <file>
         <xpath>//property[propertyName=&quot;Discovery.pm&quot;]/value</xpath>
         <path>WebSphere/Discovery.pm</path>
+    </file>
+    <file>
+        <xpath>//property[propertyName=&quot;WebSphere.pm&quot;]/value</xpath>
+        <path>WebSphere/WebSphere.pm</path>
     </file>
     <file>
         <xpath>//property[propertyName=&quot;ui_forms&quot;]/propertySheet/property[propertyName=&quot;WebSphereCreateConfigForm&quot;]/value</xpath>

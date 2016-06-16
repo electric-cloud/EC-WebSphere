@@ -11,7 +11,7 @@ for WebSphere instance, located at ElectricFlow resource.
 
 =head1 COPYRIGHT
 
-Copyright (c) 2014 Electric Cloud, Inc.
+Copyright (c) 2016 Electric Cloud, Inc.
 All rights reserved
 
 =cut
@@ -23,6 +23,7 @@ use File::Which qw(which);
 use File::Find;
 use if $^O eq "MSWin32", Win32::DriveInfo;
 use if $^O eq "MSWin32", Win32API::File => qw( :DRIVE_ GetDriveType );
+use WebSphere::WebSphere;
 
 # Common locations where we expect wsadmin script installed, platform dependent
 my @ws_install_locations = (
@@ -69,7 +70,7 @@ Returns 0 in case of error, 1 otherwise.
 =cut
 
 sub discover {
-    my ($self) = @_;
+    my ($self, $configurationName) = @_;
 
     $self->_setStatus('inprogress');
     my $wsadmin = $self->_discoverWsadminPath();
@@ -83,6 +84,33 @@ sub discover {
     }
 
     $self->_setProperty( 'wsadminPath', $wsadmin );
+
+    my $websphere = new WebSphere::WebSphere($self->{ec}, $configurationName, $wsadmin);
+
+    if(not defined $websphere) {
+    	my $summary = "Incorrect configuration name '$configurationName'";
+        $self->_setStatus('incomplete', $summary);
+        $self->_error("$summary\n");
+
+        return 1;
+    }
+
+    my $script = $self->{ec}->getProperty("/myProject/wsadmin_scripts/discover.py")->getNodeText('//value');
+
+    open(my $fh, '>', 'discover.py') or die "Cannot write to 'discover.py' $!";
+    print $fh $script;
+    close $fh;
+
+    # TODO Check for errors        
+    my $ret = $websphere->wsadmin('discover.py');
+    my $json = $ret->{json};
+    
+    for my $app (@$json) {
+    	my $applicationName = (keys %$app)[0];
+    	my $serverName = $app->{$applicationName}->{serverName};
+    	$self->_setProperty("$configurationName/$applicationName/serverName", $serverName)
+    }
+    
     $self->_setStatus('completed');
 
     return 0;
@@ -109,7 +137,7 @@ sub _getProperty {
     my ( $self, $name ) = @_;
     my $path = "/resources[$self->{resourceName}]/ec_discovery";
 
-    return $self->{ec}->setProperty("$path/$name")->getNodeText('//value');
+    return $self->{ec}->getProperty("$path/$name")->getNodeText('//value');
 }
 
 sub _debug {
