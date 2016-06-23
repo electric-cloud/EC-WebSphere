@@ -1,2 +1,18 @@
-WASX7209I: Connected to process "server1" on node win-2008R2-stdNode01 using SOAP connector;  The type of process is: UnManagedProcess
-[ { "DefaultApplication": {"serverName": "Server2"}},{ "ivtApp": {"serverName": "Server2"}},{ "query": {"serverName": "Server2"}},{ "DefaultApplication.ear": {"serverName": "Server2"}} ]
+WASX7209I: Connected to process "dmgr" on node WIN-GHQSVBOKFFTCellManager01 using SOAP connector;  The type of process is: DeploymentManager
+Node: WIN-GHQSVBOKFFTCellManager01
+        Cluster: wsCluster
+                 []
+Node: WIN-GHQSVBOKFFTNode01
+        Server: server1
+                 []
+        Cluster: wsCluster
+                 []
+Node: WIN-GHQSVBOKFFTNode03
+        Server: wsClusterMember1
+                 ['query']
+        Server: server1
+                 ['DefaultApplication']
+        Cluster: wsCluster
+                 ['DefaultApplication', 'query']
+{"servers": {"WIN-GHQSVBOKFFTNode01:server1": [  ],"WIN-GHQSVBOKFFTNode03:wsClusterMember1": [ "query" ],"WIN-GHQSVBOKFFTNode03:server1": [ "DefaultApplication" ]}, "clusters": {"WIN-GHQSVBOKFFTCellManager01:wsCluster": [  ],"WIN-GHQSVBOKFFTNode01:wsCluster": [  ],"WIN-GHQSVBOKFFTNode03:wsCluster": [ "DefaultApplication","query" ]}}
+WASX7309W: No "save" was performed before the script ".\discover.py" exited; configuration changes will not be saved.

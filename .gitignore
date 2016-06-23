@@ -3,7 +3,7 @@ build
 .idea
 /bin/
 .classpath
-.project
+.*project
 .settings
 *.iml
 *~

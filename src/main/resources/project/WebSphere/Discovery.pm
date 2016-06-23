@@ -105,10 +105,16 @@ sub discover {
     my $ret = $websphere->wsadmin('discover.py');
     my $json = $ret->{json};
     
-    for my $app (@$json) {
-    	my $applicationName = (keys %$app)[0];
-    	my $serverName = $app->{$applicationName}->{serverName};
-    	$self->_setProperty("$configurationName/$applicationName/serverName", $serverName)
+    for my $server (keys %{$json->{servers}}) {
+    	for my $application (@{$json->{servers}->{$server}}) {
+            $self->_setProperty("$configurationName/servers/$server/$application", '');
+    	}
+    }
+
+    for my $cluster (keys %{$json->{clusters}}) {
+        for my $application (@{$json->{clusters}->{$cluster}}) {
+            $self->_setProperty("$configurationName/clusters/$cluster/$application", '');
+        }
     }
     
     $self->_setStatus('completed');
@@ -193,6 +199,7 @@ sub _discoverWsadminPath {
         }
     }
 
+    $self->_info("\n");
     return $self->_searchFile( \@directories, 'wsadmin.bat' );
 }
 

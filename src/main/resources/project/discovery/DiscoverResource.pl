@@ -14,4 +14,4 @@ $| = 1;
 #get an EC object
 my $ec = new ElectricCommander( { abortOnError => 0 } );
 my $disc = new WebSphere::Discovery($ec, "$[resourceName]");
-$disc->discover("$[configurationName]");
+exit $disc->discover("$[configurationName]");

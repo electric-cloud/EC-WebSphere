@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use Data::Dumper;
-use Test::More tests => 4;
+use Test::More tests => 5;
 use Test::VirtualModule qw(ElectricCommander ElectricCommander::PropDB);
 use XML::XPath;
 
@@ -12,7 +12,7 @@ sub read_file {
 	return do {
 		local $/ = undef;
 		open my $fh, "<", $file or die "could not open $file: $!";
-		<$fh>;
+		split( "\n", <$fh> );
 	};
 }
 
@@ -64,23 +64,39 @@ $websphere = new WebSphere::WebSphere( $ec, 'websphere', $wspath );
 is( 1, $websphere->isa('WebSphere::WebSphere') );
 
 is(
-qq{cmd /c ""$wspath" -password changeme -conntype SOAP -lang jython -user admin -port 8880 -host localhost -f "discover.py""},
+qq{"$wspath" -password changeme -conntype SOAP -lang jython -user admin -port 8880 -host localhost -f "discover.py"},
 	$websphere->_create_runfile('discover.py')
 );
 
+is(
+qq{"$wspath" -password ***** -conntype SOAP -lang jython -user admin -port 8880 -host localhost -f "discover.py"},
+	$websphere->_mask_password( $websphere->_create_runfile('discover.py') )
+);
+
 my $expected = {
-	json => [
-		{ 'DefaultApplication'     => { 'serverName' => 'Server2' } },
-		{ 'ivtApp'                 => { 'serverName' => 'Server2' } },
-		{ 'query'                  => { 'serverName' => 'Server2' } },
-		{ 'DefaultApplication.ear' => { 'serverName' => 'Server2' } }
-	],
+	json => {
+		clusters => {
+			'WIN-GHQSVBOKFFTCellManager01:wsCluster' => [],
+			'WIN-GHQSVBOKFFTNode01:wsCluster'        => [],
+			'WIN-GHQSVBOKFFTNode03:wsCluster' =>
+			  [ 'DefaultApplication', 'query' ]
+		},
+		servers => {
+			'WIN-GHQSVBOKFFTNode01:server1'          => [],
+			'WIN-GHQSVBOKFFTNode03:server1'          => ['DefaultApplication'],
+			'WIN-GHQSVBOKFFTNode03:wsClusterMember1' => ['query']
+		}
+	},
 	messages => [
 		{
-			'WASX7209I' =>
-'Connected to process "server1" on node win-2008R2-stdNode01 using SOAP connector;  The type of process is: UnManagedProcess'
+			WASX7209I =>
+'Connected to process "dmgr" on node WIN-GHQSVBOKFFTCellManager01 using SOAP connector;  The type of process is: DeploymentManager'
+		},
+		{
+			WASX7309W =>
+'No "save" was performed before the script ".\\discover.py" exited; configuration changes will not be saved.'
 		}
-	  ]
+	]
 };
 
 my $output =

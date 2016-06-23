@@ -64,7 +64,7 @@ sub wsadmin {
 	my ( $self, $file ) = @_;
 	my $shellcmd = $self->_create_runfile($file);
 
-	print "EXECUTE: $shellcmd\n";
+	print 'Run command: ' . $self->_mask_password($shellcmd) . "\n";
 	return $self->_parse_wsadmin_output(`$shellcmd`);
 }
 
@@ -74,13 +74,13 @@ sub _parse_wsadmin_output {
 	my @messages = ();
 	my $json     = undef;
 
-	print "OUTPUT: " . join( "\n", @output ) . "\n";
+	print "Command output:\n" . join( "", @output ) . "\n";
 
 	for my $line (@output) {
 		if ( $line =~ /^(WAS.*?): (.*)$/ ) {
 			push( @messages, { $1 => $2 } );
 		}
-		else {
+		elsif ( $line =~ /^\{.*\}$/ ) {
 			$json = decode_json($line);
 		}
 	}
@@ -89,6 +89,14 @@ sub _parse_wsadmin_output {
 		messages => \@messages,
 		json     => $json
 	};
+}
+
+sub _mask_password {
+	my ( $self, $command ) = @_;
+
+	$command =~
+	  s/-password $self->{configuration}->{password}/-password *****/g;
+	return $command;
 }
 
 sub _create_runfile {
