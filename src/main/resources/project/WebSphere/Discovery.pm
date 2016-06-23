@@ -134,7 +134,7 @@ sub _setStatus {
 
 sub _setProperty {
     my ( $self, $name, $value ) = @_;
-    my $path = "/resources[$self->{resourceName}]/ec_discovery";
+    my $path = "/plugins/@PLUGIN_NAME@/project/ec_discovery";
 
     $self->{ec}->setProperty( "$path/$name", $value );
 }

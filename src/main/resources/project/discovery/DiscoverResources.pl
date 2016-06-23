@@ -13,7 +13,7 @@ $| = 1;
 #get an EC object
 my $ec = new ElectricCommander( { abortOnError => 0 } );
 
-my @resourceNames = split( /\s+/, "$[resourceNames]" );
+my @resourceNames = split( /\n/, "$[resourceNames]" );
 
 if ( scalar(@resourceNames) < 1 ) {
 	print "Error: resourceNames parameter must be provided.\n";

@@ -504,36 +504,6 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>projectName</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>environmentName</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>environmentTierName</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
                                     <propertyName>configurationName</propertyName>
                                     <propertySheet>
                                         <property>
@@ -553,28 +523,7 @@
                 <defaultValue/>
                 <description>List of resources, on which discovery procedure should run, separated by space. Required, unless projectName, and environmentName provided.</description>
                 <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>projectName</formalParameterName>
-                <defaultValue/>
-                <description>Name of project, that contains EF Environment definition. Required, unless resourceName provided.</description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>environmentName</formalParameterName>
-                <defaultValue/>
-                <description>Name of environment, on which discovery procedure should run. Required, unless resourceNames provided.</description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>environmentTierName</formalParameterName>
-                <defaultValue/>
-                <description/>
-                <required>0</required>
-                <type>entry</type>
+                <type>textarea</type>
             </formalParameter>
             <formalParameter>
                 <formalParameterName>configurationName</formalParameterName>
