@@ -22,6 +22,11 @@
                         <value>true</value>
                         <description>true since the Discover procedure for the plugin needs the plugin configuration to obtain credentials and connection information in order to run discovery on target resources.</description>
                     </property>
+                    <property>
+                        <propertyName>configurations</propertyName>
+                        <value>websphere_cfgs</value>
+                        <description>Name of the property sheet where the plugin configurations are stored</description>
+                    </property>
                 </propertySheet>
             </property>
             <!--End Discovery metadata -->
