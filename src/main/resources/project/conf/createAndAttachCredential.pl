@@ -159,6 +159,15 @@ $errors .= $ec->checkAllErrors($xpath);
 $xpath = $ec->attachCredential($projName, $credName,
     {procedureName => 'CreateMailSession',
      stepName => 'CreateMailSession'});
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'Discover',
+     stepName => 'DiscoverResources'});
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'DiscoverResource',
+     stepName => 'DiscoverResource'});
+
 $errors .= $ec->checkAllErrors($xpath);
 
 if ($errors ne '') {
