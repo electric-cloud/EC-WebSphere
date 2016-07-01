@@ -22,6 +22,12 @@ description = 'Plugins : EC-WebSphere'
 version = '2.2.0'
 
 apply plugin: 'flow-gradle-plugin'
+apply plugin: 'license'
+
+license {
+    header = file ('shortHeader.txt')
+    exclude "**/project.xml"
+} 
 
 dependencies {
 	testCompile 'junit:junit:[4,)'
