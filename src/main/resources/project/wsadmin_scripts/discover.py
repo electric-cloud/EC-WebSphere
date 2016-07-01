@@ -22,7 +22,7 @@ for cell in cells:
 
    print '\tServer: ' + server_name
    print '\t\t', server_apps
-   server_entries += ['"%s:%s": [ %s ]' % (nname, server_name, ','.join([ '"%s"' % app for app in server_apps]))]
+   server_entries += ['"%s=%s": [ %s ]' % (nname, server_name, ','.join([ '"%s"' % app for app in server_apps]))]
 
   clusters = AdminConfig.list('ServerCluster').split()
 
@@ -31,6 +31,6 @@ for cell in cells:
    print '\tCluster: ' + cluster_name
    cluster_apps = AdminApp.list("WebSphere:cell=%s,node=%s,cluster=%s" % (cname, nname, cluster_name)).split()
    print '\t\t', cluster_apps
-   cluster_entries += ['"%s:%s": [ %s ]' % (nname, cluster_name, ','.join([ '"%s"' % app for app in cluster_apps]))]
+   cluster_entries += ['"%s": [ %s ]' % (cluster_name, ','.join([ '"%s"' % app for app in cluster_apps]))]
 
 print '{"servers": {%s}, "clusters": {%s}}' % (','.join(server_entries), ','.join(cluster_entries))

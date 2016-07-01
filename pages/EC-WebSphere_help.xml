@@ -3300,10 +3300,15 @@
         </div>
 
         <h1>Release Notes</h1>
-    <h2>@PLUGIN_KEY@ 2.1.2</h2>
-    <ul>
-        <li>Fixed issue with configurations being cached for IE.</li>
-    </ul>
+        <h2>@PLUGIN_KEY@ 2.2.0</h2>
+        <ul>
+             <li>Added suport for discovering WebSphere configuraiton on ElectricFlow resource.</li>
+        </ul>
+
+        <h2>@PLUGIN_KEY@ 2.1.2</h2>
+        <ul>
+             <li>Fixed issue with configurations being cached for IE.</li>
+        </ul>
 
         <h2>Features and Enhancements in EC-WebSphere 2.1.1.</h2>
         <ul>

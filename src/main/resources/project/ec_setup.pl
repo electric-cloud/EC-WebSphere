@@ -241,6 +241,8 @@ if ($upgradeAction eq "upgrade") {
         "/plugins/$pluginName/project/websphere_cfgs");
     my $oldcfgs = $query->getProperty(
         "/plugins/$otherPluginName/project/websphere_cfgs");
+    my $olddiscovery = $query->getProperty(
+        "/plugins/$otherPluginName/project/ec_discovery/discovered_data");
 	my $creds = $query->getCredentials(
         "\$[/plugins/$otherPluginName]");
 
@@ -256,6 +258,14 @@ if ($upgradeAction eq "upgrade") {
                 cloneName => "/plugins/$pluginName/project/websphere_cfgs"
             });
         }
+    }
+
+    # Copy discovered data
+    if ($query->findvalue($olddiscovery, "code") ne "NoSuchProperty") {
+        $batch->clone({
+            path => "/plugins/$otherPluginName/project/ec_discovery/discovered_data",
+            cloneName => "/plugins/$pluginName/project/ec_discovery/discovered_data"
+        });
     }
 	
 	# Copy configuration credentials and attach them to the appropriate steps

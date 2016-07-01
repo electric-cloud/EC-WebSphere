@@ -72,7 +72,13 @@ Returns 0 in case of error, 1 otherwise.
 sub discover {
     my ($self, $configurationName) = @_;
 
+    my $ec = $self->{ec};
+
+    $ec->deleteProperty("/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data[$configurationName]");
+
     $self->_setStatus('inprogress');
+    
+    # Find wsadmin executable path
     my $wsadmin = $self->_discoverWsadminPath();
 
     if ( not $wsadmin ) {
@@ -83,9 +89,7 @@ sub discover {
         return 1;
     }
 
-    $self->_setProperty( 'wsadminPath', $wsadmin );
-
-    my $websphere = new WebSphere::WebSphere($self->{ec}, $configurationName, $wsadmin);
+    my $websphere = new WebSphere::WebSphere($ec, $configurationName, $wsadmin);
 
     if(not defined $websphere) {
     	my $summary = "Incorrect configuration name '$configurationName'";
@@ -95,7 +99,7 @@ sub discover {
         return 1;
     }
 
-    my $script = $self->{ec}->getProperty("/myProject/wsadmin_scripts/discover.py")->getNodeText('//value');
+    my $script = $ec->getProperty("/myProject/wsadmin_scripts/discover.py")->getNodeText('//value');
 
     open(my $fh, '>', 'discover.py') or die "Cannot write to 'discover.py' $!";
     print $fh $script;
@@ -116,6 +120,9 @@ sub discover {
             $self->_setProperty("$configurationName/clusters/$cluster/$application", '');
         }
     }
+
+    $ec->setProperty( "/resources[$self->{resourceName}]/ec_discovery/wsadminPath", $wsadmin );
+    $self->_setProperty( "$configurationName/wsadminPath", "/myResource/ec_discovery/wsadminPath");
     
     $self->_setStatus('completed');
 
@@ -133,15 +140,15 @@ sub _setStatus {
 }
 
 sub _setProperty {
-    my ( $self, $name, $value ) = @_;
-    my $path = "/plugins/@PLUGIN_NAME@/project/ec_discovery";
+    my ( $self, $name, $value, %params ) = @_;
+    my $path = "/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data";
 
-    $self->{ec}->setProperty( "$path/$name", $value );
+    $self->{ec}->setProperty( "$path/$name", $value, %params );
 }
 
 sub _getProperty {
     my ( $self, $name ) = @_;
-    my $path = "/resources[$self->{resourceName}]/ec_discovery";
+    my $path = "/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data";
 
     return $self->{ec}->getProperty("$path/$name")->getNodeText('//value');
 }

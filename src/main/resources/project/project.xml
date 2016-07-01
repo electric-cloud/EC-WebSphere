@@ -10398,7 +10398,6 @@
             <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
 
             <propertySheet>
-
                 <property>
                     <propertyName>ec_parameterForm</propertyName>
                     <expandable>1</expandable>
