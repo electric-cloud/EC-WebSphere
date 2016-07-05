@@ -359,6 +359,10 @@
         <path>parameterForms/ec_parameterForm-CreateMailSession.xml</path>
     </file>
     <file>
+        <xpath>//procedure[procedureName=&quot;Discover&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/ec_parameterForm-Discover.xml</path>
+    </file>
+    <file>
         <xpath>//procedure[procedureName=&quot;Discover&quot;]/step[stepName=&quot;DiscoverResources&quot;]/command</xpath>
         <path>discovery/DiscoverResources.pl</path>
     </file>

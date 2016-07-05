@@ -60,6 +60,23 @@ sub new {
 	return $configuration ? $self : undef;
 }
 
+=head2 C<new>
+
+Execute python script in wsadmin, and parse output from command.
+Python script must output data in json.
+=over
+
+=item C<$file>
+
+String with path to python script
+
+=back
+
+Returns hash containing two hashes:
+ messages - hash of wsadmin messages, { messageid, description }
+ json - json output of script
+=cut
+
 sub wsadmin {
 	my ( $self, $file ) = @_;
 	my $shellcmd = $self->_create_runfile($file);
@@ -140,6 +157,11 @@ sub _getConfiguration {
 	$configuration{password}          = $xpath->findvalue("//password");
 	$configuration{configurationName} = $configurationName;
 
+    # Default to standard WS SOAP port
+    if(!$configuration{websphere_port}) {
+    	$configuration{websphere_port} = 8880;
+    }
+    
 	return \%configuration;
 }
 

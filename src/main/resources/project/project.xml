@@ -493,6 +493,11 @@
             <workspaceName/>
             <propertySheet>
                 <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <expandable>1</expandable>
+                    <value></value>
+                </property>
+                <property>
                     <propertyName>ec_customEditorData</propertyName>
                     <propertySheet>
                         <property>
@@ -526,14 +531,14 @@
             <formalParameter>
                 <formalParameterName>resourceNames</formalParameterName>
                 <defaultValue/>
-                <description>List of resources, on which discovery procedure should run, separated by space. Required, unless projectName, and environmentName provided.</description>
-                <required>0</required>
+                <description>List of resources, on which discovery procedure should run. Enter multiple values on separate lines.</description>
+                <required>1</required>
                 <type>textarea</type>
             </formalParameter>
             <formalParameter>
                 <formalParameterName>configurationName</formalParameterName>
                 <defaultValue/>
-                <description>The plugin's configuration name</description>
+                <description>The plugin's configuration name.</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>

@@ -56,7 +56,8 @@
 		<label>Application Name:</label>
 		<property>appName</property>
 		<documentation>Name of the web application to be updated. i.e: 'webapp'. </documentation>
-		<required>1</required>
+        <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/applications</propertyReference>
+        <required>1</required>
 	</formElement>
 
 	<formElement>
@@ -114,7 +115,7 @@
 		<type>entry</type>
 		<label>Cluster Name:</label>
 		<property>clusterName</property>
-        <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/clusters</propertyReference>
+        <propertyReference renderType="description">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/applications/$appName/clusters</propertyReference>
 		<documentation>Name of the cluster on which application is deployed.</documentation>
 		<required>0</required>
 	</formElement>
@@ -123,7 +124,7 @@
 		<type>entry</type>
 		<label>Server Name:</label>
 		<property>serverName</property>
-        <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/servers</propertyReference>
+        <propertyReference renderType="description">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/applications/$appName/servers</propertyReference>
 		<documentation>Name of the server on which application is deployed.</documentation>
 		<required>0</required>
 	</formElement>

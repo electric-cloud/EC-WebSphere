@@ -86,7 +86,7 @@ sub discover {
         $self->_setStatus('incomplete', $summary);
         $self->_error("$summary\n");
 
-        return 1;
+        return 0;
     }
 
     my $websphere = new WebSphere::WebSphere($ec, $configurationName, $wsadmin);
@@ -109,20 +109,32 @@ sub discover {
     my $ret = $websphere->wsadmin('discover.py');
     my $json = $ret->{json};
     
-    for my $server (keys %{$json->{servers}}) {
-    	for my $application (@{$json->{servers}->{$server}}) {
-            $self->_setProperty("$configurationName/servers/$server/$application", '');
+    my $servers = $json->{servers};
+    my $servers_cnt = 0;
+    for my $server (keys %{$servers}) {
+    	$servers_cnt ++;
+        $self->_createProperty("$configurationName/servers/$server", {description => $server, propertyType => 'sheet' });
+
+    	for my $application (@{$servers->{$server}}) {
+            $self->_setProperty("$configurationName/servers/$server/$application", "");
+            $self->_setProperty("$configurationName/applications/$application/servers/$server", "");
     	}
     }
 
-    for my $cluster (keys %{$json->{clusters}}) {
-        for my $application (@{$json->{clusters}->{$cluster}}) {
-            $self->_setProperty("$configurationName/clusters/$cluster/$application", '');
+    my $clusters = $json->{clusters};
+    my $clusters_cnt = 0;
+    for my $cluster (keys %{$clusters}) {
+        $clusters_cnt ++;
+        $self->_createProperty("$configurationName/clusters/$cluster", {description => $cluster, propertyType => 'sheet' });
+
+        for my $application (@{$clusters->{$cluster}}) {
+            $self->_setProperty("$configurationName/clusters/$cluster/$application", "");
+            $self->_setProperty("$configurationName/applications/$application/clusters/$cluster", "");
         }
     }
 
     $ec->setProperty( "/resources[$self->{resourceName}]/ec_discovery/wsadminPath", $wsadmin );
-    $self->_setProperty( "$configurationName/wsadminPath", "/myResource/ec_discovery/wsadminPath");
+    $self->_setProperty( "$configurationName/wsadminPath", "\$[/myResource/ec_discovery/wsadminPath]", {expandable => 0});
     
     $self->_setStatus('completed');
 
@@ -139,11 +151,23 @@ sub _setStatus {
     }
 }
 
-sub _setProperty {
-    my ( $self, $name, $value, %params ) = @_;
+sub _createProperty {
+    my ( $self, $name, $params) = @_;
     my $path = "/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data";
 
-    $self->{ec}->setProperty( "$path/$name", $value, %params );
+    $params = {} unless defined $params;
+
+    $self->{ec}->createProperty( "$path/$name", $params);
+}
+
+sub _setProperty {
+    my ( $self, $name, $value, $params) = @_;
+    my $path = "/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data";
+
+ 	$params = {} unless defined $params;
+    $params->{value} = $value;
+
+    $self->{ec}->setProperty( "$path/$name", $params);
 }
 
 sub _getProperty {
