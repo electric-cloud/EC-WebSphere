@@ -63,7 +63,6 @@ $::gLocalRepoBundleList = trim(q($[localRepoBundleList]));
 $::gEbaPath             = trim(q($[ebaPath]));
 $::gAppName             = trim(q($[appName]));
 $::gDeployUnit          = trim(q($[deployUnit]));
-$::gConnectionType      = trim(q($[connectionType]));
 $::gConfigurationName   = "$[configName]";
 
 # -------------------------------------------------------------------------
@@ -195,13 +194,14 @@ sub main() {
     push( @args, '-f deployOSGi_script.jython' );
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
 
-    if ( $::gConnectionType ne '' ) {
-        push( @args, '-conntype ' . $::gConnectionType );
+    my $connectionType         = $configuration{conntype};
+    if ( $connectionType ne '' ) {
+        push( @args, '-conntype ' . $connectionType );
     }
 
     my $hostParamName;
 
-    if ( $::gConnectionType eq IPC_CONNECTION_TYPE ) {
+    if ( $connectionType eq IPC_CONNECTION_TYPE ) {
         $hostParamName = '-ipchost';
     }
     else {

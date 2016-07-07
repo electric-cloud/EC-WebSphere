@@ -76,7 +76,6 @@ my $gMailTransportPort    = trim(q($[mailTransportPort]));
 my $gMailTransportUser    = trim(q($[mailTransportUser]));
 my $gStrict               = trim(q($[strict]));
 my $gWSAdminAbsPath       = trim(q($[wsadminAbsPath]));
-my $gConnectionType       = trim(q($[connectiontype]));
 my $gConfigurationName    = "$[configname]";
 
 # -------------------------------------------------------------------------
@@ -371,13 +370,14 @@ sub main() {
     push( @args, '-f createCompleteMailProvider_script.jython' );
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
 
-    if ( $gConnectionType && $gConnectionType ne '' ) {
-        push( @args, '-conntype ' . $gConnectionType );
+    my $connectionType       = $configuration{conntype};
+    if ( $connectionType && $connectionType ne '' ) {
+        push( @args, '-conntype ' . $connectionType );
     }
 
     my $hostParamName;
 
-    if ( $gConnectionType eq IPC_CONNECTION_TYPE ) {
+    if ( $connectionType eq IPC_CONNECTION_TYPE ) {
         $hostParamName = '-ipchost';
     }
     else {

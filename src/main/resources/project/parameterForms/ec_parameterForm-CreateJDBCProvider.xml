@@ -96,15 +96,4 @@
 		<required>1</required>
 	</formElement>
 	
-	<formElement>
-		<type>select</type>
-		<label>Connection Type:</label>
-		<property>connectiontype</property>
-		<required>1</required>
-		<documentation>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE.</documentation>
-		<option><name>None</name><value>none</value></option>
-		<option><name>SOAP</name><value>soap</value></option>
-		<option><name>RMI</name><value>rmi</value></option>
-	</formElement>
-
 </editor>

@@ -65,7 +65,6 @@ $::gNativepath          = trim(q($[nativepath]));
 $::gProviderType        = trim(q($[providerType]));
 $::gPropertySet         = trim(q($[propertySet]));
 $::gSupportsASF         = trim(q($[supportsASF]));
-$::gConnectionType      = trim(q($[connectiontype]));
 $::gConfigurationName   = "$[configname]";
 
 # -------------------------------------------------------------------------
@@ -205,13 +204,14 @@ sub main() {
     push( @args, '-f createJMSProvider_script.jython' );
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
 
-    if ( $::gConnectionType ne '' ) {
-        push( @args, '-conntype ' . $::gConnectionType );
+    my $connectionType      = $configuration{conntype};
+    if ( $connectionType ne '' ) {
+        push( @args, '-conntype ' . $connectionType );
     }
 
     my $hostParamName;
 
-    if ( $::gConnectionType eq IPC_CONNECTION_TYPE ) {
+    if ( $connectionType eq IPC_CONNECTION_TYPE ) {
         $hostParamName = '-ipchost';
     }
     else {

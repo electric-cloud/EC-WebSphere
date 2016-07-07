@@ -37,7 +37,6 @@ $ec->abortOnError(0);
 $::gWSAdminAbsPath = ($ec->getProperty("wsadminabspath") )->findvalue("//value");
 $::gJdbcProviderName = ($ec->getProperty("jdbcProvidername") )->findvalue("//value");
 $::gConfigurationName = ($ec->getProperty("configname") )->findvalue("//value");
-$::gConnectionType = ($ec->getProperty("connectiontype") )->findvalue("//value");
 
 #-------------------------------------------------------------------------
 # Main functions
@@ -81,7 +80,9 @@ AdminConfig.save()';
       
   push(@args, '-f deleteJDBC_script.jython');
   push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
-  push(@args, '-conntype ' . $::gConnectionType);
+
+  my $connectionType = $configuration{conntype};
+  push(@args, '-conntype ' . $connectionType);
   
   	
   #inject config...

@@ -65,10 +65,6 @@ public class ConfigureEJBContainerTest {
                 .put("actualParameterName", "wsadminAbsPath"));
 
         actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "connectionType")
-                .put("value", "soap"));
-
-        actualParameterArray.put(new JSONObject()
                 .put("actualParameterName", "cellName")
                 .put("value", props.getProperty(StringConstants.CELL_NAME)));
 

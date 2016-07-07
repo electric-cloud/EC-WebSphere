@@ -253,14 +253,45 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create J
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
-    my $newcfg = $query->getProperty(
-        "/plugins/$pluginName/project/websphere_cfgs");
-    my $oldcfgs = $query->getProperty(
-        "/plugins/$otherPluginName/project/websphere_cfgs");
-    my $olddiscovery = $query->getProperty(
-        "/plugins/$otherPluginName/project/ec_discovery/discovered_data");
-	my $creds = $query->getCredentials(
-        "\$[/plugins/$otherPluginName]");
+
+    # When upgrading from older versions, find steps that call plugins procedures
+    # and remove extra outdated parameters 
+    my @filterList = ({ 'propertyName' => 'subproject',
+         'operator' => 'equals',
+         'operand1' => '/plugins/@PLUGIN_KEY@/project' });
+
+    my $result = $commander->findObjects('procedureStep', {
+        filter => [ { operator => 'and', filter => \@filterList} ]
+    });
+
+    for my $procedureStep ($result->findnodes('//step')) {
+        my $projectName = $procedureStep->find('projectName')->string_value;
+        my $procedureName = $procedureStep->find('procedureName')->string_value;
+        my $stepName = $procedureStep->find('stepName')->string_value;
+
+        if($procedureName eq 'UpdateApp') {
+            $query->deleteActualParameter($projectName, $procedureName, $stepName, 'isAppOnCluster');
+        }
+        
+        $query->deleteActualParameter($projectName, $procedureName, $stepName, 'connectionType');
+    }
+
+    # Update old configs, set conntype to SOAP if it does not exists
+    my $old_configs_path = "/plugins/$otherPluginName/project/websphere_cfgs";
+    my $configurations = $commander->getProperties({path => $old_configs_path});
+    for my $configuration ($configurations->findnodes('//propertyName')) {
+    	my $conntype_path = $old_configs_path.$configuration->string_value."/conntype";
+
+        my $conntype = $commander->getProperty($conntype_path);
+        if(!$conntype->find('//value')) {
+            $query->setProperty($conntype_path, 'SOAP');        	
+        }
+    }
+
+    my $newcfg = $query->getProperty("/plugins/$pluginName/project/websphere_cfgs");
+    my $oldcfgs = $query->getProperty($old_configs_path);
+    my $olddiscovery = $query->getProperty("/plugins/$otherPluginName/project/ec_discovery/discovered_data");
+	my $creds = $query->getCredentials("\$[/plugins/$otherPluginName]");
 
 	local $self->{abortOnError} = 0;
     $query->submit();

@@ -59,10 +59,6 @@ public class CreateClusterTest {
                 .put("value", "WebCfg"));
 
         actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "connectiontype")
-                .put("value", "soap"));
-
-        actualParameterArray.put(new JSONObject()
                 .put("value", props.getProperty(StringConstants.WSADMIN_LOCATION))
                 .put("actualParameterName", "wsadminabspath"));
 

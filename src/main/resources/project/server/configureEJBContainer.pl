@@ -1,4 +1,4 @@
-#
+#co
 #  Copyright 2015 Electric Cloud, Inc.
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
@@ -64,7 +64,6 @@ my $gCleanupInterval             = trim(q($[cleanupInterval]));
 my $gEnableSFSBFailover          = trim(q($[enableSFSBFailover]));
 my $gMessageBrokerDomainName     = trim(q($[messageBrokerDomainName]));
 my $gDataReplicationMode         = trim(q($[dataReplicationMode]));
-my $gConnectionType              = trim(q($[connectiontype]));
 my $gConfigurationName           = "$[configname]";
 
 # -------------------------------------------------------------------------
@@ -230,8 +229,9 @@ sub main() {
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
 
     my $hostParamName;
+    my $connectionType = $configuration{'conntype'};
 
-    if ( $gConnectionType eq IPC_CONNECTION_TYPE ) {
+    if ( $connectionType eq IPC_CONNECTION_TYPE ) {
         $hostParamName = '-ipchost';
     }
     else {
@@ -246,8 +246,8 @@ sub main() {
         push( @args, '-port ' . $configuration{'websphere_port'} );
     }
 
-    if ( $gConnectionType ne '' ) {
-            push( @args, '-conntype ' . $gConnectionType );
+    if ( $connectionType ne '' ) {
+            push( @args, '-conntype ' . $connectionType );
     }
 
     if ( $configuration{'user'} ne '' ) {

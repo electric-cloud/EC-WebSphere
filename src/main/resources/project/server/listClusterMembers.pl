@@ -54,7 +54,6 @@ $| = 1;
 # -------------------------------------------------------------------------
 
 $::gWSAdminAbsPath    = trim(q($[wsadminabspath]));
-$::gConnectionType    = trim(q($[connectiontype]));
 $::gConfigurationName = "$[configname]";
 $::gClusterName       = trim(q($[clusterName]));
 
@@ -119,14 +118,16 @@ sub main() {
     push( @args, '-f listClusterMembers_script.jython' );
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
 
-    if ( $::gConnectionType && $::gConnectionType ne '' ) {
-        push( @args, '-conntype ' . $::gConnectionType );
+    my $connectionType         = $configuration{conntype};
+
+    if ( $connectionType && $connectionType ne '' ) {
+        push( @args, '-conntype ' . $connectionType );
     }
 
 
     my $hostParamName;
 
-    if ( $::gConnectionType eq IPC_CONNECTION_TYPE ) {
+    if ( $connectionType eq IPC_CONNECTION_TYPE ) {
         $hostParamName = '-ipchost';
     }
     else {

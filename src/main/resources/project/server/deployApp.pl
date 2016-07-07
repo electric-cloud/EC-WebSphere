@@ -37,7 +37,6 @@ $::gScriptFile = 'AdminApp.install(\'' . $::gAppPath . '\',\'[-usedefaultbinding
              'AdminConfig.save()';
 $::gWSAdminAbsPath = trim(q($[wsadminabspath]));
 $::gClasspath = trim(q($[classpath]));
-$::gConnectionType = trim(q($[connectionType]));
 $::gJavaParams = trim(q($[javaparams]));
 $::gConfigurationName = "$[configname]";
 $::gAdditionalOptions = "$[additionalcommands]";
@@ -91,15 +90,17 @@ push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
       push(@args, '-wsadmin_classpath "' . $::gClasspath . '"');
   }
   
-  if($::gConnectionType && $::gConnectionType ne '') {
-      push(@args, '-conntype ' . $::gConnectionType);
+  my $connectionType = $configuration{conntype};
+  
+  if($connectionType && $connectionType ne '') {
+      push(@args, '-conntype ' . $connectionType);
   }
   
   #inject config...
   if(%configuration){
       my $hostParamName;
       
-      if($::gConnectionType eq IPC_CONNECTION_TYPE){
+      if($connectionType eq IPC_CONNECTION_TYPE){
          $hostParamName = '-ipchost';
       }else{         
          $hostParamName = '-host';

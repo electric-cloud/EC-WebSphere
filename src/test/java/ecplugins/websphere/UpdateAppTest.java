@@ -63,10 +63,6 @@ public class UpdateAppTest {
                 .put("actualParameterName", "wsadminAbsPath"));
 
         actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "connectionType")
-                .put("value", "soap"));
-
-        actualParameterArray.put(new JSONObject()
                 .put("actualParameterName", "appName")
                 .put("value", props.getProperty(StringConstants.APP_NAME_TO_UPDATE)));
 
@@ -85,10 +81,6 @@ public class UpdateAppTest {
         actualParameterArray.put(new JSONObject()
                 .put("actualParameterName", "contentURI")
                 .put("value", props.getProperty(StringConstants.URI_OF_FILE_TO_REPLACE)));
-
-        actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "isAppOnCluster")
-                .put("value", "0"));
 
         actualParameterArray.put(new JSONObject()
                 .put("actualParameterName", "serverName")

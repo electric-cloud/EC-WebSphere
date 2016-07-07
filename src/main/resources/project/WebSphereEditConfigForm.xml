@@ -16,7 +16,19 @@
 
 -->
 <editor>
-	<formElement>
+    <formElement>
+        <type>select</type>
+        <label>Connection Type:</label>
+        <property>conntype</property>
+        <required>1</required>
+        <documentation>Specifies to type of connection to use to connect to the application server that you want to administer.</documentation>
+        <option><name>SOAP</name><value>SOAP</value></option>
+        <option><name>None</name><value>None</value></option>
+        <option><name>RMI</name><value>RMI</value></option>
+        <option><name>JSR160RMI</name><value>JSR160RMI</value></option>
+        <option><name>IPC</name><value>IPC</value></option>
+    </formElement>
+  	<formElement>
         <type>entry</type>
         <label>WebSphere Host:</label>
         <property>websphere_url</property>

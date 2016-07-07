@@ -68,7 +68,6 @@ my $gAppPath   = "$[apppath]";
 my $gContextRoot = "$[contextRoot]";
 my $gCellName  = "$cellname";
 my $gConfigurationName = "$[configname]";
-my $gConnectionType = "$[connectionType]";
 
 #-------------------------------------------------------------------------
 # Main functions
@@ -193,8 +192,10 @@ sub main() {
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
 
 
-    if ( $gConnectionType ne '' ) {
-        push( @args, '-conntype ' . $gConnectionType );
+    my $connectionType = $configuration{conntype};
+
+    if ( $connectionType ne '' ) {
+        push( @args, '-conntype ' . $connectionType );
     }
 
     if ( $configuration{'websphere_url'} ne '' ) {

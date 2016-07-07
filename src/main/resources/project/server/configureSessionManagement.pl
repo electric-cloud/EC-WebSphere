@@ -67,7 +67,6 @@ $::gSessionPersistMode      = trim(q($[sessionPersistMode]));
 $::gMaxInMemorySessionCount = trim(q($[maxInMemorySessionCount]));
 $::gAllowOverflow           = trim(q($[allowOverflow]));
 $::gInvalidTimeout          = trim(q($[invalidTimeout]));
-$::gConnectionType          = trim(q($[connectionType]));
 $::gConfigurationName       = trim(q($[configName]));
 
 # -------------------------------------------------------------------------
@@ -225,14 +224,16 @@ sub main() {
     push( @args, '-f configureSessionManagement_script.jython' );
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
 
-    if ( $::gConnectionType && $::gConnectionType ne '' ) {
-        push( @args, '-conntype ' . $::gConnectionType );
+    my $connectionType = $configuration{conntype};
+
+    if ( $connectionType && $connectionType ne '' ) {
+        push( @args, '-conntype ' . $connectionType );
     }
 
     #inject config...
     my $hostParamName;
 
-    if ( $::gConnectionType eq IPC_CONNECTION_TYPE ) {
+    if ( $connectionType eq IPC_CONNECTION_TYPE ) {
         $hostParamName = '-ipchost';
     }
     else {

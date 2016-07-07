@@ -82,7 +82,7 @@ sub discover {
     my $wsadmin = $self->_discoverWsadminPath();
 
     if ( not $wsadmin ) {
-        my $summary = 'Cannot find wsadmin executable';
+        my $summary = 'Warning: Cannot find wsadmin executable';
         $self->_setStatus('incomplete', $summary);
         $self->_error("$summary\n");
 
@@ -92,7 +92,7 @@ sub discover {
     my $websphere = new WebSphere::WebSphere($ec, $configurationName, $wsadmin);
 
     if(not defined $websphere) {
-    	my $summary = "Incorrect configuration name '$configurationName'";
+    	my $summary = "Error: Incorrect configuration name '$configurationName'";
         $self->_setStatus('incomplete', $summary);
         $self->_error("$summary\n");
 
@@ -113,11 +113,11 @@ sub discover {
     my $servers_cnt = 0;
     for my $server (keys %{$servers}) {
     	$servers_cnt ++;
-        $self->_createProperty("$configurationName/servers/$server", {description => $server, propertyType => 'sheet' });
+        $self->_createProperty("$configurationName/servers/$servers_cnt", {description => $server, propertyType => 'sheet' });
 
     	for my $application (@{$servers->{$server}}) {
-            $self->_setProperty("$configurationName/servers/$server/$application", "");
-            $self->_setProperty("$configurationName/applications/$application/servers/$server", "");
+            $self->_setProperty("$configurationName/servers/$servers_cnt/$application", "");
+            $self->_setProperty("$configurationName/applications/$application/servers/$servers_cnt", (split("=", $server))[1]);
     	}
     }
 
@@ -125,16 +125,16 @@ sub discover {
     my $clusters_cnt = 0;
     for my $cluster (keys %{$clusters}) {
         $clusters_cnt ++;
-        $self->_createProperty("$configurationName/clusters/$cluster", {description => $cluster, propertyType => 'sheet' });
+        $self->_createProperty("$configurationName/clusters/$clusters_cnt", {description => $cluster, propertyType => 'sheet' });
 
         for my $application (@{$clusters->{$cluster}}) {
-            $self->_setProperty("$configurationName/clusters/$cluster/$application", "");
-            $self->_setProperty("$configurationName/applications/$application/clusters/$cluster", "");
+            $self->_setProperty("$configurationName/clusters/$clusters_cnt/$application", "");
+            $self->_setProperty("$configurationName/applications/$application/clusters/$clusters_cnt", (split("=", $cluster))[1]);
         }
     }
 
-    $ec->setProperty( "/resources[$self->{resourceName}]/ec_discovery/wsadminPath", $wsadmin );
-    $self->_setProperty( "$configurationName/wsadminPath", "\$[/myResource/ec_discovery/wsadminPath]", {expandable => 0});
+    $ec->setProperty( "/resources[$self->{resourceName}]/ec_discovery/@PLUGIN_KEY@/$configurationName/wsadminPath", $wsadmin );
+    $self->_setProperty( "$configurationName/wsadminPath", "\$[/myResource/ec_discovery/@PLUGIN_KEY@/$configurationName/wsadminPath]", {expandable => 0});
     
     $self->_setStatus('completed');
 

@@ -124,13 +124,16 @@
                         <td class="required">Configuration
                         Name</td>
 
-                        <td>The name of the configuration to
-                        create.  </td>
+                        <td>The name of the configuration to create.</td>
                     </tr>
 
                     <tr>
+                        <td class="required">Connection Type</td>
+                        <td>Specifies to type of connection to use to connect to the application server that you want to administer.</td>
+                    </tr>
+                    
+                    <tr>
                         <td class="required">WebSphere Host</td>
-
                         <td>Hostname of the WebSphere Application Server to administer using wsadmin tool.</td>
                     </tr>
 
@@ -406,12 +409,6 @@
 
 
                     <tr>
-                        <td>Connection Type</td>
-                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
-                    </tr>
-
-
-                    <tr>
                         <td>Cell Name</td>
                         <td>Name of cell to which EJB container belongs.</td>
                     </tr>
@@ -530,11 +527,6 @@
                     <tr>
                         <td class="required">Configuration Name</td>
                         <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
-                    </tr>
-
-                    <tr>
-                        <td>Connection Type</td>
-                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
                     </tr>
 
                     <tr>
@@ -722,12 +714,6 @@
                     </tr>
 
 
-                    <tr>
-                        <td>Connection Type</td>
-                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
-                    </tr>
-
-
                 </tbody>
 
             </table>
@@ -889,16 +875,6 @@
 
                     </tr>
 
-                    <tr>
-
-                        <td class="required">Connection Type</td>
-
-
-
-                        <td>The type of connection to use when connecting to the application server that you want to administer. The valid options are <b>SOAP</b>, <b>RMI</b>, and <b>NONE</b>.</td>
-
-                    </tr>
-
                 </tbody>
 
             </table>
@@ -974,11 +950,6 @@
                     <tr>
                         <td class="required">Wsadmin Absolute Path</td>
                         <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
-                    </tr>
-
-                    <tr>
-                        <td>Connection Type</td>
-                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
                     </tr>
 
                     <tr>
@@ -1248,16 +1219,6 @@
 
                     </tr>
 
-                    <tr>
-
-                        <td class="required">Connection Type</td>
-
-
-
-                        <td>The type of connection used to connect to the application server that you want to administer. The valid options are SOAP, RMI, and NONE.</td>
-
-                    </tr>
-
                 </tbody>
 
             </table>
@@ -1385,11 +1346,6 @@
                         <td>Specifies resource properties in the following format: [[['name','nameValue1'],['type','typeValue1'],['value','valueValue1']]... [['name','nameValuen'],['type','typeValuen'],['value','valueValuen']]]</td>
                     </tr>
 
-                    <tr>
-                        <td>Connection Type</td>
-                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
-                    </tr>
-
                 </tbody>
 
             </table>
@@ -1441,11 +1397,6 @@
                     <tr>
                         <td class="required">Wsadmin Absolute Path</td>
                         <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
-                    </tr>
-
-                    <tr>
-                        <td>Connection Type</td>
-                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
                     </tr>
 
                     <tr>
@@ -1596,12 +1547,6 @@
                         <td class="required">Configuration Name</td>
                         <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
                     </tr>
-
-                    <tr>
-                        <td>Connection Type</td>
-                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
-                    </tr>
-
 
                     <tr>
                         <td class="required">Cluster Name</td>
@@ -1755,16 +1700,6 @@
 
                     </tr>
 
-                    <tr>
-
-                        <td class="required">Connection Type</td>
-
-
-
-                        <td>The type of connection used to connect to the application server that you want to administer. The valid options are SOAP, RMI, and NONE.</td>
-
-                    </tr>
-
                 </tbody>
 
             </table>
@@ -1864,16 +1799,6 @@
 
 
                         <td>The name of the JDBC Provider that is unique in the WebSphere domain.</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td class="required">Connection Type</td>
-
-
-
-                        <td>The type of connection used to connect to the application server that you want to administer. The valid options are SOAP, RMI, and NONE.</td>
 
                     </tr>
 
@@ -1999,19 +1924,9 @@
 
                         <td>Additional commands enter in the wsadmin tool.</td>
                     </tr>
-
-                    <tr>
-                        <td>Connection Type</td>
-
-                        <td>The type of connection used
-                        to connect to the application server that
-                        you want to administer. The valid options
-                        are SOAP, RMI, and NONE. The default is
-                        SOAP.</td>
-                    </tr>
                 </tbody>
             </table>
-<h3>Deploying Applications</h3>
+            <h3>Deploying Applications</h3>
             <p>To deploy an application, do these steps:select the following
             highlighted
             step:</p>
@@ -2069,11 +1984,6 @@
                     <tr>
                         <td class="required">Wsadmin Absolute Path</td>
                         <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
-                    </tr>
-
-                    <tr>
-                        <td>Connection Type</td>
-                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
                     </tr>
 
                     <tr class="required">
@@ -2294,11 +2204,6 @@
                     </tr>
 
                     <tr>
-                        <td>Connection Type</td>
-                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
-                    </tr>
-
-                    <tr>
                         <td>Want to add external bundle repository?</td>
                         <td>If your OSGi applications reference bundles stored in an external bundle repository, you must configure a link (name and URL) to the repository so that the provisioner can retrieve the bundles when required.</td>
                     </tr>
@@ -2404,12 +2309,6 @@
                     </tr>
 
                     <tr>
-                        <td>Connection Type</td>
-                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
-                    </tr>
-
-
-                    <tr>
                         <td class="required">Cluster Name</td>
                         <td>Name of the cluster.</td>
                     </tr>
@@ -2481,11 +2380,6 @@
                 <tr>
                     <td class="required">Wsadmin Absolute Path</td>
                     <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
-                </tr>
-
-                <tr>
-                    <td>Connection Type</td>
-                    <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
                 </tr>
 
                 <tr>
@@ -2578,12 +2472,6 @@
                         <td class="required">Wsadmin Absolute Path</td>
                         <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
                     </tr>
-
-                    <tr>
-                        <td>Connection Type</td>
-                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
-                    </tr>
-
 
                     <tr>
                         <td class="required">Cluster Name</td>
@@ -2727,15 +2615,6 @@
                         wsadmin tool.</td>
                     </tr>
 
-                    <tr>
-                        <td>Connection Type</td>
-
-                        <td>The type of connection used
-                        to connect to the application server that
-                        you want to administer. The valid options
-                        are SOAP, RMI, and NONE. The default is
-                        SOAP.</td>
-                    </tr>
                 </tbody>
             </table>
             <h3>Running Custom Jobs</h3>
@@ -2819,15 +2698,6 @@
                         wsadmin tool.</td>
                     </tr>
 
-                    <tr>
-                        <td>Connection Type</td>
-
-                        <td>The type of connection used
-                        to connect to the application server that
-                        you want to administer. The valid options
-                        are SOAP, RMI, and NONE. The default is
-                        SOAP.</td>
-                    </tr>
                 </tbody>
             </table>
             <h3>Starting Applications</h3>
@@ -2986,15 +2856,6 @@
                         <td>Additional commands to enter in the wsadmin tool.</td>
                     </tr>
 
-                    <tr>
-                        <td>Connection Type</td>
-
-                        <td>The type of connection used
-                        to connect to the application server that
-                        you want to administer. The valid options
-                        are SOAP, RMI, and NONE. The default is
-                        SOAP.</td>
-                    </tr>
                 </tbody>
             </table>
             <h3>Stopping Applications</h3>
@@ -3146,15 +3007,6 @@
                         <td>Additional commands to enter in the wsadmin tool.</td>
                     </tr>
 
-                    <tr>
-                        <td>Connection Type</td>
-
-                        <td>The type of connection used
-                        to connect to the application server that
-                        you want to administer. The valid options
-                        are SOAP, RMI, and NONE. Default is
-                        SOAP.</td>
-                    </tr>
                 </tbody>
             </table>
             <h3> Undeploying Applications</h3>
@@ -3212,12 +3064,6 @@
                         <td class="required">Wsadmin Absolute Path</td>
                         <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
                     </tr>
-
-                    <tr>
-                        <td>Connection Type</td>
-                        <td>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</td>
-                    </tr>
-
 
                     <tr>
                         <td class="required">Application Name</td>
@@ -3303,7 +3149,8 @@
         <h2>@PLUGIN_KEY@ 2.2.0</h2>
         <ul>
              <li>Added suport for discovering WebSphere configuraiton on ElectricFlow resource.</li>
-        </ul>
+             <li>Moved 'Connection Type' parameter for all plugin procedures to plugin's configuration.</li>
+       </ul>
 
         <h2>@PLUGIN_KEY@ 2.1.2</h2>
         <ul>

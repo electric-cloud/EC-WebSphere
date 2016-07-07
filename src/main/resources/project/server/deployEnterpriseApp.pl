@@ -55,7 +55,6 @@ $| = 1;
 
 $::gConfigName             = trim(q($[configName]));
 $::gWsadminAbsPath         = trim(q($[wsadminAbsPath]));
-$::gConnectionType         = trim(q($[connectionType]));
 $::gCommands               = trim(q($[commands]));
 $::gClasspath              = trim(q($[classpath]));
 $::gJavaParams             = trim(q($[javaparams]));
@@ -339,13 +338,15 @@ sub main() {
         push( @args, '-wsadmin_classpath "' . $::gClasspath . '"' );
     }
 
-    if ( $::gConnectionType && $::gConnectionType ne '' ) {
-        push( @args, '-conntype ' . $::gConnectionType );
+    my $connectionType         = $configuration{conntype};
+
+    if ( $connectionType && $connectionType ne '' ) {
+        push( @args, '-conntype ' . $connectionType );
     }
 
     my $hostParamName;
 
-    if ( $::gConnectionType eq IPC_CONNECTION_TYPE ) {
+    if ( $connectionType eq IPC_CONNECTION_TYPE ) {
         $hostParamName = '-ipchost';
     }
     else {

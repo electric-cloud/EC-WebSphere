@@ -64,10 +64,6 @@ public class PublishWSDLTest {
                 .put("actualParameterName", "wsadminabspath"));
 
         actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "connectiontype")
-                .put("value", "soap"));
-
-        actualParameterArray.put(new JSONObject()
                 .put("actualParameterName", "appname")
                 .put("value", props.getProperty(StringConstants.WEBSERVICE_APP_NAME)));
 

@@ -120,15 +120,30 @@ sub _create_runfile {
 	my ( $self, $runfile ) = @_;
 	my $configuration = $self->{configuration};
 
-	my $options = {
-		lang     => 'jython',
-		conntype => 'SOAP',
-		host     => $configuration->{websphere_url},
-		port     => $configuration->{websphere_port},
-		user     => $configuration->{user},
-		password => $configuration->{password}
+ 	my $options = {
+		lang     => 'jython'
 	};
+	
+	if($configuration->{conntype}) {
+		$options->{conntype} = $configuration->{conntype};
+	}
 
+    if($configuration->{websphere_url} && $options->{conntype} eq 'IPC') {
+    	$options->{ipchost} = $configuration->{websphere_url};
+    }
+
+    if($configuration->{websphere_port}) {
+    	$options->{port} = $configuration->{websphere_port};
+    }
+    
+    if($configuration->{user}) {
+    	$options->{user} = $configuration->{user};
+    }
+
+    if($configuration->{password}) {
+        $options->{password} = $configuration->{password};
+    }
+ 
 	my $options_string = "";
 	for my $optionName ( keys %$options ) {
 		$options_string .= " -$optionName $options->{$optionName}";
@@ -157,11 +172,6 @@ sub _getConfiguration {
 	$configuration{password}          = $xpath->findvalue("//password");
 	$configuration{configurationName} = $configurationName;
 
-    # Default to standard WS SOAP port
-    if(!$configuration{websphere_port}) {
-    	$configuration{websphere_port} = 8880;
-    }
-    
 	return \%configuration;
 }
 

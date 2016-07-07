@@ -60,8 +60,6 @@ $ec->abortOnError(0);
 $::gWSAdminAbsPath =
   ( $ec->getProperty("wsadminabspath") )->findvalue("//value");
 $::gClusterName = ( $ec->getProperty("clusterName") )->findvalue("//value");
-$::gConnectionType =
-  ( $ec->getProperty("connectionType") )->findvalue("//value");
 $::gConfigurationName =
   ( $ec->getProperty("configname") )->findvalue("//value");
 
@@ -126,8 +124,10 @@ sub main() {
     push( @args, '-f deleteCluster_script.jython' );
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
 
-    if ( $::gConnectionType ne '' ) {
-        push( @args, '-conntype ' . $::gConnectionType );
+    my $connectionType = $configuration{conntype};
+
+    if ( $connectionType ne '' ) {
+        push( @args, '-conntype ' . $connectionType );
     }
 
     if ( $configuration{'websphere_url'} ne '' ) {

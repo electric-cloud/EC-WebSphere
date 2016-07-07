@@ -282,6 +282,10 @@ public class TestUtils {
                      .put("actualParameterName", "config"));
 
              actualParameterArray.put(new JSONObject()
+                     .put("actualParameterName", "conntype")
+                     .put("value", "SOAP"));
+
+             actualParameterArray.put(new JSONObject()
                      .put("actualParameterName", "websphere_url")
                      .put("value", props.getProperty(StringConstants.WEBSPHERE_URL)));
 

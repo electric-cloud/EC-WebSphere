@@ -251,6 +251,17 @@
                                 </property>
 
                                 <property>
+                                    <propertyName>conntype</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+                                <property>
                                     <propertyName>websphere_url</propertyName>
                                     <propertySheet>
                                         <property>
@@ -293,6 +304,13 @@
                 <formalParameterName>config</formalParameterName>
                 <defaultValue />
                 <description>Configuration Name. </description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>conntype</formalParameterName>
+                <defaultValue />
+                <description>Specifies type of connection to use to connect to the application server that you want to administer.</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
@@ -1092,109 +1110,6 @@
                                     </propertySheet>
                                 </property>
 
-                                <property>
-                                    <propertyName>connectiontype</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option1</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>None</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option2</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>soap</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option3</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>rmi</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option4</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>jsr160rmi</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option5</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>ipc</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>5</value>
-                                                </property>
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -1271,14 +1186,6 @@
                 <description>Additional commands to be entered.</description>
                 <required>0</required>
                 <type>textarea</type>
-            </formalParameter>
-
-            <formalParameter>
-                <formalParameterName>connectiontype</formalParameterName>
-                <defaultValue />
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
-                <required>0</required>
-                <type>select</type>
             </formalParameter>
 
             <step>
@@ -1507,208 +1414,6 @@
 
 
 
-                                <property>
-
-                                    <propertyName>connectiontype</propertyName>
-
-                                    <propertySheet>
-
-                                        <property>
-
-                                            <propertyName>options</propertyName>
-
-                                            <propertySheet>
-
-                                                <property>
-
-                                                    <propertyName>option1</propertyName>
-
-                                                    <propertySheet>
-
-                                                        <property>
-
-                                                            <propertyName>text</propertyName>
-
-                                                            <expandable>1</expandable>
-
-                                                            <value>None</value>
-
-                                                        </property>
-
-                                                        <property>
-
-                                                            <propertyName>value</propertyName>
-
-                                                            <expandable>1</expandable>
-
-                                                            <value>NONE</value>
-
-                                                        </property>
-
-                                                    </propertySheet>
-
-                                                </property>
-
-                                                <property>
-
-                                                    <propertyName>option2</propertyName>
-
-                                                    <propertySheet>
-
-                                                        <property>
-
-                                                            <propertyName>text</propertyName>
-
-                                                            <expandable>1</expandable>
-
-                                                            <value>SOAP</value>
-
-                                                        </property>
-
-                                                        <property>
-
-                                                            <propertyName>value</propertyName>
-
-                                                            <expandable>1</expandable>
-
-                                                            <value>soap</value>
-
-                                                        </property>
-
-                                                    </propertySheet>
-
-                                                </property>
-
-                                                <property>
-
-                                                    <propertyName>option3</propertyName>
-
-                                                    <propertySheet>
-
-                                                        <property>
-
-                                                            <propertyName>text</propertyName>
-
-                                                            <expandable>1</expandable>
-
-                                                            <value>RMI</value>
-
-                                                        </property>
-
-                                                        <property>
-
-                                                            <propertyName>value</propertyName>
-
-                                                            <expandable>1</expandable>
-
-                                                            <value>rmi</value>
-
-                                                        </property>
-
-                                                    </propertySheet>
-
-                                                </property>
-
-                                                <property>
-
-                                                    <propertyName>option4</propertyName>
-
-                                                    <propertySheet>
-
-                                                        <property>
-
-                                                            <propertyName>text</propertyName>
-
-                                                            <expandable>1</expandable>
-
-                                                            <value>JSR160RMI</value>
-
-                                                        </property>
-
-                                                        <property>
-
-                                                            <propertyName>value</propertyName>
-
-                                                            <expandable>1</expandable>
-
-                                                            <value>jsr160rmi</value>
-
-                                                        </property>
-
-                                                    </propertySheet>
-
-                                                </property>
-
-                                                <property>
-
-                                                    <propertyName>option5</propertyName>
-
-                                                    <propertySheet>
-
-                                                        <property>
-
-                                                            <propertyName>text</propertyName>
-
-                                                            <expandable>1</expandable>
-
-                                                            <value>IPC</value>
-
-                                                        </property>
-
-                                                        <property>
-
-                                                            <propertyName>value</propertyName>
-
-                                                            <expandable>1</expandable>
-
-                                                            <value>ipc</value>
-
-                                                        </property>
-
-                                                    </propertySheet>
-
-                                                </property>
-
-                                                <property>
-
-                                                    <propertyName>optionCount</propertyName>
-
-                                                    <expandable>1</expandable>
-
-                                                    <value>5</value>
-
-                                                </property>
-
-                                                <property>
-
-                                                    <propertyName>type</propertyName>
-
-                                                    <expandable>1</expandable>
-
-                                                    <value>list</value>
-
-                                                </property>
-
-                                            </propertySheet>
-
-                                        </property>
-
-                                        <property>
-
-                                            <propertyName>formType</propertyName>
-
-                                            <expandable>1</expandable>
-
-                                            <value>standard</value>
-
-                                        </property>
-
-                                    </propertySheet>
-
-                                </property>
-
-
-
                             </propertySheet>
 
                         </property>
@@ -1828,22 +1533,6 @@
                 <required>0</required>
 
                 <type>textarea</type>
-
-            </formalParameter>
-
-
-
-            <formalParameter>
-
-                <formalParameterName>connectiontype</formalParameterName>
-
-                <defaultValue />
-
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid available choices are SOAP, RMI, and NONE.</description>
-
-                <required>0</required>
-
-                <type>select</type>
 
             </formalParameter>
 
@@ -2110,208 +1799,6 @@
 
 
 
-                                <property>
-
-                                    <propertyName>connectiontype</propertyName>
-
-                                    <propertySheet>
-
-                                        <property>
-
-                                            <propertyName>options</propertyName>
-
-                                            <propertySheet>
-
-                                                <property>
-
-                                                    <propertyName>option1</propertyName>
-
-                                                    <propertySheet>
-
-                                                        <property>
-
-                                                            <propertyName>text</propertyName>
-
-                                                            <expandable>1</expandable>
-
-                                                            <value>None</value>
-
-                                                        </property>
-
-                                                        <property>
-
-                                                            <propertyName>value</propertyName>
-
-                                                            <expandable>1</expandable>
-
-                                                            <value>NONE</value>
-
-                                                        </property>
-
-                                                    </propertySheet>
-
-                                                </property>
-
-                                                <property>
-
-                                                    <propertyName>option2</propertyName>
-
-                                                    <propertySheet>
-
-                                                        <property>
-
-                                                            <propertyName>text</propertyName>
-
-                                                            <expandable>1</expandable>
-
-                                                            <value>SOAP</value>
-
-                                                        </property>
-
-                                                        <property>
-
-                                                            <propertyName>value</propertyName>
-
-                                                            <expandable>1</expandable>
-
-                                                            <value>soap</value>
-
-                                                        </property>
-
-                                                    </propertySheet>
-
-                                                </property>
-
-                                                <property>
-
-                                                    <propertyName>option3</propertyName>
-
-                                                    <propertySheet>
-
-                                                        <property>
-
-                                                            <propertyName>text</propertyName>
-
-                                                            <expandable>1</expandable>
-
-                                                            <value>RMI</value>
-
-                                                        </property>
-
-                                                        <property>
-
-                                                            <propertyName>value</propertyName>
-
-                                                            <expandable>1</expandable>
-
-                                                            <value>rmi</value>
-
-                                                        </property>
-
-                                                    </propertySheet>
-
-                                                </property>
-
-                                                <property>
-
-                                                    <propertyName>option4</propertyName>
-
-                                                    <propertySheet>
-
-                                                        <property>
-
-                                                            <propertyName>text</propertyName>
-
-                                                            <expandable>1</expandable>
-
-                                                            <value>JSR160RMI</value>
-
-                                                        </property>
-
-                                                        <property>
-
-                                                            <propertyName>value</propertyName>
-
-                                                            <expandable>1</expandable>
-
-                                                            <value>jsr160rmi</value>
-
-                                                        </property>
-
-                                                    </propertySheet>
-
-                                                </property>
-
-                                                <property>
-
-                                                    <propertyName>option5</propertyName>
-
-                                                    <propertySheet>
-
-                                                        <property>
-
-                                                            <propertyName>text</propertyName>
-
-                                                            <expandable>1</expandable>
-
-                                                            <value>IPC</value>
-
-                                                        </property>
-
-                                                        <property>
-
-                                                            <propertyName>value</propertyName>
-
-                                                            <expandable>1</expandable>
-
-                                                            <value>ipc</value>
-
-                                                        </property>
-
-                                                    </propertySheet>
-
-                                                </property>
-
-                                                <property>
-
-                                                    <propertyName>optionCount</propertyName>
-
-                                                    <expandable>1</expandable>
-
-                                                    <value>5</value>
-
-                                                </property>
-
-                                                <property>
-
-                                                    <propertyName>type</propertyName>
-
-                                                    <expandable>1</expandable>
-
-                                                    <value>list</value>
-
-                                                </property>
-
-                                            </propertySheet>
-
-                                        </property>
-
-                                        <property>
-
-                                            <propertyName>formType</propertyName>
-
-                                            <expandable>1</expandable>
-
-                                            <value>standard</value>
-
-                                        </property>
-
-                                    </propertySheet>
-
-                                </property>
-
-
-
                             </propertySheet>
 
                         </property>
@@ -2431,22 +1918,6 @@
                 <required>0</required>
 
                 <type>textarea</type>
-
-            </formalParameter>
-
-
-
-            <formalParameter>
-
-                <formalParameterName>connectiontype</formalParameterName>
-
-                <defaultValue />
-
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
-
-                <required>0</required>
-
-                <type>select</type>
 
             </formalParameter>
 
@@ -2644,107 +2115,6 @@
                                     </propertySheet>
                                 </property>
 
-                                <property>
-                                    <propertyName>connectionType</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option1</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option2</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option3</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option4</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option5</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>5</value>
-                                                </property>
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-
                             </propertySheet>
                         </property>
 
@@ -2817,14 +2187,6 @@
                 <description>Additional commands to be entered for wsadmin.</description>
                 <required>0</required>
                 <type>textarea</type>
-            </formalParameter>
-
-            <formalParameter>
-                <formalParameterName>connectionType</formalParameterName>
-                <defaultValue />
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
-                <required>0</required>
-                <type>select</type>
             </formalParameter>
 
             <step>
@@ -2971,116 +2333,6 @@
                                     </propertySheet>
                                 </property>
 
-
-                                <property>
-                                    <propertyName>connectiontype</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option1</propertyName>
-                                                    <propertySheet>
-
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>None</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                    </propertySheet>
-
-                                                </property>
-                                                <property>
-                                                    <propertyName>option2</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-
-                                                            <value>SOAP</value>
-
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>soap</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option3</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>rmi</value>
-
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option4</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-
-                                                            <value>jsr160rmi</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option5</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>ipc</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>5</value>
-                                                </property>
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -3142,14 +2394,6 @@
                 <description>Additional commands to be entered.</description>
                 <required>0</required>
                 <type>textarea</type>
-            </formalParameter>
-
-            <formalParameter>
-                <formalParameterName>connectiontype</formalParameterName>
-                <defaultValue />
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
-                <required>0</required>
-                <type>select</type>
             </formalParameter>
 
             <step>
@@ -4015,84 +3259,6 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-
-
-                                <property>
-                                    <propertyName>connectiontype</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option1</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>None</value>
-
-                                                        </property>
-
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-
-                                                <property>
-                                                    <propertyName>option2</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>soap</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-
-                                                <property>
-                                                    <propertyName>option3</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>rmi</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>3</value>
-                                                </property>
-
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -4169,14 +3335,6 @@
                 <description>Provide the datasource helper class name.</description>
                 <required>1</required>
                 <type>entry</type>
-            </formalParameter>
-
-            <formalParameter>
-                <formalParameterName>connectiontype</formalParameterName>
-                <defaultValue />
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE.</description>
-                <required>1</required>
-                <type>select</type>
             </formalParameter>
 
             <step>
@@ -4266,82 +3424,6 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-                                <property>
-                                    <propertyName>connectiontype</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option1</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>None</value>
-
-                                                        </property>
-
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-
-                                                <property>
-                                                    <propertyName>option2</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>soap</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-
-                                                <property>
-                                                    <propertyName>option3</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>rmi</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>3</value>
-                                                </property>
-
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -4370,14 +3452,6 @@
                 <description>A unique name that identifies the datasource to delete in the WebSphere domain. </description>
                 <required>1</required>
                 <type>entry</type>
-            </formalParameter>
-
-            <formalParameter>
-                <formalParameterName>connectiontype</formalParameterName>
-                <defaultValue />
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE.</description>
-                <required>1</required>
-                <type>select</type>
             </formalParameter>
             <step>
                 <stepName>DeleteDatasource</stepName>
@@ -4532,83 +3606,6 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-
-                                <property>
-                                    <propertyName>connectiontype</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option1</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>None</value>
-
-                                                        </property>
-
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-
-                                                <property>
-                                                    <propertyName>option2</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>soap</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-
-                                                <property>
-                                                    <propertyName>option3</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>rmi</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>3</value>
-                                                </property>
-
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -4688,13 +3685,6 @@
                 <type>entry</type>
             </formalParameter>
 
-            <formalParameter>
-                <formalParameterName>connectiontype</formalParameterName>
-                <defaultValue />
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE.</description>
-                <required>1</required>
-                <type>select</type>
-            </formalParameter>
             <step>
                 <stepName>CreateJDBCProvider</stepName>
                 <alwaysRun>0</alwaysRun>
@@ -4782,82 +3772,6 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-                                <property>
-                                    <propertyName>connectiontype</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option1</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>None</value>
-
-                                                        </property>
-
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-
-                                                <property>
-                                                    <propertyName>option2</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>soap</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-
-                                                <property>
-                                                    <propertyName>option3</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>rmi</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>3</value>
-                                                </property>
-
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -4888,13 +3802,6 @@
                 <type>entry</type>
             </formalParameter>
 
-            <formalParameter>
-                <formalParameterName>connectiontype</formalParameterName>
-                <defaultValue />
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE.</description>
-                <required>1</required>
-                <type>select</type>
-            </formalParameter>
             <step>
                 <stepName>DeleteJDBCProvider</stepName>
                 <alwaysRun>0</alwaysRun>
@@ -4979,107 +3886,6 @@
                                 <property>
                                     <propertyName>configName</propertyName>
                                     <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-
-                                <property>
-                                    <propertyName>connectionType</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option1</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option2</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option3</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option4</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option5</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>5</value>
-                                                </property>
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
                                         <property>
                                             <propertyName>formType</propertyName>
                                             <expandable>1</expandable>
@@ -5436,15 +4242,6 @@
             </formalParameter>
 
             <formalParameter>
-                <formalParameterName>connectionType</formalParameterName>
-                <defaultValue />
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
-                <required>0</required>
-                <type>select</type>
-            </formalParameter>
-
-
-            <formalParameter>
                 <formalParameterName>appName</formalParameterName>
                 <defaultValue />
                 <description>Name of the web application to configure.</description>
@@ -5796,107 +4593,6 @@
                                     </propertySheet>
                                 </property>
 
-                                <property>
-                                    <propertyName>connectionType</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option1</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option2</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option3</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option4</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option5</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>5</value>
-                                                </property>
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-
                             </propertySheet>
                         </property>
 
@@ -6010,14 +4706,6 @@
                 <description>If set to true, specifies that the JMS provider supports Application Server Facilities (ASF), which provides concurrency and transactional support for applications.</description>
                 <required>0</required>
                 <type>entry</type>
-            </formalParameter>
-
-            <formalParameter>
-                <formalParameterName>connectionType</formalParameterName>
-                <defaultValue />
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE.</description>
-                <required>1</required>
-                <type>select</type>
             </formalParameter>
 
             <step>
@@ -6158,107 +4846,6 @@
                                 </property>
 
                                 <property>
-                                    <propertyName>connectionType</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option1</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option2</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option3</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option4</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option5</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>5</value>
-                                                </property>
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-
-                                <property>
                                     <propertyName>commands</propertyName>
                                     <propertySheet>
                                         <property>
@@ -6388,14 +4975,6 @@
                 <description/>
                 <required>0</required>
                 <type>entry</type>
-            </formalParameter>
-
-            <formalParameter>
-                <formalParameterName>connectionType</formalParameterName>
-                <defaultValue />
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE.</description>
-                <required>1</required>
-                <type>select</type>
             </formalParameter>
 
             <formalParameter>
@@ -6550,107 +5129,6 @@
                                 </property>
 
                                 <property>
-                                    <propertyName>connectionType</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option1</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option2</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option3</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option4</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option5</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>5</value>
-                                                </property>
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-
-                                <property>
                                     <propertyName>clusterName</propertyName>
                                     <propertySheet>
                                         <property>
@@ -6685,14 +5163,6 @@
                 <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
                 <required>1</required>
                 <type>entry</type>
-            </formalParameter>
-
-            <formalParameter>
-                <formalParameterName>connectionType</formalParameterName>
-                <defaultValue />
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
-                <required>0</required>
-                <type>select</type>
             </formalParameter>
 
             <formalParameter>
@@ -6792,107 +5262,6 @@
                                     </propertySheet>
                                 </property>
 
-                                <property>
-                                    <propertyName>connectionType</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option1</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option2</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option3</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option4</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option5</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>5</value>
-                                                </property>
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -6923,13 +5292,6 @@
                 <type>entry</type>
             </formalParameter>
 
-            <formalParameter>
-                <formalParameterName>connectionType</formalParameterName>
-                <defaultValue />
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE.</description>
-                <required>1</required>
-                <type>select</type>
-            </formalParameter>
             <step>
                 <stepName>DeleteCluster</stepName>
                 <alwaysRun>0</alwaysRun>
@@ -7025,107 +5387,6 @@
                                 </property>
 
                                 <property>
-                                    <propertyName>connectionType</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option1</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option2</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option3</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option4</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option5</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>5</value>
-                                                </property>
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-
-                                <property>
                                     <propertyName>clusterName</propertyName>
                                     <propertySheet>
                                         <property>
@@ -7170,14 +5431,6 @@
                 <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
                 <required>1</required>
                 <type>entry</type>
-            </formalParameter>
-
-            <formalParameter>
-                <formalParameterName>connectionType</formalParameterName>
-                <defaultValue />
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
-                <required>0</required>
-                <type>select</type>
             </formalParameter>
 
             <formalParameter>
@@ -7290,107 +5543,6 @@
                                 </property>
 
                                 <property>
-                                    <propertyName>connectionType</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option1</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option2</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option3</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option4</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option5</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>5</value>
-                                                </property>
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-
-                                <property>
                                     <propertyName>commands</propertyName>
                                     <propertySheet>
                                         <property>
@@ -7493,14 +5645,6 @@
                 <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
                 <required>1</required>
                 <type>entry</type>
-            </formalParameter>
-
-            <formalParameter>
-                <formalParameterName>connectionType</formalParameterName>
-                <defaultValue />
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
-                <required>0</required>
-                <type>select</type>
             </formalParameter>
 
             <formalParameter>
@@ -7654,107 +5798,6 @@
                                 </property>
 
                                 <property>
-                                    <propertyName>connectionType</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option1</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option2</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option3</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option4</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option5</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>5</value>
-                                                </property>
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-
-                                <property>
                                     <propertyName>addExternalRepo</propertyName>
                                     <propertySheet>
                                         <property>
@@ -7876,14 +5919,6 @@
                 <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
                 <required>1</required>
                 <type>textarea</type>
-            </formalParameter>
-
-            <formalParameter>
-                <formalParameterName>connectionType</formalParameterName>
-                <defaultValue />
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
-                <required>0</required>
-                <type>select</type>
             </formalParameter>
 
             <formalParameter>
@@ -8035,108 +6070,6 @@
                                             <expandable>1</expandable>
                                             <value>standard</value>
 
-                                        </property>
-                                    </propertySheet>
-                                </property>
-
-
-                                <property>
-                                    <propertyName>connectionType</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option1</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option2</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option3</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option4</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option5</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>5</value>
-                                                </property>
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
                                         </property>
                                     </propertySheet>
                                 </property>
@@ -8525,14 +6458,6 @@
             </formalParameter>
 
             <formalParameter>
-                <formalParameterName>connectionType</formalParameterName>
-                <defaultValue />
-                <description>Specifies the type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
-                <required>0</required>
-                <type>select</type>
-            </formalParameter>
-
-            <formalParameter>
                 <formalParameterName>scope</formalParameterName>
                 <defaultValue />
                 <description>Specifies the scope in which the mail provider supports installed mail applications.For example, 'Cell=Cell01,Node=Node01,Server=server1' or 'Cell=Cell01,ServerCluster=testCluster'</description>
@@ -8819,107 +6744,6 @@
                                 </property>
 
                                 <property>
-                                    <propertyName>connectionType</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option1</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option2</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option3</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option4</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option5</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>5</value>
-                                                </property>
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-
-                                <property>
                                     <propertyName>scope</propertyName>
                                     <propertySheet>
                                         <property>
@@ -9149,14 +6973,6 @@
             </formalParameter>
 
             <formalParameter>
-                <formalParameterName>connectionType</formalParameterName>
-                <defaultValue />
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
-                <required>0</required>
-                <type>select</type>
-            </formalParameter>
-
-            <formalParameter>
                 <formalParameterName>scope</formalParameterName>
                 <defaultValue />
                 <description>Specifies the scope in which the mail session supports installed mail applications.For e.g. 'Cell=Cell01,Node=Node01,Server=server1' or 'Cell=Cell01,ServerCluster=testCluster'</description>
@@ -9380,107 +7196,6 @@
                                 </property>
 
                                 <property>
-                                    <propertyName>connectionType</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option1</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option2</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option3</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option4</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option5</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>5</value>
-                                                </property>
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-
-                                <property>
                                     <propertyName>cellName</propertyName>
                                     <propertySheet>
                                         <property>
@@ -9690,14 +7405,6 @@
             </formalParameter>
 
             <formalParameter>
-                <formalParameterName>connectionType</formalParameterName>
-                <defaultValue />
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
-                <required>0</required>
-                <type>select</type>
-            </formalParameter>
-
-            <formalParameter>
                 <formalParameterName>cellName</formalParameterName>
                 <defaultValue />
                 <description>Name of cell to which EJB container belongs to. </description>
@@ -9869,107 +7576,6 @@
                                             <value>standard</value>
                                         </property>
 
-                                    </propertySheet>
-                                </property>
-
-                                <property>
-                                    <propertyName>connectionType</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option1</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option2</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option3</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option4</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option5</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>5</value>
-                                                </property>
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
                                     </propertySheet>
                                 </property>
 
@@ -10187,32 +7793,6 @@
                                 </property>
 
                                 <property>
-                                    <propertyName>isAppOnCluster</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>checkedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>1</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>initiallyChecked</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                        <property>
-                                            <propertyName>uncheckedValue</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>0</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-
-                                <property>
                                     <propertyName>clusterName</propertyName>
                                     <propertySheet>
                                         <property>
@@ -10266,16 +7846,9 @@
                 <formalParameterName>wsadminAbsPath</formalParameterName>
                 <defaultValue />
                 <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
+                <expansionDeferred>1</expansionDeferred>
                 <required>1</required>
                 <type>entry</type>
-            </formalParameter>
-
-            <formalParameter>
-                <formalParameterName>connectionType</formalParameterName>
-                <defaultValue />
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
-                <required>0</required>
-                <type>select</type>
             </formalParameter>
 
             <formalParameter>
@@ -10314,14 +7887,6 @@
                 <formalParameterName>contentURI</formalParameterName>
                 <defaultValue />
                 <description>The relative path beginning with the installed application archive file to the file to be replaced or added. For example, if the file is located at com/company/greeting.class in module hello.jar, specify hello.jar/com/company/greeting.class for the relative path</description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-
-            <formalParameter>
-                <formalParameterName>isAppOnCluster</formalParameterName>
-                <defaultValue/>
-                <description>Select this checkbox if the application to be updated is deployed on cluster.</description>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>
@@ -10434,107 +7999,6 @@
                                 <property>
                                     <propertyName>wsadminAbsPath</propertyName>
                                     <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-
-                                <property>
-                                    <propertyName>connectionType</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>options</propertyName>
-                                            <propertySheet>
-                                                <property>
-                                                    <propertyName>option1</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>NONE</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option2</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>SOAP</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option3</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option4</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>JSR160RMI</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>option5</propertyName>
-                                                    <propertySheet>
-                                                        <property>
-                                                            <propertyName>text</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                        <property>
-                                                            <propertyName>value</propertyName>
-                                                            <expandable>1</expandable>
-                                                            <value>IPC</value>
-                                                        </property>
-                                                    </propertySheet>
-                                                </property>
-                                                <property>
-                                                    <propertyName>optionCount</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>5</value>
-                                                </property>
-                                                <property>
-                                                    <propertyName>type</propertyName>
-                                                    <expandable>1</expandable>
-                                                    <value>list</value>
-                                                </property>
-                                            </propertySheet>
-                                        </property>
                                         <property>
                                             <propertyName>formType</propertyName>
                                             <expandable>1</expandable>
@@ -11234,14 +8698,6 @@
                 <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
                 <required>1</required>
                 <type>entry</type>
-            </formalParameter>
-
-            <formalParameter>
-                <formalParameterName>connectionType</formalParameterName>
-                <defaultValue />
-                <description>Specifies to type of connection to use to connect to the application server that you want to administer. The valid choices are SOAP, RMI, and NONE. Default is SOAP.</description>
-                <required>0</required>
-                <type>select</type>
             </formalParameter>
 
             <formalParameter>

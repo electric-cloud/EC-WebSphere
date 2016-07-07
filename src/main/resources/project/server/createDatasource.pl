@@ -43,7 +43,6 @@ $::gDatasourceJNDIName = ($ec->getProperty("datasourceJNDIName") )->findvalue("/
 $::gStatementCacheSize = ($ec->getProperty("statementCacheSize") )->findvalue("//value"); 
 $::gDatasourceHelperClassname = ($ec->getProperty("datasourceHelperClassname") )->findvalue("//value"); 
 $::gConfigurationName = ($ec->getProperty("configname") )->findvalue("//value");
-$::gConnectionType = ($ec->getProperty("connectiontype") )->findvalue("//value");
 		   	
 
 #-------------------------------------------------------------------------
@@ -101,7 +100,9 @@ AdminConfig.save()';
       
   push(@args, '-f createDS_script.jython');
   push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
-  push(@args, '-conntype ' . $::gConnectionType);
+  
+  my $connectionType = $configuration{conntype};
+  push(@args, '-conntype ' . $connectionType);
   
   	
   #inject config...

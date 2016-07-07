@@ -43,7 +43,6 @@ $::gDescription = ($ec->getProperty("description") )->findvalue("//value");
 $::gClassPath = ($ec->getProperty("classpath") )->findvalue("//value");
 $::gConfigurationName = ($ec->getProperty("configname") )->findvalue("//value");
 $::gImplementationClassName = ($ec->getProperty("implementationClassName") )->findvalue("//value");
-$::gConnectionType = ($ec->getProperty("connectiontype") )->findvalue("//value");
 		   	
 
 #-------------------------------------------------------------------------
@@ -94,7 +93,9 @@ AdminConfig.save()';
       
   push(@args, '-f createJDBC_script.jython');
   push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
-  push(@args, '-conntype ' . $::gConnectionType);
+  
+  my $connectionType = $configuration{conntype};
+  push(@args, '-conntype ' . $::connectionType);
   
   	
   #inject config...

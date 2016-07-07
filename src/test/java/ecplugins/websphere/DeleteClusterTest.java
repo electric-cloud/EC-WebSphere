@@ -61,10 +61,6 @@ public class DeleteClusterTest {
                 .put("value", "WebCfg"));
 
         actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "connectionType")
-                .put("value", "soap"));
-
-        actualParameterArray.put(new JSONObject()
                 .put("actualParameterName", "clusterName")
                 .put("value", props.getProperty(StringConstants.CLUSTER_NAME)));
 

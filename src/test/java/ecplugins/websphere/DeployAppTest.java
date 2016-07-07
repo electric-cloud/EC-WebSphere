@@ -67,10 +67,6 @@ public class DeployAppTest {
                 .put("actualParameterName", "configname")
                 .put("value", "WebCfg"));
 
-        actualParameterArray.put(new JSONObject()
-                .put("actualParameterName", "connectiontype")
-                .put("value", "soap"));
-
         jo.put("actualParameter", actualParameterArray);
 
         String jobId = TestUtils.callRunProcedure(jo);

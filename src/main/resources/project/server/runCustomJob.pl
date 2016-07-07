@@ -36,7 +36,6 @@ $::gScriptFile = trim(q($[scriptfile]));
 $::gScriptFileAbsPath = trim(q($[scriptfileabspath]));
 $::gWSAdminAbsPath = trim(q($[wsadminabspath]));
 $::gClasspath = trim(q($[classpath]));
-$::gConnectionType = trim(q($[connectiontype]));
 $::gJavaParams = trim(q($[javaparams]));
 $::gConfigurationName = "$[configname]";
 $::gAdditionalOptions = "$[additionalcommands]";
@@ -106,8 +105,9 @@ sub main() {
       push(@args, '-wsadmin_classpath "' . $::gClasspath . '"');
   }
   
-  if($::gConnectionType && $::gConnectionType ne '') {
-      push(@args, '-conntype ' . $::gConnectionType);
+  my $connectionType    = $configuration{conntype};
+  if($connectionType && $connectionType ne '') {
+      push(@args, '-conntype ' . $connectionType);
   }
   
   #inject config...
@@ -115,7 +115,7 @@ sub main() {
       
       my $hostParamName;
       
-      if($::gConnectionType eq IPC_CONNECTION_TYPE){
+      if($connectionType eq IPC_CONNECTION_TYPE){
          $hostParamName = '-ipchost';
       }else{         
          $hostParamName = '-host';
