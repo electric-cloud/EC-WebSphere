@@ -130,6 +130,8 @@ sub _create_runfile {
 
     if($configuration->{websphere_url} && $options->{conntype} eq 'IPC') {
     	$options->{ipchost} = $configuration->{websphere_url};
+    } else {
+        $options->{host} = $configuration->{websphere_url};
     }
 
     if($configuration->{websphere_port}) {

@@ -91,7 +91,7 @@ push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
       push(@args, '-wsadmin_classpath "' . $::gClasspath . '"');
   }
   
-  $connectionType = $configuration{conntype};
+  my $connectionType = $configuration{conntype};
   if($connectionType && $connectionType ne '') {
       push(@args, '-conntype ' . $connectionType);
   }
@@ -99,12 +99,10 @@ push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
   #inject config...
   if(%configuration){
       
-      my $hostParamName;
+      my $hostParamName = '-host';
       
       if($connectionType eq IPC_CONNECTION_TYPE){
          $hostParamName = '-ipchost';
-      }else{         
-         $hostParamName = '-host';
       }
       
       if($configuration{'websphere_url'} ne ''){

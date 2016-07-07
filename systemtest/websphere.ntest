@@ -547,7 +547,7 @@ ntest "runScriptWsAdmin", {}, sub {
       # get the value of the commands lines
       my $websphereCommandLine = $xpath->findvalue("//property[propertyName='runCustomJob']/value");
 
-      assertEq('"wsadmin.bat" -appendtrace true -f "E:\websphere\test_install\install_simple.jython" -lang jython -conntype soap -host localhost -port 9080 -user admin -password ****', $websphereCommandLine, 
+      assertEq('"wsadmin.bat" -appendtrace true -f "E:\websphere\test_install\install_simple.jython" -lang jython -conntype SOAP -host localhost -port 9080 -user admin -password ****', $websphereCommandLine, 
            'websphere command line doesn\'t match expected output');
 
 };
@@ -594,7 +594,7 @@ ntest "runScriptWsAdminFromNewFile", {}, sub {
       # get the value of the commands lines
       my $websphereCommandLine = $xpath->findvalue("//property[propertyName='runCustomJob']/value");
 
-      assertEq('"wsadmin.bat" -appendtrace true -f "generated_script.jython" -lang jython -conntype soap -host localhost -port 9080 -user admin -password ****', $websphereCommandLine, 
+      assertEq('"wsadmin.bat" -appendtrace true -f "generated_script.jython" -lang jython -conntype SOAP -host localhost -port 9080 -user admin -password ****', $websphereCommandLine, 
            'websphere command line doesn\'t match expected output');
 
 };
@@ -641,7 +641,7 @@ ntest "startApp", {}, sub {
       # get the value of the commands lines
       my $websphereCommandLine = $xpath->findvalue("//property[propertyName='startAppLine']/value");
 
-      assertEq('"C:\Program Files\IBM\WebSphere\AppServer\bin\wsadmin.bat" -f "startapp_script.jython" -lang jython -conntype NONE -host localhost -port 9080 -user admin -password ****', $websphereCommandLine, 
+      assertEq('"C:\Program Files\IBM\WebSphere\AppServer\bin\wsadmin.bat" -f "startapp_script.jython" -lang jython -conntype SOAP -host localhost -port 9080 -user admin -password ****', $websphereCommandLine, 
            'websphere command line doesn\'t match expected output');
 
 };
@@ -687,7 +687,7 @@ ntest "stopApp", {}, sub {
       # get the value of the commands lines
       my $websphereCommandLine = $xpath->findvalue("//property[propertyName='stopAppLine']/value");
 
-      assertEq('"C:\Program Files\IBM\WebSphere\AppServer\bin\wsadmin.bat" -f "stopapp_script.jython" -lang jython -host localhost -port 9080 -user admin -password ****', $websphereCommandLine, 
+      assertEq('"C:\Program Files\IBM\WebSphere\AppServer\bin\wsadmin.bat" -f "stopapp_script.jython" -lang jython -conntype SOAP -host localhost -port 9080 -user admin -password ****', $websphereCommandLine, 
            'websphere command line doesn\'t match expected output');
 
 };
@@ -734,7 +734,7 @@ ntest "deployApp", {}, sub {
       # get the value of the commands lines
       my $websphereCommandLine = $xpath->findvalue("//property[propertyName='deployAppLine']/value");
 
-      assertEq('"C:\Program Files\IBM\WebSphere\AppServer\bin\wsadmin.bat" -f deployapp_script.jython -lang jython -host localhost -port 9080 -user admin -password ****', $websphereCommandLine, 
+      assertEq('"C:\Program Files\IBM\WebSphere\AppServer\bin\wsadmin.bat" -f deployapp_script.jython -lang jython -conntype SOAP -host localhost -port 9080 -user admin -password ****', $websphereCommandLine, 
            'websphere command line doesn\'t match expected output');
 
 };
@@ -781,7 +781,7 @@ ntest "undeployApp", {}, sub {
       # get the value of the commands lines
       my $websphereCommandLine = $xpath->findvalue("//property[propertyName='undeployAppLine']/value");
 
-      assertEq('"C:\Program Files\IBM\WebSphere\AppServer\bin\wsadmin.bat" -f "undeployapp_script.jython" -lang jython -host localhost -port 9080 -user admin -password ****', $websphereCommandLine, 
+      assertEq('"C:\Program Files\IBM\WebSphere\AppServer\bin\wsadmin.bat" -f "undeployapp_script.jython" -lang jython -conntype SOAP -host localhost -port 9080 -user admin -password ****', $websphereCommandLine, 
            'websphere command line doesn\'t match expected output');
 
 };
@@ -828,7 +828,7 @@ ntest "createDatasource", {}, sub {
       # get the value of the commands lines
       my $websphereCommandLine = $xpath->findvalue("//property[propertyName='createDatasourceLine']/value");
 
-      assertEq('"C:\Program Files\IBM\WebSphere\AppServer\bin\wsadmin.bat" -f createDS_script.jython -lang jython -conntype none -host localhost -port 9080', 
+      assertEq('"C:\Program Files\IBM\WebSphere\AppServer\bin\wsadmin.bat" -f createDS_script.jython -lang jython -conntype SOAP -host localhost -port 9080', 
            $websphereCommandLine, 'websphere command line doesn\'t match expected output');
 
 };
@@ -876,7 +876,7 @@ ntest "deleteDatasource", {}, sub {
       # get the value of the commands lines
       my $websphereCommandLine = $xpath->findvalue("//property[propertyName='deleteDatasourceLine']/value");
 
-      assertEq('"C:\Program Files\IBM\WebSphere\AppServer\bin\wsadmin.bat" -f deleteDS_script.jython -lang jython -conntype none -host localhost -port 9080', 
+      assertEq('"C:\Program Files\IBM\WebSphere\AppServer\bin\wsadmin.bat" -f deleteDS_script.jython -lang jython -conntype SOAP -host localhost -port 9080', 
            $websphereCommandLine, 'websphere command line doesn\'t match expected output');
 
 };
@@ -924,7 +924,7 @@ ntest "createJDBCProvider", {}, sub {
       # get the value of the commands lines
       my $websphereCommandLine = $xpath->findvalue("//property[propertyName='createJDBCLine']/value");
 
-      assertEq('"C:\Program Files\IBM\WebSphere\AppServer\bin\wsadmin.bat" -f createJDBC_script.jython -lang jython -conntype none -host localhost -port 9080', 
+      assertEq('"C:\Program Files\IBM\WebSphere\AppServer\bin\wsadmin.bat" -f createJDBC_script.jython -lang jython -conntype SOAP -host localhost -port 9080', 
            $websphereCommandLine, 'websphere command line doesn\'t match expected output');
 
 };
@@ -972,7 +972,7 @@ ntest "deleteJDBCProvider", {}, sub {
       # get the value of the commands lines
       my $websphereCommandLine = $xpath->findvalue("//property[propertyName='deleteJDBCLine']/value");
 
-      assertEq('"C:\Program Files\IBM\WebSphere\AppServer\bin\wsadmin.bat" -f deleteJDBC_script.jython -lang jython -conntype none -host localhost -port 9080', 
+      assertEq('"C:\Program Files\IBM\WebSphere\AppServer\bin\wsadmin.bat" -f deleteJDBC_script.jython -lang jython -conntype SOAP -host localhost -port 9080', 
            $websphereCommandLine, 'websphere command line doesn\'t match expected output');
 
 };

@@ -135,11 +135,6 @@
             <value>test3</value>
           </property>
           <property>
-            <propertyName>connectiontype</propertyName>
-            <expandable>1</expandable>
-            <value>none</value>
-          </property>
-          <property>
             <propertyName>datasourceHelperClassname</propertyName>
             <expandable>1</expandable>
             <value>com.ibm.websphere.rsadapter.GenericDataStoreHelper</value>
@@ -238,11 +233,6 @@
             <value>test3</value>
           </property>
           <property>
-            <propertyName>connectiontype</propertyName>
-            <expandable>1</expandable>
-            <value>none</value>
-          </property>
-          <property>
             <propertyName>implementationClassName</propertyName>
             <expandable>1</expandable>
             <value>com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource</value>
@@ -326,11 +316,6 @@
             <value>test3</value>
           </property>
           <property>
-            <propertyName>connectiontype</propertyName>
-            <expandable>1</expandable>
-            <value>none</value>
-          </property>
-          <property>
             <propertyName>datasourceName</propertyName>
             <expandable>1</expandable>
             <value>MySqlDS</value>
@@ -402,11 +387,6 @@
             <propertyName>configname</propertyName>
             <expandable>1</expandable>
             <value>test3</value>
-          </property>
-          <property>
-            <propertyName>connectiontype</propertyName>
-            <expandable>1</expandable>
-            <value>none</value>
           </property>
           <property>
             <propertyName>jdbcProvidername</propertyName>
@@ -505,11 +485,6 @@
             <value>test3</value>
           </property>
           <property>
-            <propertyName>connectiontype</propertyName>
-            <expandable>1</expandable>
-            <value></value>
-          </property>
-          <property>
             <propertyName>javaparams</propertyName>
             <expandable>1</expandable>
             <value></value>
@@ -575,11 +550,6 @@
             <propertyName>configname</propertyName>
             <expandable>1</expandable>
             <value>test3</value>
-          </property>
-          <property>
-            <propertyName>connectiontype</propertyName>
-            <expandable>1</expandable>
-            <value>soap</value>
           </property>
           <property>
             <propertyName>scriptfileabspath</propertyName>
@@ -654,11 +624,6 @@
             <propertyName>configname</propertyName>
             <expandable>1</expandable>
             <value>test3</value>
-          </property>
-          <property>
-            <propertyName>connectiontype</propertyName>
-            <expandable>1</expandable>
-            <value>soap</value>
           </property>
           <property>
             <propertyName>scriptfile</propertyName>
@@ -742,11 +707,6 @@
             <propertyName>configname</propertyName>
             <expandable>1</expandable>
             <value>test3</value>
-          </property>
-          <property>
-            <propertyName>connectiontype</propertyName>
-            <expandable>1</expandable>
-            <value>NONE</value>
           </property>
           <property>
             <propertyName>javaparams</propertyName>
@@ -1145,11 +1105,6 @@
             <value>test3</value>
           </property>
           <property>
-            <propertyName>connectiontype</propertyName>
-            <expandable>1</expandable>
-            <value></value>
-          </property>
-          <property>
             <propertyName>javaparams</propertyName>
             <expandable>1</expandable>
             <value></value>
@@ -1293,11 +1248,6 @@
             <propertyName>configname</propertyName>
             <expandable>1</expandable>
             <value>test3</value>
-          </property>
-          <property>
-            <propertyName>connectiontype</propertyName>
-            <expandable>1</expandable>
-            <value></value>
           </property>
           <property>
             <propertyName>javaparams</propertyName>

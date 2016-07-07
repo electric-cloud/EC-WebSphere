@@ -95,14 +95,18 @@ AdminConfig.save()';
   push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
   
   my $connectionType = $configuration{conntype};
-  push(@args, '-conntype ' . $::connectionType);
+  push(@args, '-conntype ' . $connectionType);
   
-  	
   #inject config...
   if(%configuration){
-      
+  	  my $hostParamName = '-host';
+  	  
+      if ( $connectionType eq IPC_CONNECTION_TYPE ) {
+          $hostParamName = '-ipchost';
+      }
+
       if($configuration{'websphere_url'} ne ''){
-          push(@args, '-host ' . $configuration{'websphere_url'});
+          push(@args, $hostParamName . ' '. $configuration{'websphere_url'});
       }
       
       if($configuration{'websphere_port'} ne ''){
