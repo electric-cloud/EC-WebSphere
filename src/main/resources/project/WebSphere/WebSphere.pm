@@ -162,7 +162,7 @@ sub _getConfiguration {
 
 	# Check if configuration exists
 	unless ( keys(%configuration) ) {
-		print "ERROR: Configuration '$configurationName' doesn't exist\n";
+		print "Error: Configuration '$configurationName' doesn't exist\n";
 		return undef;
 	}
 

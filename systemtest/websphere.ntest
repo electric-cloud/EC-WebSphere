@@ -183,6 +183,7 @@ ntest "setup-create configuration", {}, sub {
             { actualParameterName => 'websphere_url', value => "localhost" },
             { actualParameterName => 'websphere_port', value => "9080" }, 
             { actualParameterName => 'credential', value => "test3" }, 
+            { actualParameterName => 'conntype', value => "SOAP" }, 
           ],
           credential => [ 
             { credentialName => 'test3', userName => "admin", password => "admin", },

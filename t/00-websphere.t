@@ -46,7 +46,8 @@ Test::VirtualModule->mock_sub(
 			'websphere_port' => '8880',
 			'websphere_url'  => 'localhost',
 			'user'           => 'websphere',
-			'password '      => 'webspherePassword'
+			'password '      => 'webspherePassword',
+			'conntype' => 'SOAP'
 		);
 	}
 );
