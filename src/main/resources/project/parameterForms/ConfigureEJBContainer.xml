@@ -34,7 +34,8 @@
 		<property>wsadminAbsPath</property>
 		<required>1</required>
 		<documentation>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. '/path/to/wsadmin.sh' or 'wsadmin.bat'.</documentation>
-	</formElement>
+       <propertyReference type="property">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/wsadminPath</propertyReference>
+ 	</formElement>
 
 	<formElement>
 		<type>entry</type>
@@ -50,6 +51,7 @@
 		<property>nodeName</property>
 		<documentation>Name of node to which EJB container belongs to. </documentation>
 		<required>0</required>
+        <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/nodes</propertyReference>
 	</formElement>
 	
 	<formElement>
@@ -58,7 +60,8 @@
 		<property>serverName</property>
 		<documentation>Name of application server to which EJB container belongs to.</documentation>
 		<required>1</required>
-	</formElement>
+        <propertyReference renderType="name">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/nodes/$nodeName</propertyReference>
+     </formElement>
 	
 	<formElement>
 		<type>entry</type>

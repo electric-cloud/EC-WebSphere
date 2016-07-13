@@ -251,116 +251,116 @@
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;CreateDatasource&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-CreateDatasource.xml</path>
+        <path>parameterForms/CreateDatasource.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;DeleteDatasource&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-DeleteDatasource.xml</path>
+        <path>parameterForms/DeleteDatasource.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;CreateJDBCProvider&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-CreateJDBCProvider.xml</path>
+        <path>parameterForms/CreateJDBCProvider.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;DeleteJDBCProvider&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-DeleteJDBCProvider.xml</path>
+        <path>parameterForms/DeleteJDBCProvider.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;PublishWSDL&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-PublishWSDL.xml</path>
+        <path>parameterForms/PublishWSDL.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;StartServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-StartServer.xml</path>
+        <path>parameterForms/StartServer.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;StopServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-StopServer.xml</path>
+        <path>parameterForms/StopServer.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;CheckServerStatus&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-CheckServerStatus.xml</path>
+        <path>parameterForms/CheckServerStatus.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;CheckPageStatus&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-CheckPageStatus.xml</path>
+        <path>parameterForms/CheckPageStatus.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;RunCustomJob&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-RunCustomJob.xml</path>
+        <path>parameterForms/RunCustomJob.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;CheckApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-CheckApp.xml</path>
+        <path>parameterForms/CheckApp.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;StartApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-StartApp.xml</path>
+        <path>parameterForms/StartApp.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;StopApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-StopApp.xml</path>
+        <path>parameterForms/StopApp.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;DeployApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-DeployApp.xml</path>
+        <path>parameterForms/DeployApp.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;DeployEnterpriseApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-DeployEnterpriseApp.xml</path>
+        <path>parameterForms/DeployEnterpriseApp.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;UpdateApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-UpdateApp.xml</path>
+        <path>parameterForms/UpdateApp.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;UndeployApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-UndeployApp.xml</path>
+        <path>parameterForms/UndeployApp.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;ConfigEJBContainer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-ConfigureEJBContainer.xml</path>
+        <path>parameterForms/ConfigureEJBContainer.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;CreateEndToEndMailProvider&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-CreateEndToEndMailProvider.xml</path>
+        <path>parameterForms/CreateEndToEndMailProvider.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;DeployOSGiApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-DeployOSGi.xml</path>
+        <path>parameterForms/DeployOSGi.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;DeleteCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-DeleteCluster.xml</path>
+        <path>parameterForms/DeleteCluster.xml</path>
     </file>
 
     <file>
         <xpath>//procedure[procedureName=&quot;ListClusterMembers&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-ListClusterMembers.xml</path>
+        <path>parameterForms/ListClusterMembers.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-CreateCluster.xml</path>
+        <path>parameterForms/CreateCluster.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;ConfigureSession&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-ConfigureSessionManagement.xml</path>
+        <path>parameterForms/ConfigureSessionManagement.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;CreateJMSProvider&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-CreateJMSProvider.xml</path>
+        <path>parameterForms/CreateJMSProvider.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;RemoveClusterMembers&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-RemoveClusterMembers.xml</path>
+        <path>parameterForms/RemoveClusterMembers.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;CreateMailSession&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-CreateMailSession.xml</path>
+        <path>parameterForms/CreateMailSession.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;Discover&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ec_parameterForm-Discover.xml</path>
+        <path>parameterForms/Discover.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;Discover&quot;]/step[stepName=&quot;DiscoverResources&quot;]/command</xpath>

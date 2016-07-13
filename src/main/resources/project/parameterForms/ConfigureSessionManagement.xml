@@ -34,6 +34,7 @@
 		<property>wsadminAbsPath</property>
 		<required>1</required>
 		<documentation>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</documentation>
+       <propertyReference type="property">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/wsadminPath</propertyReference>
 	</formElement>
 
 	<formElement>
@@ -42,6 +43,7 @@
 		<property>appName</property>
 		<documentation>Name of the web application to configure. </documentation>
 		<required>1</required>
+        <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/applications</propertyReference>
 	</formElement>
 
 	<formElement>

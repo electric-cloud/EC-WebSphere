@@ -49,4 +49,4 @@ test {
 	}
 }
 
-task wrapper(type: Wrapper) { gradleVersion = '2.13' }
+task wrapper(type: Wrapper) { gradleVersion = '2.14' }

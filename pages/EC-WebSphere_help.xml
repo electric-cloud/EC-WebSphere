@@ -210,10 +210,11 @@
 
                 <tbody>
                     <tr>
-                        <td class="required">Application Name</td>
+                        <td>Configuration Name</td>
 
-                        <td>The name of the web application to 
-                        check, such as <i>webapp</i>. </td>
+                        <td>The name of the configuration to use. 
+                        ElectricCommander gets the URL, port, and credentials 
+                        from this configuration.</td>
                     </tr>
 
                     <tr>
@@ -222,17 +223,17 @@
 
                         <td>The absolute path of the wsadmin tool that includes the
                         filename and extension. <br />
-						
-						Examples: <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>. </td>
+                        
+                        Examples: <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>. </td>
                     </tr>
 
                     <tr>
-                        <td>Configuration Name</td>
+                        <td class="required">Application Name</td>
 
-                        <td>The name of the configuration to use. 
-                        ElectricCommander gets the URL, port, and credentials 
-                        from this configuration.</td>
+                        <td>The name of the web application to 
+                        check, such as <i>webapp</i>. </td>
                     </tr>
+
                 </tbody>
             </table>
 			
@@ -787,21 +788,21 @@
 
                     <tr>
 
-                        <td class="required">Wsadmin Absolute Path</td>
-
-
-
-                        <td> The absolute path of the wsadmin tool that includes the filename and extension. If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted. Examples of paths are <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>.</td>
-
-                    </tr>
-
-                    <tr>
-
                         <td class="required">Configuration Name</td>
 
 
 
                         <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">Wsadmin Absolute Path</td>
+
+
+
+                        <td> The absolute path of the wsadmin tool that includes the filename and extension. If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted. Examples of paths are <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>.</td>
 
                     </tr>
 
@@ -1131,21 +1132,21 @@
 
                     <tr>
 
-                        <td class="required">Wsadmin Absolute Path</td>
-
-
-
-                        <td>The absolute path of the wsadmin tool that includes filename and extension. If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted. Examples are <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>.</td>
-
-                    </tr>
-
-                    <tr>
-
                         <td class="required">Configuration Name</td>
 
 
 
                         <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="required">Wsadmin Absolute Path</td>
+
+
+
+                        <td>The absolute path of the wsadmin tool that includes filename and extension. If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted. Examples are <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>.</td>
 
                     </tr>
 
@@ -1672,16 +1673,6 @@
 
                     <tr>
 
-                        <td class="required">Wsadmin Absolute Path</td>
-
-
-
-                        <td>The absolute path of the wsadmin tool that includes the filename and extension. If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted. Examples are <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>.</td>
-
-                    </tr>
-
-                    <tr>
-
                         <td class="required">Configuration Name</td>
 
 
@@ -1690,6 +1681,12 @@
 
                     </tr>
 
+                    <tr>
+                        <td class="required">Wsadmin Absolute Path</td>
+                        <td>The absolute path of the wsadmin tool that includes the filename and extension. If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted. Examples are <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>.</td>
+                    </tr>
+
+                    
                     <tr>
 
                         <td class="required">Datasource Name</td>
@@ -1774,16 +1771,6 @@
 
                     <tr>
 
-                        <td class="required">Wsadmin Absolute Path</td>
-
-
-
-                        <td>The absolute path of the wsadmin tool that includes the filename and extension. If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted, such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
-
-                    </tr>
-
-                    <tr>
-
                         <td class="required">Configuration Name</td>
 
 
@@ -1791,7 +1778,17 @@
                         <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
 
                     </tr>
+                    
+                    <tr>
 
+                        <td class="required">Wsadmin Absolute Path</td>
+
+
+
+                        <td>The absolute path of the wsadmin tool that includes the filename and extension. If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted, such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+
+                    </tr>
+                    
                     <tr>
 
                         <td class="required">JDBC Provider Name</td>
@@ -2049,7 +2046,7 @@
 
                     <tr>
                         <td>Override class reloading settings for web and EJB modules?</td>
-                        <td>Specifies whether the product run time detects changes to application classes when the application is running. If yes, then on such changes application is stopped and restarted to reload updated classes.</td>
+                        <td>Specifies whether the product runtime detects changes to application classes when the application is running. If yes, then on such changes application is stopped and restarted to reload updated classes.</td>
                     </tr>
 
                     <tr>
@@ -2383,6 +2380,16 @@
                 </tr>
 
                 <tr>
+                    <td class="required">Application Name</td>
+                    <td>Name of the application of which to publish the WSDL file. For example, 'webapp'.</td>
+                </tr>
+
+                <tr>
+                    <td class="required">Location to publish WSDL file</td>
+                    <td>Filename and absolute path on the filesystem where published WSDL files should get stored.For example, 'C:/webservices/sampleWSDL.zip'</td>
+                </tr>
+
+                <tr>
                     <td>Commands</td>
                     <td>Commands to be entered to wsadmin. Enter one command per line.</td>
                 </tr>
@@ -2398,16 +2405,6 @@
                 </tr>
 
                 <tr>
-                    <td class="required">Application Name</td>
-                    <td>Name of the application of which to publish the WSDL file. For example, 'webapp'.</td>
-                </tr>
-
-                <tr>
-                    <td class="required">Location to publish WSDL file</td>
-                    <td>Filename and absolute path on the filesystem where published WSDL files should get stored.For example, 'C:/webservices/sampleWSDL.zip'</td>
-                </tr>
-
-                <tr>
                     <td>SOAP address prefixes</td>
                     <td>Give SOAP address prefix in format "{{module {{binding partial-url}}}}"  to customize the WSDL SOAP address for each module.. i.e: '{ {AddressBookJ2WB.war {{http http://localhost:9080}}} {StockQuote.jar {{http https://localhost:9443}}} }'.</td>
                 </tr>
@@ -2415,11 +2412,6 @@
                 <tr>
                     <td>Additional Commands</td>
                     <td>Additional commands to be entered for wsadmin.</td>
-                </tr>
-
-                <tr>
-                    <td class="required">Target Deployment Unit</td>
-                    <td>Deployment Unit on which to deploy the OSGi application. For e.g cluster=cluster1 or node=node01,server=server1</td>
                 </tr>
 
             </tbody>
@@ -2535,6 +2527,26 @@
 
                 <tbody>
                     <tr>
+                        <td>Configuration Name</td>
+
+                        <td>The name of the configuration to use.
+                        ElectricCommander gets the URL, port, and credentials from
+                        this configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Wsadmin Absolute
+                        Path</td>
+
+                        <td>The absolute path to the wsadmin tool that includes
+                        the filename and extension. If the path in
+                        which wsadmin is stored is in the path
+                        environmental variable, the absolute path
+                        is omitted. Examples are <i>/path/to/wsadmin.sh</i>
+                        and <i>wsadmin.bat</i>. </td>
+                    </tr>
+                    
+                    <tr>
                         <td>Commands</td>
 
                         <td>The commands to enter in the wsadmin tool. Use
@@ -2556,18 +2568,6 @@
                         <i>c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar</i>
                         and 
                         <i>/MyDir/Myjar.jar;/yourdir/yourdir.jar</i>.</td>
-                    </tr>
-
-                    <tr>
-                        <td class="required">Wsadmin Absolute
-                        Path</td>
-
-                        <td>The absolute path to the wsadmin tool that includes
-                        the filename and extension. If the path in
-                        which wsadmin is stored is in the path
-                        environmental variable, the absolute path
-                        is omitted. Examples are <i>/path/to/wsadmin.sh</i>
-                        and <i>wsadmin.bat</i>. </td>
                     </tr>
 
                     <tr>
@@ -2601,14 +2601,6 @@
                     </tr>
 
                     <tr>
-                        <td>Configuration Name</td>
-
-                        <td>The name of the configuration to use.
-                        ElectricCommander gets the URL, port, and credentials from
-                        this configuration.</td>
-                    </tr>
-
-                    <tr>
                         <td>Additional Commands</td>
 
                         <td>Additional commands to enter in the 
@@ -2639,6 +2631,34 @@
 
                 <tbody>
                     <tr>
+                        <td>Configuration Name</td>
+
+                        <td>The name of the configuration to use.
+                        ElectricCommander gets the URL, port, and credentials from
+                        this configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Wsadmin Absolute
+                        Path</td>
+
+                        <td>The absolute path to the wsadmin tool that includes
+                        the filename and extension. If the path in
+                        which wsadmin is stored is in the path
+                        environmental variable, the absolute path
+                        is omitted. Examples are <i>/path/to/wsadmin.sh</i>
+                        and <i>wsadmin.bat</i>. </td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Application Name</td>
+
+                        <td>The name of the application to start, such as 
+                        
+                        <i>webapp</i>. </td>
+                    </tr>
+
+                    <tr>
                         <td>Commands</td>
 
                         <td>The commands to enter in the wsadmin tool. Use
@@ -2661,34 +2681,6 @@
                         execute wsadmin in a particular job. 
                         Examples are <i>c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar</i>
                        and <i>/MyDir/Myjar.jar;/yourdir/yourdir.jar</i>.</td>
-                    </tr>
-
-                    <tr>
-                        <td class="required">Wsadmin Absolute
-                        Path</td>
-
-                        <td>The absolute path to the wsadmin tool that includes
-                        the filename and extension. If the path in
-                        which wsadmin is stored is in the path
-                        environmental variable, the absolute path
-                        is omitted. Examples are <i>/path/to/wsadmin.sh</i>
-                        and <i>wsadmin.bat</i>. </td>
-                    </tr>
-
-                    <tr>
-                        <td class="required">Application Name</td>
-
-                        <td>The name of the application to start, such as 
-						
-                        <i>webapp</i>. </td>
-                    </tr>
-
-                    <tr>
-                        <td>Configuration Name</td>
-
-                        <td>The name of the configuration to use.
-                        ElectricCommander gets the URL, port, and credentials from
-                        this configuration.</td>
                     </tr>
 
                     <tr>
@@ -2739,21 +2731,6 @@
                 </thead>
 
                 <tbody>
-				
-				    <tr>
-
-                        <td class="required">Instance Name</td>
-
-
-
-                        <td>The name of the instance of the server
-
-                        to start, such as <i>server01</i>.
-
-                        </td>
-
-                    </tr>
-					
                     <tr>
                         <td class="required">Wsadmin Absolute
                         Path</td>
@@ -2769,7 +2746,21 @@
                         Files\IBM\WebSphere\AppServer\bin\startServer.bat</i>.
                         </td>
                     </tr>
-                 
+				
+				    <tr>
+
+                        <td class="required">Instance Name</td>
+
+
+
+                        <td>The name of the instance of the server
+
+                        to start, such as <i>server01</i>.
+
+                        </td>
+
+                    </tr>
+					
                     <tr>
                         <td>Additional Commands</td>
 
@@ -2798,6 +2789,34 @@
 
                 <tbody>
                     <tr>
+                        <td>Configuration Name</td>
+
+                        <td>The name of the configuration to use.
+                        ElectricCommmander gets the URL, port, and credentials from
+                        this configuration.</td>
+                    </tr>
+
+                    
+                    <tr>
+                        <td class="required">Wsadmin Absolute
+                        Path</td>
+
+                        <td>The absolute path of wsadmin that includes the
+                        filename and extension. If the path in
+                        which wsadmin is stored is in the path
+                        environmental variable, the absolute path
+                        is omitted, such as <i>/path/to/wsadmin.sh</i>  
+                        and <i>wsadmin.bat</i>. </td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Application Name</td>
+
+                        <td>The name of the application to stop, such as 
+                        <i>webapp</i>. </td>
+                    </tr>
+
+                    <tr>
                         <td>Commands</td>
 
                         <td>The commands to enter in the wsadmin tool. Use
@@ -2821,33 +2840,6 @@
                         Examples are <i>c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar</i>
                        and 
                        <i>/MyDir/Myjar.jar;/yourdir/yourdir.jar</i>.</td>
-                    </tr>
-
-                    <tr>
-                        <td class="required">Wsadmin Absolute
-                        Path</td>
-
-                        <td>The absolute path of wsadmin that includes the
-                        filename and extension. If the path in
-                        which wsadmin is stored is in the path
-                        environmental variable, the absolute path
-                        is omitted, such as <i>/path/to/wsadmin.sh</i>  
-                        and <i>wsadmin.bat</i>. </td>
-                    </tr>
-
-                    <tr>
-                        <td class="required">Application Name</td>
-
-                        <td>The name of the application to stop, such as 
-                        <i>webapp</i>. </td>
-                    </tr>
-
-                    <tr>
-                        <td>Configuration Name</td>
-
-                        <td>The name of the configuration to use.
-                        ElectricCommmander gets the URL, port, and credentials from
-                        this configuration.</td>
                     </tr>
 
                     <tr>
@@ -2899,6 +2891,14 @@
 
                 <tbody>
                     <tr>
+                        <td>Configuration Name</td>
+
+                        <td>The name of the configuration to use.
+                        ElectricCommander gets the URL, port, and credentials from
+                        this configuration.</td>
+                    </tr>
+
+                    <tr>
                         <td class="required">Script Location</td>
 
                         <td>The absolute path to the start
@@ -2913,14 +2913,6 @@
                         <td>The name of the server instance to
                         stop, such as <i>server01</i>.
                         </td>
-                    </tr>
-
-                    <tr>
-                        <td>Configuration Name</td>
-
-                        <td>The name of the configuration to use.
-                        ElectricCommander gets the URL, port, and credentials from
-                        this configuration.</td>
                     </tr>
 
                     <tr>
@@ -2951,27 +2943,11 @@
 
                 <tbody>
                     <tr>
-                        <td>Commands</td>
+                        <td>Configuration Name</td>
 
-                        <td>The commands to enter in the wsadmin tool. Use one command per line.</td>
-                    </tr>
-
-                    <tr>
-                        <td>Java Parameters</td>
-
-                        <td>The Java options to pass to the wsadmin tool. Separate them with semicolons (;).</td>
-                    </tr>
-
-                    <tr>
-                        <td>Classpath</td>
-
-                        <td>The JAR files to pass to the wsadmin
-                        classpath. This is a string containing paths
-                        (separated by semicolons) to the required JAR files that 
-                        execute wsadmin in a specific job. Examples are
-                       <i>c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar</i>
-                        and 
-                        <i>/MyDir/Myjar.jar;/yourdir/yourdir.jar</i>.</td>
+                        <td>The name of the configuration to use.
+                        ElectricCommander gets the URL, port, and credentials from
+                        this configuration.</td>
                     </tr>
 
                     <tr>
@@ -2994,11 +2970,27 @@
                     </tr>
 
                     <tr>
-                        <td>Configuration Name</td>
+                        <td>Commands</td>
 
-                        <td>The name of the configuration to use.
-                        ElectricCommander gets the URL, port, and credentials from
-                        this configuration.</td>
+                        <td>The commands to enter in the wsadmin tool. Use one command per line.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Java Parameters</td>
+
+                        <td>The Java options to pass to the wsadmin tool. Separate them with semicolons (;).</td>
+                    </tr>
+
+                    <tr>
+                        <td>Classpath</td>
+
+                        <td>The JAR files to pass to the wsadmin
+                        classpath. This is a string containing paths
+                        (separated by semicolons) to the required JAR files that 
+                        execute wsadmin in a specific job. Examples are
+                       <i>c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar</i>
+                        and 
+                        <i>/MyDir/Myjar.jar;/yourdir/yourdir.jar</i>.</td>
                     </tr>
 
                     <tr>

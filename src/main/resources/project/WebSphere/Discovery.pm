@@ -110,26 +110,24 @@ sub discover {
     my $json = $ret->{json};
     
     my $servers = $json->{servers};
-    my $servers_cnt = 0;
     for my $server (keys %{$servers}) {
-    	$servers_cnt ++;
-        $self->_createProperty("$configurationName/servers/$servers_cnt", {description => $server, propertyType => 'sheet' });
+        my ($node, $short_server) = split("=", $server);
+        $self->_createProperty("$configurationName/servers/$short_server", {description => $server, propertyType => 'sheet' });
 
     	for my $application (@{$servers->{$server}}) {
-            $self->_setProperty("$configurationName/servers/$servers_cnt/$application", "");
-            $self->_setProperty("$configurationName/applications/$application/servers/$servers_cnt", (split("=", $server))[1]);
+            $self->_setProperty("$configurationName/nodes/$node/$short_server", "");
+            $self->_setProperty("$configurationName/servers/$short_server/$application", "");
+            $self->_setProperty("$configurationName/applications/$application/servers/$short_server", "");
     	}
     }
 
     my $clusters = $json->{clusters};
-    my $clusters_cnt = 0;
     for my $cluster (keys %{$clusters}) {
-        $clusters_cnt ++;
-        $self->_createProperty("$configurationName/clusters/$clusters_cnt", {description => $cluster, propertyType => 'sheet' });
+        $self->_createProperty("$configurationName/clusters/$cluster", {description => $cluster, propertyType => 'sheet' });
 
         for my $application (@{$clusters->{$cluster}}) {
-            $self->_setProperty("$configurationName/clusters/$clusters_cnt/$application", "");
-            $self->_setProperty("$configurationName/applications/$application/clusters/$clusters_cnt", (split("=", $cluster))[1]);
+            $self->_setProperty("$configurationName/clusters/$cluster/$application", "");
+            $self->_setProperty("$configurationName/applications/$application/clusters/$cluster", "");
         }
     }
 

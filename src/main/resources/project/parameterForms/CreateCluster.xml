@@ -16,7 +16,7 @@
 
 -->
 <editor>
-	<help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#PublishWSDL</help>
+	<help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CreateCluster</help>
 
 	<formElement>
 		<type>entry</type>
@@ -34,6 +34,43 @@
 		<property>wsadminabspath</property>
 		<required>1</required>
 		<documentation>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. '/path/to/wsadmin.sh' or 'wsadmin.bat'.</documentation>
+       <propertyReference type="property">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configname/wsadminPath</propertyReference>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Cell name:</label>
+		<property>cellname</property>
+		<required>1</required>
+		<documentation>Name of the cell in which to create a new cluster.</documentation>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Cluster Name:</label>
+		<property>clusterName</property>
+		<required>1</required>
+		<documentation>Name of the new cluster.</documentation>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Cluster Members:</label>
+		<property>clusterMembers</property>
+		<required>1</required>
+		<documentation>List of member app servers along with node names.For eg. if server1 and server2 on Node01 and Node02 resp. have to be members give input as Node01=server1,Node02=server2 </documentation>
+        <propertyReference separator="," renderType="description">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configname/servers</propertyReference>
+	</formElement>
+
+	<formElement>
+		<label>Deploy Application on new cluster?:</label>
+		<property>deployApp</property>
+		<value/>
+		<documentation>Select the checkbox if you want to deploy an app on new cluster.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
 	</formElement>
 
 	<formElement>
@@ -43,44 +80,45 @@
 		<required>0</required>
 		<documentation>Commands to be entered to wsadmin. Use one command per line.</documentation>
 	</formElement>
-	
+
 	<formElement>
 		<type>textarea</type>
 		<label>Java Parameters:</label>
 		<property>javaparams</property>
 		<required>0</required>
-		<documentation>Java options to be passed to wsadmin, separate them using semicolons (;).</documentation>
+		<documentation>	Java options to be passed to wsadmin, separate them using semicolons (;).</documentation>
 	</formElement>
-	
+
 	<formElement>
 		<type>textarea</type>
 		<label>Classpath:</label>
 		<property>classpath</property>
 		<required>0</required>
-		<documentation>Jars to be passed to the wsadmin classpath. It is a string containing paths (semicolon-separated) the required JARs to execute wsadmin in a particular job. i.e: 'c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar' or '/MyDir/Myjar.jar;/yourdir/yourdir.jar'.</documentation>
+		<documentation>Jars to be passed to the wsadmin classpath. It is a string containing paths (semicolon-separated) the required JARs to execute wsadmin in a particular job. i.e: 'c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar' or '/MyDir/Myjar.jar;/yourdir/yourdir.jar'</documentation>
 	</formElement>
 
 	<formElement>
 		<type>entry</type>
 		<label>Application Name:</label>
 		<property>appname</property>
-		<documentation>Name of the application of which to publish the WSDL file. i.e: 'webapp'. </documentation>
-		<required>1</required>
+		<documentation>Name of the web application to be deploy. i.e: 'webapp'. </documentation>
+		<required>0</required>
+        <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configname/applications</propertyReference>
 	</formElement>
 
 	<formElement>
 		<type>entry</type>
-		<label>Location to publish WSDL file:</label>
-		<property>publish_location</property>
-		<documentation>Filename and absolute path on the filesystem where published WSDL files should get stored.For example, 'C:/webservices/sampleWSDL.zip'</documentation>
-		<required>1</required>
+		<label>Application Path:</label>
+		<property>apppath</property>
+		<documentation>Absolute path of the application to deploy. i.e: '/path/to/webapp.war' or 'c:/mydir/webapp.war'. </documentation>
+		<required>0</required>
 	</formElement>
 
 	<formElement>
 		<type>entry</type>
-		<label>SOAP address prefixes:</label>
-		<property>soap_prefix</property>
-		<documentation>Give SOAP address prefix in format "{{module {{binding partial-url}}}}"  to customize the WSDL SOAP address for each module.. i.e: '{ {AddressBookJ2WB.war {{http http://localhost:9080}}} {StockQuote.jar {{http https://localhost:9443}}} }'. </documentation>
+		<label>Context root:</label>
+		<property>contextRoot</property>
+		<documentation>Context root for webmodules. If left empty, any web contexts defined in the deployment descriptors will get picked up. </documentation>
 		<required>0</required>
 	</formElement>
 
@@ -88,8 +126,9 @@
 		<type>textarea</type>
 		<label>Additional Commands:</label>
 		<property>additionalcommands</property>
-		<documentation>	Additional commands to be entered for wsadmin.</documentation>
+		<documentation>Additional commands to be entered for wsadmin.</documentation>
 		<required>0</required>
 	</formElement>
+
 
 </editor>

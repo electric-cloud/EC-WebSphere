@@ -1,0 +1,42 @@
+<!--
+
+     Copyright 2015 Electric Cloud, Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+<editor>		<help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#RunCustomJob</help>
+	<formElement>
+        <type>entry</type>
+        <label>Configuration Name:</label>
+        <property>configname</property>
+        <propertyReference>/plugins/@PLUGIN_NAME@/project/websphere_cfgs</propertyReference>
+        <documentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration. To view or create a new configuration, go to the Administration -> Plugins tab, and select 'Configure' action for @PLUGIN_KEY@ plugin.</documentation>
+        <htmlDocumentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" target="_blank" href="/commander/pages/@PLUGIN_NAME@/configurations">configuration page</a>.</htmlDocumentation>
+        <required>0</required>
+    </formElement>
+
+	<formElement>
+        <type>entry</type>
+        <label>Wsadmin Absolute Path:</label>
+        <property>wsadminabspath</property>
+        <required>1</required>
+        <documentation>Absolute path of wsadmin, including filename and extension. If the path in which wsadmin is stored in the path environmental variable, the absolute path is ommited. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'. </documentation>
+        <propertyReference type="property">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configname/wsadminPath</propertyReference>
+    </formElement>
+
+    <formElement>		<type>textarea</type>		<label>Commands:</label>		<property>commands</property>		<required>0</required>		<documentation>Commands to be entered to wsadmin. Use one command per line.</documentation>	</formElement>		<formElement>		<type>textarea</type>		<label>Java Parameters:</label>		<property>javaparams</property>		<required>0</required>		<documentation>Java options to be passed to wsadmin, separate them using semicolons (;).</documentation>	</formElement>		<formElement>		<type>textarea</type>		<label>Classpath:</label>		<property>classpath</property>		<required>0</required>		<documentation>Jars to be passed to the wsadmin classpath. It is a string containing paths (semicolon-separated) the required JARs to execute wsadmin in a particular job. i.e: 'c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar' or '/MyDir/Myjar.jar;/yourdir/yourdir.jar'.</documentation>	</formElement>		<formElement>
+		<type>entry</type>
+		<label>Script File Absolute Path:</label>
+		<property>scriptfileabspath</property>
+		<documentation>Path of a Jython script that will be run using wsadmin. i.e: '/path/to/scriptFile.jython' or 'c:/dir/scriptFile.jython'.</documentation>		<required>0</required>	</formElement>		<formElement>		<type>radio</type>		<label>Script File Source:</label>		<property>scriptfilesource</property>		<required>1</required>		<documentation>Indicates either if a script file route or an embedded script file will be provided. </documentation>		<option><name>Supplied File</name><value>suppliedfile</value></option>		<option><name>New Script File</name><value>newscriptfile</value></option>	</formElement>		<formElement>		<type>textarea</type>		<label>Script File:</label>		<property>scriptfile</property>		<documentation>Content of the script file to run if Embedded File is chosen in the Script File Source.</documentation>		<required>0</required>	</formElement>			<formElement>		<type>textarea</type>		<label>Additional Commands:</label>		<property>additionalcommands</property>		<documentation>Additional commands to be entered for wsadmin.</documentation>		<required>0</required>	</formElement>	</editor>

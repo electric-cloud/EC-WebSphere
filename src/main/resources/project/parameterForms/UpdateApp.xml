@@ -90,7 +90,7 @@
 		<type>entry</type>
 		<label>Cluster Name:</label>
 		<property>clusterName</property>
-        <propertyReference renderType="value">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/applications/$appName/clusters</propertyReference>
+        <propertyReference renderType="name">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/applications/$appName/clusters</propertyReference>
 		<documentation>Name of the cluster on which application is deployed.</documentation>
 		<required>0</required>
 	</formElement>
@@ -99,7 +99,7 @@
 		<type>entry</type>
 		<label>Server Name:</label>
 		<property>serverName</property>
-        <propertyReference renderType="value">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/applications/$appName/servers</propertyReference>
+        <propertyReference renderType="name">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/applications/$appName/servers</propertyReference>
 		<documentation>Name of the server on which application is deployed.</documentation>
 		<required>0</required>
 	</formElement>
