@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use Data::Dumper;
-use Test::More tests => 5;
+use Test::More tests => 7;
 use Test::VirtualModule qw(ElectricCommander ElectricCommander::PropDB);
 use XML::XPath;
 
@@ -64,14 +64,28 @@ my $wspath = 'C:\Program Files (x86)\IBM\WebSphere\AppServer\bin\wsadmin.bat';
 $websphere = new WebSphere::WebSphere( $ec, 'websphere', $wspath );
 is( 1, $websphere->isa('WebSphere::WebSphere') );
 
+$^O = 'MSWin32';
+
 is(
-qq{"$wspath" -password changeme -conntype SOAP -lang jython -user admin -port 8880 -host localhost -f "discover.py"},
+qq{"$wspath" -password "changeme" -conntype SOAP -lang jython -user admin -port 8880 -host localhost -f "discover.py"},
 	$websphere->_create_runfile('discover.py')
 );
 
 is(
-qq{"$wspath" -password ***** -conntype SOAP -lang jython -user admin -port 8880 -host localhost -f "discover.py"},
+qq{"$wspath" -password "*****" -conntype SOAP -lang jython -user admin -port 8880 -host localhost -f "discover.py"},
 	$websphere->_mask_password( $websphere->_create_runfile('discover.py') )
+);
+
+$^O = 'linux';
+
+is(
+qq{"$wspath" -password 'changeme' -conntype SOAP -lang jython -user admin -port 8880 -host localhost -f "discover.py"},
+    $websphere->_create_runfile('discover.py')
+);
+
+is(
+qq{"$wspath" -password '*****' -conntype SOAP -lang jython -user admin -port 8880 -host localhost -f "discover.py"},
+    $websphere->_mask_password( $websphere->_create_runfile('discover.py') )
 );
 
 my $expected = {

@@ -28,7 +28,7 @@ use Data::Dumper;
 Constructs a new L<WebSphere::WebSphere> object.
 
 =over
-
+2>&1
 =item C<$ec>
         
 Reference to L<ElectricCommander> object.
@@ -82,7 +82,7 @@ sub wsadmin {
 	my $shellcmd = $self->_create_runfile($file);
 
 	print 'Run command: ' . $self->_mask_password($shellcmd) . "\n";
-	return $self->_parse_wsadmin_output(`$shellcmd`);
+	return $self->_parse_wsadmin_output(`$shellcmd 2>&1`);
 }
 
 sub _parse_wsadmin_output {
@@ -112,7 +112,7 @@ sub _mask_password {
 	my ( $self, $command ) = @_;
 
 	$command =~
-	  s/-password $self->{configuration}->{password}/-password *****/g;
+	  s/-password (.)$self->{configuration}->{password}(.)/-password $1*****$2/g;
 	return $command;
 }
 
@@ -143,7 +143,11 @@ sub _create_runfile {
     }
 
     if($configuration->{password}) {
-        $options->{password} = $configuration->{password};
+        if ($^O eq 'MSWin32') {
+         $options->{password} = "\"$configuration->{password}\"";
+        } else {
+         $options->{password} = "'$configuration->{password}'";
+        }
     }
  
 	my $options_string = "";
