@@ -80,10 +80,12 @@ sub main() {
       . "', '[-operation "
       . $gOperation
       . " -contents "
-      . $gContent
-      . " -contenturi "
-      . $gContentURI;
-
+      . $gContent;
+      
+   if($gContentURI ne '') {
+      $ScriptFile .= " -contenturi " . $gContentURI;
+   }
+   
     if($gAdditionalParams) {
         ## If optional parameters are supplied
 

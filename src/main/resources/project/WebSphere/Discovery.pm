@@ -33,6 +33,8 @@ my @ws_install_locations = (
 my @unix_install_locations =
   ( '/opt/IBM/WebSphere/AppServer', '/usr/local/IBM/WebSphere/AppServer' );
 
+my $DISCOVERY_PROPERTIES_ROOT = "/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data";
+
 =head1 METHODS
 
 =head2 C<new>
@@ -71,10 +73,11 @@ Returns 0 in case of error, 1 otherwise.
 
 sub discover {
     my ($self, $configurationName) = @_;
-
+    $self->{configurationName} = $configurationName;
+    
     my $ec = $self->{ec};
 
-    $ec->deleteProperty("/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data[$configurationName]");
+    $ec->deleteProperty("$DISCOVERY_PROPERTIES_ROOT/discovered_data[$configurationName]");
 
     $self->_setStatus('inprogress');
     
@@ -141,11 +144,12 @@ sub discover {
 
 sub _setStatus {
     my ( $self, $status, $summary ) = @_;
-
-    $self->_setProperty( 'status', $status );
+    my $configurationName = $self->{configurationName};
+    
+    $self->_setProperty( "$configurationName/status", $status );
 
     if ( defined $summary ) {
-        $self->_setProperty( 'summary', $summary );
+        $self->_setProperty( "$configurationName/summary", $summary );
     }
 }
 
@@ -160,19 +164,17 @@ sub _createProperty {
 
 sub _setProperty {
     my ( $self, $name, $value, $params) = @_;
-    my $path = "/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data";
 
  	$params = {} unless defined $params;
     $params->{value} = $value;
 
-    $self->{ec}->setProperty( "$path/$name", $params);
+    $self->{ec}->setProperty( "$DISCOVERY_PROPERTIES_ROOT/$name", $params);
 }
 
 sub _getProperty {
     my ( $self, $name ) = @_;
-    my $path = "/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data";
 
-    return $self->{ec}->getProperty("$path/$name")->getNodeText('//value');
+    return $self->{ec}->getProperty("$DISCOVERY_PROPERTIES_ROOT/$name")->getNodeText('//value');
 }
 
 sub _debug {
