@@ -129,7 +129,7 @@
 
                     <tr>
                         <td class="required">Connection Type</td>
-                        <td>Specifies to type of connection to use to connect to the application server that you want to administer.</td>
+                        <td>Specifies the type of connection to the application server that you want to administer.</td>
                     </tr>
                     
                     <tr>
@@ -3064,12 +3064,12 @@
 
                     <tr>
                         <td class="required">Content Type</td>
-                        <td>Specifies to type of content to update. Use File option for updating a single file, Partial Application option for updating application partially, Module option to add/update a module to the deployed application, Application option for updating the entire deployed application.</td>
+                        <td>Specifies the type of content to update. Use File option for updating a single file, Partial Application option for updating application partially, Module option to add/update a module to the deployed application, Application option for updating the entire deployed application.</td>
                     </tr>
 
                     <tr>
                         <td class="required">Operation</td>
-                        <td>Specifies to type of operation to perform as part of update procedure. Use Add option to  add new content, Update option to update existing content, AddUpdate option to add content and to replace if already exist, Delete option to remove existing content respectively. </td>
+                        <td>Specifies the type of operation to perform as part of update procedure. Use Add option to  add new content, Update option to update existing content, AddUpdate option to add content and to replace if already exist, Delete option to remove existing content respectively. </td>
                     </tr>
 
                     <tr>
