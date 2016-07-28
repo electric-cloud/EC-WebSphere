@@ -46,6 +46,10 @@
         <path>matchers/stopServerMatchers.pl</path>
     </file>
     <file>
+        <xpath>//property[propertyName=&quot;discovery_matchers&quot;]/value</xpath>
+        <path>matchers/discoveryMatchers.pl</path>
+    </file>
+    <file>
         <xpath>//property[propertyName=&quot;startserver_matchers&quot;]/value</xpath>
         <path>matchers/startServerMatchers.pl</path>
     </file>

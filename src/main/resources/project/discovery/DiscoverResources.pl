@@ -27,6 +27,7 @@ for my $resourceName (@resourceNames) {
 			jobStepName     => "Discover Resource - $resourceName",
 			subprocedure    => 'DiscoverResource',
 			resourceName    => $resourceName,
+
 			actualParameter => [
 				{
 					actualParameterName => 'configurationName',

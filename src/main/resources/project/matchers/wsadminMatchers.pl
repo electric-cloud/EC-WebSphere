@@ -81,7 +81,7 @@ push (@::gMatchers,
               my $description = ((defined $::gProperties{"summary"}) ? 
                     $::gProperties{"summary"} : '');
                     
-              $description .= "Authentification error, unvalid or empty credentials.";
+              $description .= "Authentification error, invalid or empty credentials.";
                               
               setProperty("summary", $description . "\n");
     

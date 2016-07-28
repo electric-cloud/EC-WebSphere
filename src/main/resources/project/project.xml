@@ -62,7 +62,12 @@
                 </propertySheet>
             </property>
             <property>
-                <propertyName>startserver_matchers</propertyName>
+                <propertyName>discovery_matchers</propertyName>
+                <value></value>
+                <expandable>0</expandable>
+            </property>
+            <property>
+            <propertyName>startserver_matchers</propertyName>
                 <value></value>
                 <expandable>0</expandable>
             </property>
@@ -642,7 +647,7 @@
                 <exclusive>0</exclusive>
                 <logFileName/>
                 <parallel>0</parallel>
-                <postProcessor>postp</postProcessor>
+                <postProcessor>postp --loadProperty /myProject/discovery_matchers</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName/>
                 <retries>0</retries>

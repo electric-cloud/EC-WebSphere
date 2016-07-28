@@ -112,6 +112,13 @@ sub discover {
     my $ret = $websphere->wsadmin('discover.py');
     my $json = $ret->{json};
     
+    if(not $json) {
+        my $summary = 'Did not get correct output from wsadmin command, see discovery job log';
+        $self->_setStatus('incomplete', $summary);
+
+        return 1;
+    }
+    
     my $servers = $json->{servers};
     for my $server (keys %{$servers}) {
         my ($node, $short_server) = split("=", $server);
