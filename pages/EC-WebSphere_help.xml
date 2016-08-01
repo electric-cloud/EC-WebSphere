@@ -3380,6 +3380,17 @@
         <a name="LegalNotice" id="LegalNotice"></a>
 
         <h1>Troubleshooting and Getting Help</h1>
+        <h2>Troubleshooting</h2>
+        <table border="0">
+            <tr>
+                <th>Q.</th>
+                <th>EC-WebSphere procedure failed with the error in the step log "java.io.FileNotFoundException: /opt/IBM/WebSphere/AppServer/profiles/Dmgr01/configuration/org.eclipse.osgi/.manager/.fileTableLock (Permission denied)"</th>
+            </tr>
+            <tr>
+                <td>A.</td>
+                <td>Refer to <a href="https://www-304.ibm.com/support/docview.wss?uid=swg21455334">Error: Locking is not possible in the directory when running in group mode</a> article on how to resolve the problem.</td>
+            </tr>
+        </table>
         <p>Contacting Technical Support:</p>
         <p>Before you contact our technical support staff, have the following information available.</p>
         <ol>
