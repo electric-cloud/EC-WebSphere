@@ -1,7 +1,7 @@
 EC-WebSphere
 ============
 
-The ElectricCommander WebSphere integration
+The ElectricFlow WebSphere integration
 
 ## Compile ##
 

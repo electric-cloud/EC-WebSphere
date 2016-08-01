@@ -18,7 +18,7 @@
 <editor>
 	<formElement>		<type>entry</type>		<label>Configuration Name:</label>		<property>configurationName</property>		<documentation>The plugin's configuration name. </documentation>        <propertyReference>/plugins/@PLUGIN_NAME@/project/websphere_cfgs</propertyReference>
         <required>1</required>	</formElement>				<formElement>
-		<type>entry</type>
+		<type>textarea</type>
 		<label>Resource Names:</label>
 		<property>resourceNames</property>
 		<required>1</required>

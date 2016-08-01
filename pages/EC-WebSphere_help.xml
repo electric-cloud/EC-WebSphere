@@ -2,10 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta name="generator" content="HTML Tidy for Windows (vers 14 February 2006), see www.w3.org" />
     <meta content="text/html; charset=us-ascii" http-equiv="content-type" />
 
-    <title>Electric Commander Plugin for WebSphere</title>
+    <title>Electric Flow Plugin for WebSphere</title>
     <link rel="stylesheet" href="../../plugins/EC-WebSphere/pluginhelp.css" type="text/css" media="screen" />
 </head>
 
@@ -38,7 +37,7 @@
     <!--There was an h2 header here: WebSphere Links
         <p>
         
-        h2 header: Electric Commander Integration to WebSphere -->
+        h2 header: Electric Flow Integration to WebSphere -->
         <!-- The integration description should answer the questions:
         How deep does our integration go? Why should I care?
         What general functionality does the plugin include? What
@@ -90,7 +89,7 @@
     examples. -->
 	
             <h3>Creating Plugin Configurations</h3>  	
-            <p>To create plugin configurations in ElectricCommander, 
+            <p>To create plugin configurations in ElectricFlow, 
 
         do these steps:</p>
 		
@@ -147,7 +146,7 @@
                         <td>Login as</td>
 
                         <td><i>Username</i>: The user name used by 
-                        ElectricCommander to communicate with the
+                        ElectricFlow to communicate with the
                         WebSphere server.<br />
                          <i>Password</i>: The password for
                         the <i>Username</i>.<br />
@@ -165,7 +164,7 @@
 
         <h3>Editing Plugin Configurations</h3>  	
 
-            <p>To edit plugin configurations in ElectricCommander, 
+            <p>To edit plugin configurations in ElectricFlow, 
 
         do these steps:</p>
 		
@@ -213,7 +212,7 @@
                         <td>Configuration Name</td>
 
                         <td>The name of the configuration to use. 
-                        ElectricCommander gets the URL, port, and credentials 
+                        ElectricFlow gets the URL, port, and credentials 
                         from this configuration.</td>
                     </tr>
 
@@ -277,7 +276,7 @@
 
                         <td>The maximum time in seconds
                         that the job tries to check into the
-                        server. When the text box is blank, ElectricCommander interprets this as 
+                        server. When the text box is blank, ElectricFlow interprets this as 
                         no wait time and checks the URL only one time.</td>
                     </tr>
 
@@ -345,7 +344,7 @@
                         <td class="required">Configuration
                         Name</td>
 
-                        <td>Name of the configuration to use. ElectricCommander gets the 
+                        <td>Name of the configuration to use. ElectricFlow gets the 
                         URL, port, and credentials from this configuration. </td>
                     </tr>
 
@@ -354,7 +353,7 @@
 
                         <td>The maximum time in seconds
                         that the job tries to check into the
-                        server. When the text box is blank, ElectricCommander interprets this as 
+                        server. When the text box is blank, ElectricFlow interprets this as 
                         no wait time and checks the URL only one time.</td>
                     </tr>
 
@@ -400,7 +399,7 @@
 
                     <tr>
                         <td class="required">Configuration Name</td>
-                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                        <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
                     </tr>
 
                     <tr>
@@ -527,7 +526,7 @@
 
                     <tr>
                         <td class="required">Configuration Name</td>
-                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                        <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
                     </tr>
 
                     <tr>
@@ -661,7 +660,7 @@
 
                     <tr>
                         <td class="required">Configuration Name</td>
-                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                        <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
                     </tr>
 
                     <tr>
@@ -792,7 +791,7 @@
 
 
 
-                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                        <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
 
                     </tr>
 
@@ -945,7 +944,7 @@
 
                     <tr>
                         <td class="required">Configuration Name</td>
-                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                        <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
                     </tr>
 
                     <tr>
@@ -1136,7 +1135,7 @@
 
 
 
-                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                        <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
 
                     </tr>
 
@@ -1289,7 +1288,7 @@
 
                     <tr>
                         <td class="required">Configuration Name</td>
-                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                        <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
                     </tr>
 
                     <tr>
@@ -1392,7 +1391,7 @@
 
                     <tr>
                         <td class="required">Configuration Name</td>
-                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                        <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
                     </tr>
 
                     <tr>
@@ -1546,7 +1545,7 @@
 
                     <tr>
                         <td class="required">Configuration Name</td>
-                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                        <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
                     </tr>
 
                     <tr>
@@ -1677,7 +1676,7 @@
 
 
 
-                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                        <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
 
                     </tr>
 
@@ -1775,7 +1774,7 @@
 
 
 
-                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                        <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
 
                     </tr>
                     
@@ -1912,7 +1911,7 @@
                         <td>Configuration Name</td>
 
                         <td>The name of the configuration to use.
-                        ElectricCommander gets the URL, port, and credentials from
+                        ElectricFlow gets the URL, port, and credentials from
                         this configuration.</td>
                     </tr>
 
@@ -1975,7 +1974,7 @@
 
                     <tr>
                         <td class="required">Configuration Name</td>
-                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                        <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
                     </tr>
 
                     <tr>
@@ -2192,7 +2191,7 @@
 
                     <tr>
                         <td class="required">Configuration Name</td>
-                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                        <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
                     </tr>
 
                     <tr>
@@ -2297,7 +2296,7 @@
 
                     <tr>
                         <td class="required">Configuration Name</td>
-                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                        <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
                     </tr>
 
                     <tr>
@@ -2371,7 +2370,7 @@
 
                 <tr>
                     <td class="required">Configuration Name</td>
-                    <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                    <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
                 </tr>
 
                 <tr>
@@ -2457,7 +2456,7 @@
 
                     <tr>
                         <td class="required">Configuration Name</td>
-                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                        <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
                     </tr>
 
                     <tr>
@@ -2530,7 +2529,7 @@
                         <td>Configuration Name</td>
 
                         <td>The name of the configuration to use.
-                        ElectricCommander gets the URL, port, and credentials from
+                        ElectricFlow gets the URL, port, and credentials from
                         this configuration.</td>
                     </tr>
 
@@ -2634,7 +2633,7 @@
                         <td>Configuration Name</td>
 
                         <td>The name of the configuration to use.
-                        ElectricCommander gets the URL, port, and credentials from
+                        ElectricFlow gets the URL, port, and credentials from
                         this configuration.</td>
                     </tr>
 
@@ -2894,7 +2893,7 @@
                         <td>Configuration Name</td>
 
                         <td>The name of the configuration to use.
-                        ElectricCommander gets the URL, port, and credentials from
+                        ElectricFlow gets the URL, port, and credentials from
                         this configuration.</td>
                     </tr>
 
@@ -2946,7 +2945,7 @@
                         <td>Configuration Name</td>
 
                         <td>The name of the configuration to use.
-                        ElectricCommander gets the URL, port, and credentials from
+                        ElectricFlow gets the URL, port, and credentials from
                         this configuration.</td>
                     </tr>
 
@@ -3049,7 +3048,7 @@
 
                     <tr>
                         <td class="required">Configuration Name</td>
-                        <td>The name of the configuration to use. ElectricCommander gets the URL, port, and credentials from this configuration.</td>
+                        <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
                     </tr>
 
                     <tr>
@@ -3204,7 +3203,7 @@
 			
 			<li>Fixed instructions to create WebSphere plugin configurations.</li>
 		
-		    <li>Fixed instructions to access plugins in ElectricCommander. </li>
+		    <li>Fixed instructions to access plugins in ElectricFlow. </li>
 
         </ul>
 
@@ -3398,8 +3397,8 @@
         <p>THE INFORMATION IN THIS PUBLICATION IS PROVIDED AS IS. ELECTRIC CLOUD, INCORPORATED MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND WITH RESPECT TO THE INFORMATION IN THIS PUBLICATION, AND SPECIFICALLY DISCLAIMS IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.</p>
         <p>Use, copying, and distribution of any ELECTRIC CLOUD software described in this publication requires an applicable software license. </p> <br />
         <p><b>Trademarks</b></p>
-        <p>Electric Cloud, ElectricAccelerator, ElectricCommander, ElectricInsight, and Electric Make are registered trademarks or trademarks of Electric Cloud, Incorporated. </p>
-        <p>Electric Cloud products &#x80;ElectricAccelerator, ElectricCommander, ElectricInsight, and Electric Make are
+        <p>Electric Cloud, ElectricAccelerator, ElectricFlow, ElectricInsight, and Electric Make are registered trademarks or trademarks of Electric Cloud, Incorporated. </p>
+        <p>Electric Cloud products &#x80;ElectricAccelerator, ElectricFlow, ElectricInsight, and Electric Make are
             commonly referred to by their short names &#x80;Accelerator, Commander, Insight, and Make throughout
             various types of Electric Cloud product-specific documentation. </p>
         <p>Other product names mentioned in this guide may be trademarks or registered trademarks of their respective owners and are hereby acknowledged. </p>
