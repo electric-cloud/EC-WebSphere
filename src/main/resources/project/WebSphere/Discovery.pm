@@ -108,7 +108,7 @@ sub discover {
     print $fh $script;
     close $fh;
 
-    # TODO Check for errors        
+    # TODO Check for errors
     my $ret = $websphere->wsadmin('discover.py');
     my $json = $ret->{json};
     
