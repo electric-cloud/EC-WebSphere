@@ -105,7 +105,7 @@
 		
 		<li>Click <b>Create Configuration</b>.</li>
 
-		<li>To enable Commander to communicate with your WebSphere Application Server, 
+		<li>To enable ElectricFlow server to communicate with your WebSphere Application Server, 
 		
 		enter the following information:<br /> </li>
 
@@ -3410,7 +3410,7 @@
         <p><b>Trademarks</b></p>
         <p>Electric Cloud, ElectricAccelerator, ElectricFlow, ElectricInsight, and Electric Make are registered trademarks or trademarks of Electric Cloud, Incorporated. </p>
         <p>Electric Cloud products &#x80;ElectricAccelerator, ElectricFlow, ElectricInsight, and Electric Make are
-            commonly referred to by their short names &#x80;Accelerator, Commander, Insight, and Make throughout
+            commonly referred to by their short names &#x80;Accelerator, ElectricFlow, Insight, and Make throughout
             various types of Electric Cloud product-specific documentation. </p>
         <p>Other product names mentioned in this guide may be trademarks or registered trademarks of their respective owners and are hereby acknowledged. </p>
 
