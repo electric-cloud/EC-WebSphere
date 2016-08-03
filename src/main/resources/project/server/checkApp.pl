@@ -31,8 +31,8 @@ $|=1;
 # -------------------------------------------------------------------------
 
 $::gWSAdminAbsPath = trim(q($[wsadminabspath]));
-$::gConfigurationName = "$[configname]";
-$::gAppName = "$[appname]";
+$::gConfigurationName = q{$[configname]};
+$::gAppName = q{$[appname]};
 $::gScriptFile = "if AdminApp.isAppReady('$::gAppName'):
   print \"The application is ready.\"
   sys.exit(0)
@@ -74,7 +74,7 @@ sub main() {
   
   push(@args, '"'.$::gWSAdminAbsPath.'"');
 
-  open (MYFILE, '>>checkapp_script.jython');
+  open (MYFILE, '>checkapp_script.jython');
   print MYFILE "$::gScriptFile";
   close (MYFILE);
 
@@ -133,7 +133,7 @@ sub main() {
           print "Error: cannot determine application status\n";
           $ec->setProperty("/myJobStep/outcome", 'error');
       }
-  }else{
+  }else{ 
       $ec->setProperty("/myJobStep/outcome", 'error');
   }
   

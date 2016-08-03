@@ -39,7 +39,7 @@ my $gOperation         = trim(q($[operation]));
 my $gContent           = trim(q($[content]));
 my $gContentURI        = trim(q($[contentURI]));
 my $gAdditionalParams    = trim(q($[additionalParams]));
-my $gConfigurationName = "$[configname]";
+my $gConfigurationName = q{$[configname]};
 
 # -------------------------------------------------------------------------
 # Main functions

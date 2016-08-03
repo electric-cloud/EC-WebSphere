@@ -127,7 +127,7 @@ sub discover {
     	for my $application (@{$servers->{$server}}) {
             $self->_setProperty("$configurationName/nodes/$node/$short_server", "");
             $self->_setProperty("$configurationName/servers/$short_server/$application", "");
-            $self->_setProperty("$configurationName/applications/$application/servers/$short_server", "");
+            $self->_setProperty("$configurationName/applications/$application/servers/$short_server", "", {description => $server });
     	}
     }
 

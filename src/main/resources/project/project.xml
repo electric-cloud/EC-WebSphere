@@ -1396,7 +1396,28 @@
 
                                 </property>
 
+                                <property>
+                                    <propertyName>clusterName</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
 
+
+                                <property>
+                                    <propertyName>serverName</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
 
                                 <property>
 
@@ -1512,7 +1533,21 @@
 
             </formalParameter>
 
+            <formalParameter>
+                <formalParameterName>clusterName</formalParameterName>
+                <defaultValue />
+                <description>Name of the cluster on which application is deployed.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
 
+            <formalParameter>
+                <formalParameterName>serverName</formalParameterName>
+                <defaultValue />
+                <description>Name of the server on which application is deployed.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
 
             <formalParameter>
 
@@ -1716,7 +1751,30 @@
                                     </propertySheet>
 
                                 </property>
+                                
+                                <property>
+                                    <propertyName>clusterName</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
 
+
+                                <property>
+                                    <propertyName>serverName</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                
 
 
                                 <property>
@@ -1899,7 +1957,21 @@
 
             </formalParameter>
 
+            <formalParameter>
+                <formalParameterName>clusterName</formalParameterName>
+                <defaultValue />
+                <description>Name of the cluster on which application is deployed.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
 
+            <formalParameter>
+                <formalParameterName>serverName</formalParameterName>
+                <defaultValue />
+                <description>Name of the server on which application is deployed.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
 
             <formalParameter>
 

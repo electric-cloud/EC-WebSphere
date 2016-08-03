@@ -78,7 +78,7 @@ sub main() {
       push(@args, $::gAdditionalOptions);
   }
   
-  open (MYFILE, '>>deployapp_script.jython');
+  open (MYFILE, '>deployapp_script.jython');
   
 print MYFILE "$::gScriptFile";
 close (MYFILE);

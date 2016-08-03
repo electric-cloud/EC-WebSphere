@@ -73,7 +73,7 @@ print AdminConfig.remove(jdbcp)
 
 AdminConfig.save()';
 	
-  open (MYFILE, '>>deleteJDBC_script.jython');
+  open (MYFILE, '>deleteJDBC_script.jython');
   
   print MYFILE "$ScriptFile";
   close (MYFILE);

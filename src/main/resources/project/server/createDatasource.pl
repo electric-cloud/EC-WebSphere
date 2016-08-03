@@ -93,7 +93,7 @@ ds_props = AdminConfig.create(\'J2EEResourcePropertySet\', newds, [])
 
 AdminConfig.save()';
 	
-  open (MYFILE, '>>createDS_script.jython');
+  open (MYFILE, '>createDS_script.jython');
   
   print MYFILE "$ScriptFile";
   close (MYFILE);

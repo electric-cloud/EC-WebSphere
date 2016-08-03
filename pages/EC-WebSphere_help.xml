@@ -3141,7 +3141,8 @@
         <ul>
              <li>Added suport for discovering WebSphere configuraiton on ElectricFlow resource.</li>
              <li>Moved 'Connection Type' parameter for all plugin procedures to plugin's configuration.</li>
-       </ul>
+             <li>Added 'Cluster Name' and 'Server Name' optional parameter to 'Start Application' and 'Stop Application' procedures.</li>
+        </ul>
 
         <h2>@PLUGIN_KEY@ 2.1.2</h2>
         <ul>

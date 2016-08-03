@@ -33,8 +33,20 @@ $|=1;
 
 $::gCommands = q($[commands]);
 $::gAppName = trim(q($[appname]));
-$::gScriptFile = 'appmgr = AdminControl.queryNames(\'name=ApplicationManager,*\')' . "\n" .
-             'AdminControl.invoke(appmgr,\'stopApplication\',\'' . $::gAppName . '\')';
+
+my $gClusterName       = trim(q($[clusterName]));
+my $gServerName        = trim(q($[serverName]));
+
+if ($gClusterName) {
+ $::gScriptFile = "AdminApplication.stopApplicationOnCluster('$::gAppName', '$gClusterName')";
+} elsif ($gServerName) {
+ my ($nodeName, $serverName) = split(/=/, $gServerName);
+ $::gScriptFile = "AdminApplication.startApplicationOnSingleServer('$::gAppName', '$nodeName', '$serverName')";
+} else {
+ $::gScriptFile = 'appmgr = AdminControl.queryNames(\'name=ApplicationManager,*\')' . "\n" .
+              'AdminControl.invoke(appmgr,\'stopApplication\',\'' . $::gAppName . '\')';
+}
+
 $::gWSAdminAbsPath = trim(q($[wsadminabspath]));
 $::gClasspath = trim(q($[classpath]));
 $::gJavaParams = trim(q($[javaparams]));
@@ -80,7 +92,7 @@ sub main() {
       push(@args, $::gAdditionalOptions);
   }
 
-  open (MYFILE, '>>stopapp_script.jython');    
+  open (MYFILE, '>stopapp_script.jython');    
 print MYFILE "$::gScriptFile";
 close (MYFILE);
       

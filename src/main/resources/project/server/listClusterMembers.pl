@@ -110,7 +110,7 @@ sub main() {
 
     push( @args, '"' . $::gWSAdminAbsPath . '"' );
 
-    open( MYFILE, '>>listClusterMembers_script.jython' );
+    open( MYFILE, '>listClusterMembers_script.jython' );
 
     print MYFILE "$ScriptFile";
     close(MYFILE);

@@ -68,7 +68,7 @@
 		<label>Target server(s):</label>
 		<property>serverList</property>
         <propertyReference separator="," renderType="description">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/servers</propertyReference>
-		<documentation>Specify single or list of standalone application servers on which to deploy enterprise application.Specify servers in the form Node=server. For e.g. Node01=Server1,Node02=Server2.Not required in WebSphere Base Edition.</documentation>
+		<documentation>Specify single or list of standalone application servers on which to deploy enterprise application. Specify servers in the form Node=server. For e.g. Node01=Server1,Node02=Server2. Not required in WebSphere Base Edition.</documentation>
 		<required>0</required>
 	</formElement>
 

@@ -90,7 +90,7 @@ sub main() {
      
   }elsif($::gScriptFileSource eq 'newscriptfile'){
    
-        open (MYFILE, '>>generated_script.jython');
+        open (MYFILE, '>generated_script.jython');
       print MYFILE "$::gScriptFile";
       close (MYFILE);
       

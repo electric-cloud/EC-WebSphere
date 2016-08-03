@@ -86,7 +86,7 @@ AdminConfig.create(\'JDBCProvider\', node, jdbcAttrs)
 
 AdminConfig.save()';
 	
-  open (MYFILE, '>>createJDBC_script.jython');
+  open (MYFILE, '>createJDBC_script.jython');
   
   print MYFILE "$ScriptFile";
   close (MYFILE);

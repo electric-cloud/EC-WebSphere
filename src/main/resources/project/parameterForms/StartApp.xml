@@ -43,5 +43,23 @@
         <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configname/applications</propertyReference>
     </formElement>
 
+    <formElement>
+        <type>entry</type>
+        <label>Cluster Name:</label>
+        <property>clusterName</property>
+        <propertyReference renderType="name">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configname/applications/$appname/clusters</propertyReference>
+        <documentation>Name of the cluster on which application is deployed. Not required in WebSphere Base Edition.</documentation>
+        <required>0</required>
+    </formElement>
+
+    <formElement>
+        <type>entry</type>
+        <label>Server Name:</label>
+        <property>serverName</property>
+        <propertyReference  renderType="description">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configname/applications/$appname/servers</propertyReference>
+        <documentation>Name of the server on which application is deployed. Specify server in the form Node=server. For e.g. Node01=Server1. Not required in WebSphere Base Edition.</documentation>
+        <required>0</required>
+    </formElement>
+    
     <formElement>		<type>textarea</type>		<label>Commands:</label>		<property>commands</property>		<required>0</required>		<documentation>Commands to be entered to wsadmin. Use one command per line.</documentation>	</formElement>		<formElement>		<type>textarea</type>		<label>Java Parameters:</label>		<property>javaparams</property>		<required>0</required>		<documentation>Java options to be passed to wsadmin, separate them using semicolons (;).</documentation>	</formElement>		<formElement>		<type>textarea</type>		<label>Classpath:</label>		<property>classpath</property>		<required>0</required>		<documentation>Jars to be passed to the wsadmin classpath. It is a string containing paths (semicolon-separated) the required JARs to execute wsadmin in a particular job. i.e: 'c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar' or '/MyDir/Myjar.jar;/yourdir/yourdir.jar'.</documentation>	</formElement>
 	<formElement>		<type>textarea</type>		<label>Additional Commands:</label>		<property>additionalcommands</property>		<documentation>	Additional commands to be entered for wsadmin.</documentation>		<required>0</required>	</formElement>	</editor>

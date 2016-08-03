@@ -32,13 +32,25 @@ $|=1;
 
 $::gCommands = q($[commands]);
 $::gAppName = trim(q($[appname]));
-$::gScriptFile = 'appmgr = AdminControl.queryNames(\'name=ApplicationManager,*\')' . "\n" .
-             'AdminControl.invoke(appmgr,\'startApplication\',\'' . $::gAppName . '\')';
+
+my $gClusterName       = trim(q($[clusterName]));
+my $gServerName        = trim(q($[serverName]));
+
+if ($gClusterName) {
+ $::gScriptFile = "AdminApplication.startApplicationOnCluster('$::gAppName', '$gClusterName')";
+} elsif ($gServerName) {
+ my ($nodeName, $serverName) = split(/=/, $gServerName);
+ $::gScriptFile = "AdminApplication.startApplicationOnSingleServer('$::gAppName', '$nodeName', '$serverName')";
+} else {
+ $::gScriptFile = 'appmgr = AdminControl.queryNames(\'name=ApplicationManager,*\')' . "\n" .
+              'AdminControl.invoke(appmgr,\'startApplication\',\'' . $::gAppName . '\')';
+}
+
 $::gWSAdminAbsPath = trim(q($[wsadminabspath]));
 $::gClasspath = trim(q($[classpath]));
 $::gJavaParams = trim(q($[javaparams]));
-$::gConfigurationName = "$[configname]";
-$::gAdditionalOptions = "$[additionalcommands]";
+$::gConfigurationName = q{$[configname]};
+$::gAdditionalOptions = q{$[additionalcommands]};
 
 # -------------------------------------------------------------------------
 # Main functions
@@ -79,7 +91,7 @@ sub main() {
       push(@args, $::gAdditionalOptions);
   }
 
-  open (MYFILE, '>>startapp_script.jython');
+  open (MYFILE, '>startapp_script.jython');
   
 print MYFILE "$::gScriptFile";
 close (MYFILE);

@@ -6,6 +6,8 @@ for cell in cells:
 
  cluster_entries = []
  server_entries = []
+ cluster_apps = []
+ server_apps = []
 
  # Get list of Nodes
  nodes = AdminConfig.list('Node', cell).splitlines()
@@ -18,7 +20,7 @@ for cell in cells:
 
   for server in servers:
    server_name = AdminConfig.showAttribute(server, "name")
-   server_apps = AdminApp.list("WebSphere:cell=%s,node=%s,server=%s" % (cname, nname, server_name)).splitlines()
+   server_apps += AdminApp.list("WebSphere:cell=%s,node=%s,server=%s" % (cname, nname, server_name)).splitlines()
 
    print '\tServer: ' + server_name
    print '\t\t', server_apps
@@ -26,10 +28,11 @@ for cell in cells:
 
   clusters = AdminConfig.list('ServerCluster').splitlines()
 
+  # Get list of clusters on node
   for cluster in clusters:
    cluster_name = AdminConfig.showAttribute(cluster, "name")
    print '\tCluster: ' + cluster_name
-   cluster_apps = AdminApp.list("WebSphere:cell=%s,node=%s,cluster=%s" % (cname, nname, cluster_name)).splitlines()
+   cluster_apps += AdminApp.list("WebSphere:cell=%s,node=%s,cluster=%s" % (cname, nname, cluster_name)).splitlines()
    print '\t\t', cluster_apps
    cluster_entries += ['"%s": [ %s ]' % (cluster_name, ','.join([ '"%s"' % app for app in cluster_apps]))]
 

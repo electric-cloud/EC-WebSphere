@@ -116,7 +116,7 @@ sub main() {
       . $::gClusterName . '")' . "\n";
     $ScriptFile .= 'print result' . "\n";
 
-    open( MYFILE, '>>deleteCluster_script.jython' );
+    open( MYFILE, '>deleteCluster_script.jython' );
 
     print MYFILE "$ScriptFile";
     close(MYFILE);
