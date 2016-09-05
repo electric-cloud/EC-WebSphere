@@ -77,6 +77,16 @@ push (@::gMatchers,
                },
   },
   {
+               id =>        "step51",
+               pattern =>          q{Application\s(.+)\supdated successfully.},
+               action =>           q{
+                          my $description = ((defined $::gProperties{"summary"}) ?
+                                $::gProperties{"summary"} : '');
+                          $description = "$1 updated successfully.";
+                          setProperty("summary", $description . "\n");
+               },
+  },
+  {
           id      => "error2",
           pattern => q{ERROR\s:|[Ee]rror\s:|[Ee]xception},
           action  => q{

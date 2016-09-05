@@ -22,6 +22,10 @@
         <path>wsadmin_scripts/discover.py</path>
     </file>
     <file>
+        <xpath>//property[propertyName=&quot;deploy_enterprise_application.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/deploy_enterprise_application.py</path>
+    </file>
+    <file>
         <xpath>//property[propertyName=&quot;Util.pm&quot;]/value</xpath>
         <path>WebSphere/Util.pm</path>
     </file>

@@ -59,6 +59,10 @@
                         <propertyName>discover.py</propertyName>
                         <value/>
                     </property>
+                    <property>
+                        <propertyName>deploy_enterprise_application.py</propertyName>
+                        <value/>
+                    </property>
                 </propertySheet>
             </property>
             <property>
