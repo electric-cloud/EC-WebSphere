@@ -142,6 +142,16 @@ $xpath = $ec->attachCredential($projName, $credName,
 $errors .= $ec->checkAllErrors($xpath);
 
 $xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'StartCluster',
+     stepName => 'StartCluster'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'StopCluster',
+     stepName => 'StopCluster'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
     {procedureName => 'CreateCluster',
      stepName => 'CreateCluster'});
 $errors .= $ec->checkAllErrors($xpath);

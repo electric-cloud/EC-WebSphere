@@ -174,6 +174,20 @@ my %listClusterMembers = (
     category    => "Application Server"
 );
 
+my %startCluster = (
+    label       => "WebSphere - Start Cluster",
+    procedure   => "StartCluster",
+    description => "Start cluster using the wsadmin tool",
+    category    => "Application Server"
+);
+
+my %stopCluster = (
+    label       => "WebSphere - Stop Cluster",
+    procedure   => "StopCluster",
+    description => "Stop cluster using the wsadmin tool",
+    category    => "Application Server"
+);
+
 my %creatCluster = (
     label       => "WebSphere - Create Application server cluster",
     procedure   => "CreateCluster",
@@ -249,7 +263,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create J
 							\%publishWSDL, \%deployOSGi,
 							\%createEndToEndMailProvider, \%createMailSession,
 							\%configEJBContainer, \%updateApp,
-							\%deployEnterpriseApp);
+							\%deployEnterpriseApp, \%startCluster, \%stopCluster);
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
@@ -472,6 +486,16 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'CreateCluster',
                 stepName => 'CreateCluster'
+            });
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'StartCluster',
+                stepName => 'StartCluster'
+            });
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'StopCluster',
+                stepName => 'StopCluster'
             });
 
              # Attach the credential to the appropriate steps

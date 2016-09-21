@@ -143,6 +143,18 @@
             </property>
 
             <property>
+                <propertyName>startCluster_matchers</propertyName>
+                <value></value>
+                <expandable>0</expandable>
+            </property>
+
+            <property>
+                <propertyName>stopCluster_matchers</propertyName>
+                <value></value>
+                <expandable>0</expandable>
+            </property>
+
+            <property>
                 <propertyName>deletecluster_matchers</propertyName>
                 <value></value>
                 <expandable>0</expandable>
@@ -5165,7 +5177,6 @@
                 </propertySheet>
             </step>
         </procedure>
-
         <procedure>
 
             <procedureName>ListClusterMembers</procedureName>
@@ -5291,6 +5302,354 @@
                 <workingDirectory />
                 <workspaceName />
                 <procedureName>ListClusterMembers</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+
+            <procedureName>StartCluster</procedureName>
+
+            <description>Stops cluster using wsadmin tool.</description>
+
+            <jobNameTemplate>websphere-StartCluster-$[jobId]</jobNameTemplate>
+
+            <resourceName />
+
+            <workspaceName />
+
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+
+            <propertySheet>
+
+                <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <expandable>1</expandable>
+                    <value></value>
+                </property>
+                <property>
+
+                    <propertyName>ec_customEditorData</propertyName>
+
+                    <propertySheet>
+
+                        <property>
+
+                            <propertyName>parameters</propertyName>
+
+                            <propertySheet>
+
+                                <property>
+                                    <propertyName>configName</propertyName>
+                                    <propertySheet>
+                                        <property>
+
+                                            <propertyName>formType</propertyName>
+
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+                                <property>
+                                    <propertyName>wsadminAbsPath</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+
+                                    </propertySheet>
+                                </property>
+
+                                <property>
+                                    <propertyName>clusterName</propertyName>
+                                    <propertySheet>
+                                        <property>
+
+                                            <propertyName>formType</propertyName>
+
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>cellName</propertyName>
+                                    <propertySheet>
+                                        <property>
+
+                                            <propertyName>formType</propertyName>
+
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+
+                            </propertySheet>
+                        </property>
+
+                    </propertySheet>
+                </property>
+            </propertySheet>
+
+            <formalParameter>
+                <formalParameterName>configName</formalParameterName>
+                <defaultValue />
+                <description>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>wsadminAbsPath</formalParameterName>
+                <defaultValue />
+                <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
+                <required>1</required>
+                <type>entry</type>
+                <expansionDeferred>1</expansionDeferred>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>clusterName</formalParameterName>
+                <defaultValue />
+                <description>Name of the cluster to be started.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>cellName</formalParameterName>
+                <defaultValue />
+                <description>Name of the cell of the cluster.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>clusterCommandTimeout</formalParameterName>
+                <defaultValue />
+                <description>Timeout for response waiting.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <step>
+                <stepName>StartCluster</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command></command>
+                <condition />
+                <description>Start cluster using the wsadmin tool</description>
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/startCluster_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit>5</timeLimit>
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>StartCluster</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+
+            <procedureName>StopCluster</procedureName>
+
+            <description>Stops cluster using wsadmin tool.</description>
+
+            <jobNameTemplate>websphere-StartCluster-$[jobId]</jobNameTemplate>
+
+            <resourceName />
+
+            <workspaceName />
+
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+
+            <propertySheet>
+
+                <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <expandable>1</expandable>
+                    <value></value>
+                </property>
+                <property>
+
+                    <propertyName>ec_customEditorData</propertyName>
+
+                    <propertySheet>
+
+                        <property>
+
+                            <propertyName>parameters</propertyName>
+
+                            <propertySheet>
+
+                                <property>
+                                    <propertyName>configName</propertyName>
+                                    <propertySheet>
+                                        <property>
+
+                                            <propertyName>formType</propertyName>
+
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+                                <property>
+                                    <propertyName>wsadminAbsPath</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+
+                                    </propertySheet>
+                                </property>
+
+                                <property>
+                                    <propertyName>clusterName</propertyName>
+                                    <propertySheet>
+                                        <property>
+
+                                            <propertyName>formType</propertyName>
+
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>cellName</propertyName>
+                                    <propertySheet>
+                                        <property>
+
+                                            <propertyName>formType</propertyName>
+
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>clusterCommandTimeout</propertyName>
+                                    <propertySheet>
+                                        <property>
+
+                                            <propertyName>formType</propertyName>
+
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+
+                            </propertySheet>
+                        </property>
+
+                    </propertySheet>
+                </property>
+            </propertySheet>
+
+            <formalParameter>
+                <formalParameterName>configName</formalParameterName>
+                <defaultValue />
+                <description>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>wsadminAbsPath</formalParameterName>
+                <defaultValue />
+                <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
+                <required>1</required>
+                <type>entry</type>
+                <expansionDeferred>1</expansionDeferred>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>clusterName</formalParameterName>
+                <defaultValue />
+                <description>Name of the cluster to be stopped.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>cellName</formalParameterName>
+                <defaultValue />
+                <description>Name of the cluster cell.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>clusterCommandTimeout</formalParameterName>
+                <defaultValue />
+                <description>Timeout for stopping cluster.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <step>
+                <stepName>StopCluster</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command></command>
+                <condition />
+                <description>Stops the cluster using the wsadmin tool</description>
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor>postp --loadProperty /myProject/stopCluster_matchers</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit>5</timeLimit>
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>StopCluster</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
                     <property>
