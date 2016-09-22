@@ -1,5 +1,5 @@
 libraryName = '$[libraryName]'
-classPath = '$[applicationName]'
+applicationName = '$[applicationName]'
 
 library = AdminConfig.getid('/Library:%s/' % (libraryName))
 print library
