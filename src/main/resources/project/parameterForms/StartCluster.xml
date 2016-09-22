@@ -60,7 +60,7 @@
 		<label>Timeout:</label>
 		<property>clusterCommandTimeout</property>
 		<documentation>Timeout for the cluster command.</documentation>
-		<required>1</required>
+		<required>0</required>
         <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/clusterCommandTimeout</propertyReference>
 	</formElement>
 
