@@ -109,6 +109,26 @@ def waitForClusterStatus( status, cluster, timeout = $timeout ):
             return 1
     return 0
 
+def membersStatus(clusterName):
+    clusterId = AdminConfig.getid('/ServerCluster:' + clusterName + '/')
+    clusterList = AdminConfig.list('ClusterMember', clusterId)
+    servers = clusterList.split()
+    
+    allStarted = 1
+
+    for serverId in servers:
+        serverName = AdminConfig.showAttribute(serverId, "memberName")
+        server = AdminControl.completeObjectName("type=Server,name=" + serverName + ",*")
+        if server == "":
+            allStarted = 0
+        else:
+            state = AdminControl.getAttribute(server, "state")
+            if state != "STARTED":
+                allStarted = 0
+                print "Server " + serverName + " is in " + state + " state "
+               
+    return allStarted
+
 result = waitForClusterStatus( "websphere.cluster.running", cluster )
 
 if result:
@@ -116,6 +136,7 @@ if result:
     sys.exit(0)
 else:
     print "Cluster was not started, exited by timeout"
+    membersStatus(clusterName)
     sys.exit(1)
 };
     return $jython;

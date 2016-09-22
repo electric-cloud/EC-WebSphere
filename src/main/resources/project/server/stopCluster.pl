@@ -89,7 +89,6 @@ sub main {
 sub get_jython_script {
     my ($cell_name, $cluster_name, $timeout) = @_;
 
-    my $newline = q{"\n"};
     my $jython = qq{
 clusterName = '$cluster_name'
 cellName = '$cell_name'
@@ -108,7 +107,28 @@ def waitForClusterStatus( status, cluster, timeout = $timeout ):
         clusterStatus = AdminControl.getAttribute(cluster, "state" )
         if clusterStatus == status:
             return 1
-    return 0    
+    return 0
+
+
+def membersStatus(clusterName):
+    clusterId = AdminConfig.getid('/ServerCluster:' + clusterName + '/')
+    clusterList = AdminConfig.list('ClusterMember', clusterId)
+    
+    servers = clusterList.split()
+    
+    allStopped = 1
+
+    for serverId in servers:
+        serverName = AdminConfig.showAttribute(serverId, "memberName")
+        server = AdminControl.completeObjectName("type=Server,name=" + serverName + ",*")
+        if server != "":
+            allStopped = 0
+            state = AdminControl.getAttribute(server, "state")
+            print "Server " + serverName + " is in " + state + " state "
+               
+    return allStopped
+
+
 
 result = waitForClusterStatus('websphere.cluster.stopped', cluster )
 
@@ -117,6 +137,7 @@ if result:
     sys.exit(0)
 else:
     print "Cluster was not stopped, exited by timeout"
+    membersStatus(clusterName)
     sys.exit(1)
 };
     return $jython;
