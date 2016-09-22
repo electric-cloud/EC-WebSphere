@@ -174,6 +174,20 @@ my %listClusterMembers = (
     category    => "Application Server"
 );
 
+my %startCluster = (
+    label       => "WebSphere - Start Cluster",
+    procedure   => "StartCluster",
+    description => "Start cluster using the wsadmin tool",
+    category    => "Application Server"
+);
+
+my %stopCluster = (
+    label       => "WebSphere - Stop Cluster",
+    procedure   => "StopCluster",
+    description => "Stop cluster using the wsadmin tool",
+    category    => "Application Server"
+);
+
 my %creatCluster = (
     label       => "WebSphere - Create Application server cluster",
     procedure   => "CreateCluster",
@@ -200,6 +214,12 @@ my %createMailSession = (
     label       => "WebSphere - Create JavaMail session",
     procedure   => "CreateMailSession",
     description => "Creates a new JavaMail session using the wsadmin tool",
+    category    => "Application Server"
+);
+my %mapSharedLibrary = (
+    label       => "WebSphere - Map Shared Library",
+    procedure   => "MapSharedLibrary",
+    description => "Maps a shared library to the application on WebSphere.",
     category    => "Application Server"
 );
 
@@ -235,6 +255,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create A
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Configure Session Management");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JMS Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JavaMail session");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Map Shared Library");
 
 @::createStepPickerSteps = (\%checkPageStatus, \%checkServerStatus,
                             \%startServer, \%stopServer,
@@ -249,7 +270,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create J
 							\%publishWSDL, \%deployOSGi,
 							\%createEndToEndMailProvider, \%createMailSession,
 							\%configEJBContainer, \%updateApp,
-							\%deployEnterpriseApp);
+							\%deployEnterpriseApp, \%startCluster, \%stopCluster, \%mapSharedLibrary);
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
@@ -474,6 +495,16 @@ if ($upgradeAction eq "upgrade") {
                 stepName => 'CreateCluster'
             });
 
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'StartCluster',
+                stepName => 'StartCluster'
+            });
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'StopCluster',
+                stepName => 'StopCluster'
+            });
+
              # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'ConfigureSession',
@@ -508,6 +539,10 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DiscoverResource',
                 stepName => 'DiscoverResource'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'MapSharedLibrary',
+                stepName => 'MapSharedLibrary'
             });
         }
     }

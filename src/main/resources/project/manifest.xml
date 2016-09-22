@@ -26,6 +26,10 @@
         <path>wsadmin_scripts/deploy_enterprise_application.py</path>
     </file>
     <file>
+        <xpath>//property[propertyName=&quot;map_shared_library.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/map_shared_library.py</path>
+    </file>
+    <file>
         <xpath>//property[propertyName=&quot;Util.pm&quot;]/value</xpath>
         <path>WebSphere/Util.pm</path>
     </file>
@@ -126,6 +130,14 @@
         <path>matchers/listClusterMembersMatchers.pl</path>
     </file>
     <file>
+        <xpath>//property[propertyName=&quot;startCluster_matchers&quot;]/value</xpath>
+        <path>matchers/startClusterMatchers.pl</path>
+    </file>
+    <file>
+        <xpath>//property[propertyName=&quot;stopCluster_matchers&quot;]/value</xpath>
+        <path>matchers/stopClusterMatchers.pl</path>
+    </file>
+    <file>
         <xpath>//property[propertyName=&quot;mailsession_matchers&quot;]/value</xpath>
         <path>matchers/mailSessionMatchers.pl</path>
     </file>
@@ -220,6 +232,14 @@
     <file>
         <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/step[stepName=&quot;CreateCluster&quot;]/command</xpath>
         <path>server/createCluster.pl</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;StartCluster&quot;]/step[stepName=&quot;StartCluster&quot;]/command</xpath>
+        <path>server/startCluster.pl</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;StopCluster&quot;]/step[stepName=&quot;StopCluster&quot;]/command</xpath>
+        <path>server/stopCluster.pl</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;ConfigureSession&quot;]/step[stepName=&quot;ConfigureSession&quot;]/command</xpath>
@@ -346,6 +366,15 @@
         <xpath>//procedure[procedureName=&quot;ListClusterMembers&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ListClusterMembers.xml</path>
     </file>
+
+    <file>
+        <xpath>//procedure[procedureName=&quot;StartCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/StartCluster.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;StopCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/StopCluster.xml</path>
+    </file>
     <file>
         <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/CreateCluster.xml</path>
@@ -377,5 +406,13 @@
     <file>
         <xpath>//procedure[procedureName=&quot;DiscoverResource&quot;]/step[stepName=&quot;DiscoverResource&quot;]/command</xpath>
         <path>discovery/DiscoverResource.pl</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;MapSharedLibrary&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/MapSharedLibrary.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;MapSharedLibrary&quot;]/step[stepName=&quot;MapSharedLibrary&quot;]/command</xpath>
+        <path>server/mapSharedLibrary.pl</path>
     </file>
 </fileset>
