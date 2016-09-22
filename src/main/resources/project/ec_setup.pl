@@ -270,7 +270,6 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Map Shar
 							\%publishWSDL, \%deployOSGi,
 							\%createEndToEndMailProvider, \%createMailSession,
 							\%configEJBContainer, \%updateApp,
-							\%deployEnterpriseApp, \%mapSharedLibrary);
 							\%deployEnterpriseApp, \%startCluster, \%stopCluster, \%mapSharedLibrary);
 
 if ($upgradeAction eq "upgrade") {
