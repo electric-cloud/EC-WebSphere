@@ -136,23 +136,24 @@ if dm:
 else:
     print 'Standalone server, no nodes to sync'
 
-result = AdminApp.isAppReady(appName)
-print 'Is App Ready = ' + result
-while result != 'true':
-    result = AdminApp.isAppReady(appName)
-    print 'Is App Ready = ' + result
-    sleep(3)
-
 if deployment:
-    print 'Application  %s updated successfully.' % (appName)
+    print 'Application %s updated successfully.' % (appName)
 else:
+    print 'Application %s installed successfully.' % (appName)
+    
+# Check application state, if it is not started already, start it
+if AdminControl.completeObjectName('type=Application,name=' + appName + ',*') == "":
+
     if cluster:
+        print 'Starting application %s on cluster %s.' % (appName, cluster)
         AdminApplication.startApplicationOnCluster(appName, cluster)
     elif len(servers):
         for server in servers.keys():
+            print 'Starting application %s on server %s.' % (appName, server)
             AdminApplication.startApplicationOnSingleServer(appName, servers[server], server)
     else:
         # For WebSphere Base Edition
+        print 'Starting application %s' % (appName)
         appmgr = AdminControl.queryNames('name=ApplicationManager,*')
         AdminControl.invoke(appmgr, 'startApplication', appName)
 
