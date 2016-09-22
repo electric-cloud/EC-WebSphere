@@ -39,7 +39,7 @@ push(
         pattern => q{ERROR\s:|[Ee]rror\s:|[Ee]xception},
         action  => q{
                            incValue("errors"); diagnostic("", "error", -1);
-                           &addSimpleError("Error: Error occurred while listing cluster members.", "error");
+                           &addSimpleError("Error: Error occurred while stoppng cluster.", "error");
                       }
     }
 

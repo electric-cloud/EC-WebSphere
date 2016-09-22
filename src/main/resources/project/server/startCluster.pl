@@ -34,31 +34,7 @@ sub main {
 
     push( @args, qq|"$gWSAdminAbsPath"| );
 
-    my $jython = <<"END";
-clusterMgr = AdminControl.completeObjectName('cell=$gCellName,type=ClusterMgr,*')
-cluster = AdminControl.completeObjectName('cell=$gCellName,type=Cluster,name=$gClusterName,*')
-AdminControl.invoke(cluster, 'start')
-
-import time
-
-def waitForClusterStatus( cluster, timeout = $gTimeout ):
-    run_index = 0
-    while( run_index < timeout ):
-        run_index += 1
-        time.sleep(1)
-        clusterStatus = AdminControl.getAttribute(cluster, "state" )
-        if clusterStatus == "websphere.cluster.partial.start" or clusterStatus == "websphere.cluster.running":
-            return 1
-    return 0
-    
-result = waitForClusterStatus( cluster )
-if result:
-    print "Cluster started"
-    sys.exit(0)
-else:
-    print "Cluster was not started, exited by timeout"
-    sys.exit(1)
-END
+    my $jython = get_jython_script($gCellName, $gClusterName, $gTimeout);
 
     my $jython_script_filename = 'startCluster.jython';
 
@@ -106,4 +82,41 @@ END
     else {
         $ec->setProperty( "/myJobStep/outcome", 'error' );
     }
+}
+
+
+sub get_jython_script {
+    my ($cell_name, $cluster_name, $timeout) = @_;
+
+    my $newline = q{"\n"};
+    my $jython = qq{
+clusterName = '$cluster_name'
+cellName = '$cell_name'
+
+clusterMgr = AdminControl.completeObjectName('cell=' + cellName + ',type=ClusterMgr,*')
+cluster = AdminControl.completeObjectName('cell=' + cellName + ',type=Cluster,name=' + clusterName + ',*')
+AdminControl.invoke(cluster, 'start')
+
+import time
+
+def waitForClusterStatus( status, cluster, timeout = $timeout ):
+    run_index = 0
+    while( run_index < timeout ):
+        run_index += 1
+        time.sleep(1)
+        clusterStatus = AdminControl.getAttribute(cluster, "state" )
+        if clusterStatus == status:
+            return 1
+    return 0
+
+result = waitForClusterStatus( "websphere.cluster.running", cluster )
+
+if result:
+    print "Cluster started"
+    sys.exit(0)
+else:
+    print "Cluster was not started, exited by timeout"
+    sys.exit(1)
+};
+    return $jython;
 }
