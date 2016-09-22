@@ -20,6 +20,7 @@
 # -------------------------------------------------------------------------
 use ElectricCommander;
 use LWP::UserAgent;
+use URI;
 use HTTP::Request;
 use ElectricCommander::PropMod qw(/myProject/modules);
 use WebSphere::Util;
@@ -35,6 +36,7 @@ use constant {
     SERVER_IS_RESPONDING_CRITERIA => 'response',
     SERVER_IS_NOT_RESPONDING_CRITERIA => 'noresponse',
 };
+
 
 # -------------------------------------------------------------------------
 # Variables
@@ -323,21 +325,30 @@ sub determineFinalResult($){
 sub getDataFromConfig($){
  
       my($configuration, $url, $user, $pass) = @_;
-      
+
+      my $uri;
       if($configuration->{'websphere_url'} && $configuration->{'websphere_url'} ne ''){
-          ${$url} = $configuration->{'websphere_url'};
+          $uri = URI->new($configuration->{'websphere_url'});
+
+          unless($uri->scheme) {
+            # oops, it seems we do not have a schema - so we will recreate uri with the default one
+            # TODO maybe we need https in fact
+            $uri = URI->new('http://' . $configuration->{'websphere_url'});
+          }
       }else{
           print "Error: Could not get URL from configuration '$::gConfigName'\n";
           exit ERROR;
       }
 			
       if($configuration->{'websphere_port'} && $configuration->{'websphere_port'} ne ''){
-					my $port = $configuration->{'websphere_port'};
-					${$url} = ${$url}.":".$port;          
+          my $port = $configuration->{'websphere_port'};
+          $uri->port($port);
       }else{
           #print "Error: Could not get port from configuration '$::gConfigName'\n";
           #exit ERROR;
       }
+
+      ${$url} = $uri->as_string;
       
       if($configuration->{'user'} && $configuration->{'user'} ne ''){
           ${$user} = $configuration->{'user'};
