@@ -30,6 +30,14 @@
         <path>wsadmin_scripts/map_shared_library.py</path>
     </file>
     <file>
+        <xpath>//property[propertyName=&quot;start_cluster.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/start_cluster.py</path>
+    </file>
+    <file>
+        <xpath>//property[propertyName=&quot;stop_cluster.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/stop_cluster.py</path>
+    </file>
+    <file>
         <xpath>//property[propertyName=&quot;Util.pm&quot;]/value</xpath>
         <path>WebSphere/Util.pm</path>
     </file>

@@ -184,4 +184,23 @@ sub _getConfiguration {
     return \%configuration;
 }
 
+=head2 write_jython_script
+
+Retrieves python script from properties and writes it into the specified $filename.
+
+=cut
+
+sub write_jython_script {
+    my ( $self, $filename, $tmpl_params ) = @_;
+
+    my $ec = $self->{ec};
+    my $script = $ec->getProperty("/myProject/wsadmin_scripts/$filename")->getNodeText('//value');
+
+    die "No script content found in $filename" unless $script;
+
+    open my $fh, ">$filename" or die "Cannot open file $filename: $!";
+    print $fh $script;
+    close $fh;
+}
+
 1;
