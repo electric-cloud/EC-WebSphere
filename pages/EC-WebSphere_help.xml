@@ -217,13 +217,12 @@
                     </tr>
 
                     <tr>
-                        <td class="required">Wsadmin Absolute
-                        Path</td>
+                        <td class="required">Wsadmin Path</td>
 
-                        <td>The absolute path of the wsadmin tool that includes the
+                        <td>The path of the wsadmin tool that includes the
                         filename and extension. <br />
                         
-                        Examples: <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>. </td>
+                        Examples: <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>. </td>
                     </tr>
 
                     <tr>
