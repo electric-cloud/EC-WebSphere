@@ -5460,7 +5460,7 @@
 
             <procedureName>StartCluster</procedureName>
 
-            <description>Stops cluster using wsadmin tool.</description>
+            <description>Starts cluster using wsadmin tool.</description>
 
             <jobNameTemplate>websphere-StartCluster-$[jobId]</jobNameTemplate>
 
@@ -5584,7 +5584,7 @@
                 <formalParameterName>clusterCommandTimeout</formalParameterName>
                 <defaultValue />
                 <description>Timeout for response waiting.</description>
-                <required>0</required>
+                <required>1</required>
                 <defaultValue>15</defaultValue>
                 <type>entry</type>
             </formalParameter>
@@ -5763,7 +5763,7 @@
                 <formalParameterName>clusterCommandTimeout</formalParameterName>
                 <defaultValue>15</defaultValue>
                 <description>Timeout for stopping cluster.</description>
-                <required>0</required>
+                <required>1</required>
                 <type>entry</type>
             </formalParameter>
 

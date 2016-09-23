@@ -2,7 +2,7 @@ import time
 
 clusterName = '$[clusterName]'
 cellName = '$[cellName]'
-timeout = $[clusterCommandTimeout]
+timeout = int('$[clusterCommandTimeout]')
 
 clusterMgr = AdminControl.completeObjectName('cell=' + cellName + ',type=ClusterMgr,*')
 
@@ -15,6 +15,7 @@ cluster = AdminControl.completeObjectName('cell=' + cellName + ',type=Cluster,na
 if not cluster:
     print 'No cluster found by name %s' % ( clusterName )
     sys.exit(1)
+
 
 AdminControl.invoke(cluster, 'start')
 

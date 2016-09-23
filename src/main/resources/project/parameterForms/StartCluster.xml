@@ -59,6 +59,6 @@
 		<label>Timeout:</label>
 		<property>clusterCommandTimeout</property>
 		<documentation>Timeout for command execution in seconds.</documentation>
-		<required>0</required>
+		<required>1</required>
 	</formElement>
 </editor>
