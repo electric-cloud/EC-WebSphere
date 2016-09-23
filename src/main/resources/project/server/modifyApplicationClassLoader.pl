@@ -16,13 +16,13 @@
 
 =head1 NAME
 
-deployEnterpriseApp.pl - a perl library to deploy an enterprise application
+modifyApplicationClassLoader.pl - a perl library to modify application's ClassLoader behaviour.
 
 =head1 SYNOPSIS
 
 =head1 DESCRIPTION
 
-A perl library that deploys an enterprise application on a cluster or standalone server
+A perl library that modifies application's ClassLoader behaviour.
 
 =head1 LICENSE
 
@@ -82,7 +82,7 @@ my $shellcmd = $websphere->_create_runfile( $file, @args );
 my $escapedCmdLine = $websphere->_mask_password($shellcmd);
 
 print "WSAdmin command line:  $escapedCmdLine\n";
-$props{'deployEnterpriseAppLine'} = $escapedCmdLine;
+$props{'modifyApplicationClassLoaderLine'} = $escapedCmdLine;
 setProperties( $ec, \%props );
 
 #execute command
