@@ -68,7 +68,7 @@ my @args  = ();
 my %props = ();
 
 if ( $::gCluster && $::gServerList ) {
-    print "Error : Enter either Target Cluster or Target Server(s).";
+    print "Error : Enter either Target Cluster or Target Server(s).\n";
     return;
 }
 
@@ -103,12 +103,22 @@ my $script = $ec->getProperty("/myProject/wsadmin_scripts/$file")->getNodeText('
 
 open( my $fh, '>', $file ) or die "Cannot write to $file: $!";
 print $fh $script;
+
+my $debug = $websphere->{configuration}->{debug};
+
 close $fh;
 
 my $shellcmd = $websphere->_create_runfile( $file, @args );
 my $escapedCmdLine = $websphere->_mask_password($shellcmd);
 
 print "WSAdmin command line:  $escapedCmdLine\n";
+
+if($debug eq "1") {
+    print "WSAdmin script:\n";
+    print $script;
+    print "== End of WSadmin script.\n";
+}
+
 $props{'deployEnterpriseAppLine'} = $escapedCmdLine;
 setProperties( $ec, \%props );
 

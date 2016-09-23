@@ -372,6 +372,14 @@
                 <required>0</required>
                 <type>credential</type>
             </formalParameter>
+            <formalParameter>
+                <formalParameterName>debug</formalParameterName>
+                <defaultValue/>
+                <description>Enable debugging.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            
             <step>
                 <stepName>CreateConfiguration</stepName>
                 <alwaysRun>0</alwaysRun>

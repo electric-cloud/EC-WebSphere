@@ -59,4 +59,14 @@
         <value></value>
         <required>0</required>
     </formElement>
+    <formElement>
+        <label>Enable Debug:</label>
+        <property>debug</property>
+        <value/>
+        <documentation>Enable debugging.</documentation>
+        <required>0</required>
+        <type>checkbox</type>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
 </editor>
