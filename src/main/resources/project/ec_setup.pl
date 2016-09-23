@@ -223,6 +223,13 @@ my %mapSharedLibrary = (
     category    => "Application Server"
 );
 
+my %modifyApplicationClassLoader = (
+    label       => "WebSphere - Modify Application ClassLoader",
+    procedure   => "ModifyApplicationClassLoader",
+    description => "Modifies application class loader.",
+    category    => "Application Server"
+);
+
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy App");
@@ -256,21 +263,26 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Configur
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JMS Provider");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JavaMail session");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Map Shared Library");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Modify Application ClassLoader");
 
-@::createStepPickerSteps = (\%checkPageStatus, \%checkServerStatus,
-                            \%startServer, \%stopServer,
-                            \%runCustomJob, \%startApp,
-                            \%stopApp, \%deployApp,
-                            \%undeployApp, \%checkApp, 
-							\%createDatasource, \%deleteDatasource,
-							\%createJDBCProvider, \%deleteJDBCProvider,
-							\%creatCluster, \%configureSessionManagement,
-							\%createJMSProvider, \%listClusterMembers,
-							\%deleteCluster, \%removeClusterMembers,
-							\%publishWSDL, \%deployOSGi,
-							\%createEndToEndMailProvider, \%createMailSession,
-							\%configEJBContainer, \%updateApp,
-							\%deployEnterpriseApp, \%startCluster, \%stopCluster, \%mapSharedLibrary);
+@::createStepPickerSteps = (
+    \%checkPageStatus, \%checkServerStatus,
+    \%startServer, \%stopServer,
+    \%runCustomJob, \%startApp,
+    \%stopApp, \%deployApp,
+    \%undeployApp, \%checkApp, 
+    \%createDatasource, \%deleteDatasource,
+    \%createJDBCProvider, \%deleteJDBCProvider,
+    \%creatCluster, \%configureSessionManagement,
+    \%createJMSProvider, \%listClusterMembers,
+    \%deleteCluster, \%removeClusterMembers,
+    \%publishWSDL, \%deployOSGi,
+    \%createEndToEndMailProvider, \%createMailSession,
+    \%configEJBContainer, \%updateApp,
+    \%deployEnterpriseApp, \%startCluster,
+    \%stopCluster, \%mapSharedLibrary,
+    \%modifyApplicationClassLoader
+);
 
 if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
@@ -543,6 +555,10 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'MapSharedLibrary',
                 stepName => 'MapSharedLibrary'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'ModifyApplicationClassLoader',
+                stepName => 'ModifyApplicationClassLoader'
             });
         }
     }
