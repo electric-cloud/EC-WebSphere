@@ -37,8 +37,9 @@ sub main {
 
     # TODO log here
     print "WSAdmin command line:  $escapedCmdLine\n";
-
-    #execute command
+    my $props = {};
+    $props->{'stopClusterLine'} = $escapedCmdLine;
+    setProperties( $ec, $props );    #execute command
     print `$shellcmd 2>&1`;
 
 
