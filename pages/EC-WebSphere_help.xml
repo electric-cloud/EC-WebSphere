@@ -2713,6 +2713,91 @@
             report.</p><img src="../../plugins/EC-WebSphere/images/StartApp/startApp4.png" />
             </div>
 
+        <div id="StartCluster">
+
+            <a name="StartCluster" id="StartCluster"></a>
+
+
+
+            <h2>StartCluster</h2>
+
+
+
+            <p>This procedure starts a cluster.</p>
+
+            <h3>StartCluster Parameters</h3>
+
+            <table class="grid">
+
+                <thead>
+
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td class="required">Wsadmin Absolute Path</td>
+                        <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Cluster Name</td>
+                        <td>Name of the cluster to be started.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Cell name</td>
+                        <td>Name of the cell which contains cluster.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Timeout</td>
+                        <td>Timeout for command execution in seconds.</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+            <h3>Start cluster</h3>
+
+            <p>To start cluster, do these steps:</p>
+
+            <ol>
+                <li>Go to the StartCluster procedure.</li>
+                <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/StartCluster/EC-WebSphereStartCluster2.png" />
+            </ol>
+
+
+
+            <p>After the job runs, you can view the results, including the following job details, which show that
+
+                the cluster was started successfully:</p>
+
+            <img src="../../plugins/EC-WebSphere/images/StartCluster/EC-WebSphereStartCluster3.png" />
+
+
+            <p>In the <b>StartCluster</b> step, click the Log icon
+
+                to see the diagnostic information. The output is similar to
+
+                the following diagnostic
+
+                report.</p>
+
+            <img src="../../plugins/EC-WebSphere/images/StartCluster/EC-WebSphereStartCluster4.png" />
+
+        </div>
+        
         <div id="StartServer">
             <a name="StartServer" id="StartServer"></a> 
 
@@ -2872,6 +2957,91 @@
             report. </p><img src="../../plugins/EC-WebSphere/images/StopApp/stopApp4.png" />
             </div>
 
+            <div id="StopCluster">
+
+            <a name="StopCluster" id="StopCluster"></a>
+
+
+
+            <h2>StopCluster</h2>
+
+
+
+            <p>This procedure stops a cluster.</p>
+
+            <h3>StopCluster Parameters</h3>
+
+            <table class="grid">
+
+                <thead>
+
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td class="required">Wsadmin Absolute Path</td>
+                        <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Cluster Name</td>
+                        <td>Name of the cluster to be stopped.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Cell name</td>
+                        <td>Name of the cell which contains cluster.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Timeout</td>
+                        <td>Timeout for command execution in seconds.</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+            <h3>Stop cluster</h3>
+
+            <p>To stop cluster, do these steps:</p>
+
+            <ol>
+                <li>Go to the StopCluster procedure.</li>
+                <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/StopCluster/EC-WebSphereStopCluster2.png" />
+            </ol>
+
+
+
+            <p>After the job runs, you can view the results, including the following job details, which show that
+
+                the cluster was stopped successfully:</p>
+
+            <img src="../../plugins/EC-WebSphere/images/StopCluster/EC-WebSphereStopCluster3.png" />
+
+
+            <p>In the <b>StopCluster</b> step, click the Log icon
+
+                to see the diagnostic information. The output is similar to
+
+                the following diagnostic
+
+                report.</p>
+
+            <img src="../../plugins/EC-WebSphere/images/StopCluster/EC-WebSphereStopCluster4.png" />
+
+        </div>
+        
         <div id="StopServer">
             <a name="StopServer" id="StopServer"></a> 
 
@@ -3136,10 +3306,88 @@
             <img src="../../plugins/EC-WebSphere/images/UpdateApp/EC-WebSphereUpdateApp4.png" />
         </div>
 
+        <div id="MapSharedLibrary">
+
+            <a name="MapSharedLibrary" id="MapSharedLibrary"></a>
+
+
+
+            <h2>MapSharedLibrary</h2>
+
+
+            <p>This procedure maps shared library to already deployed application.</p>
+
+            <h3>MapSharedLibrary Parameters</h3>
+
+            <table class="grid">
+
+                <thead>
+
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Wsadmin Absolute Path</td>
+                        <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Library Name</td>
+                        <td>Name of the shared library to be mapped.</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="required">Application Name</td>
+                        <td>Name of the existing web application to which shared library will be mapped. i.e: 'webapp'.</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+            <h3>Map Shared Library to Application</h3>
+
+            <p>To map shared library to application , do these steps:</p>
+
+            <ol>
+                <li>Go to the MapSharedLibrary procedure. </li>
+                <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/MapSharedLibrary/EC-WebSphereMapSharedLibrary2.png" />
+            </ol>
+
+
+
+            <p>After the job runs, you can view the results, including the following job details:</p>
+
+            <img src="../../plugins/EC-WebSphere/images/MapSharedLibrary/EC-WebSphereMapSharedLibrary3.png" />
+
+
+            <p>In the <b>MapSharedLibrary</b> step, click the Log icon
+
+                to see the diagnostic information. The output is similar to
+
+                the following diagnostic
+
+                report.</p>
+
+            <img src="../../plugins/EC-WebSphere/images/MapSharedLibrary/EC-WebSphereMapSharedLibrary4.png" />
+        </div>
+        
         <h1>Release Notes</h1>
         <h2>@PLUGIN_KEY@ 2.2.1</h2>
         <ul>
              <li>Update application in DeployEnterpriseApp procedure if it is already deployed.</li>
+             <li>Added StartCluster, StopCluster, MapSharedLibrary procedures.</li>
         </ul>
         
         <h2>@PLUGIN_KEY@ 2.2.0</h2>

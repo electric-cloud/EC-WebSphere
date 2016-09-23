@@ -356,13 +356,10 @@
             <formalParameter>
                 <formalParameterName>credential</formalParameterName>
                 <defaultValue />
-
                 <description />
                 <required>0</required>
                 <type>credential</type>
-
             </formalParameter>
-
             <step>
                 <stepName>CreateConfiguration</stepName>
                 <alwaysRun>0</alwaysRun>
@@ -693,10 +690,11 @@
             </formalParameter>
             <formalParameter>
                 <formalParameterName>wsadminAbsPath</formalParameterName>
-                <defaultValue/>
-                <description>wsadmin absolute path.</description>
+                <defaultValue />
+                <description>Absolute path of wsadmin, including filename and extension. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'. </description>
                 <required>1</required>
                 <type>entry</type>
+                <expansionDeferred>1</expansionDeferred>
             </formalParameter>
             <formalParameter>
                 <formalParameterName>applicationName</formalParameterName>
@@ -705,7 +703,6 @@
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
-
             <formalParameter>
                 <formalParameterName>configurationName</formalParameterName>
                 <defaultValue/>

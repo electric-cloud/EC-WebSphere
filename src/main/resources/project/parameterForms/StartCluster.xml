@@ -58,7 +58,7 @@
 		<type>entry</type>
 		<label>Timeout:</label>
 		<property>clusterCommandTimeout</property>
-		<documentation>Timeout for the cluster command.</documentation>
+		<documentation>Timeout for command execution in seconds.</documentation>
 		<required>0</required>
 	</formElement>
 </editor>

@@ -16,6 +16,8 @@
 
 -->
 <editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#MapSharedLibrary</help>
+    
 	<formElement>
         <type>entry</type>
         <label>Configuration Name:</label>
