@@ -16,13 +16,13 @@
 
 =head1 NAME
 
-deployEnterpriseApp.pl - a perl library to deploy an enterprise application
+mapSharedLobrary.pl - a perl library for shared libraries mapping.
 
 =head1 SYNOPSIS
 
 =head1 DESCRIPTION
 
-A perl library that deploys an enterprise application on a cluster or standalone server
+This library references shared library to deployed application.
 
 =head1 LICENSE
 
@@ -79,7 +79,7 @@ my $shellcmd = $websphere->_create_runfile( $file, @args );
 my $escapedCmdLine = $websphere->_mask_password($shellcmd);
 
 print "WSAdmin command line:  $escapedCmdLine\n";
-$props{'deployEnterpriseAppLine'} = $escapedCmdLine;
+$props{'mapSharedLibraryLine'} = $escapedCmdLine;
 setProperties( $ec, \%props );
 
 #execute command
