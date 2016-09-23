@@ -20,17 +20,19 @@
         <type>entry</type>
         <label>Configuration Name:</label>
         <property>configurationName</property>
-        <documentation>The plugin's configuration name. </documentation>
+        <documentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration. To view or create a new configuration, go to the Administration -> Plugins tab, and select 'Configure' action for @PLUGIN_KEY@ plugin.</documentation>
+        <htmlDocumentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" target="_blank" href="/commander/pages/@PLUGIN_NAME@/configurations">configuration page</a>.</htmlDocumentation>
         <propertyReference>/plugins/@PLUGIN_NAME@/project/websphere_cfgs</propertyReference>
         <required>1</required>
     </formElement>
     <formElement>
 		<type>entry</type>
-		<label>wsadmin absolute path:</label>
+        <label>Wsadmin Absolute Path:</label>
 		<property>wsadminAbsPath</property>
 		<required>1</required>
-		<documentation>wsadmin absolute path.</documentation>
-    </formElement>
+        <documentation>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. '/path/to/wsadmin.sh' or 'wsadmin.bat'.</documentation>
+        <propertyReference type="property">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configurationName/wsadminPath</propertyReference>
+		</formElement>
 
     <formElement>
 		<type>entry</type>
@@ -44,6 +46,7 @@
 		<label>Application Name:</label>
 		<property>applicationName</property>
 		<required>1</required>
-		<documentation>Classpath</documentation>
+		<documentation>Name of application to which shared library will be mapped.</documentation>
+        <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configurationName/applications</propertyReference>
     </formElement>
 </editor>

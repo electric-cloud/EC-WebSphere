@@ -41,7 +41,7 @@
         <type>entry</type>
         <label>Cluster Name:</label>
         <property>clusterName</property>
-        <documentation>Name of the cluster to be started. </documentation>
+        <documentation>Name of the cluster to be started.</documentation>
         <required>1</required>
         <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/clusterName</propertyReference>
     </formElement>
@@ -50,9 +50,8 @@
         <type>entry</type>
         <label>Cell Name:</label>
         <property>cellName</property>
-        <documentation>Name of the cluster cell. </documentation>
+        <documentation>Name of the cluster cell.</documentation>
         <required>1</required>
-        <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/cellName</propertyReference>
     </formElement>
 
 	<formElement>
@@ -61,7 +60,5 @@
 		<property>clusterCommandTimeout</property>
 		<documentation>Timeout for the cluster command.</documentation>
 		<required>0</required>
-        <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/clusterCommandTimeout</propertyReference>
 	</formElement>
-
 </editor>
