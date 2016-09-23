@@ -59,7 +59,6 @@ my $applicationName   = trim(q($[applicationName]));
 my $loadOrder         = trim(q($[loadOrder]));
 my $classLoaderPolicy = trim(q($[classLoaderPolicy]));
 
-print (join "\n", ($configName, $wsadminAbsPath, $applicationName, $loadOrder, $classLoaderPolicy));
 # create args array
 my @args  = ();
 my %props = ();

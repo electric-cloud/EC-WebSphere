@@ -3382,12 +3382,62 @@
 
             <img src="../../plugins/EC-WebSphere/images/MapSharedLibrary/EC-WebSphereMapSharedLibrary4.png" />
         </div>
+        <div id="ModifyApplicationClassLoader">
+            <a name="ModifyApplicationClassLoader" id="ModifyApplicationClassLoader"></a>
+            <h2>ModifyApplicationClassLoader</h2>
+            <p>This procedure modifies ClassLoader of the deployed Application.</p>
+            <h3>ModifyApplicationClassLoader Parameters</h3>
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
+                    </tr>
+                    <tr>
+                        <td class="required">Wsadmin Absolute Path</td>
+                        <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                    </tr>
+                    <tr>
+                        <td class="required">Application Name</td>
+                        <td>Name of the existing web application, which ClassLoader should be modified.</td>
+                    </tr>
+                    <tr>
+                        <td class="required">Load Order</td>
+                        <td>The class-loader delegation mode, also known as the class loader order, determines whether a class loader delegates the loading of classes to the parent class loader.</td>
+                    </tr>
+                    <tr>
+                        <td class="required">ClassLoader Isolation Policy</td>
+                        <td>Application class loaders load EJB modules, dependency JAR files, embedded resource adapters, and application-scoped shared libraries. Depending on the application class-loader policy, an application class loader can be shared by multiple applications (Single) or unique for each application (Multiple). The application class-loader policy controls the isolation of applications that are running in the system. When set to Single, applications are not isolated. When set to Multiple, applications are isolated from each other.</td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <h3>Modify Application's ClassLoader</h3>
+            <p>To modify Application's ClassLoader do the following steps:</p>
+            <ol>
+                <li>Go to the ModifyApplicationClassLoader  procedure. </li>
+                <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/ModifyApplicationClassLoader/EC-WebSphereModifyApplicationClassLoader2.png" />
+            </ol>
+            <p>After the job runs, you can view the results, including the following job details:</p>
+            <img src="../../plugins/EC-WebSphere/images/ModifyApplicationClassLoader/EC-WebSphereModifyApplicationClassLoader3.png" />
+            <p>In the <b>ModifyApplicationClassLoader</b> step, click the Log icon
+                to see the diagnostic information. The output is similar to
+                the following diagnostic
+                report.</p>
+            <img src="../../plugins/EC-WebSphere/images/ModifyApplicationClassLoader/EC-WebSphereModifyApplicationClassLoader4.png" />
+        </div>
         
         <h1>Release Notes</h1>
         <h2>@PLUGIN_KEY@ 2.2.1</h2>
         <ul>
              <li>Update application in DeployEnterpriseApp procedure if it is already deployed.</li>
-             <li>Added StartCluster, StopCluster, MapSharedLibrary procedures.</li>
+             <li>Added StartCluster, StopCluster, MapSharedLibrary, modifyApplicationClassLoader procedures.</li>
         </ul>
         
         <h2>@PLUGIN_KEY@ 2.2.0</h2>
