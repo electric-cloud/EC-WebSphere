@@ -158,7 +158,7 @@ sub _create_runfile {
         $options_string .= " ".join(" ", @args);    
     }
     
-    return qq{"$self->{wsadminPath}"$options_string -f "$runfile"};
+    return qq{"$self->{wsadminPath}"$options_string-f "$runfile"};
 }
 
 sub _getConfiguration {
@@ -196,7 +196,7 @@ sub write_jython_script {
     my $ec = $self->{ec};
     my $script = $ec->getProperty("/myProject/wsadmin_scripts/$filename")->getNodeText('//value');
 
-    die "No script content found in $filename" unless $script;
+    die "No script content found in /myProject/wsadmin_scripts/$filename property" unless $script;
 
     open my $fh, ">$filename" or die "Cannot open file $filename: $!";
     print $fh $script;
