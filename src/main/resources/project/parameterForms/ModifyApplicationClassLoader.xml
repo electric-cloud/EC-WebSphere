@@ -43,8 +43,9 @@
         <property>loadOrder</property>
         <required>1</required>
         <documentation>The class-loader delegation mode, also known as the class loader order, determines whether a class loader delegates the loading of classes to the parent class loader.</documentation>
+        <option selected="selected"><name>PARENT_FIRST</name><value>PARENT_FIRST</value></option>
         <option><name>PARENT_LAST</name><value>PARENT_LAST</value></option>
-        <option><name>PARENT_FIRST</name><value>PARENT_FIRST</value></option>
+
     </formElement>
     
     <formElement>
@@ -53,8 +54,8 @@
         <property>classLoaderPolicy</property>
         <required>1</required>
         <documentation>Application class loaders load EJB modules, dependency JAR files, embedded resource adapters, and application-scoped shared libraries. Depending on the application class-loader policy, an application class loader can be shared by multiple applications (Single) or unique for each application (Multiple). The application class-loader policy controls the isolation of applications that are running in the system. When set to Single, applications are not isolated. When set to Multiple, applications are isolated from each other.</documentation>
+        <option selected="selected"><name>MULTIPLE</name><value>MULTIPLE</value></option>
         <option><name>SINGLE</name><value>SINGLE</value></option>
-        <option><name>MULTIPLE</name><value>MULTIPLE</value></option>
     </formElement>
 
     <formElement>
