@@ -3436,7 +3436,7 @@
         <h2>@PLUGIN_KEY@ 2.2.1</h2>
         <ul>
             <li>DeployEnterpriseApp procedure was refactored.</li>
-            <li>DeployEnterpriseApp procedure from now updates application, if it is already deployed.</li>
+            <li>DeployEnterpriseApp procedure will now update the application if it is already deployed.</li>
             <li>Added debug flag to plugin configurations.</li>
             <li>Added debug to DeployEnterpriseApp procedure.</li>
             <li>Added StartCluster, StopCluster, MapSharedLibrary, modifyApplicationClassLoader procedures.</li>
