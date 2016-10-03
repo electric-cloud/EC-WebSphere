@@ -1,8 +1,8 @@
 import time
 
-clusterName = '$[clusterName]'
-cellName = '$[cellName]'
-timeout = int('$[clusterCommandTimeout]')
+clusterName = r'$[clusterName]'
+cellName = r'$[cellName]'
+timeout = int(r'$[clusterCommandTimeout]')
 
 clusterMgr = AdminControl.completeObjectName('cell=' + cellName + ',type=ClusterMgr,*')
 
