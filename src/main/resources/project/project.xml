@@ -79,6 +79,10 @@
                         <propertyName>stop_cluster.py</propertyName>
                         <value/>
                     </property>
+                    <property>
+                        <propertyName>update_app.py</propertyName>
+                        <value/>
+                    </property>
                 </propertySheet>
             </property>
             <property>
@@ -379,7 +383,7 @@
                 <required>0</required>
                 <type>checkbox</type>
             </formalParameter>
-            
+
             <step>
                 <stepName>CreateConfiguration</stepName>
                 <alwaysRun>0</alwaysRun>
@@ -780,7 +784,7 @@
                 </propertySheet>
             </step>
         </procedure>
-        
+
         <procedure>
             <procedureName>MapSharedLibrary</procedureName>
             <description>Maps shared library.</description>
@@ -908,7 +912,7 @@
             </step>
         </procedure>
 
-        
+
         <procedure>
             <procedureName>DiscoverResource</procedureName>
             <description>Discover WebSphere instance configuration on a resource</description>
@@ -945,7 +949,7 @@
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
-            
+
             <step>
                 <stepName>DiscoverResource</stepName>
                 <alwaysRun>0</alwaysRun>
@@ -2061,7 +2065,7 @@
                                     </propertySheet>
 
                                 </property>
-                                
+
                                 <property>
                                     <propertyName>clusterName</propertyName>
                                     <propertySheet>
@@ -2084,7 +2088,7 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-                                
+
 
 
                                 <property>

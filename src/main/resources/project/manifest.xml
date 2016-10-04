@@ -42,6 +42,10 @@
         <path>wsadmin_scripts/stop_cluster.py</path>
     </file>
     <file>
+        <xpath>//property[propertyName=&quot;update_app.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/update_app.py</path>
+    </file>
+    <file>
         <xpath>//property[propertyName=&quot;Util.pm&quot;]/value</xpath>
         <path>WebSphere/Util.pm</path>
     </file>

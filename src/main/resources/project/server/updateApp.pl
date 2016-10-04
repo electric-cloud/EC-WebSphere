@@ -21,6 +21,7 @@
 use ElectricCommander;
 use ElectricCommander::PropMod qw(/myProject/modules);
 use WebSphere::Util;
+use WebSphere::WebSphere;
 
 use warnings;
 use strict;
@@ -44,19 +45,12 @@ my $gConfigurationName = q{$[configname]};
 # -------------------------------------------------------------------------
 # Main functions
 # -------------------------------------------------------------------------
-
-sub main() {
-
-    # create args array
+sub main {
     my @args = ();
-    my %props;
-    my %configuration;
 
     #get an EC object
     my $ec = new ElectricCommander();
     $ec->abortOnError(0);
-
-    %configuration = getConfiguration( $ec, $gConfigurationName );
 
     if( $gOperation ne 'delete' && $gContent eq ''){
         print "Error : Content field can not be empty for operation " . $gOperation . ".";
@@ -72,160 +66,34 @@ sub main() {
         print "Error : Invalid operation " . $gOperation . " for content type APPLICATION.";
         return;
     }
-    my $ScriptFile =
-        "import sys\n"
-      . "result = AdminApp.update('"
-      . $gAppName . "', '"
-      . $gContentType
-      . "', '[-operation "
-      . $gOperation
-      . " -contents "
-      . $gContent;
-      
-   if($gContentURI ne '') {
-      $ScriptFile .= " -contenturi " . $gContentURI;
-   }
-   
-    if($gAdditionalParams) {
-        ## If optional parameters are supplied
 
-        ## Sanitize any \r \n from the parameters
-         $gAdditionalParams =~ s/\n/ /g;
-         $gAdditionalParams  =~ s/\r/ /g;
-        $ScriptFile .= " " . $gAdditionalParams;
-    }
+    my $config_name = q{$[configname]};
+    my $websphere = WebSphere::WebSphere->new($ec, $config_name, $gWSAdminAbsPath);
+    die "No configuration found for config name $config_name" unless $websphere;
 
-    $ScriptFile .= " ]')\n"
-      . "print result\n"
-      . "AdminConfig.save()\n"
-      . "result = AdminApp.isAppReady('"
-      . $gAppName . "')\n"
-      . "print 'Is App Ready = ' + result\n"
-      . "while result != 'true':\n"
-      . "\tresult = AdminApp.isAppReady('"
-      . $gAppName . "')\n"
-      . "\tprint 'Is App Ready = ' + result\n"
-      . "\tsleep(3)\n"
-      . "print 'The application is ready to restart.'\n";
+    my $python_filename = 'update_app.py';
+    $websphere->write_jython_script($python_filename);
 
-    ## If application is deployed on cluster then ripple start the cluster
-    ## otherwise restart the application on single server.
+    my $shellcmd = $websphere->_create_runfile( $python_filename, @args );
+    my $escapedCmdLine = $websphere->_mask_password($shellcmd);
 
-    ## If user has supplied the name of cluster on which application is deployed.
-    if ($gClusterName) {
-        ## Validate cluster name
-        $ScriptFile .=
-          "result = AdminClusterManagement.checkIfClusterExists(\""
-          . $gClusterName . "\")\n";
-        $ScriptFile .= "if result == \"false\":\n";
-        $ScriptFile .=
-            "\tprint 'Error : Cluster "
-          . $gClusterName
-          . " does not exist.'\n";
-        $ScriptFile .= "\tsys.exit(1)\n";
+    print "WSAdmin command line:  $escapedCmdLine\n";
+    my $props = {};
+    $props->{'updateAppLine'} = $escapedCmdLine;
+    setProperties( $ec, $props );    #execute command
+    print `$shellcmd 2>&1`;
 
-        $ScriptFile .= "\n"
-          . 'cluster = AdminControl.completeObjectName(\'type=Cluster,name='
-          . $gClusterName . ',*\')' . "\n"
-          . 'print cluster';
-
-        $ScriptFile .= "\n"
-          . 'print "Restarting every member of cluster after application is updated."';
-        $ScriptFile .=
-          "\n" . 'AdminControl.invoke(cluster, \'rippleStart\')';
-        $ScriptFile .=
-          "\n" . 'status = AdminControl.getAttribute(cluster, \'state\')';
-        $ScriptFile .=
-          "\n" . 'desiredStatus = \'websphere.cluster.running\'';
-        $ScriptFile .= "\n" . 'print \'Cluster status = \' + status';
-        $ScriptFile .= "\n" . 'while 1:';
-        $ScriptFile .=
-          "\n\t" . 'status = AdminControl.getAttribute(cluster, \'state\')';
-        $ScriptFile .= "\n\t" . 'print \'Cluster status = \' + status';
-        $ScriptFile .= "\n\t" . 'if status==desiredStatus:';
-        $ScriptFile .= "\n\t\t" . 'break';
-        $ScriptFile .= "\n\t" . 'else:';
-        $ScriptFile .= "\n\t\t" . 'sleep(3)';
-        $ScriptFile .= "\nprint 'Application is UP!'";
-
-    } elsif ($gServerName) {
-        $ScriptFile .= "appManager = AdminControl.queryNames('type=ApplicationManager,process="
-          . $gServerName
-          . ",*')\n"
-          . "print appManager\n"
-          . "result = AdminControl.invoke(appManager,'stopApplication','"
-          . $gAppName . "')\n"
-          . "print result\n"
-          . "result = AdminControl.invoke(appManager,'startApplication','"
-          . $gAppName . "')\n"
-          . "print result\n"
-          . "appstatus = AdminControl.completeObjectName('type=Application,name="
-          . $gAppName
-          . ",*')\n"
-          . "if appstatus:\n"
-          . "\tprint 'Application is UP!'\n"
-          . "else:\n"
-          . "\tprint 'Application is not UP.'\n";
-    }
-
-    push( @args, '"' . $gWSAdminAbsPath . '"' );
-
-    open( MYFILE, '>updateapp_script.jython' );
-
-    print MYFILE "$ScriptFile";
-    close(MYFILE);
-
-    push( @args, '-f updateapp_script.jython' );
-    push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
-
-    my $connectionType    = $configuration{conntype};
-    if ( $connectionType && $connectionType ne '' ) {
-        push( @args, '-conntype ' . $connectionType );
-    }
-
-    #inject config...
-    if (%configuration) {
-        my $hostParamName;
-
-        if ( $connectionType eq IPC_CONNECTION_TYPE ) {
-            $hostParamName = '-ipchost';
-        }
-        else {
-            $hostParamName = '-host';
-        }
-
-        if ( $configuration{'websphere_url'} ne '' ) {
-            push( @args,
-                $hostParamName . ' ' . $configuration{'websphere_url'} );
-        }
-
-        if ( $configuration{'websphere_port'} ne '' ) {
-            push( @args, '-port ' . $configuration{'websphere_port'} );
-        }
-
-        if ( $configuration{'user'} ne '' ) {
-            push( @args, '-user ' . $configuration{'user'} );
-        }
-
-        if ( $configuration{'password'} ne '' ) {
-            push( @args, '-password ' . $configuration{'password'} );
-        }
-    }
-
-    my $cmdLine = createCommandLine( \@args );
-    my $escapedCmdLine = maskPassword( $cmdLine, $configuration{'password'} );
-
-    $props{'updateAppLine'} = $escapedCmdLine;
-    setProperties( $ec, \%props );
-
-    print "WSAdmin command line: $escapedCmdLine\n";
-
-    #execute command
-    system($cmdLine);
 
     #evaluates if exit was successful to mark it as a success or fail the step
-    $ec->setProperty( "/myJobStep/outcome", ($? == SUCCESS) ? 'success' : 'error');
+    if ( $? == SUCCESS ) {
+        $ec->setProperty( "/myJobStep/outcome", 'success' );
+    }
+    else {
+        $ec->setProperty( "/myJobStep/outcome", 'error' );
+    }
 }
+
+
 
 main();
 
