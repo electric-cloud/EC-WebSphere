@@ -15,6 +15,9 @@ $[contentURI]
 clusterName = r'''
 $[clusterName]
 '''.strip()
+serverName = r'''
+$[serverName]
+'''.strip()
 
 
 updateCommand = r'''
@@ -62,6 +65,7 @@ if clusterName:
     print 'Application is UP!'
 
 else:
+
     appManager = AdminControl.queryNames('type=ApplicationManager,process=' + serverName + ',*')
     print appManager
     result = AdminControl.invoke(appManager,'stopApplication', appName)
