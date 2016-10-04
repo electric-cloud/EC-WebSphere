@@ -1,8 +1,8 @@
 import sys
 
-applicationName = '$[applicationName]'
-loadOrder = '$[loadOrder]'
-classLoaderPolicy = '$[classLoaderPolicy]'
+applicationName = r'$[applicationName]'
+loadOrder = r'$[loadOrder]'
+classLoaderPolicy = r'$[classLoaderPolicy]'
 
 dep = AdminConfig.getid('/Deployment:' + applicationName + '/')
 if not dep :

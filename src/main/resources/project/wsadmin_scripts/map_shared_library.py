@@ -1,7 +1,7 @@
 import sys
 
-libraryName = '$[libraryName]'
-applicationName = '$[applicationName]'
+libraryName = r'$[libraryName]'
+applicationName = r'$[applicationName]'
 
 # library section
 library = AdminConfig.getid('/Library:%s/' % (libraryName))
