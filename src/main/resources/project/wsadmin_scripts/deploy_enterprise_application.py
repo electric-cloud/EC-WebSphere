@@ -1,31 +1,109 @@
 import time
 
-appName=r'$[appName]'.replace(' ', '_')
-commands=r'$[commands]'
-additionalCommands=r'$[additionalcommands]'
-cluster=r'$[cluster]'
-serverList=r'$[serverList]'
-appPath=r'$[apppath]'
-precompileJSP=r'$[precompileJSP]'
-installDir=r'$[installDir]'
-distributeApp=r'$[distributeApp]'
-binaryConfig=r'$[binaryConfig]'
-deployBeans=r'$[deployBeans]'
-createMBeans=r'$[createMBeans]'
-overrideClassReloading=r'$[overrideClassReloading]'
-reloadInterval=r'$[reloadInterval]'
-deployWS=r'$[deployWS]'
-validateRefs=r'$[validateRefs]'
-processEmbConfig=r'$[processEmbConfig]'
-filePermissions=r'$[filePermissions]'
-customFilePermissions=r'$[customFilePermissions]'
-blaName=r'$[blaName]'
-autoResolveEJBRef=r'$[autoResolveEJBRef]'
-deployClientMod=r'$[deployClientMod]'
-clientDeployMode=r'$[clientDeployMode]'
-validateSchema=r'$[validateSchema]'
-mapModulesToServers=r'$[MapModulesToServers]'
-additionalDeployParams=r'$[additionalDeployParams]'
+appName = r'''
+$[appName]
+'''.strip()
+appName.replace(' ', '_')
+
+commands = r'''
+$[commands]
+'''.strip()
+
+additionalCommands = r'''
+$[additionalcommands]
+'''.strip()
+
+cluster = r'''
+$[cluster]
+'''.strip()
+
+serverList = r'''
+$[serverList]
+'''.strip()
+
+appPath = r'''
+$[apppath]
+'''.strip()
+
+precompileJSP = r'''
+$[precompileJSP]
+'''.strip()
+
+installDir = r'''
+$[installDir]
+'''.strip()
+
+distributeApp = r'''
+$[distributeApp]
+'''.strip()
+
+binaryConfig = r'''
+$[binaryConfig]
+'''.strip()
+
+deployBeans = r'''
+$[deployBeans]
+'''.strip()
+
+createMBeans = r'''
+$[createMBeans]
+'''.strip()
+
+overrideClassReloading = r'''
+$[overrideClassReloading]
+'''.strip()
+
+reloadInterval = r'''
+$[reloadInterval]
+'''.strip()
+
+deployWS = r'''
+$[deployWS]
+'''.strip()
+
+validateRefs = r'''
+$[validateRefs]
+'''.strip()
+
+processEmbConfig = r'''
+$[processEmbConfig]
+'''.strip()
+
+filePermissions = r'''
+$[filePermissions]
+'''.strip()
+
+customFilePermissions = r'''
+$[customFilePermissions]
+'''.strip()
+
+blaName = r'''
+$[blaName]
+'''.strip()
+
+autoResolveEJBRef = r'''
+$[autoResolveEJBRef]
+'''.strip()
+
+deployClientMod = r'''
+$[deployClientMod]
+'''.strip()
+
+clientDeployMode = r'''
+$[clientDeployMode]
+'''.strip()
+
+validateSchema = r'''
+$[validateSchema]
+'''.strip()
+
+mapModulesToServers = r'''
+$[MapModulesToServers]
+'''.strip()
+
+additionalDeployParams = r'''
+$[additionalDeployParams]
+'''.strip()
 
 print 'Installing %s ....\n' % appName
 
@@ -39,29 +117,29 @@ def toBoolean(value):
 
 def append_bool(name, value):
     if toBoolean(value):
-        installParams.append('-'+name)
+        installParams.append('-' + name)
     else:
-        installParams.append('-no'+name)
+        installParams.append('-no' + name)
     
-def append(name, value, default_value = None, value_prefix="", value_suffix = ""):
+def append(name, value, default_value = None, value_prefix = "", value_suffix = ""):
     if default_value and not value:
         value = default_value
 
     if value:
         value = value_prefix + value + value_suffix
-        installParams.append('-'+name + ' '+value)
+        installParams.append('-' + name + ' ' + value)
 
 def wsadminToList(inStr):
         inStr = inStr.rstrip();
-        outList=[]
-        if (len(inStr)>0 and inStr[0]=='[' and inStr[-1]==']'):
+        outList = []
+        if (len(inStr) > 0 and inStr[0] == '[' and inStr[-1] == ']'):
                 tmpList = inStr[1:-1].split(" ")
         else:
                 tmpList = inStr.split("\n")   #splits for Windows or Linux
 
         for item in tmpList:
                 item = item.rstrip();         #removes any Windows "\r"
-                if (len(item)>0):
+                if (len(item) > 0):
                       outList.append(item)
         return outList
 
@@ -126,7 +204,7 @@ else:
 AdminConfig.save()
 
 # Obtain deployment manager MBean
-dm=AdminControl.queryNames('type=DeploymentManager,*')
+dm = AdminControl.queryNames('type=DeploymentManager,*')
 
 # Synchronization of configuration changes is only required in network deployment.not in standalone server environment.
 if dm:

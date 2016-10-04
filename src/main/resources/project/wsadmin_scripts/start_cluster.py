@@ -1,8 +1,18 @@
 import time
 
-clusterName = r'$[clusterName]'
-cellName = r'$[cellName]'
-timeout = int(r'$[clusterCommandTimeout]')
+clusterName = r'''
+$[clusterName]
+'''.strip()
+
+cellName = r'''
+$[cellName]
+'''.strip()
+
+timeout = r'''
+$[clusterCommandTimeout]
+'''.strip()
+
+timeout = int(timeout)
 
 clusterMgr = AdminControl.completeObjectName('cell=' + cellName + ',type=ClusterMgr,*')
 
@@ -33,9 +43,8 @@ def membersStatus(clusterName):
     clusterId = AdminConfig.getid('/ServerCluster:' + clusterName + '/')
     clusterList = AdminConfig.list('ClusterMember', clusterId)
     servers = clusterList.split()
-    
     allStarted = 1
-
+    
     for serverId in servers:
         serverName = AdminConfig.showAttribute(serverId, "memberName")
         server = AdminControl.completeObjectName("type=Server,name=" + serverName + ",*")
@@ -46,7 +55,6 @@ def membersStatus(clusterName):
             if state != "STARTED":
                 allStarted = 0
                 print "Server " + serverName + " is in " + state + " state "
-               
     return allStarted
 
 result = waitForClusterStatus( "websphere.cluster.running", cluster, timeout )

@@ -1,8 +1,16 @@
 import sys
 
-applicationName = r'$[applicationName]'
-loadOrder = r'$[loadOrder]'
-classLoaderPolicy = r'$[classLoaderPolicy]'
+applicationName = r'''
+$[applicationName]
+'''.strip()
+
+loadOrder = r'''
+$[loadOrder]
+'''.strip()
+
+classLoaderPolicy = r'''
+$[classLoaderPolicy]
+'''.strip()
 
 dep = AdminConfig.getid('/Deployment:' + applicationName + '/')
 if not dep :
@@ -32,7 +40,7 @@ AdminConfig.modify(depObject, [['warClassLoaderPolicy', classLoaderPolicy]])
 AdminConfig.save()
 
 # Obtain deployment manager MBean
-dm=AdminControl.queryNames('type=DeploymentManager,*')
+dm = AdminControl.queryNames('type=DeploymentManager,*')
 
 # Synchronization of configuration changes is only required in network deployment.not in standalone server environment.
 if dm:
@@ -41,6 +49,4 @@ if dm:
     print 'The following nodes have been synchronized:'+str(nodes)
 else:
     print 'Standalone server, no nodes to sync'
-# print AdminConfig.showall(classldr)
-# print AdminConfig.show(depObject, 'warClassLoaderPolicy')
 
