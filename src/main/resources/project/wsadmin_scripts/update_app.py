@@ -12,8 +12,8 @@ $[contentType]
 contentURI = r'''
 $[contentURI]
 '''.strip()
-clusterName = r'''
-$[clusterName]
+serverName = r'''
+$[serverName]
 '''.strip()
 
 
@@ -24,8 +24,14 @@ if contentURI:
     updateCommand + ' ' # just whitespace - as a delimeter
     updateCommand += r'''-contenturi $[contentURI]'''.strip()
 
-updateCommand += ' ' # another delimeter
-updateCommand += r'''$[additionalParams]]'''.strip()
+additionalParams = r'''$[additionalParams]'''.strip()
+if additionalParams:
+    additionalParams = additionalParams.replace("\n", ' ')
+    additionalParams = additionalParams.replace("\r", ' ')
+    updateCommand += ' ' # another delimeter
+    updateCommand += additionalParams
+
+updateCommand += r''' ]'''.strip()
 
 result = AdminApp.update(appName, contentType, updateCommand)
 print result
@@ -62,6 +68,7 @@ if clusterName:
     print 'Application is UP!'
 
 else:
+
     appManager = AdminControl.queryNames('type=ApplicationManager,process=' + serverName + ',*')
     print appManager
     result = AdminControl.invoke(appManager,'stopApplication', appName)

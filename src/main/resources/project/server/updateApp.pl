@@ -54,17 +54,22 @@ sub main {
 
     if( $gOperation ne 'delete' && $gContent eq ''){
         print "Error : Content field can not be empty for operation " . $gOperation . ".";
-        return;
+        exit 1;
     }
 
     if( ($gContentType eq 'file' || $gContentType eq 'modulefile') && $gContentURI eq ''){
         print "Error : Content URI field can not be empty for content type " . $gContentType . ".";
-        return;
+        exit 1;
     }
 
     if( $gContentType eq 'app' && $gOperation ne 'update') {
         print "Error : Invalid operation " . $gOperation . " for content type APPLICATION.";
-        return;
+        exit 1;
+    }
+
+    if ( !$gServerName && !$gClusterName ) {
+        print "Error: neither server name nor cluster name was specified";
+        exit 1;
     }
 
     my $config_name = q{$[configname]};
@@ -82,7 +87,6 @@ sub main {
     $props->{'updateAppLine'} = $escapedCmdLine;
     setProperties( $ec, $props );    #execute command
     print `$shellcmd 2>&1`;
-
 
     #evaluates if exit was successful to mark it as a success or fail the step
     if ( $? == SUCCESS ) {
