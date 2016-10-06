@@ -14,7 +14,7 @@ $[classLoaderPolicy]
 
 dep = AdminConfig.getid('/Deployment:' + applicationName + '/')
 if not dep :
-    print "No application was found by name provided"
+    print "No application was found by name provided: %s" % (applicationName)
     sys.exit(1);
 print "Application: " + dep
 
@@ -26,7 +26,7 @@ print "DeployerObject: " + depObject;
 
 classldr = AdminConfig.showAttribute(depObject, 'classloader')
 if not classldr:
-    print "ClassLoader wasn't found"
+    print "ClassLoader %s wasn't found" % (classldr)
     sys.exit(1);
 print "ClassLoader: " + classldr
 
