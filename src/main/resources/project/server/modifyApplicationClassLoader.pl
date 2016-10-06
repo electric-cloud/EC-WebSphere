@@ -68,6 +68,7 @@ my %props = ();
 my $ec = new ElectricCommander();
 $ec->abortOnError(0);
 
+print "Will modify ClassLoader for " . $applicationName . " application. Load Order: $loadOrder, ClassLoader policy: $classLoaderPolicy\n";
 my $websphere = new WebSphere::WebSphere( $ec, $configName, $wsadminAbsPath );
 
 my $file = 'modify_application_classloader.py';
