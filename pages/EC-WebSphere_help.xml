@@ -105,17 +105,11 @@
 
     <h1 id="supported_platforms">Supported Platforms</h1> 
     <p>
-        The plugin was developed and tested against following WebSphere versions:
+        The plugin was tested on following WebSphere versions:
     </p>
         <ul>
-            <li>WAS 8.5.5 on Linux</li>
-            <li>WAS 8.5.5 on Windows</li>
-            <li>WASND 8.5.5 on Linux</li>
-            <li>WASND 8.5.5 on Windows</li>
-            <li>WAS 8.5.0 on Linux</li>
-            <li>WAS 8.5.0 on Windows</li>
-            <li>WASND 8.5.0 on Linux</li>
-            <li>WASND 8.5.0 on Windows</li>
+            <li>WAS and WASND 8.5.5 on Linux and Windows</li>
+            <li>WAS and WASND 8.5.0 on Linux and Windows</li>
         </ul>
 
         
@@ -3497,15 +3491,13 @@
         <h1 id="rns">Release Notes</h1>
         <h2>@PLUGIN_KEY@ 2.2.1</h2>
         <ul>
-            <li>Fixed UpdateApp procedure for WAS 8.5 installed on Windows.</li>
-            <li>Fixed DeployEnterpriseApplication  procedure WASND 8.5.5 installed Windows.</li>
-            <li>Added application name to step log for case if ModifyAppClassLoader procedure fails to find application.</li>
-            <li>Fixed UpdateApp procedure for WASND 8.5.5 installed Windows.</li>
-            <li>DeployEnterpriseApp procedure was refactored.</li>
-            <li>DeployEnterpriseApp procedure will now update the application if it is already deployed.</li>
+            <li>Added new procedures - StartCluster, StopCluster, MapSharedLibrary, ModifyApplicationClassLoader.</li>
+            <li>DeployEnterpriseApp procedure will now update the application if it is already deployed. This procedure was refactored.</li>
+            <li>Added debugging in DeployEnterpriseApp procedure.</li>
+            <li>Bug fixes in DeployEnterpriseApplication procedure on WASND 8.5.5 Windows platform.</li>
+            <li>Bug fixes in UpdateApp procedure on WAS 8.5 and WASND 8.5.5 Windows platform.</li>
+            <li>Added application name to step log when ModifyApplicationClassLoader procedure fails to find application.</li>
             <li>Added debug flag to plugin configurations.</li>
-            <li>Added debug to DeployEnterpriseApp procedure.</li>
-            <li>Added StartCluster, StopCluster, MapSharedLibrary, modifyApplicationClassLoader procedures.</li>
         </ul>
         
         <h2>@PLUGIN_KEY@ 2.2.0</h2>
