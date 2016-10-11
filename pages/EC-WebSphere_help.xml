@@ -14,6 +14,53 @@
 
         <p>Plugin Version @PLUGIN_VERSION@</p>
         <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" />
+        <p>Revised on Oct 11, 2016</p>
+        <h1>Contents</h1>
+
+        <ul>
+			<li><p><a href="#overview">Overview</a></p></li>
+            <li><p><a href="#supported_platforms">Supported Platforms</a></p></li>
+			<li><p><a href="#CreateConfiguration">Setting Up the Plugin Configuration</a></p></li>
+			<li><p><a href="#procedures">Plugin Procedures</a></p></li>
+        
+            <ul>
+                <li><a href="#CheckApp">CheckApp</a></li>
+                <li><a href="#CheckPageStatus">CheckPageStatus</a></li>
+                <li><a href="#CheckServerStatus">CheckServerStatus</a></li>
+                <li><a href="#ConfigEJBContainer">ConfigEJBContainer</a></li>
+                <li><a href="#ConfigureSession">ConfigureSession</a></li>
+                <li><a href="#CreateCluster">CreateCluster</a></li>
+                <li><a href="#CreateDatasource">CreateDatasource</a></li>
+                <li><a href="#CreateEndToEndMailProvider">CreateEndToEndMailProvider</a></li>
+                <li><a href="#CreateJDBCProvider">CreateJDBCProvider</a></li>
+                <li><a href="#CreateJMSProvider">CreateJMSProvider</a></li>
+                <li><a href="#CreateMailSession">CreateMailSession</a></li>
+                <li><a href="#DeleteCluster">DeleteCluster</a></li>
+                <li><a href="#DeleteConfiguration">DeleteConfiguration</a></li>
+                <li><a href="#DeleteDatasource">DeleteDatasource</a></li>
+                <li><a href="#DeleteJDBCProvider">DeleteJDBCProvider</a></li>
+                <li><a href="#DeployApp">DeployApp</a></li>
+                <li><a href="#DeployEnterpriseApp">DeployEnterpriseApp</a></li>
+                <li><a href="#DeployOSGiApp">DeployOSGiApp</a></li>
+                <li><a href="#ListClusterMembers">ListClusterMembers</a></li>
+                <li><a href="#PublishWSDL">PublishWSDL</a></li>
+                <li><a href="#RemoveClusterMembers">RemoveClusterMembers</a></li>
+                <li><a href="#RunCustomJob">RunCustomJob</a></li>
+                <li><a href="#StartApp">StartApp</a></li>
+                <li><a href="#StartCluster">StartCluster</a></li>
+                <li><a href="#StartServer">StartServer</a></li>
+                <li><a href="#StopApp">StopApp</a></li>
+                <li><a href="#StopCluster">StopCluster</a></li>
+                <li><a href="#StopServer">StopServer</a></li>
+                <li><a href="#UndeployApp">UndeployApp</a></li>
+                <li><a href="#UpdateApp">UpdateApp</a></li>
+                <li><a href="#MapSharedLibrary">MapSharedLibrary</a></li>
+                <li><a href="#ModifyApplicationClassLoader">ModifyApplicationClassLoader</a></li>
+            </ul>
+        </ul>
+        <ul>
+			<li><p><a href="#rns">Release Notes</a></p></li>
+        </ul>
         <!-- The tool description should answer these kinds of
         questions: What is the tool itself is used for in the
         development process? Who would use this tool? What is the
@@ -23,13 +70,15 @@
         If there is a Hudson plugin, read their documentation for
         ideas, examples, etc. It's OK to copy word-for-word only if
         appropriate, such as FOSS - but not commercial software. -->
-
+        
         <p>IBM WebSphere Application Server (WAS), a software
         application server, is the flagship product in IBM
         WebSphere brand. It provides the flexibility, efficiency,
         and intelligent management required by an agile, cost-effective
         business.</p>
-		
+
+        <h1 id="overview">Overview</h1>
+        
 		<p>For more information about WebSphere, go to the <a href="http://www-01.ibm.com/software/websphere/">WebSphere
 
         Home Page</a>.</p>
@@ -54,17 +103,30 @@
         provided by the user or defined when a procedure is 
         created.</p>
 
-    <h1>Supported Platforms</h1> 
-        <p>The plugin was developed and tested against WebSphere Version 8.5.</p>
+    <h1 id="supported_platforms">Supported Platforms</h1> 
+    <p>
+        The plugin was developed and tested against following WebSphere versions:
+    </p>
+        <ul>
+            <li>WAS 8.5.5 on Linux</li>
+            <li>WAS 8.5.5 on Windows</li>
+            <li>WASND 8.5.5 on Linux</li>
+            <li>WASND 8.5.5 on Windows</li>
+            <li>WAS 8.5.0 on Linux</li>
+            <li>WAS 8.5.0 on Windows</li>
+            <li>WASND 8.5.0 on Linux</li>
+            <li>WASND 8.5.0 on Windows</li>
+        </ul>
 
-	<h1>Plugin Procedures</h1>
+        
+
 	   
         <p>IMPORTANT: For all the following parameter descriptions,
         the required parameters are in
         <span class="required">bold italics</span>.</p>
 
         <div id="CreateConfiguration">
-            <a name="CreateConfiguration" id="CreateConfiguration"></a> 
+            <a name="CreateConfiguration" id="CreateConfigurationLink"></a> 
 
             <h2>Plugin Configurations</h2>
             <!-- If the plugin has separate configurations then include
@@ -190,8 +252,8 @@
  
         </ol>		
             </div>
-
-        <div id="CheckApp">
+            <h1 id="procedures">Plugin Procedures</h1>
+            <div id="CheckApp">
             <a name="CheckApp" id="CheckApp"></a> 
 
             <h2>CheckApp</h2>
@@ -3432,9 +3494,13 @@
             <img src="../../plugins/EC-WebSphere/images/ModifyApplicationClassLoader/EC-WebSphereModifyApplicationClassLoader4.png" />
         </div>
         
-        <h1>Release Notes</h1>
+        <h1 id="rns">Release Notes</h1>
         <h2>@PLUGIN_KEY@ 2.2.1</h2>
         <ul>
+            <li>Fixed UpdateApp procedure for WAS 8.5 installed on Windows.</li>
+            <li>Fixed DeployEnterpriseApplication  procedure WASND 8.5.5 installed Windows.</li>
+            <li>Added application name to step log for case if ModifyAppClassLoader procedure fails to find application.</li>
+            <li>Fixed UpdateApp procedure for WASND 8.5.5 installed Windows.</li>
             <li>DeployEnterpriseApp procedure was refactored.</li>
             <li>DeployEnterpriseApp procedure will now update the application if it is already deployed.</li>
             <li>Added debug flag to plugin configurations.</li>
