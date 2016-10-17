@@ -16,7 +16,7 @@
 
 =head1 NAME
 
-mapSharedLobrary.pl - a perl library for shared libraries mapping.
+mapSharedLibrary.pl - a perl library for shared libraries mapping.
 
 =head1 SYNOPSIS
 
