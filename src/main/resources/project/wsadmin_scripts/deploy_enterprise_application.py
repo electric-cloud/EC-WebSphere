@@ -105,6 +105,13 @@ additionalDeployParams = r'''
 $[additionalDeployParams]
 '''.strip()
 
+startApp = r'''
+$[startApp]
+'''.strip()
+
+syncCells = r'''
+$[syncCells]
+''';
 print 'Installing %s ....\n' % appName
 
 installParams = []
@@ -152,7 +159,9 @@ append_bool('reloadEnabled', overrideClassReloading)
 append_bool('deployws', deployWS)
 append_bool('processEmbeddedConfig', processEmbConfig)
 append_bool('useAutoLink', autoResolveEJBRef)
-append_bool('validateSchema', validateSchema)
+
+if validateSchema:
+    append_bool('validateSchema', validateSchema)
 
 append('cluster', cluster)
 append('installed.ear.destination', installDir)
@@ -207,7 +216,7 @@ AdminConfig.save()
 dm = AdminControl.queryNames('type=DeploymentManager,*')
 
 # Synchronization of configuration changes is only required in network deployment.not in standalone server environment.
-if dm:
+if syncCells and dm:
     print 'Synchronizing configuration repository with nodes. Please wait...'
     nodes=AdminControl.invoke(dm, "syncActiveNodes", "true")
     print 'The following nodes have been synchronized:'+str(nodes)
@@ -220,19 +229,19 @@ else:
     print 'Application %s installed successfully.' % (appName)
     
 # Check application state, if it is not started already, start it
-if AdminControl.completeObjectName('type=Application,name=' + appName + ',*') == "":
+if startApp:
+    if AdminControl.completeObjectName('type=Application,name=' + appName + ',*') == "":
+        if cluster:
+            print 'Starting application %s on cluster %s.' % (appName, cluster)
+            AdminApplication.startApplicationOnCluster(appName, cluster)
+        elif len(servers):
+            for server in servers.keys():
+                print 'Starting application %s on server %s.' % (appName, server)
+                AdminApplication.startApplicationOnSingleServer(appName, servers[server], server)
+            else:
+                # For WebSphere Base Edition
+                print 'Starting application %s' % (appName)
+                appmgr = AdminControl.queryNames('name=ApplicationManager,*')
+                AdminControl.invoke(appmgr, 'startApplication', appName)
 
-    if cluster:
-        print 'Starting application %s on cluster %s.' % (appName, cluster)
-        AdminApplication.startApplicationOnCluster(appName, cluster)
-    elif len(servers):
-        for server in servers.keys():
-            print 'Starting application %s on server %s.' % (appName, server)
-            AdminApplication.startApplicationOnSingleServer(appName, servers[server], server)
-    else:
-        # For WebSphere Base Edition
-        print 'Starting application %s' % (appName)
-        appmgr = AdminControl.queryNames('name=ApplicationManager,*')
-        AdminControl.invoke(appmgr, 'startApplication', appName)
-
-    print 'Application %s started successfully.' % (appName)
+        print 'Application %s started successfully.' % (appName)

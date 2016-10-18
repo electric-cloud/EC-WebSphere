@@ -8861,6 +8861,57 @@
                                 </property>
 
                                 <property>
+                                    <propertyName>syncCells</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>startApp</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                
+                                <property>
                                     <propertyName>precompileJSP</propertyName>
                                     <propertySheet>
                                         <property>
@@ -9690,6 +9741,21 @@
                 <formalParameterName>additionalDeployParams</formalParameterName>
                 <defaultValue/>
                 <description>Specify any additional options for AdminApp.Install object in case not listed in this input form.</description>
+                <required>0</required>
+                <type>textarea</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>syncCells</formalParameterName>
+                <defaultValue/>
+                <description>If checked, syncCells will be triggered after deployment.</description>
+                <required>0</required>
+                <type>textarea</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>startApp</formalParameterName>
+                <defaultValue/>
+                <description>If checked, application will be started after deployment.</description>
                 <required>0</required>
                 <type>textarea</type>
             </formalParameter>
