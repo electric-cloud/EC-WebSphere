@@ -160,6 +160,7 @@ append_bool('deployws', deployWS)
 append_bool('processEmbeddedConfig', processEmbConfig)
 append_bool('useAutoLink', autoResolveEJBRef)
 
+# For WAS 7.0, where validateSchema option doesn't exists.
 if toBoolean(validateSchema):
     append_bool('validateSchema', validateSchema)
 
@@ -229,7 +230,7 @@ else:
     print 'Application %s installed successfully.' % (appName)
     
 # Check application state, if it is not started already, start it
-if startApp:
+if toBoolean(startApp):
     if AdminControl.completeObjectName('type=Application,name=' + appName + ',*') == "":
         if cluster:
             print 'Starting application %s on cluster %s.' % (appName, cluster)
