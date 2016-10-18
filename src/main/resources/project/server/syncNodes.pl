@@ -16,13 +16,13 @@
 
 =head1 NAME
 
-mapSharedLibrary.pl - a perl library for shared libraries mapping.
+syncNodes.pl - a perl library for synchronizing active nodes
 
 =head1 SYNOPSIS
 
 =head1 DESCRIPTION
 
-This library references shared library to deployed application.
+This library syncronizes websphere active nodes.
 
 =head1 LICENSE
 
@@ -55,8 +55,7 @@ $| = 1;
 
 my $configName        = trim(q($[configurationName]));
 my $wsadminAbsPath    = trim(q($[wsadminAbsPath]));
-my $applicationName   = trim(q($[applicationName]));
-my $libraryName       = trim(q($[libraryName]));
+
 # create args array
 my @args  = ();
 my %props = ();
@@ -68,7 +67,7 @@ $ec->abortOnError(0);
 
 my $websphere = new WebSphere::WebSphere( $ec, $configName, $wsadminAbsPath );
 
-my $file = 'map_shared_library.py';
+my $file = 'sync_nodes.py';
 my $script = $ec->getProperty("/myProject/wsadmin_scripts/$file")->getNodeText('//value');
 
 open( my $fh, '>', $file ) or die "Cannot write to $file: $!";
@@ -79,7 +78,7 @@ my $shellcmd = $websphere->_create_runfile( $file, @args );
 my $escapedCmdLine = $websphere->_mask_password($shellcmd);
 
 print "WSAdmin command line:  $escapedCmdLine\n";
-$props{'mapSharedLibraryLine'} = $escapedCmdLine;
+$props{'syncNodesLine'} = $escapedCmdLine;
 setProperties( $ec, \%props );
 
 #execute command
