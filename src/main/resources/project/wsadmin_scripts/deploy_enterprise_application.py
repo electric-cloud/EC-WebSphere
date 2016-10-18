@@ -238,10 +238,10 @@ if startApp:
             for server in servers.keys():
                 print 'Starting application %s on server %s.' % (appName, server)
                 AdminApplication.startApplicationOnSingleServer(appName, servers[server], server)
-            else:
-                # For WebSphere Base Edition
-                print 'Starting application %s' % (appName)
-                appmgr = AdminControl.queryNames('name=ApplicationManager,*')
-                AdminControl.invoke(appmgr, 'startApplication', appName)
+        else:
+            # For WebSphere Base Edition
+            print 'Starting application %s' % (appName)
+            appmgr = AdminControl.queryNames('name=ApplicationManager,*')
+            AdminControl.invoke(appmgr, 'startApplication', appName)
 
         print 'Application %s started successfully.' % (appName)
