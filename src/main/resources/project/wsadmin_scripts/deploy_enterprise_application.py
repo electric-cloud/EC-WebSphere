@@ -160,7 +160,7 @@ append_bool('deployws', deployWS)
 append_bool('processEmbeddedConfig', processEmbConfig)
 append_bool('useAutoLink', autoResolveEJBRef)
 
-if validateSchema:
+if toBoolean(validateSchema):
     append_bool('validateSchema', validateSchema)
 
 append('cluster', cluster)
