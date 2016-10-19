@@ -218,11 +218,10 @@
 		<checkedValue>1</checkedValue>
 		<uncheckedValue>0</uncheckedValue>
 	</formElement>
-    
     <formElement>
 		<label>Synchronize Cells?:</label>
 		<property>syncCells</property>
-		<value/>
+		<value>1</value>
 		<documentation>Specify whether to sync cells(sync nodes). Disabled by default.</documentation>
 		<required>0</required>
 		<type>checkbox</type>
@@ -233,7 +232,7 @@
     <formElement>
 		<label>Start Application?:</label>
 		<property>startApp</property>
-		<value/>
+		<value>1</value>
 		<documentation>Specify whether to start application or not. Disabled by default.</documentation>
 		<required>0</required>
 		<type>checkbox</type>
