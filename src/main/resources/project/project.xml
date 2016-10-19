@@ -8876,7 +8876,7 @@
                                         <property>
                                             <propertyName>initiallyChecked</propertyName>
                                             <expandable>1</expandable>
-                                            <value>0</value>
+                                            <value>1</value>
                                         </property>
                                         <property>
                                             <propertyName>uncheckedValue</propertyName>
@@ -8901,7 +8901,7 @@
                                         <property>
                                             <propertyName>initiallyChecked</propertyName>
                                             <expandable>1</expandable>
-                                            <value>0</value>
+                                            <value>1</value>
                                         </property>
                                         <property>
                                             <propertyName>uncheckedValue</propertyName>
@@ -9750,14 +9750,14 @@
                 <defaultValue/>
                 <description>If checked, syncCells will be triggered after deployment.</description>
                 <required>0</required>
-                <type>textarea</type>
+                <type>checkbox</type>
             </formalParameter>
             <formalParameter>
                 <formalParameterName>startApp</formalParameterName>
                 <defaultValue/>
                 <description>If checked, application will be started after deployment.</description>
                 <required>0</required>
-                <type>textarea</type>
+                <type>checkbox</type>
             </formalParameter>
 
             <step>
