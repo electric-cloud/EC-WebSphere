@@ -34,6 +34,10 @@
         <path>wsadmin_scripts/modify_application_classloader.py</path>
     </file>
     <file>
+        <xpath>//property[propertyName=&quot;check_node_status.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/check_node_status.py</path>
+    </file>
+    <file>
         <xpath>//property[propertyName=&quot;start_cluster.py&quot;]/value</xpath>
         <path>wsadmin_scripts/start_cluster.py</path>
     </file>
@@ -454,4 +458,14 @@
         <xpath>//procedure[procedureName=&quot;ModifyApplicationClassLoader&quot;]/step[stepName=&quot;ModifyApplicationClassLoader&quot;]/command</xpath>
         <path>server/modifyApplicationClassLoader.pl</path>
     </file>
+
+    <file>
+        <xpath>//procedure[procedureName=&quot;CheckNodeStatus&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/CheckNodeStatus.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CheckNodeStatus&quot;]/step[stepName=&quot;CheckNodeStatus&quot;]/command</xpath>
+        <path>server/checkNodeStatus.pl</path>
+    </file>
+    
 </fileset>
