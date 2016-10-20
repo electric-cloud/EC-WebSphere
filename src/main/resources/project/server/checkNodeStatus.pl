@@ -73,8 +73,8 @@ $ec->abortOnError(0);
 
 my $websphere = new WebSphere::WebSphere( $ec, $configName, $wsadminAbsPath );
 
-my $file = 'check_node_status.py';
-my $script = $ec->getProperty("/myProject/wsadmin_scripts/$file")->getNodeText('//value');
+my $file = 'check_node_status' . time() . '.py';
+my $script = $ec->getProperty("/myProject/wsadmin_scripts/check_node_status.py")->getNodeText('//value');
 
 open( my $fh, '>', $file ) or die "Cannot write to $file: $!";
 print $fh $script;
