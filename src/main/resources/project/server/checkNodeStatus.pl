@@ -73,7 +73,9 @@ $ec->abortOnError(0);
 
 my $websphere = new WebSphere::WebSphere( $ec, $configName, $wsadminAbsPath );
 
-my $file = 'check_node_status' . time() . '.py';
+my $rand = rand(10);
+$rand =~ s/\.//s;
+my $file = 'check_node_status_' . $rand . '.py';
 my $script = $ec->getProperty("/myProject/wsadmin_scripts/check_node_status.py")->getNodeText('//value');
 
 open( my $fh, '>', $file ) or die "Cannot write to $file: $!";
