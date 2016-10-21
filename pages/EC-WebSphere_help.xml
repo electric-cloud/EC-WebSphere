@@ -3573,6 +3573,11 @@
         </div>
         
         <h1 id="rns">Release Notes</h1>
+        <h2>@PLUGIN_KEY@ 2.2.2</h2>
+        <ul>
+            <li>Added new procedures - SyncNodes, CheckNodeStatus</li>
+            <li>Made SyncCells and StartApplication configurable at DeployEnterpriseApplicationProcedure.</li>
+        </ul>
         <h2>@PLUGIN_KEY@ 2.2.1</h2>
         <ul>
             <li>Added new procedures - StartCluster, StopCluster, MapSharedLibrary, ModifyApplicationClassLoader.</li>
