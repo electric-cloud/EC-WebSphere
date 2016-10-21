@@ -300,7 +300,7 @@
 
             <h2>CheckNodeStatus</h2>
             <p>This procedure checks WebSphere node status. It checks Node Agent and all servers associated with node by it's name.</p>
-            <h3>CheckNodeStatus Parmeters</h3>
+            <h3>CheckNodeStatus Parameters</h3>
             <table class="grid">
                 <thead>
                     <tr>
