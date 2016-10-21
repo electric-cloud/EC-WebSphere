@@ -300,7 +300,7 @@
 
             <h2>CheckNodeStatus</h2>
             <p>This procedure checks WebSphere node status. It checks Node Agent and all servers associated with node by it's name.</p>
-            <h3>CheckApp Parmeters</h3>
+            <h3>CheckNodeStatus Parmeters</h3>
             <table class="grid">
                 <thead>
                     <tr>
@@ -331,7 +331,7 @@
                     <tr>
                         <td class="required">Name of the Node</td>
 
-                        <td>The name of the WebSphere node, which should be checked.<i>ExampleNode01</i>.</td>
+                        <td>The name of the WebSphere node, which should be checked, e.g. <i>ExampleNode01</i>.</td>
                     </tr>
 
                 </tbody>
@@ -3199,7 +3199,7 @@
             <h2>SyncNodes</h2>
 
             <p>Synchronizes Cell's Deployment Manager repository with nodes of the cell.</p>
-            <h3>StopServer Parameters</h3>
+            <h3>SyncNodes Parameters</h3>
             <table class="grid">
                 <thead>
                     <tr>
