@@ -29,7 +29,7 @@
     </formElement>
     <formElement>
 		<type>entry</type>
-        <label>Wsadmin Absolute Path:</label>
+        <label>Wsadmin Path:</label>
 		<property>wsadminAbsPath</property>
 		<required>1</required>
         <documentation>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. '/path/to/wsadmin.sh' or 'wsadmin.bat'.</documentation>
@@ -40,6 +40,6 @@
         <label>Name of the Node:</label>
 		<property>nodeName</property>
 		<required>1</required>
-        <documentation>Name of the Node.</documentation>
+        <documentation>Name of the Node, which should be checked.</documentation>
 	</formElement>
 </editor>
