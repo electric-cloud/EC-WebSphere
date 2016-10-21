@@ -25,6 +25,7 @@
         
             <ul>
                 <li><a href="#CheckApp">CheckApp</a></li>
+                <li><a href="#CheckNodeStatus">CheckNodeStatus</a></li>
                 <li><a href="#CheckPageStatus">CheckPageStatus</a></li>
                 <li><a href="#CheckServerStatus">CheckServerStatus</a></li>
                 <li><a href="#ConfigEJBContainer">ConfigEJBContainer</a></li>
@@ -52,6 +53,7 @@
                 <li><a href="#StopApp">StopApp</a></li>
                 <li><a href="#StopCluster">StopCluster</a></li>
                 <li><a href="#StopServer">StopServer</a></li>
+                <li><a href="#SyncNodes">SyncNodes</a></li>
                 <li><a href="#UndeployApp">UndeployApp</a></li>
                 <li><a href="#UpdateApp">UpdateApp</a></li>
                 <li><a href="#MapSharedLibrary">MapSharedLibrary</a></li>
@@ -293,7 +295,50 @@
 			
 			<img src="../../plugins/EC-WebSphere/images/CheckApp/CheckAppParameters.png" />
         </div>
+        <div id="CheckNodeStatus">
+            <a name="CheckNodeStatus" id="CheckNodeStatus"></a> 
 
+            <h2>CheckNodeStatus</h2>
+            <p>This procedure checks WebSphere node status. It checks Node Agent and all servers associated with node by it's name.</p>
+            <h3>CheckApp Parmeters</h3>
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Configuration Name</td>
+
+                        <td>The name of the configuration to use. 
+                        ElectricFlow gets the URL, port, and credentials 
+                        from this configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Wsadmin Path</td>
+
+                        <td>The path of the wsadmin tool that includes the
+                        filename and extension. <br />
+                        
+                        Examples: <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>. </td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Name of the Node</td>
+
+                        <td>The name of the WebSphere node, which should be checked.<i>ExampleNode01</i>.</td>
+                    </tr>
+
+                </tbody>
+            </table>
+			
+			<img src="../../plugins/EC-WebSphere/images/CheckNodeStatus/CheckNodeStatusParameters.png" />
+        </div>
         <div id="CheckPageStatus">
             <a name="CheckPageStatus" id="CheckPageStatus"></a> 
 
@@ -3147,6 +3192,45 @@
                 </tbody>
             </table>
         </div>
+
+                <div id="SyncNodes">
+            <a name="SyncNodes" id="SyncNodes"></a> 
+
+            <h2>SyncNodes</h2>
+
+            <p>Synchronizes Cell's Deployment Manager repository with nodes of the cell.</p>
+            <h3>StopServer Parameters</h3>
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Configuration Name</td>
+
+                        <td>The name of the configuration to use.
+                        ElectricFlow gets the URL, port, and credentials from
+                        this configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="required">Wsadmin Path</td>
+
+                        <td>The path of the wsadmin tool that includes the
+                        filename and extension. <br />
+                        
+                        Examples: <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>. </td>
+                    </tr>
+                </tbody>
+            </table>
+            <img src="../../plugins/EC-WebSphere/images/SyncNodes/SyncNodesParameters.png" />
+        </div>
+
 
         <div id="UndeployApp">
             <a name="UndeployApp" id="UndeployApp"></a> 
