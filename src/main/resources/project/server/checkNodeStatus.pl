@@ -73,14 +73,17 @@ $ec->abortOnError(0);
 
 my $websphere = new WebSphere::WebSphere( $ec, $configName, $wsadminAbsPath );
 
-my $rand = rand(10);
-$rand =~ s/\.//s;
-my $file = 'check_node_status_' . $rand . '.py';
-my $script = $ec->getProperty("/myProject/wsadmin_scripts/check_node_status.py")->getNodeText('//value');
+my $file = 'check_node_status.py';
+my $script = $ec->getProperty("/myProject/wsadmin_scripts/$file")->getNodeText('//value');
 
-open( my $fh, '>', $file ) or die "Cannot write to $file: $!";
-print $fh $script;
-close $fh;
+$file = $websphere->write_jython_script(
+    $file, {},
+    augment_filename_with_random_numbers => 1
+);
+
+# open( my $fh, '>', $file ) or die "Cannot write to $file: $!";
+# print $fh $script;
+# close $fh;
 
 my $shellcmd = $websphere->_create_runfile( $file, @args );
 my $escapedCmdLine = $websphere->_mask_password($shellcmd);
