@@ -34,19 +34,19 @@ def checkServerByCriteria(serverName, serverStatus, successCriteria):
 nodeFound = 0
 errorsCount = 0
 
-for node in AdminConfig.list( 'Node' ).splitlines() :
-    nodeName = AdminConfig.showAttribute( node, 'name' )
+for node in AdminConfig.list('Node').splitlines() :
+    nodeName = AdminConfig.showAttribute(node, 'name')
     if myNode != nodeName :
         continue
     nodeFound = 1
     print '\n\n\n'
-    for server in AdminConfig.list( 'Server', node ).splitlines() :
-        serverName = AdminConfig.showAttribute( server, 'name' )
+    for server in AdminConfig.list('Server', node).splitlines() :
+        serverName = AdminConfig.showAttribute(server, 'name')
         serverStatus = showServerStatus(serverName, nodeName)
         # if serverStatus != 'STARTED':
         if not checkServerByCriteria(serverName, serverStatus, successCriteria):
             errorsCount += 1
-        print '  Node: %s\nServer: %s\nStatus: %s\n' % ( nodeName, serverName, serverStatus )
+        print '  Node: %s\nServer: %s\nStatus: %s\n' % (nodeName, serverName, serverStatus)
         print '==========\n'
 
 if not nodeFound:
