@@ -8,8 +8,8 @@ successCriteria = r'''
 $[successCriteria]
 '''.strip()
 
-def showServerStatus(serverName):
-    serverObj = AdminControl.completeObjectName('WebSphere:type=Server,name=' + serverName + ',*')
+def showServerStatus(serverName, nodeName):
+    serverObj = AdminControl.completeObjectName('WebSphere:type=Server,node=' + nodeName + ',name=' + serverName + ',*')
     if len(serverObj) > 0:
         serverStatus = AdminControl.getAttribute(serverObj, 'state')
     else:
@@ -42,7 +42,7 @@ for node in AdminConfig.list( 'Node' ).splitlines() :
     print '\n\n\n'
     for server in AdminConfig.list( 'Server', node ).splitlines() :
         serverName = AdminConfig.showAttribute( server, 'name' )
-        serverStatus = showServerStatus(serverName)
+        serverStatus = showServerStatus(serverName, nodeName)
         # if serverStatus != 'STARTED':
         if not checkServerByCriteria(serverName, serverStatus, successCriteria):
             errorsCount += 1
