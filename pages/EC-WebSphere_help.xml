@@ -2214,7 +2214,6 @@
                         <td>Specifies whether to deploy client modules to an isolated deployment target (Isolated), a federated node of a deployment manager (Federated),
                             or an application server (Server Deployed).Default is Isolated</td>
                     </tr>
-                    
                     <tr>
                         <td>Wsadmin Commands</td>
                         <td>Commands to be entered to wsadmin. Use one command per line.</td>
