@@ -8,6 +8,8 @@ applicationName = r'''
 $[applicationName]
 '''.strip()
 
+print "Mapping shared library: %s" % (libraryName)
+
 # library section
 library = AdminConfig.getid('/Library:%s/' % (libraryName))
 if not library :

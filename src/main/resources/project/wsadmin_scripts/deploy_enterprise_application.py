@@ -111,7 +111,8 @@ $[startApp]
 
 syncCells = r'''
 $[syncCells]
-''';
+'''.strip()
+
 print 'Installing %s ....\n' % appName
 
 installParams = []
@@ -210,25 +211,27 @@ if deployment:
     AdminApp.update(appName, 'app', '[ -operation update -contents "%s" %s ]' % (appPath, installParamsString))
 else:
     AdminApp.install(appPath, '[ %s ]' % (installParamsString))
-    
+
 AdminConfig.save()
 
 # Obtain deployment manager MBean
 dm = AdminControl.queryNames('type=DeploymentManager,*')
 
 # Synchronization of configuration changes is only required in network deployment.not in standalone server environment.
-if toBoolean(syncCells) and dm:
-    print 'Synchronizing configuration repository with nodes. Please wait...'
-    nodes=AdminControl.invoke(dm, "syncActiveNodes", "true")
-    print 'The following nodes have been synchronized:'+str(nodes)
-else:
-    print 'Standalone server, no nodes to sync'
+
+if toBoolean(syncCells):
+    if dm:
+        print 'Synchronizing configuration repository with nodes. Please wait...'
+        nodes=AdminControl.invoke(dm, "syncActiveNodes", "true")
+        print 'The following nodes have been synchronized: ' + str(nodes)
+    else:
+        print 'Standalone server, no nodes to sync'
 
 if deployment:
     print 'Application %s updated successfully.' % (appName)
 else:
     print 'Application %s installed successfully.' % (appName)
-    
+
 # Check application state, if it is not started already, start it
 if toBoolean(startApp):
     if AdminControl.completeObjectName('type=Application,name=' + appName + ',*') == "":
