@@ -3206,7 +3206,10 @@
 
             <h2>SyncNodes</h2>
 
-            <p>Synchronizes Cell's Deployment Manager repository with nodes of the cell.</p>
+            <p>
+                Synchronizes Cell's Deployment Manager config repository with nodes of the cell. For nodes auto-synchronization is enabled by default.
+                For example, when new custom property for node is added, and configuration was saved, to be available on each server of the node it should be propagated to all servers of the node by nodes synchronization.
+            </p>
             <h3>SyncNodes Parameters</h3>
             <table class="grid">
                 <thead>
