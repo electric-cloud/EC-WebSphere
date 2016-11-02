@@ -28,7 +28,9 @@ use Data::Dumper;
 Constructs a new L<WebSphere::WebSphere> object.
 
 =over
+
 2>&1
+
 =item C<$ec>
         
 Reference to L<ElectricCommander> object.
@@ -44,6 +46,7 @@ Absolute path to wsadmin utility
 =back
 
 Returns new instance of L<WebSphere::WebSphere> object.
+
 =cut
 
 sub new {
@@ -53,7 +56,7 @@ sub new {
     my $configuration = $self->_getConfiguration($configurationName);
 
     if ( not $configuration ) {
-        return undef;
+        exit 1;
     }
 
     $self->{configuration} = $configuration;
@@ -75,6 +78,7 @@ String with path to python script
 Returns hash containing two hashes:
  messages - hash of wsadmin messages, { messageid, description }
  json - json output of script
+
 =cut
 
 sub wsadmin {
@@ -171,7 +175,9 @@ sub _getConfiguration {
 
     # Check if configuration exists
     unless ( keys(%configuration) ) {
-        print "Error: Configuration '$configurationName' doesn't exist\n";
+        my $error_string = "Configuration '$configurationName' doesn't exists";
+        print "Error: $error_string\n";
+        $self->setSummary("$error_string");
         return undef;
     }
 
@@ -201,6 +207,23 @@ sub write_jython_script {
     open my $fh, ">$filename" or die "Cannot open file $filename: $!";
     print $fh $script;
     close $fh;
+}
+
+=head2
+
+Sets summary property to provided one.
+
+    $ws->setSummary("Error occured");
+
+=cut
+
+sub setSummary {
+    my ($self, @msg) = @_;
+
+    my $msg = join '', @msg;
+    return unless $msg;
+    $self->{ec}->setProperty('/myCall/summary', $msg);
+    return 1;
 }
 
 1;
