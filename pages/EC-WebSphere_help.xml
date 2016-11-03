@@ -333,6 +333,18 @@
 
                         <td>The name of the WebSphere node, which should be checked, e.g. <i>ExampleNode01</i>.</td>
                     </tr>
+                    <tr>
+                        <td class="required">Success Criteria</td>
+
+                        <td>
+                            Procedure will be finished with success status only if success criteria will be met. We have following success criterias:
+                            <ul>
+                                <li>All node servers are running: All node members(application servers and nodeagent) are running.</li>
+                                <li>All node servers are NOT running: All node members(application servers and nodeagent) are not running.</li>
+                                <li>Nodeagent is running: Nodeagent is running. Application servers could be in any state.</li>
+                            </ul>
+                        </td>
+                    </tr>
 
                 </tbody>
             </table>
@@ -3201,10 +3213,12 @@
             </table>
         </div>
 
-                <div id="SyncNodes">
+        <div id="SyncNodes">
             <a name="SyncNodes" id="SyncNodes"></a> 
 
             <h2>SyncNodes</h2>
+
+            <b>Applicable only for WebSphere Network Deployment.</b>
 
             <p>
                 Synchronizes Cell's Deployment Manager config repository with nodes of the cell. By default, WebSphere nodes are configured for auto-sync. This procedure should be used for manual nodes synchronization.
