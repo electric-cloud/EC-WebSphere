@@ -109,8 +109,8 @@ startApp = r'''
 $[startApp]
 '''.strip()
 
-syncCells = r'''
-$[syncCells]
+syncActiveNodes = r'''
+$[syncActiveNodes]
 '''.strip()
 
 print 'Installing %s ....\n' % appName
@@ -219,7 +219,7 @@ dm = AdminControl.queryNames('type=DeploymentManager,*')
 
 # Synchronization of configuration changes is only required in network deployment.not in standalone server environment.
 
-if toBoolean(syncCells):
+if toBoolean(syncActiveNodes):
     if dm:
         print 'Synchronizing configuration repository with nodes. Please wait...'
         nodes=AdminControl.invoke(dm, "syncActiveNodes", "true")

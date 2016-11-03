@@ -3588,7 +3588,8 @@
         <h2>@PLUGIN_KEY@ 2.2.2</h2>
         <ul>
             <li>Added new procedures - SyncNodes, CheckNodeStatus.</li>
-            <li>DeployEnterpriseApplication procedure now has configurable parameters - "Sync Cells" (sync cells after application deploy) and "Start Application" (starts the deployed application after the deploy process is finished).</li>
+            <li>DeployEnterpriseApplication procedure now has configurable parameters - "Synchronize active nodes" (sync active nodes after application deploy) and "Start application" (starts the deployed application after the deploy process is finished). These parameters are enabled by default.</li>
+            <li>"Distribute application" option is enabled by default.</li>
         </ul>
         <h2>@PLUGIN_KEY@ 2.2.1</h2>
         <ul>

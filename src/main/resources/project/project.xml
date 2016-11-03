@@ -8865,7 +8865,7 @@
                                 </property>
 
                                 <property>
-                                    <propertyName>syncCells</propertyName>
+                                    <propertyName>syncActiveNodes</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>checkedValue</propertyName>
@@ -8968,7 +8968,7 @@
                                         <property>
                                             <propertyName>initiallyChecked</propertyName>
                                             <expandable>1</expandable>
-                                            <value>0</value>
+                                            <value>1</value>
                                         </property>
                                         <property>
                                             <propertyName>uncheckedValue</propertyName>
@@ -9744,15 +9744,15 @@
             <formalParameter>
                 <formalParameterName>additionalDeployParams</formalParameterName>
                 <defaultValue/>
-                <description>Specify any additional options for AdminApp.Install object in case not listed in this input form.</description>
+                <description>Specify any additional options for AdminApp. Install object in case not listed in this input form.</description>
                 <required>0</required>
                 <type>textarea</type>
             </formalParameter>
 
             <formalParameter>
-                <formalParameterName>syncCells</formalParameterName>
+                <formalParameterName>syncActiveNodes</formalParameterName>
                 <defaultValue/>
-                <description>If checked, syncCells will be triggered after deployment.</description>
+                <description>If checked, active nodes will be synchronized after the deployment. The flag is applicable only for Network Deployment installation.</description>
                 <required>0</required>
                 <type>checkbox</type>
             </formalParameter>
