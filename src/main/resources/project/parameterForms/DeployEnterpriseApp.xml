@@ -110,7 +110,7 @@
 	<formElement>
 		<label>Distribute application?:</label>
 		<property>distributeApp</property>
-		<value/>
+		<value>1</value>
 		<documentation>Specifies whether the product expands application binaries in the installation location during installation.</documentation>
 		<required>0</required>
 		<type>checkbox</type>

@@ -8968,7 +8968,7 @@
                                         <property>
                                             <propertyName>initiallyChecked</propertyName>
                                             <expandable>1</expandable>
-                                            <value>0</value>
+                                            <value>1</value>
                                         </property>
                                         <property>
                                             <propertyName>uncheckedValue</propertyName>
