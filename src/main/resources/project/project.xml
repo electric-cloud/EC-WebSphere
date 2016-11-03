@@ -8865,7 +8865,7 @@
                                 </property>
 
                                 <property>
-                                    <propertyName>syncCells</propertyName>
+                                    <propertyName>syncActiveNodes</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>checkedValue</propertyName>
@@ -9750,9 +9750,9 @@
             </formalParameter>
 
             <formalParameter>
-                <formalParameterName>syncCells</formalParameterName>
+                <formalParameterName>syncActiveNodes</formalParameterName>
                 <defaultValue/>
-                <description>If checked, syncCells will be triggered after deployment.</description>
+                <description>If checked, syncActiveNodes will be triggered after deployment.</description>
                 <required>0</required>
                 <type>checkbox</type>
             </formalParameter>
