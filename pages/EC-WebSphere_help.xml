@@ -3219,7 +3219,7 @@
 
             <h2>SyncNodes</h2>
 
-            <b>Applicable only for WebSphere Network Deployment.</b>
+            <b>Applicable only for WebSphere Network Deployment installation.</b>
 
             <p>
                 Synchronizes Cell's Deployment Manager config repository with nodes of the cell. By default, WebSphere nodes are configured for auto-sync. This procedure should be used for manual nodes synchronization.
