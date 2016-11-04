@@ -14,7 +14,7 @@
 
             <p>Plugin Version @PLUGIN_VERSION@</p>
             <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" />
-            <p>Revised on Oct 11, 2016</p>
+            <p>Revised on Nov 4, 2016</p>
             <h1>Contents</h1>
 
             <ul>
@@ -3427,8 +3427,15 @@
             <h2>@PLUGIN_KEY@ 2.2.2</h2>
             <ul>
                 <li>Added new procedures - SyncNodes, CheckNodeStatus.</li>
-                <li>DeployEnterpriseApplication procedure now has configurable parameters - "Synchronize active nodes" (sync active nodes after application deploy) and "Start application" (starts the deployed application after the deploy process is finished). These parameters are enabled by default.</li>
-                <li>"Distribute application" option is enabled by default.</li>
+                <li>
+                    Added following optional parameters to DeployEnterpriseApplication procedure:
+                    <ul>
+                        <li>"Synchronize active nodes": Sync active nodes after application deployment. Enabled by default.</li>
+                        <li>"Start application": Start the deployed application after deploying the application. Enabled by default.</li>
+                    </ul>
+                </li>
+
+                <li>Changed default value for "Distribute application" from unchecked to checked. (Deploy Enterprise Application procedure).</li>
             </ul>
             <h2>@PLUGIN_KEY@ 2.2.1</h2>
             <ul>
