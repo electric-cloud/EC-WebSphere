@@ -1944,7 +1944,7 @@
                 <h2>DeployEnterpriseApp</h2>
 
 
-                <p>This procedure deploys and starts java enterprise application (.EAR) on given targets. If application is already deployed, procedure updates application.</p>
+                <p>This procedure deploys java enterprise application (.EAR) or java web application (.WAR) on given targets. If application is already deployed, procedure updates application.</p>
 
                 <h3>DeployEnterpriseApp Parameters</h3>
 
@@ -2134,7 +2134,7 @@
 
                 <ol>
                     <li>Go to the DeployEnterpriseApp procedure. </li>
-                    <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeployEnterpriseApp/EC-WebSphereDeployEnterpriseApp2.png" />
+                    <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeployEnterpriseApp/EC-WebSphereDeployEnterpriseApp2.png" />
                 </ol>
 
 
