@@ -90,7 +90,7 @@
                  What general functionality does the plugin include? What
                  functionality does the plugin omit? -->
 
-            <p>You use this plugin to interact with an IBM
+            <p>You can use this plugin to interact with an IBM
             WebSphere Server. You can start and stop the server.
             You can also manage applications within the server (start,
             deploy, undeploy, stop or custom task) using the provided
