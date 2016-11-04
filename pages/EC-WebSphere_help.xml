@@ -2014,7 +2014,7 @@
 
                         <tr>
                             <td>Distribute application?</td>
-                            <td>Specifies whether the product expands application binaries in the installation location during installation.</td>
+                            <td>Specifies whether the product expands application binaries in the installation location during installation. Enabled by default.</td>
                         </tr>
 
                         <tr>
@@ -2056,7 +2056,7 @@
 
                         <tr>
                             <td>Deploy client modules?</td>
-                            <td>Select if the file to deploy has one or more client modules and want to configure environment entries for the client modules.Default is do not enable Client Module</td>
+                            <td>Select if the file to deploy has one or more client modules and want to configure environment entries for the client modules.Default is do not enable Client Module.</td>
                         </tr>
 
                         <tr>
@@ -2066,11 +2066,11 @@
 
                         <tr>
                             <td>Synchronize Active Nodes?</td>
-                            <td>Specifies whether to synchronize active nodes.</td>
+                            <td>Specifies whether to synchronize active nodes. Enabled by default.</td>
                         </tr>
                         <tr>
                             <td>Start Application?</td>
-                            <td>Specifies whether to start application after deployment.</td>
+                            <td>Specifies whether to start application after deployment. Enabled by default.</td>
                         </tr>
 
                         <tr>
