@@ -3,8 +3,13 @@ myNode = r'''
 $[nodeName]
 '''.strip()
 
-def showServerStatus(serverName):
-    serverObj = AdminControl.completeObjectName('WebSphere:type=Server,name=' + serverName + ',*')
+# This will be one of three: ALL_RUNNING, ALL_STOPPED, NODEAGENT_RUNNING
+successCriteria = r'''
+$[successCriteria]
+'''.strip()
+
+def showServerStatus(serverName, nodeName):
+    serverObj = AdminControl.completeObjectName('WebSphere:type=Server,node=' + nodeName + ',name=' + serverName + ',*')
     if len(serverObj) > 0:
         serverStatus = AdminControl.getAttribute(serverObj, 'state')
     else:
@@ -12,30 +17,44 @@ def showServerStatus(serverName):
 
     return serverStatus
 
+def checkServerByCriteria(serverName, serverStatus, successCriteria):
+    if successCriteria == 'ALL_RUNNING':
+        if serverStatus != 'STARTED':
+            return 0
+    elif successCriteria == 'ALL_STOPPED':
+        if serverStatus == 'STARTED':
+            return 0
+    else:
+        if serverName == 'nodeagent' and serverStatus != 'STARTED':
+            return 0
+    # end of conditions
+    return 1
 
-node_found = 0
-errors_count = 0
 
-for node in AdminConfig.list( 'Node' ).splitlines() :
-    nodeName = AdminConfig.showAttribute( node, 'name' )
+nodeFound = 0
+errorsCount = 0
+
+for node in AdminConfig.list('Node').splitlines() :
+    nodeName = AdminConfig.showAttribute(node, 'name')
     if myNode != nodeName :
         continue
-    node_found = 1
+    nodeFound = 1
     print '\n\n\n'
-    for server in AdminConfig.list( 'Server', node ).splitlines() :
-        servName = AdminConfig.showAttribute( server, 'name' )
-        serverStatus = showServerStatus(servName)
-        if serverStatus != 'STARTED':
-            errors_count += 1
-        print '  Node: %s\nServer: %s\nStatus: %s\n' % ( nodeName, servName, serverStatus )
+    for server in AdminConfig.list('Server', node).splitlines() :
+        serverName = AdminConfig.showAttribute(server, 'name')
+        serverStatus = showServerStatus(serverName, nodeName)
+        # if serverStatus != 'STARTED':
+        if not checkServerByCriteria(serverName, serverStatus, successCriteria):
+            errorsCount += 1
+        print '  Node: %s\nServer: %s\nStatus: %s\n' % (nodeName, serverName, serverStatus)
         print '==========\n'
 
-if not node_found:
+if not nodeFound:
     print 'Node with name %s wasn\'t found' % myNode
     sys.exit(1)
 
-if errors_count > 0:
-    print "Node is not running. Please, check output"
+if errorsCount > 0:
+    print "Success Criteria wasn't met."
     sys.exit(1)
 
-
+print "Success Criteria was met."

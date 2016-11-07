@@ -6,7 +6,7 @@ dm = AdminControl.queryNames('type=DeploymentManager,*')
 if dm:
     print 'Synchronizing configuration repository with nodes. Please wait...'
     nodes = AdminControl.invoke(dm, "syncActiveNodes", "true")
-    print 'The following nodes have been synchronized:'+str(nodes)
+    print 'The following nodes have been synchronized: ' + str(nodes)
 else:
     print 'Standalone server, no nodes to sync'
     sys.exit(1)

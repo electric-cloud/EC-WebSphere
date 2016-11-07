@@ -56,7 +56,7 @@ sub new {
     my $configuration = $self->_getConfiguration($configurationName);
 
     if ( not $configuration ) {
-        return undef;
+        exit 1;
     }
 
     $self->{configuration} = $configuration;
@@ -176,7 +176,9 @@ sub _getConfiguration {
 
     # Check if configuration exists
     unless ( keys(%configuration) ) {
-        print "Error: Configuration '$configurationName' doesn't exist\n";
+        my $error_string = "Configuration '$configurationName' doesn't exists";
+        print "Error: $error_string\n";
+        $self->setSummary("$error_string");
         return undef;
     }
 
@@ -260,6 +262,23 @@ sub gen_random_numbers {
     my $rand = rand($mod);
     $rand =~ s/\.//s;
     return $rand;
+}
+
+=head2
+
+Sets summary property to provided one.
+
+    $ws->setSummary("Error occured");
+
+=cut
+
+sub setSummary {
+    my ($self, @msg) = @_;
+
+    my $msg = join '', @msg;
+    return unless $msg;
+    $self->{ec}->setProperty('/myCall/summary', $msg);
+    return 1;
 }
 
 1;
