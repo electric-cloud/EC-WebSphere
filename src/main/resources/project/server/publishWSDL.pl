@@ -113,7 +113,7 @@ sub main() {
     $file = $websphere->write_jython_script(
         $file, {},
         augment_filename_with_random_numbers => 1,
-        script => $ScriptFile
+        script => $::gScriptFile
     );
     push(@args, '-f ' . $file);
     push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
