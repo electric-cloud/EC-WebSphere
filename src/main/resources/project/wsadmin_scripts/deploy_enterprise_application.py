@@ -113,6 +113,11 @@ syncActiveNodes = r'''
 $[syncActiveNodes]
 '''.strip()
 
+
+contextRoot = r'''
+$[contextRoot]
+'''.strip()
+
 print 'Installing %s ....\n' % appName
 
 installParams = []
@@ -120,7 +125,7 @@ installParams = []
 def toBoolean(value):
     if value.lower() == 'true' or value == '1':
         return 1
-    
+
     return 0
 
 def append_bool(name, value):
@@ -128,7 +133,7 @@ def append_bool(name, value):
         installParams.append('-' + name)
     else:
         installParams.append('-no' + name)
-    
+
 def append(name, value, default_value = None, value_prefix = "", value_suffix = ""):
     if default_value and not value:
         value = default_value
@@ -173,6 +178,9 @@ append('validateinstall', validateRefs)
 append('blaname', blaName)
 append('MapModulesToServers', mapModulesToServers, None, '[', ']')
 
+if contextRoot:
+    append('contextroot', contextRoot)
+
 if toBoolean(deployClientMod):
     append_bool('enableClientModule', deployClientMod)
     append('clientMode', clientDeployMode, 'isolated')
@@ -190,11 +198,11 @@ if serverList:
 
     for node_server in nodes_servers:
         (node, server) = node_server.split('=')
-        servers[server] = node 
-        
+        servers[server] = node
+
         if targetServers:
             targetServers += '+'
-        
+
         targetServers += "WebSphere:node=%s,server=%s" % (node, server)
 
     if targetServers:

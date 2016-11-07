@@ -8914,7 +8914,7 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-                                
+
                                 <property>
                                     <propertyName>precompileJSP</propertyName>
                                     <propertySheet>
@@ -8943,6 +8943,17 @@
 
                                 <property>
                                     <propertyName>installDir</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+                                <property>
+                                    <propertyName>contextRoot</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -9602,6 +9613,18 @@
             </formalParameter>
 
             <formalParameter>
+                <formalParameterName>contextRoot</formalParameterName>
+                <defaultValue/>
+                <description>Specifies the context root of the web application (WAR).
+
+A context root for each web module is defined in the application deployment descriptor during application assembly. Use this field to assign a different context root to a web module. The context root is combined with the defined servlet mapping (from the WAR file) to compose the full URL that users type to access the servlet. For example, if the context root is /gettingstarted and the servlet mapping is MySession, then the URL is http://host:port/gettingstarted/MySession.
+
+                </description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
                 <formalParameterName>distributeApp</formalParameterName>
                 <defaultValue/>
                 <description>Specifies whether the product expands application binaries in the installation location during installation.</description>
@@ -9988,7 +10011,7 @@
                 <required>1</required>
                 <type>select</type>
             </formalParameter>
-            
+
             <step>
                 <stepName>CheckNodeStatus</stepName>
                 <alwaysRun>0</alwaysRun>
@@ -10023,7 +10046,7 @@
                 </propertySheet>
             </step>
         </procedure>
-        
+
     </project>
 
 </exportedData>
