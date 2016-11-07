@@ -44,7 +44,7 @@ All rights reserved.
 use ElectricCommander;
 use ElectricCommander::PropMod qw(/myProject/modules);
 use WebSphere::Util;
-
+use WebSphere::WebSphere;
 use warnings;
 use strict;
 $| = 1;
@@ -81,7 +81,6 @@ none
 =cut
 
 sub main() {
-
     # create args array
     my @args = ();
     my %props;
@@ -91,6 +90,7 @@ sub main() {
     #get an EC object
     my $ec = new ElectricCommander();
     $ec->abortOnError(0);
+    my $websphere = WebSphere::WebSphere->new_simple($ec);
 
     ## Validate cluster name
     $ScriptFile .= "result = AdminClusterManagement.checkIfClusterExists(\""
@@ -107,15 +107,15 @@ sub main() {
 
     %configuration = getConfiguration( $ec, $::gConfigurationName );
 
-
     push( @args, '"' . $::gWSAdminAbsPath . '"' );
 
-    open( MYFILE, '>listClusterMembers_script.jython' );
-
-    print MYFILE "$ScriptFile";
-    close(MYFILE);
-
-    push( @args, '-f listClusterMembers_script.jython' );
+    my $file = 'listClusterMembers_script.jython';
+    $file = $websphere->write_jython_script(
+        $file, {},
+        augment_filename_with_random_numbers => 1,
+        script => $ScriptFile
+    );
+    push( @args, '-f ' . $file );
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
 
     my $connectionType         = $configuration{conntype};

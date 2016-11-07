@@ -46,7 +46,7 @@ All rights reserved.
 use ElectricCommander;
 use ElectricCommander::PropMod qw(/myProject/modules);
 use WebSphere::Util;
-
+use WebSphere::WebSphere;
 use warnings;
 use strict;
 $| = 1;
@@ -58,6 +58,8 @@ $| = 1;
 #get an EC object
 my $ec = new ElectricCommander();
 $ec->abortOnError(0);
+
+my $websphere = WebSphere::WebSphere->new_simple($ec);
 
 my $gWSAdminAbsPath = "$[wsadminabspath]";
 my $gClusterName = "$[clusterName]";
@@ -183,12 +185,18 @@ sub main() {
     $ScriptFile .= "\n\t\t" . 'sleep(waitTime)';
     $ScriptFile .= "\n\t\t" . 'waitTime = waitTime + 3';
 
-    open( MYFILE, '>createCluster.jython' );
+    my $file = 'createCluster.jython';
+    $file = $websphere->write_jython_script(
+        $file, {},
+        augment_filename_with_random_numbers => 1,
+        script => $ScriptFile
+    );
+    # open( MYFILE, '>createCluster.jython' );
 
-    print MYFILE "$ScriptFile";
-    close(MYFILE);
+    # print MYFILE "$ScriptFile";
+    # close(MYFILE);
 
-    push( @args, '-f createCluster.jython' );
+    push( @args, '-f ' . $file );
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
 
 

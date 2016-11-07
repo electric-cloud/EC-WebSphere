@@ -209,9 +209,17 @@ sub write_jython_script {
     my ( $self, $filename, $tmpl_params, %opts ) = @_;
 
     my $ec = $self->{ec};
-    my $script = $ec->getProperty("/myProject/wsadmin_scripts/$filename")->getNodeText('//value');
+    my $script;
+    if ($opts{script}) {
+        $script = $opts{script};
+    }
+    else {
+        $script = $ec->getProperty("/myProject/wsadmin_scripts/$filename")->getNodeText('//value');
+    }
 
-    die "No script content found in /myProject/wsadmin_scripts/$filename property" unless $script;
+    unless ($script) {
+        die "No script content found in /myProject/wsadmin_scripts/$filename property and was not provided in parameters.";
+    }
 
     if ($opts{augment_filename_with_random_numbers}) {
         my $rnd = gen_random_numbers( 42 );
@@ -223,6 +231,19 @@ sub write_jython_script {
     close $fh;
 
     return $filename;
+}
+
+sub new_simple {
+    my ( $class, $ec ) = @_;
+
+    if ( !$ec ) {
+        $ec = ElectricCommander->new();
+    }
+    my $self = {
+        ec => $ec
+    };
+    bless $self, $class;
+    return $self;
 }
 
 =head2

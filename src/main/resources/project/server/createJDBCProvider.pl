@@ -21,7 +21,7 @@
 use ElectricCommander;
 use ElectricCommander::PropMod qw(/myProject/modules);
 use WebSphere::Util;
-
+use WebSphere::WebSphere;
 use warnings;
 use strict;
 $|=1;
@@ -33,6 +33,7 @@ $|=1;
 #get an EC object
 my $ec = new ElectricCommander();
 $ec->abortOnError(0);
+my $websphere = WebSphere::WebSphere->new_simple($ec);
 
 $::gWSAdminAbsPath = ($ec->getProperty("wsadminabspath") )->findvalue("//value");
 $::gJdbcProviderName = ($ec->getProperty("jdbcProvidername") )->findvalue("//value");
@@ -62,20 +63,18 @@ $::gImplementationClassName = ($ec->getProperty("implementationClassName") )->fi
 #
 ######################################################################
 sub main() {
-  
-  # create args array
-  my @args = ();
-  my %props;
-  my %configuration;
+    # create args array
+    my @args = ();
+    my %props;
+    my %configuration;
+    if ($::gConfigurationName ne '') {
+        %configuration = getConfiguration($ec, $::gConfigurationName);
+    }
 
-  if($::gConfigurationName ne ''){
-      %configuration = getConfiguration($ec, $::gConfigurationName);
-  }
-
-  push(@args, '"'.$::gWSAdminAbsPath.'"');
+    push(@args, '"'.$::gWSAdminAbsPath.'"');
 
 
-  my $ScriptFile = 'node = AdminConfig.getid(\'/Cell:' . $::gCell . '/Node:' . $::gNode .  '/Server:' . $::gServer .'/\')
+    my $ScriptFile = 'node = AdminConfig.getid(\'/Cell:' . $::gCell . '/Node:' . $::gNode .  '/Server:' . $::gServer .'/\')
 n1 = [\'name\', \'' . $::gJdbcProviderName . '\']
 implCN = [\'implementationClassName\', \'' . $::gImplementationClassName . '\']
 classPath = [\'classpath\', \'' . $::gClassPath . '\']
@@ -85,56 +84,51 @@ jdbcAttrs = [n1,  implCN, classPath, descr]
 AdminConfig.create(\'JDBCProvider\', node, jdbcAttrs)
 
 AdminConfig.save()';
-	
-  open (MYFILE, '>createJDBC_script.jython');
-  
-  print MYFILE "$ScriptFile";
-  close (MYFILE);
-      
-  push(@args, '-f createJDBC_script.jython');
-  push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
-  
-  my $connectionType = $configuration{conntype};
-  push(@args, '-conntype ' . $connectionType);
-  
-  #inject config...
-  if(%configuration){
-  	  my $hostParamName = '-host';
-  	  
-      if ( $connectionType eq IPC_CONNECTION_TYPE ) {
-          $hostParamName = '-ipchost';
-      }
 
-      if($configuration{'websphere_url'} ne ''){
-          push(@args, $hostParamName . ' '. $configuration{'websphere_url'});
-      }
-      
-      if($configuration{'websphere_port'} ne ''){
-          push(@args, '-port ' . $configuration{'websphere_port'});
-      }
-      
-      if($configuration{'user'} ne ''){
-          push(@args, '-user ' . $configuration{'user'});
-      }
-      
-      if($configuration{'password'} ne ''){
-          push(@args, '-password ' . $configuration{'password'});
-      }
-  }
+    my $file = 'createJDBC_script.jython';
+    $file = $websphere->write_jython_script(
+        $file, {},
+        augment_filename_with_random_numbers => 1,
+        script => $ScriptFile
+    );
 
-  my $cmdLine = createCommandLine(\@args);
-  my $escapedCmdLine = maskPassword($cmdLine, $configuration{'password'});
-  
-  $props{'createJDBCLine'} = $escapedCmdLine;
-  setProperties($ec, \%props);
-  
-  print "WSAdmin command line: $escapedCmdLine\n";
+    push(@args, '-f ' . $file);
+    push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
 
-  #execute command
-  my $content = `$cmdLine`;
-  
-  #print log
-  print "$content\n";
+    my $connectionType = $configuration{conntype};
+    push(@args, '-conntype ' . $connectionType);
+
+    # inject config...
+    if (%configuration) {
+        my $hostParamName = '-host';
+        if ( $connectionType eq IPC_CONNECTION_TYPE ) {
+            $hostParamName = '-ipchost';
+        }
+        if ($configuration{'websphere_url'} ne '') {
+            push(@args, $hostParamName . ' '. $configuration{'websphere_url'});
+        }
+        if ($configuration{'websphere_port'} ne '') {
+            push(@args, '-port ' . $configuration{'websphere_port'});
+        }
+        if ($configuration{'user'} ne '') {
+            push(@args, '-user ' . $configuration{'user'});
+        }
+        if ($configuration{'password'} ne '') {
+            push(@args, '-password ' . $configuration{'password'});
+        }
+    }
+
+    my $cmdLine = createCommandLine(\@args);
+    my $escapedCmdLine = maskPassword($cmdLine, $configuration{'password'});
+    $props{'createJDBCLine'} = $escapedCmdLine;
+    setProperties($ec, \%props);
+
+    print "WSAdmin command line: $escapedCmdLine\n";
+    #execute command
+    my $content = `$cmdLine`;
+
+    #print log
+    print "$content\n";
 }
 
 main();

@@ -45,7 +45,7 @@ All rights reserved.
 use ElectricCommander;
 use ElectricCommander::PropMod qw(/myProject/modules);
 use WebSphere::Util;
-
+use WebSphere::WebSphere;
 use warnings;
 use strict;
 $| = 1;
@@ -56,6 +56,7 @@ $| = 1;
 
 my $ec = new ElectricCommander();
 $ec->abortOnError(0);
+my $websphere = WebSphere::WebSphere->new_simple($ec);
 
 $::gWSAdminAbsPath =
   ( $ec->getProperty("wsadminabspath") )->findvalue("//value");
@@ -116,12 +117,14 @@ sub main() {
       . $::gClusterName . '")' . "\n";
     $ScriptFile .= 'print result' . "\n";
 
-    open( MYFILE, '>deleteCluster_script.jython' );
+    my $file = 'deleteCluster_script.jython';
+    $file = $websphere->write_jython_script(
+        $file, {},
+        augment_filename_with_random_numbers => 1,
+        script => $ScriptFile
+    );
+    push(@args, '-f ' . $file);
 
-    print MYFILE "$ScriptFile";
-    close(MYFILE);
-
-    push( @args, '-f deleteCluster_script.jython' );
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
 
     my $connectionType = $configuration{conntype};

@@ -106,10 +106,6 @@ $file = $websphere->write_jython_script(
     augment_filename_with_random_numbers => 1
 );
 
-# open( my $fh, '>', $file ) or die "Cannot write to $file: $!";
-# print $fh $script;
-# close $fh;
-
 my $debug = $websphere->{configuration}->{debug};
 
 my $shellcmd = $websphere->_create_runfile( $file, @args );

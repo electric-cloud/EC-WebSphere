@@ -21,7 +21,7 @@
 use ElectricCommander;
 use ElectricCommander::PropMod qw(/myProject/modules);
 use WebSphere::Util;
-
+use WebSphere::WebSphere;
 use warnings;
 use strict;
 $|=1;
@@ -58,116 +58,105 @@ $::gAdditionalOptions = "$[additionalcommands]";
 #
 ########################################################################
 sub main() {
-    
-  # create args array
-  my @args = ();
-  my %props;
-  my %configuration;
-  
-  #get an EC object
-  my $ec = new ElectricCommander();
-  $ec->abortOnError(0);
-  
-  if($::gConfigurationName ne ''){
-      %configuration = getConfiguration($ec, $::gConfigurationName);
-  }
-  
-  push(@args, '"'.$::gWSAdminAbsPath.'"');
+    # create args array
+    my @args = ();
+    my %props;
+    my %configuration;
 
-  if($::gAdditionalOptions && $::gAdditionalOptions ne '') {
-      push(@args, $::gAdditionalOptions);
-  }
-  
-  open (MYFILE, '>deployapp_script.jython');
-  
-print MYFILE "$::gScriptFile";
-close (MYFILE);
-      
-push(@args, '-f deployapp_script.jython');
-push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
+    #get an EC object
+    my $ec = new ElectricCommander();
+    $ec->abortOnError(0);
+    my $websphere = WebSphere::WebSphere->new_simple($ec);
+    if($::gConfigurationName ne ''){
+        %configuration = getConfiguration($ec, $::gConfigurationName);
+    }
+    push(@args, '"'.$::gWSAdminAbsPath.'"');
+    if ($::gAdditionalOptions && $::gAdditionalOptions ne '') {
+        push(@args, $::gAdditionalOptions);
+    }
 
-  if($::gClasspath && $::gClasspath ne '') {
-      push(@args, '-wsadmin_classpath "' . $::gClasspath . '"');
-  }
-  
-  my $connectionType = $configuration{conntype};
-  
-  if($connectionType && $connectionType ne '') {
-      push(@args, '-conntype ' . $connectionType);
-  }
-  
-  #inject config...
-  if(%configuration){
-      my $hostParamName;
-      
-      if($connectionType eq IPC_CONNECTION_TYPE){
-         $hostParamName = '-ipchost';
-      }else{         
-         $hostParamName = '-host';
-      }
-      
-      if($configuration{'websphere_url'} ne ''){
-          push(@args, $hostParamName . ' ' . $configuration{'websphere_url'});
-      }
-      
-      if($configuration{'websphere_port'} ne ''){
-          push(@args, '-port ' . $configuration{'websphere_port'});
-      }
-      
-      if($configuration{'user'} ne ''){
-          push(@args, '-user ' . $configuration{'user'});
-      }
-      
-      if($configuration{'password'} ne ''){
-          push(@args, '-password ' . $configuration{'password'});
-      }
-  }
-  
-  if($::gJavaParams && $::gJavaParams ne '') {
-      foreach my $param (split(SEPARATOR_CHAR, $::gJavaParams)) {
-          push(@args, "-javaoption $param");
-      }
-  }
-  
-  if($::gCommands && $::gCommands ne '') {
-      foreach my $command (split("\n", $::gCommands)) {
-          push(@args, "-command $command");
-      }
-  }
-  
-  my $cmdLine = createCommandLine(\@args);
-  my $escapedCmdLine = maskPassword($cmdLine, $configuration{'password'});
-  
-  $props{'deployAppLine'} = $escapedCmdLine;
-  setProperties($ec, \%props);
-  
-  print "WSAdmin command line: $escapedCmdLine\n";
-  
-  #execute command
-  my $content = `$cmdLine`;
-  
-  #print log
-  print "$content\n";
-  
-  #evaluates if exit was successful to mark it as a success or fail the step
-  if($? == SUCCESS){
-   
-      $ec->setProperty("/myJobStep/outcome", 'success');
-      
-      #set any additional error or warning conditions here
-      #there may be cases that an error occurs and the exit code is 0.
-      #we want to set to correct outcome for the running step
-      if($content =~ m/WSVR0028I:/){
-          #license expired warning
-          $ec->setProperty("/myJobStep/outcome", 'warning');
-      }
-      
-  }else{
-      $ec->setProperty("/myJobStep/outcome", 'error');
-  }
+    my $file = 'deployapp_script.jython';
+    $file = $websphere->write_jython_script(
+        $file, {},
+        augment_filename_with_random_numbers => 1,
+        script => $ScriptFile
+    );
+    push(@args, '-f ' . $file);
+    push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
 
+    if($::gClasspath && $::gClasspath ne '') {
+        push(@args, '-wsadmin_classpath "' . $::gClasspath . '"');
+    }
+
+    my $connectionType = $configuration{conntype};
+
+    if($connectionType && $connectionType ne '') {
+        push(@args, '-conntype ' . $connectionType);
+    }
+
+    #inject config...
+    if (%configuration) {
+        my $hostParamName;
+        if ($connectionType eq IPC_CONNECTION_TYPE) {
+            $hostParamName = '-ipchost';
+        }
+        else {
+            $hostParamName = '-host';
+        }
+        if ($configuration{'websphere_url'} ne '') {
+            push(@args, $hostParamName . ' ' . $configuration{'websphere_url'});
+        }
+        if ($configuration{'websphere_port'} ne '') {
+            push(@args, '-port ' . $configuration{'websphere_port'});
+        }
+        if ($configuration{'user'} ne '') {
+            push(@args, '-user ' . $configuration{'user'});
+        }
+        if ($configuration{'password'} ne '') {
+            push (@args, '-password ' . $configuration{'password'});
+        }
+    }
+    if($::gJavaParams && $::gJavaParams ne '') {
+        foreach my $param (split(SEPARATOR_CHAR, $::gJavaParams)) {
+            push(@args, "-javaoption $param");
+        }
+    }
+    if($::gCommands && $::gCommands ne '') {
+        foreach my $command (split("\n", $::gCommands)) {
+            push(@args, "-command $command");
+        }
+    }
+
+    my $cmdLine = createCommandLine(\@args);
+    my $escapedCmdLine = maskPassword($cmdLine, $configuration{'password'});
+
+    $props{'deployAppLine'} = $escapedCmdLine;
+    setProperties($ec, \%props);
+
+    print "WSAdmin command line: $escapedCmdLine\n";
+
+    #execute command
+    my $content = `$cmdLine`;
+
+    #print log
+    print "$content\n";
+
+    #evaluates if exit was successful to mark it as a success or fail the step
+    if($? == SUCCESS) {
+        $ec->setProperty("/myJobStep/outcome", 'success');
+        #set any additional error or warning conditions here
+        #there may be cases that an error occurs and the exit code is 0.
+        #we want to set to correct outcome for the running step
+        if ($content =~ m/WSVR0028I:/) {
+            #license expired warning
+            $ec->setProperty("/myJobStep/outcome", 'warning');
+        }
+    }
+    else {
+        $ec->setProperty("/myJobStep/outcome", 'error');
+    }
 }
 
 main();
- 
+
 1;

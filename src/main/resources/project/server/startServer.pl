@@ -21,7 +21,6 @@
 use ElectricCommander;
 use ElectricCommander::PropMod qw(/myProject/modules);
 use WebSphere::Util;
-
 use warnings;
 use strict;
 $|=1;
@@ -51,50 +50,44 @@ $::gAdditionalCommands = "$[additionalcommands]";
 #
 ########################################################################
 sub main() {
-    
-  # create args array
-  my @args = ();
-  my %props;
-  
-  #get an EC object
-  my $ec = new ElectricCommander();
-  $ec->abortOnError(0);
-  
-  
-  push(@args, '"'.$::gScriptLocation.'"');
-  
-  # if target: add to command string
-  if($::gInstanceName && $::gInstanceName ne '') {
-      push(@args, $::gInstanceName);
-  }
-  
-  if($::gAdditionalCommands && $::gAdditionalCommands ne '') {
-      push(@args, $::gAdditionalCommands);
-  }
+    # create args array
+    my @args = ();
+    my %props;
 
-  my $cmdLine = createCommandLine(\@args);
-  $props{'startServerLine'} = $cmdLine;
-  setProperties($ec, \%props);
+    # get an EC object
+    my $ec = new ElectricCommander();
+    $ec->abortOnError(0);
+    push (@args, '"'.$::gScriptLocation.'"');
+    # if target: add to command string
+    if ($::gInstanceName && $::gInstanceName ne '') {
+        push(@args, $::gInstanceName);
+    }
 
-  print "WSAdmin command line: $cmdLine\n";
+    if ($::gAdditionalCommands && $::gAdditionalCommands ne '') {
+        push(@args, $::gAdditionalCommands);
+    }
 
-  #execute command
-  my $content = `$cmdLine`;
+    my $cmdLine = createCommandLine(\@args);
+    $props{'startServerLine'} = $cmdLine;
+    setProperties($ec, \%props);
 
-  #print log
-  print "$content\n";
-  
-  #evaluates if exit was successful to mark it as a success or fail the step
-  if($? == SUCCESS){
-   
-      $ec->setProperty("/myJobStep/outcome", 'success');
-      
-  }else{
-      $ec->setProperty("/myJobStep/outcome", 'error');
-  }
- 
+    print "WSAdmin command line: $cmdLine\n";
+
+    # execute command
+    my $content = `$cmdLine`;
+
+    #print log
+    print "$content\n";
+
+    # evaluates if exit was successful to mark it as a success or fail the step
+    if ($? == SUCCESS) {
+        $ec->setProperty("/myJobStep/outcome", 'success');
+    }
+    else {
+        $ec->setProperty("/myJobStep/outcome", 'error');
+    }
 }
 
 main();
- 
+
 1;

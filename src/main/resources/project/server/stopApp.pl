@@ -21,9 +21,10 @@
 use ElectricCommander;
 use ElectricCommander::PropMod qw(/myProject/modules);
 use WebSphere::Util;
-
+use WebSphere::WebSphere;
 use warnings;
 use strict;
+
 $|=1;
 
 
@@ -38,13 +39,15 @@ my $gClusterName       = trim(q($[clusterName]));
 my $gServerName        = trim(q($[serverName]));
 
 if ($gClusterName) {
- $::gScriptFile = "AdminApplication.stopApplicationOnCluster('$::gAppName', '$gClusterName')";
-} elsif ($gServerName) {
- my ($nodeName, $serverName) = split(/=/, $gServerName);
- $::gScriptFile = "AdminApplication.stopApplicationOnSingleServer('$::gAppName', '$nodeName', '$serverName')";
-} else {
- $::gScriptFile = 'appmgr = AdminControl.queryNames(\'name=ApplicationManager,*\')' . "\n" .
-              'AdminControl.invoke(appmgr,\'stopApplication\',\'' . $::gAppName . '\')';
+    $::gScriptFile = "AdminApplication.stopApplicationOnCluster('$::gAppName', '$gClusterName')";
+}
+elsif ($gServerName) {
+    my ($nodeName, $serverName) = split(/=/, $gServerName);
+    $::gScriptFile = "AdminApplication.stopApplicationOnSingleServer('$::gAppName', '$nodeName', '$serverName')";
+}
+else {
+    $::gScriptFile = 'appmgr = AdminControl.queryNames(\'name=ApplicationManager,*\')' . "\n" .
+        'AdminControl.invoke(appmgr,\'stopApplication\',\'' . $::gAppName . '\')';
 }
 
 $::gWSAdminAbsPath = trim(q($[wsadminabspath]));
@@ -70,115 +73,108 @@ $::gAdditionalOptions = "$[additionalcommands]";
 #
 ########################################################################
 sub main() {
+    # create args array
+    my @args = ();
+    my %props;
+    my $actualOperativeSystem = $^O;
+    my $fixedLocation = $::gWSAdminAbsPath;
+    my %configuration;
 
-  # create args array
-  my @args = ();
-  my %props;
-  my $actualOperativeSystem = $^O;
-  my $fixedLocation = $::gWSAdminAbsPath;
-  my %configuration;
+    #get an EC object
+    my $ec = new ElectricCommander();
+    $ec->abortOnError(0);
+    my $websphere = WebSphere::WebSphere->new_simple($ec);
 
-  #get an EC object
-  my $ec = new ElectricCommander();
-  $ec->abortOnError(0);
+    if ($::gConfigurationName ne '') {
+        %configuration = getConfiguration($ec, $::gConfigurationName);
+    }
 
-  if($::gConfigurationName ne ''){
-      %configuration = getConfiguration($ec, $::gConfigurationName);
-  }
+    push(@args, '"'.$fixedLocation.'"');
 
-  push(@args, '"'.$fixedLocation.'"');
+    if ($::gAdditionalOptions && $::gAdditionalOptions ne '') {
+        push(@args, $::gAdditionalOptions);
+    }
 
-  if($::gAdditionalOptions && $::gAdditionalOptions ne '') {
-      push(@args, $::gAdditionalOptions);
-  }
+    my $file = 'stopapp_script.jython';
+    $file = $websphere->write_jython_script(
+        $file, {},
+        augment_filename_with_random_numbers => 1,
+        script => $::gScriptFile
+    );
+    push(@args, '-f ' . $file);
 
-  open (MYFILE, '>stopapp_script.jython');
-print MYFILE "$::gScriptFile";
-close (MYFILE);
+    push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
 
-push(@args, '-f "stopapp_script.jython"');
-push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
+    if($::gClasspath && $::gClasspath ne '') {
+        push(@args, '-wsadmin_classpath "' . $::gClasspath . '"');
+    }
 
-  if($::gClasspath && $::gClasspath ne '') {
-      push(@args, '-wsadmin_classpath "' . $::gClasspath . '"');
-  }
+    my $connectionType = $configuration{conntype};
+    if ($connectionType && $connectionType ne '') {
+        push(@args, '-conntype ' . $connectionType);
+    }
 
-  my $connectionType = $configuration{conntype};
-  if($connectionType && $connectionType ne '') {
-      push(@args, '-conntype ' . $connectionType);
-  }
+    #inject config...
+    if (%configuration) {
+        my $hostParamName;
+        if($connectionType eq IPC_CONNECTION_TYPE){
+            $hostParamName = '-ipchost';
+        }
+        else {
+            $hostParamName = '-host';
+        }
 
-  #inject config...
-  if(%configuration){
+        if ($configuration{'websphere_url'} ne '') {
+            push(@args, $hostParamName . ' ' . $configuration{'websphere_url'});
+        }
+        if ($configuration{'websphere_port'} ne ''){
+            push(@args, '-port ' . $configuration{'websphere_port'});
+        }
+        if($configuration{'user'} ne ''){
+            push(@args, '-user ' . $configuration{'user'});
+        }
+        if($configuration{'password'} ne ''){
+            push(@args, '-password ' . $configuration{'password'});
+        }
+    }
 
-      my $hostParamName;
+    if($::gJavaParams && $::gJavaParams ne '') {
+        foreach my $param (split(SEPARATOR_CHAR, $::gJavaParams)) {
+            push(@args, "-javaoption $param");
+        }
+    }
+    if($::gCommands && $::gCommands ne '') {
+        foreach my $command (split("\n", $::gCommands)) {
+            push(@args, "-command $command");
+        }
+    }
 
-      if($connectionType eq IPC_CONNECTION_TYPE){
-         $hostParamName = '-ipchost';
-      }else{
-         $hostParamName = '-host';
-      }
+    my $cmdLine = createCommandLine(\@args);
+    my $escapedCmdLine = maskPassword($cmdLine, $configuration{'password'});
 
-      if($configuration{'websphere_url'} ne ''){
-          push(@args, $hostParamName . ' ' . $configuration{'websphere_url'});
-      }
+    $props{'stopAppLine'} = $escapedCmdLine;
+    setProperties($ec, \%props);
+    print "WSAdmin command line: $escapedCmdLine\n";
 
-      if($configuration{'websphere_port'} ne ''){
-          push(@args, '-port ' . $configuration{'websphere_port'});
-      }
+    # execute command
+    my $content = `$cmdLine`;
+    # print log
+    print "$content\n";
 
-      if($configuration{'user'} ne ''){
-          push(@args, '-user ' . $configuration{'user'});
-      }
-
-      if($configuration{'password'} ne ''){
-          push(@args, '-password ' . $configuration{'password'});
-      }
-  }
-
-  if($::gJavaParams && $::gJavaParams ne '') {
-      foreach my $param (split(SEPARATOR_CHAR, $::gJavaParams)) {
-          push(@args, "-javaoption $param");
-      }
-  }
-
-  if($::gCommands && $::gCommands ne '') {
-      foreach my $command (split("\n", $::gCommands)) {
-          push(@args, "-command $command");
-      }
-  }
-
-  my $cmdLine = createCommandLine(\@args);
-  my $escapedCmdLine = maskPassword($cmdLine, $configuration{'password'});
-
-  $props{'stopAppLine'} = $escapedCmdLine;
-  setProperties($ec, \%props);
-
-  print "WSAdmin command line: $escapedCmdLine\n";
-
-  #execute command
-  my $content = `$cmdLine`;
-
-  #print log
-  print "$content\n";
-
-  #evaluates if exit was successful to mark it as a success or fail the step
-  if($? == SUCCESS){
-
-      $ec->setProperty("/myJobStep/outcome", 'success');
-
-      #set any additional error or warning conditions here
-      #there may be cases that an error occurs and the exit code is 0.
-      #we want to set to correct outcome for the running step
-      if($content =~ m/WSVR0028I:/){
-          #license expired warning
-          $ec->setProperty("/myJobStep/outcome", 'warning');
-      }
-
-  }else{
-      $ec->setProperty("/myJobStep/outcome", 'error');
-  }
-
+    # evaluates if exit was successful to mark it as a success or fail the step
+    if ($? == SUCCESS) {
+        $ec->setProperty("/myJobStep/outcome", 'success');
+        #set any additional error or warning conditions here
+        #there may be cases that an error occurs and the exit code is 0.
+        #we want to set to correct outcome for the running step
+        if ($content =~ m/WSVR0028I:/) {
+            #license expired warning
+            $ec->setProperty("/myJobStep/outcome", 'warning');
+        }
+    }
+    else {
+        $ec->setProperty("/myJobStep/outcome", 'error');
+    }
 }
 
 main();
