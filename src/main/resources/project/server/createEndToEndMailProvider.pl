@@ -45,7 +45,7 @@ All rights reserved.
 use ElectricCommander;
 use ElectricCommander::PropMod qw(/myProject/modules);
 use WebSphere::Util;
-
+use WebSphere::WebSphere;
 use warnings;
 use strict;
 $| = 1;
@@ -117,6 +117,7 @@ sub main() {
     my $ec = new ElectricCommander();
     $ec->abortOnError(0);
 
+    my $websphere = WebSphere::WebSphere->new_simple($ec);
     %configuration = getConfiguration( $ec, $gConfigurationName );
     $ScriptFile =
         'AdminResources.createCompleteMailProviderAtScope("'
@@ -362,12 +363,14 @@ sub main() {
 
     push( @args, '"' . $gWSAdminAbsPath . '"' );
 
-    open( MYFILE, '>createCompleteMailProvider_script.jython' );
-    print MYFILE "$ScriptFile ";
+    my $file = 'createCompleteMailProvider_script.jython';
+    $file = $websphere->write_jython_script(
+        $file, {},
+        augment_filename_with_random_numbers => 1,
+        script => $ScriptFile
+    );
 
-    close(MYFILE);
-
-    push( @args, '-f createCompleteMailProvider_script.jython' );
+    push( @args, '-f' . $file);
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
 
     my $connectionType       = $configuration{conntype};

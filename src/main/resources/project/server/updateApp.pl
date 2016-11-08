@@ -77,7 +77,10 @@ sub main {
     die "No configuration found for config name $config_name" unless $websphere;
 
     my $python_filename = 'update_app.py';
-    $websphere->write_jython_script($python_filename);
+    $python_filename = $websphere->write_jython_script(
+        $python_filename, {},
+        augment_filename_with_random_numbers => 1,
+    );
 
     my $shellcmd = $websphere->_create_runfile( $python_filename, @args );
     my $escapedCmdLine = $websphere->_mask_password($shellcmd);
