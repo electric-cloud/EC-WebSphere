@@ -68,7 +68,7 @@ my $gDeployApp = "$[deployApp]";
 my $gAppName   = "$[appname]";
 my $gAppPath   = "$[apppath]";
 my $gContextRoot = "$[contextRoot]";
-my $gCellName  = "$cellname";
+my $gCellName  = "$[cellname]";
 my $gConfigurationName = "$[configname]";
 
 #-------------------------------------------------------------------------
