@@ -1311,11 +1311,11 @@
                         </tr>
                         <tr>
                             <td>Target server(s)</td>
-                            <td>Specify single or list of standalone application servers on which to deploy enterprise application. Specify servers in the form Node=server. For e.g. Node01=Server1,Node02=Server2. sNot required in WebSphere Base Edition.</td>
+                            <td>Specify single or list of standalone application servers on which to deploy enterprise application. Specify servers in the form Node=server. For e.g. Node01=Server1,Node02=Server2. Not required in WebSphere Base Edition.</td>
                         </tr>
                         <tr>
                             <td>Map modules to servers</td>
-                            <td>Specify deployment targets where you want to install the modules that are contained in your application. Modules can be installed on the same deployment target or dispersed among several deployment targets.Give input in format [ "Module1Name" Module1URL server1][ "Module2Name" Module2URL server2 ] For example, [ "Increment EJB module" Increment.jar,META-INF/ejb-jar.xml WebSphere:cell=Cell01,node=Node01,server=singleServer ]</td>
+                            <td>Specify deployment targets where you want to install the modules that are contained in your application. Modules can be installed on the same deployment target or dispersed among several deployment targets. Give input in format [ "Module1Name" Module1URL server1][ "Module2Name" Module2URL server2 ] For example, [ "Increment EJB module" Increment.jar,META-INF/ejb-jar.xml WebSphere:cell=Cell01,node=Node01,server=singleServer ]</td>
                         </tr>
                         <tr>
                             <td>Additional deployment parameters</td>
@@ -2494,7 +2494,7 @@ Replace the examples below with actual new or changed items.-->
                 <p>Phone: 408-419-4300, Option #2 </p>
                 <p>Email: support@electric-cloud.com </p>
                 <br />
-                <p>Copyright &#xA9; 2002 - 2015 Electric Cloud, Inc. All rights reserved. </p>
+                <p>Copyright &#xA9; 2002 - 2016 Electric Cloud, Inc. All rights reserved. </p>
                 <p>Electric Cloud believes the information in this publication is accurate as of its publication date. The information is subject to change without notice and does not represent a commitment from the vendor. </p>
                 <p>THE INFORMATION IN THIS PUBLICATION IS PROVIDED AS IS. ELECTRIC CLOUD, INCORPORATED MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND WITH RESPECT TO THE INFORMATION IN THIS PUBLICATION, AND SPECIFICALLY DISCLAIMS IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.</p>
                 <p>Use, copying, and distribution of any ELECTRIC CLOUD software described in this publication requires an applicable software license. </p> <br />
