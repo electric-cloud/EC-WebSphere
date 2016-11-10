@@ -1423,8 +1423,12 @@
                         </tr>
                         <tr>
                             <td>Context root</td>
-                            <td>Specifies the context root of the web application (WAR).
-A context root for each web module is defined in the application deployment descriptor during application assembly. Use this field to assign a different context root to a web module. The context root is combined with the defined servlet mapping (from the WAR file) to compose the full URL that users type to access the servlet. For example, if the context root is /gettingstarted and the servlet mapping is MySession, then the URL is http://host:port/gettingstarted/MySession.</td>
+                            <td>
+                                <b>Applicable only to web applications (WAR).</b>
+                                <br/>
+                                Specifies the context root of the web application (WAR).
+                                A context root for each web module is defined in the application deployment descriptor during application assembly. Use this field to assign a different context root to a web module. The context root is combined with the defined servlet mapping (from the WAR file) to compose the full URL that users type to access the servlet. For example, if the context root is /gettingstarted and the servlet mapping is MySession, then the URL is http://host:port/gettingstarted/MySession.
+                            </td>
                         </tr>
                     </tbody>
                 </table>
