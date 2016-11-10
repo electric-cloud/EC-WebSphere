@@ -30,7 +30,7 @@ sub main {
     die "No configuration found for config name $config_name" unless $websphere;
 
     my $python_filename = 'stop_cluster.py';
-    $websphere->write_jython_script(
+    $python_filename = $websphere->write_jython_script(
         $python_filename, {},
         augment_filename_with_random_numbers => 1
     );
