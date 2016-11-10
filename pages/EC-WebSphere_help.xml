@@ -2343,6 +2343,11 @@ A context root for each web module is defined in the application deployment desc
                 <img src="../../plugins/EC-WebSphere/images/ModifyApplicationClassLoader/EC-WebSphereModifyApplicationClassLoader4.png" />
             </div>
             <h1 id="rns">Release Notes</h1>
+            <h2>@PLUGIN_KEY@ 2.2.3</h2>
+            <ul>
+                <li>Added support of parallel execution for all plugin procedures.</li>
+                <li>Added "Context root" parameter for Deploy Enterprise Application procedure.</li>
+            </ul>
             <h2>@PLUGIN_KEY@ 2.2.2</h2>
             <ul>
                 <li>Added new procedures - SyncNodes, CheckNodeStatus.</li>
