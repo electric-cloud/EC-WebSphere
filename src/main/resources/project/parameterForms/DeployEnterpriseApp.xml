@@ -332,7 +332,7 @@
 	</formElement>
 
 	<formElement>
-		<type>textarea</type>
+		<type>entry</type>
 		<label>Context root:</label>
 		<property>contextRoot</property>
 		<documentation>
