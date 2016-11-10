@@ -101,7 +101,7 @@ my $websphere = new WebSphere::WebSphere( $ec, $::gConfigName, $::gWsadminAbsPat
 my $app_path = $ec->getProperty('apppath')->findvalue('//value') . '';
 my $context_root = $ec->getProperty('contextRoot')->findvalue('//value') . '';
 my $warning = '';
-if ($app_path =~ /\.ear$/i && $context_root) {
+if ($app_path =~ m/\.ear$/i && $context_root) {
     $warning = 'Context root parameter applicable only for WAR applications';
     $ec->setProperty('contextRoot', '');
 }
