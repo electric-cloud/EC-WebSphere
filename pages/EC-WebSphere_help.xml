@@ -14,7 +14,7 @@
 
         <p>Plugin Version @PLUGIN_VERSION@</p>
         <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" />
-        <p>Revised on Oct 11, 2016</p>
+        <p>Revised on Nov 15, 2016</p>
         <h1>Contents</h1>
 
         <ul>
@@ -112,6 +112,8 @@
         <ul>
             <li>WAS and WASND 8.5.5 on Linux and Windows</li>
             <li>WAS and WASND 8.5.0 on Linux and Windows</li>
+            <li>WAS and WASND 8.0.0 on Linux and Windows</li>
+            <li>WAS 7.0 on Linux and Windows</li>
         </ul>
 
         
