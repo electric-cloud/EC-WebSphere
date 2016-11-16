@@ -2352,6 +2352,7 @@
             <ul>
                 <li>Added support of parallel execution for all plugin procedures.</li>
                 <li>Added "Context root" parameter for Deploy Enterprise Application procedure.</li>
+                <li>Bug fixes in CheckPageStatus procedure.</li>
             </ul>
             <h2>@PLUGIN_KEY@ 2.2.2</h2>
             <ul>
