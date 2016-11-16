@@ -35,6 +35,7 @@ use constant {
     #possible success criterias
     PAGE_FOUND_CRITERIA => 'pagefound',
     PAGE_NOT_FOUND_CRITERIA => 'pagenotfound',
+    HTTP_PAGE_NOT_FOUND_CODE => '404',
     #error-only possible criterias
     SERVER_FAILURE_CRITERIA => 'serverfailure',
     UNEXPECTED_RESPONSE_CODE => 'unexpectedresponse',
