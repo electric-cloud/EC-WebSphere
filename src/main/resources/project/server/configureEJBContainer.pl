@@ -44,7 +44,7 @@ All rights reserved.
 use ElectricCommander;
 use ElectricCommander::PropMod qw(/myProject/modules);
 use WebSphere::Util;
-
+use WebSphere::WebSphere;
 use warnings;
 use strict;
 $| = 1;
@@ -102,6 +102,7 @@ sub main() {
     my $ec = new ElectricCommander();
     $ec->abortOnError(0);
 
+    my $websphere = WebSphere::WebSphere->new_simple($ec);
     %configuration = getConfiguration( $ec, $gConfigurationName );
 
     push( @args, qq|"$gWSAdminAbsPath"| );
@@ -122,7 +123,6 @@ sub main() {
     $ScriptFile .= "/Server:" . $gServerName . "/')\n";
 
     $ScriptFile .= "ejbc1 = AdminConfig.list('EJBContainer', serv1)\n";
-    
     $ScriptFile .= "AdminConfig.modify(ejbc1, [";
     if ($gPassivationDirectory) {
         $ScriptFile .=
@@ -220,12 +220,18 @@ sub main() {
     $ScriptFile .= "print 'EJB container settings set successfully.'\n";
     $ScriptFile .= "print AdminConfig.showall(ejbc1)\n";
 
-    open( MYFILE, '>configureEJBContainer_script.jython' );
+    my $file = 'configureEJBContainer_script.jython';
+    $file = $websphere->write_jython_script(
+        $file, {},
+        augment_filename_with_random_numbers => 1,
+        script => $ScriptFile
+    );
 
-    print MYFILE "$ScriptFile";
-    close(MYFILE);
+    # open( MYFILE, '>configureEJBContainer_script.jython' );
+    # print MYFILE "$ScriptFile";
+    # close(MYFILE);
 
-    push( @args, '-f configureEJBContainer_script.jython' );
+    push( @args, '-f ' . $file );
     push( @args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE );
 
     my $hostParamName;

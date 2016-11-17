@@ -83,6 +83,14 @@
                         <propertyName>update_app.py</propertyName>
                         <value/>
                     </property>
+                    <property>
+                        <propertyName>sync_nodes.py</propertyName>
+                        <value/>
+                    </property>
+                    <property>
+                        <propertyName>check_node_status.py</propertyName>
+                        <value/>
+                    </property>
                 </propertySheet>
             </property>
             <property>
@@ -8857,6 +8865,57 @@
                                 </property>
 
                                 <property>
+                                    <propertyName>syncActiveNodes</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>startApp</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+                                <property>
                                     <propertyName>precompileJSP</propertyName>
                                     <propertySheet>
                                         <property>
@@ -8894,6 +8953,17 @@
                                 </property>
 
                                 <property>
+                                    <propertyName>contextRoot</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+                                <property>
                                     <propertyName>distributeApp</propertyName>
                                     <propertySheet>
                                         <property>
@@ -8909,7 +8979,7 @@
                                         <property>
                                             <propertyName>initiallyChecked</propertyName>
                                             <expandable>1</expandable>
-                                            <value>0</value>
+                                            <value>1</value>
                                         </property>
                                         <property>
                                             <propertyName>uncheckedValue</propertyName>
@@ -9543,6 +9613,18 @@
             </formalParameter>
 
             <formalParameter>
+                <formalParameterName>contextRoot</formalParameterName>
+                <defaultValue/>
+                <description>Specifies the context root of the web application (WAR).
+
+A context root for each web module is defined in the application deployment descriptor during application assembly. Use this field to assign a different context root to a web module. The context root is combined with the defined servlet mapping (from the WAR file) to compose the full URL that users type to access the servlet. For example, if the context root is /gettingstarted and the servlet mapping is MySession, then the URL is http://host:port/gettingstarted/MySession.
+
+                </description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
                 <formalParameterName>distributeApp</formalParameterName>
                 <defaultValue/>
                 <description>Specifies whether the product expands application binaries in the installation location during installation.</description>
@@ -9685,9 +9767,24 @@
             <formalParameter>
                 <formalParameterName>additionalDeployParams</formalParameterName>
                 <defaultValue/>
-                <description>Specify any additional options for AdminApp.Install object in case not listed in this input form.</description>
+                <description>Specify any additional options for AdminApp. Install object in case not listed in this input form.</description>
                 <required>0</required>
                 <type>textarea</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>syncActiveNodes</formalParameterName>
+                <defaultValue/>
+                <description>If checked, active nodes will be synchronized after the deployment. The flag is applicable only for Network Deployment installation.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>startApp</formalParameterName>
+                <defaultValue/>
+                <description>If checked, application will be started after deployment.</description>
+                <required>0</required>
+                <type>checkbox</type>
             </formalParameter>
 
             <step>
@@ -9726,6 +9823,230 @@
                 </propertySheet>
             </step>
         </procedure>
+
+        <procedure>
+            <procedureName>SyncNodes</procedureName>
+            <description>Synchronizes active nodes.</description>
+            <jobNameTemplate>WebSphere Sync Nodes $[jobId]</jobNameTemplate>
+            <resourceName/>
+            <workspaceName/>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <expandable>1</expandable>
+                    <value></value>
+                </property>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>configurationName</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>wsadminAbsPath</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+                            </propertySheet>
+                        </property>
+                    </propertySheet>
+                </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>wsadminAbsPath</formalParameterName>
+                <defaultValue />
+                <description>Absolute path of wsadmin, including filename and extension. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'. </description>
+                <required>1</required>
+                <type>entry</type>
+                <expansionDeferred>1</expansionDeferred>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>configurationName</formalParameterName>
+                <defaultValue/>
+                <description>The plugin's configuration name.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>SyncNodes</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command></command>
+                <condition/>
+                <description>Syncronizes Active Nodes</description>
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName/>
+                <parallel>0</parallel>
+                <postProcessor>postp</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName/>
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit>5</timeLimit>
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory/>
+                <workspaceName/>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <procedure>
+            <procedureName>CheckNodeStatus</procedureName>
+            <description>Checks Node Status.</description>
+            <jobNameTemplate>Check Node Status $[jobId]</jobNameTemplate>
+            <resourceName/>
+            <workspaceName/>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <expandable>1</expandable>
+                    <value></value>
+                </property>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>configurationName</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>wsadminAbsPath</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>nodeName</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>successCriteria</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+
+                            </propertySheet>
+                        </property>
+                    </propertySheet>
+                </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>wsadminAbsPath</formalParameterName>
+                <defaultValue />
+                <description>Absolute path of wsadmin, including filename and extension. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'. </description>
+                <required>1</required>
+                <type>entry</type>
+                <expansionDeferred>1</expansionDeferred>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>configurationName</formalParameterName>
+                <defaultValue/>
+                <description>The plugin's configuration name.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>nodeName</formalParameterName>
+                <defaultValue/>
+                <description>Name of the Node to check.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>successCriteria</formalParameterName>
+                <defaultValue />
+                <description>Сonditions that must be met for successful completion of the procedure.</description>
+                <required>1</required>
+                <type>select</type>
+            </formalParameter>
+
+            <step>
+                <stepName>CheckNodeStatus</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command></command>
+                <condition/>
+                <description>Checks Node Status</description>
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName/>
+                <parallel>0</parallel>
+                <postProcessor>postp</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName/>
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit>5</timeLimit>
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory/>
+                <workspaceName/>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+
     </project>
 
 </exportedData>

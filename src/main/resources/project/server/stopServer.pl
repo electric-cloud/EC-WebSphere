@@ -52,87 +52,72 @@ $::gConfigName = "$[configname]";
 #
 ########################################################################
 sub main() {
-    
-  # create args array
-  my @args = ();
-  my %props;
-  
-  #get an EC object
-  my $ec = new ElectricCommander();
-  $ec->abortOnError(0);
-  
-  
-  my %configuration;
-  
-  if($::gConfigName ne ''){
-      %configuration = getConfiguration($ec, $::gConfigName);
-  }
+    # create args array
+    my @args = ();
+    my %props;
 
-  my $extension = '';
-  my $actualOperativeSystem = $^O;
-  
-  my $fixedLocation = $::gScriptLocation;
+    #get an EC object
+    my $ec = new ElectricCommander();
+    $ec->abortOnError(0);
+    my %configuration;
 
-  push(@args, '"'.$fixedLocation.'"');
-  
-  # if target: add to command string
-  if($::gInstanceName && $::gInstanceName ne '') {
-      push(@args, $::gInstanceName);
-  }
-  
-  if(%configuration){
-      
-      if($configuration{'user'} ne ''){
-          push(@args, '-username ' . $configuration{'user'});
-      }
-      
-      if($configuration{'password'} ne ''){
-          push(@args, '-password ' . $configuration{'password'});
-      }
-      
-      if($configuration{'websphere_port'} ne ''){
-          push(@args, '-port ' . $configuration{'websphere_port'});
-      }
-      
-  }
-  
-  if($::gAdditionalCommands && $::gAdditionalCommands ne '') {
-      push(@args, $::gAdditionalCommands);
-  }
+    if ($::gConfigName ne '') {
+        %configuration = getConfiguration($ec, $::gConfigName);
+    }
 
-  my $cmdLine = createCommandLine(\@args);
-  my $escapedCmdLine = maskPassword($cmdLine, $configuration{'password'});
-  
-  $props{'stopServerLine'} = $escapedCmdLine;
-  setProperties($ec, \%props);
-  
-  print "WSAdmin command line: $escapedCmdLine\n";
+    my $extension = '';
+    my $actualOperativeSystem = $^O;
 
-  #execute command
-  my $content = `$cmdLine`;
-  
-  #print log
-  print "$content\n";
-  
-  #evaluates if exit was successful to mark it as a success or fail the step
-  if($? == SUCCESS){
-   
-      $ec->setProperty("/myJobStep/outcome", 'success');
-      
-      #set any additional error or warning conditions here
-      #there may be cases that an error occurs and the exit code is 0.
-      #we want to set to correct outcome for the running step
-      if($content =~ m/WSVR0028I:/){
-          #license expired warning
-          $ec->setProperty("/myJobStep/outcome", 'warning');
-      }
-      
-  }else{
-      $ec->setProperty("/myJobStep/outcome", 'error');
-  }
+    my $fixedLocation = $::gScriptLocation;
 
+    push(@args, '"'.$fixedLocation.'"');
+    # if target: add to command string
+    if ($::gInstanceName && $::gInstanceName ne '') {
+        push(@args, $::gInstanceName);
+    }
+
+    if (%configuration) {
+        if ($configuration{'user'} ne '') {
+            push(@args, '-username ' . $configuration{'user'});
+        }
+        if ($configuration{'password'} ne '') {
+            push(@args, '-password ' . $configuration{'password'});
+        }
+        if ($configuration{'websphere_port'} ne '') {
+            push(@args, '-port ' . $configuration{'websphere_port'});
+        }
+    }
+    if ($::gAdditionalCommands && $::gAdditionalCommands ne '') {
+        push(@args, $::gAdditionalCommands);
+    }
+
+    my $cmdLine = createCommandLine(\@args);
+    my $escapedCmdLine = maskPassword($cmdLine, $configuration{'password'});
+    $props{'stopServerLine'} = $escapedCmdLine;
+    setProperties($ec, \%props);
+    print "WSAdmin command line: $escapedCmdLine\n";
+
+    # execute command
+    my $content = `$cmdLine`;
+    # print log
+    print "$content\n";
+
+    # evaluates if exit was successful to mark it as a success or fail the step
+    if ($? == SUCCESS) {
+        $ec->setProperty("/myJobStep/outcome", 'success');
+        # set any additional error or warning conditions here
+        # there may be cases that an error occurs and the exit code is 0.
+        # we want to set to correct outcome for the running step
+        if ($content =~ m/WSVR0028I:/) {
+            #license expired warning
+            $ec->setProperty("/myJobStep/outcome", 'warning');
+        }
+    }
+    else {
+        $ec->setProperty("/myJobStep/outcome", 'error');
+    }
 }
 
 main();
- 
+
 1;

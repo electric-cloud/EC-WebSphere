@@ -28,11 +28,13 @@ use Data::Dumper;
 Constructs a new L<WebSphere::WebSphere> object.
 
 =over
+
 2>&1
+
 =item C<$ec>
-        
+
 Reference to L<ElectricCommander> object.
-        
+
 =item C<$configuration>
 
 String with name of plugin configuration
@@ -44,6 +46,7 @@ Absolute path to wsadmin utility
 =back
 
 Returns new instance of L<WebSphere::WebSphere> object.
+
 =cut
 
 sub new {
@@ -53,7 +56,7 @@ sub new {
     my $configuration = $self->_getConfiguration($configurationName);
 
     if ( not $configuration ) {
-        return undef;
+        exit 1;
     }
 
     $self->{configuration} = $configuration;
@@ -64,6 +67,7 @@ sub new {
 
 Execute python script in wsadmin, and parse output from command.
 Python script must output data in json.
+
 =over
 
 =item C<$file>
@@ -75,6 +79,7 @@ String with path to python script
 Returns hash containing two hashes:
  messages - hash of wsadmin messages, { messageid, description }
  json - json output of script
+
 =cut
 
 sub wsadmin {
@@ -171,7 +176,9 @@ sub _getConfiguration {
 
     # Check if configuration exists
     unless ( keys(%configuration) ) {
-        print "Error: Configuration '$configurationName' doesn't exist\n";
+        my $error_string = "Configuration '$configurationName' doesn't exists";
+        print "Error: $error_string\n";
+        $self->setSummary("$error_string");
         return undef;
     }
 
@@ -188,19 +195,90 @@ sub _getConfiguration {
 
 Retrieves python script from properties and writes it into the specified $filename.
 
+    $websphere->write_jython_script(
+        'path_to_file.py', {},
+        augment_filename_with_random_numbers => 1
+    );
+
+If augment_filename_with_random_numbers was provided, method will augment filename by random numbers sequence.
+For example:
+
+test.py => test_524808719411718.py
+
 =cut
 
 sub write_jython_script {
-    my ( $self, $filename, $tmpl_params ) = @_;
+    my ( $self, $filename, $tmpl_params, %opts ) = @_;
 
     my $ec = $self->{ec};
-    my $script = $ec->getProperty("/myProject/wsadmin_scripts/$filename")->getNodeText('//value');
+    my $script;
+    if ($opts{script}) {
+        $script = $opts{script};
+    }
+    else {
+        $script = $ec->getProperty("/myProject/wsadmin_scripts/$filename")->getNodeText('//value');
+    }
 
-    die "No script content found in /myProject/wsadmin_scripts/$filename property" unless $script;
+    unless ($script) {
+        die "No script content found in /myProject/wsadmin_scripts/$filename property and was not provided in parameters.";
+    }
 
-    open my $fh, ">$filename" or die "Cannot open file $filename: $!";
+    if ($opts{augment_filename_with_random_numbers}) {
+        my $rnd = gen_random_numbers( 42 );
+        $rnd = '_' . $rnd;
+        $filename =~ s/(\.[\w]+?)$/$rnd$1/s;
+    }
+    open ( my $fh, '>', $filename ) or die "Cannot open file $filename: $!";
     print $fh $script;
     close $fh;
+
+    return $filename;
+}
+
+sub new_simple {
+    my ( $class, $ec ) = @_;
+
+    if ( !$ec ) {
+        $ec = ElectricCommander->new();
+    }
+    my $self = {
+        ec => $ec
+    };
+    bless $self, $class;
+    return $self;
+}
+
+=head2
+
+STATIC METHOD
+
+Returns random numbers sequence by modifier.
+
+=cut
+
+sub gen_random_numbers {
+    my ($mod) = @_;
+
+    my $rand = rand($mod);
+    $rand =~ s/\.//s;
+    return $rand;
+}
+
+=head2
+
+Sets summary property to provided one.
+
+    $ws->setSummary("Error occured");
+
+=cut
+
+sub setSummary {
+    my ($self, @msg) = @_;
+
+    my $msg = join '', @msg;
+    return unless $msg;
+    $self->{ec}->setProperty('/myCall/summary', $msg);
+    return 1;
 }
 
 1;

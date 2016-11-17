@@ -41,7 +41,7 @@
 		<type>entry</type>
 		<label>Application Name:</label>
 		<property>appName</property>
-		<documentation>Specifies logical name to be given to installing enterprise application. Do not include whitespaces in application name. </documentation>
+		<documentation>Specifies logical name to be given to installing enterprise application. Do not include whitespaces in application name.</documentation>
 		<required>1</required>
         <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/applications</propertyReference>
 	</formElement>
@@ -59,7 +59,7 @@
 		<label>Target cluster:</label>
 		<property>cluster</property>
         <propertyReference separator="," renderType="description">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/clusters</propertyReference>
-		<documentation>Name of the cluster on which to deploy enterprise application.Not required in WebSphere Base Edition.Enter either target cluster or target server(s).</documentation>
+		<documentation>Name of the cluster on which to deploy enterprise application. Not required in WebSphere Base Edition. Enter either target cluster or target server(s).</documentation>
 		<required>0</required>
 	</formElement>
 
@@ -77,7 +77,7 @@
 		<label>Map modules to servers:</label>
 		<property>MapModulesToServers</property>
 		<required>0</required>
-		<documentation>Specify deployment targets where you want to install the modules that are contained in your application. Modules can be installed on the same deployment target or dispersed among several deployment targets.Give input in format [ "Module1Name" Module1URL server1][ "Module2Name" Module2URL server2 ] E.g.[ "Increment EJB module" Increment.jar,META-INF/ejb-jar.xml WebSphere:cell=Cell01,node=Node01,server=singleServer ]</documentation>
+		<documentation>Specify deployment targets where you want to install the modules that are contained in your application. Modules can be installed on the same deployment target or dispersed among several deployment targets. Give input in format [ "Module1Name" Module1URL server1][ "Module2Name" Module2URL server2 ] E.g. [ "Increment EJB module" Increment.jar,META-INF/ejb-jar.xml WebSphere:cell=Cell01,node=Node01,server=singleServer ]</documentation>
 	</formElement>
 
 	<formElement>
@@ -85,7 +85,7 @@
 		<label>Additional deployment parameters:</label>
 		<property>additionalDeployParams</property>
 		<required>0</required>
-		<documentation>Specify any additional options for AdminApp.Install object in case not listed in this input form.For more information about each of the supported arguments, refer to 'http://www-01.ibm.com/support/knowledgecenter/SSAW57_8.5.5/com.ibm.websphere.nd.doc/ae/rxml_taskoptions.html'</documentation>
+		<documentation>Specify any additional options for AdminApp. Install object in case not listed in this input form. For more information about each of the supported arguments, refer to 'http://www-01.ibm.com/support/knowledgecenter/SSAW57_8.5.5/com.ibm.websphere.nd.doc/ae/rxml_taskoptions.html'.</documentation>
 	</formElement>
 
 	<formElement>
@@ -93,7 +93,7 @@
 		<label>Directory to install application:</label>
 		<property>installDir</property>
 		<required>0</required>
-		<documentation>Specifies the directory to which the enterprise archive (EAR) file will be installed.Default is profile_root/installedApps/cell_name/application_name.ear directory</documentation>
+		<documentation>Specifies the directory to which the enterprise archive (EAR) file will be installed. Default is profile_root/installedApps/cell_name/application_name.ear directory.</documentation>
 	</formElement>
 
 	<formElement>
@@ -110,7 +110,7 @@
 	<formElement>
 		<label>Distribute application?:</label>
 		<property>distributeApp</property>
-		<value/>
+		<value>1</value>
 		<documentation>Specifies whether the product expands application binaries in the installation location during installation.</documentation>
 		<required>0</required>
 		<type>checkbox</type>
@@ -134,7 +134,7 @@
 		<label>Deploy enterprise beans?:</label>
 		<property>deployBeans</property>
 		<value/>
-		<documentation>Specifies whether the EJBDeploy tool runs during application installation.Default is false(true for EJB 3.0 modules)</documentation>
+		<documentation>Specifies whether the EJBDeploy tool runs during application installation. Default is false(true for EJB 3.0 modules).</documentation>
 		<required>0</required>
 		<type>checkbox</type>
 		<checkedValue>1</checkedValue>
@@ -145,7 +145,7 @@
 		<label>Create MBeans for resources?:</label>
 		<property>createMBeans</property>
 		<value/>
-		<documentation>Specifies whether to create MBeans for resources such as servlets or JSP files within an application when the application starts.Default is create MBeans.</documentation>
+		<documentation>Specifies whether to create MBeans for resources such as servlets or JSP files within an application when the application starts. Default is create MBeans.</documentation>
 		<required>0</required>
 		<type>checkbox</type>
 		<checkedValue>1</checkedValue>
@@ -167,7 +167,7 @@
 		<label>Deploy web services?:</label>
 		<property>deployWS</property>
 		<value/>
-		<documentation>Specifies whether to deploy web services.Default is NO.</documentation>
+		<documentation>Specifies whether to deploy web services. Default is do not enable Deploy web services.</documentation>
 		<required>0</required>
 		<type>checkbox</type>
 		<checkedValue>1</checkedValue>
@@ -190,7 +190,7 @@
 		<label>Allow EJB reference targets to resolve automatically?:</label>
 		<property>autoResolveEJBRef</property>
 		<value/>
-		<documentation>Specifies whether the embedded configuration should be processed</documentation>
+		<documentation>Specifies whether the embedded configuration should be processed.</documentation>
 		<required>0</required>
 		<type>checkbox</type>
 		<checkedValue>1</checkedValue>
@@ -201,7 +201,7 @@
 		<label>Deploy client modules?:</label>
 		<property>deployClientMod</property>
 		<value/>
-		<documentation>Select if the file to deploy has one or more client modules and want to configure environment entries for the client modules.Default is do not enable Client Module</documentation>
+		<documentation>Select if the file to deploy has one or more client modules and want to configure environment entries for the client modules. Default is do not enable Client Module.</documentation>
 		<required>0</required>
 		<type>checkbox</type>
 		<checkedValue>1</checkedValue>
@@ -212,7 +212,28 @@
 		<label>Validate schema?:</label>
 		<property>validateSchema</property>
 		<value/>
-		<documentation> Specifies whether to validate the deployment descriptors against published Java EE deployment descriptor schemas.</documentation>
+		<documentation>Specifies whether to validate the deployment descriptors against published Java EE deployment descriptor schemas.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+    <formElement>
+		<label>Synchronize active nodes?:</label>
+		<property>syncActiveNodes</property>
+		<value>1</value>
+		<documentation>Specify whether to synchronize active nodes. Applicable only for Network Deployment installation. Enabled by default.</documentation>
+		<required>0</required>
+		<type>checkbox</type>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+	</formElement>
+
+    <formElement>
+		<label>Start application?:</label>
+		<property>startApp</property>
+		<value>1</value>
+		<documentation>Specify whether to start application or not. Enabled by default.</documentation>
 		<required>0</required>
 		<type>checkbox</type>
 		<checkedValue>1</checkedValue>
@@ -224,7 +245,7 @@
 		<label>Reload interval in seconds:</label>
 		<property>reloadInterval</property>
 		<required>0</required>
-		<documentation>Specifies the number of seconds to scan the application's file system for updated files.Default is 3 seconds.</documentation>
+		<documentation>Specifies the number of seconds to scan the application's file system for updated files. Default is 3 seconds.</documentation>
 	</formElement>
 
 	<formElement>
@@ -263,7 +284,7 @@
 		<label>Business level application name:</label>
 		<property>blaName</property>
 		<required>0</required>
-		<documentation>Specifies whether websphere creates a new business­level application with the enterprise application that you are installing or makes the enterprise application a composition unit of an existing business­level application.The default is to create a new business­level application</documentation>
+		<documentation>Specifies whether websphere creates a new business­level application with the enterprise application that you are installing or makes the enterprise application a composition unit of an existing business­level application. The default is to create a new business­level application.</documentation>
 	</formElement>
 
 	<formElement>
@@ -272,7 +293,7 @@
 		<property>clientDeployMode</property>
 		<required>0</required>
 		<documentation>Specifies whether to deploy client modules to an isolated deployment target (Isolated), a federated node of a deployment manager (Federated),
-			or an application server (Server Deployed).Default is Isolated</documentation>
+			or an application server (Server Deployed). Default is Isolated</documentation>
 		<option><name>Isolated</name><value>isolated</value></option>
 		<option><name>Federated</name><value>federated</value></option>
 		<option><name>Server Deployed</name><value>server_deployed</value></option>
@@ -291,7 +312,7 @@
 		<label>Wsadmin Classpath:</label>
 		<property>classpath</property>
 		<required>0</required>
-		<documentation>Jars to be passed to the wsadmin classpath. It is a string containing paths (semicolon-separated) the required JARs to execute wsadmin in a particular job. i.e: 'c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar' or '/MyDir/Myjar.jar;/yourdir/yourdir.jar'</documentation>
+		<documentation>Jars to be passed to the wsadmin classpath. It is a string containing paths (semicolon-separated) the required JARs to execute wsadmin in a particular job. i.e: 'c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar' or '/MyDir/Myjar.jar;/yourdir/yourdir.jar'.</documentation>
 	</formElement>
 
 	<formElement>
@@ -299,7 +320,7 @@
 		<label>Wsadmin Java Parameters:</label>
 		<property>javaparams</property>
 		<required>0</required>
-		<documentation>	Java options to be passed to wsadmin, separate them using semicolons (;).</documentation>
+		<documentation>Java options to be passed to wsadmin, separate them using semicolons (;).</documentation>
 	</formElement>
 
 	<formElement>
@@ -307,6 +328,17 @@
 		<label>Wsadmin Additional Arguments:</label>
 		<property>additionalcommands</property>
 		<documentation>Additional arguements to be passed to wsadmin.</documentation>
+		<required>0</required>
+	</formElement>
+
+	<formElement>
+		<type>entry</type>
+		<label>Context root:</label>
+		<property>contextRoot</property>
+		<documentation>
+			<b>Applicable only to web applications (WAR).</b><br />
+Specifies the context root of the web application (WAR).
+A context root for each web module is defined in the application deployment descriptor during application assembly. Use this field to assign a different context root to a web module. The context root is combined with the defined servlet mapping (from the WAR file) to compose the full URL that users type to access the servlet. For example, if the context root is /gettingstarted and the servlet mapping is MySession, then the URL is http://host:port/gettingstarted/MySession.</documentation>
 		<required>0</required>
 	</formElement>
 

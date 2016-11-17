@@ -192,8 +192,19 @@ $xpath = $ec->attachCredential($projName, $credName,
 
 $errors .= $ec->checkAllErrors($xpath);
 
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'SyncNodes',
+     stepName => 'SyncNodes'});
+
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'CheckNodeStatus',
+     stepName => 'CheckNodeStatus'});
+
+$errors .= $ec->checkAllErrors($xpath);
+
 if ($errors ne '') {
-    
     # Cleanup the partially created configuration we just created
     $ec->deleteProperty($configPath);
     $ec->deleteCredential($projName, $credName);

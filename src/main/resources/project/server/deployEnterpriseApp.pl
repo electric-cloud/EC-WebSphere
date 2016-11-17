@@ -98,15 +98,23 @@ $ec->abortOnError(0);
 
 my $websphere = new WebSphere::WebSphere( $ec, $::gConfigName, $::gWsadminAbsPath );
 
+my $app_path = $ec->getProperty('apppath')->findvalue('//value') . '';
+my $context_root = $ec->getProperty('contextRoot')->findvalue('//value') . '';
+my $warning = '';
+if ($app_path =~ m/\.ear$/i && $context_root) {
+    $warning = 'Context root parameter applicable only for WAR applications';
+    $ec->setProperty('contextRoot', '');
+}
+
 my $file = 'deploy_enterprise_application.py';
 my $script = $ec->getProperty("/myProject/wsadmin_scripts/$file")->getNodeText('//value');
 
-open( my $fh, '>', $file ) or die "Cannot write to $file: $!";
-print $fh $script;
+$file = $websphere->write_jython_script(
+    $file, {},
+    augment_filename_with_random_numbers => 1
+);
 
 my $debug = $websphere->{configuration}->{debug};
-
-close $fh;
 
 my $shellcmd = $websphere->_create_runfile( $file, @args );
 my $escapedCmdLine = $websphere->_mask_password($shellcmd);
@@ -127,7 +135,13 @@ print `$shellcmd 2>&1`;
 
 #evaluates if exit was successful to mark it as a success or fail the step
 if ( $? == SUCCESS ) {
-    $ec->setProperty( "/myJobStep/outcome", 'success' );
+    if ($warning) {
+        $ec->setProperty('/myJobStep/outcome', 'warning');
+        $ec->setProperty('/myCall/summary', $warning);
+    }
+    else {
+        $ec->setProperty( "/myJobStep/outcome", 'success' );
+    }
 }
 else {
     $ec->setProperty( "/myJobStep/outcome", 'error' );

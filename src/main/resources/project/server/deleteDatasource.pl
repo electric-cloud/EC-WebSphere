@@ -21,7 +21,7 @@
 use ElectricCommander;
 use ElectricCommander::PropMod qw(/myProject/modules);
 use WebSphere::Util;
-
+use WebSphere::WebSphere;
 use warnings;
 use strict;
 $|=1;
@@ -33,6 +33,7 @@ $|=1;
 
 my $ec = new ElectricCommander();
 $ec->abortOnError(0);
+my $websphere = WebSphere::WebSphere->new_simple($ec);
 
 $::gWSAdminAbsPath = ($ec->getProperty("wsadminabspath") )->findvalue("//value");
 $::gDatasourceName = ($ec->getProperty("datasourceName") )->findvalue("//value");
@@ -55,71 +56,64 @@ $::gConfigurationName = ($ec->getProperty("configname") )->findvalue("//value");
 #
 ######################################################################
 sub main() {
-  
-  # create args array
-  my @args = ();
-  my %props;
-  my %configuration;
+    # create args array
+    my @args = ();
+    my %props;
+    my %configuration;
 
-  if($::gConfigurationName ne ''){
-      %configuration = getConfiguration($ec, $::gConfigurationName);
-  }
+    if ($::gConfigurationName ne '') {
+        %configuration = getConfiguration($ec, $::gConfigurationName);
+    }
 
-  push(@args, '"'.$::gWSAdminAbsPath.'"');
+    push(@args, '"'.$::gWSAdminAbsPath.'"');
 
-
-  my $ScriptFile = 'newds1 = AdminConfig.getid(\'/DataSource:' . $::gDatasourceName . '/\')
+    my $ScriptFile = 'newds1 = AdminConfig.getid(\'/DataSource:' . $::gDatasourceName . '/\')
 print AdminConfig.remove(newds1)
 
 AdminConfig.save()';
-	
-  open (MYFILE, '>deleteDS_script.jython');
-  
-  print MYFILE "$ScriptFile";
-  close (MYFILE);
-      
-  push(@args, '-f deleteDS_script.jython');
-  push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
 
-  my $connectionType = $configuration{conntype};
-  push(@args, '-conntype ' . $connectionType);
-  
-  	
-  #inject config...
-  if(%configuration){
-      
-      if($configuration{'websphere_url'} ne ''){
-          push(@args, '-host ' . $configuration{'websphere_url'});
-      }
-      
-      if($configuration{'websphere_port'} ne ''){
-          push(@args, '-port ' . $configuration{'websphere_port'});
-      }
-      
-      if($configuration{'user'} ne ''){
-          push(@args, '-user ' . $configuration{'user'});
-      }
-      
-      if($configuration{'password'} ne ''){
-          push(@args, '-password ' . $configuration{'password'});
-      }
-  }
+    my $file = 'deleteDS_script.jython';
+    $file = $websphere->write_jython_script(
+        $file, {},
+        augment_filename_with_random_numbers => 1,
+        script => $ScriptFile
+    );
+    push(@args, '-f ' . $file);
 
-  my $cmdLine = createCommandLine(\@args);
-  my $escapedCmdLine = maskPassword($cmdLine, $configuration{'password'});
-  
-  $props{'deleteDatasourceLine'} = $escapedCmdLine;
-  setProperties($ec, \%props);
-  
-  print "WSAdmin command line: $escapedCmdLine\n";
+    push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
+    my $connectionType = $configuration{conntype};
+    push(@args, '-conntype ' . $connectionType);
 
-  #execute command
-  my $content = `$cmdLine`;
-  
-  #print log
-  print "$content\n";
+    #inject config...
+    if (%configuration) {
+        if ($configuration{'websphere_url'} ne '') {
+            push(@args, '-host ' . $configuration{'websphere_url'});
+        }
+        if ($configuration{'websphere_port'} ne '') {
+            push(@args, '-port ' . $configuration{'websphere_port'});
+        }
+        if ($configuration{'user'} ne '') {
+            push(@args, '-user ' . $configuration{'user'});
+        }
+        if ($configuration{'password'} ne '') {
+            push(@args, '-password ' . $configuration{'password'});
+        }
+    }
+
+    my $cmdLine = createCommandLine(\@args);
+    my $escapedCmdLine = maskPassword($cmdLine, $configuration{'password'});
+    $props{'deleteDatasourceLine'} = $escapedCmdLine;
+    setProperties($ec, \%props);
+
+    print "WSAdmin command line: $escapedCmdLine\n";
+
+    #execute command
+    my $content = `$cmdLine`;
+
+    #print log
+    print "$content\n";
 }
 
 main();
- 
+
 1;

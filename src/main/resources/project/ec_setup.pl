@@ -230,6 +230,22 @@ my %modifyApplicationClassLoader = (
     category    => "Application Server"
 );
 
+my %syncNodes = (
+    label       => "WebSphere - Sync Nodes",
+    procedure   => "SyncNodes",
+    description => "Synchronizes Active Nodes.",
+    category    => "Application Server"
+);
+
+my %checkNodeStatus = (
+    label       => "WebSphere - Check Node Status",
+    procedure   => "CheckNodeStatus",
+    description => "Checks Node Status.",
+    category    => "Application Server"
+);
+
+
+
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy App");
@@ -264,6 +280,8 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create J
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create JavaMail session");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Map Shared Library");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Modify Application ClassLoader");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Sync Nodes");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Check Node Status");
 
 @::createStepPickerSteps = (
     \%checkPageStatus, \%checkServerStatus,
@@ -281,7 +299,8 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Modify A
     \%configEJBContainer, \%updateApp,
     \%deployEnterpriseApp, \%startCluster,
     \%stopCluster, \%mapSharedLibrary,
-    \%modifyApplicationClassLoader
+    \%modifyApplicationClassLoader, \%syncNodes,
+    \%checkNodeStatus
 );
 
 if ($upgradeAction eq "upgrade") {
@@ -546,7 +565,6 @@ if ($upgradeAction eq "upgrade") {
                 procedureName => 'Discover',
                 stepName => 'DiscoverResources'
             });
-            
             # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DiscoverResource',
@@ -559,6 +577,14 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'ModifyApplicationClassLoader',
                 stepName => 'ModifyApplicationClassLoader'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'SyncNodes',
+                stepName => 'SyncNodes'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CheckNodeStatus',
+                stepName => 'CheckNodeStatus'
             });
         }
     }

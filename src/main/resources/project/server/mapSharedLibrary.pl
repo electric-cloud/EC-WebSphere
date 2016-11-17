@@ -16,7 +16,7 @@
 
 =head1 NAME
 
-mapSharedLobrary.pl - a perl library for shared libraries mapping.
+mapSharedLibrary.pl - a perl library for shared libraries mapping.
 
 =head1 SYNOPSIS
 
@@ -71,9 +71,10 @@ my $websphere = new WebSphere::WebSphere( $ec, $configName, $wsadminAbsPath );
 my $file = 'map_shared_library.py';
 my $script = $ec->getProperty("/myProject/wsadmin_scripts/$file")->getNodeText('//value');
 
-open( my $fh, '>', $file ) or die "Cannot write to $file: $!";
-print $fh $script;
-close $fh;
+$file = $websphere->write_jython_script(
+    $file, {},
+    augment_filename_with_random_numbers => 1
+);
 
 my $shellcmd = $websphere->_create_runfile( $file, @args );
 my $escapedCmdLine = $websphere->_mask_password($shellcmd);

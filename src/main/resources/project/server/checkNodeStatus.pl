@@ -16,13 +16,13 @@
 
 =head1 NAME
 
-modifyApplicationClassLoader.pl - a perl library to modify application's ClassLoader behaviour.
+checkNodeStatus - checks a node status
 
 =head1 SYNOPSIS
 
 =head1 DESCRIPTION
 
-A perl library that modifies application's ClassLoader behaviour.
+Checks a node status
 
 =head1 LICENSE
 
@@ -55,9 +55,12 @@ $| = 1;
 
 my $configName        = trim(q($[configurationName]));
 my $wsadminAbsPath    = trim(q($[wsadminAbsPath]));
-my $applicationName   = trim(q($[applicationName]));
-my $loadOrder         = trim(q($[loadOrder]));
-my $classLoaderPolicy = trim(q($[classLoaderPolicy]));
+my $nodeName          = trim(q($[nodeName]));
+
+
+print "ConfigName: $configName\n";
+print "WSadmin path $wsadminAbsPath\n";
+print "Node Name: $nodeName\n";
 
 # create args array
 my @args  = ();
@@ -68,10 +71,9 @@ my %props = ();
 my $ec = new ElectricCommander();
 $ec->abortOnError(0);
 
-print "Will modify ClassLoader for " . $applicationName . " application. Load Order: $loadOrder, ClassLoader policy: $classLoaderPolicy\n";
 my $websphere = new WebSphere::WebSphere( $ec, $configName, $wsadminAbsPath );
 
-my $file = 'modify_application_classloader.py';
+my $file = 'check_node_status.py';
 my $script = $ec->getProperty("/myProject/wsadmin_scripts/$file")->getNodeText('//value');
 
 $file = $websphere->write_jython_script(
@@ -79,11 +81,15 @@ $file = $websphere->write_jython_script(
     augment_filename_with_random_numbers => 1
 );
 
+# open( my $fh, '>', $file ) or die "Cannot write to $file: $!";
+# print $fh $script;
+# close $fh;
+
 my $shellcmd = $websphere->_create_runfile( $file, @args );
 my $escapedCmdLine = $websphere->_mask_password($shellcmd);
 
 print "WSAdmin command line:  $escapedCmdLine\n";
-$props{'modifyApplicationClassLoaderLine'} = $escapedCmdLine;
+$props{'checkNodeStatusLine'} = $escapedCmdLine;
 setProperties( $ec, \%props );
 
 #execute command

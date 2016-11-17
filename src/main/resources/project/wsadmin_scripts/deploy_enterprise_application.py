@@ -1,3 +1,19 @@
+#
+#  Copyright 2016 Electric Cloud, Inc.
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+
 import time
 
 appName = r'''
@@ -105,6 +121,19 @@ additionalDeployParams = r'''
 $[additionalDeployParams]
 '''.strip()
 
+startApp = r'''
+$[startApp]
+'''.strip()
+
+syncActiveNodes = r'''
+$[syncActiveNodes]
+'''.strip()
+
+
+contextRoot = r'''
+$[contextRoot]
+'''.strip()
+
 print 'Installing %s ....\n' % appName
 
 installParams = []
@@ -112,7 +141,7 @@ installParams = []
 def toBoolean(value):
     if value.lower() == 'true' or value == '1':
         return 1
-    
+
     return 0
 
 def append_bool(name, value):
@@ -120,7 +149,7 @@ def append_bool(name, value):
         installParams.append('-' + name)
     else:
         installParams.append('-no' + name)
-    
+
 def append(name, value, default_value = None, value_prefix = "", value_suffix = ""):
     if default_value and not value:
         value = default_value
@@ -152,7 +181,10 @@ append_bool('reloadEnabled', overrideClassReloading)
 append_bool('deployws', deployWS)
 append_bool('processEmbeddedConfig', processEmbConfig)
 append_bool('useAutoLink', autoResolveEJBRef)
-append_bool('validateSchema', validateSchema)
+
+# For WAS 7.0, where validateSchema option doesn't exists.
+if toBoolean(validateSchema):
+    append_bool('validateSchema', validateSchema)
 
 append('cluster', cluster)
 append('installed.ear.destination', installDir)
@@ -161,6 +193,9 @@ append('reloadInterval', reloadInterval)
 append('validateinstall', validateRefs)
 append('blaname', blaName)
 append('MapModulesToServers', mapModulesToServers, None, '[', ']')
+
+if contextRoot:
+    append('contextroot', contextRoot)
 
 if toBoolean(deployClientMod):
     append_bool('enableClientModule', deployClientMod)
@@ -179,11 +214,11 @@ if serverList:
 
     for node_server in nodes_servers:
         (node, server) = node_server.split('=')
-        servers[server] = node 
-        
+        servers[server] = node
+
         if targetServers:
             targetServers += '+'
-        
+
         targetServers += "WebSphere:node=%s,server=%s" % (node, server)
 
     if targetServers:
@@ -200,39 +235,41 @@ if deployment:
     AdminApp.update(appName, 'app', '[ -operation update -contents "%s" %s ]' % (appPath, installParamsString))
 else:
     AdminApp.install(appPath, '[ %s ]' % (installParamsString))
-    
+
 AdminConfig.save()
 
 # Obtain deployment manager MBean
 dm = AdminControl.queryNames('type=DeploymentManager,*')
 
 # Synchronization of configuration changes is only required in network deployment.not in standalone server environment.
-if dm:
-    print 'Synchronizing configuration repository with nodes. Please wait...'
-    nodes=AdminControl.invoke(dm, "syncActiveNodes", "true")
-    print 'The following nodes have been synchronized:'+str(nodes)
-else:
-    print 'Standalone server, no nodes to sync'
+
+if toBoolean(syncActiveNodes):
+    if dm:
+        print 'Synchronizing configuration repository with nodes. Please wait...'
+        nodes=AdminControl.invoke(dm, "syncActiveNodes", "true")
+        print 'The following nodes have been synchronized: ' + str(nodes)
+    else:
+        print 'Standalone server, no nodes to sync'
 
 if deployment:
     print 'Application %s updated successfully.' % (appName)
 else:
     print 'Application %s installed successfully.' % (appName)
-    
+
 # Check application state, if it is not started already, start it
-if AdminControl.completeObjectName('type=Application,name=' + appName + ',*') == "":
+if toBoolean(startApp):
+    if AdminControl.completeObjectName('type=Application,name=' + appName + ',*') == "":
+        if cluster:
+            print 'Starting application %s on cluster %s.' % (appName, cluster)
+            AdminApplication.startApplicationOnCluster(appName, cluster)
+        elif len(servers):
+            for server in servers.keys():
+                print 'Starting application %s on server %s.' % (appName, server)
+                AdminApplication.startApplicationOnSingleServer(appName, servers[server], server)
+        else:
+            # For WebSphere Base Edition
+            print 'Starting application %s' % (appName)
+            appmgr = AdminControl.queryNames('name=ApplicationManager,*')
+            AdminControl.invoke(appmgr, 'startApplication', appName)
 
-    if cluster:
-        print 'Starting application %s on cluster %s.' % (appName, cluster)
-        AdminApplication.startApplicationOnCluster(appName, cluster)
-    elif len(servers):
-        for server in servers.keys():
-            print 'Starting application %s on server %s.' % (appName, server)
-            AdminApplication.startApplicationOnSingleServer(appName, servers[server], server)
-    else:
-        # For WebSphere Base Edition
-        print 'Starting application %s' % (appName)
-        appmgr = AdminControl.queryNames('name=ApplicationManager,*')
-        AdminControl.invoke(appmgr, 'startApplication', appName)
-
-    print 'Application %s started successfully.' % (appName)
+        print 'Application %s started successfully.' % (appName)
