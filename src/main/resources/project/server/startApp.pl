@@ -31,22 +31,8 @@ $|=1;
 # -------------------------------------------------------------------------
 
 $::gCommands = q($[commands]);
-$::gAppName = trim(q($[appname]));
-
 my $gClusterName       = trim(q($[clusterName]));
 my $gServerName        = trim(q($[serverName]));
-
-if ($gClusterName) {
-    $::gScriptFile = "AdminApplication.startApplicationOnCluster('$::gAppName', '$gClusterName')";
-}
-elsif ($gServerName) {
-    my ($nodeName, $serverName) = split(/=/, $gServerName);
-    $::gScriptFile = "AdminApplication.startApplicationOnSingleServer('$::gAppName', '$nodeName', '$serverName')";
-}
-else {
-    $::gScriptFile = 'appmgr = AdminControl.queryNames(\'name=ApplicationManager,*\')' . "\n" .
-        'AdminControl.invoke(appmgr,\'startApplication\',\'' . $::gAppName . '\')';
-}
 
 $::gWSAdminAbsPath = trim(q($[wsadminabspath]));
 $::gClasspath = trim(q($[classpath]));
@@ -60,7 +46,7 @@ $::gAdditionalOptions = q{$[additionalcommands]};
 
 
 ########################################################################
-# main - contains the whole process to be done by the plugin, it builds 
+# main - contains the whole process to be done by the plugin, it builds
 #        the command line, sets the properties and the working directory
 #
 # Arguments:
@@ -93,12 +79,14 @@ sub main() {
         push(@args, $::gAdditionalOptions);
     }
 
-    my $file = 'startapp_script.jython';
+    my $file = 'start_app.py';
+    my $script = $ec->getProperty("/myProject/wsadmin_scripts/$file")->getNodeText('//value');
     $file = $websphere->write_jython_script(
         $file, {},
         augment_filename_with_random_numbers => 1,
-        script => $::gScriptFile
+        script => $script,
     );
+
     push(@args, '-f ' . $file);
 
     push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
@@ -171,6 +159,11 @@ sub main() {
         if ($content =~ m/WSVR0028I:/) {
             #license expired warning
             $ec->setProperty("/myJobStep/outcome", 'warning');
+        }
+        if ( $content =~ m/WARNING:\s*(.+)/) {
+            my $warning = $1;
+            $ec->setProperty('/myJobStep/outcome', 'warning');
+            $ec->setProperty('/myCall/summary', $warning);
         }
     }
     else {
