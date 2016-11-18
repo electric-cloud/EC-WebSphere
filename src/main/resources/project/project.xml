@@ -88,6 +88,18 @@
                         <value/>
                     </property>
                     <property>
+                        <propertyName>start_app.py</propertyName>
+                        <value/>
+                    </property>
+                    <property>
+                        <propertyName>stop_app.py</propertyName>
+                        <value/>
+                    </property>
+                    <property>
+                        <propertyName>preamble.py</propertyName>
+                        <value/>
+                    </property>
+                    <property>
                         <propertyName>check_node_status.py</propertyName>
                         <value/>
                     </property>
