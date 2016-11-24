@@ -2353,6 +2353,7 @@
                 <li>Added support of parallel execution for all plugin procedures.</li>
                 <li>Added "Context root" parameter for Deploy Enterprise Application procedure.</li>
                 <li>Bug fixes in CheckPageStatus procedure.</li>
+                <li>Added warning instead of stack trace in the Stop/StartApp procedures if app was already stoped or started.</li>
             </ul>
             <h2>@PLUGIN_KEY@ 2.2.2</h2>
             <ul>
