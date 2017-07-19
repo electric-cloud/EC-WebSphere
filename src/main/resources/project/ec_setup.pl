@@ -459,13 +459,11 @@ if ($upgradeAction eq "upgrade") {
                 procedureName => 'DeleteDatasource',
                 stepName => 'DeleteDatasource'
             });
-            
             # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'CreateJDBCProvider',
                 stepName => 'CreateJDBCProvider'
             });
-            
             # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DeleteJDBCProvider',
