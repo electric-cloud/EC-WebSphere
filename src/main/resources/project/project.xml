@@ -103,6 +103,10 @@
                         <propertyName>check_node_status.py</propertyName>
                         <value/>
                     </property>
+                    <property>
+                        <propertyName>create_jdbc_provider.py</propertyName>
+                        <value/>
+                    </property>
                 </propertySheet>
             </property>
             <property>
@@ -4117,7 +4121,8 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor>postp --loadProperty /myProject/jdbcprovider_matchers</postProcessor>
+                <!-- <postProcessor>postp -\-loadProperty /myProject/jdbcprovider_matchers</postProcessor> -->
+                <postProcessor>postp --loadProperty /myProject/wsadmin_matchers</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>

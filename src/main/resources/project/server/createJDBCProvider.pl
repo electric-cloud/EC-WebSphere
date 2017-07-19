@@ -22,7 +22,7 @@ use ElectricCommander;
 use ElectricCommander::PropMod qw(/myProject/modules);
 use WebSphere::Util;
 use WebSphere::WebSphere;
-use warnings;
+# use warnings;
 use strict;
 $|=1;
 
@@ -74,22 +74,23 @@ sub main() {
     push(@args, '"'.$::gWSAdminAbsPath.'"');
 
 
-    my $ScriptFile = 'node = AdminConfig.getid(\'/Cell:' . $::gCell . '/Node:' . $::gNode .  '/Server:' . $::gServer .'/\')
-n1 = [\'name\', \'' . $::gJdbcProviderName . '\']
-implCN = [\'implementationClassName\', \'' . $::gImplementationClassName . '\']
-classPath = [\'classpath\', \'' . $::gClassPath . '\']
-descr = [\'description\', \'' . $::gDescription . '\']
-jdbcAttrs = [n1,  implCN, classPath, descr]
+#     my $ScriptFile = 'node = AdminConfig.getid(\'/Cell:' . $::gCell . '/Node:' . $::gNode .  '/Server:' . $::gServer .'/\')
+# n1 = [\'name\', \'' . $::gJdbcProviderName . '\']
+# implCN = [\'implementationClassName\', \'' . $::gImplementationClassName . '\']
+# classPath = [\'classpath\', \'' . $::gClassPath . '\']
+# descr = [\'description\', \'' . $::gDescription . '\']
+# jdbcAttrs = [n1,  implCN, classPath, descr]
 
-AdminConfig.create(\'JDBCProvider\', node, jdbcAttrs)
+# AdminConfig.create(\'JDBCProvider\', node, jdbcAttrs)
 
-AdminConfig.save()';
-
-    my $file = 'createJDBC_script.jython';
+# AdminConfig.save()';
+    # my $file = 'createJDBC_script.jython';
+    my $file = 'create_jdbc_provider.py';
+    my $script = $ec->getProperty("/myProject/wsadmin_scripts/$file")->getNodeText('//value');
     $file = $websphere->write_jython_script(
         $file, {},
         augment_filename_with_random_numbers => 1,
-        script => $ScriptFile
+        # script => $ScriptFile
     );
 
     push(@args, '-f ' . $file);
