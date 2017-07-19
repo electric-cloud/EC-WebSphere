@@ -14,9 +14,15 @@
 #  limitations under the License.
 #
 import sys
+
+clusterName = r'''
+$[cluster]
+'''.strip()
+
 nodeName = r'''
 $[node]
 '''.strip()
+
 cellName = r'''
 $[cell]
 '''.strip()
@@ -36,14 +42,15 @@ $[jdbcProvidername]
 inputClasspath = r'''
 $[classpath]
 '''.strip()
+
 resourceId = ''
 
 if cellName:
     resourceId += "/Cell:" + cellName
-
+if clusterName:
+    resourceId += "/ServerCluster:" + clusterName
 if nodeName:
     resourceId += "/Node:" + nodeName
-
 if serverName:
     resourceId += "/Server:" + serverName
 
