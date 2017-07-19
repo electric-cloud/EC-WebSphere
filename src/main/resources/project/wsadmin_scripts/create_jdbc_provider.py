@@ -65,5 +65,9 @@ classPath = ['classpath', inputClasspath]
 descr = ['description', '']
 jdbcAttrs = [n1,  implCN, classPath, descr]
 
-AdminConfig.create('JDBCProvider', node, jdbcAttrs)
+providerFound = AdminConfig.getid('/JDBCProvider:' + providerName + '/')
+if providerFound:
+    AdminConfig.modify(providerFound, jdbcAttrs)
+else:
+    AdminConfig.create('JDBCProvider', node, jdbcAttrs)
 AdminConfig.save()
