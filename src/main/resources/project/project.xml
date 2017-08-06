@@ -88,7 +88,23 @@
                         <value/>
                     </property>
                     <property>
+                        <propertyName>start_app.py</propertyName>
+                        <value/>
+                    </property>
+                    <property>
+                        <propertyName>stop_app.py</propertyName>
+                        <value/>
+                    </property>
+                    <property>
+                        <propertyName>preamble.py</propertyName>
+                        <value/>
+                    </property>
+                    <property>
                         <propertyName>check_node_status.py</propertyName>
+                        <value/>
+                    </property>
+                    <property>
+                        <propertyName>create_jdbc_provider.py</propertyName>
                         <value/>
                     </property>
                 </propertySheet>
@@ -3949,6 +3965,16 @@
                                         </property>
                                     </propertySheet>
                                 </property>
+                                <property>
+                                    <propertyName>cluster</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
 
                                 <property>
                                     <propertyName>node</propertyName>
@@ -4045,8 +4071,13 @@
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>
-
-
+            <formalParameter>
+                <formalParameterName>cluster</formalParameterName>
+                <defaultValue />
+                <description>Cluster</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
             <formalParameter>
                 <formalParameterName>node</formalParameterName>
                 <defaultValue />
@@ -4105,7 +4136,8 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor>postp --loadProperty /myProject/jdbcprovider_matchers</postProcessor>
+                <!-- <postProcessor>postp -\-loadProperty /myProject/jdbcprovider_matchers</postProcessor> -->
+                <postProcessor>postp --loadProperty /myProject/wsadmin_matchers</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>

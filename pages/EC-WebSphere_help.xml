@@ -1746,7 +1746,7 @@
             <div id="StartApp">
                 <a id="StartApp" name="StartApp"></a>
                 <h2>StartApp</h2>
-                <p>This procedure starts an application using wsadmin.</p>
+                <p>This procedure starts an application using wsadmin. If the application is already running, a warning will be thrown.</p>
                 <h3>StartApp Parameters</h3>
                 <table class="grid">
                     <thead>
@@ -1912,7 +1912,7 @@
             <div id="StopApp">
                 <a id="StopApp" name="StopApp"></a>
                 <h2>StopApp</h2>
-                <p>This procedure stops an application using wsadmin.</p>
+                <p>This procedure stops an application using wsadmin. If the application is already stopped, a warning will be thrown.</p>
                 <h3>StopApp Parameters</h3>
                 <table class="grid">
                     <thead>
@@ -2353,6 +2353,7 @@
                 <li>Added support of parallel execution for all plugin procedures.</li>
                 <li>Added "Context root" parameter for Deploy Enterprise Application procedure.</li>
                 <li>Bug fixes in CheckPageStatus procedure.</li>
+                <li>Added warning instead of stack trace in the Stop/StartApp procedures if app was already stoped or started.</li>
             </ul>
             <h2>@PLUGIN_KEY@ 2.2.2</h2>
             <ul>

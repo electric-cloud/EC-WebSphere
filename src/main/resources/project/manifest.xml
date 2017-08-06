@@ -54,6 +54,22 @@
         <path>wsadmin_scripts/sync_nodes.py</path>
     </file>
     <file>
+        <xpath>//property[propertyName=&quot;start_app.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/start_app.py</path>
+    </file>
+    <file>
+        <xpath>//property[propertyName=&quot;stop_app.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/stop_app.py</path>
+    </file>
+    <file>
+        <xpath>//property[propertyName=&quot;create_jdbc_provider.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/create_jdbc_provider.py</path>
+    </file>
+    <file>
+        <xpath>//property[propertyName=&quot;preamble.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/preamble.py</path>
+    </file>
+    <file>
         <xpath>//property[propertyName=&quot;Util.pm&quot;]/value</xpath>
         <path>WebSphere/Util.pm</path>
     </file>
@@ -285,7 +301,7 @@
         <xpath>//procedure[procedureName=&quot;ConfigEJBContainer&quot;]/step[stepName=&quot;ConfigEJBContainer&quot;]/command</xpath>
         <path>server/configureEJBContainer.pl</path>
     </file>
-    
+
     <file>
         <xpath>//procedure[procedureName=&quot;CreateConfiguration&quot;]/step[stepName=&quot;CreateConfiguration&quot;]/command</xpath>
         <path>conf/createcfg.pl</path>
@@ -440,7 +456,7 @@
         <xpath>//procedure[procedureName=&quot;MapSharedLibrary&quot;]/step[stepName=&quot;MapSharedLibrary&quot;]/command</xpath>
         <path>server/mapSharedLibrary.pl</path>
     </file>
-    
+
     <file>
         <xpath>//procedure[procedureName=&quot;SyncNodes&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/SyncNodes.xml</path>
@@ -449,7 +465,7 @@
         <xpath>//procedure[procedureName=&quot;SyncNodes&quot;]/step[stepName=&quot;SyncNodes&quot;]/command</xpath>
         <path>server/syncNodes.pl</path>
     </file>
-    
+
     <file>
         <xpath>//procedure[procedureName=&quot;ModifyApplicationClassLoader&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ModifyApplicationClassLoader.xml</path>
@@ -467,5 +483,5 @@
         <xpath>//procedure[procedureName=&quot;CheckNodeStatus&quot;]/step[stepName=&quot;CheckNodeStatus&quot;]/command</xpath>
         <path>server/checkNodeStatus.pl</path>
     </file>
-    
+
 </fileset>

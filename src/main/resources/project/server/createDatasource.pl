@@ -86,9 +86,12 @@ attrs.append( [ \'statementCacheSize\', ' . $::gStatementCacheSize . ' ] )
 attrs.append( [ \'authDataAlias\', \'' . $::gAuthAliasName . '\' ] )
 attrs.append( [ \'datasourceHelperClassname\', \'' . $::gDatasourceHelperClassname . '\' ] )
 
-newds = AdminConfig.create(\'DataSource\', newjdbc, attrs)
-
-ds_props = AdminConfig.create(\'J2EEResourcePropertySet\', newds, [])
+ds = AdminConfig.getid(\'/DataSource:' . $::gDatasourceName . '/\')
+if ds:
+    AdminConfig.modify(ds, attrs)
+else:
+    newds = AdminConfig.create(\'DataSource\', newjdbc, attrs)
+    ds_props = AdminConfig.create(\'J2EEResourcePropertySet\', newds, [])
 
 AdminConfig.save()';
 

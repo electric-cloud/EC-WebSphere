@@ -33,7 +33,6 @@ $|=1;
 # -------------------------------------------------------------------------
 
 $::gCommands = q($[commands]);
-$::gAppName = trim(q($[appname]));
 
 my $gClusterName       = trim(q($[clusterName]));
 my $gServerName        = trim(q($[serverName]));
@@ -95,11 +94,12 @@ sub main() {
         push(@args, $::gAdditionalOptions);
     }
 
-    my $file = 'stopapp_script.jython';
+    my $file = 'stop_app.py';
+    my $script = $ec->getProperty("/myProject/wsadmin_scripts/$file")->getNodeText('//value');
     $file = $websphere->write_jython_script(
         $file, {},
         augment_filename_with_random_numbers => 1,
-        script => $::gScriptFile
+        script => $script,
     );
     push(@args, '-f ' . $file);
 
@@ -170,6 +170,12 @@ sub main() {
         if ($content =~ m/WSVR0028I:/) {
             #license expired warning
             $ec->setProperty("/myJobStep/outcome", 'warning');
+        }
+
+        if ( $content =~ m/WARNING:\s*(.+)/) {
+            my $warning = $1;
+            $ec->setProperty('/myJobStep/outcome', 'warning');
+            $ec->setProperty('/myCall/summary', $warning);
         }
     }
     else {
