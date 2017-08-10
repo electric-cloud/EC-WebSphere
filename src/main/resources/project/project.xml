@@ -358,7 +358,16 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-
+                                <property>
+                                    <propertyName>debug</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -2418,38 +2427,23 @@
         <procedure>
 
             <procedureName>DeployApp</procedureName>
-
             <description>Deploys an application using AdminApp.install</description>
-
             <jobNameTemplate>websphere-deployapp-$[jobId]</jobNameTemplate>
-
             <resourceName />
-
             <workspaceName />
-
             <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
-
             <propertySheet>
-
                 <property>
                     <propertyName>ec_parameterForm</propertyName>
                     <expandable>1</expandable>
                     <value></value>
                 </property>
                 <property>
-
                     <propertyName>ec_customEditorData</propertyName>
-
                     <propertySheet>
-
                         <property>
-
                             <propertyName>parameters</propertyName>
-
                             <propertySheet>
-
-
-
                                 <property>
                                     <propertyName>commands</propertyName>
                                     <propertySheet>
@@ -2509,20 +2503,26 @@
 
                                     </propertySheet>
                                 </property>
-
                                 <property>
                                     <propertyName>configname</propertyName>
                                     <propertySheet>
                                         <property>
-
                                             <propertyName>formType</propertyName>
-
                                             <expandable>1</expandable>
                                             <value>standard</value>
                                         </property>
                                     </propertySheet>
                                 </property>
-
+                                <property>
+                                    <propertyName>commands</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
                                 <property>
                                     <propertyName>additionalcommands</propertyName>
                                     <propertySheet>
@@ -6814,38 +6814,24 @@
         </procedure>
 
         <procedure>
-
             <procedureName>CreateEndToEndMailProvider</procedureName>
-
             <description>Creates a mail provider along with protocol provider and mail session.</description>
-
             <jobNameTemplate>websphere-CreateEndToEndMailProvider-$[jobId]</jobNameTemplate>
-
             <resourceName />
-
             <workspaceName />
-
             <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
-
             <propertySheet>
-
                 <property>
                     <propertyName>ec_parameterForm</propertyName>
                     <expandable>1</expandable>
                     <value></value>
                 </property>
                 <property>
-
                     <propertyName>ec_customEditorData</propertyName>
-
                     <propertySheet>
-
                         <property>
-
                             <propertyName>parameters</propertyName>
-
                             <propertySheet>
-
                                 <property>
                                     <propertyName>configName</propertyName>
                                     <propertySheet>
@@ -7203,7 +7189,17 @@
                                         </property>
                                     </propertySheet>
                                 </property>
+                                <property>
+                                    <propertyName>custPropValue</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
 
+                                        </property>
+                                    </propertySheet>
+                                </property>
                                 <property>
                                     <propertyName>strict</propertyName>
                                     <propertySheet>
@@ -7423,14 +7419,6 @@
                 <description>Specifies the credentials for the mail account when the outgoing mail server requires authentication.</description>
                 <required>0</required>
                 <type>credential</type>
-            </formalParameter>
-
-            <formalParameter>
-                <formalParameterName>custPropValue</formalParameterName>
-                <defaultValue />
-                <description>Specifies the value to associate with this custom property of the resource. </description>
-                <required>0</required>
-                <type>entry</type>
             </formalParameter>
 
             <formalParameter>
