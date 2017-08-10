@@ -73,8 +73,7 @@
             and intelligent management required by an agile, cost-effective
             business.</p>
             <h1 id="overview">Overview</h1>
-            <p>For more information about WebSphere, go to the <a href="http://www-01.ibm.com/software/websphere/">WebSphere
-            Home Page</a>.</p>
+            <p>For more information about WebSphere, go to the <a href="http://www-01.ibm.com/software/websphere/">WebSphere Home Page</a>.</p>
             <!--There was an h2 header here: WebSphere Links
                 <p>
                 h2 header: Electric Flow Integration to WebSphere -->
@@ -838,6 +837,10 @@
                         <tr>
                             <td>Cell Scope</td>
                             <td>The parent object where the JDBC Provider will be created. This determines the visibility scope of the JDBC Provider. If the <i>Cell Scope</i> is specified and the node and server scopes are not specified, the scope will be the <i>Cell</i>. If the node is specified and the server is not, the scope will be the <i>Node</i>. If the server is specified and the node is not, the scope will be the <i>Server</i>. You must specify the <i>Cell</i>, <i>Node</i>, or <i>Server</i> scope must be provided, such as <i>wsaspluginNode01Cell</i>.</td>
+                        </tr>
+                        <tr>
+                            <td>Cluster Scope</td>
+                            <td>When the Cluster Scope is provided, then the scope will be the cluster. i.e: 'cluster1'.</td>
                         </tr>
                         <tr>
                             <td>Node Scope</td>
@@ -1872,6 +1875,7 @@
                 <a name="StartServer" id="StartServer"></a>
                 <h2>StartServer</h2>
                 <p>This procedure starts a WebSphere instance.</p>
+                <p>Note: It is not for starting an Application Server in a node i.e this procedure is not a "WebSphere Network Deployment" procedure.</p>
                 <h3>StartServer Parameters</h3>
                 <table class="grid">
                     <thead>
@@ -1882,29 +1886,21 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="required">Wsadmin Absolute
-                            Path</td>
-                            <td>The absolute path of the StartServer
-                            script that includes the filename and extension.
-                            If the path in which wsadmin is stored is in
-                            the PATH environmental variable, the
-                            absolute path is omitted. Examples are
-                            <i>startServer.bat</i>,
-                            <i>/path/to/startServer.sh</i>, and
-                            <i>C:\Program
-                            Files\IBM\WebSphere\AppServer\bin\startServer.bat</i>.
+                            <td class="required">StartServer Absolute Path</td>
+                            <td>
+                                The absolute path of the StartServer script that includes the filename and extension.
+                                If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted.
+                                Examples are <i>startServer.bat</i>, <i>/path/to/startServer.sh</i>, and <i>C:\Program Files\IBM\WebSphere\AppServer\bin\startServer.bat</i>.
                             </td>
                         </tr>
                         <tr>
                             <td class="required">Instance Name</td>
-                            <td>The name of the instance of the server
-                            to start, such as <i>server01</i>.
+                            <td>The name of the instance of the server to start, such as <i>server01</i>.
                             </td>
                         </tr>
                         <tr>
                             <td>Additional Commands</td>
-                            <td>Additional commands to enter when
-                            the server starts.</td>
+                            <td>Additional commands to enter when the server starts.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -2348,6 +2344,11 @@
                 <img src="../../plugins/EC-WebSphere/images/ModifyApplicationClassLoader/EC-WebSphereModifyApplicationClassLoader4.png" />
             </div>
             <h1 id="rns">Release Notes</h1>
+            <h2>@PLUGIN_KEY@ 2.2.4</h2>
+            <ul>
+                <li>Documentation has been improved.</li>
+                <li>Cluster Scope field has been added to CreateJDBCProvider procedure.</li>
+            </ul>
             <h2>@PLUGIN_KEY@ 2.2.3</h2>
             <ul>
                 <li>Added support of parallel execution for all plugin procedures.</li>
