@@ -68,7 +68,7 @@
 		<type>entry</type>
 		<label>Cluster Scope:</label>
 		<property>cluster</property>
-		<documentation>Cluster scope.</documentation>
+		<documentation>When the Cluster Scope is provided, then the scope will be the cluster. i.e: 'cluster1'.</documentation>
 		<required>0</required>
 	</formElement>
 	<formElement>
