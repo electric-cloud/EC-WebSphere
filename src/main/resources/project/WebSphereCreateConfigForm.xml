@@ -41,7 +41,7 @@
         <label>WebSphere Host:</label>
         <property>websphere_url</property>
         <value></value>
-        <documentation>Hostname of the WebSphere Application Server to administer using wsadmin tool.</documentation>
+        <documentation>Hostname of the WebSphere Application Server to administer using wsadmin tool. For example: 10.200.1.234 or yourWSServer.</documentation>
 		<required>1</required>
     </formElement>
     <formElement>
