@@ -155,7 +155,7 @@
                             </tr>
                             <tr>
                                 <td class="required">WebSphere Host</td>
-                                <td>Hostname of the WebSphere Application Server to administer using wsadmin tool.</td>
+                                <td>Hostname of the WebSphere Application Server to administer using wsadmin tool. For example: 10.200.1.234 or yourWSServer.</td>
                             </tr>
                             <tr>
                                 <td>WebSphere Connector Port</td>
