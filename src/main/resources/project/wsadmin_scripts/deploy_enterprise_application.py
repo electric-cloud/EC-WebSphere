@@ -206,7 +206,7 @@ if not customFilePermissions and filePermissions:
 
 append('filepermission', customFilePermissions, '.*\.dll=755#.*\.so=755#.*\.a=755#.*\.sl=755')
 
-servers = {}
+servers = []
 
 if serverList:
     targetServers = ''
@@ -214,7 +214,11 @@ if serverList:
 
     for node_server in nodes_servers:
         (node, server) = node_server.split('=')
-        servers[server] = node
+        serverRow = {
+            'node' : node,
+            'server' : server
+        }
+        servers.append(serverRow)
 
         if targetServers:
             targetServers += '+'
@@ -263,9 +267,9 @@ if toBoolean(startApp):
             print 'Starting application %s on cluster %s.' % (appName, cluster)
             AdminApplication.startApplicationOnCluster(appName, cluster)
         elif len(servers):
-            for server in servers.keys():
-                print 'Starting application %s on server %s.' % (appName, server)
-                AdminApplication.startApplicationOnSingleServer(appName, servers[server], server)
+            for server in servers:
+                print 'Starting application %s on node %s on server %s.' % (appName, server['node'], server['server'])
+                AdminApplication.startApplicationOnSingleServer(appName, server['node'], server['server'])
         else:
             # For WebSphere Base Edition
             print 'Starting application %s' % (appName)
