@@ -47,7 +47,7 @@
         <label>Success Criteria:</label>
         <property>successCriteria</property>
         <required>1</required>
-        <documentation>Сonditions that must be met for successful completion of the procedure.</documentation>
+        <documentation>Conditions that must be met for successful completion of the procedure.</documentation>
         <option><name>All node servers are running.</name><value>ALL_RUNNING</value></option>
         <option><name>All node servers are NOT running.</name><value>ALL_STOPPED</value></option>
         <option><name>Nodeagent is running.</name><value>NODEAGENT_RUNNING</value></option>
