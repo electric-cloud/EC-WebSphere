@@ -8126,7 +8126,7 @@
         <formalParameter>
             <formalParameterName>blaName</formalParameterName>
             <defaultValue/>
-            <description>Specifies whether websphere creates a new business­level application with the enterprise application that you are installing or makes the enterprise application a composition unit of an existing business­level application.The default is to create a new business­level application</description>
+            <description>Specifies whether websphere creates a new business-level application with the enterprise application that you are installing or makes the enterprise application a composition unit of an existing business-level application.The default is to create a new business-level application</description>
             <required>0</required>
             <type>entry</type>
         </formalParameter>
@@ -8403,7 +8403,7 @@
         <formalParameter>
             <formalParameterName>successCriteria</formalParameterName>
             <defaultValue />
-            <description>Сonditions that must be met for successful completion of the procedure.</description>
+            <description>Conditions that must be met for successful completion of the procedure.</description>
             <required>1</required>
             <type>select</type>
         </formalParameter>

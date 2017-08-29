@@ -284,7 +284,7 @@
 		<label>Business level application name:</label>
 		<property>blaName</property>
 		<required>0</required>
-		<documentation>Specifies whether websphere creates a new business­level application with the enterprise application that you are installing or makes the enterprise application a composition unit of an existing business­level application. The default is to create a new business­level application.</documentation>
+		<documentation>Specifies whether websphere creates a new business-level application with the enterprise application that you are installing or makes the enterprise application a composition unit of an existing business-level application. The default is to create a new business-level application.</documentation>
 	</formElement>
 
 	<formElement>
