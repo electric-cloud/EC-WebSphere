@@ -69,7 +69,7 @@ my %props = ();
 
 if ( $::gCluster && $::gServerList ) {
     print "Error : Enter either Target Cluster or Target Server(s).\n";
-    return;
+    exit 1;
 }
 
 if ( $::gAdditionalOptions && $::gAdditionalOptions ne '' ) {
