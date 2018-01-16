@@ -2344,6 +2344,10 @@
                 <img src="../../plugins/EC-WebSphere/images/ModifyApplicationClassLoader/EC-WebSphereModifyApplicationClassLoader4.png" />
             </div>
             <h1 id="rns">Release Notes</h1>
+            <h2>@PLUGIN_KEY@ 2.3.0</h2>
+            <ul>
+                <li>wsadmin absolute has been added to configuration.</li>
+            </ul>
             <h2>@PLUGIN_KEY@ 2.2.4</h2>
             <ul>
                 <li>Documentation has been improved.</li>

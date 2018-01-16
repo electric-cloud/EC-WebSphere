@@ -66,6 +66,10 @@
         <path>wsadmin_scripts/create_jdbc_provider.py</path>
     </file>
     <file>
+        <xpath>//property[propertyName=&quot;check_app.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/check_app.py</path>
+    </file>
+    <file>
         <xpath>//property[propertyName=&quot;preamble.py&quot;]/value</xpath>
         <path>wsadmin_scripts/preamble.py</path>
     </file>
