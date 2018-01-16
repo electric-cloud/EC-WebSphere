@@ -2677,7 +2677,7 @@
             <formalParameterName>configname</formalParameterName>
             <defaultValue />
             <description>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.</description>
-            <required>0</required>
+            <required>1</required>
             <type>entry</type>
         </formalParameter>
         <step>
