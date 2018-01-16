@@ -3,7 +3,7 @@ package WebSphere::WebSphere;
 =head1 NAME
 
 C<WebSphere::WebSphere> - WebSphere configuration routines
- 
+
 =head1 DESCRIPTION
 
 Wrapper for wsadmin utility.
@@ -50,18 +50,189 @@ Returns new instance of L<WebSphere::WebSphere> object.
 =cut
 
 sub new {
-    my ( $class, $ec, $configurationName, $wsadminPath ) = @_;
+    my ( $class, $ec, $configurationName, $wsadminPath) = @_;
 
-    my $self = bless { ec => $ec, wsadminPath => $wsadminPath }, $class;
+    my $self = {
+        ec => $ec,
+        # wsadminPath => $wsadminPath
+    };
+    bless $self, $class;
     my $configuration = $self->_getConfiguration($configurationName);
 
+    $wsadminPath ||= $configuration->{wsadminabspath};
+    unless ($wsadminPath) {
+        $self->bail_out("Missing wsadmin absolute path");
+    }
+    if (!-e $wsadminPath || -d $wsadminPath) {
+        $self->bail_out("wsadmin script does not exist or it is a directory");
+    }
+    $self->{wsadminPath} = $wsadminPath;
     if ( not $configuration ) {
         exit 1;
     }
+    my $debug = $configuration->{debug};
+    if (!defined $debug) {
+        $debug = 0;
+    }
 
+    my $log = EC::Plugin::Logger->new($debug);
+    $self->{_log} = $log;
     $self->{configuration} = $configuration;
     return $configuration ? $self : undef;
 }
+
+sub ec {
+    my ($self) = @_;
+
+    return $self->{ec};
+}
+
+
+sub log {
+    my ($self) = @_;
+
+    unless ($self->{_log}) {
+        $self->bail_out("Logger is uninitialized");
+    }
+    return $self->{_log};
+}
+
+
+sub getRunContext {
+    my ($self) = @_;
+
+    my $ec = $self->ec();
+    my $context = 'pipeline';
+    my $flowRuntimeId = '';
+
+    eval {
+        $flowRuntimeId = $ec->getProperty('/myFlowRuntimeState/id')->findvalue('//value')->string_value;
+    };
+    return $context if $flowRuntimeId;
+
+    eval {
+        $flowRuntimeId = $ec->getProperty('/myFlowRuntime/id')->findvalue('/value')->string_value();
+    };
+    return $context if $flowRuntimeId;
+
+    eval {
+        $flowRuntimeId = $ec->getProperty('/myPipelineStageRuntime/id')->findvalue('/value')->string_value();
+    };
+    return $context if $flowRuntimeId;
+
+    $context = 'schedule';
+    my $scheduleName = '';
+    eval {
+        $scheduleName = $self->getScheduleName();
+        1;
+    } or do {
+        print "error occured: $@\n";
+    };
+
+    if ($scheduleName) {
+        return $context;
+    }
+    $context = 'procedure';
+    return $context;
+}
+
+sub getProjectName {
+    my ($self, $jobId) = @_;
+
+    $jobId ||= $ENV{COMMANDER_JOBID};
+
+    my $projectName = '';
+    eval {
+        my $result = $self->{ec}->getJobDetails($jobId);
+        $projectName = $result->findvalue('//job/projectName')->string_value();
+        # $projectName = $result->findvalue('//projectName')->string_value();
+        1;
+    } or do {
+        print "error occured: $@\n";
+    };
+
+    return $projectName;
+}
+
+sub getScheduleName {
+    my ($self, $jobId) = @_;
+
+    $jobId ||= $ENV{COMMANDER_JOBID};
+
+    my $scheduleName = '';
+    eval {
+        my $result = $self->{ec}->getJobDetails($jobId);
+        $scheduleName = $result->findvalue('//scheduleName')->string_value();
+        if ($scheduleName) {
+            $self->{logger}->info('Schedule found: ', $scheduleName);
+        };
+        1;
+    } or do {
+        $self->{logger}->error($@);
+    };
+
+    return $scheduleName;
+}
+
+# this function is works like setSummary from other plugins, but it also sets props for pipelines.
+# pipeline and procedure should be a hash reference or reference to array with hash references.
+sub setResult {
+    my ($self, %params) = @_;
+
+    my ($outcome, $procedure, $pipeline) = ($params{outcome}, $params{procedure}, $params{pipeline});
+    if (!ref $outcome) {
+        $self->bail_out("HASH or ARRAY reference is expected as outcome parameter");
+    }
+    $outcome = [$outcome] if ref $outcome eq 'HASH';
+    if (!ref $procedure) {
+        $self->bail_out("HASH or ARRAY reference expected as procedure parameter");
+    }
+    $procedure = [$procedure] if ref $procedure eq 'HASH';
+    if (!ref $pipeline) {
+        $self->bail_out("pipeline parameter should be a HASH or ARRAY reference");
+    }
+
+    # if pipeline has been passed as hash reference, we will create array reference to iterate through it.
+    $pipeline = [$pipeline] if ref $pipeline eq 'HASH';
+
+    my $ec = $self->ec();
+
+    # time to get context.
+    my $context = $self->getRunContext();
+    # setting outcome
+    for my $o (@$outcome) {
+        if ($o->{result} !~ m/^(?:error|success|warning)$/s) {
+            $self->bail_out("Expected error, success or warning, got: $o->{result}");
+        }
+        if ($o->{target} !~ m/^(?:myJobStep|myJob|myCall)$/s) {
+            $self->bail_out("target should one of: myJobStep, myJob, myCall. Got: $o->{target}");
+        }
+        $ec->setProperty('/' . $o->{target} . '/outcome' => $o->{result});
+    }
+    # pipeline
+    if ($context eq 'pipeline') {
+        for my $p (@$pipeline) {
+            if (!$p->{target} || !exists $p->{msg}) {
+                $self->bail_out("target and msg are mandatory");
+            }
+            $ec->setProperty('/myPipelineStageRuntime/ec_summary/' . $p->{target} =>  $p->{msg});
+        }
+    }
+    # procedure, schedule and application process are also procedure context.
+    else {
+        for my $p (@$procedure) {
+            if (!$p->{target} || !exists $p->{msg}) {
+                $self->bail_out("target and msg are mandatory");
+            }
+            if ($p->{target} !~ m/^(?:myJobStep|myJob|myCall)$/s) {
+                $self->bail_out("target should one of: myJobStep, myJob, myCall. Got: $p->{target}");
+            }
+            $ec->setProperty('/' . $p->{target} . '/summary' => $p->{msg});
+        }
+    }
+    return 1;
+}
+
 
 =head2 C<new>
 
@@ -160,9 +331,9 @@ sub _create_runfile {
     }
 
     if(length(@args) > 0) {
-        $options_string .= " ".join(" ", @args);    
+        $options_string .= " ".join(" ", @args);
     }
-    
+
     return qq{"$self->{wsadminPath}"$options_string-f "$runfile"};
 }
 
@@ -281,4 +452,80 @@ sub setSummary {
     return 1;
 }
 
+
+sub bail_out {
+    my ($self, @msg) = @_;
+
+    print join('', @msg);
+    exit 1;
+}
+
+## internal package, required for logging
+package EC::Plugin::Logger;
+
+use strict;
+use warnings;
+use Data::Dumper;
+
+use constant {
+    ERROR => -1,
+    INFO => 0,
+    DEBUG => 1,
+    TRACE => 2,
+};
+
+sub new {
+    my ($class, $level) = @_;
+    $level ||= 0;
+    my $self = {level => $level};
+    return bless $self,$class;
+}
+
+sub warning {
+    my ($self, @messages) = @_;
+
+    $self->log(INFO, 'WARNING: ', @messages);
+}
+
+sub info {
+    my ($self, @messages) = @_;
+    $self->log(INFO, @messages);
+}
+
+sub debug {
+    my ($self, @messages) = @_;
+    $self->log(DEBUG, '[DEBUG]', @messages);
+}
+
+sub error {
+    my ($self, @messages) = @_;
+    $self->log(ERROR, '[ERROR]', @messages);
+}
+
+sub trace {
+    my ($self, @messages) = @_;
+    $self->log(TRACE, '[TRACE]', @messages);
+}
+
+sub log {
+    my ($self, $level, @messages) = @_;
+
+    binmode STDOUT, ':encoding(UTF-8)';
+
+    return if $level > $self->{level};
+    my @lines = ();
+    for my $message (@messages) {
+        unless(defined $message) {
+            $message = 'undef';
+        }
+        if (ref $message) {
+            print Dumper($message);
+        }
+        else {
+            print "$message";
+        }
+    }
+    print "\n";
+    return 1;
+}
 1;

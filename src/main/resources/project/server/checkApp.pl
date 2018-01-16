@@ -14,133 +14,107 @@
 #  limitations under the License.
 #
 
+=head1 NAME
+
+checkApp.pl - check application readiness.
+
+=head1 SYNOPSIS
+
+=head1 DESCRIPTION
+
+A perl library that deploys an enterprise application on a cluster or standalone server
+
+=head1 LICENSE
+
+Copyright (c) 2014 Electric Cloud, Inc.
+All rights reserved.
+
+=head1 AUTHOR
+
+    ---
+
+=head2 METHODS
+
+=cut
 
 # -------------------------------------------------------------------------
 # Includes
 # -------------------------------------------------------------------------
 use ElectricCommander;
 use ElectricCommander::PropMod qw(/myProject/modules);
-use WebSphere::Util;
 use WebSphere::WebSphere;
+use WebSphere::Util;
+
 use warnings;
 use strict;
-
-$|=1;
+$| = 1;
 
 # -------------------------------------------------------------------------
 # Variables
 # -------------------------------------------------------------------------
 
-$::gWSAdminAbsPath = trim(q($[wsadminabspath]));
-$::gConfigurationName = q{$[configname]};
-$::gAppName = q{$[appname]};
-$::gScriptFile = "if AdminApp.isAppReady('$::gAppName'):
-  print \"The application is ready.\"
-  sys.exit(0)
-else:
-  print \"The application is not ready.\"
-  sys.exit(1)";
+my $wsadmin_abs_path = trim('$[wsadminabspath]');
+my $config = '$[configname]';
+my $appname = '$[appname]';
 
-# -------------------------------------------------------------------------
-# Main functions
-# -------------------------------------------------------------------------
+my $ec = ElectricCommander->new();
+$ec->abortOnError(0);
 
+my $websphere = WebSphere::WebSphere->new(
+    $ec,
+    $config,
+    $wsadmin_abs_path
+);
 
-########################################################################
-# main - contains the whole process to be done by the plugin, it builds 
-#        the command line, sets the properties and the working directory
-#
-# Arguments:
-#   none
-#
-# Returns:
-#   none
-#
-########################################################################
-sub main() {
+my $logger = $websphere->log();
+my $file = 'check_app.py';
+my $script = $ec->getProperty("/myProject/wsadmin_scripts/check_app.py")->getNodeText('//value');
 
-    # create args array
-    my @args = ();
-    my %props;
+$file = $websphere->write_jython_script(
+    $file, {},
+    augment_filename_with_random_numbers => 1
+);
 
-    my %configuration;
-    #get an EC object
-    my $ec = new ElectricCommander();
-    $ec->abortOnError(0);
+my $shellcmd = $websphere->_create_runfile($file, ());
+my $escaped_shellcmd = $websphere->_mask_password($shellcmd);
 
-    my $websphere = WebSphere::WebSphere->new_simple($ec);
-    if($::gConfigurationName ne '') {
-        %configuration = getConfiguration($ec, $::gConfigurationName);
+$logger->info('WSAdmin command line: ', $escaped_shellcmd);
+
+$logger->debug("WSAdmin script:");
+$logger->debug($script);
+$logger->debug("== End of WSAdmin script ==");
+
+my %props = ();
+
+$props{checkAppLine} = $escaped_shellcmd;
+
+# execute
+my $cmd_res = `$shellcmd 2>&1`;
+$logger->info($cmd_res);
+
+my $code = $? >> 8;
+
+my $result_params = {
+    outcome => {
+        target => 'myCall',
+        result => '',
+    },
+    procedure => {
+        target => 'myCall',
+        msg => ''
+    },
+    pipeline => {
+        target => 'CheckApp Result:',
+        msg => '',
     }
-    push(@args, '"'.$::gWSAdminAbsPath.'"');
-    my $file = 'checkapp_script.jython';
-
-    $file = $websphere->write_jython_script(
-        $file, {},
-        augment_filename_with_random_numbers => 1,
-        script => $::gScriptFile
-    );
-
-    # open (MYFILE, '>checkapp_script.jython');
-    # print MYFILE "$::gScriptFile";
-    # close (MYFILE);
-
-    push(@args, '-f "' . $file . '"');
-    push(@args, '-lang ' . DEFAULT_WSADMIN_LANGUAGE);
-
-    push(@args, '-conntype SOAP');
-
-    #inject config...
-    if(%configuration){
-        my $hostParamName;
-        if($configuration{'websphere_url'} ne ''){
-            push(@args, '-host ' . $configuration{'websphere_url'});
-        }
-
-        if($configuration{'websphere_port'} ne ''){
-            push(@args, '-port ' . $configuration{'websphere_port'});
-        }
-
-        if($configuration{'user'} ne ''){
-            push(@args, '-user ' . $configuration{'user'});
-        }
-
-        if($configuration{'password'} ne ''){
-            push(@args, '-password ' . $configuration{'password'});
-        }
-    }
-
-    my $cmdLine = createCommandLine(\@args);
-    my $escapedCmdLine = maskPassword($cmdLine, $configuration{'password'});
-    $props{'checkAppLine'} = $escapedCmdLine;
-    setProperties($ec, \%props);
-
-    print "WSAdmin command line: $escapedCmdLine\n";
-    #execute command
-    my $content = `$cmdLine`;
-
-    #print log
-    print "$content\n";
-
-    #evaluates if exit was successful to mark it as a success or fail the step
-    if($? == SUCCESS) {
-        $ec->setProperty("/myJobStep/outcome", 'success');
-        #set any additional error or warning conditions here
-        #there may be cases that an error occurs and the exit code is 0.
-        #we want to set to correct outcome for the running step
-        if($content =~ m/(The application is not ready)/) {
-            $ec->setProperty("/myJobStep/outcome", 'error');
-        }
-        elsif ($content !~ m/(The application is ready|The application is not ready)/) {
-            print "Error: cannot determine application status\n";
-            $ec->setProperty("/myJobStep/outcome", 'error');
-        }
-    }
-    else {
-        $ec->setProperty("/myJobStep/outcome", 'error');
-    }
+};
+if ($code == SUCCESS) {
+    $result_params->{outcome}->{result} = 'success';
+    $result_params->{procedure}->{msg} = $result_params->{pipeline}->{msg} = "Application '$appname' is ready.";
+}
+else {
+    $result_params->{outcome}->{result} = 'error';
+    $result_params->{procedure}->{msg} = $result_params->{pipeline}->{msg} = "Application '$appname' is NOT ready.";
 }
 
-main();
-
-1;
+$websphere->setResult(%$result_params);

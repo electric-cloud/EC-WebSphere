@@ -25,6 +25,14 @@
         <documentation>Identifier of the configuration to create. i.e: myconfig</documentation>
     </formElement>
     <formElement>
+        <type>entry</type>
+        <label>wsadmin Absolute Path:</label>
+        <property>wsadminabspath</property>
+        <value></value>
+        <documentation>Absolute path to wsadmin script.</documentation>
+		<required>0</required>
+    </formElement>
+    <formElement>
         <type>select</type>
         <label>Connection Type:</label>
         <property>conntype</property>
@@ -60,13 +68,14 @@
         <required>0</required>
     </formElement>
     <formElement>
-        <label>Enable Debug:</label>
+        <label>Debug Level:</label>
         <property>debug</property>
         <value/>
-        <documentation>Enable debugging.</documentation>
+        <documentation>Debug level.</documentation>
         <required>0</required>
-        <type>checkbox</type>
-        <checkedValue>1</checkedValue>
-        <uncheckedValue>0</uncheckedValue>
+        <type>select</type>
+        <option><name>INFO</name><value>0</value></option>
+        <option><name>DEBUG</name><value>1</value></option>
+        <option><name>TRACE</name><value>2</value></option>
     </formElement>
 </editor>

@@ -134,7 +134,8 @@ setProperties( $ec, \%props );
 print `$shellcmd 2>&1`;
 
 #evaluates if exit was successful to mark it as a success or fail the step
-if ( $? == SUCCESS ) {
+my $code = $? >> 8;
+if ( $code == SUCCESS ) {
     if ($warning) {
         $ec->setProperty('/myJobStep/outcome', 'warning');
         $ec->setProperty('/myCall/summary', $warning);

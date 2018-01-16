@@ -1,5 +1,5 @@
 #
-#  Copyright 2015 Electric Cloud, Inc.
+#  Copyright 2016 Electric Cloud, Inc.
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -14,24 +14,17 @@
 #  limitations under the License.
 #
 
-# TODO: delete this matcher.
+import sys
 
-push (@::gMatchers,
-  
-  {
-   id =>        "appStatus",
-   pattern =>          q{(The application is ready|The application is not ready)},
-   action =>           q{
-    
-              my $description = ((defined $::gProperties{"summary"}) ? 
-                    $::gProperties{"summary"} : '');
-                    
-              $description .= "$1";
-                              
-              setProperty("summary", $description . "\n");
-    
-   },
-  },
+appName = r'''
+$[appName]
+'''.strip()
+appName.replace(' ', '_')
 
-);
+if AdminApp.isAppReady(appName):
+    print "The application is ready."
+    sys.exit(0)
+else:
+    print "The application is not ready."
+    sys.exit(1);
 
