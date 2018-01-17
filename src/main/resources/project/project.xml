@@ -715,21 +715,21 @@
             <formalParameterName>loadOrder</formalParameterName>
             <defaultValue />
             <description>ClassLoader load order.</description>
-            <required>0</required>
+            <required>1</required>
             <type>select</type>
         </formalParameter>
         <formalParameter>
             <formalParameterName>classLoaderPolicy</formalParameterName>
             <defaultValue />
             <description>ClassLoader policy</description>
-            <required>0</required>
+            <required>1</required>
             <type>select</type>
         </formalParameter>
         <formalParameter>
             <formalParameterName>wsadminAbsPath</formalParameterName>
             <defaultValue />
             <description>Absolute path of wsadmin, including filename and extension. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'. </description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -855,7 +855,7 @@
             <formalParameterName>wsadminAbsPath</formalParameterName>
             <defaultValue />
             <description>Absolute path of wsadmin, including filename and extension. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'. </description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -1399,7 +1399,7 @@
             <formalParameterName>wsadminabspath</formalParameterName>
             <defaultValue />
             <description>Absolute path of wsadmin, including filename and extension. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'. </description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -1526,15 +1526,10 @@
                             <property>
                                 <propertyName>javaparams</propertyName>
                                 <propertySheet>
-
                                     <property>
-
                                         <propertyName>formType</propertyName>
-
                                         <expandable>1</expandable>
-
                                         <value>standard</value>
-
                                     </property>
                                 </propertySheet>
                             </property>
@@ -1618,7 +1613,7 @@
             <formalParameterName>wsadminabspath</formalParameterName>
             <defaultValue />
             <description>Absolute path of wsadmin, including filename and extension. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'. </description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -1832,7 +1827,7 @@
             <formalParameterName>wsadminabspath</formalParameterName>
             <defaultValue />
             <description>Absolute path of wsadmin, including filename and extension. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'. </description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -2036,7 +2031,7 @@
             <formalParameterName>wsadminabspath</formalParameterName>
             <defaultValue />
             <description>Absolute path of wsadmin, including filename and extension. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'. </description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -2058,7 +2053,7 @@
             <formalParameterName>configname</formalParameterName>
             <defaultValue />
             <description>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</description>
-            <required>0</required>
+            <required>1</required>
             <type>entry</type>
         </formalParameter>
         <formalParameter>
@@ -2223,7 +2218,7 @@
             <formalParameterName>wsadminabspath</formalParameterName>
             <defaultValue />
             <description>Absolute path of wsadmin, including filename and extension. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'. </description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -2834,7 +2829,7 @@
             <formalParameterName>wsadminabspath</formalParameterName>
             <defaultValue />
             <description>Absolute path of wsadmin, including filename and extension. If the path in which wsadmin is stored in the path environmental variable, the absolute path is ommited. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'.</description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -2987,7 +2982,7 @@
             <formalParameterName>wsadminabspath</formalParameterName>
             <defaultValue />
             <description>Absolute path of wsadmin, including filename and extension. If the path in which wsadmin is stored in the path environmental variable, the absolute path is ommited. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'.</description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -3168,7 +3163,7 @@
             <formalParameterName>wsadminabspath</formalParameterName>
             <defaultValue />
             <description>Absolute path of wsadmin, including filename and extension. If the path in which wsadmin is stored in the path environmental variable, the absolute path is ommited. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'.</description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -3329,7 +3324,7 @@
             <formalParameterName>wsadminabspath</formalParameterName>
             <defaultValue />
             <description>Absolute path of wsadmin, including filename and extension. If the path in which wsadmin is stored in the path environmental variable, the absolute path is ommited. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'.</description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -3730,7 +3725,7 @@
             <formalParameterName>wsadminAbsPath</formalParameterName>
             <defaultValue />
             <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -4055,7 +4050,7 @@
             <formalParameterName>wsadminAbsPath</formalParameterName>
             <defaultValue />
             <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -4345,7 +4340,7 @@
             <formalParameterName>wsadminabspath</formalParameterName>
             <defaultValue />
             <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -4533,7 +4528,7 @@
             <formalParameterName>wsadminAbsPath</formalParameterName>
             <defaultValue />
             <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -4665,7 +4660,7 @@
             <formalParameterName>wsadminAbsPath</formalParameterName>
             <defaultValue />
             <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -4812,7 +4807,7 @@
             <formalParameterName>wsadminAbsPath</formalParameterName>
             <defaultValue />
             <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -4931,7 +4926,7 @@
             <formalParameterName>wsadminabspath</formalParameterName>
             <defaultValue />
             <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -5059,7 +5054,7 @@
             <formalParameterName>wsadminAbsPath</formalParameterName>
             <defaultValue />
             <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -5067,14 +5062,14 @@
             <formalParameterName>clusterName</formalParameterName>
             <defaultValue />
             <description>Name of cluster from which to remove/delete the members.</description>
-            <required>0</required>
+            <required>1</required>
             <type>textarea</type>
         </formalParameter>
         <formalParameter>
             <formalParameterName>clusterMembers</formalParameterName>
             <defaultValue />
             <description>List of cluster members in the form Node01=server1,Node02=server2,... to remove/delete from cluster. </description>
-            <required>0</required>
+            <required>1</required>
             <type>textarea</type>
         </formalParameter>
         <step>
@@ -5238,7 +5233,7 @@
             <formalParameterName>wsadminabspath</formalParameterName>
             <defaultValue />
             <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -5467,7 +5462,7 @@
             <formalParameterName>wsadminAbsPath</formalParameterName>
             <defaultValue />
             <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
-            <required>1</required>
+            <required>0</required>
             <type>textarea</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -5931,7 +5926,7 @@
             <formalParameterName>wsadminAbsPath</formalParameterName>
             <defaultValue />
             <description>>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -6377,7 +6372,7 @@
             <formalParameterName>wsadminAbsPath</formalParameterName>
             <defaultValue />
             <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -6759,7 +6754,7 @@
             <formalParameterName>wsadminAbsPath</formalParameterName>
             <defaultValue />
             <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -7137,7 +7132,7 @@
             <formalParameterName>configName</formalParameterName>
             <defaultValue />
             <description>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</description>
-            <required>0</required>
+            <required>1</required>
             <type>entry</type>
         </formalParameter>
         <formalParameter>
@@ -7145,7 +7140,7 @@
             <defaultValue />
             <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
             <expansionDeferred>1</expansionDeferred>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -7982,7 +7977,7 @@
             <formalParameterName>wsadminAbsPath</formalParameterName>
             <defaultValue />
             <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -8292,7 +8287,7 @@
             <formalParameterName>wsadminAbsPath</formalParameterName>
             <defaultValue />
             <description>Absolute path of wsadmin, including filename and extension. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'. </description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
@@ -8404,7 +8399,7 @@
             <formalParameterName>wsadminAbsPath</formalParameterName>
             <defaultValue />
             <description>Absolute path of wsadmin, including filename and extension. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'. </description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
