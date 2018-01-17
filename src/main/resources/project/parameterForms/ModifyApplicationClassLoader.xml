@@ -17,8 +17,7 @@
 -->
 <editor>
     <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#ModifyApplicationClassLoader</help>
-    
-	<formElement>
+    <formElement>
         <type>entry</type>
         <label>Configuration Name:</label>
         <property>configurationName</property>
@@ -29,13 +28,13 @@
     </formElement>
 
     <formElement>
-		<type>entry</type>
+        <type>entry</type>
         <label>Wsadmin Path:</label>
-		<property>wsadminAbsPath</property>
-		<required>1</required>
+        <property>wsadminAbsPath</property>
+        <required>0</required>
         <documentation>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. '/path/to/wsadmin.sh' or 'wsadmin.bat'.</documentation>
         <propertyReference type="property">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configurationName/wsadminPath</propertyReference>
-	</formElement>
+    </formElement>
 
     <formElement>
         <type>select</type>
@@ -47,7 +46,6 @@
         <option><name>PARENT_LAST</name><value>PARENT_LAST</value></option>
 
     </formElement>
-    
     <formElement>
         <type>select</type>
         <label>ClassLoader Isolation Policy</label>
@@ -59,11 +57,11 @@
     </formElement>
 
     <formElement>
-		<type>entry</type>
-		<label>Application Name:</label>
-		<property>applicationName</property>
-		<required>1</required>
-		<documentation>Name of the existing web application, which ClassLoader should be modified.</documentation>
+        <type>entry</type>
+        <label>Application Name:</label>
+        <property>applicationName</property>
+        <required>1</required>
+        <documentation>Name of the existing web application, which ClassLoader should be modified.</documentation>
         <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configurationName/applications</propertyReference>
     </formElement>
 </editor>
