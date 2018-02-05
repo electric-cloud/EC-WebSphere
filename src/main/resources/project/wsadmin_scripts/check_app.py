@@ -14,17 +14,57 @@
 #  limitations under the License.
 #
 
-import sys
+$[/myProject/wsadmin_scripts/preamble.py]
 
 appName = r'''
-$[appName]
+$[appname]
 '''.strip()
+
+# EXISTS NOT_EXISTS READY NOT_READY RUNNING NOT_RUNNING
+appStateChecked = r'''
+$[appStateChecked]
+'''.strip()
+
+waitTime = r'''
+$[waitTimeForState]
+'''.strip()
+
+print "WaitTime: %s" % (waitTime);
+# TODO: review this line:
 appName.replace(' ', '_')
 
-if AdminApp.isAppReady(appName):
-    print "The application is ready."
+isOk = 0
+startTime = int(time.time())
+waitTime = int(waitTime)
+endTime = startTime + waitTime
+
+stateMatrix = {
+    "EXISTS": "is installed",
+    "NOT_EXISTS": "is not installed",
+    "READY": "is ready",
+    "NOT_READY": "is not ready",
+    "RUNNING": "is running",
+    "NOT_RUNNING": "is not running"
+}
+
+while 1 :
+    sleepTime = 5
+    currentTime = int(time.time());
+    if endTime < currentTime :
+        print "Timed out."
+        break
+    if isAppInDesiredState(appName, appStateChecked):
+        isOk = 1
+        break
+    else:
+        print "Application %s %s, waiting" % (appName, stateMatrix[appStateChecked])
+    time.sleep(sleepTime);
+
+print "Application %s %s" % (appName, stateMatrix[appStateChecked])
+
+if isOk:
     sys.exit(0)
 else:
-    print "The application is not ready."
-    sys.exit(1);
+    sys.exit(1)
+
 

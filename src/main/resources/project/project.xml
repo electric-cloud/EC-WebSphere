@@ -2648,6 +2648,26 @@
                                     </property>
                                 </propertySheet>
                             </property>
+                            <property>
+                                <propertyName>appStateChecked</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>waitTimeForState</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
                         </propertySheet>
                     </property>
                 </propertySheet>
@@ -2673,6 +2693,22 @@
             <defaultValue />
             <description>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.</description>
             <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>appStateChecked</formalParameterName>
+            <defaultValue />
+            <description>
+                Application State that is being checked, with any applicable retries based on wait time parameter. Any state that is not the desired state after any applicable retries, will be returned as a failure by the procedure.
+            </description>
+            <required>1</required>
+            <type>select</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>waitTimeForState</formalParameterName>
+            <defaultValue />
+            <description>Maximum duration of check application state retries.</description>
+            <required>0</required>
             <type>entry</type>
         </formalParameter>
         <step>

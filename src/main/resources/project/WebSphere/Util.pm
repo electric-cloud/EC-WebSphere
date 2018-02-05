@@ -35,9 +35,24 @@ use warnings;
 use Exporter;
 
 our @ISA = qw(Exporter);
-our @EXPORT = qw(trim createCommandLine maskPassword setProperties getConfiguration
-                 SUCCESS ERROR PLUGIN_NAME EXECUTABLE IPC_CONNECTION_TYPE
-                 SEPARATOR_CHAR DEFAULT_WSADMIN_LANGUAGE WIN_IDENTIFIER TRUE FALSE);
+our @EXPORT = qw(
+    trim
+    rtrim
+    createCommandLine
+    maskPassword
+    setProperties
+    getConfiguration
+    SUCCESS
+    ERROR
+    PLUGIN_NAME
+    EXECUTABLE
+    IPC_CONNECTION_TYPE
+    SEPARATOR_CHAR
+    DEFAULT_WSADMIN_LANGUAGE
+    WIN_IDENTIFIER
+    TRUE
+    FALSE
+);
 
 # -------------------------------------------------------------------------
 # Constants
@@ -113,10 +128,21 @@ sub getConfiguration {
 sub trim {
     my ($string) = @_;
 
-    #remove leading and trailing spaces
-    $string =~ s/^\s+(.*?)\s+$/$1/;
+    # remove leading and trailing spaces
+    # $string =~ s/^\s+(.*?)\s+$/$1/;
+    $string =~ s/^\s+//gs;
+    $string =~ s/\s+$//gs;
     return $string;
 }
+
+# same as trim, but trims value by reference.
+sub rtrim {
+    for (my $i = 0; $i < scalar @_; $i++) {
+        $_[$i] =~ s/^\s+//gs;
+        $_[$i] =~ s/\s+$//gs;
+    }
+}
+
 
 ########################################################################
 # createCommandLine - creates the command line for the invocation
