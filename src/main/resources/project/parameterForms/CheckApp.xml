@@ -42,4 +42,27 @@
         <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configname/applications</propertyReference>
         <required>1</required>
     </formElement>
+    <formElement>
+        <type>select</type>
+        <label>Application State Checked:</label>
+        <property>appStateChecked</property>
+        <documentation>
+            Application State that is being checked, with any applicable retries based on wait time parameter.
+            Any state that is not the desired state after any applicable retries, will be returned as a failure by the procedure.
+        </documentation>
+        <required>1</required>
+        <option><name>Application is installed</name><value>EXISTS</value></option>
+        <option><name>Application is not installed</name><value>NOT_EXISTS</value></option>
+        <option><name>Application is ready</name><value>READY</value></option>
+        <option><name>Application is not ready</name><value>NOT_READY</value></option>
+        <option><name>Application is running</name><value>RUNNING</value></option>
+        <option><name>Application is  not running</name><value>NOT_RUNNING</value></option>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Wait Time:</label>
+        <property>waitTimeForState</property>
+        <documentation> Maximum duration of check application state retries.</documentation>
+        <required>0</required>
+    </formElement>
 </editor>

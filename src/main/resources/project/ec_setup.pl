@@ -84,7 +84,7 @@ my %undeployApp = (
 my %checkApp = (
     label       => "WebSphere - Check Application",
     procedure   => "CheckApp",
-    description => "Check if an application is ready",
+    description => "Check if an application is in desired state",
     category    => "Application Server"
 );
 

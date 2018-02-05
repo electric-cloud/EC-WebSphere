@@ -210,13 +210,13 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Configuration Name</td>
+                            <td class="required">Configuration Name</td>
                             <td>The name of the configuration to use.
                             ElectricFlow gets the URL, port, and credentials
                             from this configuration.</td>
                         </tr>
                         <tr>
-                            <td class="required">Wsadmin Path</td>
+                            <td>Wsadmin Path</td>
                             <td>The path of the wsadmin tool that includes the
                             filename and extension. <br />
                             Examples: <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>. </td>
@@ -226,9 +226,29 @@
                             <td>The name of the web application to
                             check, such as <i>webapp</i>. </td>
                         </tr>
+                        <tr>
+                            <td class="required">Application State Checked</td>
+                            <td>
+                                Application State that is being checked, with any applicable retries based on wait time parameter.
+                                Any state that is not the desired state after any applicable retries, will be returned as a failure by the procedure.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Wait Time</td>
+                            <td>
+                                Maximum duration of check application state retries.
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <img src="../../plugins/EC-WebSphere/images/CheckApp/CheckAppParameters.png" />
+                <p>After the job runs, you can view the results, including the following job details, which show that application is running:</p>
+                <img src="../../plugins/EC-WebSphere/images/CheckApp/CheckAppResult.png" />
+                <p>In the <b>CheckApp</b> step, click the Log icon
+                to see the diagnostic information. The output is similar to
+                the following diagnostic
+                report.</p>
+                <img src="../../plugins/EC-WebSphere/images/CheckApp/CheckAppLog.png" />
             </div>
             <div id="CheckNodeStatus">
                 <a name="CheckNodeStatus" id="CheckNodeStatus"></a>
@@ -2347,6 +2367,7 @@
             <h2>@PLUGIN_KEY@ 2.3.0</h2>
             <ul>
                 <li>wsadmin absolute has been added to configuration.</li>
+                <li>CheckApp procedure has been improved and now it could check for different application states.</li>
             </ul>
             <h2>@PLUGIN_KEY@ 2.2.4</h2>
             <ul>

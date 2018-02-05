@@ -200,6 +200,7 @@ sub setResult {
     # time to get context.
     my $context = $self->getRunContext();
     # setting outcome
+    my $exit_code = 0;
     for my $o (@$outcome) {
         if ($o->{result} !~ m/^(?:error|success|warning)$/s) {
             $self->bail_out("Expected error, success or warning, got: $o->{result}");
@@ -207,7 +208,12 @@ sub setResult {
         if ($o->{target} !~ m/^(?:myJobStep|myJob|myCall)$/s) {
             $self->bail_out("target should one of: myJobStep, myJob, myCall. Got: $o->{target}");
         }
-        $ec->setProperty('/' . $o->{target} . '/outcome' => $o->{result});
+        my $pp = '/' . $o->{target} . '/outcome';
+        if ($o->{result} eq 'error') {
+            $exit_code = 1;
+        }
+        $self->log()->debug("Setting outcome property: '$pp' => '$o->{result}'");
+        $ec->setProperty($pp => $o->{result});
     }
     # pipeline
     if ($context eq 'pipeline') {
@@ -215,7 +221,9 @@ sub setResult {
             if (!$p->{target} || !exists $p->{msg}) {
                 $self->bail_out("target and msg are mandatory");
             }
-            $ec->setProperty('/myPipelineStageRuntime/ec_summary/' . $p->{target} =>  $p->{msg});
+            my $pp = '/myPipelineStageRuntime/ec_summary/' . $p->{target};
+            $self->log()->debug("Setting pipeline property: '$pp' => '$p->{msg}'");
+            $ec->setProperty($pp =>  $p->{msg});
         }
     }
     # procedure, schedule and application process are also procedure context.
@@ -227,10 +235,14 @@ sub setResult {
             if ($p->{target} !~ m/^(?:myJobStep|myJob|myCall)$/s) {
                 $self->bail_out("target should one of: myJobStep, myJob, myCall. Got: $p->{target}");
             }
-            $ec->setProperty('/' . $p->{target} . '/summary' => $p->{msg});
+            my $pp = '/' . $p->{target} . '/summary';
+            $self->log()->debug("Setting procedure property: '$pp' => '$p->{msg}'");
+            $ec->setProperty($pp => $p->{msg});
         }
     }
-    return 1;
+    return sub {
+        exit $exit_code;
+    };
 }
 
 
