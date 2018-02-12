@@ -106,6 +106,10 @@
                     <propertyName>create_jdbc_provider.py</propertyName>
                     <value/>
                 </property>
+                <property>
+                    <propertyName>create_or_update_wmq_jms_resource.py</propertyName>
+                    <value/>
+                </property>
 
                 <!-- New properties after this line, added due refactoring. TODO: remove this comment after refactoring is done.-->
                 <property>
@@ -2747,6 +2751,333 @@
             </propertySheet>
         </step>
     </procedure>
+
+    <procedure>
+        <procedureName>CreateOrUpdateWMQJMSResource</procedureName>
+        <description>Creates or updates WMQ JMS Resources</description>
+        <jobNameTemplate>websphere-checkapp-$[jobId]</jobNameTemplate>
+        <resourceName />
+        <workspaceName />
+        <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+        <propertySheet>
+            <property>
+                <propertyName>ec_parameterForm</propertyName>
+                <expandable>1</expandable>
+                <value></value>
+            </property>
+            <property>
+                <propertyName>ec_customEditorData</propertyName>
+                <propertySheet>
+                    <property>
+                        <propertyName>parameters</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>configname</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>resourceScope</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>wmqResourceAPI</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>wmqResourceName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>JNDIName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>destinationJNDIName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>resourceDescription</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>wmqResourceType</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>topicOrQueueName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                            <property>
+                                <propertyName>ccsid</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>brokerVersion</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>wildcardFormat</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>customProperties</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>additionalOptions</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </property>
+        </propertySheet>
+        <formalParameter>
+            <formalParameterName>configname</formalParameterName>
+            <defaultValue />
+            <description>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.</description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>resourceScope</formalParameterName>
+            <defaultValue />
+            <description>Scope of the resource</description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>wmqResourceAPI</formalParameterName>
+            <defaultValue />
+            <description>
+                Resource type to create. Topic, Queue, ConnectionFactory or ActivationSpecification
+            </description>
+            <required>1</required>
+            <type>select</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>wmqResourceName</formalParameterName>
+            <defaultValue />
+            <description>
+                Administrative resource name
+            </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>JNDIName</formalParameterName>
+            <defaultValue />
+            <description>
+                JNDI name
+            </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>destinationJNDIName</formalParameterName>
+            <defaultValue />
+            <description>
+                Dest JNDI name
+            </description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>resourceDescription</formalParameterName>
+            <defaultValue />
+            <description>
+                Description of WMQ JMS resource.
+            </description>
+            <required>0</required>
+            <type>textarea</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>wmqResourceType</formalParameterName>
+            <defaultValue />
+            <description>
+                WMQ Resource Type
+            </description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>topicOrQueueName</formalParameterName>
+            <defaultValue />
+            <description>
+                Topic or queue name
+            </description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>ccsid</formalParameterName>
+            <defaultValue />
+            <description>
+                CCSID
+            </description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>brokerVersion</formalParameterName>
+            <defaultValue />
+            <description>
+                Broker version
+            </description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>wildcardFormat</formalParameterName>
+            <defaultValue />
+            <description>
+                Wildcard format
+            </description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>customProperties</formalParameterName>
+            <defaultValue />
+            <description>
+                Custom properties
+            </description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>additionalOptions</formalParameterName>
+            <defaultValue />
+            <description>
+                Additional options
+            </description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+        <step>
+            <stepName>CreateOrUpdateWMQJMSResource</stepName>
+            <alwaysRun>0</alwaysRun>
+            <broadcast>0</broadcast>
+            <command></command>
+            <condition />
+            <errorHandling>failProcedure</errorHandling>
+            <exclusive>0</exclusive>
+            <logFileName />
+            <parallel>0</parallel>
+            <postProcessor />
+            <releaseExclusive>0</releaseExclusive>
+            <resourceName />
+            <retries>0</retries>
+            <shell>ec-perl</shell>
+            <timeLimit>5</timeLimit>
+            <timeLimitUnits>minutes</timeLimitUnits>
+            <workingDirectory />
+            <workspaceName />
+            <procedureName>CreateOrUpdateWMQJMSResource</procedureName>
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>formType</propertyName>
+                            <expandable>1</expandable>
+                            <value>command</value>
+                        </property>
+                    </propertySheet>
+                </property>
+            </propertySheet>
+        </step>
+    </procedure>
+    
     <procedure>
         <procedureName>CreateDatasource</procedureName>
         <description>Creates a datasource using the wsadmin tool. The scope assigned to the datasource is provided by the JDBC Provider.</description>

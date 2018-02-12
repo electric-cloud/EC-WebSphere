@@ -81,6 +81,32 @@ sub new {
     return $configuration ? $self : undef;
 }
 
+sub getWSAdminPath {
+    my ($self) = @_;
+
+    return $self->{wsadminPath};
+}
+
+sub extractWebSphereExceptions {
+    my ($self, $text) = @_;
+
+    my @res = grep {$_} split '([A-Z]{4}[\d]{4}E:\s)', $text;
+    if (wantarray()) {
+        return @res;
+    }
+    else {
+        return join "\n", @res;
+    }
+}
+
+sub getParamsRenderer {
+    my ($self, %params) = @_;
+
+    my $r = WebSphere::Params->new(%params);
+    return $r;
+}
+
+
 sub ec {
     my ($self) = @_;
 
@@ -540,4 +566,47 @@ sub log {
     print "\n";
     return 1;
 }
+
+package WebSphere::Params;
+use strict;
+use warnings;
+
+use Carp;
+
+sub new {
+    my ($class, %params) = @_;
+
+    my $self = {};
+    for my $k (keys %params) {
+        next unless defined $params{$k};
+        $self->{$k} = $params{$k};
+    }
+    bless $self, $class;
+    return $self;
+}
+
+sub render {
+    my ($self) = @_;
+
+    my $string = '';
+    my $t = '-%s \\"%s\\" ';
+    my $t2 = '%s \\"%s\\" ';
+    for my $k (keys %$self) {
+        if ($k =~ m/\s/) {
+            croak "Parameter name should not have any spaces characters";
+        }
+        # TODO: add logic for params like custom properties.
+        if (ref $self->{$k} && ref $self->{$k} eq 'HASH') {
+            next;
+        #     for my $ik (keys %{$self->{$k}}) {
+        #         $string .= '';
+        #     }
+        }
+        ## TODO: add escape here
+        $string .= sprintf($t, $k, $self->{$k});
+    }
+    # $string = qq|[$string]|;
+    return $string;
+}
+
 1;

@@ -16,6 +16,7 @@
 
 import sys
 import time
+import re
 
 # Checks application readiness
 def isAppReady(appName):
@@ -88,3 +89,91 @@ def isAppInDesiredState(appName, desiredState):
     else:
         # print "Condition is not met";
         return 0;
+
+# this function parses output
+def parseOutput(output):
+    records = []
+    for nextArgument in re.split('\n', output):
+        if nextArgument:
+            records.append(nextArgument)
+    return records
+
+def wsadminTaskToDict(inStr):
+    map = {}
+    if (len(inStr) > 0 and inStr[0] == '{' and inStr[-1] == '}'):
+        inStr = inStr[1:-1]
+    tmpList = inStr.split(",")
+    for p in tmpList:
+        pNameValue = p.strip().split("=")
+        map[pNameValue[0]] = pNameValue[1]
+    return map
+
+def getWMQTopics(scope):
+    result = AdminConfig.getid(scope)
+    print result
+    topics = AdminTask.listWMQTopics(result)
+    print topics
+    retval = []
+    for topic in parseOutput(topics):
+        t = wsadminTaskToDict(AdminTask.showWMQTopic(topic))
+        t["__raw_resource_scope__"] = topic
+        retval.append(t)
+    return retval
+
+def getWMQQueues(scope):
+    result = AdminConfig.getid(scope)
+    print result
+    topics = AdminTask.listWMQQueues(result)
+    print topics
+    retval = []
+    for topic in parseOutput(topics):
+        t = wsadminTaskToDict(AdminTask.showWMQQueue(topic))
+        t["__raw_resource_scope__"] = topic
+        retval.append(t)
+    return retval
+
+def getWMQConnectionFactories(scope):
+    result = AdminConfig.getid(scope)
+    print result
+    topics = AdminTask.listWMQConnectionFactories(result)
+    print topics
+    retval = []
+    for topic in parseOutput(topics):
+        t = wsadminTaskToDict(AdminTask.listWMQConnectionFactory(topic))
+        t["__raw_resource_scope__"] = topic
+        retval.append(t)
+    return retval
+
+def getWMQActivationSpecs(scope):
+    result = AdminConfig.getid(scope)
+    print result
+    topics = AdminTask.listWMQActivationSpecs(result)
+    print topics
+    retval = []
+    for topic in parseOutput(topics):
+        t = wsadminTaskToDict(AdminTask.showWMQActivationSpec(topic))
+        t["__raw_resource_scope__"] = topic
+        retval.append(t)
+    return retval
+
+def isResourceExists(scope, resType, resName):
+    result = AdminConfig.getid(scope)
+    print result
+    records = None
+    if resType == 'WMQ_Topic':
+        records = getWMQTopics(scope)
+    elif resType == 'WMQ_Queue':
+        records = getWMQQueues(scope)
+    elif resType == 'WMQ_ConnectionFactory':
+        records = getWMQConnectionFactories(scope)
+    elif resType == 'WMQ_ActivationSpec':
+        records = getWMQActivationSpecs(scope)
+    else:
+        print "Wrong resource type %s" % (resType)
+        sys.exit(1)
+
+    if records:
+        for record in records:
+            if record.get("name") == resName:
+                return record.get("__raw_resource_scope__")
+    return 0

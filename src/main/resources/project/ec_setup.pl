@@ -244,6 +244,12 @@ my %checkNodeStatus = (
     category    => "Application Server"
 );
 
+my %createOrUpdateWMQJMSResource = (
+    label       => "WebSphere - Create Or Update WMQ JMS Resource",
+    procedure   => "CreateOrUpdateWMQJMSResource",
+    description => "Creates or updates WMQ JMS Resources.",
+    category    => "Application Server"
+);
 
 
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
@@ -282,6 +288,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Map Shar
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Modify Application ClassLoader");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Sync Nodes");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Check Node Status");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Or Update WMQ JMS Resource");
 
 @::createStepPickerSteps = (
     \%checkPageStatus, \%checkServerStatus,
@@ -300,7 +307,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Check No
     \%deployEnterpriseApp, \%startCluster,
     \%stopCluster, \%mapSharedLibrary,
     \%modifyApplicationClassLoader, \%syncNodes,
-    \%checkNodeStatus
+    \%checkNodeStatus, \%createOrUpdateWMQJMSResource
 );
 
 if ($upgradeAction eq "upgrade") {
@@ -583,6 +590,10 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'CheckNodeStatus',
                 stepName => 'CheckNodeStatus'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateOrUpdateWMQJMSResource',
+                stepName => 'CreateOrUpdateWMQJMSResource'
             });
         }
     }
