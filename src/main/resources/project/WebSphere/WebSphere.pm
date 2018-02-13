@@ -17,9 +17,40 @@ All rights reserved
 
 use strict;
 no strict "subs";
+use ElectricCommander;
 use ElectricCommander::PropDB;
 use JSON;
 use Data::Dumper;
+
+
+$| = 1;
+
+{
+    my $tec = ElectricCommander->new();
+    my $log_property_path;
+    eval {
+        $log_property_path = $tec->getProperty('/plugins/EC-WebSphere/project/ec_debug_logToProperty')->findvalue('//value')->string_value();
+    };
+    if ($log_property_path) {
+        ElectricCommander::PropMod::loadPerlCodeFromProperty($tec,"/myProject/modules/WebSphere/LogTrapper.pm");
+
+        WebSphere::LogTrapper::open_handle();
+        tie *STDOUT, "WebSphere::LogTrapper", (
+            print =>
+                sub {
+                    my $value = '';
+                    eval {
+                        $value = $tec->getProperty($log_property_path)->findvalue('//value')->string_value();
+                    };
+                    $value .= join '', @_;
+                    $tec->setProperty($log_property_path, $value);
+                    print @_;
+                    # print map { uc } @_;
+                }
+            );
+    }
+
+};
 
 =head1 METHODS
 

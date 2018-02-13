@@ -47,6 +47,10 @@
                             <propertyName>Util.pm</propertyName>
                             <value/>
                         </property>
+                        <property>
+                            <propertyName>LogTrapper.pm</propertyName>
+                            <value/>
+                        </property>
                     </propertySheet>
                 </property>
             </propertySheet>
