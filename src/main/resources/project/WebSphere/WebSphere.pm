@@ -17,9 +17,40 @@ All rights reserved
 
 use strict;
 no strict "subs";
+use ElectricCommander;
 use ElectricCommander::PropDB;
 use JSON;
 use Data::Dumper;
+
+
+$| = 1;
+
+{
+    my $tec = ElectricCommander->new();
+    my $log_property_path;
+    eval {
+        $log_property_path = $tec->getProperty('/plugins/EC-WebSphere/project/ec_debug_logToProperty')->findvalue('//value')->string_value();
+    };
+    if ($log_property_path) {
+        ElectricCommander::PropMod::loadPerlCodeFromProperty($tec,"/myProject/modules/WebSphere/LogTrapper.pm");
+
+        WebSphere::LogTrapper::open_handle();
+        tie *STDOUT, "WebSphere::LogTrapper", (
+            print =>
+                sub {
+                    my $value = '';
+                    eval {
+                        $value = $tec->getProperty($log_property_path)->findvalue('//value')->string_value();
+                    };
+                    $value .= join '', @_;
+                    $tec->setProperty($log_property_path, $value);
+                    print @_;
+                    # print map { uc } @_;
+                }
+            );
+    }
+
+};
 
 =head1 METHODS
 
@@ -80,6 +111,42 @@ sub new {
     $self->{configuration} = $configuration;
     return $configuration ? $self : undef;
 }
+
+sub setTemplateProperties {
+    my ($self, %props) = @_;
+
+    my $tp = $self->{_template_path} || '/myJobStep/tmpl';
+
+    for my $k (keys %props) {
+        $self->ec()->setProperty($tp . '/' . $k => $props{$k});
+    }
+    return 1;
+}
+sub getWSAdminPath {
+    my ($self) = @_;
+
+    return $self->{wsadminPath};
+}
+
+sub extractWebSphereExceptions {
+    my ($self, $text) = @_;
+
+    my @res = grep {$_} split '([A-Z]{4}[\d]{4}E:\s)', $text;
+    if (wantarray()) {
+        return @res;
+    }
+    else {
+        return join "\n", @res;
+    }
+}
+
+sub getParamsRenderer {
+    my ($self, %params) = @_;
+
+    my $r = WebSphere::Params->new(%params);
+    return $r;
+}
+
 
 sub ec {
     my ($self) = @_;
@@ -540,4 +607,47 @@ sub log {
     print "\n";
     return 1;
 }
+
+package WebSphere::Params;
+use strict;
+use warnings;
+
+use Carp;
+
+sub new {
+    my ($class, %params) = @_;
+
+    my $self = {};
+    for my $k (keys %params) {
+        next unless defined $params{$k};
+        $self->{$k} = $params{$k};
+    }
+    bless $self, $class;
+    return $self;
+}
+
+sub render {
+    my ($self) = @_;
+
+    my $string = '';
+    my $t = '-%s \\"%s\\" ';
+    my $t2 = '-%s %s ';
+    for my $k (keys %$self) {
+        if ($k =~ m/\s/) {
+            croak "Parameter name should not have any spaces characters";
+        }
+        if (ref $self->{$k} && ref $self->{$k} eq 'HASH') {
+            next;
+        }
+        ## TODO: add escape here
+        if ($k eq 'customProperties') {
+            $string .= sprintf($t2, $k, $self->{$k});
+        }
+        else {
+            $string .= sprintf($t, $k, $self->{$k});
+        }
+    }
+    return $string;
+}
+
 1;

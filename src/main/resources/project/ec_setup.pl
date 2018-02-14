@@ -244,7 +244,34 @@ my %checkNodeStatus = (
     category    => "Application Server"
 );
 
+my %createOrUpdateJMSQueue = (
+    label       => "WebSphere - Create Or Update JMS Queue",
+    procedure   => "CreateOrUpdateJMSQueue",
+    description => "Creates or updates JMS Queues",
+    category    => "Application Server"
+);
 
+my %createOrUpdateJMSTopic = (
+    label       => "WebSphere - Create Or Update JMS Topic",
+    procedure   => "CreateOrUpdateJMSTopic",
+    description => "Creates or updates JMS Topics",
+    category    => "Application Server"
+);
+
+
+my %deleteJMSQueue = (
+    label       => "WebSphere - Delete JMS Queue",
+    procedure   => "DeleteJMSQueue",
+    description => "Deletes JMS Queues",
+    category    => "Application Server"
+);
+
+my %deleteJMSTopic = (
+    label       => "WebSphere - Delete JMS Topic",
+    procedure   => "DeleteJMSTopic",
+    description => "Deletes JMS Topics",
+    category    => "Application Server"
+);
 
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
@@ -283,6 +310,11 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Modify A
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Sync Nodes");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Check Node Status");
 
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Or Update JMS Queue");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Or Update JMS Topic");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JMS Queue");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JMS Topic");
+
 @::createStepPickerSteps = (
     \%checkPageStatus, \%checkServerStatus,
     \%startServer, \%stopServer,
@@ -300,7 +332,9 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Check No
     \%deployEnterpriseApp, \%startCluster,
     \%stopCluster, \%mapSharedLibrary,
     \%modifyApplicationClassLoader, \%syncNodes,
-    \%checkNodeStatus
+    \%checkNodeStatus,
+    \%createOrUpdateJMSQueue, \%createOrUpdateJMSTopic,
+    \%deleteJMSTopic, \%deleteJMSQueue
 );
 
 if ($upgradeAction eq "upgrade") {
@@ -583,6 +617,23 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'CheckNodeStatus',
                 stepName => 'CheckNodeStatus'
+            });
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateOrUpdateJMSQueue',
+                stepName => 'CreateOrUpdateJMSQueue'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateOrUpdateJMSTopic',
+                stepName => 'CreateOrUpdateJMSTopic'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'DeleteJMSQueue',
+                stepName => 'DeleteJMSQueue'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'DeleteJMSTopic',
+                stepName => 'DeleteJMSTopic'
             });
         }
     }

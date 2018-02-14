@@ -62,6 +62,23 @@
         <path>wsadmin_scripts/stop_app.py</path>
     </file>
     <file>
+        <xpath>//property[propertyName=&quot;create_or_update_jms_queue.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/create_or_update_jms_queue.py</path>
+    </file>
+    <file>
+        <xpath>//property[propertyName=&quot;create_or_update_jms_topic.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/create_or_update_jms_topic.py</path>
+    </file>
+    <file>
+        <xpath>//property[propertyName=&quot;delete_jms_queue.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/delete_jms_queue.py</path>
+    </file>
+    <file>
+        <xpath>//property[propertyName=&quot;delete_jms_topic.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/delete_jms_topic.py</path>
+    </file>
+        
+    <file>
         <xpath>//property[propertyName=&quot;create_jdbc_provider.py&quot;]/value</xpath>
         <path>wsadmin_scripts/create_jdbc_provider.py</path>
     </file>
@@ -84,6 +101,10 @@
     <file>
         <xpath>//property[propertyName=&quot;WebSphere.pm&quot;]/value</xpath>
         <path>WebSphere/WebSphere.pm</path>
+    </file>
+    <file>
+        <xpath>//property[propertyName=&quot;LogTrapper.pm&quot;]/value</xpath>
+        <path>WebSphere/LogTrapper.pm</path>
     </file>
     <file>
         <xpath>//property[propertyName=&quot;ui_forms&quot;]/propertySheet/property[propertyName=&quot;WebSphereCreateConfigForm&quot;]/value</xpath>
@@ -305,7 +326,22 @@
         <xpath>//procedure[procedureName=&quot;ConfigEJBContainer&quot;]/step[stepName=&quot;ConfigEJBContainer&quot;]/command</xpath>
         <path>server/configureEJBContainer.pl</path>
     </file>
-
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateOrUpdateJMSQueue&quot;]/step[stepName=&quot;CreateOrUpdateJMSQueue&quot;]/command</xpath>
+        <path>server/createOrUpdateJMSQueue.pl</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeleteJMSQueue&quot;]/step[stepName=&quot;DeleteJMSQueue&quot;]/command</xpath>
+        <path>server/deleteJMSQueue.pl</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateOrUpdateJMSTopic&quot;]/step[stepName=&quot;CreateOrUpdateJMSTopic&quot;]/command</xpath>
+        <path>server/createOrUpdateJMSTopic.pl</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeleteJMSTopic&quot;]/step[stepName=&quot;DeleteJMSTopic&quot;]/command</xpath>
+        <path>server/deleteJMSTopic.pl</path>
+    </file>
     <file>
         <xpath>//procedure[procedureName=&quot;CreateConfiguration&quot;]/step[stepName=&quot;CreateConfiguration&quot;]/command</xpath>
         <path>conf/createcfg.pl</path>
@@ -455,6 +491,22 @@
     <file>
         <xpath>//procedure[procedureName=&quot;MapSharedLibrary&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/MapSharedLibrary.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateOrUpdateJMSQueue&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/CreateOrUpdateJMSQueue.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeleteJMSQueue&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/DeleteJMSQueue.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateOrUpdateJMSTopic&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/CreateOrUpdateJMSTopic.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeleteJMSTopic&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/DeleteJMSTopic.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;MapSharedLibrary&quot;]/step[stepName=&quot;MapSharedLibrary&quot;]/command</xpath>

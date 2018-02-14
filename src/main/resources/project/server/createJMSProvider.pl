@@ -104,7 +104,13 @@ sub main() {
     my $ec = new ElectricCommander();
     $ec->abortOnError(0);
 
-    my $websphere = WebSphere::WebSphere->new_simple($ec);
+    # my $websphere = WebSphere::WebSphere->new_simple($ec);
+    my $websphere = WebSphere::WebSphere->new(
+        $ec,
+        $::gConfigurationName,
+        $::gWSAdminAbsPath
+    );
+    $::gWSAdminAbsPath = $websphere->getWSAdminPath();
     %configuration = getConfiguration( $ec, $::gConfigurationName );
 
     push( @args, '"' . $::gWSAdminAbsPath . '"' );

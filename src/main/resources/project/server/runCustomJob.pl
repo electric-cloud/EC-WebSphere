@@ -62,14 +62,20 @@ sub main() {
     my @args = ();
     my %props;
     my $actualOperativeSystem = $^O;
-    my $fixedLocation = $::gWSAdminAbsPath;
+    # my $fixedLocation = $::gWSAdminAbsPath;
     my %configuration;
 
     #get an EC object
     my $ec = new ElectricCommander();
     $ec->abortOnError(0);
-    my $websphere = WebSphere::WebSphere->new_simple($ec);
+    # my $websphere = WebSphere::WebSphere->new_simple($ec);
+    my $websphere = WebSphere::WebSphere->new(
+        $ec,
+        $::gConfigurationName,
+        $::gWSAdminAbsPath
+    );
 
+    my $fixedLocation = $websphere->getWSAdminPath();
     if ($::gConfigurationName ne '') {
         %configuration = getConfiguration($ec, $::gConfigurationName);
     }
