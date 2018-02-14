@@ -3,7 +3,7 @@ import com.electriccloud.spec.SpockTestSupport
 import PluginTestHelper
 
 @Stepwise
-class GetArtifactList extends PluginTestHelper {
+class CheckApp extends PluginTestHelper {
     @Shared
     def testProjectName = 'EC-WebSphere-Specs-CheckApp'
     @Shared

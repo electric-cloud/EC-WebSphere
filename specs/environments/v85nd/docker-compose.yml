@@ -11,27 +11,27 @@ services:
     hostname: "efserver"
     tty: true
   iis:
-    image: "electricflow/websphere90nd"
+    image: "electricflow/websphere85nd"
     ports:
       - "7808:7808"
       - "9060:9060"
       - "9443:9443"
       - "9043:9043"
       - "8879:8879"
-    container_name: websphere90nd
-    hostname: "websphere90nd"
+    container_name: websphere85nd
+    hostname: "websphere85nd"
     tty: true
     environment:
     - EF_SERVER_HOST=efserver
     - EF_SERVER_ADMIN_USER=admin
     - EF_SERVER_ADMIN_PASS=changeme
-    - EF_RESOURCE_NAME=websphere90nd
-    - RESOURCE_NAME=websphere90nd
+    - EF_RESOURCE_NAME=websphere85nd
+    - RESOURCE_NAME=websphere85nd
     - ELECTRICFLOW_IP_ADDRESS=efserver
     - ELECTRICFLOW_USERNAME=admin
     - ELECTRICFLOW_PASSWORD=changeme
-    - WAS_CELL_NAME=websphere90ndCell01
-    - WAS_NODE_NAME=websphere90ndNode01
+    - WAS_CELL_NAME=websphere85ndCell01
+    - WAS_NODE_NAME=websphere85ndNode01
     restart: always
 networks:
   default:
