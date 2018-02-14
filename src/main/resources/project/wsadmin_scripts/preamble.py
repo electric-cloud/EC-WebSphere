@@ -156,14 +156,42 @@ def getWMQActivationSpecs(scope):
         retval.append(t)
     return retval
 
+def getSIBJMSTopics(scope):
+    result = AdminConfig.getid(scope)
+    print result
+    topics = AdminTask.listSIBJMSTopics(result)
+    print topics
+    retval = []
+    for topic in parseOutput(topics):
+        t = wsadminTaskToDict(AdminTask.showSIBJMSTopic(topic))
+        t["__raw_resource_scope__"] = topic
+        retval.append(t)
+    return retval
+
+def getSIBJMSQueues(scope):
+    result = AdminConfig.getid(scope)
+    print result
+    topics = AdminTask.listSIBJMSQueues(result)
+    print topics
+    retval = []
+    for topic in parseOutput(topics):
+        t = wsadminTaskToDict(AdminTask.showSIBJMSQueue(topic))
+        t["__raw_resource_scope__"] = topic
+        retval.append(t)
+    return retval
+
 def isResourceExists(scope, resType, resName):
     result = AdminConfig.getid(scope)
     print result
     records = None
     if resType == 'WMQ_Topic':
         records = getWMQTopics(scope)
+    elif resType == 'SIB_Topic':
+        records = getSIBJMSTopics(scope)
     elif resType == 'WMQ_Queue':
         records = getWMQQueues(scope)
+    elif resType == 'SIB_Queue':
+        records = getSIBJMSQueues(scope)
     elif resType == 'WMQ_ConnectionFactory':
         records = getWMQConnectionFactories(scope)
     elif resType == 'WMQ_ActivationSpec':

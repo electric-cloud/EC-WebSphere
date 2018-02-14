@@ -112,6 +112,16 @@ sub new {
     return $configuration ? $self : undef;
 }
 
+sub setTemplateProperties {
+    my ($self, %props) = @_;
+
+    my $tp = $self->{_template_path} || '/myJobStep/tmpl';
+
+    for my $k (keys %props) {
+        $self->ec()->setProperty($tp . '/' . $k => $props{$k});
+    }
+    return 1;
+}
 sub getWSAdminPath {
     my ($self) = @_;
 
@@ -621,22 +631,22 @@ sub render {
 
     my $string = '';
     my $t = '-%s \\"%s\\" ';
-    my $t2 = '%s \\"%s\\" ';
+    my $t2 = '-%s %s ';
     for my $k (keys %$self) {
         if ($k =~ m/\s/) {
             croak "Parameter name should not have any spaces characters";
         }
-        # TODO: add logic for params like custom properties.
         if (ref $self->{$k} && ref $self->{$k} eq 'HASH') {
             next;
-        #     for my $ik (keys %{$self->{$k}}) {
-        #         $string .= '';
-        #     }
         }
         ## TODO: add escape here
-        $string .= sprintf($t, $k, $self->{$k});
+        if ($k eq 'customProperties') {
+            $string .= sprintf($t2, $k, $self->{$k});
+        }
+        else {
+            $string .= sprintf($t, $k, $self->{$k});
+        }
     }
-    # $string = qq|[$string]|;
     return $string;
 }
 

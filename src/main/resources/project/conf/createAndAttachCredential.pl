@@ -231,10 +231,25 @@ $xpath = $ec->attachCredential($projName, $credName,
 $errors .= $ec->checkAllErrors($xpath);
 
 $xpath = $ec->attachCredential($projName, $credName,
-    {procedureName => 'CreateOrUpdateWMQJMSResource',
-     stepName => 'CreateOrUpdateWMQJMSResource'});
-
+    {procedureName => 'CreateOrUpdateJMSQueue',
+     stepName => 'CreateOrUpdateJMSQueue'});
 $errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'CreateOrUpdateJMSTopic',
+     stepName => 'CreateOrUpdateJMSTopic'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'DeleteJMSQueue',
+     stepName => 'DeleteJMSQueue'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'DeleteJMSTopic',
+     stepName => 'DeleteJMSTopic'});
+$errors .= $ec->checkAllErrors($xpath);
+
 
 
 # CreateDatasource

@@ -199,7 +199,8 @@ my $result_params = {
 };
 
 # success
-my $operation_mode = $1 if $cmd_res =~ m/Operation\smode:\s(.*?)$/ms;
+my $operation_mode = 'create';
+$operation_mode = $1 if $cmd_res =~ m/Operation\smode:\s(.*?)$/ms;
 if ($code == SUCCESS) {
     my $message = sprintf 'Successfully created or updated %s: %s', $opts->{wmqResourceAPI}, $opts->{wmqResourceName};
     $message = $1 if $cmd_res =~ m/Status:\sOK,\sMessage:\s(.*?)$/ms;
