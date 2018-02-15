@@ -17,7 +17,6 @@
 -->
 <editor>
     <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CreateMailSession</help>
-
     <formElement>
         <type>entry</type>
         <label>Configuration Name:</label>
@@ -27,7 +26,6 @@
         <htmlDocumentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" target="_blank" href="/commander/pages/@PLUGIN_NAME@/configurations">configuration page</a>.</htmlDocumentation>
         <required>1</required>
     </formElement>
-
     <formElement>
         <type>entry</type>
         <label>Wsadmin Absolute Path:</label>
@@ -36,7 +34,6 @@
         <documentation>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. '/path/to/wsadmin.sh' or 'wsadmin.bat'.</documentation>
         <propertyReference type="property">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/wsadminPath</propertyReference>
     </formElement>
-
     <formElement>
         <type>entry</type>
         <label>Scope:</label>
@@ -44,7 +41,6 @@
         <required>1</required>
         <documentation>Specifies the scope in which the mail session supports installed mail applications.For example, 'Cell=Cell01,Node=Node01,Server=server1' or 'Cell=Cell01,ServerCluster=testCluster'</documentation>
     </formElement>
-
     <formElement>
         <type>entry</type>
         <label>Mail Session Name:</label>
@@ -52,7 +48,6 @@
         <documentation>Specifies the administrative name of the JavaMail session object.</documentation>
         <required>1</required>
     </formElement>
-
     <formElement>
         <type>textarea</type>
         <label>Mail Session Description:</label>
@@ -60,7 +55,6 @@
         <required>0</required>
         <documentation>Specifies optional description for mail session.</documentation>
     </formElement>
-
     <formElement>
         <type>entry</type>
         <label>Mail Session JNDI Name:</label>
@@ -68,7 +62,6 @@
         <documentation>Specifies the Java Naming and Directory Interface (JNDI) name for the resource, including any naming subcontexts.</documentation>
         <required>1</required>
     </formElement>
-
     <formElement>
         <type>entry</type>
         <label>Category:</label>
@@ -76,7 +69,6 @@
         <documentation>Optional string to use while classifying or grouping the resources.</documentation>
         <required>0</required>
     </formElement>
-
     <formElement>
         <label>Enable Debug Mode?:</label>
         <property>debug</property>
@@ -87,7 +79,6 @@
         <checkedValue>1</checkedValue>
         <uncheckedValue>0</uncheckedValue>
     </formElement>
-
     <formElement>
         <type>entry</type>
         <label>Outgoing Mail Server:</label>
@@ -95,7 +86,6 @@
         <documentation>Specifies the host name of server that is accessed when sending mail.</documentation>
         <required>0</required>
     </formElement>
-
     <formElement>
         <type>entry</type>
         <label>Outgoing Mail Server Port:</label>
@@ -103,7 +93,6 @@
         <documentation>Specifies the port of the server that is accessed when sending mail.</documentation>
         <required>0</required>
     </formElement>
-
     <formElement>
         <type>select</type>
         <label>Outgoing Mail Server Protocol:</label>
@@ -113,7 +102,6 @@
         <option><name>SMTP</name><value>smtp(?!s)</value></option>
         <option><name>SMTP SSL</name><value>smtps</value></option>
     </formElement>
-
     <formElement>
         <type>credential</type>
         <label>Outgoing Mail Server Credential:</label>
@@ -121,7 +109,6 @@
         <documentation>Specifies the user of the mail account when the outgoing mail server requires authentication.</documentation>
         <required>0</required>
     </formElement>
-
     <formElement>
         <type>entry</type>
         <label>Return E-mail Address :</label>
@@ -129,7 +116,6 @@
         <documentation>Represents the Internet email address that, by default, displays in the received message in the From or the Reply-To address. The recipient's reply will come to this address.</documentation>
         <required>0</required>
     </formElement>
-
     <formElement>
         <type>entry</type>
         <label>Incoming Mail Server:</label>
@@ -137,7 +123,6 @@
         <documentation>Specifies the host name server that is accessed when receiving mail.</documentation>
         <required>0</required>
     </formElement>
-
     <formElement>
         <type>entry</type>
         <label>Incoming Mail Server Port:</label>
@@ -145,7 +130,6 @@
         <documentation>Specifies the port of the server that is accessed when receiving mail.</documentation>
         <required>0</required>
     </formElement>
-
     <formElement>
         <type>select</type>
         <label>Incoming Mail Server Protocol:</label>
@@ -157,7 +141,6 @@
         <option><name>POP3</name><value>pop3(?!s)</value></option>
         <option><name>POP3 SSL</name><value>pop3s</value></option>
     </formElement>
-
     <formElement>
         <type>credential</type>
         <label>Incoming Mail Server Credentials:</label>
@@ -165,7 +148,6 @@
         <documentation>Specifies the credential for the mail account when the incoming mail server requires authentication.</documentation>
         <required>0</required>
     </formElement>
-
     <formElement>
         <label>Enable Strict Internet Address Parsing?:</label>
         <property>strict</property>
@@ -176,5 +158,4 @@
         <checkedValue>1</checkedValue>
         <uncheckedValue>0</uncheckedValue>
     </formElement>
-
 </editor>

@@ -16,10 +16,19 @@
 
 -->
 <editor>
-	<formElement>		<type>entry</type>		<label>Configuration Name:</label>		<property>configurationName</property>		<documentation>The plugin's configuration name. </documentation>        <propertyReference>/plugins/@PLUGIN_NAME@/project/websphere_cfgs</propertyReference>
-        <required>1</required>	</formElement>				<formElement>
-		<type>textarea</type>
-		<label>Resource Names:</label>
-		<property>resourceNames</property>
-		<required>1</required>
-		<documentation>List of resources, on which discovery procedure should run. Enter multiple values on separate lines.</documentation>	</formElement></editor>
+    <formElement>
+        <type>entry</type>
+        <label>Configuration Name:</label>
+        <property>configurationName</property>
+        <documentation>The plugin's configuration name.</documentation>
+        <propertyReference>/plugins/@PLUGIN_NAME@/project/websphere_cfgs</propertyReference>
+        <required>1</required>
+    </formElement>
+    <formElement>
+        <type>textarea</type>
+        <label>Resource Names:</label>
+        <property>resourceNames</property>
+        <required>1</required>
+        <documentation>List of resources, on which discovery procedure should run. Enter multiple values on separate lines.</documentation>
+    </formElement>
+</editor>

@@ -32,7 +32,7 @@
         <label>Wsadmin Absolute Path:</label>
         <property>wsadminAbsPath</property>
         <propertyReference type="property">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/wsadminPath</propertyReference>
-        <required>0</required>
+        <required>1</required>
         <documentation>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. '/path/to/wsadmin.sh' or 'wsadmin.bat'.</documentation>
     </formElement>
     <formElement>
