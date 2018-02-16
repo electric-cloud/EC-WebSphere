@@ -126,7 +126,14 @@
                     <propertyName>delete_jms_queue.py</propertyName>
                     <value/>
                 </property>
-
+                <property>
+                    <propertyName>create_or_update_wmq_jms_activation_spec.py</propertyName>
+                    <value/>
+                </property>
+                <property>
+                    <propertyName>create_or_update_sib_jms_activation_spec.py</propertyName>
+                    <value/>
+                </property>
                 <!-- New properties after this line, added due refactoring. TODO: remove this comment after refactoring is done.-->
                 <property>
                     <propertyName>check_app.py</propertyName>
@@ -3470,7 +3477,486 @@
             </propertySheet>
         </step>
     </procedure>
-    
+    <procedure>
+        <procedureName>CreateOrUpdateWMQJMSActivationSpec</procedureName>
+        <description>Creates or updates WMQ JMS Activation Specs</description>
+        <jobNameTemplate>websphere-cu-wmq-jms-activationspec-$[jobId]</jobNameTemplate>
+        <resourceName />
+        <workspaceName />
+        <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+        <propertySheet>
+            <property>
+                <propertyName>ec_parameterForm</propertyName>
+                <expandable>1</expandable>
+                <value></value>
+            </property>
+            <property>
+                <propertyName>ec_customEditorData</propertyName>
+                <propertySheet>
+                    <property>
+                        <propertyName>parameters</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>configname</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>specScope</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>specAdministrativeName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>jndiName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>destinationJndiName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>destinationJndiType</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>specAdministrativeDescription</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>clientChannelDefinitionUrl</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>clientChannelDefinitionQueueManager</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>additionalOptions</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </property>
+        </propertySheet>
+        <formalParameter>
+            <formalParameterName>configname</formalParameterName>
+            <defaultValue />
+            <description>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.</description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>specScope</formalParameterName>
+            <defaultValue />
+            <description>
+                Scope of the default messaging provider at which the Connection Factory is to be created.
+            </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>specAdministrativeName</formalParameterName>
+            <defaultValue />
+            <description>
+                The administrative name assigned to this WebSphere MQ messaging provider Queue
+            </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>jndiName</formalParameterName>
+            <defaultValue />
+            <description>
+                The name used to bind this object into WebSphere Application Server JNDI.
+            </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>destinationJndiName</formalParameterName>
+            <defaultValue />
+            <description>
+                The name used to bind this object into WebSphere Application Server JNDI.
+            </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>destinationJndiType</formalParameterName>
+            <defaultValue />
+            <description>
+                The name used to bind this object into WebSphere Application Server JNDI.
+            </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>specAdministartiveDescription</formalParameterName>
+            <defaultValue />
+            <description>
+                The name used to bind this object into WebSphere Application Server JNDI.
+            </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>clientChannelDefinitionUrl</formalParameterName>
+            <defaultValue />
+            <description>
+                The name used to bind this object into WebSphere Application Server JNDI.
+            </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>clientChannelDefinitionQueueManager</formalParameterName>
+            <defaultValue />
+            <description>
+                The name used to bind this object into WebSphere Application Server JNDI.
+            </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        
+        <formalParameter>
+            <formalParameterName>additionalOptions</formalParameterName>
+            <defaultValue />
+            <description>
+                Additional options
+            </description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+        <step>
+            <stepName>CreateOrUpdateWMQJMSActivationSpec</stepName>
+            <alwaysRun>0</alwaysRun>
+            <broadcast>0</broadcast>
+            <command></command>
+            <condition />
+            <errorHandling>failProcedure</errorHandling>
+            <exclusive>0</exclusive>
+            <logFileName />
+            <parallel>0</parallel>
+            <postProcessor />
+            <releaseExclusive>0</releaseExclusive>
+            <resourceName />
+            <retries>0</retries>
+            <shell>ec-perl</shell>
+            <timeLimit>5</timeLimit>
+            <timeLimitUnits>minutes</timeLimitUnits>
+            <workingDirectory />
+            <workspaceName />
+            <procedureName>CreateOrUpdateWMQJMSActivationSpec</procedureName>
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>formType</propertyName>
+                            <expandable>1</expandable>
+                            <value>command</value>
+                        </property>
+                    </propertySheet>
+                </property>
+            </propertySheet>
+        </step>
+    </procedure>
+
+    <procedure>
+        <procedureName>CreateOrUpdateSIBJMSActivationSpec</procedureName>
+        <description>Creates or updates SIB JMS Activation Specs</description>
+        <jobNameTemplate>websphere-cu-sib-jms-activationspec-$[jobId]</jobNameTemplate>
+        <resourceName />
+        <workspaceName />
+        <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+        <propertySheet>
+            <property>
+                <propertyName>ec_parameterForm</propertyName>
+                <expandable>1</expandable>
+                <value></value>
+            </property>
+            <property>
+                <propertyName>ec_customEditorData</propertyName>
+                <propertySheet>
+                    <property>
+                        <propertyName>parameters</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>configname</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>specScope</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>specAdministrativeName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>jndiName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>destinationJndiName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>specAdministrativeDescription</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>destinationType</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>messageSelector</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>additionalOptions</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </property>
+        </propertySheet>
+        <formalParameter>
+            <formalParameterName>configname</formalParameterName>
+            <defaultValue />
+            <description>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.</description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>specScope</formalParameterName>
+            <defaultValue />
+            <description>
+                Scope of the default messaging provider at which the Connection Factory is to be created.
+            </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>specAdministrativeName</formalParameterName>
+            <defaultValue />
+            <description>
+                The administrative name assigned to this WebSphere MQ messaging provider Queue
+            </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>jndiName</formalParameterName>
+            <defaultValue />
+            <description>
+                The name used to bind this object into WebSphere Application Server JNDI.
+            </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>destinationJndiName</formalParameterName>
+            <defaultValue />
+            <description>
+                The name used to bind this object into WebSphere Application Server JNDI.
+            </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>specAdministartiveDescription</formalParameterName>
+            <defaultValue />
+            <description>
+                The name used to bind this object into WebSphere Application Server JNDI.
+            </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>destinationType</formalParameterName>
+            <defaultValue />
+            <description>
+                Dest type
+            </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>messageSelector</formalParameterName>
+            <defaultValue />
+            <description>
+                Message selector.
+            </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>additionalOptions</formalParameterName>
+            <defaultValue />
+            <description>
+                Additional options
+            </description>
+            <required>0</required>
+            <type>entry</type>
+        </formalParameter>
+        <step>
+            <stepName>CreateOrUpdateSIBJMSActivationSpec</stepName>
+            <alwaysRun>0</alwaysRun>
+            <broadcast>0</broadcast>
+            <command></command>
+            <condition />
+            <errorHandling>failProcedure</errorHandling>
+            <exclusive>0</exclusive>
+            <logFileName />
+            <parallel>0</parallel>
+            <postProcessor />
+            <releaseExclusive>0</releaseExclusive>
+            <resourceName />
+            <retries>0</retries>
+            <shell>ec-perl</shell>
+            <timeLimit>5</timeLimit>
+            <timeLimitUnits>minutes</timeLimitUnits>
+            <workingDirectory />
+            <workspaceName />
+            <procedureName>CreateOrUpdateSIBJMSActivationSpec</procedureName>
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>formType</propertyName>
+                            <expandable>1</expandable>
+                            <value>command</value>
+                        </property>
+                    </propertySheet>
+                </property>
+            </propertySheet>
+        </step>
+    </procedure>
     <procedure>
         <procedureName>CreateDatasource</procedureName>
         <description>Creates a datasource using the wsadmin tool. The scope assigned to the datasource is provided by the JDBC Provider.</description>

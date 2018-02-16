@@ -273,6 +273,21 @@ my %deleteJMSTopic = (
     category    => "Application Server"
 );
 
+## AS and CF
+my %createOrUpdateWMQJMSActivationSpec = (
+    label       => "WebSphere - Create Or Update WMQ JMS Activation Spec",
+    procedure   => "CreateOrUpdateWMQJMSActivationSpec",
+    description => "Creates or updates WMQ JMS Activation Spec",
+    category    => "Application Server"
+);
+
+my %createOrUpdateSIBJMSActivationSpec = (
+    label       => "WebSphere - Create Or Update SIB JMS Activation Spec",
+    procedure   => "CreateOrUpdateSIBJMSActivationSpec",
+    description => "Creates or updates SIB JMS Activation Spec",
+    category    => "Application Server"
+);
+
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy App");
@@ -315,6 +330,14 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create O
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JMS Queue");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JMS Topic");
 
+# AS and CF procedures
+# TODO: Remove that:
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Creates or updates WMQ JMS Activation Spec");
+## end of TODO
+
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - WebSphere - Create Or Update WMQ JMS Activation Spec");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - WebSphere - Create Or Update SIB JMS Activation Spec");
+
 @::createStepPickerSteps = (
     \%checkPageStatus, \%checkServerStatus,
     \%startServer, \%stopServer,
@@ -334,7 +357,9 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete J
     \%modifyApplicationClassLoader, \%syncNodes,
     \%checkNodeStatus,
     \%createOrUpdateJMSQueue, \%createOrUpdateJMSTopic,
-    \%deleteJMSTopic, \%deleteJMSQueue
+    \%deleteJMSTopic, \%deleteJMSQueue,
+    # AS and CF procedures
+    \%createOrUpdateWMQJMSActivationSpec, \%createOrUpdateSIBJMSActivationSpec
 );
 
 if ($upgradeAction eq "upgrade") {
@@ -634,6 +659,15 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DeleteJMSTopic',
                 stepName => 'DeleteJMSTopic'
+            });
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateOrUpdateWMQJMSActivationSpec',
+                stepName => 'CreateOrUpdateWMQJMSActivationSpec'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateOrUpdateSIBJMSActivationSpec',
+                stepName => 'CreateOrUpdateSIBJMSActivationSpec'
             });
         }
     }

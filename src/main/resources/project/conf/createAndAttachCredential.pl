@@ -250,6 +250,17 @@ $xpath = $ec->attachCredential($projName, $credName,
      stepName => 'DeleteJMSTopic'});
 $errors .= $ec->checkAllErrors($xpath);
 
+# AS and CF section
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'CreateOrUpdateWMQJMSActivationSpec',
+     stepName => 'CreateOrUpdateWMQJMSActivationSpec'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'CreateOrUpdateSIBJMSActivationSpec',
+     stepName => 'CreateOrUpdateSIBJMSActivationSpec'});
+$errors .= $ec->checkAllErrors($xpath);
+
 
 
 # CreateDatasource
