@@ -21,71 +21,71 @@
 
 -->
 <editor>
-	<help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CreateDatasource</help>
-	<formElement>
-		<type>entry</type>
-		<label>Configuration Name:</label>
-		<property>configname</property>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CreateDatasource</help>
+    <formElement>
+        <type>entry</type>
+        <label>Configuration Name:</label>
+        <property>configname</property>
         <propertyReference>/plugins/@PLUGIN_NAME@/project/websphere_cfgs</propertyReference>
         <documentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration. To view or create a new configuration, go to the Administration -> Plugins tab, and select 'Configure' action for @PLUGIN_KEY@ plugin.</documentation>
         <htmlDocumentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" target="_blank" href="/commander/pages/@PLUGIN_NAME@/configurations">configuration page</a>.</htmlDocumentation>
-		<required>1</required>
-	</formElement>
+        <required>1</required>
+    </formElement>
     <formElement>
         <type>entry</type>
         <label>Wsadmin Absolute Path:</label>
         <property>wsadminabspath</property>
-        <required>0</required>
+        <required>1</required>
         <documentation>Absolute path of wsadmin, including filename and extension. If the path in which wsadmin is stored in the path environmental variable, the absolute path is ommited. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'.</documentation>
         <propertyReference type="property">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configname/wsadminPath</propertyReference>
     </formElement>
     <formElement>
-		<type>entry</type>
-		<label>JDBC Provider:</label>
-		<property>jdbcProvider</property>
-		<required>1</required>
-		<documentation>Name of an existing JDBC Provider.</documentation>
-	</formElement>
-	<formElement>
-		<type>entry</type>
-		<label>Datasource Name:</label>
-		<property>datasourceName</property>
-		<documentation>A unique name that identifies this Datasource in the WebSphere domain. </documentation>
-		<required>1</required>
-	</formElement>
-	<formElement>
-		<type>entry</type>
-		<label>Datasource Description:</label>
-		<property>datasourceDescription</property>
-		<documentation>A description for the datasource. </documentation>
-		<required>0</required>
-	</formElement>
-	<formElement>
-		<type>entry</type>
-		<label>JNDI Name:</label>
-		<property>datasourceJNDIName</property>
-		<documentation>The JNDI path to where this Datasource is bound. </documentation>
-		<required>1</required>
-	</formElement>
-	<formElement>
-		<type>entry</type>
-		<label>Statement Cache Size:</label>
-		<property>statementCacheSize</property>
-		<documentation>Specifies the number of statements that can be cached per connection. The application server caches a statement after you close that statement. </documentation>
-		<required>1</required>
-	</formElement>
-	<formElement>
-		<type>entry</type>
-		<label>Authentication Alias Name:</label>
-		<property>authAliasName</property>
-		<documentation>Provide the authentication data alias. </documentation>
-		<required>1</required>
-	</formElement>
-	<formElement>
-		<type>entry</type>
-		<label>Datasource Helper Class Name:</label>
-		<property>datasourceHelperClassname</property>
-		<documentation>Provide the datasource helper class name.</documentation>
-		<required>1</required>
-	</formElement>
+        <type>entry</type>
+        <label>JDBC Provider:</label>
+        <property>jdbcProvider</property>
+        <required>1</required>
+        <documentation>Name of an existing JDBC Provider.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Datasource Name:</label>
+        <property>datasourceName</property>
+        <documentation>A unique name that identifies this Datasource in the WebSphere domain. </documentation>
+        <required>1</required>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Datasource Description:</label>
+        <property>datasourceDescription</property>
+        <documentation>A description for the datasource. </documentation>
+        <required>0</required>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>JNDI Name:</label>
+        <property>datasourceJNDIName</property>
+        <documentation>The JNDI path to where this Datasource is bound. </documentation>
+        <required>1</required>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Statement Cache Size:</label>
+        <property>statementCacheSize</property>
+        <documentation>Specifies the number of statements that can be cached per connection. The application server caches a statement after you close that statement. </documentation>
+        <required>1</required>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Authentication Alias Name:</label>
+        <property>authAliasName</property>
+        <documentation>Provide the authentication data alias. </documentation>
+        <required>1</required>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Datasource Helper Class Name:</label>
+        <property>datasourceHelperClassname</property>
+        <documentation>Provide the datasource helper class name.</documentation>
+        <required>1</required>
+    </formElement>
 </editor>

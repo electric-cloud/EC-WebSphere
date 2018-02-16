@@ -16,119 +16,116 @@
 
 -->
 <editor>
-	<help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CreateJMSProvider</help>
-
-	<formElement>
-		<type>entry</type>
-		<label>Configuration Name:</label>
-		<property>configName</property>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CreateJMSProvider</help>
+    <formElement>
+        <type>entry</type>
+        <label>Configuration Name:</label>
+        <property>configName</property>
         <propertyReference>/plugins/@PLUGIN_NAME@/project/websphere_cfgs</propertyReference>
         <documentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration. To view or create a new configuration, go to the Administration -> Plugins tab, and select 'Configure' action for @PLUGIN_KEY@ plugin.</documentation>
         <htmlDocumentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" target="_blank" href="/commander/pages/@PLUGIN_NAME@/configurations">configuration page</a>.</htmlDocumentation>
-		<required>1</required>
-	</formElement>
-
-	<formElement>
-		<type>entry</type>
-		<label>Wsadmin Absolute Path:</label>
-		<property>wsadminAbsPath</property>
-		<required>0</required>
-		<documentation>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. '/path/to/wsadmin.sh' or 'wsadmin.bat'.</documentation>
+        <required>1</required>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Wsadmin Absolute Path:</label>
+        <property>wsadminAbsPath</property>
+        <required>0</required>
+        <documentation>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. '/path/to/wsadmin.sh' or 'wsadmin.bat'.</documentation>
         <propertyReference type="property">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/wsadminPath</propertyReference>
-	</formElement>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Scope:</label>
+        <property>scope</property>
+        <documentation>Specifies a scope of cell, node, server, or cluster for the JMS provider. E.g. Cell=Cell01,Node=Node01,Server=server1 </documentation>
+        <required>1</required>
+    </formElement>
+    
+    <formElement>
+        <type>entry</type>
+        <label>JMS Provider Name:</label>
+        <property>jmsProvider</property>
+        <documentation>Specifies the name to assign to the new JMS provider. </documentation>
+        <required>1</required>
+    </formElement>
+    
+    <formElement>
+        <type>entry</type>
+        <label>Initial Context Factory:</label>
+        <property>extContextFactory</property>
+        <documentation>Specifies the Java class name of the initial context factory for the JMS provider.</documentation>
+        <required>1</required>
+    </formElement>
 
-	<formElement>
-		<type>entry</type>
-		<label>Scope:</label>
-		<property>scope</property>
-		<documentation>Specifies a scope of cell, node, server, or cluster for the JMS provider. E.g. Cell=Cell01,Node=Node01,Server=server1 </documentation>
-		<required>1</required>
-	</formElement>
-	
-	<formElement>
-		<type>entry</type>
-		<label>JMS Provider Name:</label>
-		<property>jmsProvider</property>
-		<documentation>Specifies the name to assign to the new JMS provider. </documentation>
-		<required>1</required>
-	</formElement>
-	
-	<formElement>
-		<type>entry</type>
-		<label>Initial Context Factory:</label>
-		<property>extContextFactory</property>
-		<documentation>Specifies the Java class name of the initial context factory for the JMS provider.</documentation>
-		<required>1</required>
-	</formElement>
+    <formElement>
+        <type>entry</type>
+        <label>JMS provider URL:</label>
+        <property>extProviderURL</property>
+        <documentation>Specifies the JMS provider URL for external JNDI lookups.</documentation>
+        <required>1</required>
+    </formElement>
 
-	<formElement>
-		<type>entry</type>
-		<label>JMS provider URL:</label>
-		<property>extProviderURL</property>
-		<documentation>Specifies the JMS provider URL for external JNDI lookups.</documentation>
-		<required>1</required>
-	</formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Classpath:</label>
+        <property>classpath</property>
+        <documentation>Specifies a list of paths or Java archive (JAR) file names which together form the location for the resource provider classes. Use a semicolon (;) to separate class paths.</documentation>
+        <required>0</required>
+    </formElement>
 
-	<formElement>
-		<type>entry</type>
-		<label>Classpath:</label>
-		<property>classpath</property>
-		<documentation>Specifies a list of paths or Java archive (JAR) file names which together form the location for the resource provider classes. Use a semicolon (;) to separate class paths.</documentation>
-		<required>0</required>
-	</formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Description:</label>
+        <property>description</property>
+        <documentation>Specifies a description of the JMS Provider.</documentation>
+        <required>0</required>
+    </formElement>
 
-	<formElement>
-		<type>entry</type>
-		<label>Description:</label>
-		<property>description</property>
-		<documentation>Specifies a description of the JMS Provider.</documentation>
-		<required>0</required>
-	</formElement>
+    <formElement>
+        <label>Isolated Class Loader:</label>
+        <property>isolatedClassLoader</property>
+        <value/>
+        <documentation>If set to true, specifies that the resource provider is loaded in its own class loader.</documentation>
+        <required>0</required>
+        <type>checkbox</type>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
 
-	<formElement>
-		<label>Isolated Class Loader:</label>
-		<property>isolatedClassLoader</property>
-		<value/>
-		<documentation>If set to true, specifies that the resource provider is loaded in its own class loader.</documentation>
-		<required>0</required>
-		<type>checkbox</type>
-		<checkedValue>1</checkedValue>
-		<uncheckedValue>0</uncheckedValue>
-	</formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Native Path:</label>
+        <property>nativepath</property>
+        <documentation>Specifies an optional path to any native libraries, such as *.dll and *.so. Native path entries are separated by a semicolon (;).</documentation>
+        <required>0</required>
+    </formElement>
 
-	<formElement>
-		<type>entry</type>
-		<label>Native Path:</label>
-		<property>nativepath</property>
-		<documentation>Specifies an optional path to any native libraries, such as *.dll and *.so. Native path entries are separated by a semicolon (;).</documentation>
-		<required>0</required>
-	</formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Provider Type:</label>
+        <property>providerType</property>
+        <documentation>Specifies the JMS provider type that this JMS provider uses.</documentation>
+        <required>0</required>
+    </formElement>
 
-	<formElement>
-		<type>entry</type>
-		<label>Provider Type:</label>
-		<property>providerType</property>
-		<documentation>Specifies the JMS provider type that this JMS provider uses.</documentation>
-		<required>0</required>
-	</formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Property Set:</label>
+        <property>propertySet</property>
+        <documentation>Specifies resource properties in the following format: [[['name','nameValue1'],['type','typeValue1'],['value','valueValue1']]... [['name','nameValuen'],['type','typeValuen'],['value','valueValuen']]]</documentation>
+        <required>0</required>
+    </formElement>
 
-	<formElement>
-		<type>entry</type>
-		<label>Property Set:</label>
-		<property>propertySet</property>
-		<documentation>Specifies resource properties in the following format: [[['name','nameValue1'],['type','typeValue1'],['value','valueValue1']]... [['name','nameValuen'],['type','typeValuen'],['value','valueValuen']]]</documentation>
-		<required>0</required>
-	</formElement>
-
-	<formElement>
-		<label>Supports ASF:</label>
-		<property>supportsASF</property>
-		<value/>
-		<documentation>If set to true, specifies that the JMS provider supports Application Server Facilities (ASF), which provides concurrency and transactional support for applications.</documentation>
-		<required>0</required>
-		<type>checkbox</type>
-		<checkedValue>1</checkedValue>
-		<uncheckedValue>0</uncheckedValue>
-	</formElement>
+    <formElement>
+        <label>Supports ASF:</label>
+        <property>supportsASF</property>
+        <value/>
+        <documentation>If set to true, specifies that the JMS provider supports Application Server Facilities (ASF), which provides concurrency and transactional support for applications.</documentation>
+        <required>0</required>
+        <type>checkbox</type>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+    </formElement>
 
 </editor>
