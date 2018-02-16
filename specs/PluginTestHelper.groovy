@@ -99,8 +99,8 @@ try {
         wsadminabspath: wsadmin_path,
         conntype: conntype,
         debug: debug
-        
         ]
+
         if (System.getenv('RECREATE_CONFIG')) {
             props.recreate = true
         }
@@ -114,6 +114,30 @@ try {
             props
         )
     }
+
+    def createCustomConfiguration(configName, def inputData, props = [:])  {
+        println "Log - InputData: $inputData"
+        def configOpts = [
+        websphere_url: inputData.websphere_url,
+        websphere_port: inputData.websphere_port,
+        wsadminabspath: inputData.wsadminabspath,
+        conntype: inputData.conntype,
+        debug: inputData.debug
+        ]
+        if (System.getenv('RECREATE_CONFIG')) {
+            props.recreate = true
+        }
+        props.confPath = 'websphere_cfgs'
+        createPluginConfiguration(
+            'EC-WebSphere',
+            configName,
+            configOpts,
+            inputData.username,
+            inputData.password,
+            props
+        )
+    }
+
     def createWebSphereResource() {
         def hostname = System.getenv('WEBSPHERE_RESOURCE_HOST')
         def resources = dsl "getResources()"
@@ -140,7 +164,6 @@ try {
             )
 } catch (Exception e) {}
         """
-
         logger.debug(objectToJson(workspaceResult))
 
         def result = dsl """
