@@ -914,7 +914,7 @@
                             <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
                         </tr>
                         <tr>
-                            <td class="required">Wsadmin Absolute Path</td>
+                            <td>Wsadmin Absolute Path</td>
                             <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
                         </tr>
                         <tr>
@@ -1318,7 +1318,7 @@
                             <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
                         </tr>
                         <tr>
-                            <td class="required">Wsadmin Absolute Path</td>
+                            <td>Wsadmin Absolute Path</td>
                             <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
                         </tr>
                         <tr class="required">
@@ -1706,7 +1706,7 @@
                             this configuration.</td>
                         </tr>
                         <tr>
-                            <td class="required">Wsadmin Absolute
+                            <td>Wsadmin Absolute
                             Path</td>
                             <td>The absolute path to the wsadmin tool that includes
                             the filename and extension. If the path in
