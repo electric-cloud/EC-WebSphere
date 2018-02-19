@@ -17,7 +17,7 @@ limitations under the License.
 -->
 
 <editor>
-    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CreateOrUpdateJMSQueue</help>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CreateOrUpdateJMSTopic</help>
     <formElement>
         <type>entry</type>
         <label>Configuration Name:</label>
@@ -28,61 +28,54 @@ limitations under the License.
         <required>1</required>
     </formElement>
     <formElement>
-        <label>Resource API to use</label>
+        <label>Messaging System Type:</label>
         <property>messagingSystemType</property>
         <type>select</type>
-        <option><name>SIB</name><value>SIB</value></option>
         <option><name>WMQ</name><value>WMQ</value></option>
+        <option><name>SIB</name><value>SIB</value></option>
         <required>1</required>
-        <documentation>API to use</documentation>
+        <documentation>WMQ or SIB.</documentation>
     </formElement>
     <formElement>
-        <label>Scope of the Queue:</label>
-        <property>queueScope</property>
+        <label>Topic Scope:</label>
+        <property>topicScope</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Resource scope</documentation>
+        <documentation>Scope of the messaging provider at which the JMS Topic  is to be created.</documentation>
     </formElement>
     <formElement>
-        <label>Queue administrative name:</label>
-        <property>queueAdministrativeName</property>
+        <label>Topic Administrative Name:</label>
+        <property>topicAdministrativeName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation></documentation>
+        <documentation>The administrative name assigned to this WebSphere MQ messaging provider Topic.</documentation>
     </formElement>
     <formElement>
-        <label>Queue name:</label>
-        <property>queueName</property>
+        <label>Topic Name:</label>
+        <property>topicName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>name of jndi</documentation>
+        <documentation>Name of the Topic.</documentation>
     </formElement>
     <formElement>
-        <label>JNDI name:</label>
+        <label>JNDI Name:</label>
         <property>jndiName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Destination jndi name</documentation>
+        <documentation>The name used to bind this object into WebSphere Application Server JNDI.</documentation>
     </formElement>
     <formElement>
-        <label>Queue Manager Name:</label>
-        <property>queueManagerName</property>
-        <type>entry</type>
-        <required>0</required>
-        <documentation>Queue manager name.</documentation>
-    </formElement>
-    <formElement>
-        <label>Queue Administrative description:</label>
-        <property>queueAdministrativeDescription</property>
+        <label>Topic Administrative Description:</label>
+        <property>topicAdministrativeDescription</property>
         <type>textarea</type>
         <required>0</required>
-        <documentation>Res desc</documentation>
+        <documentation>An administrative description assigned to Topic.</documentation>
     </formElement>
     <formElement>
-        <label>Additional options</label>
+        <label>Additional Options:</label>
         <property>additionalOptions</property>
         <type>textarea</type>
         <required>0</required>
-        <documentation>Additional options</documentation>
+        <documentation>Used to either override defaults or pass Custom Properties.</documentation>
     </formElement>
 </editor>

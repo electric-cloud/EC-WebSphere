@@ -21,7 +21,7 @@ use ElectricCommander;
 use ElectricCommander::PropDB;
 use JSON;
 use Data::Dumper;
-
+use WebSphere::Util;
 
 $| = 1;
 
@@ -313,6 +313,27 @@ sub setResult {
 }
 
 
+sub parseScope {
+    my ($self, $scope) = @_;
+
+    if ($scope =~ m|^/.*?/$|) {
+        return $scope;
+    }
+
+    my @elems = split ',', $scope;
+
+    my $retval = '/';
+    for my $elem (@elems) {
+        WebSphere::Util::rtrim($elem);
+        my @kv = split '=', $elem;
+        WebSphere::Util::rtrim($kv[0]);
+        WebSphere::Util::rtrim($kv[1]);
+
+        $retval .= "$kv[0]:$kv[1]/";
+    }
+    return $retval;
+}
+
 =head2 C<new>
 
 Execute python script in wsadmin, and parse output from command.
@@ -535,8 +556,25 @@ sub setSummary {
 sub bail_out {
     my ($self, @msg) = @_;
 
-    print join('', @msg);
-    exit 1;
+    my $msg = join('', @msg);
+    my $result_params = {
+        outcome => {
+            target => 'myCall',
+            result => 'error',
+        },
+        procedure => {
+            target => 'myCall',
+            msg => $msg
+        },
+        pipeline => {
+            target => 'Bailed Out:',
+            msg => $msg,
+        }
+    };
+
+    my $exit = $self->setResult(%$result_params);
+
+    $exit->();
 }
 
 ## internal package, required for logging

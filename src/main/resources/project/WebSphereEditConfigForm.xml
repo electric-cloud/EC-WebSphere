@@ -18,7 +18,7 @@
 <editor>
     <formElement>
         <type>entry</type>
-        <label>wsadmin Absolute Path:</label>
+        <label>WSAdmin Absolute Path:</label>
         <property>wsadminabspath</property>
         <value></value>
         <documentation>Absolute path to wsadmin script.</documentation>
@@ -64,7 +64,6 @@
     <formElement>
         <label>Debug Level:</label>
         <property>debug</property>
-        <value/>
         <documentation>Debug level.</documentation>
         <required>0</required>
         <type>select</type>

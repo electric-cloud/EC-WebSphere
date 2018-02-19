@@ -28,26 +28,26 @@ limitations under the License.
         <required>1</required>
     </formElement>
     <formElement>
-        <label>Resource API to use</label>
+        <label>Messaging System Type:</label>
         <property>messagingSystemType</property>
         <type>select</type>
-        <option><name>SIB</name><value>SIB</value></option>
         <option><name>WMQ</name><value>WMQ</value></option>
+        <option><name>SIB</name><value>SIB</value></option>
         <required>1</required>
-        <documentation>API to use</documentation>
+        <documentation>WMQ or SIB.</documentation>
     </formElement>
     <formElement>
-        <label>Scope of the Queue:</label>
+        <label>Queue Scope:</label>
         <property>queueScope</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Resource scope</documentation>
+        <documentation>Scope of the messaging provider at which the JMS Queue is to be deleted.</documentation>
     </formElement>
     <formElement>
-        <label>Queue administrative name:</label>
+        <label>Queue Administrative Name:</label>
         <property>queueAdministrativeName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation></documentation>
+        <documentation>The administrative name assigned to this WebSphere MQ messaging provider queue.</documentation>
     </formElement>
 </editor>
