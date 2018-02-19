@@ -57,9 +57,11 @@ my $params = $r->render();
 
 $params .= ' ' . $opts->{additionalOptions};
 
+my $parsedTopicScope = $websphere->parseScope($opts->{topicScope});
 $websphere->setTemplateProperties(
     requestParameters => $params,
-    wasApi            => $wasApi
+    wasApi            => $wasApi,
+    topicScope        => $parsedTopicScope,
 );
 
 my $logger = $websphere->log();
@@ -95,7 +97,7 @@ my $result_params = {
         msg => ''
     },
     pipeline => {
-        target => 'Create Or Update WMQ JMS Resource Result:',
+        target => 'Create Or Update JMS Topic Result:',
         msg => '',
     }
 };
@@ -104,15 +106,22 @@ my $result_params = {
 my $operation_mode = 'create';
 $operation_mode = $1 if $cmd_res =~ m/Operation\smode:\s(.*?)$/ms;
 if ($code == SUCCESS) {
-    my $message = sprintf 'Successfully created or updated %s: %s', $wasApi, $opts->{topicAdministrativeName};
-    $message = $1 if $cmd_res =~ m/Status:\sOK,\sMessage:\s(.*?)$/ms;
+    my $message = sprintf 'Successfully created or updated %s: %s for %s scope',
+        $wasApi,
+        $opts->{topicAdministrativeName},
+        $parsedTopicScope;
+
+    if ($cmd_res =~ m/Status:\sOK,\sMessage:\s(.*?)$/ms) {
+        $message = $1;
+        $message .= " for $parsedTopicScope scope";
+    }
     $result_params->{outcome}->{result} = 'success';
     $result_params->{procedure}->{msg} = $result_params->{pipeline}->{msg} = $message;
 }
 else {
     my $error = $websphere->extractWebSphereExceptions($cmd_res);
     if ($error) {
-        $error = "Error occured during $operation_mode of $opts->{wmqResourceName}:\n$error";
+        $error = "Error occured during $operation_mode of $opts->{topicAdministrativeName}:\n$error";
     }
     else {
         $error = "Unexpected error occured.";

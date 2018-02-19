@@ -11,13 +11,13 @@
             <h1>WebSphere Application Server</h1>
             <p>Plugin Version @PLUGIN_VERSION@</p>
             <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" />
-            <p>Revised on Nov 15, 2016</p>
+            <p>Revised on Feb 19, 2018</p>
             <h1>Contents</h1>
             <ul>
-                <li><p><a href="#overview">Overview</a></p></li>
-                <li><p><a href="#supported_platforms">Supported Platforms</a></p></li>
-                <li><p><a href="#CreateConfiguration">Setting Up the Plugin Configuration</a></p></li>
-                <li><p><a href="#procedures">Plugin Procedures</a></p></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#supported_platforms">Supported Platforms</a></li>
+                <li><a href="#CreateConfiguration">Setting Up the Plugin Configuration</a></li>
+                <li><a href="#procedures">Plugin Procedures</a></li>
                 <ul>
                     <li><a href="#CheckApp">CheckApp</a></li>
                     <li><a href="#CheckNodeStatus">CheckNodeStatus (Only for WebSphere Network Deployment)</a></li>
@@ -31,10 +31,18 @@
                     <li><a href="#CreateJDBCProvider">CreateJDBCProvider</a></li>
                     <li><a href="#CreateJMSProvider">CreateJMSProvider</a></li>
                     <li><a href="#CreateMailSession">CreateMailSession</a></li>
+                    
+                    <li><a href="#CreateOrUpdateJMSQueue">CreateOrUpdateJMSQueue</a></li>
+                    <li><a href="#CreateOrUpdateJMSTopic">CreateOrUpdateJMSTopic</a></li>
+                    
                     <li><a href="#DeleteCluster">DeleteCluster (Only for WebSphere Network Deployment)</a></li>
                     <li><a href="#DeleteConfiguration">DeleteConfiguration</a></li>
                     <li><a href="#DeleteDatasource">DeleteDatasource</a></li>
                     <li><a href="#DeleteJDBCProvider">DeleteJDBCProvider</a></li>
+
+                    <li><a href="#DeleteJMSQueue">DeleteJMSQueue</a></li>
+                    <li><a href="#DeleteJMSTopic">DeleteJMSTopic</a></li>
+                    
                     <li><a href="#DeployApp">DeployApp</a></li>
                     <li><a href="#DeployEnterpriseApp">DeployEnterpriseApp</a></li>
                     <li><a href="#DeployOSGiApp">DeployOSGiApp</a></li>
@@ -95,6 +103,7 @@
                 The plugin was tested on following WebSphere versions:
             </p>
             <ul>
+                <li>WAS and WASND 9.0 on Linux and Windows</li>
                 <li>WAS and WASND 8.5.5 on Linux and Windows</li>
                 <li>WAS and WASND 8.5.0 on Linux and Windows</li>
                 <li>WAS and WASND 8.0 on Linux and Windows</li>
@@ -145,9 +154,12 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="required">Configuration
-                                Name</td>
+                                <td class="required">Configuration Name</td>
                                 <td>The name of the configuration to create.</td>
+                            </tr>
+                            <tr>
+                                <td>WSAdmin Absolute Path</td>
+                                <td>Absolute path to wsadmin script.</td>
                             </tr>
                             <tr>
                                 <td class="required">Connection Type</td>
@@ -170,6 +182,10 @@
                                 the <i>Username</i>.<br />
                                 <i>Retype Password</i>: Re-enter the
                                 password.</td>
+                            </tr>
+                            <tr>
+                                <td>Debug Level</td>
+                                <td>Debug level.</td>
                             </tr>
                         </tbody>
                         </table><img src="../../plugins/EC-WebSphere/images/Config/parameters.png" />
@@ -219,7 +235,7 @@
                             <td>Wsadmin Path</td>
                             <td>The path of the wsadmin tool that includes the
                             filename and extension. <br />
-                            Examples: <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>. </td>
+                            Examples: <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
                         </tr>
                         <tr>
                             <td class="required">Application Name</td>
@@ -1072,6 +1088,162 @@
                 report.</p>
                 <img src="../../plugins/EC-WebSphere/images/CreateMailSession/EC-WebSphereCreateMailSession4.png" />
             </div>
+
+
+            <div id="CreateOrUpdateJMSQueue">
+                <a name="CreateOrUpdateJMSQueue" id="CreateOrUpdateJMSQueue"></a>
+                <h2>CreateOrUpdateJMSQueue</h2>
+                <p>This procedure creates or updates JMS Queue.</p>
+                <h3>CreateOrUpdateJMSQueue Parameters</h3>
+                <table class="grid">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="required">Configuration Name</td>
+                            <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
+                        </tr>
+                        <tr>
+                            <td class="required">Messaging System Type</td>
+                            <td>WMQ or SIB</td>
+                        </tr>
+                        <tr>
+                            <td class="required">Queue Scope</td>
+                            <td>Scope of the messaging provider at which the JMS Queue is to be created.</td>
+                        </tr>
+                        <tr>
+                            <td class="required">Queue Administrative Name</td>
+                            <td>The administrative name assigned to this WebSphere MQ messaging provider queue.</td>
+                        </tr>
+                        <tr>
+                            <td class="required">Queue Name</td>
+                            <td>Name of the Queue.</td>
+                        </tr>
+                        <tr>
+                            <td class="required">JNDI Name</td>
+                            <td>The name used to bind this object into WebSphere Application Server JNDI.</td>
+                        </tr>
+                        <tr>
+                            <td>Queue Manager Name</td>
+                            <td>Queue manager that hosts the queue.</td>
+                        </tr>
+                        <tr>
+                            <td>Queue Administrative Description</td>
+                            <td>An administrative description assigned to queue.</td>
+                        </tr>
+                        <tr>
+                            <td>Additional Options</td>
+                            <td>Used to either override defaults or pass Custom Properties.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Create or update JMS Queue</h3>
+                <p>To create or update JMS Queue in Commander interface, do these steps:</p>
+                <ol>
+                    <li>Create procedure.</li>
+                    <li>Create step, choose Plugin, choose CreateOrUpdateJMSQueue from procedures picker.</li>
+                    <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/ProcedureConfig.png" />
+                </ol>
+                <p>After the job runs, you can view the results, including the following job details:</p>
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/ProcedureResult.png" />
+
+                <p>To create or update JMS Queue in Flow interface, do these steps:</p>
+                <ol>
+                    <li>Create Pipeline.</li>
+                    <li>Create task.</li>
+                    <li>In task definition choose Plugin and choose following parameters:<p><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/PipelinePicker.png" /></p></li>
+                    <li>Click on arrow.</li>
+                    <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/PipelineConfig.png" />
+                </ol>
+                <p>After the pipeline runs, you can view the results, including the following step details:</p>
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/PipelineResult.png" />
+                
+                <p>In the <b>CreateOrUpdateJMSQueue</b> step, click the Log icon
+                to see the diagnostic information. The output is similar to
+                the following diagnostic
+                report.</p>
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/ProcedureResult.png" />
+            </div>
+
+            <div id="CreateOrUpdateJMSTopic">
+                <a name="CreateOrUpdateJMSQueue" id="CreateOrUpdateJMSTopic"></a>
+                <h2>CreateOrUpdateJMSTopic</h2>
+                <p>This procedure creates or updates JMS Topic.</p>
+                <h3>CreateOrUpdateJMSTopic Parameters</h3>
+                <table class="grid">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="required">Configuration Name</td>
+                            <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
+                        </tr>
+                        <tr>
+                            <td class="required">Messaging System Type</td>
+                            <td>WMQ or SIB</td>
+                        </tr>
+                        <tr>
+                            <td class="required">Topic Scope</td>
+                            <td>Scope of the messaging provider at which the JMS Topic is to be created.</td>
+                        </tr>
+                        <tr>
+                            <td class="required">Topic Administrative Name</td>
+                            <td>The administrative name assigned to this WebSphere MQ messaging provider topic.</td>
+                        </tr>
+                        <tr>
+                            <td class="required">Topic Name</td>
+                            <td>Name of the Topic.</td>
+                        </tr>
+                        <tr>
+                            <td class="required">JNDI Name</td>
+                            <td>The name used to bind this object into WebSphere Application Server JNDI.</td>
+                        </tr>
+                        <tr>
+                            <td>Topic Administrative Description</td>
+                            <td>An administrative description assigned to topic.</td>
+                        </tr>
+                        <tr>
+                            <td>Additional Options</td>
+                            <td>Used to either override defaults or pass Custom Properties.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Create or update JMS Topic</h3>
+                <p>To create or update JMS Topic in Commander interface, do these steps:</p>
+                <ol>
+                    <li>Create procedure.</li>
+                    <li>Create step, choose Plugin, choose CreateOrUpdateJMSTopic from procedures picker.</li>
+                    <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureConfig.png" />
+                </ol>
+                <p>After the job runs, you can view the results, including the following job details:</p>
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureResult.png" />
+
+                <p>To create or update JMS Topic in Flow interface, do these steps:</p>
+                <ol>
+                    <li>Create Pipeline.</li>
+                    <li>Create task.</li>
+                    <li>In task definition choose Plugin and choose following parameters:<p><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelinePicker.png" /></p></li>
+                    <li>Click on arrow.</li>
+                    <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineConfig.png" />
+                </ol>
+                <p>After the pipeline runs, you can view the results, including the following step details:</p>
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineResult.png" />
+                
+                <p>In the <b>CreateOrUpdateJMSTopic</b> step, click the Log icon
+                to see the diagnostic information. The output is similar to
+                the following diagnostic
+                report.</p>
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureResult.png" />
+            </div>
+            
             <div id="DeleteCluster">
                 <a name="DeleteCluster" id="DeleteCluster"></a>
                 <h2>DeleteCluster</h2>
@@ -1218,6 +1390,125 @@
                 the following diagnostic
                 report.</p>
                 <img src="../../plugins/EC-WebSphere/images/DeleteJDBCProvider/EC-WebSphereDeleteJDBCProvider4.png" />
+            </div>
+
+            <div id="DeleteJMSQueue">
+                <a name="DeleteJMSQueue" id="DeleteJMSQueue"></a>
+                <h2>DeleteJMSQueue</h2>
+                <p>This procedure deletes JMS Queue.</p>
+                <h3>DeleteJMSQueue Parameters</h3>
+                <table class="grid">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="required">Configuration Name</td>
+                            <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
+                        </tr>
+
+                        <tr>
+                            <td class="required">Messaging System Type</td>
+                            <td>WMQ or SIB.</td>
+                        </tr>
+                        <tr>
+                            <td class="required">Queue Scope</td>
+                            <td>Scope of the messaging provider at which the JMS Queue is to be deleted.</td>
+                        </tr>
+                        <tr>
+                            <td class="required">Queue Administrative Name</td>
+                            <td>The administrative name assigned to this WebSphere MQ messaging provider queue.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Delete JMS Queue</h3>
+                <p>To delete JMS Queue in Commander interface, do these steps:</p>
+                <ol>
+                    <li>Create procedure.</li>
+                    <li>Create step, choose Plugin, choose DeleteJMSQueue from procedures picker.</li>
+                    <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/ProcedureConfig.png" />
+                </ol>
+                <p>After the job runs, you can view the results, including the following job details:</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/ProcedureResult.png" />
+
+                <p>To delete JMS Queue in Flow interface, do these steps:</p>
+                <ol>
+                    <li>Create Pipeline.</li>
+                    <li>Create task.</li>
+                    <li>In task definition choose Plugin and choose following parameters:<p><img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/PipelinePicker.png" /></p></li>
+                    <li>Click on arrow.</li>
+                    <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/PipelineConfig.png" />
+                </ol>
+                <p>After the pipeline runs, you can view the results, including the following step details:</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/PipelineResult.png" />
+                
+                <p>In the <b>DeleteJMSQueue</b> step, click the Log icon
+                to see the diagnostic information. The output is similar to
+                the following diagnostic
+                report.</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/ProcedureResult.png" />
+            </div>
+            <div id="DeleteJMSTopic">
+                <a name="DeleteJMSTopic" id="DeleteJMSTopic"></a>
+                <h2>DeleteJMSTopic</h2>
+                <p>This procedure deletes JMS Topic.</p>
+                <h3>DeleteJMSTopic Parameters</h3>
+                <table class="grid">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="required">Configuration Name</td>
+                            <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
+                        </tr>
+
+                        <tr>
+                            <td class="required">Messaging System Type</td>
+                            <td>WMQ or SIB.</td>
+                        </tr>
+                        <tr>
+                            <td class="required">Topic Scope</td>
+                            <td>Scope of the messaging provider at which the JMS Topic is to be deleted.</td>
+                        </tr>
+                        <tr>
+                            <td class="required">Topic Administrative Name</td>
+                            <td>The administrative name assigned to this WebSphere MQ messaging provider topic.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Delete JMS Topic</h3>
+                <p>To delete JMS Topic in Commander interface, do these steps:</p>
+                <ol>
+                    <li>Create procedure.</li>
+                    <li>Create step, choose Plugin, choose DeleteJMSTopic from procedures picker.</li>
+                    <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/ProcedureConfig.png" />
+                </ol>
+                <p>After the job runs, you can view the results, including the following job details:</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/ProcedureResult.png" />
+
+                <p>To delete JMS Topic in Flow interface, do these steps:</p>
+                <ol>
+                    <li>Create Pipeline.</li>
+                    <li>Create task.</li>
+                    <li>In task definition choose Plugin and choose following parameters:<p><img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/PipelinePicker.png" /></p></li>
+                    <li>Click on arrow.</li>
+                    <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/PipelineConfig.png" />
+                </ol>
+                <p>After the pipeline runs, you can view the results, including the following step details:</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/PipelineResult.png" />
+                
+                <p>In the <b>DeleteJMSTopic</b> step, click the Log icon
+                to see the diagnostic information. The output is similar to
+                the following diagnostic
+                report.</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/ProcedureResult.png" />
             </div>
             <div id="DeployApp">
                 <a name="DeployApp" id="DeployApp"></a>
@@ -2366,8 +2657,64 @@
             <h1 id="rns">Release Notes</h1>
             <h2>@PLUGIN_KEY@ 2.3.0</h2>
             <ul>
-                <li>wsadmin absolute has been added to configuration.</li>
-                <li>CheckApp procedure has been improved and now it could check for different application states.</li>
+                <li>
+                    Following procedures have been added:
+                    
+                    <ul>
+                        <li><a href="#DeleteJMSQueue">DeleteJMSQueue</a></li>
+                        <li><a href="#DeleteJMSTopic">DeleteJMSTopic</a></li>
+                        <li><a href="#CreateOrUpdateJMSQueue">CreateOrUpdateJMSQueue</a></li>
+                        <li><a href="#CreateOrUpdateJMSTopic">CreateOrUpdateJMSTopic</a></li>
+                    </ul>
+                </li>
+                <li>
+                    Fixed non-ascii characters in plugin forms.
+                </li>
+                <li>WSAdmin Absolute has been added to configuration.</li>
+                <li>Debug parameter has been changed from checkbox to select.</li>
+                <li>
+                    <a href="#CreateJMSProvider">CreateJMSProvider</a>
+                    <ul>
+                        <li>WSAdmin Absolute path parameter changed to non-required.</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#RunCustomJob">RunCustomJob</a>
+                    <ul>
+                        <li>WSAdmin Absolute path parameter changed to non-required.</li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <a href="#DeployEnterpriseApp">DeployEnterpriseApp</a>
+                    <ul>
+                        <li>
+                            Fixed and issue when application was not started on all servers during deployment
+                            if server name and node name are the same.
+                        </li>
+                        <li>WSAdmin Absolute path parameter changed to non-required.</li>
+                    </ul>
+
+                </li>
+                <li>
+                    <a href="#CreateJDBCProvider">CreateJDBCProvider</a>
+                    CreateJDBCProvider
+                    <ul>
+                        <li>
+                            Fixed an error with attached credentials when in some cases it was not possible to create new JDBC provider.
+                        </li>
+                        <li>
+                            Cluster scope parameter has been added to procedure form.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#CheckApp">CheckApp</a>
+                    <ul>
+                        <li>WSAdmin Absolute path parameter changed to non-required.</li>
+                        <li>Procedure has been improved and now it could check for different application states.</li>
+                    </ul>
+                </li>
             </ul>
             <h2>@PLUGIN_KEY@ 2.2.4</h2>
             <ul>

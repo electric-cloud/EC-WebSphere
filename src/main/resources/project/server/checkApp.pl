@@ -84,6 +84,9 @@ $file = $websphere->write_jython_script(
     augment_filename_with_random_numbers => 1
 );
 
+if ($wait_time eq '') {
+    $wait_time = 0;
+}
 if (defined $wait_time && $wait_time !~ m/^\d+$/s) {
     $websphere->bail_out("Wait Time should be a positive integer.");
 }

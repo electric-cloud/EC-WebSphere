@@ -2892,7 +2892,7 @@
             <formalParameterName>messagingSystemType</formalParameterName>
             <defaultValue />
             <description>
-                SIB or WMQ
+                SIB or WMQ.
             </description>
             <required>1</required>
             <type>select</type>
@@ -2901,7 +2901,7 @@
             <formalParameterName>queueScope</formalParameterName>
             <defaultValue />
             <description>
-                Scope of the default messaging provider at which the JMS Queue  is to be created.
+                Scope of the default messaging provider at which the JMS Queue is to be created or updated.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -2910,7 +2910,7 @@
             <formalParameterName>queueAdministrativeName</formalParameterName>
             <defaultValue />
             <description>
-                The administrative name assigned to this WebSphere MQ messaging provider Queue
+                The administrative name assigned to this WebSphere MQ messaging provider Queue.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -2937,7 +2937,7 @@
             <formalParameterName>queueManagerName</formalParameterName>
             <defaultValue />
             <description>
-                The name used to bind this object into WebSphere Application Server JNDI.
+                Queue manager that hosts the queue.
             </description>
             <required>0</required>
             <type>entry</type>
@@ -2946,7 +2946,7 @@
             <formalParameterName>queueAdministrativeDescription</formalParameterName>
             <defaultValue />
             <description>
-                An administrative description assigned to Queue
+                An administrative description assigned to queue.
             </description>
             <required>0</required>
             <type>textarea</type>
@@ -2955,7 +2955,7 @@
             <formalParameterName>additionalOptions</formalParameterName>
             <defaultValue />
             <description>
-                Additional options
+                Used to either override defaults or pass Custom Properties.
             </description>
             <required>0</required>
             <type>entry</type>
@@ -3110,7 +3110,7 @@
             <formalParameterName>messagingSystemType</formalParameterName>
             <defaultValue />
             <description>
-                SIB or WMQ
+                SIB or WMQ.
             </description>
             <required>1</required>
             <type>select</type>
@@ -3119,7 +3119,7 @@
             <formalParameterName>topicScope</formalParameterName>
             <defaultValue />
             <description>
-                Scope of the default messaging provider at which the JMS Topic  is to be created.
+                Scope of the default messaging provider at which the JMS Topic is to be created.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -3128,7 +3128,7 @@
             <formalParameterName>topicAdministrativeName</formalParameterName>
             <defaultValue />
             <description>
-                The administrative name assigned to this WebSphere MQ messaging provider Topic
+                The administrative name assigned to this WebSphere MQ messaging provider Topic.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -3155,7 +3155,7 @@
             <formalParameterName>topicAdministrativeDescription</formalParameterName>
             <defaultValue />
             <description>
-                An administrative description assigned to Topic
+                An administrative description assigned to Topic.
             </description>
             <required>0</required>
             <type>textarea</type>
@@ -3164,7 +3164,7 @@
             <formalParameterName>additionalOptions</formalParameterName>
             <defaultValue />
             <description>
-                Additional options
+                Used to either override defaults or pass Custom Properties.
             </description>
             <required>0</required>
             <type>entry</type>
