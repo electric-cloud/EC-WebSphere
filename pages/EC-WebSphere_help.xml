@@ -2714,13 +2714,9 @@
                 </li>
                 <li>
                     <a href="#CreateJDBCProvider">CreateJDBCProvider</a>
-                    CreateJDBCProvider
                     <ul>
                         <li>
                             Fixed an error with attached credentials when in some cases it was not possible to create new JDBC provider.
-                        </li>
-                        <li>
-                            Cluster scope parameter has been added to procedure form.
                         </li>
                     </ul>
                 </li>
