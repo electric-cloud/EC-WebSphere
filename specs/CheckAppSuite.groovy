@@ -9,7 +9,7 @@ class CheckApp extends PluginTestHelper {
     @Shared
     def testProcedureName = 'CheckApp'
     @Shared
-    def wsConfigName = 'specConfig'
+    def сonfigName = 'specConfig'
     // params for where section
     @Shared
     def tNumber
@@ -28,14 +28,14 @@ class CheckApp extends PluginTestHelper {
         notReady: 'NOT_READY',
         ready: 'READY',
         notRunning: 'NOT_RUNNING',
-        running: 'RUNNING',
+        running: 'RUNNING'
         
     ]
     @Shared
     def wsAdminAbsolutePathes = [
         empty: '',
         correct: '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/wsadmin.sh',
-        incorrect: '/opt/Incorrect/wsadmin.sh',
+        incorrect: '/opt/Incorrect/wsadmin.sh'
     ]
 
     // params ofr where section 
@@ -48,7 +48,7 @@ class CheckApp extends PluginTestHelper {
    def doSetupSpec() {
         def wasResourceName = System.getenv('WAS_HOST');
         createWorkspace(wasResourceName)
-        createConfiguration(wsConfigName, [doNotRecreate: false])
+        createConfiguration(сonfigName, [doNotRecreate: false])
         importProject(testProjectName, 'dsl/CheckApp/Procedure.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
 
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
@@ -89,15 +89,15 @@ class CheckApp extends PluginTestHelper {
 
         where:
         wsConfigName    | wsAdminAbsolutePath           | wsApplicationName                      | wsApplicationState               | tTime    | expectedOutcome
-        wsConfigName    | wsAdminAbsolutePathes.empty   | wsApplicationNames.nonExistApplication | wsApplicationStates.notExist     | '0'      | 'success'
-        wsConfigName    | wsAdminAbsolutePathes.correct | wsApplicationNames.existApplication    | wsApplicationStates.exist        | '0'      | 'success'
-        wsConfigName    | wsAdminAbsolutePathes.empty   | wsApplicationNames.existApplication    | wsApplicationStates.notReady     | '0'      | 'success'
-        wsConfigName    | wsAdminAbsolutePathes.empty   | wsApplicationNames.existApplication    | wsApplicationStates.notRunning   | '0'      | 'success'
-        wsConfigName    | wsAdminAbsolutePathes.correct | wsApplicationNames.readyApplication    | wsApplicationStates.ready        | '0'      | 'success'
-        wsConfigName    | wsAdminAbsolutePathes.empty   | wsApplicationNames.readyApplication    | wsApplicationStates.notRunning   | '0'      | 'success'
-        wsConfigName    | wsAdminAbsolutePathes.empty   | wsApplicationNames.runningApplication  | wsApplicationStates.exist        | '0'      | 'success'
-        wsConfigName    | wsAdminAbsolutePathes.correct | wsApplicationNames.runningApplication  | wsApplicationStates.ready        | '0'      | 'success'
-        wsConfigName    | wsAdminAbsolutePathes.empty   | wsApplicationNames.runningApplication  | wsApplicationStates.running      | '100'    | 'success'
+        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.nonExistApplication | wsApplicationStates.notExist     | '0'      | 'success'
+        сonfigName      | wsAdminAbsolutePathes.correct | wsApplicationNames.existApplication    | wsApplicationStates.exist        | '0'      | 'success'
+        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.existApplication    | wsApplicationStates.notReady     | '0'      | 'success'
+        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.existApplication    | wsApplicationStates.notRunning   | '0'      | 'success'
+        сonfigName      | wsAdminAbsolutePathes.correct | wsApplicationNames.readyApplication    | wsApplicationStates.ready        | '0'      | 'success'
+        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.readyApplication    | wsApplicationStates.notRunning   | '0'      | 'success'
+        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.runningApplication  | wsApplicationStates.exist        | '0'      | 'success'
+        сonfigName      | wsAdminAbsolutePathes.correct | wsApplicationNames.runningApplication  | wsApplicationStates.ready        | '0'      | 'success'
+        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.runningApplication  | wsApplicationStates.running      | '100'    | 'success'
    }
 
     @Unroll
@@ -132,15 +132,15 @@ class CheckApp extends PluginTestHelper {
         where:
         wsConfigName            | wsAdminAbsolutePath               | wsApplicationName                         | wsApplicationState                | tTime      | expectedOutcome
         'specConfig-Incorrect'  | wsAdminAbsolutePathes.empty       | wsApplicationNames.existApplication       | wsApplicationStates.exist         | '0'        | 'error'
-        wsConfigName            | wsAdminAbsolutePathes.incorrect   | wsApplicationNames.existApplication       | wsApplicationStates.exist         | '0'        | 'error'
-        wsConfigName            | wsAdminAbsolutePathes.empty       | wsApplicationNames.existApplication       | wsApplicationStates.notExist      | '0'        | 'error'
-        wsConfigName            | wsAdminAbsolutePathes.empty       | wsApplicationNames.nonExistApplication    | wsApplicationStates.exist         | '0'        | 'error'
-        wsConfigName            | wsAdminAbsolutePathes.correct     | wsApplicationNames.existApplication       | wsApplicationStates.ready         | '0'        | 'error'
-        wsConfigName            | wsAdminAbsolutePathes.empty       | wsApplicationNames.readyApplication       | wsApplicationStates.notReady      | '0'        | 'error'
-        wsConfigName            | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplication     | wsApplicationStates.notRunning    | '0'        | 'error'
-        wsConfigName            | wsAdminAbsolutePathes.correct     | wsApplicationNames.readyApplication       | wsApplicationStates.running       | '0'        | 'error'
-        wsConfigName            | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplication     | wsApplicationStates.running       | '-1'       | 'error'
-        wsConfigName            | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplication     | wsApplicationStates.running       | 'abs'      | 'error'
+        сonfigName              | wsAdminAbsolutePathes.incorrect   | wsApplicationNames.existApplication       | wsApplicationStates.exist         | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.existApplication       | wsApplicationStates.notExist      | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.nonExistApplication    | wsApplicationStates.exist         | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.correct     | wsApplicationNames.existApplication       | wsApplicationStates.ready         | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.readyApplication       | wsApplicationStates.notReady      | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplication     | wsApplicationStates.notRunning    | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.correct     | wsApplicationNames.readyApplication       | wsApplicationStates.running       | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplication     | wsApplicationStates.running       | '-1'       | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplication     | wsApplicationStates.running       | 'abs'      | 'error'
    }
 
     def runProcedure(def parameters) {
