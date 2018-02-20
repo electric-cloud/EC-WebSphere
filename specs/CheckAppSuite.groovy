@@ -2,6 +2,7 @@ import spock.lang.*
 import com.electriccloud.spec.SpockTestSupport
 import PluginTestHelper
 
+
 @Stepwise
 class CheckApp extends PluginTestHelper {
     @Shared
@@ -15,12 +16,14 @@ class CheckApp extends PluginTestHelper {
     def tNumber
     @Shared
     def wsApplicationNames = [
-        nonExistApplication : 'Non-HelloWorld',
+        notExistApplication : 'notExistHelloWorld',
         existApplication: 'existHelloWorld',
+        notReadyApplication: 'notReadyHelloWorld',
         readyApplication: 'readyHelloWorld',
-        runningApplication: ' runningHelloWorld'
+        notRunningApplication: 'notRunningHelloWorld',        
+        runningApplication: 'runningHelloWorld'
     ]
-
+    
     @Shared
     def wsApplicationStates = [
         notExist: 'NOT_EXISTS',
@@ -37,8 +40,6 @@ class CheckApp extends PluginTestHelper {
         correct: '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/wsadmin.sh',
         incorrect: '/opt/Incorrect/wsadmin.sh'
     ]
-
-    // params ofr where section 
     @Shared
     def wsAdminAbsolutePath
     def wsApplicationName
@@ -52,17 +53,19 @@ class CheckApp extends PluginTestHelper {
         importProject(testProjectName, 'dsl/CheckApp/Procedure.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
 
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
+
+        deplyDefaultApplications()
     }
     
     // def doCleanupSpec() {
     //     dsl "deleteProject '$testProjectName'"
     // }
-
     @Unroll
     def "Check Application Suite. Positive scenarios"(){
-
+        
         when: 'Procedure runs'
         def wasResourceName=System.getenv('WAS_HOST');
+
         def runParams = [
             configName: wsConfigName,
             wsadminabspath: wsAdminAbsolutePath,
@@ -71,6 +74,7 @@ class CheckApp extends PluginTestHelper {
             wasResourceName: wasResourceName,
             waitTime: tTime
         ]
+        
         def result = runProcedure(runParams)
 
         then: 'wait until job is completed:'
@@ -89,7 +93,7 @@ class CheckApp extends PluginTestHelper {
 
         where:
         wsConfigName    | wsAdminAbsolutePath           | wsApplicationName                      | wsApplicationState               | tTime    | expectedOutcome
-        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.nonExistApplication | wsApplicationStates.notExist     | '0'      | 'success'
+        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.notExistApplication | wsApplicationStates.notExist     | '0'      | 'success'
         сonfigName      | wsAdminAbsolutePathes.correct | wsApplicationNames.existApplication    | wsApplicationStates.exist        | '0'      | 'success'
         сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.existApplication    | wsApplicationStates.notReady     | '0'      | 'success'
         сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.existApplication    | wsApplicationStates.notRunning   | '0'      | 'success'
@@ -105,6 +109,7 @@ class CheckApp extends PluginTestHelper {
 
         when: 'Procedure runs'
         def wasResourceName=System.getenv('WAS_HOST');
+
         def runParams = [
             configName: wsConfigName,
             wsadminabspath: wsAdminAbsolutePath,
@@ -113,6 +118,7 @@ class CheckApp extends PluginTestHelper {
             wasResourceName: wasResourceName,
             waitTime: tTime
         ]
+
         def result = runProcedure(runParams)
 
         then: 'wait until job is completed:'
@@ -134,7 +140,7 @@ class CheckApp extends PluginTestHelper {
         'specConfig-Incorrect'  | wsAdminAbsolutePathes.empty       | wsApplicationNames.existApplication       | wsApplicationStates.exist         | '0'        | 'error'
         сonfigName              | wsAdminAbsolutePathes.incorrect   | wsApplicationNames.existApplication       | wsApplicationStates.exist         | '0'        | 'error'
         сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.existApplication       | wsApplicationStates.notExist      | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.nonExistApplication    | wsApplicationStates.exist         | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.notExistApplication    | wsApplicationStates.exist         | '0'        | 'error'
         сonfigName              | wsAdminAbsolutePathes.correct     | wsApplicationNames.existApplication       | wsApplicationStates.ready         | '0'        | 'error'
         сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.readyApplication       | wsApplicationStates.notReady      | '0'        | 'error'
         сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplication     | wsApplicationStates.notRunning    | '0'        | 'error'
@@ -154,6 +160,75 @@ class CheckApp extends PluginTestHelper {
                         applicationState: '$parameters.applicationState',
                         wasResourceName:  '$parameters.wasResourceName',
                         waitTime:         '$parameters.propertyFormat'
+                    ]
+                )
+        """
+        return dsl(code)
+    }
+
+    def deplyDefaultApplications(){
+        /**
+        * TODO: Retrive Artifact
+        * Dmitry Sh.
+        */
+
+
+        /**
+         * Create NOT_RUNNING Application
+        */
+        def preProcedureName = 'DeployEnterpriseApp'
+        def applicationPath = '/var/tmp/hello-world.war'
+        def targetServer = 'websphere85ndNode01=server1'
+        def additionalDeploymentParameters = '-MapWebModToVH [[hello-world.war hello-world.war,WEB-INF/web.xml default_host]]'
+        def distributeApplication = 0
+        def synchronizeActiveNodes = 0
+        def startApplication = 0
+        def code = """
+                runProcedure(
+                    projectName: '$testProjectName',
+                    procedureName: '$preProcedureName',
+                    actualParameter: [
+                        configName:             '$configName',
+                        wsadminAbsPath:         '$wsAdminAbsolutePathes.correct',
+                        applicationName:        '$wsApplicationNames.notRunningApplication',
+                        applicationPath:        '$applicationPath'
+                        wasResourceName:        '$wasResourceName',
+                        serverList:             '$targetServer',
+                        additionalDeployParams: '$additionalDeploymentParameters',
+                        distributeApp:          '$distributeApplication',
+                        syncActiveNodes:        '$synchronizeActiveNodes',
+                        startApp:               '$startApplication'
+                    ]
+                )
+        """
+        return dsl(code)
+
+        /**
+         * Create RUNNING Application
+        */
+
+        def preProcedureName = 'DeployEnterpriseApp'
+        def applicationPath = '/var/tmp/hello-world.war'
+        def targetServer = 'websphere85ndNode01=server1'
+        def additionalDeploymentParameters = '-MapWebModToVH [[hello-world.war hello-world.war,WEB-INF/web.xml default_host]]'
+        def distributeApplication = '1'
+        def synchronizeActiveNodes = '1'
+        def startApplication = '1'
+        def code = """
+                runProcedure(
+                    projectName: '$testProjectName',
+                    procedureName: '$preProcedureName',
+                    actualParameter: [
+                        configName:             '$configName',
+                        wsadminAbsPath:         '$wsAdminAbsolutePathes.correct',
+                        applicationName:        '$wsApplicationNames.runningApplication',
+                        applicationPath:        '$applicationPath'
+                        wasResourceName:        '$wasResourceName',
+                        serverList:             '$targetServer',
+                        additionalDeployParams: '$additionalDeploymentParameters',
+                        distributeApp:          '$distributeApplication',
+                        syncActiveNodes:        '$synchronizeActiveNodes',
+                        startApp:               '$startApplication'
                     ]
                 )
         """
@@ -182,5 +257,6 @@ class CheckApp extends PluginTestHelper {
         }
     }
     */
+   
 
 }
