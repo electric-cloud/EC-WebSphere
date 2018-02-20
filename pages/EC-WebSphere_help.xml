@@ -64,7 +64,7 @@
                 </ul>
             </ul>
             <ul>
-                <li><p><a href="#rns">Release Notes</a></p></li>
+                <li><a href="#rns">Release Notes</a></li>
             </ul>
             <!-- The tool description should answer these kinds of
                  questions: What is the tool itself is used for in the
@@ -1182,7 +1182,7 @@
                 to see the diagnostic information. The output is similar to
                 the following diagnostic
                 report.</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/ProcedureResult.png" />
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/ProcedureLog.png" />
             </div>
 
             <div id="CreateOrUpdateJMSTopic">
@@ -1257,7 +1257,7 @@
                 to see the diagnostic information. The output is similar to
                 the following diagnostic
                 report.</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureResult.png" />
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureLog.png" />
             </div>
             
             <div id="DeleteCluster">
@@ -1465,7 +1465,7 @@
                 to see the diagnostic information. The output is similar to
                 the following diagnostic
                 report.</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/ProcedureResult.png" />
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/ProcedureLog.png" />
             </div>
             <div id="DeleteJMSTopic">
                 <a name="DeleteJMSTopic" id="DeleteJMSTopic"></a>
@@ -1524,7 +1524,7 @@
                 to see the diagnostic information. The output is similar to
                 the following diagnostic
                 report.</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/ProcedureResult.png" />
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/ProcedureLog.png" />
             </div>
             <div id="DeployApp">
                 <a name="DeployApp" id="DeployApp"></a>
