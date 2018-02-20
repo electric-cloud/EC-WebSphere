@@ -13,10 +13,40 @@ class CheckApp extends PluginTestHelper {
     // params for where section
     @Shared
     def tNumber
+    @Shared
+    def wsApplicationNames = [
+        nonExistApplication : 'Non-HelloWorld',
+        existApplication: 'existHelloWorld',
+        readyApplication: 'readyHelloWorld',
+        runningApplication: ' runningHelloWorld'
+    ]
 
-    // def doCleanupSpec() {
-    //     dsl "deleteProject '$testProjectName'"
-    // }
+    @Shared
+    def wsApplicationStates = [
+        notExist: 'NOT_EXIST',
+        exist: 'EXIST',
+        notReady: 'NOT_READY',
+        ready: 'READY'
+        notRunning: 'NOT_RUNNING',
+        running: 'RUNNING',
+        
+    ]
+    @Shared
+    def wsAdminAbsolutePathes = [
+        empty: '',
+        correct: '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/wsadmin.sh',
+        incorrect: '/opt/Incorrect/wsadmin.sh',
+    ]
+
+    // params ofr where section 
+    @Shared
+    def wsConfigName
+    def wsApplicationName
+    def wsApplicationState
+    def wsAdminAbsolutePath
+    def tTime
+
+   @Shared
     def doSetupSpec() {
         def wasResourceName = System.getenv('WAS_HOST');
         createWorkspace(wasResourceName)
@@ -26,43 +56,24 @@ class CheckApp extends PluginTestHelper {
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
     }
     
-    /**
-     * Positive Scenarious
-     * 
-    */
+    // def doCleanupSpec() {
+    //     dsl "deleteProject '$testProjectName'"
+    // }
 
-    def "EXISTS (Installed) CheckApp suite, positive scenario - procedure"() {
-        def wasResourceName=System.getenv('WAS_HOST');
+   def "Check Application Suite. Positive scenarios"(){
+
         when: 'Procedure runs'
+        def wasResourceName=System.getenv('WAS_HOST');
         def runParams = [
-            configName: configName,
-            applicationName: "HelloWorld_Exist",
-            applicationState: "EXISTS",
+            configName: wsConfigName,
+            wsadminabspath: wsAdminAbsolutePath
+            applicationName: wsApplicationName,
+            applicationState:wseApplicationState,
             wasResourceName: wasResourceName,
-            waitTime: '0'
+            waitTime: tTite
         ]
         def result = runProcedure(runParams)
-        then: 'wait until job is completed:'
-        waitUntil {
-            try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-    }
 
-    def "NOT_EXISTS (Installed) CheckApp suite, positive scenario - procedure"() {
-        def wasResourceName=System.getenv('WAS_HOST');
-        when: 'Procedure runs'
-        def runParams = [
-            configName: configName,
-            applicationName: "Non_HelloWorld",
-            applicationState: "NOT_EXISTS",
-            wasResourceName: wasResourceName,
-            waitTime: '0'
-        ]
-        def result = runProcedure(runParams)
         then: 'wait until job is completed:'
         waitUntil {
             try {
@@ -74,19 +85,37 @@ class CheckApp extends PluginTestHelper {
         def outcome = getJobProperty('/myJob/outcome', result.jobId)
         def debugLog = getJobLogs(result.jobId)
         println "Procedure log:\n$debugLog\n"
-    }
 
-    def "READY CheckApp suite, positive scenario - procedure"() {
-        def wasResourceName=System.getenv('WAS_HOST');
+        assert outcome == expectedOutcome
+
+        where:
+        wsConfigName    | wsAdminAbsolutePath           | wsApplicationName                      | sphereApplicationState            | tTime    | expectedOutcome
+        specName        | wsAdminAbsolutePathes.empty   | wsApplicationNames.nonExistApplication | wsApplicationStates.notExist      | '0'      | 'success'
+        specName        | wsAdminAbsolutePathes.correct | wsApplicationNames.existApplication    | wsApplicationStates.exist         | '0'      | 'success'
+        specName        | wsAdminAbsolutePathes.empty   | wsApplicationNames.existApplication    | wsApplicationStates.notReady      | '0'      | 'success'
+        specName        | wsAdminAbsolutePathes.empty   | wsApplicationNames.existApplication    | wsApplicationStates.notRunning    | '0'      | 'success'
+        specName        | wsAdminAbsolutePathes.correct | wsApplicationNames.readyApplication    | wsApplicationStates.ready         | '0'      | 'success'
+        specName        | wsAdminAbsolutePathes.empty   | wsApplicationNames.readyApplication    | wsApplicationStates.notRunning    | '0'      | 'success'
+        specName        | wsAdminAbsolutePathes.empty   | wsApplicationNames.runningApplication  | wsApplicationStates.exist         | '0'      | 'success'
+        specName        | wsAdminAbsolutePathes.correct | wsApplicationNames.runningApplication  | wsApplicationStates.ready         | '0'      | 'success'
+        specName        | wsAdminAbsolutePathes.empty   | wsApplicationNames.runningApplication  | wsApplicationStates.running       | '100'    | 'success'
+   }
+
+
+   def "Check Application Suite. Negative scenarios"(){
+
         when: 'Procedure runs'
+        def wasResourceName=System.getenv('WAS_HOST');
         def runParams = [
-            configName: configName,
-            applicationName: "HelloWorld_Ready",
-            applicationState: "READY",
+            configName: wsConfigName,
+            wsadminabspath: wsAdminAbsolutePath
+            applicationName: wsApplicationName,
+            applicationState:wseApplicationState,
             wasResourceName: wasResourceName,
-            waitTime: '0'
+            waitTime: tTite
         ]
         def result = runProcedure(runParams)
+
         then: 'wait until job is completed:'
         waitUntil {
             try {
@@ -98,381 +127,22 @@ class CheckApp extends PluginTestHelper {
         def outcome = getJobProperty('/myJob/outcome', result.jobId)
         def debugLog = getJobLogs(result.jobId)
         println "Procedure log:\n$debugLog\n"
-    }
 
-    def "NOT_READY CheckApp suite, positive scenario - procedure"() {
-        def wasResourceName=System.getenv('WAS_HOST');
-        when: 'Procedure runs'
-        def runParams = [
-            configName: configName,
-            applicationName: "HelloWorld_Exist",
-            applicationState: "NOT_READY",
-            wasResourceName: wasResourceName,
-            waitTime: '0'
-        ]
-        def result = runProcedure(runParams)
-        then: 'wait until job is completed:'
-        waitUntil {
-            try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-        def outcome = getJobProperty('/myJob/outcome', result.jobId)
-        def debugLog = getJobLogs(result.jobId)
-        println "Procedure log:\n$debugLog\n"
-    }
+        assert outcome == expectedOutcome
 
-    def "RUNNNING CheckApp suite, positive scenario - procedure"() {
-        def wasResourceName=System.getenv('WAS_HOST');
-        when: 'Procedure runs'
-        def runParams = [
-            configName: configName,
-            applicationName: "HelloWorld_Running",
-            applicationState: "RUNNING",
-            wasResourceName: wasResourceName,
-            waitTime: '0'
-        ]
-        def result = runProcedure(runParams)
-        then: 'wait until job is completed:'
-        waitUntil {
-            try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-        def outcome = getJobProperty('/myJob/outcome', result.jobId)
-        def debugLog = getJobLogs(result.jobId)
-        println "Procedure log:\n$debugLog\n"
-    }
-
-    def "NOT_RUNNING CheckApp suite, positive scenario - procedure"() {
-        def wasResourceName=System.getenv('WAS_HOST');
-        when: 'Procedure runs'
-        def runParams = [
-            configName: configName,
-            applicationName: "HelloWorld_Ready",
-            applicationState: "NOT_RUNNING",
-            wasResourceName: wasResourceName,
-            waitTime: '0'
-        ]
-        def result = runProcedure(runParams)
-        then: 'wait until job is completed:'
-        waitUntil {
-            try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-        def outcome = getJobProperty('/myJob/outcome', result.jobId)
-        def debugLog = getJobLogs(result.jobId)
-        println "Procedure log:\n$debugLog\n"
-    }
-
-    def "WaitTime 10 CheckApp suite, positive scenario - procedure"() {
-        def wasResourceName=System.getenv('WAS_HOST');
-        when: 'Procedure runs'
-        def runParams = [
-            configName: configName,
-            applicationName: "HelloWorld_Running",
-            applicationState: "RUNNING",
-            wasResourceName: wasResourceName,
-            waitTime: '10'
-        ]
-        def result = runProcedure(runParams)
-        then: 'wait until job is completed:'
-        waitUntil {
-            try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-        def outcome = getJobProperty('/myJob/outcome', result.jobId)
-        def debugLog = getJobLogs(result.jobId)
-        println "Procedure log:\n$debugLog\n"
-    }
-
-
-    def "WaitTime 10 000 CheckApp suite, positive scenario - procedure"() {
-        def wasResourceName=System.getenv('WAS_HOST');
-        when: 'Procedure runs'
-        def runParams = [
-            configName: configName,
-            applicationName: "HelloWorld_Running",
-            applicationState: "RUNNING",
-            wasResourceName: wasResourceName,
-            waitTime: '10000'
-        ]
-        def result = runProcedure(runParams)
-        then: 'wait until job is completed:'
-        waitUntil {
-            try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-        def outcome = getJobProperty('/myJob/outcome', result.jobId)
-        def debugLog = getJobLogs(result.jobId)
-        println "Procedure log:\n$debugLog\n"
-    }
-
-    
-    /**
-     * Negative Scenarious
-     * 
-     * 
-    */
-
-    def "Negative Incorrect configName CheckApp suite, positive scenario - procedure"() {
-        def wasResourceName=System.getenv('WAS_HOST');
-        when: 'Procedure runs'
-        def runParams = [
-            configName: "Incorrect-configName",
-            applicationName: "HelloWorld",
-            applicationState: "RUNNING",
-            wasResourceName: wasResourceName,
-            waitTime: '0'
-        ]
-        def result = runProcedure(runParams)
-        then: 'wait until job is completed:'
-        waitUntil {
-            try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-        def outcome = getJobProperty('/myJob/outcome', result.jobId)
-        def debugLog = getJobLogs(result.jobId)
-        println "Procedure log:\n$debugLog\n"
-    }
-
-    def "Negative Incorrect wsadmin_path name CheckApp suite, positive scenario - procedure"() {
-        def wasResourceName=System.getenv('WAS_HOST');
-        
-        when: 'Procedure runs'
-        //def wsadmin_path = System.getenv('WSADMIN_PATH') ?: ''
-        def runParams = [
-            configName: configName,
-            applicationName: "HelloWorld_Exist",
-            wsadminabspath: '/opt-incorrect/wsadmin.sh',
-            applicationState: "EXIST",
-            wasResourceName: wasResourceName,
-            waitTime: '0'
-        ]
-        def result = runProcedure(runParams)
-        then: 'wait until job is completed:'
-        waitUntil {
-            try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-        def outcome = getJobProperty('/myJob/outcome', result.jobId)
-        def debugLog = getJobLogs(result.jobId)
-        println "Procedure log:\n$debugLog\n"
-    }
-
-
-    def "Negative Incorrect Exist CheckApp suite, positive scenario - procedure"() {
-        def wasResourceName=System.getenv('WAS_HOST');
-        when: 'Procedure runs'
-        def runParams = [
-            configName: configName,
-            applicationName: "Non_HelloWorld",
-            applicationState: "EXIST",
-            wasResourceName: wasResourceName,
-            waitTime: '0'
-        ]
-        def result = runProcedure(runParams)
-        then: 'wait until job is completed:'
-        waitUntil {
-            try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-        def outcome = getJobProperty('/myJob/outcome', result.jobId)
-        def debugLog = getJobLogs(result.jobId)
-        println "Procedure log:\n$debugLog\n"
-    }
-
-    def "Negative Incorrect Non-Exist CheckApp suite, positive scenario - procedure"() {
-        def wasResourceName=System.getenv('WAS_HOST');
-        
-        when: 'Procedure runs'
-        def runParams = [
-            configName: configName,
-            applicationName: "HelloWorld_Exist",
-            applicationState: "NOT_EXISTS",
-            wasResourceName: wasResourceName,
-            waitTime: '0'
-        ]
-        def result = runProcedure(runParams)
-        then: 'wait until job is completed:'
-        waitUntil {
-            try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-        def outcome = getJobProperty('/myJob/outcome', result.jobId)
-        def debugLog = getJobLogs(result.jobId)
-        println "Procedure log:\n$debugLog\n"
-    }
-
-    def "Negative Incorrect READY CheckApp suite, positive scenario - procedure"() {
-        def wasResourceName=System.getenv('WAS_HOST');
-        when: 'Procedure runs'
-        def runParams = [
-            configName: configName,
-            applicationName: "HelloWorld_Exist",
-            applicationState: "READY",
-            wasResourceName: wasResourceName,
-            waitTime: '0'
-        ]
-        def result = runProcedure(runParams)
-        then: 'wait until job is completed:'
-        waitUntil {
-            try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-        def outcome = getJobProperty('/myJob/outcome', result.jobId)
-        def debugLog = getJobLogs(result.jobId)
-        println "Procedure log:\n$debugLog\n"
-    }
-
-
-    def "Negative Incorrect Not-READY CheckApp suite, positive scenario - procedure"() {
-        def wasResourceName=System.getenv('WAS_HOST');
-        when: 'Procedure runs'
-        def runParams = [
-            configName: configName,
-            applicationName: "HelloWorld_Ready",
-            applicationState: "NOT_READY",
-            wasResourceName: wasResourceName,
-            waitTime: '0'
-        ]
-        def result = runProcedure(runParams)
-        then: 'wait until job is completed:'
-        waitUntil {
-            try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-        def outcome = getJobProperty('/myJob/outcome', result.jobId)
-        def debugLog = getJobLogs(result.jobId)
-        println "Procedure log:\n$debugLog\n"
-    }
-
-    def "Negative Incorrect Runnning CheckApp suite, positive scenario - procedure"() {
-        def wasResourceName=System.getenv('WAS_HOST');
-        when: 'Procedure runs'
-        def runParams = [
-            configName: configName,
-            applicationName: "HelloWorld_Ready",
-            applicationState: "RUNNING",
-            wasResourceName: wasResourceName,
-            waitTime: '0'
-        ]
-        def result = runProcedure(runParams)
-        then: 'wait until job is completed:'
-        waitUntil {
-            try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-        def outcome = getJobProperty('/myJob/outcome', result.jobId)
-        def debugLog = getJobLogs(result.jobId)
-        println "Procedure log:\n$debugLog\n"
-    }
-
-    def "Negative Incorrect Not-Runnning CheckApp suite, positive scenario - procedure"() {
-        def wasResourceName=System.getenv('WAS_HOST');
-        when: 'Procedure runs'
-        def runParams = [
-            configName: configName,
-            applicationName: "HelloWorld_Running",
-            applicationState: "NOT_RUNNING",
-            wasResourceName: wasResourceName,
-            waitTime: '0'
-        ]
-        def result = runProcedure(runParams)
-        then: 'wait until job is completed:'
-        waitUntil {
-            try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-        def outcome = getJobProperty('/myJob/outcome', result.jobId)
-        def debugLog = getJobLogs(result.jobId)
-        println "Procedure log:\n$debugLog\n"
-    }
-
-    def "Negative Incorrect waitTime CheckApp suite, positive scenario - procedure"() {
-        def wasResourceName=System.getenv('WAS_HOST');
-        when: 'Procedure runs'
-        def runParams = [
-            configName: configName,
-            applicationName: "HelloWorld_Running",
-            applicationState: "NOT_RUNNING",
-            wasResourceName: wasResourceName,
-            waitTime: '-100'
-        ]
-        def result = runProcedure(runParams)
-        then: 'wait until job is completed:'
-        waitUntil {
-            try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-        def outcome = getJobProperty('/myJob/outcome', result.jobId)
-        def debugLog = getJobLogs(result.jobId)
-        println "Procedure log:\n$debugLog\n"
-    }
-
-    def "Negative Incorrect waitTime CheckApp suite, positive scenario - procedure"() {
-        def wasResourceName=System.getenv('WAS_HOST');
-        when: 'Procedure runs'
-        def runParams = [
-            configName: configName,
-            applicationName: "HelloWorld_Running",
-            applicationState: "NOT_RUNNING",
-            wasResourceName: wasResourceName,
-            waitTime: 'abs'
-        ]
-        def result = runProcedure(runParams)
-        then: 'wait until job is completed:'
-        waitUntil {
-            try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-        def outcome = getJobProperty('/myJob/outcome', result.jobId)
-        def debugLog = getJobLogs(result.jobId)
-        println "Procedure log:\n$debugLog\n"
-    }
+        where:
+        wsConfigName            | wsAdminAbsolutePath               | wsApplicationName                         | sphereApplicationState           | tTime      | expectedOutcome
+        'specConfig-Incorrect'  | wsAdminAbsolutePathes.empty       | wsApplicationNames.existApplication       | wsApplicationStates.exist        | '0'        | 'error'
+        specName                | wsAdminAbsolutePathes.incorrect   | wsApplicationNames.existApplication       | wsApplicationStates.exist        | '0'        | 'error'
+        specName                | wsAdminAbsolutePathes.empty       | wsApplicationNames.existApplication       | wsApplicationStates.notExist     | '0'        | 'error'
+        specName                | wsAdminAbsolutePathes.empty       | wsApplicationNames.nonExistApplication    | wsApplicationStates.exist        | '0'        | 'error'
+        specName                | wsAdminAbsolutePathes.correct     | wsApplicationNames.existApplication       | wsApplicationStates.ready        | '0'        | 'error'
+        specName                | wsAdminAbsolutePathes.empty       | wsApplicationNames.readyApplication       | wsApplicationStates.notReady     | '0'        | 'error'
+        specName                | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplication     | wsApplicationStates.notRunning   | '0'        | 'error'
+        specName                | wsAdminAbsolutePathes.correct     | wsApplicationNames.readyApplication       | wsApplicationStates.running      | '0'        | 'error'
+        specName                | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplication     | wsApplicationStates.running      | '-1'       | 'error'
+        specName                | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplication     | wsApplicationStates.running      | 'abs'      | 'error'
+   }
 
     def runProcedure(def parameters) {
         def code = """
@@ -489,8 +159,9 @@ class CheckApp extends PluginTestHelper {
                 )
         """
         return dsl(code)
-        
     }
+    
+    /*
     def checkLogOutputByNumber(def log, def number, def context) {
         if (number == 1) {
             return log =~ 'Unable to find the credential'
@@ -511,5 +182,6 @@ class CheckApp extends PluginTestHelper {
             return log =~ "Can't set property: java.util.UnknownFormatConversionException: Conversion ="
         }
     }
+    */
 
 }
