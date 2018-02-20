@@ -26,7 +26,7 @@ class CheckApp extends PluginTestHelper {
         notExist: 'NOT_EXIST',
         exist: 'EXIST',
         notReady: 'NOT_READY',
-        ready: 'READY'
+        ready: 'READY',
         notRunning: 'NOT_RUNNING',
         running: 'RUNNING',
         
@@ -46,8 +46,7 @@ class CheckApp extends PluginTestHelper {
     def wsAdminAbsolutePath
     def tTime
 
-   @Shared
-    def doSetupSpec() {
+   def doSetupSpec() {
         def wasResourceName = System.getenv('WAS_HOST');
         createWorkspace(wasResourceName)
         createConfiguration(configName, [doNotRecreate: false])
@@ -66,7 +65,7 @@ class CheckApp extends PluginTestHelper {
         def wasResourceName=System.getenv('WAS_HOST');
         def runParams = [
             configName: wsConfigName,
-            wsadminabspath: wsAdminAbsolutePath
+            wsadminabspath: wsAdminAbsolutePath,
             applicationName: wsApplicationName,
             applicationState:wseApplicationState,
             wasResourceName: wasResourceName,
@@ -108,7 +107,7 @@ class CheckApp extends PluginTestHelper {
         def wasResourceName=System.getenv('WAS_HOST');
         def runParams = [
             configName: wsConfigName,
-            wsadminabspath: wsAdminAbsolutePath
+            wsadminabspath: wsAdminAbsolutePath,
             applicationName: wsApplicationName,
             applicationState:wseApplicationState,
             wasResourceName: wasResourceName,
@@ -160,7 +159,7 @@ class CheckApp extends PluginTestHelper {
         """
         return dsl(code)
     }
-    
+
     /*
     def checkLogOutputByNumber(def log, def number, def context) {
         if (number == 1) {
