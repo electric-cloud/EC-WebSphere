@@ -23,7 +23,7 @@ class CheckApp extends PluginTestHelper {
 
     @Shared
     def wsApplicationStates = [
-        notExist: 'NOT_EXIST',
+        notExist: 'NOT_EXISTS',
         exist: 'EXIST',
         notReady: 'NOT_READY',
         ready: 'READY',
