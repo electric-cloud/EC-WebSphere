@@ -82,9 +82,9 @@ class CheckApp extends PluginTestHelper {
     @Shared
     def wsSynchronizeActiveNodes = checkBoxValules
     @Shared
-    def wsDistributeApplication = checkBoxValules
+    def wsDistributeApplications = checkBoxValules
     @Shared
-    def wsStartApplication = checkBoxValules
+    def wsStartApplications = checkBoxValules
 
     
     @Shared
@@ -96,6 +96,11 @@ class CheckApp extends PluginTestHelper {
     def wsContextRoot
     def wsTargetServer
     def tTime
+
+
+    def wsSynchronizeActiveNode
+    def wsDistributeApplication
+    def wsStartApplication
 
    def doSetupSpec() {
         def wasResourceName = System.getenv('WAS_HOST');
@@ -154,9 +159,9 @@ class CheckApp extends PluginTestHelper {
         assert outcome == expectedOutcome
 
         where: 
-        wsConfigName    | wsAdminAbsolutePath               | wsApplicationName                             | wsAppPath                 | wsAdditionalDeploymentParameters                      | contextRoot                           | wsTargetServer            | wsSynchronizeActiveNodes              | wsDistributeApplication           | wsStartApplication            
-        configName      | wsAdminAbsolutePathes.correct     | wsApplicationNames.notRunningApplicationHW    | wsAppPathes.helloWorld    | wsAdditionalDeploymentParameterses.correctHellowWorld | contextRoots.notRunningApplicationHW  | wsTargetServers.correct   | wsSynchronizeActiveNodes.unchecked    | wsDistributeApplication.unchecked | wsStartApplication.unchecked  
-        configName      | wsAdminAbsolutePathes.correct     | wsApplicationNames.runningApplicationHW       | wsAppPathes.helloWorld    | wsAdditionalDeploymentParameterses.correctHellowWorld | contextRoots.runningApplicationHW     | wsTargetServers.correct   | wsSynchronizeActiveNodes.checked      | wsDistributeApplication.checked   | wsStartApplication.checked    
+        wsConfigName    | wsAdminAbsolutePath               | wsApplicationName                             | wsAppPath                 | wsAdditionalDeploymentParameters                      | wsContextRoot                             | wsTargetServer            | wsSynchronizeActiveNode               | wsDistributeApplication            | wsStartApplication            
+        сonfigName      | wsAdminAbsolutePathes.correct     | wsApplicationNames.notRunningApplicationHW    | wsAppPathes.helloWorld    | wsAdditionalDeploymentParameterses.correctHellowWorld | wsContextRoots.notRunningApplicationHW    | wsTargetServers.correct   | wsSynchronizeActiveNodes.unchecked    | wsDistributeApplications.unchecked | wsStartApplications.unchecked  
+        сonfigName      | wsAdminAbsolutePathes.correct     | wsApplicationNames.runningApplicationHW       | wsAppPathes.helloWorld    | wsAdditionalDeploymentParameterses.correctHellowWorld | wsContextRoots.runningApplicationHW       | wsTargetServers.correct   | wsSynchronizeActiveNodes.checked      | wsDistributeApplications.checked   | wsStartApplications.checked    
     }
 
 
