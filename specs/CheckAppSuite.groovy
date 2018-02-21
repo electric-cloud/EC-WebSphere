@@ -15,35 +15,74 @@ class CheckApp extends PluginTestHelper {
     @Shared
     def tNumber
     @Shared
+    def checkBoxValules = [
+        unchecked: '0',
+        checked: '1'
+    ]
+    @Shared
     def wsApplicationNames = [
-        notExistApplication : 'notExistHelloWorld',
-        existApplication: 'existHelloWorld',
-        notReadyApplication: 'notReadyHelloWorld',
-        readyApplication: 'readyHelloWorld',
-        notRunningApplication: 'notRunningHelloWorld',        
-        runningApplication: 'runningHelloWorld'
+        notExistApplicationHW : 'notExistHelloWorld',
+        existApplicationHW: 'existHelloWorld',
+        notReadyApplicationHW: 'notReadyHelloWorld',
+        readyApplicationHW: 'readyHelloWorld',
+        notRunningApplicationHW: 'notRunningHelloWorld',        
+        runningApplicationHW: 'runningHelloWorld'
     ]
     
     @Shared
     def wsApplicationStates = [
+        empty: '',
         notExist: 'NOT_EXISTS',
         exist: 'EXISTS',
         notReady: 'NOT_READY',
         ready: 'READY',
         notRunning: 'NOT_RUNNING',
-        running: 'RUNNING'
+        running: 'RUNNING',
+        incorect: 'INCORRECT'
         
     ]
     @Shared
     def wsAdminAbsolutePathes = [
         empty: '',
-        correct: '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/wsadmin.sh',
-        incorrect: '/opt/Incorrect/wsadmin.sh'
+        correct: System.getenv('WSADMIN_PATH'),
+        incorrect: '/incorrect/wsadmin.sh'
     ]
+    @Shared
+    def wsContextRoots = wsApplicationNames
+
+    @Shared
+    def wsTargetServers =[
+        empty: '',
+        correct: System.getenv('WAS_HOST') + 'Node01=server1', // e.g. 'websphere85ndNode01=server1',
+        incorect: 'incorrect=inciorrect'
+    ]
+    
+    @Shared 
+    def wsAppPathes = [
+        empty: '',
+        incorrect: '/incorrect/appplication.war',
+        helloWorld: '/var/tmp/hello-world.war',
+        jPetStore: '/var/tmp/jpetstore-mysql-1.0.war'
+    ]
+    @Shared
+    def wsAdditionalDeploymentParameterses = [
+        empty: '',
+        incorect: 'icorrect params',
+        correctHellowWorld: '-MapWebModToVH [[hello-world.war hello-world.war,WEB-INF/web.xml default_host]]',
+        correctJpetStore: '-MapWebModToVH [[jpetstore-mysql-1.0.war jpetstore-mysql-1.0.war,WEB-INF/web.xml default_host]]'
+    ]
+    
     @Shared
     def wsAdminAbsolutePath
     def wsApplicationName
     def wsApplicationState
+    def wsAppPath
+    def wsAdditionalDeploymentParameters
+    def wsContextRoot
+    def wsTargetServer
+    def wsSynchronizeActiveNodes = checkBoxValules
+    def wsDistributeApplication = checkBoxValules
+    def wsStartApplication = checkBoxValules
     def tTime
 
    def doSetupSpec() {
@@ -51,15 +90,64 @@ class CheckApp extends PluginTestHelper {
         createWorkspace(wasResourceName)
         createConfiguration(сonfigName, [doNotRecreate: false])
         importProject(testProjectName, 'dsl/CheckApp/Procedure.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
-
+        importProject(testProjectName, 'dsl/DeployEnterpriseApp/Procedure.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
+        /**
+        * TODO: Retrive Artifact
+        * ask Dmitry Sh. - What way more effective
+        */
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
 
-        deplyDefaultApplications()
+        
     }
-    
-    // def doCleanupSpec() {
-    //     dsl "deleteProject '$testProjectName'"
-    // }
+    /**
+    def doCleanupSpec() {
+         dsl "deleteProject '$testProjectName'"
+    }
+    */
+    @Unroll
+    def "Deploy Enterprise Application. Positive scenarious for Check Application Runs"(){
+        
+        when: 'Procedure runs'
+        def wasResourceName=System.getenv('WAS_HOST');
+
+        def runParams = [
+            configName: wsConfigName,
+            wsadminAbsPath: wsAdminAbsolutePath,
+            appName: wsApplicationName,
+            apppath: wsAppPath,
+            wasResourceName: wasResourceName,
+            additionalDeployParams: wsAdditionalDeploymentParameters,
+            contextRoot: wsContextRoot,
+            serverList: wsTargetServer,
+            syncActiveNodes: wsSynchronizeActiveNodes,
+            distributeApp: wsDistributeApplication,
+            startApp: wsStartApplication
+        ]
+        
+        def result = runProcedure(runParams)
+
+        then: 'wait until job is completed:'
+        
+        waitUntil {
+            try {
+                jobCompleted(result)
+            } catch (Exception e) {
+                println e.getMessage()
+            }
+        }
+        def outcome = getJobProperty('/myJob/outcome', result.jobId)
+        def debugLog = getJobLogs(result.jobId)
+        println "Procedure log:\n$debugLog\n"
+
+        assert outcome == expectedOutcome
+
+        where: 
+        wsConfigName    | wsAdminAbsolutePath               | wsApplicationName                             | wsAppPath                 | wsAdditionalDeploymentParameters                      | contextRoot                           | wsTargetServer            | wsSynchronizeActiveNodes              | wsDistributeApplication           | wsStartApplication            
+        configName      | wsAdminAbsolutePathes.correct     | wsApplicationNames.notRunningApplicationHW    | wsAppPathes.helloWorld    | wsAdditionalDeploymentParameterses.correctHellowWorld | contextRoots.notRunningApplicationHW  | wsTargetServers.correct   | wsSynchronizeActiveNodes.unchecked    | wsDistributeApplication.unchecked | wsStartApplication.unchecked  
+        configName      | wsAdminAbsolutePathes.correct     | wsApplicationNames.runningApplicationHW       | wsAppPathes.helloWorld    | wsAdditionalDeploymentParameterses.correctHellowWorld | contextRoots.runningApplicationHW     | wsTargetServers.correct   | wsSynchronizeActiveNodes.checked      | wsDistributeApplication.checked   | wsStartApplication.checked    
+    }
+
+
     @Unroll
     def "Check Application Suite. Positive scenarios"(){
         
@@ -92,16 +180,16 @@ class CheckApp extends PluginTestHelper {
         assert outcome == expectedOutcome
 
         where:
-        wsConfigName    | wsAdminAbsolutePath           | wsApplicationName                      | wsApplicationState               | tTime    | expectedOutcome
-        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.notExistApplication | wsApplicationStates.notExist     | '0'      | 'success'
-        сonfigName      | wsAdminAbsolutePathes.correct | wsApplicationNames.existApplication    | wsApplicationStates.exist        | '0'      | 'success'
-        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.existApplication    | wsApplicationStates.notReady     | '0'      | 'success'
-        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.existApplication    | wsApplicationStates.notRunning   | '0'      | 'success'
-        сonfigName      | wsAdminAbsolutePathes.correct | wsApplicationNames.readyApplication    | wsApplicationStates.ready        | '0'      | 'success'
-        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.readyApplication    | wsApplicationStates.notRunning   | '0'      | 'success'
-        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.runningApplication  | wsApplicationStates.exist        | '0'      | 'success'
-        сonfigName      | wsAdminAbsolutePathes.correct | wsApplicationNames.runningApplication  | wsApplicationStates.ready        | '0'      | 'success'
-        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.runningApplication  | wsApplicationStates.running      | '100'    | 'success'
+        wsConfigName    | wsAdminAbsolutePath           | wsApplicationName                         | wsApplicationState               | tTime    | expectedOutcome
+        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.notExistApplicationHW  | wsApplicationStates.notExist     | '0'      | 'success'
+        сonfigName      | wsAdminAbsolutePathes.correct | wsApplicationNames.existApplicationHW     | wsApplicationStates.exist        | '0'      | 'success'
+        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.existApplicationHW     | wsApplicationStates.notReady     | '0'      | 'success'
+        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.existApplicationHW     | wsApplicationStates.notRunning   | '0'      | 'success'
+        сonfigName      | wsAdminAbsolutePathes.correct | wsApplicationNames.readyApplicationHW     | wsApplicationStates.ready        | '0'      | 'success'
+        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.readyApplicationHW     | wsApplicationStates.notRunning   | '0'      | 'success'
+        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.runningApplicationHW   | wsApplicationStates.exist        | '0'      | 'success'
+        сonfigName      | wsAdminAbsolutePathes.correct | wsApplicationNames.runningApplicationHW   | wsApplicationStates.ready        | '0'      | 'success'
+        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.runningApplicationHW   | wsApplicationStates.running      | '100'    | 'success'
    }
 
     @Unroll
@@ -137,16 +225,16 @@ class CheckApp extends PluginTestHelper {
 
         where:
         wsConfigName            | wsAdminAbsolutePath               | wsApplicationName                         | wsApplicationState                | tTime      | expectedOutcome
-        'specConfig-Incorrect'  | wsAdminAbsolutePathes.empty       | wsApplicationNames.existApplication       | wsApplicationStates.exist         | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.incorrect   | wsApplicationNames.existApplication       | wsApplicationStates.exist         | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.existApplication       | wsApplicationStates.notExist      | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.notExistApplication    | wsApplicationStates.exist         | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.correct     | wsApplicationNames.existApplication       | wsApplicationStates.ready         | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.readyApplication       | wsApplicationStates.notReady      | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplication     | wsApplicationStates.notRunning    | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.correct     | wsApplicationNames.readyApplication       | wsApplicationStates.running       | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplication     | wsApplicationStates.running       | '-1'       | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplication     | wsApplicationStates.running       | 'abs'      | 'error'
+        'specConfig-Incorrect'  | wsAdminAbsolutePathes.empty       | wsApplicationNames.existApplicationHW       | wsApplicationStates.exist         | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.incorrect   | wsApplicationNames.existApplicationHW       | wsApplicationStates.exist         | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.existApplicationHW       | wsApplicationStates.notExist      | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.notExistApplicationHW    | wsApplicationStates.exist         | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.correct     | wsApplicationNames.existApplicationHW       | wsApplicationStates.ready         | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.readyApplicationHW       | wsApplicationStates.notReady      | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW     | wsApplicationStates.notRunning    | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.correct     | wsApplicationNames.readyApplicationHW       | wsApplicationStates.running       | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW     | wsApplicationStates.running       | '-1'       | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW     | wsApplicationStates.running       | 'abs'      | 'error'
    }
 
     def runProcedure(def parameters) {
@@ -166,76 +254,7 @@ class CheckApp extends PluginTestHelper {
         return dsl(code)
     }
 
-    def deplyDefaultApplications(){
-        /**
-        * TODO: Retrive Artifact
-        * Dmitry Sh.
-        */
-
-
-        /**
-         * Create NOT_RUNNING Application
-        */
-        def preProcedureName = 'DeployEnterpriseApp'
-        def applicationPath = '/var/tmp/hello-world.war'
-        def targetServer = 'websphere85ndNode01=server1'
-        def additionalDeploymentParameters = '-MapWebModToVH [[hello-world.war hello-world.war,WEB-INF/web.xml default_host]]'
-        def distributeApplication = 0
-        def synchronizeActiveNodes = 0
-        def startApplication = 0
-        def code = """
-                runProcedure(
-                    projectName: '$testProjectName',
-                    procedureName: '$preProcedureName',
-                    actualParameter: [
-                        configName:             '$configName',
-                        wsadminAbsPath:         '$wsAdminAbsolutePathes.correct',
-                        applicationName:        '$wsApplicationNames.notRunningApplication',
-                        applicationPath:        '$applicationPath'
-                        wasResourceName:        '$wasResourceName',
-                        serverList:             '$targetServer',
-                        additionalDeployParams: '$additionalDeploymentParameters',
-                        distributeApp:          '$distributeApplication',
-                        syncActiveNodes:        '$synchronizeActiveNodes',
-                        startApp:               '$startApplication'
-                    ]
-                )
-        """
-        return dsl(code)
-
-        /**
-         * Create RUNNING Application
-        */
-
-        def preProcedureName = 'DeployEnterpriseApp'
-        def applicationPath = '/var/tmp/hello-world.war'
-        def targetServer = 'websphere85ndNode01=server1'
-        def additionalDeploymentParameters = '-MapWebModToVH [[hello-world.war hello-world.war,WEB-INF/web.xml default_host]]'
-        def distributeApplication = '1'
-        def synchronizeActiveNodes = '1'
-        def startApplication = '1'
-        def code = """
-                runProcedure(
-                    projectName: '$testProjectName',
-                    procedureName: '$preProcedureName',
-                    actualParameter: [
-                        configName:             '$configName',
-                        wsadminAbsPath:         '$wsAdminAbsolutePathes.correct',
-                        applicationName:        '$wsApplicationNames.runningApplication',
-                        applicationPath:        '$applicationPath'
-                        wasResourceName:        '$wasResourceName',
-                        serverList:             '$targetServer',
-                        additionalDeployParams: '$additionalDeploymentParameters',
-                        distributeApp:          '$distributeApplication',
-                        syncActiveNodes:        '$synchronizeActiveNodes',
-                        startApp:               '$startApplication'
-                    ]
-                )
-        """
-        return dsl(code)
-    }
-
-    /*
+/**
     def checkLogOutputByNumber(def log, def number, def context) {
         if (number == 1) {
             return log =~ 'Unable to find the credential'
