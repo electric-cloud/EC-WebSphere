@@ -10,7 +10,14 @@ class CheckApp extends PluginTestHelper {
     @Shared
     def testProcedureName = 'CheckApp'
     @Shared
+    def preProcedureName = 'DeployEnterpriseApp'    
+    @Shared
     def сonfigName = 'specConfig'
+    @Shared 
+    def wasHost = System.getenv('WAS_HOST')
+    @Shared 
+    def wasPath = System.getenv('WSADMIN_PATH')
+
     // params for where section
     @Shared
     def tNumber
@@ -44,7 +51,7 @@ class CheckApp extends PluginTestHelper {
     @Shared
     def wsAdminAbsolutePathes = [
         empty: '',
-        correct: System.getenv('WSADMIN_PATH'),
+        correct: wasPath,
         incorrect: '/incorrect/wsadmin.sh'
     ]
     @Shared
@@ -53,7 +60,7 @@ class CheckApp extends PluginTestHelper {
     @Shared
     def wsTargetServers =[
         empty: '',
-        correct: System.getenv('WAS_HOST') + 'Node01=server1', // e.g. 'websphere85ndNode01=server1',
+        correct: wasHost + 'Node01=server1', // e.g. 'websphere85ndNode01=server1',
         incorect: 'incorrect=inciorrect'
     ]
     
@@ -73,6 +80,14 @@ class CheckApp extends PluginTestHelper {
     ]
     
     @Shared
+    def wsSynchronizeActiveNodes = checkBoxValules
+    @Shared
+    def wsDistributeApplication = checkBoxValules
+    @Shared
+    def wsStartApplication = checkBoxValules
+
+    
+    @Shared
     def wsAdminAbsolutePath
     def wsApplicationName
     def wsApplicationState
@@ -80,9 +95,6 @@ class CheckApp extends PluginTestHelper {
     def wsAdditionalDeploymentParameters
     def wsContextRoot
     def wsTargetServer
-    def wsSynchronizeActiveNodes = checkBoxValules
-    def wsDistributeApplication = checkBoxValules
-    def wsStartApplication = checkBoxValules
     def tTime
 
    def doSetupSpec() {
@@ -124,7 +136,7 @@ class CheckApp extends PluginTestHelper {
             startApp: wsStartApplication
         ]
         
-        def result = runProcedure(runParams)
+        def result = runProcedureDeployApp(runParams)
 
         then: 'wait until job is completed:'
         
@@ -252,6 +264,28 @@ class CheckApp extends PluginTestHelper {
                 )
         """
         return dsl(code)
+    }
+
+    def runProcedureDeployApp(def parameters){
+        def code = """
+            runProcedure(
+                projectName: '$testProjectName',
+                procedureName: '$preProcedureName',
+                actualParameter: [
+                    configName: '$parameters.configName',
+                    wsadminAbsPath: '$parameters.wsadminAbsPath',
+                    appName: '$parameters.appName',
+                    apppath: '$parameters.apppath',
+                    wasResourceName: '$parameters.wasResourceName',
+                    additionalDeployParams: '$parameters.additionalDeployParams',
+                    contextRoot: '$parameters.contextRoot',
+                    serverList: '$parameters.serverList',
+                    syncActiveNodes: '$parameters.syncActiveNodes',
+                    distributeApp: '$parameters.distributeApp',
+                    startApp: '$parameters.startApp'
+                ]
+            )
+        """
     }
 
 /**
