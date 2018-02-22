@@ -1,9 +1,12 @@
+def testProjectName = args.projectName
+def wasResourceName = args.wasResourceName
+project testProjectName
 
 procedure 'CreateOrUpdateJMSTopic', {
   description = ''
   jobNameTemplate = ''
-  projectName = 'EC-WebSphere-Specs-CheckApp'
-  resourceName = ''
+  projectName = testProjectName
+  wasResourceName = ''
   timeLimit = ''
   timeLimitUnits = 'minutes'
   workspaceName = ''
@@ -101,7 +104,7 @@ procedure 'CreateOrUpdateJMSTopic', {
     parallel = '0'
     postProcessor = null
     precondition = ''
-    projectName = 'EC-WebSphere-Specs-CheckApp'
+    projectName = testProjectName
     releaseMode = 'none'
     resourceName = '$[wasResourceName]'
     shell = null
