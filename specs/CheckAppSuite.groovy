@@ -17,6 +17,12 @@ class CheckApp extends PluginTestHelper {
     def wasHost = System.getenv('WAS_HOST')
     @Shared 
     def wasPath = System.getenv('WSADMIN_PATH')
+    @Shared 
+    /**
+     * TODO: Create a application path env variable: for Linux and Windows - these parameters will be diffeent
+     * Dmitry Sh. 
+     */
+    def wasAppPath = '/var/tmp/' //System.getenv('WASAPP_Path')
 
     // params for where section
     @Shared
@@ -67,9 +73,9 @@ class CheckApp extends PluginTestHelper {
     @Shared 
     def wsAppPathes = [
         empty: '',
-        incorrect: '/incorrect/appplication.war',
-        helloWorld: '/var/tmp/hello-world.war',
-        jPetStore: '/var/tmp/jpetstore-mysql-1.0.war'
+        incorrect: wasAppPath +'/incorrect/appplication.war',
+        helloWorld: wasAppPath +'hello-world.war',
+        jPetStore: wasAppPath +'jpetstore-mysql-1.0.war'
     ]
     @Shared
     def wsAdditionalDeploymentParameterses = [
@@ -107,10 +113,10 @@ class CheckApp extends PluginTestHelper {
         createWorkspace(wasResourceName)
         createConfiguration(сonfigName, [doNotRecreate: false])
         importProject(testProjectName, 'dsl/CheckApp/Procedure.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
-        importProject(testProjectName, 'dsl/DeployEnterpriseApp/Procedure.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
+        importProject(testProjectName, 'dsl/CheckApp/DeployEnterpriseApp.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         /**
-        * TODO: Retrive Artifact
-        * ask Dmitry Sh. - What way more effective
+        * TODO: Retrive the tests Applications to 
+        * ask Dmitry Sh. - What way more effective Git or smt else
         */
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
 
@@ -136,7 +142,7 @@ class CheckApp extends PluginTestHelper {
             additionalDeployParams: wsAdditionalDeploymentParameters,
             contextRoot: wsContextRoot,
             serverList: wsTargetServer,
-            syncActiveNodes: wsSynchronizeActiveNodes,
+            syncActiveNodes: wsSynchronizeActiveNode,
             distributeApp: wsDistributeApplication,
             startApp: wsStartApplication
         ]
@@ -159,9 +165,16 @@ class CheckApp extends PluginTestHelper {
         assert outcome == expectedOutcome
 
         where: 
-        wsConfigName    | wsAdminAbsolutePath               | wsApplicationName                             | wsAppPath                 | wsAdditionalDeploymentParameters                      | wsContextRoot                             | wsTargetServer            | wsSynchronizeActiveNode               | wsDistributeApplication            | wsStartApplication            
-        сonfigName      | wsAdminAbsolutePathes.correct     | wsApplicationNames.notRunningApplicationHW    | wsAppPathes.helloWorld    | wsAdditionalDeploymentParameterses.correctHellowWorld | wsContextRoots.notRunningApplicationHW    | wsTargetServers.correct   | wsSynchronizeActiveNodes.unchecked    | wsDistributeApplications.unchecked | wsStartApplications.unchecked  
-        сonfigName      | wsAdminAbsolutePathes.correct     | wsApplicationNames.runningApplicationHW       | wsAppPathes.helloWorld    | wsAdditionalDeploymentParameterses.correctHellowWorld | wsContextRoots.runningApplicationHW       | wsTargetServers.correct   | wsSynchronizeActiveNodes.checked      | wsDistributeApplications.checked   | wsStartApplications.checked    
+        
+        /**
+         * DOTO: Deply Appliocation with all statuses:
+         * EXISTS, NOT_EXISTS, READY, NOT_READY, RUNNING, NOT_RUNNING
+         * For Now - we have just RUNNING and NOT_RUNNING
+         */
+
+        wsConfigName    | wsAdminAbsolutePath               | wsApplicationName                             | wsAppPath                 | wsAdditionalDeploymentParameters                      | wsContextRoot                             | wsTargetServer            | wsSynchronizeActiveNode               | wsDistributeApplication            | wsStartApplication               | expectedOutcome
+        сonfigName      | wsAdminAbsolutePathes.correct     | wsApplicationNames.notRunningApplicationHW    | wsAppPathes.helloWorld    | wsAdditionalDeploymentParameterses.correctHellowWorld | wsContextRoots.notRunningApplicationHW    | wsTargetServers.correct   | wsSynchronizeActiveNodes.unchecked    | wsDistributeApplications.unchecked | wsStartApplications.unchecked    | 'success'
+        сonfigName      | wsAdminAbsolutePathes.correct     | wsApplicationNames.runningApplicationHW       | wsAppPathes.helloWorld    | wsAdditionalDeploymentParameterses.correctHellowWorld | wsContextRoots.runningApplicationHW       | wsTargetServers.correct   | wsSynchronizeActiveNodes.checked      | wsDistributeApplications.checked   | wsStartApplications.checked      | 'success'
     }
 
 
@@ -277,20 +290,21 @@ class CheckApp extends PluginTestHelper {
                 projectName: '$testProjectName',
                 procedureName: '$preProcedureName',
                 actualParameter: [
-                    configName: '$parameters.configName',
-                    wsadminAbsPath: '$parameters.wsadminAbsPath',
-                    appName: '$parameters.appName',
-                    apppath: '$parameters.apppath',
+                    configNameDEA: '$parameters.configName',
+                    wsadminAbsPathDEA: '$parameters.wsadminAbsPath',
+                    appNameDEA: '$parameters.appName',
+                    apppathDEA: '$parameters.apppath',
                     wasResourceName: '$parameters.wasResourceName',
-                    additionalDeployParams: '$parameters.additionalDeployParams',
-                    contextRoot: '$parameters.contextRoot',
-                    serverList: '$parameters.serverList',
-                    syncActiveNodes: '$parameters.syncActiveNodes',
-                    distributeApp: '$parameters.distributeApp',
-                    startApp: '$parameters.startApp'
+                    additionalDeployParamsDEA: '$parameters.additionalDeployParams',
+                    contextRootDEA: '$parameters.contextRoot',
+                    serverListDEA: '$parameters.serverList',
+                    syncActiveNodesDEA: '$parameters.syncActiveNodes',
+                    distributeAppDEA: '$parameters.distributeApp',
+                    startAppDEA: '$parameters.startApp'
                 ]
             )
         """
+        return dsl(code)
     }
 
 /**
