@@ -6,13 +6,13 @@ import PluginTestHelper
 @Stepwise
 class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
     
+    //verification values
     @Shared
     def expectedOutcomes = [
         success: 'success',
         error: 'error',
         warning: 'warning',
-        running: 'running',
-        expected: ''
+        running: 'running'
     ]
 
     @Shared
@@ -30,16 +30,6 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
  * Maps for Possible Values
  */
     @Shared
-    def messagingSystemTypes = [
-        /**
-         * Combobox, no need incorrect value
-         * Required
-         */
-        WMQ: 'WMQ',
-        SIB: 'SIB'
-    ]
-
-    @Shared
     def confignames = [
         /**
          * Required
@@ -51,6 +41,46 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         correctNone: 'Web-Sphere-None',
         correctRMI: 'Web-Sphere-RMI',                        
         incorrect: 'incorrect-ConfigName'
+    ]
+
+    @Shared
+    def messagingSystemTypes = [
+        /**
+         * Combobox, no need incorrect value
+         * Required
+         */
+        WMQ: 'WMQ',
+        SIB: 'SIB'
+    ]
+
+    @Shared
+    def queueScopes = [
+        /**
+         * Required
+         */
+        empty: '',
+        correct: '',
+        incorrect: ''
+    ]
+
+    @Shared
+    def queueAdministrativeNames = [
+        /**
+         * Required
+         */
+        empty: '',
+        correct: '',
+        incorrect: ''
+    ]
+
+    @Shared
+    def queueNames = [
+        /**
+         * Required
+         */
+        empty: '',
+        correct: '',
+        incorrect: ''
     ]
 
     @Shared
@@ -84,16 +114,6 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
     ]
 
     @Shared
-    def queueAdministrativeNames = [
-        /**
-         * Required
-         */
-        empty: '',
-        correct: '',
-        incorrect: ''
-    ]
-
-    @Shared
     def queueManagerNames = [
         /**
          * Not Required
@@ -101,26 +121,6 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
          */
         empty: '',
         correct:''
-    ]
-
-    @Shared
-    def queueNames = [
-        /**
-         * Required
-         */
-        empty: '',
-        correct: '',
-        incorrect: ''
-    ]
-
-    @Shared
-    def queueScopes = [
-        /**
-         * Required
-         */
-        empty: '',
-        correct: '',
-        incorrect: ''
     ]
 
     @Shared
