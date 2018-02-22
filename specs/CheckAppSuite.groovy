@@ -33,7 +33,7 @@ class CheckApp extends PluginTestHelper {
             applicationName: "HelloWorld",
             applicationState: "RUNNING",
             wasResourceName: wasResourceName,
-            waitTime: '0'
+            wasWaitTime: '0'
         ]
         def result = runProcedure(runParams)
         then: 'wait until job is completed:'
@@ -60,7 +60,7 @@ class CheckApp extends PluginTestHelper {
                         applicationName:  '$parameters.applicationName',
                         applicationState: '$parameters.applicationState',
                         wasResourceName:  '$parameters.wasResourceName',
-                        waitTime:         '$parameters.propertyFormat'
+                        wasWaitTime:      '$parameters.wasWaitTime'
                     ]
                 )
         """
