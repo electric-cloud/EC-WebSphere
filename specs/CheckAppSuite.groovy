@@ -190,7 +190,7 @@ class CheckApp extends PluginTestHelper {
             applicationName: wsApplicationName,
             applicationState: wsApplicationState,
             wasResourceName: wasResourceName,
-            waitTime: tTime
+            wasWaitTime: tTime
         ]
         
         def result = runProcedure(runParams)
@@ -234,7 +234,7 @@ class CheckApp extends PluginTestHelper {
             applicationName: wsApplicationName,
             applicationState: wsApplicationState,
             wasResourceName: wasResourceName,
-            waitTime: tTime
+            wasWaitTime: tTime
         ]
 
         def result = runProcedure(runParams)
@@ -277,7 +277,7 @@ class CheckApp extends PluginTestHelper {
                         applicationName:  '$parameters.applicationName',
                         applicationState: '$parameters.applicationState',
                         wasResourceName:  '$parameters.wasResourceName',
-                        waitTime:         '$parameters.propertyFormat'
+                        wasWaitTime:         '$parameters.propertyFormat'
                     ]
                 )
         """
