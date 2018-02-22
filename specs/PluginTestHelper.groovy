@@ -44,6 +44,18 @@ class PluginTestHelper extends PluginSpockTestSupport {
     }
 
 
+    String getUpperStepSummary() {
+        String property = "/myJob/jobSteps/$procedureName/summary"
+        String summary
+        try {
+            summary = getJobProperty(property, jobId)
+        } catch (Throwable e) {
+            logger.debug("Cannot retrieve upper step summary from the property '$property'")
+        }
+        return summary
+    }
+
+
     def runProcedureDsl(dslString) {
         redirectLogs()
         assert dslString
@@ -185,15 +197,5 @@ try {
         // TODO:
     }
     
-    String getUpperStepSummary() {
-        String property = "/myJob/jobSteps/$procedureName/summary"
-        String summary
-        try {
-            summary = getJobProperty(property, jobId)
-        } catch (Throwable e) {
-            logger.debug("Cannot retrieve upper step summary from the property '$property'")
-        }
-        return summary
-    }
 
 }

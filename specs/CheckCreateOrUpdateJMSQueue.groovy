@@ -14,7 +14,8 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         warning: 'warning',
         running: 'running'
     ]
-
+    
+    @Shared
     def expectedUpperStepSummaries = [
         fieldRequired: 'Some message',
         incorrectComfigname: '',
@@ -174,6 +175,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
 
     @Unroll
     def "Create Or Update JMS Queue. Required paramenetrs Veriication"(){
+
         when: 'Proceure runs: '
             def runParams = [
                 configname: configname,
