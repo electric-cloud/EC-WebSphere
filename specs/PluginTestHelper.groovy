@@ -184,6 +184,16 @@ try {
     def createHelperProject(resName) {
         // TODO:
     }
-
+    
+    String getUpperStepSummary() {
+        String property = "/myJob/jobSteps/$procedureName/summary"
+        String summary
+        try {
+            summary = getJobProperty(property, jobId)
+        } catch (Throwable e) {
+            logger.debug("Cannot retrieve upper step summary from the property '$property'")
+        }
+        return summary
+    }
 
 }

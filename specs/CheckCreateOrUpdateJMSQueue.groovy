@@ -15,6 +15,16 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         running: 'running'
     ]
 
+    def expectedUpperStepSummaries = [
+        fieldRequired: 'Some message',
+        incorrectComfigname: '',
+        incorrectMessagingSystemType: '',
+        incorrectQueueScope: '',
+        incorrectQueueAdministrativeName: '',
+        incorrectQueueName: '',
+        incorrectJndiName: ''
+    ]
+
     @Shared
     def testProjectName = 'EC-WebSphere-Specs-CheckApp'
     @Shared
@@ -49,6 +59,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
          * Combobox, no need incorrect value
          * Required
          */
+        empty: '',
         WMQ: 'WMQ',
         SIB: 'SIB'
     ]
@@ -135,6 +146,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
 
     // params for where section
     def expectedOutcome
+    def expectedUpperStepSummary
 
     def configname
     def jndiName
@@ -161,8 +173,45 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
     }
 
     @Unroll
-    def "Required paramenetrs Veriication"(){
+    def "Create Or Update JMS Queue. Required paramenetrs Veriication"(){
+        when: 'Proceure runs: '
+            def runParams = [
+                configname: configname,
+                messagingSystemType: messagingSystemType,
+                queueScope: queueScope,
+                queueAdministrativeName: queueAdministrativeName,
+                jndiName: jndiName,
+                queueManagerName: queueManagerName,
+                queueAdministrativeDescription: queueAdministrativeDescription,
+                additionalOption: additionalOption
+            ]
 
+        def result = runProcedure(runParams)
+
+        then: 'Wait until job is completed: '
+        waitUntil {
+            try {
+                jobCompleted(result)
+            } catch (Exception e) {
+                println e.getMessage()
+            }
+        }
+        def outcome = getJobProperty('/myJob/outcome', result.jobId)
+        def debugLog = getJobLogs(result.jobId)
+        def upperStepSummary = getUpperStepSummary()
+        println "Procedure log:\n$debugLog\n"
+
+        //Verification part
+        assert outcome == expectedOutcome
+        assert upperStepSummary == expectedUpperStepSummary
+
+        where: 'The following params will be: '
+
+        configname                      | messagingSystemType           | queueScope            | queueAdministrativeName           | jndiName          | queueManagerName          | queueAdministrativeDescription            | additionalOption          | expectedOutcome           | expectedUpperStepSummary
+        confignames.empty               | messagingSystemTypes.WMQ      | queueScopes.correct   | queueAdministrativeNames.correct  | jndiName.correct  | queueManagerName.empty    | queueAdministrativeDescription.empty      | additionalOption.empty    | expectedOutcomes.error    | expectedUpperStepSummaries.fieldRequired
+        confignames.correctSOAP         | messagingSystemTypes.empty    | queueScopes.empty     | queueAdministrativeNames.correct  | jndiName.correct  | queueManagerName.empty    | queueAdministrativeDescription.empty      | additionalOption.empty    | expectedOutcomes.error    | expectedUpperStepSummaries.fieldRequired
+        confignames.correctSOAP         | messagingSystemTypes.WMQ      | queueScopes.correct   | queueAdministrativeNames.empty    | jndiName.correct  | queueManagerName.empty    | queueAdministrativeDescription.empty      | additionalOption.empty    | expectedOutcomes.error    | expectedUpperStepSummaries.fieldRequired
+        confignames.correctSOAP         | messagingSystemTypes.WMQ      | queueScopes.correct   | queueAdministrativeNames.correct  | jndiName.empty    | queueManagerName.empty    | queueAdministrativeDescription.empty      | additionalOption.empty    | expectedOutcomes.error    | expectedUpperStepSummaries.fieldRequired
     }
 
 
@@ -206,12 +255,61 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         confignames.correctSOAP         | messagingSystemTypes.WMQ  | queueScopes.correct   | queueAdministrativeNames.correct  | jndiName.correct  | queueManagerName.correct  | queueAdministrativeDescription.empty      | additionalOption.empty    | expectedOutcomes.success  
         confignames.correctSOAP         | messagingSystemTypes.WMQ  | queueScopes.correct   | queueAdministrativeNames.correct  | jndiName.correct  | queueManagerName.correct  | queueAdministrativeDescription.correct    | additionalOption.empty    | expectedOutcomes.success  
         confignames.correctSOAP         | messagingSystemTypes.WMQ  | queueScopes.correct   | queueAdministrativeNames.correct  | jndiName.correct  | queueManagerName.correct  | queueAdministrativeDescription.correct    | additionalOption.correct  | expectedOutcomes.success  
-        // IPC Config Name
-        // JSR160RMI Config Name
-        // None Config Name
-        // RMI Config Name
+        // TODO: IPC Config Name
+        // TODO: JSR160RMI Config Name
+        // TODO: None Config Name
+        // TODO: RMI Config Name
         
     }
+
+    @Unroll
+    def "Create Or Update JMS Queue. Negarive Scenarious"(){
+
+        when: 'Proceure runs: '
+            def runParams = [
+                configname: configname,
+                messagingSystemType: messagingSystemType,
+                queueScope: queueScope,
+                queueAdministrativeName: queueAdministrativeName,
+                jndiName: jndiName,
+                queueManagerName: queueManagerName,
+                queueAdministrativeDescription: queueAdministrativeDescription,
+                additionalOption: additionalOption
+            ]
+
+        def result = runProcedure(runParams)
+
+        then: 'Wait until job is completed: '
+        waitUntil {
+            try {
+                jobCompleted(result)
+            } catch (Exception e) {
+                println e.getMessage()
+            }
+        }
+        def outcome = getJobProperty('/myJob/outcome', result.jobId)
+        def debugLog = getJobLogs(result.jobId)
+        def upperStepSummary = getUpperStepSummary()
+        println "Procedure log:\n$debugLog\n"
+
+        assert outcome == expectedOutcome
+        assert upperStepSummary == expectedUpperStepSummary
+
+        where: 'The following params will be: '
+
+        configname                      | messagingSystemType               | queueScope            | queueAdministrativeName               | queueName             | jndiName              | queueManagerName          | queueAdministrativeDescription            | additionalOption          | expectedOutcome           | expectedUpperStepSummary
+        confignames.incorrect           | messagingSystemTypes.WMQ          | queueScopes.correct   | queueAdministrativeNames.correct      | queueNames.correct    | jndiName.correct      | queueManagerName.empty    | queueAdministrativeDescription.empty      | additionalOption.empty    | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectComfigname
+        confignames.correctSOAP         | messagingSystemTypes.incorrect    | queueScopes.correct   | queueAdministrativeNames.correct      | queueNames.correct    | jndiName.correct      | queueManagerName.empty    | queueAdministrativeDescription.empty      | additionalOption.empty    | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectMessagingSystemType 
+        confignames.correctSOAP         | messagingSystemTypes.WMQ          | queueScopes.incorrect | queueAdministrativeNames.correct      | queueNames.correct    | jndiName.correct      | queueManagerName.correct  | queueAdministrativeDescription.empty      | additionalOption.empty    | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectQueueScope
+        confignames.correctSOAP         | messagingSystemTypes.WMQ          | queueScopes.correct   | queueAdministrativeNames.incorrect    | queueNames.correct    | jndiName.correct      | queueManagerName.correct  | queueAdministrativeDescription.correct    | additionalOption.empty    | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectQueueAdministrativeName
+        confignames.correctSOAP         | messagingSystemTypes.WMQ          | queueScopes.correct   | queueAdministrativeNames.correct      | queueNames.incorrect  | jndiName.correct      | queueManagerName.correct  | queueAdministrativeDescription.correct    | additionalOption.correct  | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectQueueName
+        confignames.correctSOAP         | messagingSystemTypes.WMQ          | queueScopes.correct   | queueAdministrativeNames.correct      | queueNames.correct    | jndiName.incorrect    | queueManagerName.correct  | queueAdministrativeDescription.correct    | additionalOption.correct  | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectJndiName      
+        // TODO: IPC Config Name
+        // TODO: JSR160RMI Config Name
+        // TODO: None Config Name
+        // TODO: RMI Config Name
+    }
+
 
     //Run Test Procedure
     def runProcedure(def parameters) {
