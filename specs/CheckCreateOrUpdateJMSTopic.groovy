@@ -155,7 +155,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
     def doCleanupSpec() {
     }
 
-        @Unroll
+    @Unroll
     def "Create Or Update JMS Queue. Required paramenetrs Veriication"(){
 
         when: 'Proceure runs: '
@@ -291,7 +291,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         // TODO: RMI Config Name
     }
 
-    @Ignore
+    @IgnoreIf({false})
     @Unroll
     //Extented Test Part
     def "Create Or Update JMS Queue. Extended"(){
