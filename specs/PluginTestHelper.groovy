@@ -4,6 +4,7 @@ import com.electriccloud.spec.*
 class PluginTestHelper extends PluginSpockTestSupport {
 
     static def helperProjName = 'WebSphere Helper Project'
+    static def isExtended = false
 
     def redirectLogs(String parentProperty = '/myJob') {
         def propertyLogName = parentProperty + '/debug_logs'
@@ -41,6 +42,18 @@ class PluginTestHelper extends PluginSpockTestSupport {
     def getPipelineLogs(flowRuntimeId) {
         assert flowRuntimeId
         getPipelineProperty('/myPipelineRuntime/debugLogs', flowRuntimeId)
+    }
+
+
+    String getUpperStepSummary() {
+        String property = "/myJob/jobSteps/$procedureName/summary"
+        String summary
+        try {
+            summary = getJobProperty(property, jobId)
+        } catch (Throwable e) {
+            logger.debug("Cannot retrieve upper step summary from the property '$property'")
+        }
+        return summary
     }
 
 
@@ -184,6 +197,6 @@ try {
     def createHelperProject(resName) {
         // TODO:
     }
-
+    
 
 }

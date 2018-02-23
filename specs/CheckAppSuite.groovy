@@ -119,8 +119,6 @@ class CheckApp extends PluginTestHelper {
         * ask Dmitry Sh. - What way more effective Git or smt else
         */
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
-
-        
     }
     /**
     def doCleanupSpec() {
