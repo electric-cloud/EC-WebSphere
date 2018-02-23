@@ -4,6 +4,7 @@ import com.electriccloud.spec.*
 class PluginTestHelper extends PluginSpockTestSupport {
 
     static def helperProjName = 'WebSphere Helper Project'
+    static def isExtended = false
 
     def redirectLogs(String parentProperty = '/myJob') {
         def propertyLogName = parentProperty + '/debug_logs'
