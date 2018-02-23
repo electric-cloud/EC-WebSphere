@@ -303,6 +303,46 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         // TODO: RMI Config Name
     }
 
+    @IgnoreIf({false})
+    @Unroll
+    def "Create Or Update JMS Queue. Extended Scenario"(){
+
+        when: 'Proceure runs: '
+            def runParams = [
+                configname: configname,
+                messagingSystemType: messagingSystemType,
+                queueScope: queueScope,
+                queueAdministrativeName: queueAdministrativeName,
+                jndiName: jndiName,
+                queueManagerName: queueManagerName,
+                queueAdministrativeDescription: queueAdministrativeDescription,
+                additionalOption: additionalOption
+            ]
+
+        def result = runProcedure(runParams)
+
+        then: 'Wait until job is completed: '
+        waitUntil {
+            try {
+                jobCompleted(result)
+            } catch (Exception e) {
+                println e.getMessage()
+            }
+        }
+        def outcome = getJobProperty('/myJob/outcome', result.jobId)
+        def debugLog = getJobLogs(result.jobId)
+        println "Procedure log:\n$debugLog\n"
+
+        assert outcome == expectedOutcome
+
+        where: 'The following params will be: '
+
+        configname                    | messagingSystemType       | queueScope            | queueAdministrativeName           | jndiName              | queueManagerName              | queueAdministrativeDescription            | additionalOption              | expectedOutcome
+        // SOAP Config Name
+        confmames.correctSOAP         | messagingSystemTypes.WMQ  | queueScopes.correct   | queueAdministrativeNames.correct  | jndiNames.correct     | queueManagerNames.empty       | queueAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
+        
+    }
+
 
     //Run Test Procedure
     def runProcedure(def parameters) {
