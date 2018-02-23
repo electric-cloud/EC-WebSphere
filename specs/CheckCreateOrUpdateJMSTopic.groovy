@@ -293,7 +293,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
 
     @IgnoreIf({false})
     @Unroll
-    //Extented Test Part
+    //Extented Test Part 
     def "Create Or Update JMS Queue. Extended"(){
 
         when: 'Proceure runs: '
