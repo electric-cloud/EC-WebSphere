@@ -220,6 +220,7 @@ class CheckApp extends PluginTestHelper {
         сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.runningApplicationHW   | wsApplicationStates.running      | '100'    | 'success'
    }
 
+    @Ignore
     @Unroll
     def "Check Application Suite. Negative scenarios"(){
 
