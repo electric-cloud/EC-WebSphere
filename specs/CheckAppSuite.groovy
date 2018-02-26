@@ -165,8 +165,6 @@ class CheckApp extends PluginTestHelper {
         * ask Dmitry Sh. - What way more effective Git or smt else
         */
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
-
-        
     }
     /**
     def doCleanupSpec() {
@@ -268,6 +266,7 @@ class CheckApp extends PluginTestHelper {
         сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.runningApplicationHW   | wsApplicationStates.running      | '100'    | 'success'
    }
 
+    @Ignore
     @Unroll
     def "Check Application Suite. Negative scenarios"(){
 
