@@ -70,7 +70,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
          * Required
          */
         empty: '',
-        correct: '',
+        correct: 'Node=websphere85ndNode01',
         incorrect: ''
     ]
 
@@ -80,8 +80,8 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
          * Required
          */
         empty: '',
-        correct: '',
-        incorrect: ''
+        correct: 'MyWMQQueue',
+        incorrect: 'Incorrect Name'
     ]
 
     @Shared
@@ -90,8 +90,8 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
          * Required
          */
         empty: '',
-        correct: '',
-        incorrect: ''
+        correct: 'MyWMQQueue',
+        incorrect: '\\Incorerct'
     ]
 
     @Shared
@@ -100,8 +100,8 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
          * Required
          */
         empty: '',
-        correct: '',
-        incorrect: ''
+        correct: 'com.jndi.myQueue',
+        incorrect: 'incorrect'
     ]
 
 
@@ -112,7 +112,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
          * Free-type field - no need incorrect value - not relevant
          */
         empty: '',
-        correct:'Some descriptions',
+        correct:'Some descriptions for My WMQ JMS Queue',
     ]
 
     @Shared
@@ -132,7 +132,8 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
          * Free-type field - no need incorrect value - not relevant
          */
         empty: '',
-        correct:''
+        correct:'-ccsid 1208',
+        incorrect: 'incorrect param'
     ]
 
     // params for where section
