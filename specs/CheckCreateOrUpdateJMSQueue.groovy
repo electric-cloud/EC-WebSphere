@@ -303,7 +303,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         // TODO: None Config Name
         // TODO: RMI Config Name
     }
-
+  
     @IgnoreIf({false})
     @Unroll
     def "Create Or Update JMS Queue. Extended Scenario"(){
@@ -332,18 +332,17 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         }
         def outcome = getJobProperty('/myJob/outcome', result.jobId)
         def debugLog = getJobLogs(result.jobId)
+        def upperStepSummary = getUpperStepSummary()
+      
         println "Procedure log:\n$debugLog\n"
-
         assert outcome == expectedOutcome
 
-        where: 'The following params will be: '
+        where: 'The following params will be:
 
-        configname                    | messagingSystemType       | queueScope            | queueAdministrativeName           | jndiName              | queueManagerName              | queueAdministrativeDescription            | additionalOption              | expectedOutcome
+        configname                      | messagingSystemType           | queueScope            | queueAdministrativeName           | jndiName              | queueManagerName              | queueAdministrativeDescription            | additionalOption              | expectedOutcome
         // SOAP Config Name
-        confmames.correctSOAP         | messagingSystemTypes.WMQ  | queueScopes.correct   | queueAdministrativeNames.correct  | jndiNames.correct     | queueManagerNames.empty       | queueAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
-        
+        confignames.correctSOAP         | wsMessagingSystemTypes.WMQ    | queueScopes.correct   | queueAdministrativeNames.correct  | jndiNames.correct     | queueManagerNames.empty       | queueAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
     }
-
 
     //Run Test Procedure
     def runProcedure(def parameters) {
@@ -366,8 +365,6 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         """
         return dsl(code)
     }
-
-
     
 
 }
