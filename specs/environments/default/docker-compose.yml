@@ -10,7 +10,7 @@ services:
     container_name: "efserver"
     hostname: "efserver"
     tty: true
-  iis:
+  websphere:
     image: "electricflow/websphere90nd"
     ports:
       - "7808:7808"
@@ -34,6 +34,5 @@ services:
     - WAS_NODE_NAME=websphere90ndNode01
     restart: always
 networks:
-  default:
-    external:
-      name: nat
+  internal:
+    driver: bridge

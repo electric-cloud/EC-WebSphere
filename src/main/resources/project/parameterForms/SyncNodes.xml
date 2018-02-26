@@ -17,8 +17,7 @@
 -->
 <editor>
     <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#SyncNodes</help>
-    
-	<formElement>
+    <formElement>
         <type>entry</type>
         <label>Configuration Name:</label>
         <property>configurationName</property>
@@ -28,11 +27,11 @@
         <required>1</required>
     </formElement>
     <formElement>
-		<type>entry</type>
+        <type>entry</type>
         <label>Wsadmin Path:</label>
-		<property>wsadminAbsPath</property>
-		<required>0</required>
+        <property>wsadminAbsPath</property>
+        <required>1</required>
         <documentation>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. '/path/to/wsadmin.sh' or 'wsadmin.bat'.</documentation>
         <propertyReference type="property">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configurationName/wsadminPath</propertyReference>
-		</formElement>
+        </formElement>
 </editor>

@@ -27,16 +27,14 @@
         <htmlDocumentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" target="_blank" href="/commander/pages/@PLUGIN_NAME@/configurations">configuration page</a>.</htmlDocumentation>
         <required>1</required>
     </formElement>
-
     <formElement>
         <type>entry</type>
         <label>Wsadmin Absolute Path:</label>
         <property>wsadminAbsPath</property>
-        <required>0</required>
+        <required>1</required>
         <documentation>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. '/path/to/wsadmin.sh' or 'wsadmin.bat'.</documentation>
         <propertyReference type="property">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/wsadminPath</propertyReference>
     </formElement>
-
     <formElement>
         <type>entry</type>
         <label>Cluster Name:</label>
@@ -45,7 +43,6 @@
         <required>1</required>
         <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/clusters</propertyReference>
     </formElement>
-
     <formElement>
         <type>entry</type>
         <label>List of cluster members:</label>

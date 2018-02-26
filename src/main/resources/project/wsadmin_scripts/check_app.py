@@ -29,6 +29,9 @@ waitTime = r'''
 $[waitTimeForState]
 '''.strip()
 
+if not waitTime:
+    waitTime = '0'
+
 print "WaitTime: %s" % (waitTime);
 # TODO: review this line:
 appName.replace(' ', '_')
