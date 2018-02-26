@@ -72,8 +72,8 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
          * Required
          */
         empty: '',
-        correct: '',
-        incorrect: ''
+        correct: 'Node=websphere85ndNode01',
+        incorrect: 'incorrect-Scope'
     ]
 
     @Shared
@@ -82,8 +82,8 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
          * Required
          */
         empty: '',
-        correct: '',
-        incorrect: ''
+        correct: 'MyWMQTopic',
+        incorrect: 'incorrect test1'
     ]
 
     @Shared
@@ -93,7 +93,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
          */
         empty: '',
         correct: '',
-        incorrect: ''
+        incorrect: 'incorrect test2'
     ]
 
     @Shared
@@ -102,8 +102,8 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
          * Required
          */
         empty: '',
-        correct: '',
-        incorrect: ''
+        correct: 'com.jndi.myTopic',
+        incorrect: 'incorrect'
     ]
 
 
@@ -114,7 +114,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
          * Free-type field - no need incorrect value - not relevant
          */
         empty: '',
-        correct:'Some descriptions',
+        correct:'Some descriptions: WMQ JMS Topic for HelloWorld application',
     ]
 
     @Shared
@@ -124,7 +124,8 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
          * Free-type field - no need incorrect value - not relevant
          */
         empty: '',
-        correct:''
+        correct:'-ccsid 819',
+        incorrect: '-ccsid 819 -brokerVerion V1'
     ]
 
     // params for where section
