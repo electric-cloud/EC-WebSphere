@@ -316,7 +316,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         // TODO: RMI Config Name
     }
   
-    @IgnoreIf({false})
+    @Ignore
     @Unroll
     def "Create Or Update JMS Queue. Extended Scenario"(){
 
@@ -352,9 +352,10 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
 
         where: 'The following params will be:'
 
-        configname                      | messagingSystemType           | queueScope            | queueAdministrativeName           | jndiName              | queueManagerName              | queueAdministrativeDescription            | additionalOption              | expectedOutcome
+        configname                      | messagingSystemType         | queueScope          | queueAdministrativeName               | queueName                 | jndiName                  | queueManagerName              | queueAdministrativeDescription                | additionalOption              | expectedOutcome
         // SOAP Config Name
-        confignames.correctSOAP         | wsMessagingSystemTypes.WMQ    | queueScopes.correct   | queueAdministrativeNames.correct  | jndiNames.correct     | queueManagerNames.empty       | queueAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
+        confignames.correctSOAP         | messagingSystemTypes.WMQ  | queueScopes.correct   | queueAdministrativeNames.correctWMQ   | queueNames.correctWMQ     | jndiNames.correctWMQ     | queueManagerNames.correct      | queueAdministrativeDescriptions.correctWMQ    | additionalOptions.correctWMQ  | expectedOutcomes.success  
+        confignames.correctSOAP         | messagingSystemTypes.SIB  | queueScopes.correct   | queueAdministrativeNames.correctSIB   | queueNames.correctSIB     | jndiNames.correctSIB     | queueManagerNames.correct      | queueAdministrativeDescriptions.correctSIB    | additionalOptions.correctSIB  | expectedOutcomes.success          
     }
 
     //Run Test Procedure
