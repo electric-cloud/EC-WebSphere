@@ -29,9 +29,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
     @Shared
     def testProjectName = 'EC-WebSphere-Specs-CheckApp'
     @Shared
-    def testProcedureName = 'CheckCreateOrUpdateJMSQueue'
-    @Shared
-    def preProcedureName = 'CreateOrUpdateJMSQueue'    
+    def testProcedureName = 'CreateOrUpdateJMSQueue'
     @Shared 
     def wasHost = System.getenv('WAS_HOST')
     @Shared 
@@ -164,7 +162,8 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
 
     def doCleanupSpec() {
     }
-    
+
+    @Ignore
     @Unroll
     def "Create Or Update JMS Queue. Required paramenetrs Veriication"(){
 
@@ -197,7 +196,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
 
         //Verification part
         assert outcome == expectedOutcome
-        //assert upperStepSummary == expectedUpperStepSummary
+        assert upperStepSummary == expectedUpperStepSummary
 
         where: 'The following params will be: '
 
@@ -255,7 +254,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         // TODO: RMI Config Name
         
     }
-
+    @Ignore
     @Unroll
     def "Create Or Update JMS Queue. Negarive Scenarious"(){
 
@@ -349,7 +348,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         def code = """
             runProcedure(
                 projectName: '$testProjectName',
-                procedureName: '$teProcedureName',
+                procedureName: '$testProcedureName',
                 actualParameter: [
                     confignameCOUJMSQ: '$parameters.configname',
                     messagingSystemTypeCOUJMSQ: '$parameters.messagingSystemType',

@@ -29,11 +29,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
     @Shared
     def testProjectName = 'EC-WebSphere-Specs-CheckApp'
     @Shared
-    def testProcedureName = 'CheckCreateOrUpdateJMSTopic'
-    /**
-    @Shared
-    def preProcedureName = 'CreateOrUpdateJMSTopic'    
-    */
+    def testProcedureName = 'CreateOrUpdateJMSTopic'
     @Shared 
     def wasHost = System.getenv('WAS_HOST')
     @Shared 
@@ -155,6 +151,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
 
     def doCleanupSpec() {
     }
+
     @Ignore
     @Unroll
     def "Create Or Update JMS Queue. Required paramenetrs Veriication"(){
@@ -336,7 +333,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         def code = """
             runProcedure(
                 projectName: '$testProjectName',
-                procedureName: '$teProcedureName',
+                procedureName: '$testProcedureName',
                 actualParameter: [
                     confignameCOUJMST: '$parameters.configname',
                     messagingSystemTypeCOUJMST: '$parameters.messagingSystemType',
