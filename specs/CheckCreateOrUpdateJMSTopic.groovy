@@ -123,7 +123,8 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
          * Free-type field - no need incorrect value - not relevant
          */
         empty: '',
-        correct:'-ccsid 819',
+        correctWMQ:'-ccsid 819',
+        correctSIB:'',
         incorrect: '-ccsid 819 //-brokerVerion V1'
     ]
 
@@ -237,11 +238,11 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         confignames.correctSOAP         | messagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correctWMQ  | topicNames.correctWMQ    | jndiNames.correctWMQ     | topicAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
         confignames.correctSOAP         | messagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correctWMQ  | topicNames.correctWMQ    | jndiNames.correctWMQ     | topicAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
         confignames.correctSOAP         | messagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correctWMQ  | topicNames.correctWMQ    | jndiNames.correctWMQ     | topicAdministrativeDescriptions.correct   | additionalOptions.empty       | expectedOutcomes.success  
-        confignames.correctSOAP         | messagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correctWMQ  | topicNames.correctWMQ    | jndiNames.correctWMQ     | topicAdministrativeDescriptions.correct   | additionalOptions.correct     | expectedOutcomes.success  
+        confignames.correctSOAP         | messagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correctWMQ  | topicNames.correctWMQ    | jndiNames.correctWMQ     | topicAdministrativeDescriptions.correct   | additionalOptions.correctWMQ  | expectedOutcomes.success  
         confignames.correctSOAP         | messagingSystemTypes.SIB  | topicScopes.correct   | topicAdministrativeNames.correctSIB  | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
         confignames.correctSOAP         | messagingSystemTypes.SIB  | topicScopes.correct   | topicAdministrativeNames.correctSIB  | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
         confignames.correctSOAP         | messagingSystemTypes.SIB  | topicScopes.correct   | topicAdministrativeNames.correctSIB  | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.correct   | additionalOptions.empty       | expectedOutcomes.success  
-        confignames.correctSOAP         | messagingSystemTypes.SIB  | topicScopes.correct   | topicAdministrativeNames.correctSIB  | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.correct   | additionalOptions.correct     | expectedOutcomes.success  
+        confignames.correctSOAP         | messagingSystemTypes.SIB  | topicScopes.correct   | topicAdministrativeNames.correctSIB  | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.correct   | additionalOptions.correctSIB  | expectedOutcomes.success  
         // TODO: IPC Config Name
         // TODO: JSR160RMI Config Name
         // TODO: None Config Name
