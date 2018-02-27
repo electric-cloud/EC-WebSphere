@@ -134,7 +134,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
          * Free-type field - no need incorrect value - not relevant
          */
         empty: '',
-        correctMWQ:'-ccsid 1208',
+        correctWMQ:'-ccsid 1208',
         correctSIB:'',
         incorrect: 'incorrect param'
     ]
