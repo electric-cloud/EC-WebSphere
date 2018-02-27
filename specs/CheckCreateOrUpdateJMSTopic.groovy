@@ -78,7 +78,8 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
          * Required
          */
         empty: '',
-        correct: 'MyWMQTopic',
+        correctWMQ: 'MyWMQTopic',
+        correctSIB: 'MySIBTopic',
         incorrect: 'incorrect test1'
     ]
 
@@ -88,7 +89,8 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
          * Required
          */
         empty: '',
-        correct: '',
+        correctWMQ: 'MyWMQTopic',
+        correctSIB: 'MySIBTopic',
         incorrect: 'incorrect test2'
     ]
 
@@ -98,7 +100,8 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
          * Required
          */
         empty: '',
-        correct: 'com.jndi.myTopic',
+        correctWMQ: 'com.jndi.myWMQTopic',
+        correctSIB: 'com.jndi.mySIBTopic',
         incorrect: 'incorrect'
     ]
 
@@ -121,7 +124,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
          */
         empty: '',
         correct:'-ccsid 819',
-        incorrect: '-ccsid 819 -brokerVerion V1'
+        incorrect: '-ccsid 819 //-brokerVerion V1'
     ]
 
     // params for where section
@@ -154,7 +157,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
 
     @Ignore
     @Unroll
-    def "Create Or Update JMS Queue. Required paramenetrs Veriication"(){
+    def "Create Or Update JMS Topic. Required paramenetrs Veriication"(){
 
         when: 'Proceure runs: '
             def runParams = [
@@ -197,7 +200,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
 
 
     @Unroll
-    def "Create Or Update JMS Queue. Positive Scenarious"(){
+    def "Create Or Update JMS Topic. Positive Scenarious"(){
 
         when: 'Proceure runs: '
             def runParams = [
@@ -207,7 +210,8 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
                 topicAdministrativeName: topicAdministrativeName,
                 jndiName: jndiName,
                 topicAdministrativeDescription: topicAdministrativeDescription,
-                additionalOption: additionalOption
+                additionalOption: additionalOption,
+                wasHost: wasHost,
             ]
 
         def result = runProcedure(runParams)
@@ -228,22 +232,25 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
 
         where: 'The following params will be: '
 
-        configname                      | messagingSystemType       | topicScope            | topicAdministrativeName             | jndiName              | topicAdministrativeDescription            | additionalOption              | expectedOutcome
+        configname                      | messagingSystemType       | topicScope            | topicAdministrativeName              | topicName                | jndiName                 | topicAdministrativeDescription            | additionalOption              | expectedOutcome
         // SOAP Config Name
-        confignames.correctSOAP         | messagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correct  | jndiNames.correct     | topicAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
-        confignames.correctSOAP         | messagingSystemTypes.SIB  | topicScopes.correct   | topicAdministrativeNames.correct  | jndiNames.correct     | topicAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
-        confignames.correctSOAP         | messagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correct  | jndiNames.correct     | topicAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
-        confignames.correctSOAP         | messagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correct  | jndiNames.correct     | topicAdministrativeDescriptions.correct   | additionalOptions.empty       | expectedOutcomes.success  
-        confignames.correctSOAP         | messagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correct  | jndiNames.correct     | topicAdministrativeDescriptions.correct   | additionalOptions.correct     | expectedOutcomes.success  
+        confignames.correctSOAP         | messagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correctWMQ  | topicNames.correctWMQ    | jndiNames.correctWMQ     | topicAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
+        confignames.correctSOAP         | messagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correctWMQ  | topicNames.correctWMQ    | jndiNames.correctWMQ     | topicAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
+        confignames.correctSOAP         | messagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correctWMQ  | topicNames.correctWMQ    | jndiNames.correctWMQ     | topicAdministrativeDescriptions.correct   | additionalOptions.empty       | expectedOutcomes.success  
+        confignames.correctSOAP         | messagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correctWMQ  | topicNames.correctWMQ    | jndiNames.correctWMQ     | topicAdministrativeDescriptions.correct   | additionalOptions.correct     | expectedOutcomes.success  
+        confignames.correctSOAP         | messagingSystemTypes.SIB  | topicScopes.correct   | topicAdministrativeNames.correctSIB  | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
+        confignames.correctSOAP         | messagingSystemTypes.SIB  | topicScopes.correct   | topicAdministrativeNames.correctSIB  | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
+        confignames.correctSOAP         | messagingSystemTypes.SIB  | topicScopes.correct   | topicAdministrativeNames.correctSIB  | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.correct   | additionalOptions.empty       | expectedOutcomes.success  
+        confignames.correctSOAP         | messagingSystemTypes.SIB  | topicScopes.correct   | topicAdministrativeNames.correctSIB  | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.correct   | additionalOptions.correct     | expectedOutcomes.success  
         // TODO: IPC Config Name
         // TODO: JSR160RMI Config Name
         // TODO: None Config Name
         // TODO: RMI Config Name
         
     }
-
+    @Ignore
     @Unroll
-    def "Create Or Update JMS Queue. Negarive Scenarious"(){
+    def "Create Or Update JMS Topic. Negarive Scenarious"(){
 
         when: 'Proceure runs: '
             def runParams = [
@@ -253,7 +260,8 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
                 topicAdministrativeName: topicAdministrativeName,
                 jndiName: jndiName,
                 topicAdministrativeDescription: topicAdministrativeDescription,
-                additionalOption: additionalOption
+                additionalOption: additionalOption,
+                wasHost: wasHost,
             ]
 
         def result = runProcedure(runParams)
@@ -276,7 +284,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
 
         where: 'The following params will be: '
 
-        configname                      | messagingSystemType               | topicScope            | topicAdministrativeName                 | topicName             | jndiName              | topicAdministrativeDescription                | additionalOption              | expectedOutcome           | expectedUpperStepSummary
+        configname                      | messagingSystemType               | topicScope            | topicAdministrativeName               | topicName             | jndiName              | topicAdministrativeDescription                | additionalOption              | expectedOutcome           | expectedUpperStepSummary
         confignames.incorrect           | messagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.correct      | topicNames.correct    | jndiNames.correct     | topicAdministrativeDescriptions.empty         | additionalOptions.empty       | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectComfigname
         confignames.correctSOAP         | messagingSystemTypes.incorrect    | topicScopes.correct   | topicAdministrativeNames.correct      | topicNames.correct    | jndiNames.correct     | topicAdministrativeDescriptions.empty         | additionalOptions.empty       | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectMessagingSystemType 
         confignames.correctSOAP         | messagingSystemTypes.WMQ          | topicScopes.incorrect | topicAdministrativeNames.correct      | topicNames.correct    | jndiNames.correct     | topicAdministrativeDescriptions.empty         | additionalOptions.empty       | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectQueueScope
@@ -302,7 +310,8 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
                 topicAdministrativeName: topicAdministrativeName,
                 jndiName: jndiName,
                 topicAdministrativeDescription: topicAdministrativeDescription,
-                additionalOption: additionalOption
+                additionalOption: additionalOption,
+                wasHost: wasHost,
             ]
 
         def result = runProcedure(runParams)
@@ -342,7 +351,8 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
                     topicNameCOUJMST: '$parameters.topicName',
                     jndiNameCOUJMST: '$parameters.jndiName',
                     topicAdministrativeDescriptionCOUJMST: '$parameters.topicAdministrativeDescription',
-                    additionalOptionsCOUJMST: '$parameters.additionalOptions',
+                    additionalOptionsCOUJMST: '$parameters.additionalOption',
+                    wasResourceName: '$parameters.wasHost'
                 ]
             )
         """
