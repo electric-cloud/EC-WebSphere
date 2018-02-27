@@ -133,7 +133,8 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
          * Free-type field - no need incorrect value - not relevant
          */
         empty: '',
-        correct:'-ccsid 1208',
+        correctMWQ:'-ccsid 1208',
+        correctSIB:'',
         incorrect: 'incorrect param'
     ]
 
@@ -247,16 +248,16 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
 
         where: 'The following params will be: '
 
-        configname                      | messagingSystemType         | queueScope          | queueAdministrativeName               | queueName                 | jndiName                  | queueManagerName                  | queueAdministrativeDescription            | additionalOption              | expectedOutcome
+        configname                      | messagingSystemType         | queueScope          | queueAdministrativeName               | queueName                 | jndiName                  | queueManagerName                  | queueAdministrativeDescription        | additionalOption              | expectedOutcome
         // SOAP Config Name
         confignames.correctSOAP         | messagingSystemTypes.WMQ  | queueScopes.correct   | queueAdministrativeNames.correctWMQ   | queueNames.correctWMQ     | jndiNames.correctWMQ     | queueManagerNames.empty        | queueAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
         confignames.correctSOAP         | messagingSystemTypes.WMQ  | queueScopes.correct   | queueAdministrativeNames.correctWMQ   | queueNames.correctWMQ     | jndiNames.correctWMQ     | queueManagerNames.correct      | queueAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
         confignames.correctSOAP         | messagingSystemTypes.WMQ  | queueScopes.correct   | queueAdministrativeNames.correctWMQ   | queueNames.correctWMQ     | jndiNames.correctWMQ     | queueManagerNames.correct      | queueAdministrativeDescriptions.correct   | additionalOptions.empty       | expectedOutcomes.success  
-        confignames.correctSOAP         | messagingSystemTypes.WMQ  | queueScopes.correct   | queueAdministrativeNames.correctWMQ   | queueNames.correctWMQ     | jndiNames.correctWMQ     | queueManagerNames.correct      | queueAdministrativeDescriptions.correct   | additionalOptions.correct     | expectedOutcomes.success  
+        confignames.correctSOAP         | messagingSystemTypes.WMQ  | queueScopes.correct   | queueAdministrativeNames.correctWMQ   | queueNames.correctWMQ     | jndiNames.correctWMQ     | queueManagerNames.correct      | queueAdministrativeDescriptions.correct   | additionalOptions.correctWMQ  | expectedOutcomes.success  
         confignames.correctSOAP         | messagingSystemTypes.SIB  | queueScopes.correct   | queueAdministrativeNames.correctSIB   | queueNames.correctSIB     | jndiNames.correctSIB     | queueManagerNames.empty        | queueAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
         confignames.correctSOAP         | messagingSystemTypes.SIB  | queueScopes.correct   | queueAdministrativeNames.correctSIB   | queueNames.correctSIB     | jndiNames.correctSIB     | queueManagerNames.correct      | queueAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
         confignames.correctSOAP         | messagingSystemTypes.SIB  | queueScopes.correct   | queueAdministrativeNames.correctSIB   | queueNames.correctSIB     | jndiNames.correctSIB     | queueManagerNames.correct      | queueAdministrativeDescriptions.correct   | additionalOptions.empty       | expectedOutcomes.success  
-        confignames.correctSOAP         | messagingSystemTypes.SIB  | queueScopes.correct   | queueAdministrativeNames.correctSIB   | queueNames.correctSIB     | jndiNames.correctSIB     | queueManagerNames.correct      | queueAdministrativeDescriptions.correct   | additionalOptions.correct     | expectedOutcomes.success  
+        confignames.correctSOAP         | messagingSystemTypes.SIB  | queueScopes.correct   | queueAdministrativeNames.correctSIB   | queueNames.correctSIB     | jndiNames.correctSIB     | queueManagerNames.correct      | queueAdministrativeDescriptions.correct   | additionalOptions.correctSIB  | expectedOutcomes.success  
         // TODO: IPC Config Name
         // TODO: JSR160RMI Config Name
         // TODO: None Config Name
