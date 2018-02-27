@@ -221,6 +221,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
                 messagingSystemType: messagingSystemType,
                 queueScope: queueScope,
                 queueAdministrativeName: queueAdministrativeName,
+                queueName: queueName,
                 jndiName: jndiName,
                 queueManagerName: queueManagerName,
                 queueAdministrativeDescription: queueAdministrativeDescription,
@@ -246,7 +247,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
 
         where: 'The following params will be: '
 
-        configname                      | messagingSystemType         | queueScope          | queueAdministrativeName               | queueName                 | jndiName              | queueManagerName                  | queueAdministrativeDescription            | additionalOption              | expectedOutcome
+        configname                      | messagingSystemType         | queueScope          | queueAdministrativeName               | queueName                 | jndiName                  | queueManagerName                  | queueAdministrativeDescription            | additionalOption              | expectedOutcome
         // SOAP Config Name
         confignames.correctSOAP         | messagingSystemTypes.WMQ  | queueScopes.correct   | queueAdministrativeNames.correctWMQ   | queueNames.correctWMQ     | jndiNames.correctWMQ     | queueManagerNames.empty        | queueAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
         confignames.correctSOAP         | messagingSystemTypes.WMQ  | queueScopes.correct   | queueAdministrativeNames.correctWMQ   | queueNames.correctWMQ     | jndiNames.correctWMQ     | queueManagerNames.correct      | queueAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
@@ -272,6 +273,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
                 messagingSystemType: messagingSystemType,
                 queueScope: queueScope,
                 queueAdministrativeName: queueAdministrativeName,
+                queueName: queueName,
                 jndiName: jndiName,
                 queueManagerName: queueManagerName,
                 queueAdministrativeDescription: queueAdministrativeDescription,
