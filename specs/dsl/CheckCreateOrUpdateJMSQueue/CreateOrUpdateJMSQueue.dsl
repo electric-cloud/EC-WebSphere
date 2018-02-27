@@ -127,7 +127,7 @@ procedure 'CreateOrUpdateJMSQueue', {
     actualParameter 'configname', '$[confignameCOUJMSQ]'
     actualParameter 'jndiName', '$[jndiNameCOUJMSQ]'
     actualParameter 'messagingSystemType', '$[messagingSystemTypeCOUJMSQ]'
-    actualParameter 'queueAdministrativeDescription', '[queueAdministrativeDescriptionCOUJMSQ]'
+    actualParameter 'queueAdministrativeDescription', '$[queueAdministrativeDescriptionCOUJMSQ]'
     actualParameter 'queueAdministrativeName', '$[queueAdministrativeNameCOUJMSQ]'
     actualParameter 'queueManagerName', '$[queueManagerNameCOUJMSQ]'
     actualParameter 'queueName', '$[queueNameCOUJMSQ]'
