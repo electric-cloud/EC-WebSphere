@@ -155,7 +155,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
 
     def doCleanupSpec() {
     }
-
+    @Ignore
     @Unroll
     def "Create Or Update JMS Queue. Required paramenetrs Veriication"(){
 
@@ -233,11 +233,11 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
 
         configname                      | messagingSystemType       | topicScope            | topicAdministrativeName             | jndiName              | topicAdministrativeDescription            | additionalOption              | expectedOutcome
         // SOAP Config Name
-        confignames.correctSOAP         | wsMessagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correct  | jndiNames.correct     | topicAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
-        confignames.correctSOAP         | wsMessagingSystemTypes.SIB  | topicScopes.correct   | topicAdministrativeNames.correct  | jndiNames.correct     | topicAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
-        confignames.correctSOAP         | wsMessagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correct  | jndiNames.correct     | topicAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
-        confignames.correctSOAP         | wsMessagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correct  | jndiNames.correct     | topicAdministrativeDescriptions.correct   | additionalOptions.empty       | expectedOutcomes.success  
-        confignames.correctSOAP         | wsMessagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correct  | jndiNames.correct     | topicAdministrativeDescriptions.correct   | additionalOptions.correct     | expectedOutcomes.success  
+        confignames.correctSOAP         | messagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correct  | jndiNames.correct     | topicAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
+        confignames.correctSOAP         | messagingSystemTypes.SIB  | topicScopes.correct   | topicAdministrativeNames.correct  | jndiNames.correct     | topicAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
+        confignames.correctSOAP         | messagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correct  | jndiNames.correct     | topicAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
+        confignames.correctSOAP         | messagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correct  | jndiNames.correct     | topicAdministrativeDescriptions.correct   | additionalOptions.empty       | expectedOutcomes.success  
+        confignames.correctSOAP         | messagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correct  | jndiNames.correct     | topicAdministrativeDescriptions.correct   | additionalOptions.correct     | expectedOutcomes.success  
         // TODO: IPC Config Name
         // TODO: JSR160RMI Config Name
         // TODO: None Config Name
@@ -280,12 +280,12 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         where: 'The following params will be: '
 
         configname                      | messagingSystemType               | topicScope            | topicAdministrativeName                 | topicName             | jndiName              | topicAdministrativeDescription                | additionalOption              | expectedOutcome           | expectedUpperStepSummary
-        confignames.incorrect           | wsMessagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.correct      | topicNames.correct    | jndiNames.correct     | topicAdministrativeDescriptions.empty         | additionalOptions.empty       | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectComfigname
-        confignames.correctSOAP         | wsMessagingSystemTypes.incorrect    | topicScopes.correct   | topicAdministrativeNames.correct      | topicNames.correct    | jndiNames.correct     | topicAdministrativeDescriptions.empty         | additionalOptions.empty       | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectMessagingSystemType 
-        confignames.correctSOAP         | wsMessagingSystemTypes.WMQ          | topicScopes.incorrect | topicAdministrativeNames.correct      | topicNames.correct    | jndiNames.correct     | topicAdministrativeDescriptions.empty         | additionalOptions.empty       | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectQueueScope
-        confignames.correctSOAP         | wsMessagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.incorrect    | topicNames.correct    | jndiNames.correct     | topicAdministrativeDescriptions.correct       | additionalOptions.empty       | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectQueueAdministrativeName
-        confignames.correctSOAP         | wsMessagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.correct      | topicNames.incorrect  | jndiNames.correct     | topicAdministrativeDescriptions.correct       | additionalOptions.correct     | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectQueueName
-        confignames.correctSOAP         | wsMessagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.correct      | topicNames.correct    | jndiNames.incorrect   | topicAdministrativeDescriptions.correct       | additionalOptions.correct     | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectJndiName      
+        confignames.incorrect           | messagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.correct      | topicNames.correct    | jndiNames.correct     | topicAdministrativeDescriptions.empty         | additionalOptions.empty       | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectComfigname
+        confignames.correctSOAP         | messagingSystemTypes.incorrect    | topicScopes.correct   | topicAdministrativeNames.correct      | topicNames.correct    | jndiNames.correct     | topicAdministrativeDescriptions.empty         | additionalOptions.empty       | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectMessagingSystemType 
+        confignames.correctSOAP         | messagingSystemTypes.WMQ          | topicScopes.incorrect | topicAdministrativeNames.correct      | topicNames.correct    | jndiNames.correct     | topicAdministrativeDescriptions.empty         | additionalOptions.empty       | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectQueueScope
+        confignames.correctSOAP         | messagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.incorrect    | topicNames.correct    | jndiNames.correct     | topicAdministrativeDescriptions.correct       | additionalOptions.empty       | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectQueueAdministrativeName
+        confignames.correctSOAP         | messagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.correct      | topicNames.incorrect  | jndiNames.correct     | topicAdministrativeDescriptions.correct       | additionalOptions.correct     | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectQueueName
+        confignames.correctSOAP         | messagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.correct      | topicNames.correct    | jndiNames.incorrect   | topicAdministrativeDescriptions.correct       | additionalOptions.correct     | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectJndiName      
         // TODO: IPC Config Name
         // TODO: JSR160RMI Config Name
         // TODO: None Config Name
@@ -328,7 +328,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         where: 'The following params will be: '
         configname                      | messagingSystemType           | topicScope            | topicAdministrativeName           | jndiName              | topicAdministrativeDescription            | additionalOption              | expectedOutcome
         // SOAP Config Name
-        confignames.correctSOAP         | wsMessagingSystemTypes.WMQ    | topicScopes.correct   | topicAdministrativeNames.correct  | jndiNames.correct     | topicAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
+        confignames.correctSOAP         | messagingSystemTypes.WMQ      | topicScopes.correct   | topicAdministrativeNames.correct  | jndiNames.correct     | topicAdministrativeDescriptions.empty     | additionalOptions.empty       | expectedOutcomes.success  
     }
 
     //Run Test Procedure

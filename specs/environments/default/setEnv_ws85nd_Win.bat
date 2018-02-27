@@ -1,5 +1,5 @@
 set WAS_USERNAME=wsadmin
 set WAS_PASSWORD=changeme
-set WAS_HOST=websphere90nd
+set WAS_HOST=websphere85nd
 set WAS_PORT=8879
 set WSADMIN_PATH=/opt/IBM/WebSphere/AppServer/profiles/Dmgr01/bin/wsadmin.sh
