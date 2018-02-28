@@ -5,6 +5,8 @@ import PluginTestHelper
 
 @Stepwise
 class CheckApp extends PluginTestHelper {
+
+
     @Shared
     def expectedOutcomes = [
         success: 'success',
@@ -55,6 +57,10 @@ class CheckApp extends PluginTestHelper {
     def testProjectName = 'EC-WebSphere-Specs-CheckApp'
     @Shared
     def testProcedureName = 'CheckApp'
+    @Shared
+    def resourceProcedureName = 'GetResources'
+    @Shared
+    def applicationUrl = 'https://github.com/electric-cloud/TestApplications/raw/master/EC-WebSphere/Applications/hello-world.war'
     @Shared
     def preProcedureName = 'DeployEnterpriseApp'    
     @Shared
@@ -162,9 +168,13 @@ class CheckApp extends PluginTestHelper {
         importProject(testProjectName, 'dsl/CheckApp/DeployEnterpriseApp.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         /**
         * TODO: Retrive the tests Applications to 
-        * ask Dmitry Sh. - What way more effective Git or smt else
+        * 
         */
+        runGetResourcesProcedure([projectName: testProjectName, resourceProcedureName: resourceProcedureName, filePath: wsAppPathes.helloWorld, fileURL: applicationUrl, wasResourceName: wasResourceName])
+        
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
+
+
     }
     /**
     def doCleanupSpec() {
