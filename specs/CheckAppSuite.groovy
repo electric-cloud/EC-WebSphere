@@ -65,6 +65,12 @@ class CheckApp extends PluginTestHelper {
     def preProcedureName = 'DeployEnterpriseApp'    
     @Shared
     def сonfigName = 'specConfig'
+    @Shared
+    def configNames = [
+        empty: '',
+        correct: 'specConfig',
+        incorect: 'incorrect',
+    ]
     @Shared 
     def wasHost = System.getenv('WAS_HOST')
     @Shared 

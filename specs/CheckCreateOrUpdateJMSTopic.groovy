@@ -48,7 +48,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         correctJSR160RMI: 'Web-Sphere-JSR160RMI',
         correctNone: 'Web-Sphere-None',
         correctRMI: 'Web-Sphere-RMI',                        
-        incorrect: 'incorrect-ConfigName'
+        incorrect: 'incorrect'
     ]
 
     @Shared
