@@ -68,7 +68,7 @@ class CheckApp extends PluginTestHelper {
     @Shared 
     def wasHost = System.getenv('WAS_HOST')
     @Shared 
-    def wasPath = System.getenv('WAS_APPPATH')
+    def wasPath = System.getenv('WSADMIN_PATH')
     @Shared 
     /**
      * TODO: Create a application path env variable: for Linux and Windows - these parameters will be diffeent
