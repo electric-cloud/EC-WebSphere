@@ -74,7 +74,7 @@ class CheckApp extends PluginTestHelper {
      * TODO: Create a application path env variable: for Linux and Windows - these parameters will be diffeent
      * Dmitry Sh. 
      */
-    def wasAppPath = '/var/tmp/applications/' //System.getenv('WASAPP_Path')
+    def wasAppPath = '/var/tmp/' //System.getenv('WASAPP_Path')
 
     // params for where section
     @Shared
