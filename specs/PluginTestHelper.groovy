@@ -196,6 +196,26 @@ try {
     def createHelperProject(resName) {
         // TODO:
     }
-    
+
+    def checkExpectedException(def e, def errorDesc, def errorDetails){
+        // TODO:
+    }
+
+    def runGetResourcesProcedure(def params){
+        //TODO: 
+       importProject(params.projectName, 'dsl/GetResources.dsl', [projectName: params.projectName, wasResourceName: params.wasResourceName])
+        def code = """
+            runProcedure(
+                projectName: '$params.projectName',
+                procedureName: '$params.resourceProcedureName',
+                actualParameter: [
+                    filePath: '$params.filePath',
+                    fileURL: '$params.fileURL',
+                    wasResourceName: '$params.wasResourceName',
+                ]
+            )
+        """        
+        return dsl(code)
+    }
 
 }
