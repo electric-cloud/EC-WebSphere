@@ -119,6 +119,10 @@
                     <value/>
                 </property>
                 <property>
+                    <propertyName>delete_jms_activation_spec.py</propertyName>
+                    <value/>
+                </property>
+                <property>
                     <propertyName>delete_jms_topic.py</propertyName>
                     <value/>
                 </property>
@@ -3196,6 +3200,139 @@
             <workingDirectory />
             <workspaceName />
             <procedureName>CreateOrUpdateJMSTopic</procedureName>
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>formType</propertyName>
+                            <expandable>1</expandable>
+                            <value>command</value>
+                        </property>
+                    </propertySheet>
+                </property>
+            </propertySheet>
+        </step>
+    </procedure>
+    <procedure>
+        <procedureName>DeleteJMSActivationSpec</procedureName>
+        <description>Deletes JMS Activation Specs</description>
+        <jobNameTemplate>websphere-delete-jms-as-$[jobId]</jobNameTemplate>
+        <resourceName />
+        <workspaceName />
+        <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+        <propertySheet>
+            <property>
+                <propertyName>ec_parameterForm</propertyName>
+                <expandable>1</expandable>
+                <value></value>
+            </property>
+            <property>
+                <propertyName>ec_customEditorData</propertyName>
+                <propertySheet>
+                    <property>
+                        <propertyName>parameters</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>configname</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>messagingSystemType</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>activationSpecScope</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>activationSpecAdministrativeName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </property>
+        </propertySheet>
+        <formalParameter>
+            <formalParameterName>configname</formalParameterName>
+            <defaultValue />
+            <description>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.</description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>messagingSystemType</formalParameterName>
+            <defaultValue />
+            <description>
+                SIB or WMQ
+            </description>
+            <required>1</required>
+            <type>select</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>activationSpecScope</formalParameterName>
+            <defaultValue />
+            <description>
+                Scope of the default messaging provider at which the JMS Activation spec is to be deleted.
+            </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>activationSpecAdministrativeName</formalParameterName>
+            <defaultValue />
+            <description>
+                The administrative name assigned to this WebSphere MQ messaging provider Activation Spec.
+            </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <step>
+            <stepName>DeleteJMSActivationSpec</stepName>
+            <alwaysRun>0</alwaysRun>
+            <broadcast>0</broadcast>
+            <command></command>
+            <condition />
+            <errorHandling>failProcedure</errorHandling>
+            <exclusive>0</exclusive>
+            <logFileName />
+            <parallel>0</parallel>
+            <postProcessor />
+            <releaseExclusive>0</releaseExclusive>
+            <resourceName />
+            <retries>0</retries>
+            <shell>ec-perl</shell>
+            <timeLimit>5</timeLimit>
+            <timeLimitUnits>minutes</timeLimitUnits>
+            <workingDirectory />
+            <workspaceName />
+            <procedureName>DeleteJMSActivationSpec</procedureName>
             <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
             <propertySheet>
                 <property>

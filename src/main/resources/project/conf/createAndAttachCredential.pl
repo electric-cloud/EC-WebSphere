@@ -261,6 +261,11 @@ $xpath = $ec->attachCredential($projName, $credName,
      stepName => 'CreateOrUpdateSIBJMSActivationSpec'});
 $errors .= $ec->checkAllErrors($xpath);
 
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'DeleteJMSActivationSpec',
+     stepName => 'DeleteJMSActivationSpec'});
+$errors .= $ec->checkAllErrors($xpath);
+
 
 
 # CreateDatasource

@@ -288,6 +288,16 @@ my %createOrUpdateSIBJMSActivationSpec = (
     category    => "Application Server"
 );
 
+# deleter for JMS AS
+
+my %deleteJMSActivationSpec = (
+    label       => "WebSphere - Delete JMS ActivationSpec",
+    procedure   => "DeleteJMSActivationSpec",
+    description => "Deletes JMS Activation Spec",
+    category    => "Application Server"
+);
+
+
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy App");
@@ -359,7 +369,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - WebSpher
     \%createOrUpdateJMSQueue, \%createOrUpdateJMSTopic,
     \%deleteJMSTopic, \%deleteJMSQueue,
     # AS and CF procedures
-    \%createOrUpdateWMQJMSActivationSpec, \%createOrUpdateSIBJMSActivationSpec
+    \%createOrUpdateWMQJMSActivationSpec, \%createOrUpdateSIBJMSActivationSpec, \%deleteJMSActivationSpec
 );
 
 if ($upgradeAction eq "upgrade") {
@@ -383,7 +393,7 @@ if ($upgradeAction eq "upgrade") {
         if($procedureName eq 'UpdateApp') {
             $query->deleteActualParameter($projectName, $procedureName, $stepName, 'isAppOnCluster');
         }
-        
+
         $query->deleteActualParameter($projectName, $procedureName, $stepName, 'connectionType');
     }
 
@@ -395,7 +405,7 @@ if ($upgradeAction eq "upgrade") {
 
         my $conntype = $commander->getProperty($conntype_path);
         if(!$conntype->find('//value')) {
-            $query->setProperty($conntype_path, 'SOAP');        	
+            $query->setProperty($conntype_path, 'SOAP');
         }
     }
 
@@ -425,7 +435,7 @@ if ($upgradeAction eq "upgrade") {
             cloneName => "/plugins/$pluginName/project/ec_discovery/discovered_data"
         });
     }
-	
+
 	# Copy configuration credentials and attach them to the appropriate steps
     my $nodes = $query->find($creds);
     if ($nodes) {
@@ -668,6 +678,10 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'CreateOrUpdateSIBJMSActivationSpec',
                 stepName => 'CreateOrUpdateSIBJMSActivationSpec'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'DeleteJMSActivationSpec',
+                stepName => 'DeleteJMSActivationSpec'
             });
         }
     }
