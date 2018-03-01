@@ -278,7 +278,6 @@ class CheckApp extends PluginTestHelper {
         сonfigName        | wsAdminAbsolutePathes.empty     | wsApplicationNames.runningApplicationHW     | wsApplicationStates.running      | '100'    | 'success'
    }
 
-    @Ignore
     @Unroll
     def "Check Application Suite. Negative scenarios"(){
 
@@ -311,17 +310,16 @@ class CheckApp extends PluginTestHelper {
         assert outcome.contains(expectedOutcome)
 
         where:
-        wsConfigName            | wsAdminAbsolutePath               | wsApplicationName                         | wsApplicationState                | tTime      | expectedOutcome
-        'specConfig-Incorrect'  | wsAdminAbsolutePathes.empty       | wsApplicationNames.existApplicationHW       | wsApplicationStates.exist       | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.incorrect   | wsApplicationNames.existApplicationHW       | wsApplicationStates.exist       | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.existApplicationHW       | wsApplicationStates.notExist    | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.notExistApplicationHW    | wsApplicationStates.exist       | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.correct     | wsApplicationNames.existApplicationHW       | wsApplicationStates.ready       | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.readyApplicationHW       | wsApplicationStates.notReady    | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW     | wsApplicationStates.notRunning  | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.correct     | wsApplicationNames.readyApplicationHW       | wsApplicationStates.running     | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW     | wsApplicationStates.running     | '-1'       | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW     | wsApplicationStates.running     | 'abs'      | 'error'
+        wsConfigName            | wsAdminAbsolutePath               | wsApplicationName                             | wsApplicationState              | tTime      | expectedOutcome
+        'specConfig-Incorrect'  | wsAdminAbsolutePathes.empty       | wsApplicationNames.notExistApplicationHW      | wsApplicationStates.exist       | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.incorrect   | wsApplicationNames.notExistApplicationHW      | wsApplicationStates.exist       | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.notRunningApplicationHW    | wsApplicationStates.notExist    | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.correct     | wsApplicationNames.notRunningApplicationHW    | wsApplicationStates.ready       | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.notRunningApplicationHW    | wsApplicationStates.notReady    | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW       | wsApplicationStates.notRunning  | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.correct     | wsApplicationNames.notRunningApplicationHW    | wsApplicationStates.running     | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW       | wsApplicationStates.running     | '-1'       | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW       | wsApplicationStates.running     | 'abs'      | 'error'
    }
 
     def runProcedure(def parameters) {

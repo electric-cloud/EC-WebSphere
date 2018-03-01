@@ -80,7 +80,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         empty: '',
         correctWMQ: 'MyWMQQueue',
         correctSIB: 'MySIBQueue',
-        incorrect: 'Incorrect Name'
+        incorrect: 'Incorrect Admin Name'
     ]
 
     @Shared
@@ -91,7 +91,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         empty: '',
         correctWMQ: 'MyWMQQueue',
         correctSIB: 'MySIBQueue',
-        incorrect: '\\Incorerct'
+        incorrect: 'Incorerct queueName'
     ]
 
     @Shared
@@ -102,7 +102,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         empty: '',
         correctWMQ: 'com.jndi.myWMQQueue',
         correctSIB: 'com.jndi.mySIBQueue',
-        incorrect: 'incorrect'
+        incorrect: 'incorrect jndiNames'
     ]
 
 
@@ -167,7 +167,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
 
     def doCleanupSpec() {
     }
-
+    /*
     @Ignore
     @Unroll
     def "Create Or Update JMS Queue. Required paramenetrs Veriication"(){
@@ -212,7 +212,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         confignames.correctSOAP         | messagingSystemTypes.WMQ        | queueScopes.correct   | queueAdministrativeNames.empty    | jndiNames.correct     | queueManagerNames.empty   | queueAdministrativeDescriptions.empty     | additionalOptions.empty   | expectedOutcomes.error    | expectedUpperStepSummaries.fieldRequired
         confignames.correctSOAP         | messagingSystemTypes.WMQ        | queueScopes.correct   | queueAdministrativeNames.correct  | jndiNames.empty       | queueManagerNames.empty   | queueAdministrativeDescriptions.empty     | additionalOptions.empty   | expectedOutcomes.error    | expectedUpperStepSummaries.fieldRequired
     }
-
+*/
 
     @Unroll
     def "Create Or Update JMS Queue. Positive Scenarious"(){
@@ -265,6 +265,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         // TODO: RMI Config Name
         
     }
+    
     @Ignore
     @Unroll
     def "Create Or Update JMS Queue. Negarive Scenarious"(){
@@ -299,17 +300,22 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         println "Procedure log:\n$debugLog\n"
 
         assert outcome == expectedOutcome
-        assert upperStepSummary == expectedUpperStepSummary
+        
 
         where: 'The following params will be: '
-
-        configname                      | messagingSystemType               | queueScope              | queueAdministrativeName               | queueName             | jndiName              | queueManagerName              | queueAdministrativeDescription                | additionalOption              | expectedOutcome           | expectedUpperStepSummary
-        confignames.incorrect           | messagingSystemTypes.WMQ          | queueScopes.correct   | queueAdministrativeNames.correct      | queueNames.correct    | jndiNames.correct     | queueManagerNames.empty       | queueAdministrativeDescriptions.empty         | additionalOptions.empty       | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectComfigname
-        confignames.correctSOAP         | messagingSystemTypes.incorrect    | queueScopes.correct   | queueAdministrativeNames.correct      | queueNames.correct    | jndiNames.correct     | queueManagerNames.empty       | queueAdministrativeDescriptions.empty         | additionalOptions.empty       | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectMessagingSystemType 
-        confignames.correctSOAP         | messagingSystemTypes.WMQ          | queueScopes.incorrect | queueAdministrativeNames.correct      | queueNames.correct    | jndiNames.correct     | queueManagerNames.correct     | queueAdministrativeDescriptions.empty         | additionalOptions.empty       | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectQueueScope
-        confignames.correctSOAP         | messagingSystemTypes.WMQ          | queueScopes.correct   | queueAdministrativeNames.incorrect    | queueNames.correct    | jndiNames.correct     | queueManagerNames.correct     | queueAdministrativeDescriptions.correct       | additionalOptions.empty       | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectQueueAdministrativeName
-        confignames.correctSOAP         | messagingSystemTypes.WMQ          | queueScopes.correct   | queueAdministrativeNames.correct      | queueNames.incorrect  | jndiNames.correct     | queueManagerNames.correct     | queueAdministrativeDescriptions.correct       | additionalOptions.correct     | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectQueueName
-        confignames.correctSOAP         | messagingSystemTypes.WMQ          | queueScopes.correct   | queueAdministrativeNames.correct      | queueNames.correct    | jndiNames.incorrect   | queueManagerNames.correct     | queueAdministrativeDescriptions.correct       | additionalOptions.correct     | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectJndiName      
+ 
+        configname                      | messagingSystemType               | queueScope            | queueAdministrativeName                  | queueName                | jndiName                 | queueManagerName              | queueAdministrativeDescription                   | additionalOption              | expectedOutcome           
+        confignames.incorrect           | messagingSystemTypes.WMQ          | queueScopes.correct   | queueAdministrativeNames.correctWMQ      | queueNames.correctWMQ    | jndiNames.correctWMQ     | queueManagerNames.empty       | queueAdministrativeDescriptions.empty            | additionalOptions.empty       | expectedOutcomes.error    
+        confignames.correctSOAP         | messagingSystemTypes.incorrect    | queueScopes.correct   | queueAdministrativeNames.correctWMQ      | queueNames.correctWMQ    | jndiNames.correctWMQ     | queueManagerNames.empty       | queueAdministrativeDescriptions.empty            | additionalOptions.empty       | expectedOutcomes.error    
+        confignames.correctSOAP         | messagingSystemTypes.WMQ          | queueScopes.incorrect | queueAdministrativeNames.correctWMQ      | queueNames.correctWMQ    | jndiNames.correctWMQ     | queueManagerNames.correct     | queueAdministrativeDescriptions.empty            | additionalOptions.empty       | expectedOutcomes.error    
+        confignames.correctSOAP         | messagingSystemTypes.WMQ          | queueScopes.correct   | queueAdministrativeNames.incorrect       | queueNames.correctWMQ    | jndiNames.correctWMQ     | queueManagerNames.correct     | queueAdministrativeDescriptions.correctWMQ       | additionalOptions.empty       | expectedOutcomes.error    
+        confignames.correctSOAP         | messagingSystemTypes.WMQ          | queueScopes.correct   | queueAdministrativeNames.correctWMQ      | queueNames.incorrect     | jndiNames.correctWMQ     | queueManagerNames.correct     | queueAdministrativeDescriptions.correctWMQ       | additionalOptions.correctWMQ  | expectedOutcomes.error    
+        confignames.correctSOAP         | messagingSystemTypes.WMQ          | queueScopes.correct   | queueAdministrativeNames.correctWMQ      | queueNames.correctWMQ    | jndiNames.incorrect      | queueManagerNames.correct     | queueAdministrativeDescriptions.correctWMQ       | additionalOptions.correctWMQ  | expectedOutcomes.error        
+        confignames.correctSOAP         | messagingSystemTypes.incorrect    | queueScopes.correct   | queueAdministrativeNames.correctSIB      | queueNames.correctSIB    | jndiNames.correctSIB     | queueManagerNames.empty       | queueAdministrativeDescriptions.empty            | additionalOptions.empty       | expectedOutcomes.error    
+        confignames.correctSOAP         | messagingSystemTypes.SIB          | queueScopes.incorrect | queueAdministrativeNames.correctSIB      | queueNames.correctSIB    | jndiNames.correctSIB     | queueManagerNames.correct     | queueAdministrativeDescriptions.empty            | additionalOptions.empty       | expectedOutcomes.error    
+        confignames.correctSOAP         | messagingSystemTypes.SIB          | queueScopes.correct   | queueAdministrativeNames.incorrect       | queueNames.correctSIB    | jndiNames.correctSIB     | queueManagerNames.correct     | queueAdministrativeDescriptions.correctSIB       | additionalOptions.empty       | expectedOutcomes.error    
+        confignames.correctSOAP         | messagingSystemTypes.SIB          | queueScopes.correct   | queueAdministrativeNames.correctSIB      | queueNames.incorrect     | jndiNames.correctSIB     | queueManagerNames.correct     | queueAdministrativeDescriptions.correctSIB       | additionalOptions.correctSIB  | expectedOutcomes.error    
+        confignames.correctSOAP         | messagingSystemTypes.SIB          | queueScopes.correct   | queueAdministrativeNames.correctSIB      | queueNames.correctSIB    | jndiNames.incorrect      | queueManagerNames.correct     | queueAdministrativeDescriptions.correctSIB       | additionalOptions.correctSIB  | expectedOutcomes.error        
         // TODO: IPC Config Name
         // TODO: JSR160RMI Config Name
         // TODO: None Config Name

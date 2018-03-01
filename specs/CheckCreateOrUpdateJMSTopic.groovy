@@ -251,6 +251,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         // TODO: RMI Config Name
         
     }
+    /*
     @Ignore
     @Unroll
     def "Create Or Update JMS Topic. Negarive Scenarious"(){
@@ -299,7 +300,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         // TODO: None Config Name
         // TODO: RMI Config Name
     }
-
+    */
     @Ignore
     @Unroll
     //Extented Test Part 
