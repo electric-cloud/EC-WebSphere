@@ -2686,6 +2686,14 @@
                 <li>
                     Fixed non-ascii characters in plugin forms.
                 </li>
+                <li>
+                    Following procedures have been improved and support of WebSphere 9.0 has been added:
+                    <ul>
+                        <li>StartApp</li>
+                        <li>StopApp</li>
+                        <li>StopCluster</li>
+                    </ul>
+                </li>
                 <li>WSAdmin Absolute has been added to configuration.</li>
                 <li>Debug parameter has been changed from checkbox to select.</li>
                 <li>

@@ -15,6 +15,7 @@
 #
 
 import time
+import os
 
 clusterName = r'''
 $[clusterName]
@@ -75,7 +76,7 @@ result = waitForClusterStatus('websphere.cluster.stopped', cluster, timeout )
 
 if result:
     print "Cluster stopped"
-    sys.exit(0)
+    os._exit(0)
 else:
     print "Cluster was not stopped, exited by timeout"
     membersStatus(clusterName)

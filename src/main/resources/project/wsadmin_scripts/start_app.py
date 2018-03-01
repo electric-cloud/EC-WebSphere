@@ -41,7 +41,7 @@ def startApplication(appName, serverName = None, clusterName = None):
 
 if isAppRunning(appName):
     print "WARNING: Application %s is already running" % appName
-    sys.exit(0)
+    os._exit(0)
 else:
     startApplication(appName, serverName=serverName, clusterName=clusterName)
     print "Application %s has been started" % appName
