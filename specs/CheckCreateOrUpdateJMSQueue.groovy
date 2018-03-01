@@ -68,8 +68,8 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
          * Required
          */
         empty: '',
-        correct: 'Node=websphere85ndNode01',
-        incorrect: ''
+        correct: 'Node='+wasHost+'Node01',
+        incorrect: 'Node=incorrectScope'
     ]
 
     @Shared
