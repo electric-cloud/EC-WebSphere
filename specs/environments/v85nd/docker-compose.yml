@@ -11,7 +11,7 @@ services:
     hostname: "efserver"
     tty: true
   websphere:
-    image: "electricflow/websphere_nd"
+    image: "electricflow/websphere85nd"
     ports:
       - "7808:7808"
       - "9060:9060"

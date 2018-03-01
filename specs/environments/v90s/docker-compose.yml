@@ -1,0 +1,39 @@
+version: '3'
+services:
+  electric-flow:
+    image: "electricflow/efserver:latest"
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+      - "443:443"
+      - "80:80"
+    container_name: "efserver"
+    hostname: "efserver"
+    tty: true
+  websphere:
+    image: "electricflow/websphere90s"
+    ports:
+      - "7808:7808"
+      - "9060:9060"
+      - "9443:9443"
+      - "9043:9043"
+      - "8879:8879"
+    container_name: websphere90s
+    hostname: "websphere90s"
+    tty: true
+    environment:
+    - EF_SERVER_HOST=efserver
+    - EF_SERVER_ADMIN_USER=admin
+    - EF_SERVER_ADMIN_PASS=changeme
+    - EF_RESOURCE_NAME=websphere90s
+    - RESOURCE_NAME=websphere90s
+    - ELECTRICFLOW_IP_ADDRESS=efserver
+    - ELECTRICFLOW_USERNAME=admin
+    - ELECTRICFLOW_PASSWORD=changeme
+    - WAS_CELL_NAME=websphere90sCell01
+    - WAS_NODE_NAME=websphere90sNode01
+    restart: always
+networks:
+  default:
+    external:
+      name: nat

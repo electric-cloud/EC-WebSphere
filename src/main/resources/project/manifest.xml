@@ -63,19 +63,19 @@
     </file>
     <file>
         <xpath>//property[propertyName=&quot;create_or_update_jms_queue.py&quot;]/value</xpath>
-        <path>wsadmin_scripts/create_or_update_jms_queue.py</path>
+        <path>wsadmin_scripts/JMS/create_or_update_jms_queue.py</path>
     </file>
     <file>
         <xpath>//property[propertyName=&quot;create_or_update_jms_topic.py&quot;]/value</xpath>
-        <path>wsadmin_scripts/create_or_update_jms_topic.py</path>
+        <path>wsadmin_scripts/JMS/create_or_update_jms_topic.py</path>
     </file>
     <file>
         <xpath>//property[propertyName=&quot;delete_jms_queue.py&quot;]/value</xpath>
-        <path>wsadmin_scripts/delete_jms_queue.py</path>
+        <path>wsadmin_scripts/JMS/delete_jms_queue.py</path>
     </file>
     <file>
         <xpath>//property[propertyName=&quot;delete_jms_topic.py&quot;]/value</xpath>
-        <path>wsadmin_scripts/delete_jms_topic.py</path>
+        <path>wsadmin_scripts/JMS/delete_jms_topic.py</path>
     </file>
     
     <!-- AS and CF -->
@@ -341,19 +341,19 @@
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;CreateOrUpdateJMSQueue&quot;]/step[stepName=&quot;CreateOrUpdateJMSQueue&quot;]/command</xpath>
-        <path>server/createOrUpdateJMSQueue.pl</path>
+        <path>server/JMS/createOrUpdateJMSQueue.pl</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;DeleteJMSQueue&quot;]/step[stepName=&quot;DeleteJMSQueue&quot;]/command</xpath>
-        <path>server/deleteJMSQueue.pl</path>
+        <path>server/JMS/deleteJMSQueue.pl</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;CreateOrUpdateJMSTopic&quot;]/step[stepName=&quot;CreateOrUpdateJMSTopic&quot;]/command</xpath>
-        <path>server/createOrUpdateJMSTopic.pl</path>
+        <path>server/JMS/createOrUpdateJMSTopic.pl</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;DeleteJMSTopic&quot;]/step[stepName=&quot;DeleteJMSTopic&quot;]/command</xpath>
-        <path>server/deleteJMSTopic.pl</path>
+        <path>server/JMS/deleteJMSTopic.pl</path>
     </file>
 
     <!-- Activation spec and CF perl scripts going to be here -->
@@ -522,19 +522,19 @@
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;CreateOrUpdateJMSQueue&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/CreateOrUpdateJMSQueue.xml</path>
+        <path>parameterForms/JMS/CreateOrUpdateJMSQueue.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;DeleteJMSQueue&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/DeleteJMSQueue.xml</path>
+        <path>parameterForms/JMS/DeleteJMSQueue.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;CreateOrUpdateJMSTopic&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/CreateOrUpdateJMSTopic.xml</path>
+        <path>parameterForms/JMS/CreateOrUpdateJMSTopic.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;DeleteJMSTopic&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/DeleteJMSTopic.xml</path>
+        <path>parameterForms/JMS/DeleteJMSTopic.xml</path>
     </file>
     <!-- AS and CF forms -->
     <file>

@@ -47,7 +47,7 @@ procedure 'CheckApp', {
     type = 'entry'
   }
 
-  formalParameter 'waitTime', defaultValue: '', {
+  formalParameter 'wasWaitTime', defaultValue: '', {
     description = ''
     expansionDeferred = '0'
     label = null
@@ -81,7 +81,7 @@ procedure 'CheckApp', {
     actualParameter 'appname', '$[applicationName]'
     actualParameter 'appStateChecked', '$[applicationState]'
     actualParameter 'configname', '$[configName]'
-    actualParameter 'waitTimeForState', '$[waitTime]'
+    actualParameter 'waitTimeForState', '$[wasWaitTime]'
     actualParameter 'wsadminabspath', ''
   }
 
@@ -119,7 +119,7 @@ procedure 'CheckApp', {
         formType = 'standard'
       }
 
-      property 'waitTime', {
+      property 'wasWaitTime', {
 
         // Custom properties
         formType = 'standard'

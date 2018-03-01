@@ -44,6 +44,18 @@ class PluginTestHelper extends PluginSpockTestSupport {
     }
 
 
+    String getUpperStepSummary() {
+        String property = "/myJob/jobSteps/$procedureName/summary"
+        String summary
+        try {
+            summary = getJobProperty(property, jobId)
+        } catch (Throwable e) {
+            logger.debug("Cannot retrieve upper step summary from the property '$property'")
+        }
+        return summary
+    }
+
+
     def runProcedureDsl(dslString) {
         redirectLogs()
         assert dslString
@@ -99,8 +111,8 @@ try {
         wsadminabspath: wsadmin_path,
         conntype: conntype,
         debug: debug
-        
         ]
+
         if (System.getenv('RECREATE_CONFIG')) {
             props.recreate = true
         }
@@ -114,6 +126,30 @@ try {
             props
         )
     }
+
+    def createCustomConfiguration(configName, def inputData, props = [:])  {
+        println "Log - InputData: $inputData"
+        def configOpts = [
+        websphere_url: inputData.websphere_url,
+        websphere_port: inputData.websphere_port,
+        wsadminabspath: inputData.wsadminabspath,
+        conntype: inputData.conntype,
+        debug: inputData.debug
+        ]
+        if (System.getenv('RECREATE_CONFIG')) {
+            props.recreate = true
+        }
+        props.confPath = 'websphere_cfgs'
+        createPluginConfiguration(
+            'EC-WebSphere',
+            configName,
+            configOpts,
+            inputData.username,
+            inputData.password,
+            props
+        )
+    }
+
     def createWebSphereResource() {
         def hostname = System.getenv('WEBSPHERE_RESOURCE_HOST')
         def resources = dsl "getResources()"
@@ -140,7 +176,6 @@ try {
             )
 } catch (Exception e) {}
         """
-
         logger.debug(objectToJson(workspaceResult))
 
         def result = dsl """
@@ -162,5 +197,25 @@ try {
         // TODO:
     }
 
+    def checkExpectedException(def e, def errorDesc, def errorDetails){
+        // TODO:
+    }
+
+    def runGetResourcesProcedure(def params){
+        //TODO: 
+       importProject(params.projectName, 'dsl/GetResources.dsl', [projectName: params.projectName, wasResourceName: params.wasResourceName])
+        def code = """
+            runProcedure(
+                projectName: '$params.projectName',
+                procedureName: '$params.resourceProcedureName',
+                actualParameter: [
+                    filePath: '$params.filePath',
+                    fileURL: '$params.fileURL',
+                    wasResourceName: '$params.wasResourceName',
+                ]
+            )
+        """        
+        return dsl(code)
+    }
 
 }
