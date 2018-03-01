@@ -210,6 +210,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
                 messagingSystemType: messagingSystemType,
                 topicScope: topicScope,
                 topicAdministrativeName: topicAdministrativeName,
+                topicName: topicName,
                 jndiName: jndiName,
                 topicAdministrativeDescription: topicAdministrativeDescription,
                 additionalOption: additionalOption,
