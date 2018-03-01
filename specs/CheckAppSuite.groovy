@@ -266,16 +266,16 @@ class CheckApp extends PluginTestHelper {
         assert outcome == expectedOutcome
 
         where:
-        wsConfigName    | wsAdminAbsolutePath           | wsApplicationName                         | wsApplicationState               | tTime    | expectedOutcome
-        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.notExistApplicationHW  | wsApplicationStates.notExist     | '0'      | 'success'
-//        сonfigName      | wsAdminAbsolutePathes.correct | wsApplicationNames.existApplicationHW     | wsApplicationStates.exist        | '0'      | 'success'
-//        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.existApplicationHW     | wsApplicationStates.notReady     | '0'      | 'success'
-        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.existApplicationHW     | wsApplicationStates.notRunning   | '0'      | 'success'
-//        сonfigName      | wsAdminAbsolutePathes.correct | wsApplicationNames.readyApplicationHW     | wsApplicationStates.ready        | '0'      | 'success'
-//        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.readyApplicationHW     | wsApplicationStates.notRunning   | '0'      | 'success'
-        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.runningApplicationHW   | wsApplicationStates.exist        | '0'      | 'success'
-        сonfigName      | wsAdminAbsolutePathes.correct | wsApplicationNames.runningApplicationHW   | wsApplicationStates.ready        | '0'      | 'success'
-        сonfigName      | wsAdminAbsolutePathes.empty   | wsApplicationNames.runningApplicationHW   | wsApplicationStates.running      | '100'    | 'success'
+        wsConfigName      | wsAdminAbsolutePath             | wsApplicationName                           | wsApplicationState               | tTime    | expectedOutcome
+        сonfigName        | wsAdminAbsolutePathes.empty     | wsApplicationNames.notExistApplicationHW    | wsApplicationStates.notExist     | '0'      | 'success'
+//        сonfigName      | wsAdminAbsolutePathes.correct   | wsApplicationNames.existApplicationHW       | wsApplicationStates.exist        | '0'      | 'success'
+//        сonfigName      | wsAdminAbsolutePathes.empty     | wsApplicationNames.existApplicationHW       | wsApplicationStates.notReady     | '0'      | 'success'
+        сonfigName        | wsAdminAbsolutePathes.empty     | wsApplicationNames.notRunningApplicationHW  | wsApplicationStates.notRunning   | '0'      | 'success'
+//        сonfigName      | wsAdminAbsolutePathes.correct   | wsApplicationNames.readyApplicationHW       | wsApplicationStates.ready        | '0'      | 'success'
+//        сonfigName      | wsAdminAbsolutePathes.empty     | wsApplicationNames.readyApplicationHW       | wsApplicationStates.notRunning   | '0'      | 'success'
+        сonfigName        | wsAdminAbsolutePathes.empty     | wsApplicationNames.runningApplicationHW     | wsApplicationStates.exist        | '0'      | 'success'
+        сonfigName        | wsAdminAbsolutePathes.correct   | wsApplicationNames.runningApplicationHW     | wsApplicationStates.ready        | '0'      | 'success'
+        сonfigName        | wsAdminAbsolutePathes.empty     | wsApplicationNames.runningApplicationHW     | wsApplicationStates.running      | '100'    | 'success'
    }
 
     @Ignore
