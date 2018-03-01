@@ -17,6 +17,7 @@
 import sys
 import time
 import re
+import os
 
 # Checks application readiness
 def isAppReady(appName):

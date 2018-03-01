@@ -66,8 +66,8 @@ while 1 :
 print "Application %s %s" % (appName, stateMatrix[appStateChecked])
 
 if isOk:
-    sys.exit(0)
+    os._exit(0)
 else:
-    sys.exit(1)
+    os._exit(1)
 
 

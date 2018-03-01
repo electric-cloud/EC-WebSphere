@@ -48,7 +48,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         correctJSR160RMI: 'Web-Sphere-JSR160RMI',
         correctNone: 'Web-Sphere-None',
         correctRMI: 'Web-Sphere-RMI',                        
-        incorrect: 'incorrect-ConfigName'
+        incorrect: 'incorrect'
     ]
 
     @Shared
@@ -68,8 +68,8 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
          * Required
          */
         empty: '',
-        correct: 'Node=websphere85ndNode01',
-        incorrect: 'incorrect-Scope'
+        correct: 'Node='+wasHost+'Node01',
+        incorrect: 'Node=incorrectScope'
     ]
 
     @Shared
@@ -150,7 +150,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         createConfiguration(confignames.correctJSR160RMI, [doNotRecreate: false])        
         createConfiguration(confignames.correctNone, [doNotRecreate: false])        
         createConfiguration(confignames.correctRMI, [doNotRecreate: false])        
-        importProject(testProjectName, 'dsl/CheckCreateOrUpdateJMSQueue/CreateOrUpdateJMSQueue.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
+        importProject(testProjectName, 'dsl/CheckCreateOrUpdateJMSTopic/CreateOrUpdateJMSTopic.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
     }
 
@@ -210,6 +210,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
                 messagingSystemType: messagingSystemType,
                 topicScope: topicScope,
                 topicAdministrativeName: topicAdministrativeName,
+                topicName: topicName,
                 jndiName: jndiName,
                 topicAdministrativeDescription: topicAdministrativeDescription,
                 additionalOption: additionalOption,
