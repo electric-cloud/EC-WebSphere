@@ -48,7 +48,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         correctJSR160RMI: 'Web-Sphere-JSR160RMI',
         correctNone: 'Web-Sphere-None',
         correctRMI: 'Web-Sphere-RMI',                        
-        incorrect: 'incorrect-ConfigName'
+        incorrect: 'incorrect'
     ]
 
     @Shared
@@ -68,8 +68,8 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
          * Required
          */
         empty: '',
-        correct: 'Node=websphere85ndNode01',
-        incorrect: ''
+        correct: 'Node='+wasHost+'Node01',
+        incorrect: 'Node=incorrectScope'
     ]
 
     @Shared
