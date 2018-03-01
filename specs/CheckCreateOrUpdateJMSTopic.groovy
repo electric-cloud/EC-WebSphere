@@ -297,7 +297,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         confignames.correctSOAP         | messagingSystemTypes.SIB          | topicScopes.incorrect | topicAdministrativeNames.correctSIB   | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.empty            | additionalOptions.empty       | expectedOutcomes.error    
         confignames.correctSOAP         | messagingSystemTypes.SIB          | topicScopes.correct   | topicAdministrativeNames.incorrect    | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.correctSIB       | additionalOptions.empty       | expectedOutcomes.error    
  //       confignames.correctSOAP         | messagingSystemTypes.SIB          | topicScopes.correct   | topicAdministrativeNames.correctSIB   | topicNames.incorrect     | jndiNames.correctSIB     | topicAdministrativeDescriptions.correctSIB       | additionalOptions.correctSIB  | expectedOutcomes.error    
-        confignames.correctSOAP         | messagingSystemTypes.SIB          | topicScopes.correct   | topicAdministrativeNames.correctSIB   | topicNames.correctSIB    | jndiNames.incorrect      | topicAdministrativeDescriptions.correctSIB       | additionalOptions.correctSIB  | expectedOutcomes.error          
+ //       confignames.correctSOAP         | messagingSystemTypes.SIB          | topicScopes.correct   | topicAdministrativeNames.correctSIB   | topicNames.correctSIB    | jndiNames.incorrect      | topicAdministrativeDescriptions.correctSIB       | additionalOptions.correctSIB  | expectedOutcomes.error          
 
     }
     /*
