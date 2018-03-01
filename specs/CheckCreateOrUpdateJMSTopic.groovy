@@ -59,7 +59,8 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
          */
         empty: '',
         WMQ: 'WMQ',
-        SIB: 'SIB'
+        SIB: 'SIB',
+        incorrect: 'incorrect',
     ]
 
     @Shared
@@ -80,7 +81,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         empty: '',
         correctWMQ: 'MyWMQTopic',
         correctSIB: 'MySIBTopic',
-        incorrect: 'incorrect test1'
+        incorrect: 'incorrect Administrative Name'
     ]
 
     @Shared
@@ -91,7 +92,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         empty: '',
         correctWMQ: 'MyWMQTopic',
         correctSIB: 'MySIBTopic',
-        incorrect: 'incorrect test2'
+        incorrect: 'incorrect  Topic Name'
     ]
 
     @Shared
@@ -102,7 +103,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         empty: '',
         correctWMQ: 'com.jndi.myWMQTopic',
         correctSIB: 'com.jndi.mySIBTopic',
-        incorrect: 'incorrect'
+        incorrect: 'incorrect jndi Name'
     ]
 
 
@@ -126,7 +127,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         empty: '',
         correctWMQ:'-ccsid 819',
         correctSIB:'',
-        incorrect: '-ccsid 819 //-brokerVerion V1'
+        incorrect: 'incorrect -ccsid 819 //-brokerVerion V1'
     ]
 
     // params for where section
@@ -245,14 +246,10 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         confignames.correctSOAP         | messagingSystemTypes.SIB  | topicScopes.correct   | topicAdministrativeNames.correctSIB  | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.empty        | additionalOptions.empty       | expectedOutcomes.success  
         confignames.correctSOAP         | messagingSystemTypes.SIB  | topicScopes.correct   | topicAdministrativeNames.correctSIB  | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.correctSIB   | additionalOptions.empty       | expectedOutcomes.success  
         confignames.correctSOAP         | messagingSystemTypes.SIB  | topicScopes.correct   | topicAdministrativeNames.correctSIB  | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.correctSIB   | additionalOptions.correctSIB  | expectedOutcomes.success  
-        // TODO: IPC Config Name
-        // TODO: JSR160RMI Config Name
-        // TODO: None Config Name
-        // TODO: RMI Config Name
+
         
     }
-    /*
-    @Ignore
+
     @Unroll
     def "Create Or Update JMS Topic. Negarive Scenarious"(){
 
@@ -262,6 +259,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
                 messagingSystemType: messagingSystemType,
                 topicScope: topicScope,
                 topicAdministrativeName: topicAdministrativeName,
+                topicName: topicName,
                 jndiName: jndiName,
                 topicAdministrativeDescription: topicAdministrativeDescription,
                 additionalOption: additionalOption,
@@ -280,27 +278,29 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         }
         def outcome = getJobProperty('/myJob/outcome', result.jobId)
         def debugLog = getJobLogs(result.jobId)
-        def upperStepSummary = getUpperStepSummary()
+        //def upperStepSummary = getUpperStepSummary()
         println "Procedure log:\n$debugLog\n"
 
         assert outcome == expectedOutcome
-        assert upperStepSummary == expectedUpperStepSummary
+        //assert upperStepSummary == expectedUpperStepSummary
 
         where: 'The following params will be: '
 
-        configname                      | messagingSystemType               | topicScope            | topicAdministrativeName               | topicName             | jndiName              | topicAdministrativeDescription                | additionalOption              | expectedOutcome           | expectedUpperStepSummary
-        confignames.incorrect           | messagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.correct      | topicNames.correct    | jndiNames.correct     | topicAdministrativeDescriptions.empty         | additionalOptions.empty       | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectComfigname
-        confignames.correctSOAP         | messagingSystemTypes.incorrect    | topicScopes.correct   | topicAdministrativeNames.correct      | topicNames.correct    | jndiNames.correct     | topicAdministrativeDescriptions.empty         | additionalOptions.empty       | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectMessagingSystemType 
-        confignames.correctSOAP         | messagingSystemTypes.WMQ          | topicScopes.incorrect | topicAdministrativeNames.correct      | topicNames.correct    | jndiNames.correct     | topicAdministrativeDescriptions.empty         | additionalOptions.empty       | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectQueueScope
-        confignames.correctSOAP         | messagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.incorrect    | topicNames.correct    | jndiNames.correct     | topicAdministrativeDescriptions.correct       | additionalOptions.empty       | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectQueueAdministrativeName
-        confignames.correctSOAP         | messagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.correct      | topicNames.incorrect  | jndiNames.correct     | topicAdministrativeDescriptions.correct       | additionalOptions.correct     | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectQueueName
-        confignames.correctSOAP         | messagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.correct      | topicNames.correct    | jndiNames.incorrect   | topicAdministrativeDescriptions.correct       | additionalOptions.correct     | expectedOutcomes.error    | expectedUpperStepSummaries.incorrectJndiName      
-        // TODO: IPC Config Name
-        // TODO: JSR160RMI Config Name
-        // TODO: None Config Name
-        // TODO: RMI Config Name
+        configname                      | messagingSystemType               | topicScope            | topicAdministrativeName               | topicName                | jndiName                 | topicAdministrativeDescription                   | additionalOption              | expectedOutcome           
+ //       confignames.incorrect           | messagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.correctWMQ   | topicNames.correctWMQ    | jndiNames.correctWMQ     | topicAdministrativeDescriptions.empty         | additionalOptions.empty       | expectedOutcomes.error    
+        confignames.correctSOAP         | messagingSystemTypes.incorrect    | topicScopes.correct   | topicAdministrativeNames.correctWMQ   | topicNames.correctWMQ    | jndiNames.correctWMQ     | topicAdministrativeDescriptions.empty            | additionalOptions.empty       | expectedOutcomes.error    
+        confignames.correctSOAP         | messagingSystemTypes.WMQ          | topicScopes.incorrect | topicAdministrativeNames.correctWMQ   | topicNames.correctWMQ    | jndiNames.correctWMQ     | topicAdministrativeDescriptions.empty            | additionalOptions.empty       | expectedOutcomes.error    
+        confignames.correctSOAP         | messagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.incorrect    | topicNames.correctWMQ    | jndiNames.correctWMQ     | topicAdministrativeDescriptions.correctWMQ       | additionalOptions.empty       | expectedOutcomes.error    
+ //       confignames.correctSOAP         | messagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.correctWMQ   | topicNames.incorrect     | jndiNames.correctWMQ     | topicAdministrativeDescriptions.correctWMQ       | additionalOptions.correctWMQ  | expectedOutcomes.error    
+ //       confignames.correctSOAP         | messagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.correctWMQ   | topicNames.correctWMQ    | jndiNames.incorrect      | topicAdministrativeDescriptions.correctWMQ       | additionalOptions.correctWMQ  | expectedOutcomes.error          
+        confignames.correctSOAP         | messagingSystemTypes.incorrect    | topicScopes.correct   | topicAdministrativeNames.correctSIB   | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.empty            | additionalOptions.empty       | expectedOutcomes.error    
+        confignames.correctSOAP         | messagingSystemTypes.SIB          | topicScopes.incorrect | topicAdministrativeNames.correctSIB   | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.empty            | additionalOptions.empty       | expectedOutcomes.error    
+        confignames.correctSOAP         | messagingSystemTypes.SIB          | topicScopes.correct   | topicAdministrativeNames.incorrect    | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.correctSIB       | additionalOptions.empty       | expectedOutcomes.error    
+ //       confignames.correctSOAP         | messagingSystemTypes.SIB          | topicScopes.correct   | topicAdministrativeNames.correctSIB   | topicNames.incorrect     | jndiNames.correctSIB     | topicAdministrativeDescriptions.correctSIB       | additionalOptions.correctSIB  | expectedOutcomes.error    
+        confignames.correctSOAP         | messagingSystemTypes.SIB          | topicScopes.correct   | topicAdministrativeNames.correctSIB   | topicNames.correctSIB    | jndiNames.incorrect      | topicAdministrativeDescriptions.correctSIB       | additionalOptions.correctSIB  | expectedOutcomes.error          
+
     }
-    */
+    /*
     @Ignore
     @Unroll
     //Extented Test Part 
@@ -342,7 +342,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         confignames.correctSOAP         | messagingSystemTypes.SIB  | topicScopes.correct   | topicAdministrativeNames.correctSIB  | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.correctSIB   | additionalOptions.correctSIB  | expectedOutcomes.success  
 
     }
-
+    */
     //Run Test Procedure
     def runProcedure(def parameters) {
         def code = """

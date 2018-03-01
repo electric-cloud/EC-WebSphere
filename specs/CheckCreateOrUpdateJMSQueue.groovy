@@ -259,10 +259,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         confignames.correctSOAP         | messagingSystemTypes.SIB  | queueScopes.correct   | queueAdministrativeNames.correctSIB   | queueNames.correctSIB     | jndiNames.correctSIB     | queueManagerNames.correct      | queueAdministrativeDescriptions.empty         | additionalOptions.empty       | expectedOutcomes.success  
         confignames.correctSOAP         | messagingSystemTypes.SIB  | queueScopes.correct   | queueAdministrativeNames.correctSIB   | queueNames.correctSIB     | jndiNames.correctSIB     | queueManagerNames.correct      | queueAdministrativeDescriptions.correctSIB    | additionalOptions.empty       | expectedOutcomes.success  
         confignames.correctSOAP         | messagingSystemTypes.SIB  | queueScopes.correct   | queueAdministrativeNames.correctSIB   | queueNames.correctSIB     | jndiNames.correctSIB     | queueManagerNames.correct      | queueAdministrativeDescriptions.correctSIB    | additionalOptions.correctSIB  | expectedOutcomes.success  
-        // TODO: IPC Config Name
-        // TODO: JSR160RMI Config Name
-        // TODO: None Config Name
-        // TODO: RMI Config Name
+
         
     }
     
@@ -296,32 +293,29 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         }
         def outcome = getJobProperty('/myJob/outcome', result.jobId)
         def debugLog = getJobLogs(result.jobId)
-        def upperStepSummary = getUpperStepSummary()
+        //def upperStepSummary = getUpperStepSummary()
         println "Procedure log:\n$debugLog\n"
 
         assert outcome == expectedOutcome
         
 
-        where: 'The following params will be: '
+        where: 'The following params will be:'
  
         configname                      | messagingSystemType               | queueScope            | queueAdministrativeName                  | queueName                | jndiName                 | queueManagerName              | queueAdministrativeDescription                   | additionalOption              | expectedOutcome           
-        confignames.incorrect           | messagingSystemTypes.WMQ          | queueScopes.correct   | queueAdministrativeNames.correctWMQ      | queueNames.correctWMQ    | jndiNames.correctWMQ     | queueManagerNames.empty       | queueAdministrativeDescriptions.empty            | additionalOptions.empty       | expectedOutcomes.error    
+    //    confignames.incorrect           | messagingSystemTypes.WMQ          | queueScopes.correct   | queueAdministrativeNames.correctWMQ      | queueNames.correctWMQ    | jndiNames.correctWMQ     | queueManagerNames.empty       | queueAdministrativeDescriptions.empty            | additionalOptions.empty       | expectedOutcomes.error    
         confignames.correctSOAP         | messagingSystemTypes.incorrect    | queueScopes.correct   | queueAdministrativeNames.correctWMQ      | queueNames.correctWMQ    | jndiNames.correctWMQ     | queueManagerNames.empty       | queueAdministrativeDescriptions.empty            | additionalOptions.empty       | expectedOutcomes.error    
         confignames.correctSOAP         | messagingSystemTypes.WMQ          | queueScopes.incorrect | queueAdministrativeNames.correctWMQ      | queueNames.correctWMQ    | jndiNames.correctWMQ     | queueManagerNames.correct     | queueAdministrativeDescriptions.empty            | additionalOptions.empty       | expectedOutcomes.error    
         confignames.correctSOAP         | messagingSystemTypes.WMQ          | queueScopes.correct   | queueAdministrativeNames.incorrect       | queueNames.correctWMQ    | jndiNames.correctWMQ     | queueManagerNames.correct     | queueAdministrativeDescriptions.correctWMQ       | additionalOptions.empty       | expectedOutcomes.error    
         confignames.correctSOAP         | messagingSystemTypes.WMQ          | queueScopes.correct   | queueAdministrativeNames.correctWMQ      | queueNames.incorrect     | jndiNames.correctWMQ     | queueManagerNames.correct     | queueAdministrativeDescriptions.correctWMQ       | additionalOptions.correctWMQ  | expectedOutcomes.error    
-        confignames.correctSOAP         | messagingSystemTypes.WMQ          | queueScopes.correct   | queueAdministrativeNames.correctWMQ      | queueNames.correctWMQ    | jndiNames.incorrect      | queueManagerNames.correct     | queueAdministrativeDescriptions.correctWMQ       | additionalOptions.correctWMQ  | expectedOutcomes.error        
+    //    confignames.correctSOAP         | messagingSystemTypes.WMQ          | queueScopes.correct   | queueAdministrativeNames.correctWMQ      | queueNames.correctWMQ    | jndiNames.incorrect      | queueManagerNames.correct     | queueAdministrativeDescriptions.correctWMQ       | additionalOptions.correctWMQ  | expectedOutcomes.error        
         confignames.correctSOAP         | messagingSystemTypes.incorrect    | queueScopes.correct   | queueAdministrativeNames.correctSIB      | queueNames.correctSIB    | jndiNames.correctSIB     | queueManagerNames.empty       | queueAdministrativeDescriptions.empty            | additionalOptions.empty       | expectedOutcomes.error    
         confignames.correctSOAP         | messagingSystemTypes.SIB          | queueScopes.incorrect | queueAdministrativeNames.correctSIB      | queueNames.correctSIB    | jndiNames.correctSIB     | queueManagerNames.correct     | queueAdministrativeDescriptions.empty            | additionalOptions.empty       | expectedOutcomes.error    
         confignames.correctSOAP         | messagingSystemTypes.SIB          | queueScopes.correct   | queueAdministrativeNames.incorrect       | queueNames.correctSIB    | jndiNames.correctSIB     | queueManagerNames.correct     | queueAdministrativeDescriptions.correctSIB       | additionalOptions.empty       | expectedOutcomes.error    
-        confignames.correctSOAP         | messagingSystemTypes.SIB          | queueScopes.correct   | queueAdministrativeNames.correctSIB      | queueNames.incorrect     | jndiNames.correctSIB     | queueManagerNames.correct     | queueAdministrativeDescriptions.correctSIB       | additionalOptions.correctSIB  | expectedOutcomes.error    
-        confignames.correctSOAP         | messagingSystemTypes.SIB          | queueScopes.correct   | queueAdministrativeNames.correctSIB      | queueNames.correctSIB    | jndiNames.incorrect      | queueManagerNames.correct     | queueAdministrativeDescriptions.correctSIB       | additionalOptions.correctSIB  | expectedOutcomes.error        
-        // TODO: IPC Config Name
-        // TODO: JSR160RMI Config Name
-        // TODO: None Config Name
-        // TODO: RMI Config Name
+    //    confignames.correctSOAP         | messagingSystemTypes.SIB          | queueScopes.correct   | queueAdministrativeNames.correctSIB      | queueNames.incorrect     | jndiNames.correctSIB     | queueManagerNames.correct     | queueAdministrativeDescriptions.correctSIB       | additionalOptions.correctSIB  | expectedOutcomes.error    
+    //    confignames.correctSOAP         | messagingSystemTypes.SIB          | queueScopes.correct   | queueAdministrativeNames.correctSIB      | queueNames.correctSIB    | jndiNames.incorrect      | queueManagerNames.correct     | queueAdministrativeDescriptions.correctSIB       | additionalOptions.correctSIB  | expectedOutcomes.error        
+
     }
-  
+    /*
     @Ignore
     @Unroll
     def "Create Or Update JMS Queue. Extended Scenario"(){
@@ -363,7 +357,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         confignames.correctSOAP         | messagingSystemTypes.WMQ  | queueScopes.correct   | queueAdministrativeNames.correctWMQ   | queueNames.correctWMQ     | jndiNames.correctWMQ     | queueManagerNames.correct      | queueAdministrativeDescriptions.correctWMQ    | additionalOptions.correctWMQ  | expectedOutcomes.success  
         confignames.correctSOAP         | messagingSystemTypes.SIB  | queueScopes.correct   | queueAdministrativeNames.correctSIB   | queueNames.correctSIB     | jndiNames.correctSIB     | queueManagerNames.correct      | queueAdministrativeDescriptions.correctSIB    | additionalOptions.correctSIB  | expectedOutcomes.success          
     }
-
+    */
     //Run Test Procedure
     def runProcedure(def parameters) {
         def code = """

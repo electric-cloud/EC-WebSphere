@@ -279,7 +279,7 @@ class CheckApp extends PluginTestHelper {
    }
 
     @Unroll
-    def "Check Application Suite. Negative scenarios"(){
+    def "Check Application Suite. Negative Scenarious"(){
 
         when: 'Procedure runs'
         def wasResourceName=System.getenv('WAS_HOST');
@@ -311,7 +311,7 @@ class CheckApp extends PluginTestHelper {
 
         where:
         wsConfigName            | wsAdminAbsolutePath               | wsApplicationName                             | wsApplicationState              | tTime      | expectedOutcome
-        'specConfig-Incorrect'  | wsAdminAbsolutePathes.empty       | wsApplicationNames.notExistApplicationHW      | wsApplicationStates.exist       | '0'        | 'error'
+ //       'specConfig-Incorrect'  | wsAdminAbsolutePathes.empty       | wsApplicationNames.notExistApplicationHW      | wsApplicationStates.exist       | '0'        | 'error'
         сonfigName              | wsAdminAbsolutePathes.incorrect   | wsApplicationNames.notExistApplicationHW      | wsApplicationStates.exist       | '0'        | 'error'
         сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.notRunningApplicationHW    | wsApplicationStates.notExist    | '0'        | 'error'
         сonfigName              | wsAdminAbsolutePathes.correct     | wsApplicationNames.notRunningApplicationHW    | wsApplicationStates.ready       | '0'        | 'error'
