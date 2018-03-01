@@ -266,7 +266,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
         
     }
     
-    @Ignore
+
     @Unroll
     def "Create Or Update JMS Queue. Negarive Scenarious"(){
 

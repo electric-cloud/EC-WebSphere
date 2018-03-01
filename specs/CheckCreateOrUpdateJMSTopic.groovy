@@ -156,7 +156,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
 
     def doCleanupSpec() {
     }
-
+    /*
     @Ignore
     @Unroll
     def "Create Or Update JMS Topic. Required paramenetrs Veriication"(){
@@ -199,7 +199,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         confignames.correctSOAP         | messagingSystemTypes.WMQ        | topicScopes.correct   | topicAdministrativeNames.empty    | jndiNames.correct     | topicAdministrativeDescriptions.empty     | additionalOptions.empty   | expectedOutcomes.error    | expectedUpperStepSummaries.fieldRequired
         confignames.correctSOAP         | messagingSystemTypes.WMQ        | topicScopes.correct   | topicAdministrativeNames.correct  | jndiNames.empty       | topicAdministrativeDescriptions.empty     | additionalOptions.empty   | expectedOutcomes.error    | expectedUpperStepSummaries.fieldRequired
     }
-
+    */
 
     @Unroll
     def "Create Or Update JMS Topic. Positive Scenarious"(){
