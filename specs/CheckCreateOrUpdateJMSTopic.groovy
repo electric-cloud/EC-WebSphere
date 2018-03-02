@@ -18,8 +18,8 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
     @Shared
     def expectedUpperStepSummaries = [
         fieldRequired: 'Some message',
-        incorrectComfigname: '',
-        incorrectMessagingSystemType: '',
+        incorrectComfigname: "Configuration '"+confignames.incorrect+"' doesn't exist",
+        incorrectMessagingSystemType: "Wrong Messaging System Type. Expected one of 'SIB', 'WMQ'. Got:"+messagingSystemTypes.incorrect,
         incorrectQueueScope: '',
         incorrectQueueAdministrativeName: '',
         incorrectQueueName: '',
