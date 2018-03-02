@@ -20,10 +20,11 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         fieldRequired: 'Some message',
         incorrectComfigname: "Configuration '"+confignames.incorrect+"' doesn't exist",
         incorrectMessagingSystemType: "Wrong Messaging System Type. Expected one of 'SIB', 'WMQ'. Got:"+messagingSystemTypes.incorrect,
-        incorrectQueueScope: '',
+        incorrectQueueScope: 'target object is required',
         incorrectQueueAdministrativeName: '',
         incorrectQueueName: '',
-        incorrectJndiName: ''
+        incorrectJndiName: "A resource with JNDI name "+jndiNames.correctWMQ+" already exists as a different resource type. You must use a unique name.",
+        incorrectJndiName: "A resource with JNDI name "+jndiNames.correctSIB+" already exists as a different resource type. You must use a unique name.",
     ]
 
     @Shared
