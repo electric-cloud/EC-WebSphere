@@ -169,7 +169,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
     }
 
     @Unroll
-    def "Create Or Update JMS Queue.  Positive and Extended scenarios"(){
+    def "Create Or Update JMS Queue.  Positive and Extended Scenarios"(){
 
         when: 'Proceure runs: '
             def runParams = [
@@ -219,7 +219,7 @@ class CheckCreateOrUpdateJMSQueue extends PluginTestHelper {
     
 
     @Unroll
-    def "Create Or Update JMS Queue. Negarive Scenarious"(){
+    def "Create Or Update JMS Queue. Negarive Scenarios"(){
 
         when: 'Proceure runs: '
             def runParams = [

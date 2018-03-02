@@ -160,7 +160,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
  
 
     @Unroll
-    def "Create Or Update JMS Topic. Positive and Extended scenarios"(){
+    def "Create Or Update JMS Topic. Positive and Extended Scenarios"(){
 
         when: 'Proceure runs: '
             def runParams = [
@@ -208,7 +208,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
     }
 
     @Unroll
-    def "Create Or Update JMS Topic. Negarive Scenarious"(){
+    def "Create Or Update JMS Topic. Negarive Scenarios"(){
 
         when: 'Proceure runs: '
             def runParams = [

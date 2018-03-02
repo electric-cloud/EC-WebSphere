@@ -181,7 +181,7 @@ class CheckApp extends PluginTestHelper {
     }
     */
     @Unroll
-    def "Deploy Enterprise Application. Positive scenarious for Check Application Runs"(){
+    def "Deploy Enterprise Application. Positive and Extended Scenarios for Check Application Runs"(){
         
         when: 'Procedure runs'
         def wasResourceName=System.getenv('WAS_HOST');
@@ -232,7 +232,7 @@ class CheckApp extends PluginTestHelper {
 
 
     @Unroll
-    def "Check Application Suite. Positive scenarios"(){
+    def "Check Application Suite. Positive and Extended Scenarios."(){
         
         when: 'Procedure runs'
         def wasResourceName=System.getenv('WAS_HOST');
@@ -272,7 +272,7 @@ class CheckApp extends PluginTestHelper {
    }
 
     @Unroll
-    def "Check Application Suite. Negative Scenarious"(){
+    def "Check Application Suite. Negative Scenarios"(){
 
         when: 'Procedure runs'
         def wasResourceName=System.getenv('WAS_HOST');
