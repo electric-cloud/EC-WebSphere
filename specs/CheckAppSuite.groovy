@@ -168,10 +168,7 @@ class CheckApp extends PluginTestHelper {
         createConfiguration(сonfigName, [doNotRecreate: false])
         importProject(testProjectName, 'dsl/CheckApp/Procedure.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         importProject(testProjectName, 'dsl/CheckApp/DeployEnterpriseApp.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
-        /**
-        * TODO: Retrive the tests Applications to 
-        * 
-        */
+
         runGetResourcesProcedure([projectName: testProjectName, resourceProcedureName: resourceProcedureName, filePath: wsAppPathes.helloWorld, fileURL: applicationUrl, wasResourceName: wasResourceName])
         
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
@@ -184,7 +181,7 @@ class CheckApp extends PluginTestHelper {
     }
     */
     @Unroll
-    def "Deploy Enterprise Application. Positive scenarious for Check Application Runs"(){
+    def "Deploy Enterprise Application. Positive and Extended Scenarios for Check Application Runs"(){
         
         when: 'Procedure runs'
         def wasResourceName=System.getenv('WAS_HOST');
@@ -235,7 +232,7 @@ class CheckApp extends PluginTestHelper {
 
 
     @Unroll
-    def "Check Application Suite. Positive scenarios"(){
+    def "Check Application Suite. Positive and Extended Scenarios."(){
         
         when: 'Procedure runs'
         def wasResourceName=System.getenv('WAS_HOST');
@@ -268,19 +265,14 @@ class CheckApp extends PluginTestHelper {
         where:
         wsConfigName      | wsAdminAbsolutePath             | wsApplicationName                           | wsApplicationState               | tTime    | expectedOutcome
         сonfigName        | wsAdminAbsolutePathes.empty     | wsApplicationNames.notExistApplicationHW    | wsApplicationStates.notExist     | '0'      | 'success'
-//        сonfigName      | wsAdminAbsolutePathes.correct   | wsApplicationNames.existApplicationHW       | wsApplicationStates.exist        | '0'      | 'success'
-//        сonfigName      | wsAdminAbsolutePathes.empty     | wsApplicationNames.existApplicationHW       | wsApplicationStates.notReady     | '0'      | 'success'
         сonfigName        | wsAdminAbsolutePathes.empty     | wsApplicationNames.notRunningApplicationHW  | wsApplicationStates.notRunning   | '0'      | 'success'
-//        сonfigName      | wsAdminAbsolutePathes.correct   | wsApplicationNames.readyApplicationHW       | wsApplicationStates.ready        | '0'      | 'success'
-//        сonfigName      | wsAdminAbsolutePathes.empty     | wsApplicationNames.readyApplicationHW       | wsApplicationStates.notRunning   | '0'      | 'success'
         сonfigName        | wsAdminAbsolutePathes.empty     | wsApplicationNames.runningApplicationHW     | wsApplicationStates.exist        | '0'      | 'success'
         сonfigName        | wsAdminAbsolutePathes.correct   | wsApplicationNames.runningApplicationHW     | wsApplicationStates.ready        | '0'      | 'success'
         сonfigName        | wsAdminAbsolutePathes.empty     | wsApplicationNames.runningApplicationHW     | wsApplicationStates.running      | '100'    | 'success'
    }
 
-    @Ignore
     @Unroll
-    def "Check Application Suite. Negative scenarios"(){
+    def "Check Application Suite. Negative Scenarios"(){
 
         when: 'Procedure runs'
         def wasResourceName=System.getenv('WAS_HOST');
@@ -311,17 +303,16 @@ class CheckApp extends PluginTestHelper {
         assert outcome.contains(expectedOutcome)
 
         where:
-        wsConfigName            | wsAdminAbsolutePath               | wsApplicationName                         | wsApplicationState                | tTime      | expectedOutcome
-        'specConfig-Incorrect'  | wsAdminAbsolutePathes.empty       | wsApplicationNames.existApplicationHW       | wsApplicationStates.exist       | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.incorrect   | wsApplicationNames.existApplicationHW       | wsApplicationStates.exist       | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.existApplicationHW       | wsApplicationStates.notExist    | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.notExistApplicationHW    | wsApplicationStates.exist       | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.correct     | wsApplicationNames.existApplicationHW       | wsApplicationStates.ready       | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.readyApplicationHW       | wsApplicationStates.notReady    | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW     | wsApplicationStates.notRunning  | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.correct     | wsApplicationNames.readyApplicationHW       | wsApplicationStates.running     | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW     | wsApplicationStates.running     | '-1'       | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW     | wsApplicationStates.running     | 'abs'      | 'error'
+        wsConfigName            | wsAdminAbsolutePath               | wsApplicationName                             | wsApplicationState              | tTime      | expectedOutcome
+        'specConfig-Incorrect'  | wsAdminAbsolutePathes.empty       | wsApplicationNames.notExistApplicationHW      | wsApplicationStates.exist       | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.incorrect   | wsApplicationNames.notExistApplicationHW      | wsApplicationStates.exist       | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.notRunningApplicationHW    | wsApplicationStates.notExist    | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.correct     | wsApplicationNames.notRunningApplicationHW    | wsApplicationStates.ready       | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.notRunningApplicationHW    | wsApplicationStates.notReady    | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW       | wsApplicationStates.notRunning  | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.correct     | wsApplicationNames.notRunningApplicationHW    | wsApplicationStates.running     | '0'        | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW       | wsApplicationStates.running     | '-1'       | 'error'
+        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW       | wsApplicationStates.running     | 'abs'      | 'error'
    }
 
     def runProcedure(def parameters) {
@@ -363,29 +354,5 @@ class CheckApp extends PluginTestHelper {
         """
         return dsl(code)
     }
-
-/**
-    def checkLogOutputByNumber(def log, def number, def context) {
-        if (number == 1) {
-            return log =~ 'Unable to find the credential'
-        }
-        else if (number == 2) {
-            return log =~ "Jenkins job $context.jobName does not exist."
-        }
-        else if (number == 3) {
-            return log =~ "Build #$context.buildNumber does not exist in existing Jenkins $context.jobName job."
-        }
-        else if (number == 4) {
-            return log =~ "Build #$context.buildNumber does not exist in existing Jenkins $context.jobName job."
-        }
-        else if (number == 5) {
-            return log =~ "Can't set property: Unrecognized path element in '$context.propertyPath"
-        }
-        else if (number == 6) {
-            return log =~ "Can't set property: java.util.UnknownFormatConversionException: Conversion ="
-        }
-    }
-    */
-   
 
 }
