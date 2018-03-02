@@ -157,53 +157,10 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
 
     def doCleanupSpec() {
     }
-    /*
-    @Ignore
-    @Unroll
-    def "Create Or Update JMS Topic. Required paramenetrs Veriication"(){
-
-        when: 'Proceure runs: '
-            def runParams = [
-                configname: configname,
-                messagingSystemType: messagingSystemType,
-                topicScope: topicScope,
-                topicAdministrativeName: topicAdministrativeName,
-                jndiName: jndiName,
-                topicAdministrativeDescription: topicAdministrativeDescription,
-                additionalOption: additionalOption
-            ]
-
-        def result = runProcedure(runParams)
-
-        then: 'Wait until job is completed: '
-        waitUntil {
-            try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-        def outcome = getJobProperty('/myJob/outcome', result.jobId)
-        def debugLog = getJobLogs(result.jobId)
-        def upperStepSummary = getUpperStepSummary()
-        println "Procedure log:\n$debugLog\n"
-
-        //Verification part
-        assert outcome == expectedOutcome
-        assert upperStepSummary == expectedUpperStepSummary
-
-        where: 'The following params will be: '
-
-        configname                      | messagingSystemType             | topicScope            | topicAdministrativeName           | jndiName              | topicAdministrativeDescription            | additionalOption          | expectedOutcome           | expectedUpperStepSummary
-        confignames.empty               | messagingSystemTypes.WMQ        | topicScopes.correct   | topicAdministrativeNames.correct  | jndiNames.correct     | topicAdministrativeDescriptions.empty     | additionalOptions.empty   | expectedOutcomes.error    | expectedUpperStepSummaries.fieldRequired
-        confignames.correctSOAP         | messagingSystemTypes.empty      | topicScopes.empty     | topicAdministrativeNames.correct  | jndiNames.correct     | topicAdministrativeDescriptions.empty     | additionalOptions.empty   | expectedOutcomes.error    | expectedUpperStepSummaries.fieldRequired
-        confignames.correctSOAP         | messagingSystemTypes.WMQ        | topicScopes.correct   | topicAdministrativeNames.empty    | jndiNames.correct     | topicAdministrativeDescriptions.empty     | additionalOptions.empty   | expectedOutcomes.error    | expectedUpperStepSummaries.fieldRequired
-        confignames.correctSOAP         | messagingSystemTypes.WMQ        | topicScopes.correct   | topicAdministrativeNames.correct  | jndiNames.empty       | topicAdministrativeDescriptions.empty     | additionalOptions.empty   | expectedOutcomes.error    | expectedUpperStepSummaries.fieldRequired
-    }
-    */
+ 
 
     @Unroll
-    def "Create Or Update JMS Topic. Positive Scenarious"(){
+    def "Create Or Update JMS Topic. Positive and Extended scenarios"(){
 
         when: 'Proceure runs: '
             def runParams = [
@@ -287,62 +244,15 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         where: 'The following params will be: '
 
         configname                      | messagingSystemType               | topicScope            | topicAdministrativeName               | topicName                | jndiName                 | topicAdministrativeDescription                   | additionalOption              | expectedOutcome           
- //       confignames.incorrect           | messagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.correctWMQ   | topicNames.correctWMQ    | jndiNames.correctWMQ     | topicAdministrativeDescriptions.empty         | additionalOptions.empty       | expectedOutcomes.error    
+        confignames.incorrect           | messagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.correctWMQ   | topicNames.correctWMQ    | jndiNames.correctWMQ     | topicAdministrativeDescriptions.empty         | additionalOptions.empty       | expectedOutcomes.error    
         confignames.correctSOAP         | messagingSystemTypes.incorrect    | topicScopes.correct   | topicAdministrativeNames.correctWMQ   | topicNames.correctWMQ    | jndiNames.correctWMQ     | topicAdministrativeDescriptions.empty            | additionalOptions.empty       | expectedOutcomes.error    
         confignames.correctSOAP         | messagingSystemTypes.WMQ          | topicScopes.incorrect | topicAdministrativeNames.correctWMQ   | topicNames.correctWMQ    | jndiNames.correctWMQ     | topicAdministrativeDescriptions.empty            | additionalOptions.empty       | expectedOutcomes.error    
         confignames.correctSOAP         | messagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.incorrect    | topicNames.correctWMQ    | jndiNames.correctWMQ     | topicAdministrativeDescriptions.correctWMQ       | additionalOptions.empty       | expectedOutcomes.error    
- //       confignames.correctSOAP         | messagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.correctWMQ   | topicNames.incorrect     | jndiNames.correctWMQ     | topicAdministrativeDescriptions.correctWMQ       | additionalOptions.correctWMQ  | expectedOutcomes.error    
- //       confignames.correctSOAP         | messagingSystemTypes.WMQ          | topicScopes.correct   | topicAdministrativeNames.correctWMQ   | topicNames.correctWMQ    | jndiNames.incorrect      | topicAdministrativeDescriptions.correctWMQ       | additionalOptions.correctWMQ  | expectedOutcomes.error          
         confignames.correctSOAP         | messagingSystemTypes.incorrect    | topicScopes.correct   | topicAdministrativeNames.correctSIB   | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.empty            | additionalOptions.empty       | expectedOutcomes.error    
         confignames.correctSOAP         | messagingSystemTypes.SIB          | topicScopes.incorrect | topicAdministrativeNames.correctSIB   | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.empty            | additionalOptions.empty       | expectedOutcomes.error    
         confignames.correctSOAP         | messagingSystemTypes.SIB          | topicScopes.correct   | topicAdministrativeNames.incorrect    | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.correctSIB       | additionalOptions.empty       | expectedOutcomes.error    
- //       confignames.correctSOAP         | messagingSystemTypes.SIB          | topicScopes.correct   | topicAdministrativeNames.correctSIB   | topicNames.incorrect     | jndiNames.correctSIB     | topicAdministrativeDescriptions.correctSIB       | additionalOptions.correctSIB  | expectedOutcomes.error    
- //       confignames.correctSOAP         | messagingSystemTypes.SIB          | topicScopes.correct   | topicAdministrativeNames.correctSIB   | topicNames.correctSIB    | jndiNames.incorrect      | topicAdministrativeDescriptions.correctSIB       | additionalOptions.correctSIB  | expectedOutcomes.error          
-
     }
-    /*
-    @Ignore
-    @Unroll
-    //Extented Test Part 
-    def "Create Or Update JMS Queue. Extended"(){
 
-        when: 'Proceure runs: '
-            def runParams = [
-                configname: configname,
-                messagingSystemType: messagingSystemType,
-                topicScope: topicScope,
-                topicAdministrativeName: topicAdministrativeName,
-                jndiName: jndiName,
-                topicAdministrativeDescription: topicAdministrativeDescription,
-                additionalOption: additionalOption,
-                wasHost: wasHost,
-            ]
-
-        def result = runProcedure(runParams)
-
-        then: 'Wait until job is completed: '
-        waitUntil {
-            try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-        def outcome = getJobProperty('/myJob/outcome', result.jobId)
-        def debugLog = getJobLogs(result.jobId)
-        def upperStepSummary = getUpperStepSummary()
-        println "Procedure log:\n$debugLog\n"
-
-        assert outcome == expectedOutcome
-
-        where: 'The following params will be: '
-        configname                      | messagingSystemType       | topicScope            | topicAdministrativeName              | topicName                | jndiName                 | topicAdministrativeDescription               | additionalOption              | expectedOutcome
-        // SOAP Config Name
-        confignames.correctSOAP         | messagingSystemTypes.WMQ  | topicScopes.correct   | topicAdministrativeNames.correctWMQ  | topicNames.correctWMQ    | jndiNames.correctWMQ     | topicAdministrativeDescriptions.correctWMQ   | additionalOptions.correctWMQ  | expectedOutcomes.success  
-        confignames.correctSOAP         | messagingSystemTypes.SIB  | topicScopes.correct   | topicAdministrativeNames.correctSIB  | topicNames.correctSIB    | jndiNames.correctSIB     | topicAdministrativeDescriptions.correctSIB   | additionalOptions.correctSIB  | expectedOutcomes.success  
-
-    }
-    */
     //Run Test Procedure
     def runProcedure(def parameters) {
         def code = """
