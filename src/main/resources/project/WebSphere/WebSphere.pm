@@ -98,7 +98,7 @@ sub new {
     }
     my $debug = $configuration->{debug};
     if ($debug) {
-        $self->{_log} = $debug;
+        $self->{_log}->{level} = $debug;
     }
     $wsadminPath ||= $configuration->{wsadminabspath};
     unless ($wsadminPath) {
