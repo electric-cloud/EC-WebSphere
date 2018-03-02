@@ -265,6 +265,7 @@ class CheckApp extends PluginTestHelper {
         where:
         wsConfigName      | wsAdminAbsolutePath             | wsApplicationName                           | wsApplicationState               | tTime    | expectedOutcome
         сonfigName        | wsAdminAbsolutePathes.empty     | wsApplicationNames.notExistApplicationHW    | wsApplicationStates.notExist     | '0'      | 'success'
+        сonfigName        | wsAdminAbsolutePathes.correct   | wsApplicationNames.notRunningApplicationHW  | wsApplicationStates.ready        | '0'      | 'success'
         сonfigName        | wsAdminAbsolutePathes.empty     | wsApplicationNames.notRunningApplicationHW  | wsApplicationStates.notRunning   | '0'      | 'success'
         сonfigName        | wsAdminAbsolutePathes.empty     | wsApplicationNames.runningApplicationHW     | wsApplicationStates.exist        | '0'      | 'success'
         сonfigName        | wsAdminAbsolutePathes.correct   | wsApplicationNames.runningApplicationHW     | wsApplicationStates.ready        | '0'      | 'success'
@@ -307,7 +308,6 @@ class CheckApp extends PluginTestHelper {
         'specConfig-Incorrect'  | wsAdminAbsolutePathes.empty       | wsApplicationNames.notExistApplicationHW      | wsApplicationStates.exist       | '0'        | 'error'
         сonfigName              | wsAdminAbsolutePathes.incorrect   | wsApplicationNames.notExistApplicationHW      | wsApplicationStates.exist       | '0'        | 'error'
         сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.notRunningApplicationHW    | wsApplicationStates.notExist    | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.correct     | wsApplicationNames.notRunningApplicationHW    | wsApplicationStates.ready       | '0'        | 'error'
         сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.notRunningApplicationHW    | wsApplicationStates.notReady    | '0'        | 'error'
         сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW       | wsApplicationStates.notRunning  | '0'        | 'error'
         сonfigName              | wsAdminAbsolutePathes.correct     | wsApplicationNames.notRunningApplicationHW    | wsApplicationStates.running     | '0'        | 'error'
