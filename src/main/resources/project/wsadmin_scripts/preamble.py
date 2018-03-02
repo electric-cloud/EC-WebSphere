@@ -74,8 +74,8 @@ def getStateMatrix():
         "READY": ['READY', 'EXISTS'],
         "EXISTS": ['EXISTS'],
         "NOT_EXISTS": ['NOT_EXISTS'],
-        "NOT_READY": ['NOT_READY'],
-        "NOT_RUNNING": ['NOT_RUNNING']
+        "NOT_READY": ['NOT_READY', 'EXISTS'],
+        "NOT_RUNNING": ['NOT_RUNNING', 'EXISTS', 'READY']
     }
     return matrix
 
