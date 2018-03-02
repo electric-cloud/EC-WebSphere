@@ -20,6 +20,7 @@ no strict "subs";
 use ElectricCommander;
 use ElectricCommander::PropDB;
 use JSON;
+use Carp;
 use Data::Dumper;
 use WebSphere::Util;
 
@@ -88,8 +89,17 @@ sub new {
         # wsadminPath => $wsadminPath
     };
     bless $self, $class;
-    my $configuration = $self->_getConfiguration($configurationName);
+    my $log = EC::Plugin::Logger->new(0);
+    $self->{_log} = $log;
 
+    my $configuration = $self->_getConfiguration($configurationName);
+    unless ($configuration) {
+        $self->bail_out("Configuration '$configurationName' doesn't exist");
+    }
+    my $debug = $configuration->{debug};
+    if ($debug) {
+        $self->{_log}->{level} = $debug;
+    }
     $wsadminPath ||= $configuration->{wsadminabspath};
     unless ($wsadminPath) {
         $self->bail_out("Missing wsadmin absolute path");
@@ -101,13 +111,12 @@ sub new {
     if ( not $configuration ) {
         exit 1;
     }
-    my $debug = $configuration->{debug};
+
     if (!defined $debug) {
         $debug = 0;
     }
 
-    my $log = EC::Plugin::Logger->new($debug);
-    $self->{_log} = $log;
+
     $self->{configuration} = $configuration;
     return $configuration ? $self : undef;
 }
@@ -248,15 +257,15 @@ sub setResult {
 
     my ($outcome, $procedure, $pipeline) = ($params{outcome}, $params{procedure}, $params{pipeline});
     if (!ref $outcome) {
-        $self->bail_out("HASH or ARRAY reference is expected as outcome parameter");
+        croak("HASH or ARRAY reference is expected as outcome parameter");
     }
     $outcome = [$outcome] if ref $outcome eq 'HASH';
     if (!ref $procedure) {
-        $self->bail_out("HASH or ARRAY reference expected as procedure parameter");
+        croak("HASH or ARRAY reference expected as procedure parameter");
     }
     $procedure = [$procedure] if ref $procedure eq 'HASH';
     if (!ref $pipeline) {
-        $self->bail_out("pipeline parameter should be a HASH or ARRAY reference");
+        croak("pipeline parameter should be a HASH or ARRAY reference");
     }
 
     # if pipeline has been passed as hash reference, we will create array reference to iterate through it.
@@ -270,10 +279,10 @@ sub setResult {
     my $exit_code = 0;
     for my $o (@$outcome) {
         if ($o->{result} !~ m/^(?:error|success|warning)$/s) {
-            $self->bail_out("Expected error, success or warning, got: $o->{result}");
+            croak("Expected error, success or warning, got: $o->{result}");
         }
         if ($o->{target} !~ m/^(?:myJobStep|myJob|myCall)$/s) {
-            $self->bail_out("target should one of: myJobStep, myJob, myCall. Got: $o->{target}");
+            croak("target should one of: myJobStep, myJob, myCall. Got: $o->{target}");
         }
         my $pp = '/' . $o->{target} . '/outcome';
         if ($o->{result} eq 'error') {
@@ -286,7 +295,7 @@ sub setResult {
     if ($context eq 'pipeline') {
         for my $p (@$pipeline) {
             if (!$p->{target} || !exists $p->{msg}) {
-                $self->bail_out("target and msg are mandatory");
+                croak("target and msg are mandatory");
             }
             my $pp = '/myPipelineStageRuntime/ec_summary/' . $p->{target};
             $self->log()->debug("Setting pipeline property: '$pp' => '$p->{msg}'");
@@ -297,10 +306,10 @@ sub setResult {
     else {
         for my $p (@$procedure) {
             if (!$p->{target} || !exists $p->{msg}) {
-                $self->bail_out("target and msg are mandatory");
+                croak("target and msg are mandatory");
             }
             if ($p->{target} !~ m/^(?:myJobStep|myJob|myCall)$/s) {
-                $self->bail_out("target should one of: myJobStep, myJob, myCall. Got: $p->{target}");
+                croak("target should one of: myJobStep, myJob, myCall. Got: $p->{target}");
             }
             my $pp = '/' . $p->{target} . '/summary';
             $self->log()->debug("Setting procedure property: '$pp' => '$p->{msg}'");
@@ -308,6 +317,7 @@ sub setResult {
         }
     }
     return sub {
+        print "Will execute exit $exit_code\n";
         exit $exit_code;
     };
 }
@@ -447,7 +457,7 @@ sub _getConfiguration {
 
     # Check if configuration exists
     unless ( keys(%configuration) ) {
-        my $error_string = "Configuration '$configurationName' doesn't exists";
+        my $error_string = "Configuration '$configurationName' doesn't exist";
         print "Error: $error_string\n";
         $self->setSummary("$error_string");
         return undef;
@@ -571,9 +581,7 @@ sub bail_out {
             msg => $msg,
         }
     };
-
     my $exit = $self->setResult(%$result_params);
-
     $exit->();
 }
 

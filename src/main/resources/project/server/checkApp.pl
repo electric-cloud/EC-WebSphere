@@ -14,28 +14,6 @@
 #  limitations under the License.
 #
 
-=head1 NAME
-
-checkApp.pl - check application readiness.
-
-=head1 SYNOPSIS
-
-=head1 DESCRIPTION
-
-A perl library that deploys an enterprise application on a cluster or standalone server
-
-=head1 LICENSE
-
-Copyright (c) 2014 Electric Cloud, Inc.
-All rights reserved.
-
-=head1 AUTHOR
-
-    ---
-
-=head2 METHODS
-
-=cut
 
 # -------------------------------------------------------------------------
 # Includes

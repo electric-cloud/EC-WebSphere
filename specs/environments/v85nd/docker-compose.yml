@@ -34,6 +34,5 @@ services:
     - WAS_NODE_NAME=websphere85ndNode01
     restart: always
 networks:
-  default:
-    external:
-      name: nat
+  internal:
+    driver: bridge
