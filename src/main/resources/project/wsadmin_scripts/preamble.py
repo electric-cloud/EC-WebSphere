@@ -71,10 +71,10 @@ def getAppState(appName):
 def getStateMatrix():
     matrix = {
         "RUNNING": ['RUNNING', 'EXISTS', 'READY'],
-        "READY": ['READY', 'EXISTS'],
-        "EXISTS": ['EXISTS'],
-        "NOT_EXISTS": ['NOT_EXISTS'],
-        "NOT_READY": ['NOT_READY', 'EXISTS'],
+        "READY": ['READY', 'EXISTS', 'NOT_RUNNING'],
+        "EXISTS": ['EXISTS', 'NOT_READY', 'NOT_RUNNING',],
+        "NOT_EXISTS": ['NOT_EXISTS', 'NOT_READY', 'NOT_RUNNING'],
+        "NOT_READY": ['NOT_READY', 'EXISTS', 'NOT_RUNNING'],
         "NOT_RUNNING": ['NOT_RUNNING', 'EXISTS', 'READY']
     }
     return matrix
