@@ -74,11 +74,16 @@ class PluginTestHelper extends PluginSpockTestSupport {
     }
 
     def createWorkspace(def workspaceName) {
+        def isWindows = System.getenv("IS_WINDOWS");
+        def workspacePath = "/tmp";
+        if (isWindows) {
+            workspacePath = "C:/workspace";
+        }
         def workspaceResult = dsl """
 try {
             createWorkspace(
                 workspaceName: '${workspaceName}',
-                agentDrivePath: '/tmp',
+                agentDrivePath: '${workspacePath}',
                 agentUnixPath: '/tmp',
                 local: '1'
             )

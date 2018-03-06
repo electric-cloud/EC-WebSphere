@@ -25,7 +25,7 @@ services:
     - EF_SERVER_HOST=efserver
     - EF_SERVER_ADMIN_USER=admin
     - EF_SERVER_ADMIN_PASS=changeme
-    - EF_RESOURCE_NAME="websphere90nd-win"
+    - EF_RESOURCE_NAME="websphere90nd"
     - WAS_CELL_NAME=websphere90ndCell01
     - WAS_NODE_NAME=websphere90ndNode01
     restart: always

@@ -5,7 +5,7 @@ use LWP::UserAgent;
 $| = 1;
 
 $ENV{PERL_LWP_SSL_VERIFY_HOSTNAME} = 0;
-my $url = 'https://localhost:9443/ibm/console';
+my $url = 'https://websphere90nd:9443/ibm/console';
 my $ua = LWP::UserAgent->new();
 
 my $done = 0;
