@@ -6,4 +6,3 @@ export WAS_CONNTYPE="SOAP";
 export WAS_DEBUG="1";
 export WSADMIN_PATH="/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/wsadmin.sh";
 export WAS_APPPATH="/var/tmp/";
-
