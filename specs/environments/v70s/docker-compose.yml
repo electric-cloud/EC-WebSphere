@@ -1,0 +1,38 @@
+version: '3'
+services:
+  electric-flow:
+    image: "electricflow/efserver:latest"
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+      - "443:443"
+      - "80:80"
+    container_name: "efserver"
+    hostname: "efserver"
+    tty: true
+  websphere:
+    image: "electricflow/websphere70s"
+    ports:
+      - "7808:7808"
+      - "9060:9060"
+      - "9443:9443"
+      - "9043:9043"
+      - "8880:8880"
+    container_name: websphere70s
+    hostname: "websphere70s"
+    tty: true
+    environment:
+    - EF_SERVER_HOST=efserver
+    - EF_SERVER_ADMIN_USER=admin
+    - EF_SERVER_ADMIN_PASS=changeme
+    - EF_RESOURCE_NAME=websphere70s
+    - RESOURCE_NAME=websphere70s
+    - ELECTRICFLOW_IP_ADDRESS=efserver
+    - ELECTRICFLOW_USERNAME=admin
+    - ELECTRICFLOW_PASSWORD=changeme
+    - WAS_CELL_NAME=websphere70sCell01
+    - WAS_NODE_NAME=websphere70sNode01
+    restart: always
+networks:
+  internal:
+    driver: bridge
