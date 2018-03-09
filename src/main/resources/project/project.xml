@@ -8793,7 +8793,9 @@
         <formalParameter>
             <formalParameterName>apppath</formalParameterName>
             <defaultValue />
-            <description>Absolute path of the application to deploy. i.e: '/path/to/webapp.war' or 'c:/mydir/webapp.war. </description>
+            <description>
+                Absolute path of the application to deploy. Use "/" as the path separator on both linux and windows i.e: '/path/to/webapp.war' or 'c:/mydir/webapp.war'.
+            </description>
             <required>1</required>
             <type>entry</type>
         </formalParameter>

@@ -1634,7 +1634,7 @@
                         </tr>
                         <tr class="required">
                             <td>Application Path</td>
-                            <td>Absolute path of the application to deploy. i.e: '/path/to/webapp.war' or 'c:/mydir/webapp.war'.</td>
+                            <td>Absolute path of the application to deploy. Use "/" as the path separator on both linux and windows i.e: '/path/to/webapp.war' or 'c:/mydir/webapp.war'.</td>
                         </tr>
                         <tr>
                             <td>Target cluster</td>
