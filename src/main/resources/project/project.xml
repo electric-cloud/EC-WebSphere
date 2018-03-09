@@ -5420,7 +5420,7 @@
             <formalParameterName>wsadminAbsPath</formalParameterName>
             <defaultValue />
             <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
-            <required>0</required>
+            <required>1</required>
             <type>entry</type>
             <expansionDeferred>1</expansionDeferred>
         </formalParameter>
