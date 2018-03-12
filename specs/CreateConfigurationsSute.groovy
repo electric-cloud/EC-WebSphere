@@ -1,17 +1,7 @@
 import spock.lang.*
 import com.electriccloud.spec.SpockTestSupport
 import PluginTestHelper
-/**
- * following envs should be present:
- *WAS_USERNAME
- *WAS_PASSWORD
- *WAS_HOST
- *WAS_PORT
- *WAS_CONNTYPE
- *WAS_DEBUG
- *WSADMIN_PATH 
- *following envs should be present:
- */
+
 @Stepwise
 class CreateConfigurationsSute extends PluginTestHelper {
     def doSetupSpec() {

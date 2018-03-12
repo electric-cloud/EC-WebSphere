@@ -54,7 +54,7 @@ class CheckApp extends PluginTestHelper {
     ]
 
     @Shared
-    def testProjectName = 'EC-WebSphere-Specs-CheckApp'
+    def testProjectName = 'EC-WebSphere-SystemTests'
     @Shared
     def testProcedureName = 'CheckApp'
     @Shared
