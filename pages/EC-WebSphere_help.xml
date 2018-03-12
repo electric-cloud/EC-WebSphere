@@ -1171,7 +1171,7 @@
                                     This parameter can be used to either override defaults or pass
                                     Custom Properties. <br />
                                     For example: <br />
-                                    <pre>-ccsid 1208 -readAhead YES</pre>
+                                    <pre>-ccsid 1208 -readAhead YES -customProperties [[prop1 value1][prop2 value2]]</pre>
                                 </td>
                             </tr>
                         </tbody>
@@ -1266,7 +1266,7 @@
                             <td>                                
                                 This parameter can be used to either override defaults or pass Custom Properties.<br />
                                 For example:<br />
-                                <pre>-readAhead YES -ccsid 1208</pre>
+                                <pre>-ccsid 1208 -readAhead YES -customProperties [[prop1 value1][prop2 value2]]</pre>
                             </td>
                         </tr>
                     </tbody>
@@ -2736,8 +2736,7 @@
             <h2>@PLUGIN_KEY@ 2.3.0</h2>
             <ul>
                 <li>
-                    Following procedures have been added:
-                    
+                    Following New procedures have been added:
                     <ul>
                         <li><a href="#DeleteJMSQueue">DeleteJMSQueue</a></li>
                         <li><a href="#DeleteJMSTopic">DeleteJMSTopic</a></li>
@@ -2749,38 +2748,32 @@
                     Fixed non-ascii characters in plugin forms.
                 </li>
                 <li>
-                    Following procedures have been improved and support of WebSphere 9.0 has been added:
+                    Following procedures have been extended to support Websphere 9.0:
                     <ul>
-                        <li>StartApp</li>
-                        <li>StopApp</li>
-                        <li>StopCluster</li>
+                        <li><a href="#StartApp">StartApp</a></li>
+                        <li><a href="#StopApp">StopApp</a></li>
+                        <li><a href="#StopCluster">StopCluster</a></li>
                     </ul>
                 </li>
-                <li>WSAdmin Absolute has been added to configuration.</li>
-                <li>Debug parameter has been changed from checkbox to select.</li>
+                <li>The Debug Level checkbox has been changed to a dropdown. The level will be defaulted to INFO if no value is chosen.</li>
                 <li>
-                    <a href="#CreateJMSProvider">CreateJMSProvider</a>
+                    WSAdmin Absolute Path has been added to configuration and made as an optional parameter for all the following procedures:
                     <ul>
-                        <li>WSAdmin Absolute path parameter changed to non-required.</li>
+                        <li><a href="#CreateJMSProvider">CreateJMSProvider</a></li>
+                        <li><a href="#RunCustomJob">RunCustomJob</a></li>
+                        <li><a href="#DeployEnterpriseApp">DeployEnterpriseApp</a></li>
+                        <li><a href="#CreateJDBCProvider">CreateJDBCProvider</a></li>
+                        <li><a href="#CheckApp">CheckApp</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#RunCustomJob">RunCustomJob</a>
-                    <ul>
-                        <li>WSAdmin Absolute path parameter changed to non-required.</li>
-                    </ul>
-                </li>
-                
                 <li>
                     <a href="#DeployEnterpriseApp">DeployEnterpriseApp</a>
                     <ul>
                         <li>
-                            Fixed and issue when application was not started on all servers during deployment
+                            Fixed an issue when application was not started on all servers during deployment
                             if server name and node name are the same.
                         </li>
-                        <li>WSAdmin Absolute path parameter changed to non-required.</li>
                     </ul>
-
                 </li>
                 <li>
                     <a href="#CreateJDBCProvider">CreateJDBCProvider</a>
@@ -2793,7 +2786,6 @@
                 <li>
                     <a href="#CheckApp">CheckApp</a>
                     <ul>
-                        <li>WSAdmin Absolute path parameter changed to non-required.</li>
                         <li>Procedure has been improved and now it could check for different application states.</li>
                     </ul>
                 </li>
