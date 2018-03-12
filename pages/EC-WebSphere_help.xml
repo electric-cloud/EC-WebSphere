@@ -84,67 +84,1030 @@
             <p>For more information about WebSphere, go to the <a href="http://www-01.ibm.com/software/websphere/">WebSphere Home Page</a>.</p>
             <!--There was an h2 header here: WebSphere Links
                 <p>
-                h2 header: Electric Flow Integration to WebSphere -->
-            <!-- The integration description should answer the questions:
-                 How deep does our integration go? Why should I care?
-                 What general functionality does the plugin include? What
-                 functionality does the plugin omit? -->
-            <p>You can use this plugin to interact with an IBM
-            WebSphere Server. You can start and stop the server.
-            You can also manage applications within the server (start,
-            deploy, undeploy, stop or custom task) using the provided
-            WebSphere scripts in the <i>bin</i> directory under
-            the installation home directory (wsadmin, startServer,
-            stopServer). You can run Jython scripts that are
-            provided by the user or defined when a procedure is
-            created.</p>
-            <h1 id="supported_platforms">Supported Platforms</h1>
-            <p>
-                The plugin was tested on following WebSphere versions:
-            </p>
-            <ul>
-                <li>WAS and WASND 9.0 on Linux and Windows</li>
-                <li>WAS and WASND 8.5.5 on Linux and Windows</li>
-                <li>WAS and WASND 8.5.0 on Linux and Windows</li>
-                <li>WAS and WASND 8.0 on Linux and Windows</li>
-                <li>WAS 7.0 on Linux and Windows</li>
-            </ul>
-            <p>IMPORTANT: For all the following parameter descriptions,
-            the required parameters are in
-            <span class="required">bold italics</span>.</p>
-            <div id="CreateConfiguration">
-                <a name="CreateConfiguration" id="CreateConfigurationLink"></a>
-                <h2>Plugin Configurations</h2>
-                <!-- If the plugin has separate configurations then include
-                     this section, otherwise omit this whole section. We don't
-                     need to have a configuration section that just says "There
-                     is no configuration for this plugin." -->
-                <p>
-                    Plugin configurations are sets of parameters that apply
-                    across some or all of the plugin procedures. They
-                    reduce repetition of common values, create
-                    predefined parameter sets for end users, and
-                    securely store credentials where needed. Each configuration
-                    is given a unique name that is entered in designated
-                    parameters on procedures that use them.<br /><br />
-                </p>
-                <!-- For all parameters, the parameter name should be *exactly*
-                     the same as it appears in the Parameter Panel, and the first
-                     sentence(s) of the description should be the same as the tooltip (if
-                     there is one). After that, the parameter description can go into
-                     greater detail about the parameter including valid value ranges and
-                     examples. -->
-                <h3>Creating Plugin Configurations</h3>
-                <p>To create plugin configurations in ElectricFlow,
-                do these steps:</p>
-                <ol>
-                    <li>Go to <b>Administration</b> &gt; <b>Plugins</b> to open the Plugin Manager.</li>
-                    <li>Find the EC-WebSphere row.</li>
-                    <li>Click <b>Configure</b> to open the
-                    WebSphere Configurations page.</li>
-                    <li>Click <b>Create Configuration</b>.</li>
-                    <li>To enable ElectricFlow server to communicate with your WebSphere Application Server,
-                    enter the following information:<br /></li>
+                    h2 header: Electric Flow Integration to WebSphere -->
+                    <!-- The integration description should answer the questions:
+                         How deep does our integration go? Why should I care?
+                         What general functionality does the plugin include? What
+                         functionality does the plugin omit? -->
+                    <p>You can use this plugin to interact with an IBM
+                    WebSphere Server. You can start and stop the server.
+                    You can also manage applications within the server (start,
+                    deploy, undeploy, stop or custom task) using the provided
+                    WebSphere scripts in the <i>bin</i> directory under
+                    the installation home directory (wsadmin, startServer,
+                    stopServer). You can run Jython scripts that are
+                    provided by the user or defined when a procedure is
+                    created.</p>
+                    <h1 id="supported_platforms">Supported Platforms</h1>
+                    <p>
+                        The plugin was tested on following WebSphere versions:
+                    </p>
+                    <ul>
+                        <li>WAS and WASND 9.0 on Linux and Windows</li>
+                        <li>WAS and WASND 8.5.5 on Linux and Windows</li>
+                        <li>WAS and WASND 8.5.0 on Linux and Windows</li>
+                        <li>WAS and WASND 8.0 on Linux and Windows</li>
+                        <li>WAS 7.0 on Linux and Windows</li>
+                    </ul>
+                    <p>IMPORTANT: For all the following parameter descriptions,
+                    the required parameters are in
+                    <span class="required">bold italics</span>.</p>
+                    <div id="CreateConfiguration">
+                        <a name="CreateConfiguration" id="CreateConfigurationLink"></a>
+                        <h2>Plugin Configurations</h2>
+                        <!-- If the plugin has separate configurations then include
+                             this section, otherwise omit this whole section. We don't
+                             need to have a configuration section that just says "There
+                             is no configuration for this plugin." -->
+                        <p>
+                            Plugin configurations are sets of parameters that apply
+                            across some or all of the plugin procedures. They
+                            reduce repetition of common values, create
+                            predefined parameter sets for end users, and
+                            securely store credentials where needed. Each configuration
+                            is given a unique name that is entered in designated
+                            parameters on procedures that use them.<br /><br />
+                        </p>
+                        <!-- For all parameters, the parameter name should be *exactly*
+                             the same as it appears in the Parameter Panel, and the first
+                             sentence(s) of the description should be the same as the tooltip (if
+                             there is one). After that, the parameter description can go into
+                             greater detail about the parameter including valid value ranges and
+                             examples. -->
+                        <h3>Creating Plugin Configurations</h3>
+                        <p>To create plugin configurations in ElectricFlow,
+                        do these steps:</p>
+                        <ol>
+                            <li>Go to <b>Administration</b> &gt; <b>Plugins</b> to open the Plugin Manager.</li>
+                            <li>Find the EC-WebSphere row.</li>
+                            <li>Click <b>Configure</b> to open the
+                            WebSphere Configurations page.</li>
+                            <li>Click <b>Create Configuration</b>.</li>
+                            <li>To enable ElectricFlow server to communicate with your WebSphere Application Server,
+                            enter the following information:<br /></li>
+                            <table class="grid">
+                                <thead>
+                                    <tr>
+                                        <th>Parameter</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="required">Configuration Name</td>
+                                        <td>The name of the configuration to create.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>WSAdmin Absolute Path</td>
+                                        <td>Absolute path to wsadmin script.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="required">Connection Type</td>
+                                        <td>Specifies the type of connection to the application server that you want to administer.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="required">WebSphere Host</td>
+                                        <td>Hostname of the WebSphere Application Server to administer using wsadmin tool. For example: 10.200.1.234 or yourWSServer.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>WebSphere Connector Port</td>
+                                        <td>Port of WebSphere Application server to which wsadmin should connect.Give the port number based on the type of connection you choose.For example, if you want to connect to application server using SOAP connection give the port number of SOAP connector of that server.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Login as</td>
+                                        <td><i>Username</i>: The user name used by
+                                        ElectricFlow to communicate with the
+                                        WebSphere server.<br />
+                                        <i>Password</i>: The password for
+                                        the <i>Username</i>.<br />
+                                        <i>Retype Password</i>: Re-enter the
+                                        password.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Debug Level</td>
+                                        <td>Debug level.</td>
+                                    </tr>
+                                </tbody>
+                                </table><img src="../../plugins/EC-WebSphere/images/Config/parameters.png" />
+                        </ol>
+                        <p>The WebSphere Configurations page now shows the new configuration.</p>
+                        <img src="../../plugins/EC-WebSphere/images/CreateConfiguration/NewConfig.png" />
+                        <h3>Editing Plugin Configurations</h3>
+                        <p>To edit plugin configurations in ElectricFlow,
+                        do these steps:</p>
+                        <ol>
+                            <li>Go to <b>Administration</b> &gt; <b>Plugins</b> to open the Plugin Manager.</li>
+                            <li>Find the EC-WebSphere row.</li>
+                            <li>Click <b>Configure</b> to open the
+                            WebSphere Configurations page.</li>
+                            <li>Find the configuration that you want to edit.</li>
+                            <li>Click <b>Edit</b>.</li>
+                            <li>Edit the parameters in the configuration.</li>
+                            <li>Click <b>OK</b> to save the modified configuration.</li>
+                            <img src="../../plugins/EC-WebSphere/images/CreateConfiguration/EditConfig.png" />
+                        </ol>
+                    </div>
+                    <h1 id="procedures">Plugin Procedures</h1>
+                    <div id="CheckApp">
+                        <a name="CheckApp" id="CheckApp"></a>
+                        <h2>CheckApp</h2>
+                        <p>This procedure checks if a web application is ready by using a
+                        Jython script.</p>
+                        <p>
+                            The procedure fails, if the application is not ready or it does not exist.
+                        </p>
+                        <h3>CheckApp Parameters</h3>
+                        <table class="grid">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="required">Configuration Name</td>
+                                    <td>The name of the configuration to use.
+                                    ElectricFlow gets the URL, port, and credentials
+                                    from this configuration.</td>
+                                </tr>
+                                <tr>
+                                    <td>Wsadmin Path</td>
+                                    <td>The path of the wsadmin tool that includes the
+                                    filename and extension. <br />
+                                    Examples: <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Application Name</td>
+                                    <td>The name of the web application to
+                                    check, such as <i>webapp</i>. </td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Application State Checked</td>
+                                    <td>
+                                        Application State that is being checked, with any applicable retries based on wait time parameter.
+                                        Any state that is not the desired state after any applicable retries, will be returned as a failure by the procedure.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Wait Time</td>
+                                    <td>
+                                        Maximum duration of check application state retries.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>To check Application State, do these steps:</p>
+                        <ol>
+                            <li>Create procedure.</li>
+                            <li>Create step, choose Plugin, choose CheckApp from procedures picker.</li>
+                            <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CheckApp/ProcedureConfig.png" />
+                        </ol>
+                        <p>After the job runs, you can view the results, including the following job details:</p>
+                        <img src="../../plugins/EC-WebSphere/images/CheckApp/ProcedureResult.png" />
+
+                        <p>To check Application State in Flow interface, do these steps:</p>
+                        <ol>
+                            <li>Create Pipeline.</li>
+                            <li>Create task.</li>
+                            <li>In task definition choose Plugin and choose following parameters:<p><img src="../../plugins/EC-WebSphere/images/CheckApp/PipelinePicker.png" /></p></li>
+                            <li>Click on arrow.</li>
+                            <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CheckApp/PipelineConfig.png" />
+                        </ol>
+                        <p>After the pipeline runs, you can view the results, including the following step details:</p>
+                        <img src="../../plugins/EC-WebSphere/images/CheckApp/PipelineResult.png" />
+                        <p>In the <b>CheckApp</b> step, click the Log icon
+                        to see the diagnostic information. The output is similar to
+                        the following diagnostic
+                        report.</p>
+                        <img src="../../plugins/EC-WebSphere/images/CheckApp/ProcedureLog.png" />
+                    </div>
+                    <div id="CheckNodeStatus">
+                        <a name="CheckNodeStatus" id="CheckNodeStatus"></a>
+                        <h2>CheckNodeStatus</h2>
+                        <b>Applicable only for WebSphere Network Deployment installation.</b>
+                        <p>This procedure checks WebSphere node status. It checks Node Agent and all servers associated with node by it's name.</p>
+                        <h3>CheckNodeStatus Parameters</h3>
+                        <table class="grid">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Configuration Name</td>
+                                    <td>The name of the configuration to use.
+                                    ElectricFlow gets the URL, port, and credentials
+                                    from this configuration.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Wsadmin Path</td>
+                                    <td>The path of the wsadmin tool that includes the
+                                    filename and extension. <br />
+                                    Examples: <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>. </td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Name of the Node</td>
+                                    <td>The name of the WebSphere node, which should be checked, e.g. <i>ExampleNode01</i>.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Success Criteria</td>
+                                    <td>
+                                        Procedure will be finished with success status only if success criteria will be met.
+                                        Currently, following success criterias are available:
+                                        <ul>
+                                            <li>All node servers are running: All node members(application servers and nodeagent) are running.</li>
+                                            <li>All node servers are NOT running: All node members(application servers and nodeagent) are not running.</li>
+                                            <li>Nodeagent is running: Nodeagent is running. Application servers could be in any state.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <img src="../../plugins/EC-WebSphere/images/CheckNodeStatus/CheckNodeStatusParameters.png" />
+                    </div>
+                    <div id="CheckPageStatus">
+                        <a name="CheckPageStatus" id="CheckPageStatus"></a>
+                        <h2>CheckPageStatus</h2>
+                        <p>This procedure checks the status of the page with the specified URL.</p>
+                        <h3>CheckPageStatus Parameters</h3>
+                        <table class="grid">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Credentials to be entered (also referred to as <i>credentialName</i> in the property view)</td>
+                                    <td>The credentials required to check the
+                                    status of the page. You must enter a <i>Username</i> and <i>Password</i>.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Target URL (also referred to as <i>targeturl</i> in the property view)</td>
+                                    <td>The URL of the page to check.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Maximum Elapsed Time (also referred to as <i>maxelapsedtime</i> in the property view)</td>
+                                    <td>The maximum time in seconds
+                                    that the job tries to check into the
+                                    server. When the text box is blank, ElectricFlow interprets this as
+                                    no wait time and checks the URL only one time.</td>
+                                </tr>
+                                <tr>
+                                    <td>Success Criteria (also referred to as <i>successcriteria</i> in the property view)</td>
+                                    <td>The expected result when the page
+                                    is checked.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--  <img src="../../plugins/EC-WebSphere/images/CheckPageStatus/parametersToEnterBlank.png" /> -->
+                        <h3>Checking the Status of a Page</h3>
+                        <p>To check the status of page at a specific URL, do the following steps:</p>
+                        <ol>
+                            <li>Enter the following parameters:</li>
+                            <img src="../../plugins/EC-WebSphere/images/CheckPageStatus/parametersToEnter.png" />
+                            <li>Click <b>Run</b>. </li>
+                        </ol>
+                        <p>After the job runs, you can view the results, including the following job details,
+                        which show that the criteria was reached:</p>
+                        <img src="../../plugins/EC-WebSphere/images/CheckPageStatus/checkPageStatus5.png" />
+                        <p>In the <b>CheckPageStatus</b> step, click the Log
+                        icon to see the diagnostic info. The output is similar
+                        to the following diagnostic
+                        report.</p><img src="../../plugins/EC-WebSphere/images/CheckPageStatus/checkPageStatus6.png" />
+                    </div>
+                    <div id="CheckServerStatus">
+                        <a name="CheckServerStatus" id="CheckServerStatus"></a>
+                        <h2>CheckServerStatus</h2>
+                        <p>This procedure checks the status of the specified server URL.</p>
+                        <table class="grid">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="required">Configuration
+                                    Name</td>
+                                    <td>Name of the configuration to use. ElectricFlow gets the
+                                    URL, port, and credentials from this configuration. </td>
+                                </tr>
+                                <tr>
+                                    <td>Maximum Elapsed Time</td>
+                                    <td>The maximum time in seconds
+                                    that the job tries to check into the
+                                    server. When the text box is blank, ElectricFlow interprets this as
+                                    no wait time and checks the URL only one time.</td>
+                                </tr>
+                                <tr>
+                                    <td>Success Criteria</td>
+                                    <td>The expected result
+                                    to be obtained when WebSphere server
+                                    is checked.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <img src="../../plugins/EC-WebSphere/images/CheckServerStatus/CSSparameters.png" />
+                    </div>
+                    <div id="ConfigEJBContainer">
+                        <a name="ConfigEJBContainer" id="ConfigEJBContainer"></a>
+                        <h2>ConfigEJBContainer</h2>
+                        <p>This procedure configures EJB container properites using a Jython script.</p>
+                        <h3>ConfigEJBContainer Parameters</h3>
+                        <table class="grid">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="required">Configuration Name</td>
+                                    <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Wsadmin Absolute Path</td>
+                                    <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                                </tr>
+                                <tr>
+                                    <td>Cell Name</td>
+                                    <td>Name of cell to which EJB container belongs.</td>
+                                </tr>
+                                <tr>
+                                    <td>Node Name</td>
+                                    <td>Name of node to which EJB container belongs.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Server Name</td>
+                                    <td>Name of application server to which EJB container belongs.</td>
+                                </tr>
+                                <tr>
+                                    <td>Passivation Directory</td>
+                                    <td>Specifies the directory into which the container saves the persistent state of passivated stateful session beans. This directory must already exist. It is not automatically created.Default is ${USER_INSTALL_ROOT}/temp.</td>
+                                </tr>
+                                <tr>
+                                    <td>cache Size</td>
+                                    <td>Number of buckets in the active instance list within the EJB container.Input value range - greater than 0. The container selects the next largest prime number equal to or greater than the specified value. Default is 2053.</td>
+                                </tr>
+                                <tr>
+                                    <td>Cleanup Interval</td>
+                                    <td>Interval (in milliseconds)at which the container attempts to remove unused items from the cache. Default is 3000. Allowed range is 0 to 2147483647.</td>
+                                </tr>
+                                <tr>
+                                    <td>Inactive Pool Cleanup Interval</td>
+                                    <td>Specifies the interval at which the container examines the pools of available bean instances to determine if some instances can be deleted to reduce memory usage.</td>
+                                </tr>
+                                <tr>
+                                    <td>Enable stateful session bean fail over using memory-to-memory replication?</td>
+                                    <td>Specifies that failover is enabled for all stateful session beans installed in this EJB container. Replication domains must already exist to failover feature to work.</td>
+                                </tr>
+                                <tr>
+                                    <td>Replication domain</td>
+                                    <td>Specifies the replication domain in which HTTP sessions are replicated.</td>
+                                </tr>
+                                <tr>
+                                    <td>Replication Mode</td>
+                                    <td>The mode specifies whether data is only sent (client), only received (server), or both. Select client if sessions need to be replicated. Select server if sessions need to be stored. Select both client and server if sessions need to be replicated and stored. The default is both.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h3>Configure EJB Container</h3>
+                        <p>To Configure EJB Container, do these steps:</p>
+                        <ol>
+                            <li>Go to the ConfigEJBContainer procedure. </li>
+                            <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/ConfigEJBContainer/EC-WebSphereConfigEJBContainer2.png" />
+                        </ol>
+                        <p>After the job runs, you can view the results, including the following job details, which show that
+                        EJB container is configured successfully:</p>
+                        <img src="../../plugins/EC-WebSphere/images/ConfigEJBContainer/EC-WebSphereConfigEJBContainer3.png" />
+                        <p>In the <b>ConfigEJBContainer</b> step, click the Log icon
+                        to see the diagnostic information. The output is similar to
+                        the following diagnostic
+                        report.</p>
+                        <img src="../../plugins/EC-WebSphere/images/ConfigEJBContainer/EC-WebSphereConfigEJBContainer4.png" />
+                    </div>
+                    <div id="ConfigureSession">
+                        <a name="ConfigureSession" id="ConfigureSession"></a>
+                        <h2>ConfigureSession</h2>
+                        <p>This procedure configures the session management related properties for deployed application.
+                        For more information on each of the parameter, please refer to the <a href="http://www-01.ibm.com/support/knowledgecenter/SSCKBL_8.5.5/com.ibm.websphere.nd.doc/ae/uprs_rsession_manager.html">WebSphere Knowledge Center Page.</a> </p>
+                        <h3>ConfigureSession Parameters</h3>
+                        <table class="grid">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="required">Wsadmin Absolute Path</td>
+                                    <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Configuration Name</td>
+                                    <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Application Name</td>
+                                    <td>Name of the web application to configure.</td>
+                                </tr>
+                                <tr>
+                                    <td>Enable SSL Tracking</td>
+                                    <td>Specifies that session tracking uses Secure Sockets Layer (SSL) information as a session ID. Enabling SSL tracking takes precedence over cookie-based session tracking and URL rewriting.</td>
+                                </tr>
+                                <tr>
+                                    <td>Enable Cookies</td>
+                                    <td>Specifies whether to enable cookies.</td>
+                                </tr>
+                                <tr>
+                                    <td>Enable URL Rewriting</td>
+                                    <td>Specifies whether the session management facility uses rewritten URLs to carry the session IDs. If URL rewriting is enabled, the session management facility recognizes session IDs that arrive in the URL if the encodeURL method is called in the servlet.</td>
+                                </tr>
+                                <tr>
+                                    <td>Enable Protocol Switching</td>
+                                    <td>This option is only applicable when Enable URL rewriting is selected. This option specifies that the session ID is added to a URL when the URL requires a switch from HTTP to HTTPS or from HTTPS to HTTP. If rewriting is enabled, the session ID is required to go between HTTP and HTTPS.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Max in-memory session count</td>
+                                    <td>Specifies the maximum number of sessions to maintain in memory.</td>
+                                </tr>
+                                <tr>
+                                    <td>Allow Overflow</td>
+                                    <td>Specifies whether the number of sessions in memory can exceed the value specified by the Max in-memory session count property. This option is valid only in non-distributed sessions mode.</td>
+                                </tr>
+                                <tr>
+                                    <td>Enable Serialized Session</td>
+                                    <td>If selected, concurrent session access in a given server is not permitted.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Maximum Wait Time</td>
+                                    <td>Specifies the maximum amount of time in seconds a servlet request waits on an HTTP session before continuing execution. The default is 5 seconds. Under normal conditions, a servlet request waiting for access to an HTTP session gets notified by the request that currently owns the given HTTP session when the request finishes.</td>
+                                </tr>
+                                <tr>
+                                    <td>Access Session On Timeout</td>
+                                    <td>Specifies whether the servlet is started normally or aborted in the event of a timeout. If you specify true, the servlet is started normally. If you specify false, the servlet execution aborts and error logs are generated.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Invalid Timeout</td>
+                                    <td>Specifies how long(in minutes) a session can go unused before it is no longer valid.</td>
+                                </tr>
+                                <tr>
+                                    <td>Session Persistence Mode</td>
+                                    <td>Specifies whether to enable session persistence mode.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h3>Configure Session Management for application</h3>
+                        <p>To Configure Session Management for application, do these steps:</p>
+                        <ol>
+                            <li>Go to the ConfigureSession procedure.</li>
+                            <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/ConfigureSession/EC-WebSphereConfigureSession2.png" />
+                        </ol>
+                        <p>After the job runs, you can view the results, including the following job details, which show that
+                        the cluster was created successfully:</p>
+                        <img src="../../plugins/EC-WebSphere/images/ConfigureSession/EC-WebSphereConfigureSession3.png" />
+                        <p>In the <b>ConfigureSession</b> step, click the Log icon
+                        to see the diagnostic information. The output is similar to
+                        the following diagnostic
+                        report.</p>
+                        <img src="../../plugins/EC-WebSphere/images/ConfigureSession/EC-WebSphereConfigureSession4.png" />
+                    </div>
+                    <div id="CreateCluster">
+                        <a name="CreateCluster" id="CreateCluster"></a>
+                        <h2>CreateCluster</h2>
+                        <b>Applicable only for WebSphere Network Deployment installation.</b>
+                        <p>This procedure creates a cluster, adds members to it, and can deploy an application in it using a Jython script.</p>
+                        <h3>CreateCluster Parameters</h3>
+                        <table class="grid">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="required">Wsadmin Absolute Path</td>
+                                    <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Configuration Name</td>
+                                    <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Cell name</td>
+                                    <td>Name of the cell in which to create a new cluster.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Cluster Name</td>
+                                    <td>Name of the new cluster.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Cluster Members</td>
+                                    <td>List of member application servers with their names. For example, server1 on Node01 and server2 on Node02 are members, specify them as Node01=server1,Node02=server2.</td>
+                                </tr>
+                                <tr>
+                                    <td>Deploy Application on new cluster?</td>
+                                    <td>Select the checkbox if you want to deploy an app on new cluster.</td>
+                                </tr>
+                                <tr>
+                                    <td>Commands</td>
+                                    <td>Commands to enter in the wsadmin tool. Enter one command per line.</td>
+                                </tr>
+                                <tr>
+                                    <td>Java Parameters</td>
+                                    <td>Java options to pass to the wsadmin tool, separated by semicolons (:).</td>
+                                </tr>
+                                <tr>
+                                    <td>Classpath</td>
+                                    <td>JARs to pass to the wsdamin classpath. This is a string containing paths with the required JARs, separated by semicolons, to run the wsadmin tool for a specific job, such as <i>c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar</i> or <i>'/MyDir/Myjar.jar;/yourdir/yourdir.jar</i>.</td>
+                                </tr>
+                                <tr>
+                                    <td>Application Name</td>
+                                    <td>Name of the web application to deploy, such as webapp. </td>
+                                </tr>
+                                <tr>
+                                    <td>Application Path</td>
+                                    <td>Absolute path of the application to deploy. Such as, '/path/to/webapp.war' or 'c:/mydir/webapp.war'.</td>
+                                </tr>
+                                <tr>
+                                    <td>Additional Commands</td>
+                                    <td>Additional commands to be entered for wsadmin.</td>
+                                </tr>
+                                <tr>
+                                    <td>Context root</td>
+                                    <td>Context root for webmodules. If left empty, any web contexts defined in the deployment descriptors will get picked up.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h3>Create cluster</h3>
+                        <p>To create new cluster, add application servers as its members and deploy an application on it, do these steps:</p>
+                        <ol>
+                            <li>Go to the CreateCluster procedure.</li>
+                            <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateCluster/EC-WebSphereCreateCluster2.png" />
+                        </ol>
+                        <p>After the job runs, you can view the results, including the following job details, which show that
+                        the cluster was created successfully:</p>
+                        <img src="../../plugins/EC-WebSphere/images/CreateCluster/EC-WebSphereCreateCluster3.png" />
+                        <p>In the <b>CreateCluster</b> step, click the Log icon
+                        to see the diagnostic information. The output is similar to
+                        the following diagnostic
+                        report.</p>
+                        <img src="../../plugins/EC-WebSphere/images/CreateCluster/EC-WebSphereCreateCluster4.png" />
+                    </div>
+                    <div id="CreateDatasource">
+                        <a name="CreateDatasource" id="CreateDatasource"></a>
+                        <h2>CreateDatasource</h2>
+                        <p>The procedure creates a datasource by using a Jython script.</p>
+                        <h3>CreateDatasource Parameters</h3>
+                        <table class="grid">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="required">Configuration Name</td>
+                                    <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Wsadmin Absolute Path</td>
+                                    <td> The absolute path of the wsadmin tool that includes the filename and extension. If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted. Examples of paths are <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">JDBC Provider</td>
+                                    <td>The name of an existing JDBC Provider.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Datasource Name</td>
+                                    <td>The name of the datasource that is unique in the WebSphere domain.</td>
+                                </tr>
+                                <tr>
+                                    <td>Datasource Description</td>
+                                    <td>A description of the datasource.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">JNDI Name</td>
+                                    <td>The JNDI path to which this datasource is bound. </td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Statement Cache Size</td>
+                                    <td>The number of statements that can be cached per connection. The application server caches a statement after that statement is closed.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Authentication Alias Name</td>
+                                    <td>The authentication data alias.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Datasource Helper Class Name</td>
+                                    <td>The datasource helper class name.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>To create a datasource, do the following steps:</p>
+                        <ol>
+                            <li>Go to the CreateDataSource procedure.</li>
+                            <!--  <img src="../../plugins/EC-WebSphere/images/CreateDatasource/EC-WebSphereCreateDatasource1.png" /> -->
+                            <li>Enter the following parameters:</li>
+                            <img src="../../plugins/EC-WebSphere/images/CreateDatasource/EC-WebSphereCreateDatasource2.png" />
+                        </ol>
+                        <p>After the job runs, you can view the results, including the following job details,
+                        which show that the datasource was successfully created:</p>
+                        <img src="../../plugins/EC-WebSphere/images/CreateDatasource/EC-WebSphereCreateDatasource3.png" />
+                        <p>In the <b>CreateDatasource</b> step, click the Log icon
+                        to see the diagnostic information. The output is similar to
+                        the following diagnostic
+                        report.</p><img src="../../plugins/EC-WebSphere/images/CreateDatasource/EC-WebSphereCreateDatasource4.png" />
+                    </div>
+                    <div id="CreateEndToEndMailProvider">
+                        <a name="CreateEndToEndMailProvider" id="CreateEndToEndMailProvider"></a>
+                        <h2>CreateEndToEndMailProvider</h2>
+                        <p>This procedure creates mail provider with a protocol provider, a mail session and a
+                        custom property in the specified scope.</p>
+                        <h3>CreateEndToEndMailProvider Parameters</h3>
+                        <table class="grid">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="required">Configuration Name</td>
+                                    <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Wsadmin Absolute Path</td>
+                                    <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Scope</td>
+                                    <td>Specifies the scope in which the mail provider supports installed mail applications. For example, 'Cell=Cell01,Node=Node01,Server=server1' or 'Cell=Cell01,ServerCluster=testCluster'.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Mail Provider Name</td>
+                                    <td>Specifies the name to be given to the new mail provider.</td>
+                                </tr>
+                                <tr>
+                                    <td>Mail Provider Description</td>
+                                    <td>Specifies the mail provider description.</td>
+                                </tr>
+                                <tr>
+                                    <td>Isolate this mail provider?</td>
+                                    <td>Specifies that this mail provider will be loaded in its own class loader. This allows the application server to load different versions or implementations of the same mail provider in the same Java Virtual Machine. Give each version or implementation of the mail provider a unique class path in following (Mail provider classpath) field that is appropriate for that version or implementation.</td>
+                                </tr>
+                                <tr>
+                                    <td>Mail Provider Classpath</td>
+                                    <td>Specifies the class path to a Java archive (JAR) file that contains the implementation classes for this mail provider.</td>
+                                </tr>
+                                <tr>
+                                    <td>Custom Property Name</td>
+                                    <td>Specifies the name of custom property to create.</td>
+                                </tr>
+                                <tr>
+                                    <td>Custom Property Value</td>
+                                    <td>Specifies the value to associate with this custom property of the resource.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Protocol Provider Name</td>
+                                    <td>Specifies the name to be given to the new protocol provider.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Protocol Provider Class Name</td>
+                                    <td>Specifies the implementation class of this protocol provider.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Protocol Provider Type</td>
+                                    <td>Specifies the type of protocol provider. Valid options are STORE(for incoming protocol provider) or TRANSPORT(for outgoing protocol provider).</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Mail Session Name</td>
+                                    <td>Specifies the administrative name of the JavaMail session object.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Mail Session JNDI Name</td>
+                                    <td>Specifies the Java Naming and Directory Interface (JNDI) name for the resource, including any naming subcontexts.</td>
+                                </tr>
+                                <tr>
+                                    <td>Category</td>
+                                    <td>Optional string to use while classifying or grouping the resources.</td>
+                                </tr>
+                                <tr>
+                                    <td>Enable Debug Mode?</td>
+                                    <td>Select to print the interaction between mail application and mail server as well as the properties of this mail session to System.Out.log file.</td>
+                                </tr>
+                                <tr>
+                                    <td>Mail Session Description</td>
+                                    <td>Specifies optional description for mail session.</td>
+                                </tr>
+                                <tr>
+                                    <td>Incoming Mail Server</td>
+                                    <td>Specifies the host name server that is accessed when receiving mail.</td>
+                                </tr>
+                                <tr>
+                                    <td>Incoming Mail Server Port</td>
+                                    <td>Specifies the port of the server that is accessed when receiving mail.</td>
+                                </tr>
+                                <tr>
+                                    <td>Incoming Mail Server Credentials</td>
+                                    <td>Specifies the credential for the mail account when the incoming mail server requires authentication.</td>
+                                </tr>
+                                <tr>
+                                    <td>Outgoing Mail Server</td>
+                                    <td>Specifies the host name of server that is accessed when sending mail.</td>
+                                </tr>
+                                <tr>
+                                    <td>Outgoing Mail Server Port</td>
+                                    <td>Specifies the port of the server that is accessed when sending mail.</td>
+                                </tr>
+                                <tr>
+                                    <td>Outgoing Mail Server Credential</td>
+                                    <td>Specifies the user of the mail account when the outgoing mail server requires authentication.</td>
+                                </tr>
+                                <tr>
+                                    <td>Enable Strict Internet Address Parsing?</td>
+                                    <td>Specifies whether the recipient addresses must be parsed in strict compliance with RFC 822.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h3>CreateEndToEndMailProvider</h3>
+                        <p>To create a new mail provider along with protocol provider and mail session, do these steps:</p>
+                        <ol>
+                            <li>Go to the CreateEndToEndMailProvider procedure. </li>
+                            <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateEndToEndMailProvider/EC-WebSphereCreateEndToEndMailProvider2.png" />
+                        </ol>
+                        <p>After the job runs, you can view the results, including the following job details, which show that
+                        OSGi application is deployed successfully:</p>
+                        <img src="../../plugins/EC-WebSphere/images/CreateEndToEndMailProvider/EC-WebSphereCreateEndToEndMailProvider3.png" />
+                        <p>In the <b>CreateEndToEndMailProvider</b> step, click the Log icon
+                        to see the diagnostic information. The output is similar to
+                        the following diagnostic
+                        report.</p>
+                        <img src="../../plugins/EC-WebSphere/images/CreateEndToEndMailProvider/EC-WebSphereCreateEndToEndMailProvider4.png" />
+                    </div>
+                    <div id="CreateJDBCProvider">
+                        <a name="CreateJDBCProvider" id="CreateJDBCProvider"></a>
+                        <h2>CreateJDBCProvider</h2>
+                        <p>This procedure creates a JDBC provider using a Jython script.</p>
+                        <h3>CreateJDBCProvider Parameters</h3>
+                        <table class="grid">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="required">Configuration Name</td>
+                                    <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Wsadmin Absolute Path</td>
+                                    <td>The absolute path of the wsadmin tool that includes filename and extension. If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted. Examples are <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">JDBC Provider Name</td>
+                                    <td>The name of the JDBC Provider.</td>
+                                </tr>
+                                <tr>
+                                    <td>JDBC Provider Description</td>
+                                    <td>A description for the JDBC Provider.</td>
+                                </tr>
+                                <tr>
+                                    <td>Cell Scope</td>
+                                    <td>The parent object where the JDBC Provider will be created. This determines the visibility scope of the JDBC Provider. If the <i>Cell Scope</i> is specified and the node and server scopes are not specified, the scope will be the <i>Cell</i>. If the node is specified and the server is not, the scope will be the <i>Node</i>. If the server is specified and the node is not, the scope will be the <i>Server</i>. You must specify the <i>Cell</i>, <i>Node</i>, or <i>Server</i> scope must be provided, such as <i>wsaspluginNode01Cell</i>.</td>
+                                </tr>
+                                <tr>
+                                    <td>Cluster Scope</td>
+                                    <td>When the Cluster Scope is provided, then the scope will be the cluster. i.e: 'cluster1'.</td>
+                                </tr>
+                                <tr>
+                                    <td>Node Scope</td>
+                                    <td>If the <i>Node Scope</i> is specified and the cell and server scopes are not, the scope will be the <i>node</i>. If the <i>Cell Scope</i> is provided and the server is not, the scope will be the <i>node</i>. If the server is provided and the cell is not, the scope will be the <i>server</i>. An example is <i>wsaspluginNode01</i>.</td>
+                                </tr>
+                                <tr>
+                                    <td>Server Scope</td>
+                                    <td>When the <i>Server Scope</i> is provided, the scope will always be <i>node</i> and the <i>server</i>, even if the <i>Node Scope</i> and the <i>Cell Scope</i> are not specified. An example is <i>server1</i>.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Implementation Class Name</td>
+                                    <td>Java class name of the JDBC provider implementation.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Driver Class Path</td>
+                                    <td>A path for the resource provider classes.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h3>Creating a JDBC Providers</h3>
+                        <p>To create a JDBC provider, do these steps:</p>
+                        <ol>
+                            <li>Go to the CreateJDBCProvider procedure.</li>
+                            <!--  <img src="../../plugins/EC-WebSphere/images/CreateJDBCProvider/EC-WebSphereCreateJDBCProvider1.png" /> -->
+                            <li>Enter the following parameters:</li>
+                            <img src="../../plugins/EC-WebSphere/images/CreateJDBCProvider/EC-WebSphereCreateJDBCProvider2.png" />
+                        </ol>
+                        <p>After the job runs, you can view the results, including the following job details,
+                        which show that JDBC provider was successfully created:</p>
+                        <img src="../../plugins/EC-WebSphere/images/CreateJDBCProvider/EC-WebSphereCreateJDBCProvider3.png" />
+                        <p>In the <b>CreateJDBCProvider</b> step, click the Log icon
+                        to see the diagnostic information. The output is similar to
+                        the following diagnostic
+                        report.</p><img src="../../plugins/EC-WebSphere/images/CreateJDBCProvider/EC-WebSphereCreateJDBCProvider4.png" />
+                    </div>
+                    <div id="CreateJMSProvider">
+                        <a name="CreateJMSProvider" id="CreateJMSProvider"></a>
+                        <h2>CreateJMSProvider</h2>
+                        <p>This procedure creates a new JMS provider using a Jython script.</p>
+                        <h3>CreateJMSProvider Parameters</h3>
+                        <table class="grid">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="required">Configuration Name</td>
+                                    <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
+                                </tr>
+                                <tr>
+                                    <td>Wsadmin Absolute Path</td>
+                                    <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Scope</td>
+                                    <td>Specifies a scope of cell, node, server, or cluster for the JMS provider. For example, Cell=Cell01,Node=Node01,Server=server1.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">JMS Provider Name</td>
+                                    <td>Specifies the name to assign to the new JMS provider. </td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Initial Context Factory</td>
+                                    <td>Specifies the Java class name of the initial context factory for the JMS provider.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">JMS provider URL</td>
+                                    <td>Specifies the JMS provider URL for external JNDI lookups.</td>
+                                </tr>
+                                <tr>
+                                    <td>Classpath</td>
+                                    <td>Specifies a list of paths or Java archive (JAR) file names which together form the location for the resource provider classes. Use a semicolon (;) to separate class paths.</td>
+                                </tr>
+                                <tr>
+                                    <td>Description</td>
+                                    <td>Specifies a description of the JMS Provider.</td>
+                                </tr>
+                                <tr>
+                                    <td>Isolated Class Loader</td>
+                                    <td>If set to true, specifies that the resource provider is loaded in its own class loader.</td>
+                                </tr>
+                                <tr>
+                                    <td>Native Path</td>
+                                    <td>Specifies an optional path to any native libraries, such as *.dll and *.so. Native path entries are separated by a semicolon (;).</td>
+                                </tr>
+                                <tr>
+                                    <td>Provider Type</td>
+                                    <td>Specifies the JMS provider type that this JMS provider uses.</td>
+                                </tr>
+                                <tr>
+                                    <td>Property Set</td>
+                                    <td>Specifies resource properties in the following format: [[['name','nameValue1'],['type','typeValue1'],['value','valueValue1']]... [['name','nameValuen'],['type','typeValuen'],['value','valueValuen']]]</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h3>Create JMS Provider</h3>
+                        <p>To create a new JMS provider, do these steps:</p>
+                        <ol>
+                            <li>Go to the CreateJMSProvider procedure. </li>
+                            <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateJMSProvider/EC-WebSphereCreateJMSProvider2.png" />
+                        </ol>
+                    </div>
+                    <div id="CreateMailSession">
+                        <a name="CreateMailSession" id="CreateMailSession"></a>
+                        <h2>CreateMailSession</h2>
+                        <p>This procedure creates a JavaMail session object for default mail provider at specified scope.</p>
+                        <h3>CreateMailSession Parameters</h3>
+                        <table class="grid">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="required">Configuration Name</td>
+                                    <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Wsadmin Absolute Path</td>
+                                    <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Scope</td>
+                                    <td>Specifies the scope in which the mail session supports installed mail applications.For example, 'Cell=Cell01,Node=Node01,Server=server1' or 'Cell=Cell01,ServerCluster=testCluster'.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Mail Session Name</td>
+                                    <td>Specifies the administrative name of the JavaMail session object. </td>
+                                </tr>
+                                <tr>
+                                    <td>Mail Session Description</td>
+                                    <td>Specifies optional description for mail session.</td>
+                                </tr>
+                                <tr>
+                                    <td class="required">Mail Session JNDI Name</td>
+                                    <td>Specifies the Java Naming and Directory Interface (JNDI) name for the resource, including any naming subcontexts.</td>
+                                </tr>
+                                <tr>
+                                    <td>Category</td>
+                                    <td>Optional string to use while classifying or grouping the resources.</td>
+                                </tr>
+                                <tr>
+                                    <td>Enable Debug Mode?</td>
+                                    <td>&gt;Select to print the interaction between mail application and mail server as well as the properties of this mail session to System.Out.log file.</td>
+                                </tr>
+                                <tr>
+                                    <td>Outgoing Mail Server</td>
+                                    <td>Specifies the host name of server that is accessed when sending mail.</td>
+                                </tr>
+                                <tr>
+                                    <td>Outgoing Mail Server Port</td>
+                                    <td>Specifies the port of the server that is accessed when sending mail.</td>
+                                </tr>
+                                <tr>
+                                    <td>Outgoing Mail Server Protocol</td>
+                                    <td>Specifies the protocol to use when sending mail. Valid values are SMTP and SMTP SSL.</td>
+                                </tr>
+                                <tr>
+                                    <td>Outgoing Mail Server Credential</td>
+                                    <td>Specifies the user of the mail account when the outgoing mail server requires authentication.</td>
+                                </tr>
+                                <tr>
+                                    <td>Return E-mail Address</td>
+                                    <td>Represents the Internet email address that, by default, displays in the received message in the From or the Reply-To address. The recipient's reply will come to this address.</td>
+                                </tr>
+                                <tr>
+                                    <td>Incoming Mail Server</td>
+                                    <td>Specifies the host name server that is accessed when receiving mail.</td>
+                                </tr>
+                                <tr>
+                                    <td>Incoming Mail Server Port</td>
+                                    <td>Specifies the port of the server that is accessed when receiving mail.</td>
+                                </tr>
+                                <tr>
+                                    <td>Incoming Mail Server Protocol</td>
+                                    <td>Specifies the protocol to use when receiving mail. Valid values are IMAP, IMAP SSL, POP3, POP3 SSL.</td>
+                                </tr>
+                                <tr>
+                                    <td>Incoming Mail Server Credentials</td>
+                                    <td>Specifies the credential for the mail account when the incoming mail server requires authentication.</td>
+                                </tr>
+                                <tr>
+                                    <td>Enable Strict Internet Address Parsing?</td>
+                                    <td>Specifies whether the recipient addresses must be parsed in strict compliance with RFC 822.</td>
+                                </tr>
+                                <tr>
+                                    <td>Supports ASF</td>
+                                    <td>If set to true, specifies that the JMS provider supports Application Server Facilities (ASF), which provides concurrency and transactional support for applications.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h3>Create Mail Session</h3>
+                        <p>To create a mail session for default mail provider, do these steps:</p>
+                        <ol>
+                            <li>Go to the CreateMailSession procedure. </li>
+                            <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateMailSession/EC-WebSphereCreateMailSession2.png" />
+                        </ol>
+                        <p>After the job runs, you can view the results, including the following job details, which show that
+                        mail session is created successfully:</p>
+                        <img src="../../plugins/EC-WebSphere/images/CreateMailSession/EC-WebSphereCreateMailSession3.png" />
+                        <p>In the <b>CreateMailSession</b> step, click the Log icon
+                        to see the diagnostic information. The output is similar to
+                        the following diagnostic
+                        report.</p>
+                        <img src="../../plugins/EC-WebSphere/images/CreateMailSession/EC-WebSphereCreateMailSession4.png" />
+                    </div>
+                    <div id="CreateOrUpdateJMSQueue"><a name="CreateOrUpdateJMSQueue" id="CreateOrUpdateJMSQueue"></a>
+                    <h2>CreateOrUpdateJMSQueue</h2>
+                    <p>This procedure creates a new JMS Queue or updates an existing JMS Queue.</p>
+                    <h3>CreateOrUpdateJMSQueue Parameters</h3>
                     <table class="grid">
                         <thead>
                             <tr>
@@ -155,1042 +1118,100 @@
                         <tbody>
                             <tr>
                                 <td class="required">Configuration Name</td>
-                                <td>The name of the configuration to create.</td>
+                                <td>                                    
+                                    The name of the configuration to use.
+                                    ElectricFlow gets the URL, port, and credentials from this configuration.
+                                </td>
                             </tr>
                             <tr>
-                                <td>WSAdmin Absolute Path</td>
-                                <td>Absolute path to wsadmin script.</td>
+                                <td class="required">Messaging System Type</td>
+                                <td>
+                                    The name of the messaging provider. Pass in either WMQ or SIB.
+                                </td>
                             </tr>
                             <tr>
-                                <td class="required">Connection Type</td>
-                                <td>Specifies the type of connection to the application server that you want to administer.</td>
+                                <td class="required">Queue Scope</td>
+                                <td>
+                                    Scope of the messaging provider at which the JMS Queue is to be created.
+                                </td>
                             </tr>
                             <tr>
-                                <td class="required">WebSphere Host</td>
-                                <td>Hostname of the WebSphere Application Server to administer using wsadmin tool. For example: 10.200.1.234 or yourWSServer.</td>
+                                <td class="required">Queue Administrative Name</td>
+                                <td>
+                                    The administrative name assigned to this WebSphere MQ messaging provider queue.
+                                </td>
                             </tr>
                             <tr>
-                                <td>WebSphere Connector Port</td>
-                                <td>Port of WebSphere Application server to which wsadmin should connect.Give the port number based on the type of connection you choose.For example, if you want to connect to application server using SOAP connection give the port number of SOAP connector of that server.</td>
+                                <td class="required">Queue Name</td>
+                                <td>
+                                    Name of the Queue.
+                                </td>
                             </tr>
                             <tr>
-                                <td>Login as</td>
-                                <td><i>Username</i>: The user name used by
-                                ElectricFlow to communicate with the
-                                WebSphere server.<br />
-                                <i>Password</i>: The password for
-                                the <i>Username</i>.<br />
-                                <i>Retype Password</i>: Re-enter the
-                                password.</td>
+                                <td class="required">JNDI Name</td>
+                                <td>
+                                    The name used to bind this object into WebSphere Application Server JNDI.
+                                </td>
                             </tr>
                             <tr>
-                                <td>Debug Level</td>
-                                <td>Debug level.</td>
+                                <td>Queue Manager Name</td>
+                                <td>
+                                    Queue manager that hosts the queue.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Queue Administrative Description</td>
+                                <td>
+                                    An administrative description assigned to queue.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Additional Options</td>
+                                <td>
+                                    This parameter can be used to either override defaults or pass
+                                    Custom Properties. <br />
+                                    For example: <br />
+                                    <pre>-ccsid 1208 -readAhead YES</pre>
+                                </td>
                             </tr>
                         </tbody>
-                        </table><img src="../../plugins/EC-WebSphere/images/Config/parameters.png" />
-                </ol>
-                <p>The WebSphere Configurations page now shows the new configuration.</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateConfiguration/NewConfig.png" />
-                <h3>Editing Plugin Configurations</h3>
-                <p>To edit plugin configurations in ElectricFlow,
-                do these steps:</p>
-                <ol>
-                    <li>Go to <b>Administration</b> &gt; <b>Plugins</b> to open the Plugin Manager.</li>
-                    <li>Find the EC-WebSphere row.</li>
-                    <li>Click <b>Configure</b> to open the
-                    WebSphere Configurations page.</li>
-                    <li>Find the configuration that you want to edit.</li>
-                    <li>Click <b>Edit</b>.</li>
-                    <li>Edit the parameters in the configuration.</li>
-                    <li>Click <b>OK</b> to save the modified configuration.</li>
-                    <img src="../../plugins/EC-WebSphere/images/CreateConfiguration/EditConfig.png" />
-                </ol>
-            </div>
-            <h1 id="procedures">Plugin Procedures</h1>
-            <div id="CheckApp">
-                <a name="CheckApp" id="CheckApp"></a>
-                <h2>CheckApp</h2>
-                <p>This procedure checks if a web application is ready by using a
-                Jython script.</p>
-                <p>
-                    The procedure fails, if the application is not ready or it does not exist.
-                </p>
-                <h3>CheckApp Parmeters</h3>
-                <table class="grid">
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="required">Configuration Name</td>
-                            <td>The name of the configuration to use.
-                            ElectricFlow gets the URL, port, and credentials
-                            from this configuration.</td>
-                        </tr>
-                        <tr>
-                            <td>Wsadmin Path</td>
-                            <td>The path of the wsadmin tool that includes the
-                            filename and extension. <br />
-                            Examples: <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Application Name</td>
-                            <td>The name of the web application to
-                            check, such as <i>webapp</i>. </td>
-                        </tr>
-                        <tr>
-                            <td class="required">Application State Checked</td>
-                            <td>
-                                Application State that is being checked, with any applicable retries based on wait time parameter.
-                                Any state that is not the desired state after any applicable retries, will be returned as a failure by the procedure.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Wait Time</td>
-                            <td>
-                                Maximum duration of check application state retries.
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p>To check Application State, do these steps:</p>
-                <ol>
-                    <li>Create procedure.</li>
-                    <li>Create step, choose Plugin, choose CheckApp from procedures picker.</li>
-                    <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CheckApp/ProcedureConfig.png" />
-                </ol>
-                <p>After the job runs, you can view the results, including the following job details:</p>
-                <img src="../../plugins/EC-WebSphere/images/CheckApp/ProcedureResult.png" />
-
-                <p>To check Application State in Flow interface, do these steps:</p>
-                <ol>
-                    <li>Create Pipeline.</li>
-                    <li>Create task.</li>
-                    <li>In task definition choose Plugin and choose following parameters:<p><img src="../../plugins/EC-WebSphere/images/CheckApp/PipelinePicker.png" /></p></li>
-                    <li>Click on arrow.</li>
-                    <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CheckApp/PipelineConfig.png" />
-                </ol>
-                <p>After the pipeline runs, you can view the results, including the following step details:</p>
-                <img src="../../plugins/EC-WebSphere/images/CheckApp/PipelineResult.png" />
-                <p>In the <b>CheckApp</b> step, click the Log icon
-                to see the diagnostic information. The output is similar to
-                the following diagnostic
-                report.</p>
-                <img src="../../plugins/EC-WebSphere/images/CheckApp/ProcedureLog.png" />
-            </div>
-            <div id="CheckNodeStatus">
-                <a name="CheckNodeStatus" id="CheckNodeStatus"></a>
-                <h2>CheckNodeStatus</h2>
-                <b>Applicable only for WebSphere Network Deployment installation.</b>
-                <p>This procedure checks WebSphere node status. It checks Node Agent and all servers associated with node by it's name.</p>
-                <h3>CheckNodeStatus Parameters</h3>
-                <table class="grid">
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Configuration Name</td>
-                            <td>The name of the configuration to use.
-                            ElectricFlow gets the URL, port, and credentials
-                            from this configuration.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Wsadmin Path</td>
-                            <td>The path of the wsadmin tool that includes the
-                            filename and extension. <br />
-                            Examples: <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>. </td>
-                        </tr>
-                        <tr>
-                            <td class="required">Name of the Node</td>
-                            <td>The name of the WebSphere node, which should be checked, e.g. <i>ExampleNode01</i>.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Success Criteria</td>
-                            <td>
-                                Procedure will be finished with success status only if success criteria will be met.
-                                Currently, following success criterias are available:
-                                <ul>
-                                    <li>All node servers are running: All node members(application servers and nodeagent) are running.</li>
-                                    <li>All node servers are NOT running: All node members(application servers and nodeagent) are not running.</li>
-                                    <li>Nodeagent is running: Nodeagent is running. Application servers could be in any state.</li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <img src="../../plugins/EC-WebSphere/images/CheckNodeStatus/CheckNodeStatusParameters.png" />
-            </div>
-            <div id="CheckPageStatus">
-                <a name="CheckPageStatus" id="CheckPageStatus"></a>
-                <h2>CheckPageStatus</h2>
-                <p>This procedure checks the status of the page with the specified URL.</p>
-                <h3>CheckPageStatus Parameters</h3>
-                <table class="grid">
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Credentials to be entered (also referred to as <i>credentialName</i> in the property view)</td>
-                            <td>The credentials required to check the
-                            status of the page. You must enter a <i>Username</i> and <i>Password</i>.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Target URL (also referred to as <i>targeturl</i> in the property view)</td>
-                            <td>The URL of the page to check.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Maximum Elapsed Time (also referred to as <i>maxelapsedtime</i> in the property view)</td>
-                            <td>The maximum time in seconds
-                            that the job tries to check into the
-                            server. When the text box is blank, ElectricFlow interprets this as
-                            no wait time and checks the URL only one time.</td>
-                        </tr>
-                        <tr>
-                            <td>Success Criteria (also referred to as <i>successcriteria</i> in the property view)</td>
-                            <td>The expected result when the page
-                            is checked.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!--  <img src="../../plugins/EC-WebSphere/images/CheckPageStatus/parametersToEnterBlank.png" /> -->
-                <h3>Checking the Status of a Page</h3>
-                <p>To check the status of page at a specific URL, do the following steps:</p>
-                <ol>
-                    <li>Enter the following parameters:</li>
-                    <img src="../../plugins/EC-WebSphere/images/CheckPageStatus/parametersToEnter.png" />
-                    <li>Click <b>Run</b>. </li>
-                </ol>
-                <p>After the job runs, you can view the results, including the following job details,
-                which show that the criteria was reached:</p>
-                <img src="../../plugins/EC-WebSphere/images/CheckPageStatus/checkPageStatus5.png" />
-                <p>In the <b>CheckPageStatus</b> step, click the Log
-                icon to see the diagnostic info. The output is similar
-                to the following diagnostic
-                report.</p><img src="../../plugins/EC-WebSphere/images/CheckPageStatus/checkPageStatus6.png" />
-            </div>
-            <div id="CheckServerStatus">
-                <a name="CheckServerStatus" id="CheckServerStatus"></a>
-                <h2>CheckServerStatus</h2>
-                <p>This procedure checks the status of the specified server URL.</p>
-                <table class="grid">
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="required">Configuration
-                            Name</td>
-                            <td>Name of the configuration to use. ElectricFlow gets the
-                            URL, port, and credentials from this configuration. </td>
-                        </tr>
-                        <tr>
-                            <td>Maximum Elapsed Time</td>
-                            <td>The maximum time in seconds
-                            that the job tries to check into the
-                            server. When the text box is blank, ElectricFlow interprets this as
-                            no wait time and checks the URL only one time.</td>
-                        </tr>
-                        <tr>
-                            <td>Success Criteria</td>
-                            <td>The expected result
-                            to be obtained when WebSphere server
-                            is checked.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <img src="../../plugins/EC-WebSphere/images/CheckServerStatus/CSSparameters.png" />
-            </div>
-            <div id="ConfigEJBContainer">
-                <a name="ConfigEJBContainer" id="ConfigEJBContainer"></a>
-                <h2>ConfigEJBContainer</h2>
-                <p>This procedure configures EJB container properites using a Jython script.</p>
-                <h3>ConfigEJBContainer Parameters</h3>
-                <table class="grid">
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="required">Configuration Name</td>
-                            <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Wsadmin Absolute Path</td>
-                            <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
-                        </tr>
-                        <tr>
-                            <td>Cell Name</td>
-                            <td>Name of cell to which EJB container belongs.</td>
-                        </tr>
-                        <tr>
-                            <td>Node Name</td>
-                            <td>Name of node to which EJB container belongs.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Server Name</td>
-                            <td>Name of application server to which EJB container belongs.</td>
-                        </tr>
-                        <tr>
-                            <td>Passivation Directory</td>
-                            <td>Specifies the directory into which the container saves the persistent state of passivated stateful session beans. This directory must already exist. It is not automatically created.Default is ${USER_INSTALL_ROOT}/temp.</td>
-                        </tr>
-                        <tr>
-                            <td>cache Size</td>
-                            <td>Number of buckets in the active instance list within the EJB container.Input value range - greater than 0. The container selects the next largest prime number equal to or greater than the specified value. Default is 2053.</td>
-                        </tr>
-                        <tr>
-                            <td>Cleanup Interval</td>
-                            <td>Interval (in milliseconds)at which the container attempts to remove unused items from the cache. Default is 3000. Allowed range is 0 to 2147483647.</td>
-                        </tr>
-                        <tr>
-                            <td>Inactive Pool Cleanup Interval</td>
-                            <td>Specifies the interval at which the container examines the pools of available bean instances to determine if some instances can be deleted to reduce memory usage.</td>
-                        </tr>
-                        <tr>
-                            <td>Enable stateful session bean fail over using memory-to-memory replication?</td>
-                            <td>Specifies that failover is enabled for all stateful session beans installed in this EJB container. Replication domains must already exist to failover feature to work.</td>
-                        </tr>
-                        <tr>
-                            <td>Replication domain</td>
-                            <td>Specifies the replication domain in which HTTP sessions are replicated.</td>
-                        </tr>
-                        <tr>
-                            <td>Replication Mode</td>
-                            <td>The mode specifies whether data is only sent (client), only received (server), or both. Select client if sessions need to be replicated. Select server if sessions need to be stored. Select both client and server if sessions need to be replicated and stored. The default is both.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h3>Configure EJB Container</h3>
-                <p>To Configure EJB Container, do these steps:</p>
-                <ol>
-                    <li>Go to the ConfigEJBContainer procedure. </li>
-                    <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/ConfigEJBContainer/EC-WebSphereConfigEJBContainer2.png" />
-                </ol>
-                <p>After the job runs, you can view the results, including the following job details, which show that
-                EJB container is configured successfully:</p>
-                <img src="../../plugins/EC-WebSphere/images/ConfigEJBContainer/EC-WebSphereConfigEJBContainer3.png" />
-                <p>In the <b>ConfigEJBContainer</b> step, click the Log icon
-                to see the diagnostic information. The output is similar to
-                the following diagnostic
-                report.</p>
-                <img src="../../plugins/EC-WebSphere/images/ConfigEJBContainer/EC-WebSphereConfigEJBContainer4.png" />
-            </div>
-            <div id="ConfigureSession">
-                <a name="ConfigureSession" id="ConfigureSession"></a>
-                <h2>ConfigureSession</h2>
-                <p>This procedure configures the session management related properties for deployed application.
-                For more information on each of the parameter, please refer to the <a href="http://www-01.ibm.com/support/knowledgecenter/SSCKBL_8.5.5/com.ibm.websphere.nd.doc/ae/uprs_rsession_manager.html">WebSphere Knowledge Center Page.</a> </p>
-                <h3>ConfigureSession Parameters</h3>
-                <table class="grid">
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="required">Wsadmin Absolute Path</td>
-                            <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Configuration Name</td>
-                            <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Application Name</td>
-                            <td>Name of the web application to configure.</td>
-                        </tr>
-                        <tr>
-                            <td>Enable SSL Tracking</td>
-                            <td>Specifies that session tracking uses Secure Sockets Layer (SSL) information as a session ID. Enabling SSL tracking takes precedence over cookie-based session tracking and URL rewriting.</td>
-                        </tr>
-                        <tr>
-                            <td>Enable Cookies</td>
-                            <td>Specifies whether to enable cookies.</td>
-                        </tr>
-                        <tr>
-                            <td>Enable URL Rewriting</td>
-                            <td>Specifies whether the session management facility uses rewritten URLs to carry the session IDs. If URL rewriting is enabled, the session management facility recognizes session IDs that arrive in the URL if the encodeURL method is called in the servlet.</td>
-                        </tr>
-                        <tr>
-                            <td>Enable Protocol Switching</td>
-                            <td>This option is only applicable when Enable URL rewriting is selected. This option specifies that the session ID is added to a URL when the URL requires a switch from HTTP to HTTPS or from HTTPS to HTTP. If rewriting is enabled, the session ID is required to go between HTTP and HTTPS.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Max in-memory session count</td>
-                            <td>Specifies the maximum number of sessions to maintain in memory.</td>
-                        </tr>
-                        <tr>
-                            <td>Allow Overflow</td>
-                            <td>Specifies whether the number of sessions in memory can exceed the value specified by the Max in-memory session count property. This option is valid only in non-distributed sessions mode.</td>
-                        </tr>
-                        <tr>
-                            <td>Enable Serialized Session</td>
-                            <td>If selected, concurrent session access in a given server is not permitted.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Maximum Wait Time</td>
-                            <td>Specifies the maximum amount of time in seconds a servlet request waits on an HTTP session before continuing execution. The default is 5 seconds. Under normal conditions, a servlet request waiting for access to an HTTP session gets notified by the request that currently owns the given HTTP session when the request finishes.</td>
-                        </tr>
-                        <tr>
-                            <td>Access Session On Timeout</td>
-                            <td>Specifies whether the servlet is started normally or aborted in the event of a timeout. If you specify true, the servlet is started normally. If you specify false, the servlet execution aborts and error logs are generated.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Invalid Timeout</td>
-                            <td>Specifies how long(in minutes) a session can go unused before it is no longer valid.</td>
-                        </tr>
-                        <tr>
-                            <td>Session Persistence Mode</td>
-                            <td>Specifies whether to enable session persistence mode.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h3>Configure Session Management for application</h3>
-                <p>To Configure Session Management for application, do these steps:</p>
-                <ol>
-                    <li>Go to the ConfigureSession procedure.</li>
-                    <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/ConfigureSession/EC-WebSphereConfigureSession2.png" />
-                </ol>
-                <p>After the job runs, you can view the results, including the following job details, which show that
-                the cluster was created successfully:</p>
-                <img src="../../plugins/EC-WebSphere/images/ConfigureSession/EC-WebSphereConfigureSession3.png" />
-                <p>In the <b>ConfigureSession</b> step, click the Log icon
-                to see the diagnostic information. The output is similar to
-                the following diagnostic
-                report.</p>
-                <img src="../../plugins/EC-WebSphere/images/ConfigureSession/EC-WebSphereConfigureSession4.png" />
-            </div>
-            <div id="CreateCluster">
-                <a name="CreateCluster" id="CreateCluster"></a>
-                <h2>CreateCluster</h2>
-                <b>Applicable only for WebSphere Network Deployment installation.</b>
-                <p>This procedure creates a cluster, adds members to it, and can deploy an application in it using a Jython script.</p>
-                <h3>CreateCluster Parameters</h3>
-                <table class="grid">
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="required">Wsadmin Absolute Path</td>
-                            <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Configuration Name</td>
-                            <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Cell name</td>
-                            <td>Name of the cell in which to create a new cluster.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Cluster Name</td>
-                            <td>Name of the new cluster.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Cluster Members</td>
-                            <td>List of member application servers with their names. For example, server1 on Node01 and server2 on Node02 are members, specify them as Node01=server1,Node02=server2.</td>
-                        </tr>
-                        <tr>
-                            <td>Deploy Application on new cluster?</td>
-                            <td>Select the checkbox if you want to deploy an app on new cluster.</td>
-                        </tr>
-                        <tr>
-                            <td>Commands</td>
-                            <td>Commands to enter in the wsadmin tool. Enter one command per line.</td>
-                        </tr>
-                        <tr>
-                            <td>Java Parameters</td>
-                            <td>Java options to pass to the wsadmin tool, separated by semicolons (:).</td>
-                        </tr>
-                        <tr>
-                            <td>Classpath</td>
-                            <td>JARs to pass to the wsdamin classpath. This is a string containing paths with the required JARs, separated by semicolons, to run the wsadmin tool for a specific job, such as <i>c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar</i> or <i>'/MyDir/Myjar.jar;/yourdir/yourdir.jar</i>.</td>
-                        </tr>
-                        <tr>
-                            <td>Application Name</td>
-                            <td>Name of the web application to deploy, such as webapp. </td>
-                        </tr>
-                        <tr>
-                            <td>Application Path</td>
-                            <td>Absolute path of the application to deploy. Such as, '/path/to/webapp.war' or 'c:/mydir/webapp.war'.</td>
-                        </tr>
-                        <tr>
-                            <td>Additional Commands</td>
-                            <td>Additional commands to be entered for wsadmin.</td>
-                        </tr>
-                        <tr>
-                            <td>Context root</td>
-                            <td>Context root for webmodules. If left empty, any web contexts defined in the deployment descriptors will get picked up.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h3>Create cluster</h3>
-                <p>To create new cluster, add application servers as its members and deploy an application on it, do these steps:</p>
-                <ol>
-                    <li>Go to the CreateCluster procedure.</li>
-                    <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateCluster/EC-WebSphereCreateCluster2.png" />
-                </ol>
-                <p>After the job runs, you can view the results, including the following job details, which show that
-                the cluster was created successfully:</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateCluster/EC-WebSphereCreateCluster3.png" />
-                <p>In the <b>CreateCluster</b> step, click the Log icon
-                to see the diagnostic information. The output is similar to
-                the following diagnostic
-                report.</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateCluster/EC-WebSphereCreateCluster4.png" />
-            </div>
-            <div id="CreateDatasource">
-                <a name="CreateDatasource" id="CreateDatasource"></a>
-                <h2>CreateDatasource</h2>
-                <p>The procedure creates a datasource by using a Jython script.</p>
-                <h3>CreateDatasource Parameters</h3>
-                <table class="grid">
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="required">Configuration Name</td>
-                            <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Wsadmin Absolute Path</td>
-                            <td> The absolute path of the wsadmin tool that includes the filename and extension. If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted. Examples of paths are <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">JDBC Provider</td>
-                            <td>The name of an existing JDBC Provider.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Datasource Name</td>
-                            <td>The name of the datasource that is unique in the WebSphere domain.</td>
-                        </tr>
-                        <tr>
-                            <td>Datasource Description</td>
-                            <td>A description of the datasource.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">JNDI Name</td>
-                            <td>The JNDI path to which this datasource is bound. </td>
-                        </tr>
-                        <tr>
-                            <td class="required">Statement Cache Size</td>
-                            <td>The number of statements that can be cached per connection. The application server caches a statement after that statement is closed.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Authentication Alias Name</td>
-                            <td>The authentication data alias.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Datasource Helper Class Name</td>
-                            <td>The datasource helper class name.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p>To create a datasource, do the following steps:</p>
-                <ol>
-                    <li>Go to the CreateDataSource procedure.</li>
-                    <!--  <img src="../../plugins/EC-WebSphere/images/CreateDatasource/EC-WebSphereCreateDatasource1.png" /> -->
-                    <li>Enter the following parameters:</li>
-                    <img src="../../plugins/EC-WebSphere/images/CreateDatasource/EC-WebSphereCreateDatasource2.png" />
-                </ol>
-                <p>After the job runs, you can view the results, including the following job details,
-                which show that the datasource was successfully created:</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateDatasource/EC-WebSphereCreateDatasource3.png" />
-                <p>In the <b>CreateDatasource</b> step, click the Log icon
-                to see the diagnostic information. The output is similar to
-                the following diagnostic
-                report.</p><img src="../../plugins/EC-WebSphere/images/CreateDatasource/EC-WebSphereCreateDatasource4.png" />
-            </div>
-            <div id="CreateEndToEndMailProvider">
-                <a name="CreateEndToEndMailProvider" id="CreateEndToEndMailProvider"></a>
-                <h2>CreateEndToEndMailProvider</h2>
-                <p>This procedure creates mail provider with a protocol provider, a mail session and a
-                custom property in the specified scope.</p>
-                <h3>CreateEndToEndMailProvider Parameters</h3>
-                <table class="grid">
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="required">Configuration Name</td>
-                            <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Wsadmin Absolute Path</td>
-                            <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Scope</td>
-                            <td>Specifies the scope in which the mail provider supports installed mail applications. For example, 'Cell=Cell01,Node=Node01,Server=server1' or 'Cell=Cell01,ServerCluster=testCluster'.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Mail Provider Name</td>
-                            <td>Specifies the name to be given to the new mail provider.</td>
-                        </tr>
-                        <tr>
-                            <td>Mail Provider Description</td>
-                            <td>Specifies the mail provider description.</td>
-                        </tr>
-                        <tr>
-                            <td>Isolate this mail provider?</td>
-                            <td>Specifies that this mail provider will be loaded in its own class loader. This allows the application server to load different versions or implementations of the same mail provider in the same Java Virtual Machine. Give each version or implementation of the mail provider a unique class path in following (Mail provider classpath) field that is appropriate for that version or implementation.</td>
-                        </tr>
-                        <tr>
-                            <td>Mail Provider Classpath</td>
-                            <td>Specifies the class path to a Java archive (JAR) file that contains the implementation classes for this mail provider.</td>
-                        </tr>
-                        <tr>
-                            <td>Custom Property Name</td>
-                            <td>Specifies the name of custom property to create.</td>
-                        </tr>
-                        <tr>
-                            <td>Custom Property Value</td>
-                            <td>Specifies the value to associate with this custom property of the resource.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Protocol Provider Name</td>
-                            <td>Specifies the name to be given to the new protocol provider.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Protocol Provider Class Name</td>
-                            <td>Specifies the implementation class of this protocol provider.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Protocol Provider Type</td>
-                            <td>Specifies the type of protocol provider. Valid options are STORE(for incoming protocol provider) or TRANSPORT(for outgoing protocol provider).</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Mail Session Name</td>
-                            <td>Specifies the administrative name of the JavaMail session object.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Mail Session JNDI Name</td>
-                            <td>Specifies the Java Naming and Directory Interface (JNDI) name for the resource, including any naming subcontexts.</td>
-                        </tr>
-                        <tr>
-                            <td>Category</td>
-                            <td>Optional string to use while classifying or grouping the resources.</td>
-                        </tr>
-                        <tr>
-                            <td>Enable Debug Mode?</td>
-                            <td>Select to print the interaction between mail application and mail server as well as the properties of this mail session to System.Out.log file.</td>
-                        </tr>
-                        <tr>
-                            <td>Mail Session Description</td>
-                            <td>Specifies optional description for mail session.</td>
-                        </tr>
-                        <tr>
-                            <td>Incoming Mail Server</td>
-                            <td>Specifies the host name server that is accessed when receiving mail.</td>
-                        </tr>
-                        <tr>
-                            <td>Incoming Mail Server Port</td>
-                            <td>Specifies the port of the server that is accessed when receiving mail.</td>
-                        </tr>
-                        <tr>
-                            <td>Incoming Mail Server Credentials</td>
-                            <td>Specifies the credential for the mail account when the incoming mail server requires authentication.</td>
-                        </tr>
-                        <tr>
-                            <td>Outgoing Mail Server</td>
-                            <td>Specifies the host name of server that is accessed when sending mail.</td>
-                        </tr>
-                        <tr>
-                            <td>Outgoing Mail Server Port</td>
-                            <td>Specifies the port of the server that is accessed when sending mail.</td>
-                        </tr>
-                        <tr>
-                            <td>Outgoing Mail Server Credential</td>
-                            <td>Specifies the user of the mail account when the outgoing mail server requires authentication.</td>
-                        </tr>
-                        <tr>
-                            <td>Enable Strict Internet Address Parsing?</td>
-                            <td>Specifies whether the recipient addresses must be parsed in strict compliance with RFC 822.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h3>CreateEndToEndMailProvider</h3>
-                <p>To create a new mail provider along with protocol provider and mail session, do these steps:</p>
-                <ol>
-                    <li>Go to the CreateEndToEndMailProvider procedure. </li>
-                    <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateEndToEndMailProvider/EC-WebSphereCreateEndToEndMailProvider2.png" />
-                </ol>
-                <p>After the job runs, you can view the results, including the following job details, which show that
-                OSGi application is deployed successfully:</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateEndToEndMailProvider/EC-WebSphereCreateEndToEndMailProvider3.png" />
-                <p>In the <b>CreateEndToEndMailProvider</b> step, click the Log icon
-                to see the diagnostic information. The output is similar to
-                the following diagnostic
-                report.</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateEndToEndMailProvider/EC-WebSphereCreateEndToEndMailProvider4.png" />
-            </div>
-            <div id="CreateJDBCProvider">
-                <a name="CreateJDBCProvider" id="CreateJDBCProvider"></a>
-                <h2>CreateJDBCProvider</h2>
-                <p>This procedure creates a JDBC provider using a Jython script.</p>
-                <h3>CreateJDBCProvider Parameters</h3>
-                <table class="grid">
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="required">Configuration Name</td>
-                            <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Wsadmin Absolute Path</td>
-                            <td>The absolute path of the wsadmin tool that includes filename and extension. If the path in which wsadmin is stored is in the PATH environmental variable, the absolute path is omitted. Examples are <i>/path/to/wsadmin.sh</i> and <i>wsadmin.bat</i>.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">JDBC Provider Name</td>
-                            <td>The name of the JDBC Provider.</td>
-                        </tr>
-                        <tr>
-                            <td>JDBC Provider Description</td>
-                            <td>A description for the JDBC Provider.</td>
-                        </tr>
-                        <tr>
-                            <td>Cell Scope</td>
-                            <td>The parent object where the JDBC Provider will be created. This determines the visibility scope of the JDBC Provider. If the <i>Cell Scope</i> is specified and the node and server scopes are not specified, the scope will be the <i>Cell</i>. If the node is specified and the server is not, the scope will be the <i>Node</i>. If the server is specified and the node is not, the scope will be the <i>Server</i>. You must specify the <i>Cell</i>, <i>Node</i>, or <i>Server</i> scope must be provided, such as <i>wsaspluginNode01Cell</i>.</td>
-                        </tr>
-                        <tr>
-                            <td>Cluster Scope</td>
-                            <td>When the Cluster Scope is provided, then the scope will be the cluster. i.e: 'cluster1'.</td>
-                        </tr>
-                        <tr>
-                            <td>Node Scope</td>
-                            <td>If the <i>Node Scope</i> is specified and the cell and server scopes are not, the scope will be the <i>node</i>. If the <i>Cell Scope</i> is provided and the server is not, the scope will be the <i>node</i>. If the server is provided and the cell is not, the scope will be the <i>server</i>. An example is <i>wsaspluginNode01</i>.</td>
-                        </tr>
-                        <tr>
-                            <td>Server Scope</td>
-                            <td>When the <i>Server Scope</i> is provided, the scope will always be <i>node</i> and the <i>server</i>, even if the <i>Node Scope</i> and the <i>Cell Scope</i> are not specified. An example is <i>server1</i>.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Implementation Class Name</td>
-                            <td>Java class name of the JDBC provider implementation.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Driver Class Path</td>
-                            <td>A path for the resource provider classes.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h3>Creating a JDBC Providers</h3>
-                <p>To create a JDBC provider, do these steps:</p>
-                <ol>
-                    <li>Go to the CreateJDBCProvider procedure.</li>
-                    <!--  <img src="../../plugins/EC-WebSphere/images/CreateJDBCProvider/EC-WebSphereCreateJDBCProvider1.png" /> -->
-                    <li>Enter the following parameters:</li>
-                    <img src="../../plugins/EC-WebSphere/images/CreateJDBCProvider/EC-WebSphereCreateJDBCProvider2.png" />
-                </ol>
-                <p>After the job runs, you can view the results, including the following job details,
-                which show that JDBC provider was successfully created:</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateJDBCProvider/EC-WebSphereCreateJDBCProvider3.png" />
-                <p>In the <b>CreateJDBCProvider</b> step, click the Log icon
-                to see the diagnostic information. The output is similar to
-                the following diagnostic
-                report.</p><img src="../../plugins/EC-WebSphere/images/CreateJDBCProvider/EC-WebSphereCreateJDBCProvider4.png" />
-            </div>
-            <div id="CreateJMSProvider">
-                <a name="CreateJMSProvider" id="CreateJMSProvider"></a>
-                <h2>CreateJMSProvider</h2>
-                <p>This procedure creates a new JMS provider using a Jython script.</p>
-                <h3>CreateJMSProvider Parameters</h3>
-                <table class="grid">
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="required">Configuration Name</td>
-                            <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
-                        </tr>
-                        <tr>
-                            <td>Wsadmin Absolute Path</td>
-                            <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Scope</td>
-                            <td>Specifies a scope of cell, node, server, or cluster for the JMS provider. For example, Cell=Cell01,Node=Node01,Server=server1.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">JMS Provider Name</td>
-                            <td>Specifies the name to assign to the new JMS provider. </td>
-                        </tr>
-                        <tr>
-                            <td class="required">Initial Context Factory</td>
-                            <td>Specifies the Java class name of the initial context factory for the JMS provider.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">JMS provider URL</td>
-                            <td>Specifies the JMS provider URL for external JNDI lookups.</td>
-                        </tr>
-                        <tr>
-                            <td>Classpath</td>
-                            <td>Specifies a list of paths or Java archive (JAR) file names which together form the location for the resource provider classes. Use a semicolon (;) to separate class paths.</td>
-                        </tr>
-                        <tr>
-                            <td>Description</td>
-                            <td>Specifies a description of the JMS Provider.</td>
-                        </tr>
-                        <tr>
-                            <td>Isolated Class Loader</td>
-                            <td>If set to true, specifies that the resource provider is loaded in its own class loader.</td>
-                        </tr>
-                        <tr>
-                            <td>Native Path</td>
-                            <td>Specifies an optional path to any native libraries, such as *.dll and *.so. Native path entries are separated by a semicolon (;).</td>
-                        </tr>
-                        <tr>
-                            <td>Provider Type</td>
-                            <td>Specifies the JMS provider type that this JMS provider uses.</td>
-                        </tr>
-                        <tr>
-                            <td>Property Set</td>
-                            <td>Specifies resource properties in the following format: [[['name','nameValue1'],['type','typeValue1'],['value','valueValue1']]... [['name','nameValuen'],['type','typeValuen'],['value','valueValuen']]]</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h3>Create JMS Provider</h3>
-                <p>To create a new JMS provider, do these steps:</p>
-                <ol>
-                    <li>Go to the CreateJMSProvider procedure. </li>
-                    <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateJMSProvider/EC-WebSphereCreateJMSProvider2.png" />
-                </ol>
-            </div>
-            <div id="CreateMailSession">
-                <a name="CreateMailSession" id="CreateMailSession"></a>
-                <h2>CreateMailSession</h2>
-                <p>This procedure creates a JavaMail session object for default mail provider at specified scope.</p>
-                <h3>CreateMailSession Parameters</h3>
-                <table class="grid">
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="required">Configuration Name</td>
-                            <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Wsadmin Absolute Path</td>
-                            <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, you can specify only the script name without the full path to it. such as <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Scope</td>
-                            <td>Specifies the scope in which the mail session supports installed mail applications.For example, 'Cell=Cell01,Node=Node01,Server=server1' or 'Cell=Cell01,ServerCluster=testCluster'.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Mail Session Name</td>
-                            <td>Specifies the administrative name of the JavaMail session object. </td>
-                        </tr>
-                        <tr>
-                            <td>Mail Session Description</td>
-                            <td>Specifies optional description for mail session.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Mail Session JNDI Name</td>
-                            <td>Specifies the Java Naming and Directory Interface (JNDI) name for the resource, including any naming subcontexts.</td>
-                        </tr>
-                        <tr>
-                            <td>Category</td>
-                            <td>Optional string to use while classifying or grouping the resources.</td>
-                        </tr>
-                        <tr>
-                            <td>Enable Debug Mode?</td>
-                            <td>&gt;Select to print the interaction between mail application and mail server as well as the properties of this mail session to System.Out.log file.</td>
-                        </tr>
-                        <tr>
-                            <td>Outgoing Mail Server</td>
-                            <td>Specifies the host name of server that is accessed when sending mail.</td>
-                        </tr>
-                        <tr>
-                            <td>Outgoing Mail Server Port</td>
-                            <td>Specifies the port of the server that is accessed when sending mail.</td>
-                        </tr>
-                        <tr>
-                            <td>Outgoing Mail Server Protocol</td>
-                            <td>Specifies the protocol to use when sending mail. Valid values are SMTP and SMTP SSL.</td>
-                        </tr>
-                        <tr>
-                            <td>Outgoing Mail Server Credential</td>
-                            <td>Specifies the user of the mail account when the outgoing mail server requires authentication.</td>
-                        </tr>
-                        <tr>
-                            <td>Return E-mail Address</td>
-                            <td>Represents the Internet email address that, by default, displays in the received message in the From or the Reply-To address. The recipient's reply will come to this address.</td>
-                        </tr>
-                        <tr>
-                            <td>Incoming Mail Server</td>
-                            <td>Specifies the host name server that is accessed when receiving mail.</td>
-                        </tr>
-                        <tr>
-                            <td>Incoming Mail Server Port</td>
-                            <td>Specifies the port of the server that is accessed when receiving mail.</td>
-                        </tr>
-                        <tr>
-                            <td>Incoming Mail Server Protocol</td>
-                            <td>Specifies the protocol to use when receiving mail. Valid values are IMAP, IMAP SSL, POP3, POP3 SSL.</td>
-                        </tr>
-                        <tr>
-                            <td>Incoming Mail Server Credentials</td>
-                            <td>Specifies the credential for the mail account when the incoming mail server requires authentication.</td>
-                        </tr>
-                        <tr>
-                            <td>Enable Strict Internet Address Parsing?</td>
-                            <td>Specifies whether the recipient addresses must be parsed in strict compliance with RFC 822.</td>
-                        </tr>
-                        <tr>
-                            <td>Supports ASF</td>
-                            <td>If set to true, specifies that the JMS provider supports Application Server Facilities (ASF), which provides concurrency and transactional support for applications.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h3>Create Mail Session</h3>
-                <p>To create a mail session for default mail provider, do these steps:</p>
-                <ol>
-                    <li>Go to the CreateMailSession procedure. </li>
-                    <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateMailSession/EC-WebSphereCreateMailSession2.png" />
-                </ol>
-                <p>After the job runs, you can view the results, including the following job details, which show that
-                mail session is created successfully:</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateMailSession/EC-WebSphereCreateMailSession3.png" />
-                <p>In the <b>CreateMailSession</b> step, click the Log icon
-                to see the diagnostic information. The output is similar to
-                the following diagnostic
-                report.</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateMailSession/EC-WebSphereCreateMailSession4.png" />
-            </div>
-
-
-            <div id="CreateOrUpdateJMSQueue">
-                <a name="CreateOrUpdateJMSQueue" id="CreateOrUpdateJMSQueue"></a>
-                <h2>CreateOrUpdateJMSQueue</h2>
-                <p>This procedure creates or updates JMS Queue.</p>
-                <h3>CreateOrUpdateJMSQueue Parameters</h3>
-                <table class="grid">
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="required">Configuration Name</td>
-                            <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Messaging System Type</td>
-                            <td>WMQ or SIB</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Queue Scope</td>
-                            <td>Scope of the messaging provider at which the JMS Queue is to be created.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Queue Administrative Name</td>
-                            <td>The administrative name assigned to this WebSphere MQ messaging provider queue.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Queue Name</td>
-                            <td>Name of the Queue.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">JNDI Name</td>
-                            <td>The name used to bind this object into WebSphere Application Server JNDI.</td>
-                        </tr>
-                        <tr>
-                            <td>Queue Manager Name</td>
-                            <td>Queue manager that hosts the queue.</td>
-                        </tr>
-                        <tr>
-                            <td>Queue Administrative Description</td>
-                            <td>An administrative description assigned to queue.</td>
-                        </tr>
-                        <tr>
-                            <td>Additional Options</td>
-                            <td>Used to either override defaults or pass Custom Properties.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h3>Create or update JMS Queue</h3>
-                <p>To create or update JMS Queue in Commander interface, do these steps:</p>
-                <ol>
-                    <li>Create procedure.</li>
-                    <li>Create step, choose Plugin, choose CreateOrUpdateJMSQueue from procedures picker.</li>
-                    <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/ProcedureConfig.png" />
-                </ol>
-                <p>After the job runs, you can view the results, including the following job details:</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/ProcedureResult.png" />
-
-                <p>To create or update JMS Queue in Flow interface, do these steps:</p>
-                <ol>
-                    <li>Create Pipeline.</li>
-                    <li>Create task.</li>
-                    <li>In task definition choose Plugin and choose following parameters:<p><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/PipelinePicker.png" /></p></li>
-                    <li>Click on arrow.</li>
-                    <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/PipelineConfig.png" />
-                </ol>
-                <p>After the pipeline runs, you can view the results, including the following step details:</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/PipelineResult.png" />
-                
-                <p>In the <b>CreateOrUpdateJMSQueue</b> step, click the Log icon
-                to see the diagnostic information. The output is similar to
-                the following diagnostic
-                report.</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/ProcedureLog.png" />
-            </div>
-
-            <div id="CreateOrUpdateJMSTopic">
-                <a name="CreateOrUpdateJMSQueue" id="CreateOrUpdateJMSTopic"></a>
+                    </table>
+                    <h3>Create or update JMS Queue</h3>
+                    <p>To create or update JMS Queue in Commander interface, do these steps:</p>
+                    <ol>
+                        <li>Create procedure.</li>
+                        <li>Create step, choose Plugin, choose CreateOrUpdateJMSQueue from
+                        procedures picker.</li>
+                        <li>Enter the following parameters: </li>
+                        <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/ProcedureConfig.png" />
+                    </ol>
+                    <p>After the job runs, you can view the results, including the following
+                    job details:</p>
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/ProcedureResult.png" />
+                    <p>To create or update JMS Queue in Flow interface, do these steps:</p>
+                    <ol>
+                        <li>Create Pipeline.</li>
+                        <li>Create task.</li>
+                        <li>In task definition choose Plugin and choose following parameters:
+                        <p><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/PipelinePicker.png" /></p>
+                        </li>
+                        <li>Click on arrow.</li>
+                        <li>Enter the following parameters: </li>
+                        <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/PipelineConfig.png" />
+                    </ol>
+                    <p>After the pipeline runs, you can view the results, including the
+                    following step details:</p>
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/PipelineResult.png" />
+                    <p>In the <b>CreateOrUpdateJMSQueue</b> step, click the Log icon to see
+                    the diagnostic information. The output is similar to the following
+                    diagnostic report.</p>
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/ProcedureLog.png" />
+                </div>
+                <div id="CreateOrUpdateJMSTopic"> <a name="CreateOrUpdateJMSQueue" id="CreateOrUpdateJMSTopic"></a>
                 <h2>CreateOrUpdateJMSTopic</h2>
-                <p>This procedure creates or updates JMS Topic.</p>
+                <p>This procedure creates a new JMS Topic or updates an existing JMS Topic.</p>
                 <h3>CreateOrUpdateJMSTopic Parameters</h3>
-                <table class="grid">
+                <table class="grid" style="width: 936px; height: 418px;">
                     <thead>
                         <tr>
                             <th>Parameter</th>
@@ -1200,35 +1221,53 @@
                     <tbody>
                         <tr>
                             <td class="required">Configuration Name</td>
-                            <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
+                            <td>
+                                The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.
+                            </td>
                         </tr>
                         <tr>
                             <td class="required">Messaging System Type</td>
-                            <td>WMQ or SIB</td>
+                            <td>
+                                The name of the messaging provider. Pass in either WMQ or SIB.
+                            </td>
                         </tr>
                         <tr>
                             <td class="required">Topic Scope</td>
-                            <td>Scope of the messaging provider at which the JMS Topic is to be created.</td>
+                            <td>
+                                Scope of the messaging provider at which the JMS Topic is to be created.
+                            </td>
                         </tr>
                         <tr>
                             <td class="required">Topic Administrative Name</td>
-                            <td>The administrative name assigned to this WebSphere MQ messaging provider topic.</td>
+                            <td>
+                                The administrative name assigned to this WebSphere MQ messaging provider topic.
+                            </td>
                         </tr>
                         <tr>
                             <td class="required">Topic Name</td>
-                            <td>Name of the Topic.</td>
+                            <td>
+                                Name of the Topic.
+                            </td>
                         </tr>
                         <tr>
                             <td class="required">JNDI Name</td>
-                            <td>The name used to bind this object into WebSphere Application Server JNDI.</td>
+                            <td>
+                                The name used to bind this object into WebSphere Application Server JNDI.
+                            </td>
                         </tr>
                         <tr>
                             <td>Topic Administrative Description</td>
-                            <td>An administrative description assigned to topic.</td>
+                            <td>
+                                An administrative description assigned to topic.
+                            </td>
                         </tr>
                         <tr>
                             <td>Additional Options</td>
-                            <td>Used to either override defaults or pass Custom Properties.</td>
+                            <td>                                
+                                This parameter can be used to either override defaults or pass Custom Properties.<br />
+                                For example:<br />
+                                <pre>-readAhead YES -ccsid 1208</pre>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -1236,27 +1275,31 @@
                 <p>To create or update JMS Topic in Commander interface, do these steps:</p>
                 <ol>
                     <li>Create procedure.</li>
-                    <li>Create step, choose Plugin, choose CreateOrUpdateJMSTopic from procedures picker.</li>
-                    <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureConfig.png" />
+                    <li>Create step, choose Plugin, choose CreateOrUpdateJMSTopic from
+                    procedures picker.</li>
+                    <li>Enter the following parameters: </li>
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureConfig.png" />
                 </ol>
-                <p>After the job runs, you can view the results, including the following job details:</p>
+                <p>After the job runs, you can view the results, including the following
+                job details:</p>
                 <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureResult.png" />
-
                 <p>To create or update JMS Topic in Flow interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>
-                    <li>In task definition choose Plugin and choose following parameters:<p><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelinePicker.png" /></p></li>
+                    <li>In task definition choose Plugin and choose following parameters:
+                    <p><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelinePicker.png" /></p>
+                    </li>
                     <li>Click on arrow.</li>
-                    <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineConfig.png" />
+                    <li>Enter the following parameters: </li>
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineConfig.png" />
                 </ol>
-                <p>After the pipeline runs, you can view the results, including the following step details:</p>
+                <p>After the pipeline runs, you can view the results, including the
+                following step details:</p>
                 <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineResult.png" />
-                
-                <p>In the <b>CreateOrUpdateJMSTopic</b> step, click the Log icon
-                to see the diagnostic information. The output is similar to
-                the following diagnostic
-                report.</p>
+                <p>In the <b>CreateOrUpdateJMSTopic</b> step, click the Log icon to see
+                the diagnostic information. The output is similar to the following
+                diagnostic report.</p>
                 <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureLog.png" />
             </div>
             
@@ -1400,7 +1443,7 @@
                 </ol>
                 <p>After the job runs, you can view the results, including the following job details, which show that
                 the JDBC provider was deleted successfully:</p>
-<img src="../../plugins/EC-WebSphere/images/DeleteJDBCProvider/EC-WebSphereDeleteJDBCProvider3.png" />
+                <img src="../../plugins/EC-WebSphere/images/DeleteJDBCProvider/EC-WebSphereDeleteJDBCProvider3.png" />
                 <p>In the <b>DeleteJDBCProvider</b> step, click the Log icon
                 to see the diagnostic information. The output is similar to
                 the following diagnostic
@@ -1408,123 +1451,142 @@
                 <img src="../../plugins/EC-WebSphere/images/DeleteJDBCProvider/EC-WebSphereDeleteJDBCProvider4.png" />
             </div>
 
-            <div id="DeleteJMSQueue">
-                <a name="DeleteJMSQueue" id="DeleteJMSQueue"></a>
-                <h2>DeleteJMSQueue</h2>
-                <p>This procedure deletes JMS Queue.</p>
-                <h3>DeleteJMSQueue Parameters</h3>
-                <table class="grid">
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="required">Configuration Name</td>
-                            <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
-                        </tr>
-
-                        <tr>
-                            <td class="required">Messaging System Type</td>
-                            <td>WMQ or SIB.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Queue Scope</td>
-                            <td>Scope of the messaging provider at which the JMS Queue is to be deleted.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Queue Administrative Name</td>
-                            <td>The administrative name assigned to this WebSphere MQ messaging provider queue.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h3>Delete JMS Queue</h3>
-                <p>To delete JMS Queue in Commander interface, do these steps:</p>
-                <ol>
-                    <li>Create procedure.</li>
-                    <li>Create step, choose Plugin, choose DeleteJMSQueue from procedures picker.</li>
-                    <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/ProcedureConfig.png" />
-                </ol>
-                <p>After the job runs, you can view the results, including the following job details:</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/ProcedureResult.png" />
-
-                <p>To delete JMS Queue in Flow interface, do these steps:</p>
-                <ol>
-                    <li>Create Pipeline.</li>
-                    <li>Create task.</li>
-                    <li>In task definition choose Plugin and choose following parameters:<p><img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/PipelinePicker.png" /></p></li>
-                    <li>Click on arrow.</li>
-                    <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/PipelineConfig.png" />
-                </ol>
-                <p>After the pipeline runs, you can view the results, including the following step details:</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/PipelineResult.png" />
-                
-                <p>In the <b>DeleteJMSQueue</b> step, click the Log icon
-                to see the diagnostic information. The output is similar to
-                the following diagnostic
-                report.</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/ProcedureLog.png" />
+            <div id="DeleteJMSQueue"><a name="DeleteJMSQueue" id="DeleteJMSQueue"></a>
+            <h2>DeleteJMSQueue</h2>
+            <p>This procedure deletes an existing JMS Queue.</p>
+            <h3>DeleteJMSQueue Parameters</h3>
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>
+                            The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="required">Messaging System Type</td>
+                        <td>
+                            The name of the messaging provider. Pass in either WMQ or SIB.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="required">Queue Scope</td>
+                        <td>
+                            Scope of the messaging provider at which the JMS Queue is to be deleted.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="required">Queue Administrative Name</td>
+                        <td>
+                            The administrative name assigned to this WebSphere MQ messaging provider queue.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>Delete JMS Queue</h3>
+            <p>To delete JMS Queue in Commander interface, do these steps:</p>
+            <ol>
+                <li>Create procedure.</li>
+                <li>Create step, choose Plugin, choose DeleteJMSQueue from procedures
+                picker.</li>
+                <li>Enter the following parameters: </li>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/ProcedureConfig.png" />
+            </ol>
+            <p>After the job runs, you can view the results, including the following
+            job details:</p>
+            <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/ProcedureResult.png" />
+            <p>To delete JMS Queue in Flow interface, do these steps:</p>
+            <ol>
+                <li>Create Pipeline.</li>
+                <li>Create task.</li>
+                <li>In task definition choose Plugin and choose following parameters:
+                <p><img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/PipelinePicker.png" /></p>
+                </li>
+                <li>Click on arrow.</li>
+                <li>Enter the following parameters: </li>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/PipelineConfig.png" />
+            </ol>
+            <p>After the pipeline runs, you can view the results, including the
+            following step details:</p>
+            <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/PipelineResult.png" />
+            <p>In the <b>DeleteJMSQueue</b> step, click the Log icon to see the
+            diagnostic information. The output is similar to the following
+            diagnostic report.</p>
+            <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/ProcedureLog.png" />
             </div>
-            <div id="DeleteJMSTopic">
-                <a name="DeleteJMSTopic" id="DeleteJMSTopic"></a>
-                <h2>DeleteJMSTopic</h2>
-                <p>This procedure deletes JMS Topic.</p>
-                <h3>DeleteJMSTopic Parameters</h3>
-                <table class="grid">
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="required">Configuration Name</td>
-                            <td>The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.</td>
-                        </tr>
-
-                        <tr>
-                            <td class="required">Messaging System Type</td>
-                            <td>WMQ or SIB.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Topic Scope</td>
-                            <td>Scope of the messaging provider at which the JMS Topic is to be deleted.</td>
-                        </tr>
-                        <tr>
-                            <td class="required">Topic Administrative Name</td>
-                            <td>The administrative name assigned to this WebSphere MQ messaging provider topic.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h3>Delete JMS Topic</h3>
-                <p>To delete JMS Topic in Commander interface, do these steps:</p>
-                <ol>
-                    <li>Create procedure.</li>
-                    <li>Create step, choose Plugin, choose DeleteJMSTopic from procedures picker.</li>
-                    <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/ProcedureConfig.png" />
-                </ol>
-                <p>After the job runs, you can view the results, including the following job details:</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/ProcedureResult.png" />
-
-                <p>To delete JMS Topic in Flow interface, do these steps:</p>
-                <ol>
-                    <li>Create Pipeline.</li>
-                    <li>Create task.</li>
-                    <li>In task definition choose Plugin and choose following parameters:<p><img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/PipelinePicker.png" /></p></li>
-                    <li>Click on arrow.</li>
-                    <li>Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/PipelineConfig.png" />
-                </ol>
-                <p>After the pipeline runs, you can view the results, including the following step details:</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/PipelineResult.png" />
-                
-                <p>In the <b>DeleteJMSTopic</b> step, click the Log icon
-                to see the diagnostic information. The output is similar to
-                the following diagnostic
-                report.</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/ProcedureLog.png" />
+            <div id="DeleteJMSTopic"> <a name="DeleteJMSTopic" id="DeleteJMSTopic"></a>
+            <h2>DeleteJMSTopic</h2>
+            <p>This procedure deletes an existing JMS Topic.</p>
+            <h3>DeleteJMSTopic Parameters</h3>
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>
+                            The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="required">Messaging System Type</td>
+                        <td>
+                            The name of the messaging provider. Pass in either WMQ or SIB.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="required">Topic Scope</td>
+                        <td>Scope of the messaging provider at which the JMS Topic is to
+                        be deleted.</td>
+                    </tr>
+                    <tr>
+                        <td class="required">Topic Administrative Name</td>
+                        <td>
+                            The administrative name assigned to this WebSphere MQ messaging provider topic.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>Delete JMS Topic</h3>
+            <p>To delete JMS Topic in Commander interface, do these steps:</p>
+            <ol>
+                <li>Create procedure.</li>
+                <li>Create step, choose Plugin, choose DeleteJMSTopic from procedures
+                picker.</li>
+                <li>Enter the following parameters: </li>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/ProcedureConfig.png" />
+            </ol>
+            <p>After the job runs, you can view the results, including the following
+            job details:</p>
+            <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/ProcedureResult.png" />
+            <p>To delete JMS Topic in Flow interface, do these steps:</p>
+            <ol>
+                <li>Create Pipeline.</li>
+                <li>Create task.</li>
+                <li>In task definition choose Plugin and choose following parameters:
+                <p><img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/PipelinePicker.png" /></p>
+                </li>
+                <li>Click on arrow.</li>
+                <li>Enter the following parameters: </li>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/PipelineConfig.png" />
+            </ol>
+            <p>After the pipeline runs, you can view the results, including the
+            following step details:</p>
+            <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/PipelineResult.png" />
+            <p>In the <b>DeleteJMSTopic</b> step, click the Log icon to see the
+            diagnostic information. The output is similar to the following
+            diagnostic report.</p>
+            <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/ProcedureLog.png" />
             </div>
             <div id="DeployApp">
                 <a name="DeployApp" id="DeployApp"></a>
@@ -2786,7 +2848,7 @@
             </ul>
             <h2>Features and Enhancements in EC-WebSphere 2.1.0.</h2>
             <!-- List any new or revised procedures, new features, enhancements to existing features, changed behaviour, and documentation updates for the latest release.
-Replace the examples below with actual new or changed items.-->
+                 Replace the examples below with actual new or changed items.-->
             <ul>
                 <!--When available, add these to the list: New procedures in the plugin, Updates for existing procedures, and Changed behaviour and functionality
                 -->

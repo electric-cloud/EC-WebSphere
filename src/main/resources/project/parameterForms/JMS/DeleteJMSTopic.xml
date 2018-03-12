@@ -34,7 +34,7 @@ limitations under the License.
         <option><name>WMQ</name><value>WMQ</value></option>
         <option><name>SIB</name><value>SIB</value></option>
         <required>1</required>
-        <documentation>WMQ or SIB.</documentation>
+        <documentation>The name of the messaging provider. Pass in either WMQ or SIB.</documentation>
     </formElement>
     <formElement>
         <label>Topic Scope:</label>

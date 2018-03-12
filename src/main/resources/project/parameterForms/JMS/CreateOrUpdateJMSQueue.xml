@@ -34,7 +34,7 @@ limitations under the License.
         <option><name>WMQ</name><value>WMQ</value></option>
         <option><name>SIB</name><value>SIB</value></option>
         <required>1</required>
-        <documentation>WMQ or SIB.</documentation>
+        <documentation>The name of the messaging provider. Pass in either WMQ or SIB.</documentation>
     </formElement>
     <formElement>
         <label>Queue Scope:</label>
@@ -83,6 +83,9 @@ limitations under the License.
         <property>additionalOptions</property>
         <type>textarea</type>
         <required>0</required>
-        <documentation>Used to either override defaults or pass Custom Properties.</documentation>
+        <documentation>
+            This parameter can be used to either override defaults or pass Custom Properties. 
+            For example: -ccsid 1208 -readAhead YES
+        </documentation>
     </formElement>
 </editor>
