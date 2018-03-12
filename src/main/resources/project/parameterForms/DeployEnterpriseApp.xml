@@ -50,7 +50,9 @@
         <type>entry</type>
         <label>Application Path:</label>
         <property>apppath</property>
-        <documentation>Absolute path of the application to deploy. i.e: '/path/to/webapp.war' or 'c:/mydir/webapp.war'.</documentation>
+        <documentation>
+            Absolute path of the application to deploy. Use "/" as the path separator on both linux and windows i.e: '/path/to/webapp.war' or 'c:/mydir/webapp.war'.
+        </documentation>
         <required>1</required>
     </formElement>
 

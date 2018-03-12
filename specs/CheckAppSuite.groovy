@@ -64,7 +64,7 @@ class CheckApp extends PluginTestHelper {
     @Shared
     def preProcedureName = 'DeployEnterpriseApp'    
     @Shared
-    def сonfigName = 'specConfig'
+    def configName = 'specConfig'
     @Shared
     def configNames = [
         empty: '',
@@ -165,7 +165,7 @@ class CheckApp extends PluginTestHelper {
    def doSetupSpec() {
         def wasResourceName = System.getenv('WAS_HOST');
         createWorkspace(wasResourceName)
-        createConfiguration(сonfigName, [doNotRecreate: false])
+        createConfiguration(configName, [doNotRecreate: false])
         importProject(testProjectName, 'dsl/CheckApp/Procedure.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         importProject(testProjectName, 'dsl/CheckApp/DeployEnterpriseApp.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
 
@@ -226,8 +226,8 @@ class CheckApp extends PluginTestHelper {
          */
 
         wsConfigName    | wsAdminAbsolutePath               | wsApplicationName                             | wsAppPath                 | wsAdditionalDeploymentParameters                      | wsContextRoot                             | wsTargetServer            | wsSynchronizeActiveNode               | wsDistributeApplication            | wsStartApplication               | expectedOutcome
-        сonfigName      | wsAdminAbsolutePathes.correct     | wsApplicationNames.notRunningApplicationHW    | wsAppPathes.helloWorld    | wsAdditionalDeploymentParameterses.correctHellowWorld | wsContextRoots.notRunningApplicationHW    | wsTargetServers.correct   | wsSynchronizeActiveNodes.unchecked    | wsDistributeApplications.unchecked | wsStartApplications.unchecked    | 'success'
-        сonfigName      | wsAdminAbsolutePathes.correct     | wsApplicationNames.runningApplicationHW       | wsAppPathes.helloWorld    | wsAdditionalDeploymentParameterses.correctHellowWorld | wsContextRoots.runningApplicationHW       | wsTargetServers.correct   | wsSynchronizeActiveNodes.checked      | wsDistributeApplications.checked   | wsStartApplications.checked      | 'success'
+        configName      | wsAdminAbsolutePathes.correct     | wsApplicationNames.notRunningApplicationHW    | wsAppPathes.helloWorld    | wsAdditionalDeploymentParameterses.correctHellowWorld | wsContextRoots.notRunningApplicationHW    | wsTargetServers.correct   | wsSynchronizeActiveNodes.unchecked    | wsDistributeApplications.unchecked | wsStartApplications.unchecked    | 'success'
+        configName      | wsAdminAbsolutePathes.correct     | wsApplicationNames.runningApplicationHW       | wsAppPathes.helloWorld    | wsAdditionalDeploymentParameterses.correctHellowWorld | wsContextRoots.runningApplicationHW       | wsTargetServers.correct   | wsSynchronizeActiveNodes.checked      | wsDistributeApplications.checked   | wsStartApplications.checked      | 'success'
     }
 
 
@@ -264,12 +264,12 @@ class CheckApp extends PluginTestHelper {
 
         where:
         wsConfigName      | wsAdminAbsolutePath             | wsApplicationName                           | wsApplicationState               | tTime    | expectedOutcome
-        сonfigName        | wsAdminAbsolutePathes.empty     | wsApplicationNames.notExistApplicationHW    | wsApplicationStates.notExist     | '0'      | 'success'
-        сonfigName        | wsAdminAbsolutePathes.correct   | wsApplicationNames.notRunningApplicationHW  | wsApplicationStates.ready        | '0'      | 'success'
-        сonfigName        | wsAdminAbsolutePathes.empty     | wsApplicationNames.notRunningApplicationHW  | wsApplicationStates.notRunning   | '0'      | 'success'
-        сonfigName        | wsAdminAbsolutePathes.empty     | wsApplicationNames.runningApplicationHW     | wsApplicationStates.exist        | '0'      | 'success'
-        сonfigName        | wsAdminAbsolutePathes.correct   | wsApplicationNames.runningApplicationHW     | wsApplicationStates.ready        | '0'      | 'success'
-        сonfigName        | wsAdminAbsolutePathes.empty     | wsApplicationNames.runningApplicationHW     | wsApplicationStates.running      | '100'    | 'success'
+        configName        | wsAdminAbsolutePathes.empty     | wsApplicationNames.notExistApplicationHW    | wsApplicationStates.notExist     | '0'      | 'success'
+        configName        | wsAdminAbsolutePathes.correct   | wsApplicationNames.notRunningApplicationHW  | wsApplicationStates.ready        | '0'      | 'success'
+        configName        | wsAdminAbsolutePathes.empty     | wsApplicationNames.notRunningApplicationHW  | wsApplicationStates.notRunning   | '0'      | 'success'
+        configName        | wsAdminAbsolutePathes.empty     | wsApplicationNames.runningApplicationHW     | wsApplicationStates.exist        | '0'      | 'success'
+        configName        | wsAdminAbsolutePathes.correct   | wsApplicationNames.runningApplicationHW     | wsApplicationStates.ready        | '0'      | 'success'
+        configName        | wsAdminAbsolutePathes.empty     | wsApplicationNames.runningApplicationHW     | wsApplicationStates.running      | '100'    | 'success'
    }
 
     @Unroll
@@ -306,13 +306,13 @@ class CheckApp extends PluginTestHelper {
         where:
         wsConfigName            | wsAdminAbsolutePath               | wsApplicationName                             | wsApplicationState              | tTime      | expectedOutcome
         'specConfig-Incorrect'  | wsAdminAbsolutePathes.empty       | wsApplicationNames.notExistApplicationHW      | wsApplicationStates.exist       | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.incorrect   | wsApplicationNames.notExistApplicationHW      | wsApplicationStates.exist       | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.notRunningApplicationHW    | wsApplicationStates.notExist    | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.notRunningApplicationHW    | wsApplicationStates.notReady    | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW       | wsApplicationStates.notRunning  | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.correct     | wsApplicationNames.notRunningApplicationHW    | wsApplicationStates.running     | '0'        | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW       | wsApplicationStates.running     | '-1'       | 'error'
-        сonfigName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW       | wsApplicationStates.running     | 'abs'      | 'error'
+        configName              | wsAdminAbsolutePathes.incorrect   | wsApplicationNames.notExistApplicationHW      | wsApplicationStates.exist       | '0'        | 'error'
+        configName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.notRunningApplicationHW    | wsApplicationStates.notExist    | '0'        | 'error'
+        configName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.notRunningApplicationHW    | wsApplicationStates.notReady    | '0'        | 'error'
+        configName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW       | wsApplicationStates.notRunning  | '0'        | 'error'
+        configName              | wsAdminAbsolutePathes.correct     | wsApplicationNames.notRunningApplicationHW    | wsApplicationStates.running     | '0'        | 'error'
+        configName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW       | wsApplicationStates.running     | '-1'       | 'error'
+        configName              | wsAdminAbsolutePathes.empty       | wsApplicationNames.runningApplicationHW       | wsApplicationStates.running     | 'abs'      | 'error'
    }
 
     def runProcedure(def parameters) {
