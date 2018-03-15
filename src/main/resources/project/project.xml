@@ -6,6 +6,83 @@
     <description>Integration with WebSphere</description>
     <workspaceName />
     <propertySheet>
+        <!-- CEV-17558 improvements -->
+        <property>
+            <propertyName>ec_config</propertyName>
+            <description/>
+            <propertySheet>
+                <!-- WebSphere doesn't have custom GWT logic. Setting it for plugin context -->
+                <property>
+                    <propertyName>ec_formXmlCompliant</propertyName>
+                    <value>true</value>
+                </property>
+                <property>
+                    <propertyName>configLocation</propertyName>
+                    <expandable>0</expandable>
+                    <value>websphere_cfgs</value>
+                </property>
+                <property>
+                    <propertyName>fields</propertyName>
+                    <description/>
+                    <propertySheet>
+                        <property>
+                            <propertyName>websphere_url</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>label</propertyName>
+                                    <value>WebSphere Host</value>
+                                </property>
+                                <property>
+                                    <propertyName>order</propertyName>
+                                    <value>1</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+                        <property>
+                            <propertyName>websphere_port</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>label</propertyName>
+                                    <value>WebSphere Connector Port</value>
+                                </property>
+                                <property>
+                                    <propertyName>order</propertyName>
+                                    <value>2</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+                        <property>
+                            <propertyName>conntype</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>label</propertyName>
+                                    <value>Connection Type</value>
+                                </property>
+                                <property>
+                                    <propertyName>order</propertyName>
+                                    <value>3</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+                        <property>
+                            <propertyName>wsadminabspath</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>label</propertyName>
+                                    <value>WSAdmin Absolute Path</value>
+                                </property>
+                                <property>
+                                    <propertyName>order</propertyName>
+                                    <value>4</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+                    </propertySheet>
+                </property>
+            </propertySheet>
+        </property>
+        <!-- End of CEV-17558 improvements -->
+
         <!--Begin Discovery metadata -->
         <property>
             <propertyName>ec_discovery</propertyName>

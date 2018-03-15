@@ -2733,6 +2733,10 @@
                 <img src="../../plugins/EC-WebSphere/images/ModifyApplicationClassLoader/EC-WebSphereModifyApplicationClassLoader4.png" />
             </div>
             <h1 id="rns">Release Notes</h1>
+            <h2>@PLUGIN_KEY@ 2.3.1</h2>
+            <ul>
+                <li>Internal improvements for 8.3 release.</li>
+            </ul>
             <h2>@PLUGIN_KEY@ 2.3.0</h2>
             <ul>
                 <li>
