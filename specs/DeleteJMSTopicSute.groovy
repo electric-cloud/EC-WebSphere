@@ -140,8 +140,8 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
     @Shared
     def expectedSummaryMessages = [
         empty:                                              "",
-        successDeleteWMQ:                                   "WMQ JMS Topic "+topicAdministrativeNames.correctWMQ+" has been deleted for /"+topicScopes.correctOneNodeVerification+"/ scope",
-        successDeleteSIB:                                   "SIB JMS Topic "+topicAdministrativeNames.correctSIB+" has been deleted for /"+topicScopes.correctOneNodeVerification+"/ scope",        
+        successDeleteWMQ:                                   "WMQ JMS Topic "+topicAdministrativeNames.correctWMQ+" has been deleted for /"+topicScopes.correctOneNodeMessage+"/ scope",
+        successDeleteSIB:                                   "SIB JMS Topic "+topicAdministrativeNames.correctSIB+" has been deleted for /"+topicScopes.correctOneNodeMessage+"/ scope",        
         incorrectConfiguration:                             "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
         incorrectTopicNameWMQ:                              "Resource "+topicAdministrativeNames.incorrect+" with type WMQ_Topic does not exist, can't delete",
         incorrectTopicNameSIB:                              "Resource "+topicAdministrativeNames.incorrect+" with type SIB_Topic does not exist, can't delete",

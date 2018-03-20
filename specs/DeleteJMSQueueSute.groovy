@@ -145,8 +145,8 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     @Shared
     def expectedSummaryMessages = [
         empty:                                              "",
-        successDeleteWMQ:                                   "WMQ JMS Queue "+queueAdministrativeNames.correctWMQ+" has been deleted for /"+queueScopes.correctOneNodeVerification+"/ scope",
-        successDeleteSIB:                                   "SIB JMS Queue "+queueAdministrativeNames.correctSIB+" has been deleted for /"+queueScopes.correctOneNodeVerification+"/ scope",        
+        successDeleteWMQ:                                   "WMQ JMS Queue "+queueAdministrativeNames.correctWMQ+" has been deleted for /"+queueScopes.correctOneNodeMessage+"/ scope",
+        successDeleteSIB:                                   "SIB JMS Queue "+queueAdministrativeNames.correctSIB+" has been deleted for /"+queueScopes.correctOneNodeMessage+"/ scope",        
         incorrectConfiguration:                             "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
         incorrectQueueNameWMQ:                              "Resource "+queueAdministrativeNames.incorrect+" with type WMQ_Queue does not exist, can't delete",
         incorrectQueueNameSIB:                              "Resource "+queueAdministrativeNames.incorrect+" with type SIB_Queue does not exist, can't delete",
