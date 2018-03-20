@@ -204,6 +204,17 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     }
 
     /**
+     * Negative Scenarios
+     */
+
+    @Unroll //Negative Scenarios for delete should be first
+    def "Delete JMS Queue.  Positive and Extended Scenarios" (){
+        when: 'Procedure runs: '
+        then: 'Wait until job is completed: '
+        where: 'The following params will be: '
+    }
+
+    /**
      * Positive Scenarios
      */
 
@@ -231,6 +242,9 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
      */
     //@Unroll
     //def "" ()
+
+
+
 
     /**
      * Additional procedures
