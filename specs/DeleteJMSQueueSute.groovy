@@ -32,7 +32,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
      */
 
     @Shared
-    def testProjectName = 'EC-WebSphere-SystemTests'
+    def testProjectName =   'EC-WebSphere-SystemTests'
     @Shared
     def testProcedureName = 'DeleteJMSQueue'
 
@@ -43,7 +43,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     @Shared
     def checkBoxValues = [
         unchecked: 	'0',
-        checked: 	'1'
+        checked: 	'1',
     ]
 
     /**
@@ -68,20 +68,82 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     ]
 
     /**
+     * Parameters for Test Setup
+     */
+    @Shared
+    def queueNames = [
+        empty: '',
+        correctWMQ: 'MyWMQQueueForDelete',
+        correctSIB: 'MySIBQueueForDelete',
+        incorrect:  'Incorrect queueName'
+    ]
+
+    @Shared
+    def jndiNames = [
+        empty: '',
+        correctWMQ: 'com.jndi.myWMQQueue.ForDelete',
+        correctSIB: 'com.jndi.mySIBQueue.ForDelete',
+        incorrect:  'incorrect jndiNames'
+    ]
+
+    @Shared
+    def queueAdministrativeDescriptions = [
+        empty: '',
+        correctWMQ: 'Some descriptions for My WMQ JMS Queue For Delete',
+        correctSIB: 'Some descriptions for My SIB JMS Queue For Delete',
+    ]
+
+    @Shared
+    def queueManagerNames = [
+        empty:  '',
+        correct:''
+    ]
+
+    @Shared
+    def additionalOptions = [
+        empty:      '',
+        correctWMQ: '-ccsid 1208',
+        correctSIB: '',
+        incorrect:  'incorrect additional options',
+    ]
+
+    /**
      * Procedure Values: test parameters Procedure values
     */
     
     @Shared     // Required Parameter (need incorrect and empty value)
     def pluginConfigurationNames =[
-        empty: '',
-        correctSOAP: 'Web-Sphere-SOAP',
-        correctIPC: 'Web-Sphere-IPC',
-        correctJSR160RMI: 'Web-Sphere-JSR160RMI',
-        correctNone: 'Web-Sphere-None',
-        correctRMI: 'Web-Sphere-RMI', 
-        incorrect: 	'incorrect config Name',
+        empty:              '',
+        correctSOAP:        'Web-Sphere-SOAP',
+        correctIPC:         'Web-Sphere-IPC',
+        correctJSR160RMI:   'Web-Sphere-JSR160RMI',
+        correctNone:        'Web-Sphere-None',
+        correctRMI:         'Web-Sphere-RMI', 
+        incorrect: 	        'incorrect config Name',
     ]
-    
+
+    @Shared // Required Parameter (ComboBox, no need incorrect value the incorrect - empty)
+    def messagingSystemTypes = [
+        empty:      '',
+        correctWMQ: 'WMQ',
+        correctSIB: 'SIB',
+    ]
+
+    @Shared // Required Parameter (need incorrect and empty value)
+    def queueAdministrativeNames = [
+        empty:      '',
+        correctWMQ: 'MyWMQQueue',
+        correctSIB: 'MySIBQueue',
+        incorrect:  'Incorrect Administrative Name'
+    ]
+
+    @Shared // Required Parameter (need incorrect and empty value)
+    def queueScopes = [
+        empty:          '',
+        correctOneNode: 'Node='+wasHost+'Node01',
+        incorrect:      'Node=incorrectScope'
+    ]
+
         // Not required Parameter (no need incorrect)
 
     /**
@@ -97,7 +159,40 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
      */
 
      def doSetupSpec() {
+        def wasResourceName = wasHost
         createWorkspace(wasResourceName)
+        createConfiguration(confignames.correctSOAP, [doNotRecreate: false])
+        createConfiguration(confignames.correctIPC, [doNotRecreate: false])        
+        createConfiguration(confignames.correctJSR160RMI, [doNotRecreate: false])        
+        createConfiguration(confignames.correctNone, [doNotRecreate: false])        
+        createConfiguration(confignames.correctRMI, [doNotRecreate: false])        
+        importProject(testProjectName, 'dsl/CheckCreateOrUpdateJMSQueue/CreateOrUpdateJMSQueue.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
+        importProject(testProjectName, 'dsl/DeleteJMSQueue/DeleteJMSQueue.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
+        def params = [
+            configName:                     pluginConfigurationNames.correctSOAP,
+            messagingSystemType:            messagingSystemTypes.correctWMQ,
+            queueScope:                     queueScopes.correctOneNode,
+            queueAdministrativeName:        queueAdministrativeNames.correctWMQ,
+            queueName:                      queueNames.correctWMQ,
+            jndiName:                       jndiNames.correctWMQ,
+            queueManagerName:               queueManagerNames.correct,
+            queueAdministrativeDescription: queueAdministrativeDescriptions.correctWMQ,
+            additionalOption:               additionalOptions.correctWMQ,
+        ]
+        createQueueForDelete(params)
+        params = [
+            configName:                     pluginConfigurationNames.correctSOAP,
+            messagingSystemType:            messagingSystemTypes.correctSIB,
+            queueScope:                     queueScopes.correctOneNode,
+            queueAdministrativeName:        queueAdministrativeNames.correctSIB,
+            queueName:                      queueNames.correctSIB,
+            jndiName:                       jndiNames.correctSIB,
+            queueManagerName:               queueManagerNames.correct,
+            queueAdministrativeDescription: queueAdministrativeDescriptions.correctSIB,
+            additionalOption:               additionalOptions.correctSIB,
+        ]
+        createQueueForDelete(params)
+        dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
      }
 
     /**
@@ -137,5 +232,47 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     //@Unroll
     //def "" ()
 
+    /**
+     * Additional procedures
+     */
+    //Predefined procedure for Creation Queue
+    def createQueueForDelete(def parameters) {
+        def code = """
+            runProcedure(
+                projectName:                            '$testProjectName',
+                procedureName:                          '$testProcedureName',
+                actualParameter: [
+                    confignameCOUJMSQ:                      '$parameters.configName',
+                    messagingSystemTypeCOUJMSQ:             '$parameters.messagingSystemType',
+                    queueScopeCOUJMSQ:                      '$parameters.queueScope',
+                    queueAdministrativeNameCOUJMSQ:         '$parameters.queueAdministrativeName',
+                    queueNameCOUJMSQ:                       '$parameters.queueName',
+                    jndiNameCOUJMSQ:                        '$parameters.jndiName',
+                    queueManagerNameCOUJMSQ:                '$parameters.queueManagerName',
+                    queueAdministrativeDescriptionCOUJMSQ:  '$parameters.queueAdministrativeDescription',
+                    additionalOptionsCOUJMSQ:               '$parameters.additionalOption',
+                    wasResourceName:                        '$parameters.wasHost'                   
+                ]
+            )
+        """
+        return dsl(code)
+    }
 
+    //Run Test Procedure
+    def runProcedure(def parameters) {
+        def code = """
+            runProcedure(
+                projectName:                    '$testProjectName',
+                procedureName:                  '$testProcedureName',
+                actualParameter: [
+                    confignameDJMSQ:                '$parameters.configName',
+                    messagingSystemTypeDJMSQ:       '$parameters.messagingSystemType',
+                    queueAdministrativeNameDJMSQ:   '$parameters.queueAdministrativeName',
+                    queueScopeDJMSQ:                '$parameters.queueScope',
+                    wasResourceName:                '$parameters.wasHost'                   
+                ]
+            )
+        """
+        return dsl(code)
+    }
 }
