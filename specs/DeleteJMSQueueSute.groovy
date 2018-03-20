@@ -81,8 +81,8 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     @Shared
     def jndiNames = [
         empty: '',
-        correctWMQ: 'com.jndi.myWMQQueue.ForDelete',
-        correctSIB: 'com.jndi.mySIBQueue.ForDelete',
+        correctWMQ: 'com.jndi.myWMQQueueForDelete',
+        correctSIB: 'com.jndi.mySIBQueueForDelete',
         incorrect:  'incorrect jndiNames',
     ]
 
