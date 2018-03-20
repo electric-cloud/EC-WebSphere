@@ -121,9 +121,10 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
 
     @Shared // Required Parameter (need incorrect and empty value)
     def queueScopes = [
-        empty:          '',
-        correctOneNode: 'Node='+wasHost+'Node01',
-        incorrect:      'Node=incorrectScope',
+        empty:                         '',
+        correctOneNode:             'Node='+wasHost+'Node01',
+        incorrect:                  'Node=incorrectScope',
+        correctOneNodeMessage:      'Node:'+wasHost+'Node01',
     ]
 
         // Not required Parameter (no need incorrect)
@@ -144,8 +145,8 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     @Shared
     def expectedSummaryMessages = [
         empty:                                              "",
-        successDeleteWMQ:                                   "WMQ JMS Queue "+queueAdministrativeNames.correctWMQ+" has been deleted for /"+queueScopes.correctOneNode+"/ scope",
-        successDeleteSIB:                                   "SIB JMS Queue "+queueAdministrativeNames.correctSIB+" has been deleted for /"+queueScopes.correctOneNode+"/ scope",
+        successDeleteWMQ:                                   "WMQ JMS Queue "+queueAdministrativeNames.correctWMQ+" has been deleted for /"+queueScopes.correctOneNodeVerification+"/ scope",
+        successDeleteSIB:                                   "SIB JMS Queue "+queueAdministrativeNames.correctSIB+" has been deleted for /"+queueScopes.correctOneNodeVerification+"/ scope",        
         incorrectConfiguration:                             "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
         incorrectQueueNameWMQ:                              "Resource "+queueAdministrativeNames.incorrect+" with type WMQ_Queue does not exist, can't delete",
         incorrectQueueNameSIB:                              "Resource "+queueAdministrativeNames.incorrect+" with type SIB_Queue does not exist, can't delete",
