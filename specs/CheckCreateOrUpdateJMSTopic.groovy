@@ -20,9 +20,9 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         fieldRequired: 'Some message',
         incorrectComfigname: '',
         incorrectMessagingSystemType: '',
-        incorrectQueueScope: '',
-        incorrectQueueAdministrativeName: '',
-        incorrectQueueName: '',
+        incorrectTopicScope: '',
+        incorrectTopicAdministrativeName: '',
+        incorrectTopicName: '',
         incorrectJndiName: ''
     ]
 
@@ -208,7 +208,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
     }
 
     @Unroll
-    def "Create Or Update JMS Topic. Negarive Scenarios"(){
+    def "Create Or Update JMS Topic. Negative Scenarios"(){
 
         when: 'Proceure runs: '
             def runParams = [
