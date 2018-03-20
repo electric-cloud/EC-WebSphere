@@ -60,7 +60,9 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     
     @Shared
     def expectedSummaryMessages = [
-        empty: '',
+        empty:                              '',
+        messagingSystemTypeMismatchSIB_WMQ:     "Resource "+queueNames.correctWMQ+" with type SIB_Queue does not exist, can't delete",
+        messagingSystemTypeMismatchWMQ_SIB:     "Resource "+queueNames.correctSIB+" with type WMQ_Queue does not exist, can't delete", 
     ]
     
     @Shared expectedJobDetailedResults = [
