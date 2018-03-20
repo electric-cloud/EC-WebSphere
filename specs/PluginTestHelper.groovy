@@ -30,14 +30,31 @@ class PluginTestHelper extends PluginSpockTestSupport {
     }
     def getCurrentProcedureName(def jobId){
         assert jobId
-        def currentJobName
+        def currentProcedureName
+        def property = "/myJob/procedureName"
         try {
-            currentJobName = getJobProperty("/myJob/procedureName", jobId)
+            currentProcedureName = getJobProperty(property, jobId)
+            println("Current Procedure Name: " + currentProcedureName)
         } catch (Throwable e) {
-            currentJobName = "Can't retrieve procedure Name; check job: " + jobId
+            logger.debug("Can't retrieve procedure Name; check job: " + jobId)
         }
-        return currentJobName
+        return currentProcedureName
     }
+
+
+    def getJobUpperStepSummary(def jobId){
+        assert jobId
+        def summary
+        def currentProcedureName = getCurrentProcedureName(jobId)
+        def property = "/myJob/jobSteps/$currentProcedureName/summary"
+        try{
+            summary = getJobProperty(property, jobId)
+        } catch (Throwable e) {
+            logger.debug("cannot retrieve lower step summary from the property '$property'")
+        }
+        return summary
+    }
+
 
     def getJobLogs(def jobId) {
         assert jobId
@@ -53,19 +70,6 @@ class PluginTestHelper extends PluginSpockTestSupport {
     def getPipelineLogs(flowRuntimeId) {
         assert flowRuntimeId
         getPipelineProperty('/myPipelineRuntime/debugLogs', flowRuntimeId)
-    }
-
-    def getJobUpperStepSummary(def jobId){
-        assert jobId
-        def summary
-        def currentProcedureName = getCurrentProcedureName(jobId)
-        def property = "/myJob/jobSteps/$currentProcedureName/summary"
-        try{
-            summary = getJobProperty(property, jobId)
-        } catch (Throwable e) {
-            logger.debug("cannot retrieve lower step summary from the property '$property'")
-        }
-        return summary
     }
 
     def runProcedureDsl(dslString) {

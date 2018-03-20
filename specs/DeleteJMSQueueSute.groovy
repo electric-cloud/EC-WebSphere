@@ -35,6 +35,8 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     def testProjectName =   'EC-WebSphere-SystemTests'
     @Shared
     def testProcedureName = 'DeleteJMSQueue'
+    @Shared
+    def preparationProcedureName1 = 'CreateOrUpdateJMSQueue'
 //    currentProcedureName =  testProcedureName
 
     /**
@@ -45,33 +47,6 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     def checkBoxValues = [
         unchecked: 	'0',
         checked: 	'1',
-    ]
-
-    /**
-     * Verification Values: Assert values 
-    */
-
-    @Shared
-    def expectedOutcomes = [
-        success: 	'success',
-        error: 		'error',
-        warning: 	'warning',
-        running: 	'running',
-    ]
-    
-    @Shared
-    def expectedSummaryMessages = [
-        empty:                                              "",
-        incorrectConfiguration:                             "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
-        incorrectQueueNameWMQ:                              "Resource "+queueNames.incorrect+" with type WMQ_Queue does not exist, can't delete",
-        incorrectQueueNameSIB:                              "Resource "+queueNames.incorrect+" with type SIB_Queue does not exist, can't delete",
-        incorrectMessagingSystemTypeMismatchWMQ_SIB:        "Resource "+queueNames.correctWMQ+" with type SIB_Queue does not exist, can't delete",
-        incorrectMessagingSystemTypeMismatchSIB_WMQ:        "Resource "+queueNames.correctSIB+" with type WMQ_Queue does not exist, can't delete",
-        incorrectScope:                                     "target object is required",
-    ]
-    
-    @Shared expectedJobDetailedResults = [
-        empty: '',
     ]
 
     /**
@@ -119,7 +94,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     */
     
     @Shared     // Required Parameter (need incorrect and empty value)
-    def pluginConfigurationNames =[
+    def pluginConfigurationNames = [
         empty:              '',
         correctSOAP:        'Web-Sphere-SOAP',
         correctIPC:         'Web-Sphere-IPC',
@@ -153,6 +128,35 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
 
         // Not required Parameter (no need incorrect)
 
+
+    /**
+     * Verification Values: Assert values 
+    */
+
+    @Shared
+    def expectedOutcomes = [
+        success: 	'success',
+        error: 		'error',
+        warning: 	'warning',
+        running: 	'running',
+    ]
+    
+    @Shared
+    def expectedSummaryMessages = [
+        empty:                                              "",
+        incorrectConfiguration:                             "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
+        incorrectQueueNameWMQ:                              "Resource "+queueNames.incorrect+" with type WMQ_Queue does not exist, can't delete",
+        incorrectQueueNameSIB:                              "Resource "+queueNames.incorrect+" with type SIB_Queue does not exist, can't delete",
+        incorrectMessagingSystemTypeMismatchWMQ_SIB:        "Resource "+queueNames.correctWMQ+" with type SIB_Queue does not exist, can't delete",
+        incorrectMessagingSystemTypeMismatchSIB_WMQ:        "Resource "+queueNames.correctSIB+" with type WMQ_Queue does not exist, can't delete",
+        incorrectScope:                                     "target object is required",
+    ]
+    
+    @Shared expectedJobDetailedResults = [
+        empty: '',
+    ]
+
+
     /**
      * Test Parameters: for Where section 
      */ 
@@ -172,11 +176,11 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
      def doSetupSpec() {
         def wasResourceName = wasHost
         createWorkspace(wasResourceName)
-        createConfiguration(confignames.correctSOAP, [doNotRecreate: false])
-        createConfiguration(confignames.correctIPC, [doNotRecreate: false])        
-        createConfiguration(confignames.correctJSR160RMI, [doNotRecreate: false])        
-        createConfiguration(confignames.correctNone, [doNotRecreate: false])        
-        createConfiguration(confignames.correctRMI, [doNotRecreate: false])        
+        createConfiguration(pluginConfigurationNames.correctSOAP, [doNotRecreate: false])
+        createConfiguration(pluginConfigurationNames.correctIPC, [doNotRecreate: false])        
+        createConfiguration(pluginConfigurationNames.correctJSR160RMI, [doNotRecreate: false])        
+        createConfiguration(pluginConfigurationNames.correctNone, [doNotRecreate: false])        
+        createConfiguration(pluginConfigurationNames.correctRMI, [doNotRecreate: false])        
         importProject(testProjectName, 'dsl/CheckCreateOrUpdateJMSQueue/CreateOrUpdateJMSQueue.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         importProject(testProjectName, 'dsl/DeleteJMSQueue/DeleteJMSQueue.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         def params = [
@@ -189,6 +193,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
             queueManagerName:               queueManagerNames.correct,
             queueAdministrativeDescription: queueAdministrativeDescriptions.correctWMQ,
             additionalOption:               additionalOptions.correctWMQ,
+            wasHost:                        wasHost,
         ]
         createQueueForDelete(params)
         params = [
@@ -201,6 +206,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
             queueManagerName:               queueManagerNames.correct,
             queueAdministrativeDescription: queueAdministrativeDescriptions.correctSIB,
             additionalOption:               additionalOptions.correctSIB,
+            wasHost:                        wasHost,
         ]
         createQueueForDelete(params)
 
@@ -227,6 +233,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
                 messagingSystemType:        messagingSystemType,
                 queueAdministrativeName:    queueAdministrativeName,
                 queueScope:                 queueScope,
+                wasHost:                    wasHost,
             ]
             def result = runProcedure(runParams)
 
@@ -296,7 +303,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
         def code = """
             runProcedure(
                 projectName:                            '$testProjectName',
-                procedureName:                          '$testProcedureName',
+                procedureName:                          '$preparationProcedureName1',
                 actualParameter: [
                     confignameCOUJMSQ:                      '$parameters.pluginConfigurationName',
                     messagingSystemTypeCOUJMSQ:             '$parameters.messagingSystemType',
