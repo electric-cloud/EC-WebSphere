@@ -226,7 +226,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
      */
 
     @Unroll //Negative Scenarios for delete should be first
-    def "Delete JMS Queue.  Positive and Extended Scenarios" (){
+    def "Delete JMS Queue. Negative and Extended Scenarios" (){
         when: 'Procedure runs: '
              def runParams = [
                 pluginConfigurationName:    pluginConfigurationName,
