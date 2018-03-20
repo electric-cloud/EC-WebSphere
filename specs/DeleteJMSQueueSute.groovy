@@ -132,8 +132,8 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     @Shared // Required Parameter (need incorrect and empty value)
     def queueAdministrativeNames = [
         empty:      '',
-        correctWMQ: 'MyWMQQueue',
-        correctSIB: 'MySIBQueue',
+        correctWMQ: 'MyWMQQueueForDelete',
+        correctSIB: 'MySIBQueueForDelete',
         incorrect:  'Incorrect Administrative Name'
     ]
 
