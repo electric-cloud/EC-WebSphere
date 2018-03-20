@@ -53,11 +53,11 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
      * Parameters for Test Setup
      */
     @Shared
-    def queueNames = [
+    def topicNames = [
         empty: '',
         correctWMQ: 'MyWMQTopicForDelete',
         correctSIB: 'MySIBTopicForDelete',
-        incorrect:  'Incorrect queueName',
+        incorrect:  'Incorrect topicName',
     ]
 
     @Shared
@@ -69,14 +69,14 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
     ]
 
     @Shared
-    def queueAdministrativeDescriptions = [
+    def topicAdministrativeDescriptions = [
         empty: '',
         correctWMQ: 'Some descriptions for My WMQ JMS Topic For Delete',
         correctSIB: 'Some descriptions for My SIB JMS Topic For Delete',
     ]
 
     @Shared
-    def queueManagerNames = [
+    def topicManagerNames = [
         empty:  '',
         correct:''
     ]
@@ -84,7 +84,7 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
     @Shared
     def additionalOptions = [
         empty:      '',
-        correctWMQ: '-ccsid 1208',
+        correctWMQ: '-ccsid 819',
         correctSIB: '',
         incorrect:  'incorrect additional options',
     ]
@@ -112,7 +112,7 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
     ]
 
     @Shared // Required Parameter (need incorrect and empty value)
-    def queueAdministrativeNames = [
+    def topicAdministrativeNames = [
         empty:      '',
         correctWMQ: 'MyWMQTopicForDelete',
         correctSIB: 'MySIBTopicForDelete',
@@ -120,7 +120,7 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
     ]
 
     @Shared // Required Parameter (need incorrect and empty value)
-    def queueScopes = [
+    def topicScopes = [
         empty:                         '',
         correctOneNode:             'Node='+wasHost+'Node01',
         incorrect:                  'Node=incorrectScope',
@@ -145,13 +145,13 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
     @Shared
     def expectedSummaryMessages = [
         empty:                                              "",
-        successDeleteWMQ:                                   "WMQ JMS Topic "+queueAdministrativeNames.correctWMQ+" has been deleted for /"+queueScopes.correctOneNodeVerification+"/ scope",
-        successDeleteSIB:                                   "SIB JMS Topic "+queueAdministrativeNames.correctSIB+" has been deleted for /"+queueScopes.correctOneNodeVerification+"/ scope",        
+        successDeleteWMQ:                                   "WMQ JMS Topic "+topicAdministrativeNames.correctWMQ+" has been deleted for /"+topicScopes.correctOneNodeVerification+"/ scope",
+        successDeleteSIB:                                   "SIB JMS Topic "+topicAdministrativeNames.correctSIB+" has been deleted for /"+topicScopes.correctOneNodeVerification+"/ scope",        
         incorrectConfiguration:                             "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
-        incorrectTopicNameWMQ:                              "Resource "+queueAdministrativeNames.incorrect+" with type WMQ_Topic does not exist, can't delete",
-        incorrectTopicNameSIB:                              "Resource "+queueAdministrativeNames.incorrect+" with type SIB_Topic does not exist, can't delete",
-        incorrectMessagingSystemTypeMismatchWMQ_SIB:        "Resource "+queueAdministrativeNames.correctWMQ+" with type SIB_Topic does not exist, can't delete",
-        incorrectMessagingSystemTypeMismatchSIB_WMQ:        "Resource "+queueAdministrativeNames.correctSIB+" with type WMQ_Topic does not exist, can't delete",
+        incorrectTopicNameWMQ:                              "Resource "+topicAdministrativeNames.incorrect+" with type WMQ_Topic does not exist, can't delete",
+        incorrectTopicNameSIB:                              "Resource "+topicAdministrativeNames.incorrect+" with type SIB_Topic does not exist, can't delete",
+        incorrectMessagingSystemTypeMismatchWMQ_SIB:        "Resource "+topicAdministrativeNames.correctWMQ+" with type SIB_Topic does not exist, can't delete",
+        incorrectMessagingSystemTypeMismatchSIB_WMQ:        "Resource "+topicAdministrativeNames.correctSIB+" with type WMQ_Topic does not exist, can't delete",
         incorrectScope:                                     "target object is required",
     ]
     
@@ -169,8 +169,8 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
     def expectedJobDetailedResult
     def pluginConfigurationName
     def messagingSystemType
-    def queueAdministrativeName
-    def queueScope
+    def topicAdministrativeName
+    def topicScope
 
     /**
      * Preparation actions
@@ -183,18 +183,19 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
         createConfiguration(pluginConfigurationNames.correctIPC, [doNotRecreate: false])        
         createConfiguration(pluginConfigurationNames.correctJSR160RMI, [doNotRecreate: false])        
         createConfiguration(pluginConfigurationNames.correctNone, [doNotRecreate: false])        
-        createConfiguration(pluginConfigurationNames.correctRMI, [doNotRecreate: false])        
+        createConfiguration(pluginConfigurationNames.correctRMI, [doNotRecreate: false])       
+        //D:\Repositories\Git\EC-WebSphere\specs\dsl\CheckCreateOrUpdateJMSTopic\CreateOrUpdateJMSTopic.dsl 
         importProject(testProjectName, 'dsl/CheckCreateOrUpdateJMSTopic/CreateOrUpdateJMSTopic.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         importProject(testProjectName, 'dsl/DeleteJMSTopic/DeleteJMSTopic.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         def params = [
             pluginConfigurationName:        pluginConfigurationNames.correctSOAP,
             messagingSystemType:            messagingSystemTypes.correctWMQ,
-            queueScope:                     queueScopes.correctOneNode,
-            queueAdministrativeName:        queueAdministrativeNames.correctWMQ,
-            queueName:                      queueNames.correctWMQ,
+            topicScope:                     topicScopes.correctOneNode,
+            topicAdministrativeName:        topicAdministrativeNames.correctWMQ,
+            topicName:                      topicNames.correctWMQ,
             jndiName:                       jndiNames.correctWMQ,
-            queueManagerName:               queueManagerNames.correct,
-            queueAdministrativeDescription: queueAdministrativeDescriptions.correctWMQ,
+            topicManagerName:               topicManagerNames.correct,
+            topicAdministrativeDescription: topicAdministrativeDescriptions.correctWMQ,
             additionalOption:               additionalOptions.correctWMQ,
             wasHost:                        wasHost,
         ]
@@ -202,12 +203,12 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
         params = [
             pluginConfigurationName:        pluginConfigurationNames.correctSOAP,
             messagingSystemType:            messagingSystemTypes.correctSIB,
-            queueScope:                     queueScopes.correctOneNode,
-            queueAdministrativeName:        queueAdministrativeNames.correctSIB,
-            queueName:                      queueNames.correctSIB,
+            topicScope:                     topicScopes.correctOneNode,
+            topicAdministrativeName:        topicAdministrativeNames.correctSIB,
+            topicName:                      topicNames.correctSIB,
             jndiName:                       jndiNames.correctSIB,
-            queueManagerName:               queueManagerNames.correct,
-            queueAdministrativeDescription: queueAdministrativeDescriptions.correctSIB,
+            topicManagerName:               topicManagerNames.correct,
+            topicAdministrativeDescription: topicAdministrativeDescriptions.correctSIB,
             additionalOption:               additionalOptions.correctSIB,
             wasHost:                        wasHost,
         ]
@@ -234,8 +235,8 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
              def runParams = [
                 pluginConfigurationName:    pluginConfigurationName,
                 messagingSystemType:        messagingSystemType,
-                queueAdministrativeName:    queueAdministrativeName,
-                queueScope:                 queueScope,
+                topicAdministrativeName:    topicAdministrativeName,
+                topicScope:                 topicScope,
                 wasHost:                    wasHost,
             ]
             def result = runProcedure(runParams)
@@ -257,14 +258,14 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
             assert upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | messagingSystemType               | queueAdministrativeName               | queueScope                    | expectedOutcome           | expectedSummaryMessage
-            //pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctWMQ   | queueAdministrativeNames.correctWMQ   | queueScopes.correctOneNode    | expectedOutcomes.error    | expectedSummaryMessages.empty
-            pluginConfigurationNames.incorrect      | messagingSystemTypes.correctSIB   | queueAdministrativeNames.correctWMQ   | queueScopes.correctOneNode    | expectedOutcomes.error    | expectedSummaryMessages.incorrectConfiguration
-            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctSIB   | queueAdministrativeNames.correctWMQ   | queueScopes.correctOneNode    | expectedOutcomes.error    | expectedSummaryMessages.incorrectMessagingSystemTypeMismatchWMQ_SIB            
-            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctWMQ   | queueAdministrativeNames.correctSIB   | queueScopes.correctOneNode    | expectedOutcomes.error    | expectedSummaryMessages.incorrectMessagingSystemTypeMismatchSIB_WMQ
-            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctWMQ   | queueAdministrativeNames.incorrect    | queueScopes.correctOneNode    | expectedOutcomes.error    | expectedSummaryMessages.incorrectTopicNameWMQ
-            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctSIB   | queueAdministrativeNames.incorrect    | queueScopes.correctOneNode    | expectedOutcomes.error    | expectedSummaryMessages.incorrectTopicNameSIB
-            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctWMQ   | queueAdministrativeNames.correctWMQ   | queueScopes.incorrect         | expectedOutcomes.error    | expectedSummaryMessages.incorrectScope
+            pluginConfigurationName                 | messagingSystemType               | topicAdministrativeName               | topicScope                    | expectedOutcome           | expectedSummaryMessage
+            //pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctWMQ   | topicAdministrativeNames.correctWMQ   | topicScopes.correctOneNode    | expectedOutcomes.error    | expectedSummaryMessages.empty
+            pluginConfigurationNames.incorrect      | messagingSystemTypes.correctSIB   | topicAdministrativeNames.correctWMQ   | topicScopes.correctOneNode    | expectedOutcomes.error    | expectedSummaryMessages.incorrectConfiguration
+            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctSIB   | topicAdministrativeNames.correctWMQ   | topicScopes.correctOneNode    | expectedOutcomes.error    | expectedSummaryMessages.incorrectMessagingSystemTypeMismatchWMQ_SIB            
+            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctWMQ   | topicAdministrativeNames.correctSIB   | topicScopes.correctOneNode    | expectedOutcomes.error    | expectedSummaryMessages.incorrectMessagingSystemTypeMismatchSIB_WMQ
+            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctWMQ   | topicAdministrativeNames.incorrect    | topicScopes.correctOneNode    | expectedOutcomes.error    | expectedSummaryMessages.incorrectTopicNameWMQ
+            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctSIB   | topicAdministrativeNames.incorrect    | topicScopes.correctOneNode    | expectedOutcomes.error    | expectedSummaryMessages.incorrectTopicNameSIB
+            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctWMQ   | topicAdministrativeNames.correctWMQ   | topicScopes.incorrect         | expectedOutcomes.error    | expectedSummaryMessages.incorrectScope
     }
 
     /**
@@ -277,8 +278,8 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
              def runParams = [
                 pluginConfigurationName:    pluginConfigurationName,
                 messagingSystemType:        messagingSystemType,
-                queueAdministrativeName:    queueAdministrativeName,
-                queueScope:                 queueScope,
+                topicAdministrativeName:    topicAdministrativeName,
+                topicScope:                 topicScope,
                 wasHost:                    wasHost,
             ]
             def result = runProcedure(runParams)
@@ -300,9 +301,9 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
             assert upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | messagingSystemType               | queueAdministrativeName               | queueScope                    | expectedOutcome           | expectedSummaryMessage
-            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctWMQ   | queueAdministrativeNames.correctWMQ   | queueScopes.correctOneNode    | expectedOutcomes.success  | expectedSummaryMessages.successDeleteWMQ
-            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctSIB   | queueAdministrativeNames.correctSIB   | queueScopes.correctOneNode    | expectedOutcomes.success  | expectedSummaryMessages.successDeleteSIB
+            pluginConfigurationName                 | messagingSystemType               | topicAdministrativeName               | topicScope                    | expectedOutcome           | expectedSummaryMessage
+            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctWMQ   | topicAdministrativeNames.correctWMQ   | topicScopes.correctOneNode    | expectedOutcomes.success  | expectedSummaryMessages.successDeleteWMQ
+            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctSIB   | topicAdministrativeNames.correctSIB   | topicScopes.correctOneNode    | expectedOutcomes.success  | expectedSummaryMessages.successDeleteSIB
 
     }
 
@@ -332,12 +333,12 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
                 actualParameter: [
                     confignameCOUJMST:                      '$parameters.pluginConfigurationName',
                     messagingSystemTypeCOUJMST:             '$parameters.messagingSystemType',
-                    queueScopeCOUJMST:                      '$parameters.queueScope',
-                    queueAdministrativeNameCOUJMST:         '$parameters.queueAdministrativeName',
-                    queueNameCOUJMST:                       '$parameters.queueName',
+                    topicScopeCOUJMST:                      '$parameters.topicScope',
+                    topicAdministrativeNameCOUJMST:         '$parameters.topicAdministrativeName',
+                    topicNameCOUJMST:                       '$parameters.topicName',
                     jndiNameCOUJMST:                        '$parameters.jndiName',
-                    queueManagerNameCOUJMST:                '$parameters.queueManagerName',
-                    queueAdministrativeDescriptionCOUJMST:  '$parameters.queueAdministrativeDescription',
+                    topicManagerNameCOUJMST:                '$parameters.topicManagerName',
+                    topicAdministrativeDescriptionCOUJMST:  '$parameters.topicAdministrativeDescription',
                     additionalOptionsCOUJMST:               '$parameters.additionalOption',
                     wasResourceName:                        '$parameters.wasHost'                   
                 ]
@@ -355,8 +356,8 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
                 actualParameter: [
                     confignameDJMST:                '$parameters.pluginConfigurationName',
                     messagingSystemTypeDJMST:       '$parameters.messagingSystemType',
-                    queueAdministrativeNameDJMST:   '$parameters.queueAdministrativeName',
-                    queueScopeDJMST:                '$parameters.queueScope',
+                    topicAdministrativeNameDJMST:   '$parameters.topicAdministrativeName',
+                    topicScopeDJMST:                '$parameters.topicScope',
                     wasResourceName:                '$parameters.wasHost'                   
                 ]
             )
