@@ -2,6 +2,7 @@ def testProjectName = args.projectName
 def wasResourceName = args.wasResourceName
 project testProjectName
 
+
 procedure 'DeleteJMSTopic', {
   description = ''
   jobNameTemplate = ''
@@ -29,7 +30,7 @@ procedure 'DeleteJMSTopic', {
     type = 'entry'
   }
 
-  formalParameter 'queueAdministrativeNameDJMST', defaultValue: '', {
+  formalParameter 'topicAdministrativeNameDJMST', defaultValue: '', {
     description = ''
     expansionDeferred = '0'
     label = null
@@ -38,7 +39,16 @@ procedure 'DeleteJMSTopic', {
     type = 'entry'
   }
 
-  formalParameter 'queueScopeDJMST', defaultValue: '', {
+  formalParameter 'topicScopeDJMST', defaultValue: '', {
+    description = ''
+    expansionDeferred = '0'
+    label = null
+    orderIndex = null
+    required = '1'
+    type = 'entry'
+  }
+
+  formalParameter 'wasResourceName', defaultValue: '', {
     description = ''
     expansionDeferred = '0'
     label = null
@@ -71,8 +81,8 @@ procedure 'DeleteJMSTopic', {
     workspaceName = '$[wasResourceName]'
     actualParameter 'configname', '$[confignameDJMST]'
     actualParameter 'messagingSystemType', '$[messagingSystemTypeDJMST]'
-    actualParameter 'topicAdministrativeName', '$[queueAdministrativeNameDJMST]'
-    actualParameter 'topicScope', '$[queueScopeDJMST]'
+    actualParameter 'topicAdministrativeName', '$[topicAdministrativeNameDJMST]'
+    actualParameter 'topicScope', '$[topicScopeDJMST]'
   }
 
   // Custom properties
@@ -97,13 +107,19 @@ procedure 'DeleteJMSTopic', {
         formType = 'standard'
       }
 
-      property 'queueAdministrativeNameDJMST', {
+      property 'topicAdministrativeNameDJMST', {
 
         // Custom properties
         formType = 'standard'
       }
 
-      property 'queueScopeDJMST', {
+      property 'topicScopeDJMST', {
+
+        // Custom properties
+        formType = 'standard'
+      }
+
+      property 'wasResourceName', {
 
         // Custom properties
         formType = 'standard'
@@ -111,3 +127,4 @@ procedure 'DeleteJMSTopic', {
     }
   }
 }
+
