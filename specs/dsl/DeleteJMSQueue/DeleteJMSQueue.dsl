@@ -47,8 +47,17 @@ procedure 'DeleteJMSQueue', {
     type = 'entry'
   }
 
-  step 'DeleteJMSQueue', {
+  formalParameter 'wasResourceName', defaultValue: '', {
     description = ''
+    expansionDeferred = '0'
+    label = null
+    orderIndex = null
+    required = '1'
+    type = 'entry'
+  }
+
+  step 'DeleteJMSQueue', {
+    description = 'DJMSQ'
     alwaysRun = '0'
     broadcast = '0'
     command = null
@@ -104,6 +113,12 @@ procedure 'DeleteJMSQueue', {
       }
 
       property 'queueScopeDJMSQ', {
+
+        // Custom properties
+        formType = 'standard'
+      }
+
+      property 'wasResourceName', {
 
         // Custom properties
         formType = 'standard'
