@@ -75,11 +75,6 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
         correctSIB: 'Some descriptions for My SIB JMS Topic For Delete',
     ]
 
-    @Shared
-    def topicManagerNames = [
-        empty:  '',
-        correct:''
-    ]
 
     @Shared
     def additionalOptions = [
@@ -194,7 +189,6 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
             topicAdministrativeName:        topicAdministrativeNames.correctWMQ,
             topicName:                      topicNames.correctWMQ,
             jndiName:                       jndiNames.correctWMQ,
-            topicManagerName:               topicManagerNames.correct,
             topicAdministrativeDescription: topicAdministrativeDescriptions.correctWMQ,
             additionalOption:               additionalOptions.correctWMQ,
             wasHost:                        wasHost,
@@ -207,7 +201,6 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
             topicAdministrativeName:        topicAdministrativeNames.correctSIB,
             topicName:                      topicNames.correctSIB,
             jndiName:                       jndiNames.correctSIB,
-            topicManagerName:               topicManagerNames.correct,
             topicAdministrativeDescription: topicAdministrativeDescriptions.correctSIB,
             additionalOption:               additionalOptions.correctSIB,
             wasHost:                        wasHost,
@@ -337,7 +330,6 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
                     topicAdministrativeNameCOUJMST:         '$parameters.topicAdministrativeName',
                     topicNameCOUJMST:                       '$parameters.topicName',
                     jndiNameCOUJMST:                        '$parameters.jndiName',
-                    topicManagerNameCOUJMST:                '$parameters.topicManagerName',
                     topicAdministrativeDescriptionCOUJMST:  '$parameters.topicAdministrativeDescription',
                     additionalOptionsCOUJMST:               '$parameters.additionalOption',
                     wasResourceName:                        '$parameters.wasHost'                   
