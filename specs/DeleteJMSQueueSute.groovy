@@ -144,7 +144,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     @Shared
     def expectedSummaryMessages = [
         empty:                                              "",
-        successDeleteMWQ:                                   "WMQ JMS Queue "+queueAdministrativeNames.correctWMQ+" has been deleted for /"+queueScopes.correctOneNode+"/ scope",
+        successDeleteWMQ:                                   "WMQ JMS Queue "+queueAdministrativeNames.correctWMQ+" has been deleted for /"+queueScopes.correctOneNode+"/ scope",
         successDeleteSIB:                                   "SIB JMS Queue "+queueAdministrativeNames.correctSIB+" has been deleted for /"+queueScopes.correctOneNode+"/ scope",
         incorrectConfiguration:                             "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
         incorrectQueueNameWMQ:                              "Resource "+queueAdministrativeNames.incorrect+" with type WMQ_Queue does not exist, can't delete",
@@ -300,7 +300,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
 
         where: 'The following params will be: '
             pluginConfigurationName                 | messagingSystemType               | queueAdministrativeName               | queueScope                    | expectedOutcome           | expectedSummaryMessage
-            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctWMQ   | queueAdministrativeNames.correctWMQ   | queueScopes.correctOneNode    | expectedOutcomes.success  | expectedSummaryMessages.successDeleteMWQ
+            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctWMQ   | queueAdministrativeNames.correctWMQ   | queueScopes.correctOneNode    | expectedOutcomes.success  | expectedSummaryMessages.successDeleteWMQ
             pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctSIB   | queueAdministrativeNames.correctSIB   | queueScopes.correctOneNode    | expectedOutcomes.success  | expectedSummaryMessages.successDeleteSIB
 
     }
