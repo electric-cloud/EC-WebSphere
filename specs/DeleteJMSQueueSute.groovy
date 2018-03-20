@@ -75,7 +75,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
         empty: '',
         correctWMQ: 'MyWMQQueueForDelete',
         correctSIB: 'MySIBQueueForDelete',
-        incorrect:  'Incorrect queueName'
+        incorrect:  'Incorrect queueName',
     ]
 
     @Shared
@@ -83,7 +83,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
         empty: '',
         correctWMQ: 'com.jndi.myWMQQueue.ForDelete',
         correctSIB: 'com.jndi.mySIBQueue.ForDelete',
-        incorrect:  'incorrect jndiNames'
+        incorrect:  'incorrect jndiNames',
     ]
 
     @Shared
@@ -134,14 +134,14 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
         empty:      '',
         correctWMQ: 'MyWMQQueueForDelete',
         correctSIB: 'MySIBQueueForDelete',
-        incorrect:  'Incorrect Administrative Name'
+        incorrect:  'Incorrect Administrative Name',
     ]
 
     @Shared // Required Parameter (need incorrect and empty value)
     def queueScopes = [
         empty:          '',
         correctOneNode: 'Node='+wasHost+'Node01',
-        incorrect:      'Node=incorrectScope'
+        incorrect:      'Node=incorrectScope',
     ]
 
         // Not required Parameter (no need incorrect)
