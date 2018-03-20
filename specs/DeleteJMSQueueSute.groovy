@@ -144,6 +144,8 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     @Shared
     def expectedSummaryMessages = [
         empty:                                              "",
+        successDeleteMWQ                                    "WMQ JMS Queue "+queueAdministrativeNames.correctWMQ+" has been deleted for /"+queueScopes.correctOneNode+"/ scope",
+        successDeleteSIB                                    "SIB JMS Queue "+queueAdministrativeNames.correctSIB+" has been deleted for /"+queueScopes.correctOneNode+"/ scope",
         incorrectConfiguration:                             "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
         incorrectQueueNameWMQ:                              "Resource "+queueAdministrativeNames.incorrect+" with type WMQ_Queue does not exist, can't delete",
         incorrectQueueNameSIB:                              "Resource "+queueAdministrativeNames.incorrect+" with type SIB_Queue does not exist, can't delete",
@@ -268,8 +270,40 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
      * Positive Scenarios
      */
 
-    //@Unroll
-    //def "" ()
+    @Unroll
+    def "Delete JMS Queue. Positive and Extended Scenarios" () {
+        when: 'Procedure runs: '
+             def runParams = [
+                pluginConfigurationName:    pluginConfigurationName,
+                messagingSystemType:        messagingSystemType,
+                queueAdministrativeName:    queueAdministrativeName,
+                queueScope:                 queueScope,
+                wasHost:                    wasHost,
+            ]
+            def result = runProcedure(runParams)
+
+        then: 'Wait until job is completed: '
+            waitUntil {
+                try {
+                    jobCompleted(result)
+                } catch (Exception e) {
+                println e.getMessage()
+                }
+            }
+            def outcome = getJobProperty('/myJob/outcome', result.jobId)
+            def debugLog = getJobLogs(result.jobId)
+            println "Procedure log:\n$debugLog\n"
+            def upperStepSummary = getJobUpperStepSummary(result.jobId)
+
+            assert outcome == expectedOutcome
+            assert upperStepSummary.contains(expectedSummaryMessage)
+
+        where: 'The following params will be: '
+            pluginConfigurationName                 | messagingSystemType               | queueAdministrativeName               | queueScope                    | expectedOutcome           | expectedSummaryMessage
+            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctWMQ   | queueAdministrativeNames.correctWMQ   | queueScopes.correctOneNode    | expectedOutcomes.success  | expectedSummaryMessages.empty
+            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctSIB   | queueAdministrativeNames.correctSIB   | queueScopes.correctOneNode    | expectedOutcomes.success  | expectedSummaryMessages.empty
+
+    }
 
     /**
      * Negative Scenarios
