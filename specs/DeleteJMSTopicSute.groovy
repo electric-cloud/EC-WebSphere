@@ -223,7 +223,7 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
      */
 
     @Unroll //Negative Scenarios for delete should be first
-    def "Delete JMS Topic. Negative and Extended Scenarios" (){
+    def "Delete JMS Topic. Negative Scenarios" (){
         when: 'Procedure runs: '
              def runParams = [
                 pluginConfigurationName:    pluginConfigurationName,
