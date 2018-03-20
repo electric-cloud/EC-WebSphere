@@ -145,10 +145,10 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     def expectedSummaryMessages = [
         empty:                                              "",
         incorrectConfiguration:                             "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
-        incorrectQueueNameWMQ:                              "Resource "+queueNames.incorrect+" with type WMQ_Queue does not exist, can't delete",
-        incorrectQueueNameSIB:                              "Resource "+queueNames.incorrect+" with type SIB_Queue does not exist, can't delete",
-        incorrectMessagingSystemTypeMismatchWMQ_SIB:        "Resource "+queueNames.correctWMQ+" with type SIB_Queue does not exist, can't delete",
-        incorrectMessagingSystemTypeMismatchSIB_WMQ:        "Resource "+queueNames.correctSIB+" with type WMQ_Queue does not exist, can't delete",
+        incorrectQueueNameWMQ:                              "Resource "+queueAdministrativeNames.incorrect+" with type WMQ_Queue does not exist, can't delete",
+        incorrectQueueNameSIB:                              "Resource "+queueAdministrativeNames.incorrect+" with type SIB_Queue does not exist, can't delete",
+        incorrectMessagingSystemTypeMismatchWMQ_SIB:        "Resource "+queueAdministrativeNames.correctWMQ+" with type SIB_Queue does not exist, can't delete",
+        incorrectMessagingSystemTypeMismatchSIB_WMQ:        "Resource "+queueAdministrativeNames.correctSIB+" with type WMQ_Queue does not exist, can't delete",
         incorrectScope:                                     "target object is required",
     ]
     
