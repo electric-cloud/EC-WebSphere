@@ -307,14 +307,6 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     }
 
     /**
-     * Negative Scenarios
-     */
-
-    //@Unroll
-    //def "" ()
-
-
-    /**
      * Extended Scenarios
      */
 
@@ -328,11 +320,8 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     //@Unroll
     //def "" ()
 
-
-
-
     /**
-     * Additional procedures
+     * Additional methods
      */
     //Predefined procedure for Creation Queue
     def createQueueForDelete(def parameters) {
