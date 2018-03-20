@@ -73,7 +73,12 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     
     @Shared     // Required Parameter (need incorrect and empty value)
     def pluginConfigurationNames =[
-        empty: 		'',
+        empty: '',
+        correctSOAP: 'Web-Sphere-SOAP',
+        correctIPC: 'Web-Sphere-IPC',
+        correctJSR160RMI: 'Web-Sphere-JSR160RMI',
+        correctNone: 'Web-Sphere-None',
+        correctRMI: 'Web-Sphere-RMI', 
         incorrect: 	'incorrect config Name',
     ]
     
