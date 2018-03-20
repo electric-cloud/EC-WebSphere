@@ -4,6 +4,8 @@ import com.electriccloud.spec.*
 class PluginTestHelper extends PluginSpockTestSupport {
 
     static def helperProjName = 'WebSphere Helper Project'
+    @Shared
+    def currentProcedureName
 
     def redirectLogs(String parentProperty = '/myJob') {
         def propertyLogName = parentProperty + '/debug_logs'
@@ -26,6 +28,16 @@ class PluginTestHelper extends PluginSpockTestSupport {
         """
         propertyName
     }
+    def getCurrentProcedureName(def jobId){
+        assert jobId
+        def currentJobName
+        try {
+            currentJobName = getJobProperty("/myJob/procedureName", jobId)
+        } catch (Throwable e) {
+            currentJobName = "Can't retrieve procedure Name; check job: " + jobId
+        }
+        return currentJobName
+    }
 
     def getJobLogs(def jobId) {
         assert jobId
@@ -43,18 +55,18 @@ class PluginTestHelper extends PluginSpockTestSupport {
         getPipelineProperty('/myPipelineRuntime/debugLogs', flowRuntimeId)
     }
 
-
-    String getUpperStepSummary() {
-        String property = "/myJob/jobSteps/$procedureName/summary"
-        String summary
-        try {
+    def getJobUpperStepSummary(def jobId){
+        assert jobId
+        def summary
+        def currentProcedureName = getCurrentProcedureName(jobId)
+        def property = "/myJob/jobSteps/$currentProcedureName/summary"
+        try{
             summary = getJobProperty(property, jobId)
         } catch (Throwable e) {
-            logger.debug("Cannot retrieve upper step summary from the property '$property'")
+            logger.debug("cannot retrieve lower step summary from the property '$property'")
         }
         return summary
     }
-
 
     def runProcedureDsl(dslString) {
         redirectLogs()

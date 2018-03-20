@@ -20,9 +20,9 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     def wasPort =       System.getenv('WAS_PORT')
     @Shared
     def wasConnType =   System.getenv('WAS_CONNTYPE')
-    @shared
+    @Shared
     def wasDebug =      System.getenv('WAS_DEBUG')
-    @shared
+    @Shared
     def wasPath =       System.getenv('WSADMIN_PATH')
     @Shared
     def wasAppPath =    System.getenv('WAS_APPPATH')
@@ -35,6 +35,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     def testProjectName =   'EC-WebSphere-SystemTests'
     @Shared
     def testProcedureName = 'DeleteJMSQueue'
+//    currentProcedureName =  testProcedureName
 
     /**
      * Common Maps: General Maps fpr different fields
@@ -60,9 +61,13 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     
     @Shared
     def expectedSummaryMessages = [
-        empty:                                  "",
-        messagingSystemTypeMismatchSIB_WMQ:     "Resource "+queueNames.correctWMQ+" with type SIB_Queue does not exist, can't delete",
-        messagingSystemTypeMismatchWMQ_SIB:     "Resource "+queueNames.correctSIB+" with type WMQ_Queue does not exist, can't delete", 
+        empty:                                              "",
+        incorrectConfiguration:                             "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
+        incorrectQueueNameWMQ:                              "Resource "+queueNames.incorrect+" with type WMQ_Queue does not exist, can't delete",
+        incorrectQueueNameSIB:                              "Resource "+queueNames.incorrect+" with type SIB_Queue does not exist, can't delete",
+        incorrectMessagingSystemTypeMismatchWMQ_SIB:        "Resource "+queueNames.correctWMQ+" with type SIB_Queue does not exist, can't delete",
+        incorrectMessagingSystemTypeMismatchSIB_WMQ:        "Resource "+queueNames.correctSIB+" with type WMQ_Queue does not exist, can't delete",
+        incorrectScope:                                     "target object is required",
     ]
     
     @Shared expectedJobDetailedResults = [
@@ -155,6 +160,10 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     def expectedOutcome
     def expectedSummaryMessage
     def expectedJobDetailedResult
+    def pluginConfigurationName
+    def messagingSystemType
+    def queueAdministrativeName
+    def queueScope
 
     /**
      * Preparation actions
@@ -171,7 +180,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
         importProject(testProjectName, 'dsl/CheckCreateOrUpdateJMSQueue/CreateOrUpdateJMSQueue.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         importProject(testProjectName, 'dsl/DeleteJMSQueue/DeleteJMSQueue.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         def params = [
-            configName:                     pluginConfigurationNames.correctSOAP,
+            pluginConfigurationName:        pluginConfigurationNames.correctSOAP,
             messagingSystemType:            messagingSystemTypes.correctWMQ,
             queueScope:                     queueScopes.correctOneNode,
             queueAdministrativeName:        queueAdministrativeNames.correctWMQ,
@@ -183,7 +192,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
         ]
         createQueueForDelete(params)
         params = [
-            configName:                     pluginConfigurationNames.correctSOAP,
+            pluginConfigurationName:        pluginConfigurationNames.correctSOAP,
             messagingSystemType:            messagingSystemTypes.correctSIB,
             queueScope:                     queueScopes.correctOneNode,
             queueAdministrativeName:        queueAdministrativeNames.correctSIB,
@@ -194,6 +203,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
             additionalOption:               additionalOptions.correctSIB,
         ]
         createQueueForDelete(params)
+
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
      }
 
@@ -212,8 +222,38 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     @Unroll //Negative Scenarios for delete should be first
     def "Delete JMS Queue.  Positive and Extended Scenarios" (){
         when: 'Procedure runs: '
+             def runParams = [
+                pluginConfigurationName:    pluginConfigurationName,
+                messagingSystemType:        messagingSystemType,
+                queueAdministrativeName:    queueAdministrativeName,
+                queueScope:                 queueScope,
+            ]
+            def result = runProcedure(runParams)
+
         then: 'Wait until job is completed: '
+            waitUntil {
+                try {
+                    jobCompleted(result)
+                } catch (Exception e) {
+                println e.getMessage()
+                }
+            }
+            def outcome = getJobProperty('/myJob/outcome', result.jobId)
+            def debugLog = getJobLogs(result.jobId)
+            println "Procedure log:\n$debugLog\n"
+            def upperStepSummary = getJobUpperStepSummary(result.jobId)
+
+            assert outcome == expectedOutcome
+            assert upperStepSummary.contains(expectedSummaryMessage)
+
         where: 'The following params will be: '
+            pluginConfigurationName                 | messagingSystemType               | queueAdministrativeName               | queueScope                    | expectedOutcome           | expectedSummaryMessage
+            //pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctWMQ   | queueAdministrativeNames.correctWMQ   | queueScopes.correctOneNode    | expectedOutcomes.error    | expectedSummaryMessages.empty
+            pluginConfigurationNames.incorrect      | messagingSystemTypes.correctSIB   | queueAdministrativeNames.correctWMQ   | queueScopes.correctOneNode    | expectedOutcomes.error    | expectedSummaryMessages.incorrectMessagingSystemTypeMismatchWMQ_SIB
+            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctWMQ   | queueAdministrativeNames.correctSIB   | queueScopes.correctOneNode    | expectedOutcomes.error    | expectedSummaryMessages.incorrectMessagingSystemTypeMismatchSIB_WMQ
+            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctWMQ   | queueAdministrativeNames.incorrect    | queueScopes.correctOneNode    | expectedOutcomes.error    | expectedSummaryMessages.incorrectQueueNameWMQ
+            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctSIB   | queueAdministrativeNames.incorrect    | queueScopes.correctOneNode    | expectedOutcomes.error    | expectedSummaryMessages.incorrectQueueNameSIB
+            pluginConfigurationNames.correctSOAP    | messagingSystemTypes.correctWMQ   | queueAdministrativeNames.correctWMQ   | queueScopes.incorrect         | expectedOutcomes.error    | expectedSummaryMessages.incorrectScope
     }
 
     /**
@@ -258,7 +298,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
                 projectName:                            '$testProjectName',
                 procedureName:                          '$testProcedureName',
                 actualParameter: [
-                    confignameCOUJMSQ:                      '$parameters.configName',
+                    confignameCOUJMSQ:                      '$parameters.pluginConfigurationName',
                     messagingSystemTypeCOUJMSQ:             '$parameters.messagingSystemType',
                     queueScopeCOUJMSQ:                      '$parameters.queueScope',
                     queueAdministrativeNameCOUJMSQ:         '$parameters.queueAdministrativeName',
@@ -281,7 +321,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
                 projectName:                    '$testProjectName',
                 procedureName:                  '$testProcedureName',
                 actualParameter: [
-                    confignameDJMSQ:                '$parameters.configName',
+                    confignameDJMSQ:                '$parameters.pluginConfigurationName',
                     messagingSystemTypeDJMSQ:       '$parameters.messagingSystemType',
                     queueAdministrativeNameDJMSQ:   '$parameters.queueAdministrativeName',
                     queueScopeDJMSQ:                '$parameters.queueScope',

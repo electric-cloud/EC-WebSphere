@@ -20,9 +20,9 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
     def wasPort =       System.getenv('WAS_PORT')
     @Shared
     def wasConnType =   System.getenv('WAS_CONNTYPE')
-    @shared
+    @Shared
     def wasDebug =      System.getenv('WAS_DEBUG')
-    @shared
+    @Shared
     def wasPath =       System.getenv('WSADMIN_PATH')
     @Shared
     def wasAppPath =    System.getenv('WAS_APPPATH')
