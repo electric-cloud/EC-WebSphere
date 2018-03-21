@@ -36,7 +36,7 @@ class PluginTestHelper extends PluginSpockTestSupport {
             currentProcedureName = getJobProperty(property, jobId)
             println("Current Procedure Name: " + currentProcedureName)
         } catch (Throwable e) {
-            logger.debug("Can't retrieve Run Procedure Name; check job: " + jobId)
+            logger.debug("Can't retrieve Run Procedure Name from the property: '$property'; check job: " + jobId)
         }
         return currentProcedureName
     }
