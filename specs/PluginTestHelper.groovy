@@ -65,6 +65,10 @@ class PluginTestHelper extends PluginSpockTestSupport {
         //TODO
     }
 
+    def downloadArtifact(String sourceUrl, String targetPath) {
+         //TODO
+    }
+
     def getJobLogs(def jobId) {
         assert jobId
         def logs
