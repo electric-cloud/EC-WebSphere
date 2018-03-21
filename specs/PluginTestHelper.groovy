@@ -66,7 +66,6 @@ class PluginTestHelper extends PluginSpockTestSupport {
         def get = new URL(url).openConnection()
         def getRC = get.getResponseCode()
         if(getRC.equals(200)) {
-            //println(get.getInputStream().getText())
             return true
         }
         return false
