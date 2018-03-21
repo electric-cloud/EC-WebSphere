@@ -69,6 +69,10 @@ class PluginTestHelper extends PluginSpockTestSupport {
          //TODO
     }
 
+    def checkVersionApplication(String url, String version){
+        //TODO
+    }
+
     def getJobLogs(def jobId) {
         assert jobId
         def logs
