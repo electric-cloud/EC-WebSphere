@@ -323,6 +323,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
      * Additional methods
      */
     //Predefined procedure for Creation Queue
+    
     def createQueueForDelete(def parameters) {
         def code = """
             runProcedure(

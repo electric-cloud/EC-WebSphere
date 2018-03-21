@@ -215,7 +215,7 @@ class CreateOrUpdateActivationSpec extends PluginTestHelper {
                 projectName:                    '$testProjectName',
                 procedureName:                  '$testProcedureName',
                 actualParameter: [
-                    confignameCOUAS:                '$parameters.pluginConfigurationName',
+                    confignameCOUWMQAS:                '$parameters.pluginConfigurationName',
                     wasResourceName:                '$parameters.wasHost'                   
                 ]
             )

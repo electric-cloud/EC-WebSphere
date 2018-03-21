@@ -178,7 +178,6 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
         createConfiguration(pluginConfigurationNames.correctJSR160RMI, [doNotRecreate: false])        
         createConfiguration(pluginConfigurationNames.correctNone, [doNotRecreate: false])        
         createConfiguration(pluginConfigurationNames.correctRMI, [doNotRecreate: false])       
-        //D:\Repositories\Git\EC-WebSphere\specs\dsl\CheckCreateOrUpdateJMSTopic\CreateOrUpdateJMSTopic.dsl 
         importProject(testProjectName, 'dsl/CheckCreateOrUpdateJMSTopic/CreateOrUpdateJMSTopic.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         importProject(testProjectName, 'dsl/DeleteJMSTopic/DeleteJMSTopic.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         def params = [
