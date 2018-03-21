@@ -61,6 +61,10 @@ class PluginTestHelper extends PluginSpockTestSupport {
         """
     }
 
+    boolean isUrlAvailable(String url) {
+        //TODO
+    }
+
     def getJobLogs(def jobId) {
         assert jobId
         def logs
