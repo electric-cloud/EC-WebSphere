@@ -181,6 +181,30 @@ def getSIBJMSQueues(scope):
         retval.append(t)
     return retval
 
+def getSIBJMSActivationSpecs(scope):
+    result = AdminConfig.getid(scope)
+    print result
+    topics = AdminTask.listSIBJMSActivationSpecs(result)
+    print topics
+    retval = []
+    for topic in parseOutput(topics):
+        t = wsadminTaskToDict(AdminTask.showSIBJMSActivationSpec(topic))
+        t["__raw_resource_scope__"] = topic
+        retval.append(t)
+    return retval
+
+def getSIBJMSConnectionFactories(scope):
+    result = AdminConfig.getid(scope)
+    print result
+    topics = AdminTask.listSIBJMSConnectionFactories(result)
+    print topics
+    retval = []
+    for topic in parseOutput(topics):
+        t = wsadminTaskToDict(AdminTask.showSIBJMSConnectionFactory(topic))
+        t["__raw_resource_scope__"] = topic
+        retval.append(t)
+    return retval
+
 def isResourceExists(scope, resType, resName):
     result = AdminConfig.getid(scope)
     print result
@@ -195,8 +219,12 @@ def isResourceExists(scope, resType, resName):
         records = getSIBJMSQueues(scope)
     elif resType == 'WMQ_ConnectionFactory':
         records = getWMQConnectionFactories(scope)
+    elif resType == 'SIB_ConnectionFactory':
+        records = getSIBJMSConnectionFactories(scope)
     elif resType == 'WMQ_ActivationSpec':
         records = getWMQActivationSpecs(scope)
+    elif resType == 'SIB_ActivationSpec':
+        records = getSIBJMSActivationSpecs(scope)
     else:
         print "Wrong resource type %s" % (resType)
         sys.exit(1)

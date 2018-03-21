@@ -77,7 +77,20 @@
         <xpath>//property[propertyName=&quot;delete_jms_topic.py&quot;]/value</xpath>
         <path>wsadmin_scripts/JMS/delete_jms_topic.py</path>
     </file>
-        
+    
+    <!-- AS and CF -->
+
+    <file>
+        <xpath>//property[propertyName=&quot;create_or_update_wmq_jms_activation_spec.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/JMS/create_or_update_wmq_jms_activation_spec.py</path>
+    </file>
+    <file>
+        <xpath>//property[propertyName=&quot;create_or_update_sib_jms_activation_spec.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/JMS/create_or_update_sib_jms_activation_spec.py</path>
+    </file>
+
+    <!-- End of AS and CF -->
+
     <file>
         <xpath>//property[propertyName=&quot;create_jdbc_provider.py&quot;]/value</xpath>
         <path>wsadmin_scripts/create_jdbc_provider.py</path>
@@ -342,6 +355,21 @@
         <xpath>//procedure[procedureName=&quot;DeleteJMSTopic&quot;]/step[stepName=&quot;DeleteJMSTopic&quot;]/command</xpath>
         <path>server/JMS/deleteJMSTopic.pl</path>
     </file>
+
+    <!-- Activation spec and CF perl scripts going to be here -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateOrUpdateWMQJMSActivationSpec&quot;]/step[stepName=&quot;CreateOrUpdateWMQJMSActivationSpec&quot;]/command</xpath>
+        <path>server/JMS/createOrUpdateWMQJMSActivationSpec.pl</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateOrUpdateSIBJMSActivationSpec&quot;]/step[stepName=&quot;CreateOrUpdateSIBJMSActivationSpec&quot;]/command</xpath>
+        <path>server/JMS/createOrUpdateSIBJMSActivationSpec.pl</path>
+    </file>
+    
+
+
+    <!-- End -->
+    
     <file>
         <xpath>//procedure[procedureName=&quot;CreateConfiguration&quot;]/step[stepName=&quot;CreateConfiguration&quot;]/command</xpath>
         <path>conf/createcfg.pl</path>
@@ -508,6 +536,16 @@
         <xpath>//procedure[procedureName=&quot;DeleteJMSTopic&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/JMS/DeleteJMSTopic.xml</path>
     </file>
+    <!-- AS and CF forms -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateOrUpdateWMQJMSActivationSpec&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/JMS/CreateOrUpdateWMQJMSActivationSpec.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateOrUpdateSIBJMSActivationSpec&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/JMS/CreateOrUpdateSIBJMSActivationSpec.xml</path>
+    </file>
+    <!-- End of AS and CF forms -->
     <file>
         <xpath>//procedure[procedureName=&quot;MapSharedLibrary&quot;]/step[stepName=&quot;MapSharedLibrary&quot;]/command</xpath>
         <path>server/mapSharedLibrary.pl</path>
