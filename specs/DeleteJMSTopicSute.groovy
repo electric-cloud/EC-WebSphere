@@ -37,7 +37,6 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
     def testProcedureName = 'DeleteJMSTopic'
     @Shared
     def preparationProcedureName1 = 'CreateOrUpdateJMSTopic'
-//    currentProcedureName =  testProcedureName
 
     /**
      * Common Maps: General Maps fpr different fields

@@ -37,7 +37,6 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
     def testProcedureName = 'DeleteJMSQueue'
     @Shared
     def preparationProcedureName1 = 'CreateOrUpdateJMSQueue'
-//    currentProcedureName =  testProcedureName
 
     /**
      * Common Maps: General Maps fpr different fields

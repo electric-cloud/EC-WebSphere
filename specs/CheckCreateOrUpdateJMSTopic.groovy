@@ -235,7 +235,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         }
         def outcome = getJobProperty('/myJob/outcome', result.jobId)
         def debugLog = getJobLogs(result.jobId)
-        //def upperStepSummary = getUpperStepSummary()
+
         println "Procedure log:\n$debugLog\n"
 
         assert outcome == expectedOutcome
