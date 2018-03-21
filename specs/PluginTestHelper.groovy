@@ -72,6 +72,14 @@ class PluginTestHelper extends PluginSpockTestSupport {
         return false
     }
 
+    def getURLStreamText(String url) {
+        if isUrlAvailable (url){
+            def get = new URL(url).openConnection()
+            return get.getInputStream().getText()
+        }
+    }
+
+
     def downloadArtifact(String sourceUrl, String targetPath) {
          //TODO
     }
