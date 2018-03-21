@@ -1,5 +1,6 @@
 import spock.lang.*
 import com.electriccloud.spec.*
+import gr
 
 class PluginTestHelper extends PluginSpockTestSupport {
 
@@ -62,7 +63,13 @@ class PluginTestHelper extends PluginSpockTestSupport {
     }
 
     boolean isUrlAvailable(String url) {
-        //TODO
+        def get = new URL(url).openConnection()
+        def getRC = get.getResponseCode();
+        if(getRC.equals(200)) {
+            //println(get.getInputStream().getText())
+            return true
+        }
+        return false
     }
 
     def downloadArtifact(String sourceUrl, String targetPath) {
