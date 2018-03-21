@@ -55,6 +55,11 @@ class PluginTestHelper extends PluginSpockTestSupport {
         return summary
     }
 
+    def deleteProject(String projectName) {
+        dsl """
+            deleteProject(projectName: '$projectName')
+        """
+    }
 
     def getJobLogs(def jobId) {
         assert jobId
