@@ -36,7 +36,7 @@ class PluginTestHelper extends PluginSpockTestSupport {
             currentProcedureName = getJobProperty(property, jobId)
             println("Current Procedure Name: " + currentProcedureName)
         } catch (Throwable e) {
-            logger.debug("Can't retrieve procedure Name; check job: " + jobId)
+            logger.debug("Can't retrieve Run Procedure Name; check job: " + jobId)
         }
         return currentProcedureName
     }
@@ -50,7 +50,7 @@ class PluginTestHelper extends PluginSpockTestSupport {
         try{
             summary = getJobProperty(property, jobId)
         } catch (Throwable e) {
-            logger.debug("cannot retrieve lower step summary from the property '$property'")
+            logger.debug("Can't retrieve Upper Step Summary from the property: '$property'; check job: " + jobId)
         }
         return summary
     }
