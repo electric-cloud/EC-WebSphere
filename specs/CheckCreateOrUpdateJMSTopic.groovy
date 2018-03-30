@@ -20,14 +20,14 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         fieldRequired: 'Some message',
         incorrectComfigname: '',
         incorrectMessagingSystemType: '',
-        incorrectQueueScope: '',
-        incorrectQueueAdministrativeName: '',
-        incorrectQueueName: '',
+        incorrectTopicScope: '',
+        incorrectTopicAdministrativeName: '',
+        incorrectTopicName: '',
         incorrectJndiName: ''
     ]
 
     @Shared
-    def testProjectName = 'EC-WebSphere-Specs-CheckApp'
+    def testProjectName = 'EC-WebSphere-SystemTests'
     @Shared
     def testProcedureName = 'CreateOrUpdateJMSTopic'
     @Shared 
@@ -208,7 +208,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
     }
 
     @Unroll
-    def "Create Or Update JMS Topic. Negarive Scenarios"(){
+    def "Create Or Update JMS Topic. Negative Scenarios"(){
 
         when: 'Proceure runs: '
             def runParams = [
@@ -235,7 +235,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         }
         def outcome = getJobProperty('/myJob/outcome', result.jobId)
         def debugLog = getJobLogs(result.jobId)
-        //def upperStepSummary = getUpperStepSummary()
+
         println "Procedure log:\n$debugLog\n"
 
         assert outcome == expectedOutcome
