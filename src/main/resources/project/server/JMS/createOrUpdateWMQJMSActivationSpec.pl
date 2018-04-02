@@ -37,6 +37,7 @@ my $ec = ElectricCommander->new();
 $ec->abortOnError(0);
 my $websphere = WebSphere::WebSphere->new($ec, $opts->{configname}, '');
 
+my $parsedSpecScope = $websphere->parseScope($opts->{specScope});
 my $r = $websphere->getParamsRenderer(
     name                => $opts->{specAdministrativeName},
     jndiName            => $opts->{jndiName},
@@ -62,7 +63,8 @@ $params .= ' ' . $opts->{additionalOptions};
 
 $websphere->setTemplateProperties(
     requestParameters => $params,
-    wasApi            => $wasApi
+    wasApi            => $wasApi,
+    specScope         => $parsedSpecScope
 );
 
 my $logger = $websphere->log();

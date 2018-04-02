@@ -1,7 +1,7 @@
 $[/myProject/wsadmin_scripts/preamble.py]
 
 scope = '''
-$[specScope]
+$[/myJobStep/tmpl/specScope]
 '''.strip()
 
 # this parameter is responsible for flow

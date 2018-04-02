@@ -2,7 +2,6 @@
 use warnings;
 use strict;
 use JSON;
-use Data::Dumper;
 
 use ElectricCommander;
 use ElectricCommander::PropMod qw(/myProject/modules);
@@ -31,7 +30,6 @@ my $opts = {
     additionalOptions             => '$[additionalOptions]',
 };
 
-print Dumper $opts;
 my $ec = ElectricCommander->new();
 $ec->abortOnError(0);
 my $websphere = WebSphere::WebSphere->new($ec, $opts->{configname}, '');
@@ -59,9 +57,11 @@ my $params = $r->render();
 
 $params .= ' ' . $opts->{additionalOptions};
 
+my $parsedSpecScope = $websphere->parseScope($opts->{specScope});
 $websphere->setTemplateProperties(
     requestParameters => $params,
-    wasApi            => $wasApi
+    wasApi            => $wasApi,
+    specScope         => $parsedSpecScope
 );
 
 my $logger = $websphere->log();
