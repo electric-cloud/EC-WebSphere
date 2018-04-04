@@ -17,7 +17,7 @@ limitations under the License.
 -->
 
 <editor>
-    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CreateOrUpdateJMSActivationSpec</help>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#DeleteJMSActivationSpec</help>
     <formElement>
         <type>entry</type>
         <label>Configuration Name:</label>
@@ -45,7 +45,7 @@ limitations under the License.
     </formElement>
     <formElement>
         <label>ActivationSpec Administrative Name:</label>
-        <property>activationSpecdministrativeName</property>
+        <property>activationSpecAdministrativeName</property>
         <type>entry</type>
         <required>1</required>
         <documentation>The administrative name assigned to this WebSphere MQ messaging provider activationSpec.</documentation>

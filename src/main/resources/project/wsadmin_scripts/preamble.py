@@ -205,6 +205,9 @@ def getSIBJMSConnectionFactories(scope):
         retval.append(t)
     return retval
 
+def getJMSProviderAtScope(scope, providerName):
+    providerScope = '%s/JMSProvider:%s' (scope, providerName)
+    result = AdminConfig.getid(scope)
 def isResourceExists(scope, resType, resName):
     result = AdminConfig.getid(scope)
     print result
@@ -225,6 +228,8 @@ def isResourceExists(scope, resType, resName):
         records = getWMQActivationSpecs(scope)
     elif resType == 'SIB_ActivationSpec':
         records = getSIBJMSActivationSpecs(scope)
+    # elif resType == 'JMS_Provider':
+    #     records = getJMSProviderAtScope(scope, resName)
     else:
         print "Wrong resource type %s" % (resType)
         sys.exit(1)

@@ -88,6 +88,10 @@
         <xpath>//property[propertyName=&quot;create_or_update_sib_jms_activation_spec.py&quot;]/value</xpath>
         <path>wsadmin_scripts/JMS/create_or_update_sib_jms_activation_spec.py</path>
     </file>
+    <file>
+        <xpath>//property[propertyName=&quot;delete_jms_activation_spec.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/JMS/delete_jms_activation_spec.py</path>
+    </file>
 
     <!-- End of AS and CF -->
 
@@ -365,8 +369,10 @@
         <xpath>//procedure[procedureName=&quot;CreateOrUpdateSIBJMSActivationSpec&quot;]/step[stepName=&quot;CreateOrUpdateSIBJMSActivationSpec&quot;]/command</xpath>
         <path>server/JMS/createOrUpdateSIBJMSActivationSpec.pl</path>
     </file>
-    
-
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeleteJMSActivationSpec&quot;]/step[stepName=&quot;DeleteJMSActivationSpec&quot;]/command</xpath>
+        <path>server/JMS/deleteJMSActivationSpec.pl</path>
+    </file>
 
     <!-- End -->
     
@@ -544,6 +550,10 @@
     <file>
         <xpath>//procedure[procedureName=&quot;CreateOrUpdateSIBJMSActivationSpec&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/JMS/CreateOrUpdateSIBJMSActivationSpec.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeleteJMSActivationSpec&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/JMS/DeleteJMSActivationSpec.xml</path>
     </file>
     <!-- End of AS and CF forms -->
     <file>
