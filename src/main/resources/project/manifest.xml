@@ -107,10 +107,10 @@
         <path>WebSphere/LogTrapper.pm</path>
     </file>
     <!-- CreateConfigForm to ec_config/form property -->
-    <file>
-        <xpath>//property[propertyName=&quot;ec_config&quot;]/propertySheet/property[propertyName=&quot;form&quot;]/value</xpath>
-        <path>WebSphereCreateConfigForm.xml</path>
-    </file>
+    <!-- <file> -->
+    <!--     <xpath>//property[propertyName=&quot;ec_config&quot;]/propertySheet/property[propertyName=&quot;form&quot;]/value</xpath> -->
+    <!--     <path>WebSphereCreateConfigForm.xml</path> -->
+    <!-- </file> -->
     <file>
         <xpath>//property[propertyName=&quot;ui_forms&quot;]/propertySheet/property[propertyName=&quot;WebSphereCreateConfigForm&quot;]/value</xpath>
         <path>WebSphereCreateConfigForm.xml</path>
