@@ -205,9 +205,17 @@ def getSIBJMSConnectionFactories(scope):
         retval.append(t)
     return retval
 
-def getJMSProviderAtScope(scope, providerName):
-    providerScope = '%s/JMSProvider:%s' (scope, providerName)
-    result = AdminConfig.getid(scope)
+def getJMSProviderAtScope(providerName, scope):
+    if not providerName:
+        print "providerName parameter should be present and non-empty"
+        sys.exit(1)
+    providerScope = scope + "JMSProvider:" + providerName
+    result = AdminConfig.getid(providerScope)
+    return result
+
+def deleteJMSProvider(providerId):
+    AdminConfig.remove(providerId)
+
 def isResourceExists(scope, resType, resName):
     result = AdminConfig.getid(scope)
     print result

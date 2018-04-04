@@ -77,6 +77,10 @@
         <xpath>//property[propertyName=&quot;delete_jms_topic.py&quot;]/value</xpath>
         <path>wsadmin_scripts/JMS/delete_jms_topic.py</path>
     </file>
+    <file>
+        <xpath>//property[propertyName=&quot;delete_jms_provider.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/JMS/delete_jms_provider.py</path>
+    </file>
     
     <!-- AS and CF -->
 
@@ -364,6 +368,10 @@
         <xpath>//procedure[procedureName=&quot;DeleteJMSTopic&quot;]/step[stepName=&quot;DeleteJMSTopic&quot;]/command</xpath>
         <path>server/JMS/deleteJMSTopic.pl</path>
     </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeleteJMSProvider&quot;]/step[stepName=&quot;DeleteJMSProvider&quot;]/command</xpath>
+        <path>server/JMS/deleteJMSProvider.pl</path>
+    </file>
 
     <!-- Activation spec and CF perl scripts going to be here -->
     <file>
@@ -546,6 +554,10 @@
     <file>
         <xpath>//procedure[procedureName=&quot;DeleteJMSTopic&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/JMS/DeleteJMSTopic.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeleteJMSProvider&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/JMS/DeleteJMSProvider.xml</path>
     </file>
     <!-- AS and CF forms -->
     <file>

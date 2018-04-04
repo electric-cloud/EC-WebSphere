@@ -297,6 +297,13 @@ my %deleteJMSActivationSpec = (
     category    => "Application Server"
 );
 
+my %deleteJMSProvider = (
+    label       => "WebSphere - Delete JMS Provider",
+    procedure   => "DeleteJMSProvider",
+    description => "Deletes JMS Provider",
+    category    => "Application Server"
+);
+
 
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
@@ -341,12 +348,14 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete J
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JMS Topic");
 
 # AS and CF procedures
-# TODO: Remove that:
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Creates or updates WMQ JMS Activation Spec");
-## end of TODO
 
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - WebSphere - Create Or Update WMQ JMS Activation Spec");
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - WebSphere - Create Or Update SIB JMS Activation Spec");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Or Update WMQ JMS Activation Spec");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Or Update SIB JMS Activation Spec");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JMS ActivationSpec");
+
+
+# Delete JMS Provider procedure
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JMS Provider");
 
 @::createStepPickerSteps = (
     \%checkPageStatus, \%checkServerStatus,
@@ -369,7 +378,9 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - WebSpher
     \%createOrUpdateJMSQueue, \%createOrUpdateJMSTopic,
     \%deleteJMSTopic, \%deleteJMSQueue,
     # AS and CF procedures
-    \%createOrUpdateWMQJMSActivationSpec, \%createOrUpdateSIBJMSActivationSpec, \%deleteJMSActivationSpec
+    \%createOrUpdateWMQJMSActivationSpec, \%createOrUpdateSIBJMSActivationSpec, \%deleteJMSActivationSpec,
+    # Delete JMS Provider procedure
+    \%deleteJMSProvider
 );
 
 if ($upgradeAction eq "upgrade") {
@@ -682,6 +693,10 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DeleteJMSActivationSpec',
                 stepName => 'DeleteJMSActivationSpec'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'DeleteJMSProvider',
+                stepName => 'DeleteJMSProvider'
             });
         }
     }
