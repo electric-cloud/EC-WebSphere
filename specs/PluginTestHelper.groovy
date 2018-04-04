@@ -4,6 +4,8 @@ import com.electriccloud.spec.*
 class PluginTestHelper extends PluginSpockTestSupport {
 
     static def helperProjName = 'WebSphere Helper Project'
+    @Shared
+    def currentProcedureName
 
     def redirectLogs(String parentProperty = '/myJob') {
         def propertyLogName = parentProperty + '/debug_logs'
@@ -26,6 +28,33 @@ class PluginTestHelper extends PluginSpockTestSupport {
         """
         propertyName
     }
+    def getCurrentProcedureName(def jobId){
+        assert jobId
+        def currentProcedureName
+        def property = "/myJob/procedureName"
+        try {
+            currentProcedureName = getJobProperty(property, jobId)
+            println("Current Procedure Name: " + currentProcedureName)
+        } catch (Throwable e) {
+            logger.debug("Can't retrieve Run Procedure Name from the property: '$property'; check job: " + jobId)
+        }
+        return currentProcedureName
+    }
+
+
+    def getJobUpperStepSummary(def jobId){
+        assert jobId
+        def summary
+        def currentProcedureName = getCurrentProcedureName(jobId)
+        def property = "/myJob/jobSteps/$currentProcedureName/summary"
+        try{
+            summary = getJobProperty(property, jobId)
+        } catch (Throwable e) {
+            logger.debug("Can't retrieve Upper Step Summary from the property: '$property'; check job: " + jobId)
+        }
+        return summary
+    }
+
 
     def getJobLogs(def jobId) {
         assert jobId
@@ -42,19 +71,6 @@ class PluginTestHelper extends PluginSpockTestSupport {
         assert flowRuntimeId
         getPipelineProperty('/myPipelineRuntime/debugLogs', flowRuntimeId)
     }
-
-
-    String getUpperStepSummary() {
-        String property = "/myJob/jobSteps/$procedureName/summary"
-        String summary
-        try {
-            summary = getJobProperty(property, jobId)
-        } catch (Throwable e) {
-            logger.debug("Cannot retrieve upper step summary from the property '$property'")
-        }
-        return summary
-    }
-
 
     def runProcedureDsl(dslString) {
         redirectLogs()

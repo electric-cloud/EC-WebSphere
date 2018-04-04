@@ -24,37 +24,37 @@ class CheckApp extends PluginTestHelper {
         appIsNotInstalled_IsInstalled: "is not installed, expected: application is installed",
         appIsNotInstalled_IsNotReady: "is not installed, expected: application is not ready",
         appIsNotInstalled_IsReady: "is not installed, expected: application is ready",
-        appIsNotInstalled_IsNotRunning: "is not installed, expected: application is not runnning",
-        appIsNotInstalled_IsRunning: "is not installed, expected: application is runnning",
+        appIsNotInstalled_IsNotRunning: "is not installed, expected: application is not running",
+        appIsNotInstalled_IsRunning: "is not installed, expected: application is running",
         appIsInstalled_IsNotInstalled: "is installed, expected: application is not installed",
         appIsInstalled_IsNotReady: "is installed, expected: application is not ready",
         appIsInstalled_IsReady: "is installed, expected: application is ready",
-        appIsInstalled_IsNotRunning: "is installed, expected: application is not runnning",
-        appIsInstalled_IsRunning: "is installed, expected: application is runnning",
+        appIsInstalled_IsNotRunning: "is installed, expected: application is not running",
+        appIsInstalled_IsRunning: "is installed, expected: application is running",
         appIsNotReady_IsNotInstalled: "is not ready, expected: application is not installed",
         //appIsNotReady_IsInstalled: "",
         appIsNotReady_IsReady: "is not ready, expected: application is ready",
-        appIsNotReady_IsNotRunning: "is not ready, expected: application is not runnning",
-        appIsNotReady_IsRunning: "is not ready, expected: application is runnning",
+        appIsNotReady_IsNotRunning: "is not ready, expected: application is not running",
+        appIsNotReady_IsRunning: "is not ready, expected: application is running",
         appIsReady_IsNotInstalled: "is not ready, expected: application is not installed",
         //appIsReady_IsInstalled: "",
         appIsReady_IsNotReady: "is ready, expected: application is not ready",
-        appIsReady_IsNotRunning: "is ready, expected: application is not runnning",
-        appIsReady_IsRunning: "is ready, expected: application is runnning",
+        appIsReady_IsNotRunning: "is ready, expected: application is not running",
+        appIsReady_IsRunning: "is ready, expected: application is running",
         appIsNotRunning_IsNotInstalled: "is not running, expected: application application is not installed",
         //appIsNotRunning_IsInstalled: "",
         appIsNotRunning_IsNotReady: "is not running, expected: application is not ready",
         //appIsNotRunning_IsReady: "",
-        appIsNotRunning_IsRunning: "is not running, expected: application is runnning",
+        appIsNotRunning_IsRunning: "is not running, expected: application is running",
         appIsRunning_IsNotInstalled: "is running, expected: application application is not installed",
         //appIsRunning_IsInstalled: "",
         appIsRunning_IsNotReady: "is running, expected: application is not ready",
         //appIsRunning_IsReady: "",
-        appIsRunning_IsNotRunning: "is running, expected: application is not runnning",
+        appIsRunning_IsNotRunning: "is running, expected: application is not running",
     ]
 
     @Shared
-    def testProjectName = 'EC-WebSphere-Specs-CheckApp'
+    def testProjectName = 'EC-WebSphere-SystemTests'
     @Shared
     def testProcedureName = 'CheckApp'
     @Shared
