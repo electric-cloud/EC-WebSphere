@@ -32,9 +32,9 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
      */
 
     @Shared
-    def testProjectName =   'EC-WebSphere-SystemTests'
+    def testProjectName =           'EC-WebSphere-SystemTests'
     @Shared
-    def testProcedureName = 'DeleteJMSQueue'
+    def testProcedureName =         'DeleteJMSQueue'
     @Shared
     def preparationProcedureName1 = 'CreateOrUpdateJMSQueue'
 
@@ -53,7 +53,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
      */
     @Shared
     def queueNames = [
-        empty: '',
+        empty:      '',
         correctWMQ: 'MyWMQQueueForDelete',
         correctSIB: 'MySIBQueueForDelete',
         incorrect:  'Incorrect queueName',
@@ -61,7 +61,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
 
     @Shared
     def jndiNames = [
-        empty: '',
+        empty:      '',
         correctWMQ: 'com.jndi.myWMQQueueForDelete',
         correctSIB: 'com.jndi.mySIBQueueForDelete',
         incorrect:  'incorrect jndiNames',
@@ -69,15 +69,15 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
 
     @Shared
     def queueAdministrativeDescriptions = [
-        empty: '',
+        empty:      '',
         correctWMQ: 'Some descriptions for My WMQ JMS Queue For Delete',
         correctSIB: 'Some descriptions for My SIB JMS Queue For Delete',
     ]
 
     @Shared
     def queueManagerNames = [
-        empty:  '',
-        correct:''
+        empty:      '',
+        correct:    '',
     ]
 
     @Shared
@@ -120,7 +120,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
 
     @Shared // Required Parameter (need incorrect and empty value)
     def queueScopes = [
-        empty:                         '',
+        empty:                      '',
         correctOneNode:             'Node='+wasHost+'Node01',
         incorrect:                  'Node=incorrectScope',
         correctOneNodeMessage:      'Node:'+wasHost+'Node01',
@@ -354,7 +354,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
                     queueManagerNameCOUJMSQ:                '$parameters.queueManagerName',
                     queueAdministrativeDescriptionCOUJMSQ:  '$parameters.queueAdministrativeDescription',
                     additionalOptionsCOUJMSQ:               '$parameters.additionalOption',
-                    wasResourceName:                        '$parameters.wasHost'                   
+                    wasResourceName:                        '$parameters.wasHost',                   
                 ]
             )
         """
@@ -372,7 +372,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
                     messagingSystemTypeDJMSQ:       '$parameters.messagingSystemType',
                     queueAdministrativeNameDJMSQ:   '$parameters.queueAdministrativeName',
                     queueScopeDJMSQ:                '$parameters.queueScope',
-                    wasResourceName:                '$parameters.wasHost'                   
+                    wasResourceName:                '$parameters.wasHost',                 
                 ]
             )
         """

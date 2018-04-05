@@ -32,9 +32,9 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
      */
 
     @Shared
-    def testProjectName =   'EC-WebSphere-SystemTests'
+    def testProjectName =           'EC-WebSphere-SystemTests'
     @Shared
-    def testProcedureName = 'DeleteJMSTopic'
+    def testProcedureName =         'DeleteJMSTopic'
     @Shared
     def preparationProcedureName1 = 'CreateOrUpdateJMSTopic'
 
@@ -53,7 +53,7 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
      */
     @Shared
     def topicNames = [
-        empty: '',
+        empty:      '',
         correctWMQ: 'MyWMQTopicForDelete',
         correctSIB: 'MySIBTopicForDelete',
         incorrect:  'Incorrect topicName',
@@ -61,7 +61,7 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
 
     @Shared
     def jndiNames = [
-        empty: '',
+        empty:      '',
         correctWMQ: 'com.jndi.myWMQTopicForDelete',
         correctSIB: 'com.jndi.mySIBTopicForDelete',
         incorrect:  'incorrect jndiNames',
@@ -69,7 +69,7 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
 
     @Shared
     def topicAdministrativeDescriptions = [
-        empty: '',
+        empty:      '',
         correctWMQ: 'Some descriptions for My WMQ JMS Topic For Delete',
         correctSIB: 'Some descriptions for My SIB JMS Topic For Delete',
     ]
@@ -115,7 +115,7 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
 
     @Shared // Required Parameter (need incorrect and empty value)
     def topicScopes = [
-        empty:                         '',
+        empty:                      '',
         correctOneNode:             'Node='+wasHost+'Node01',
         incorrect:                  'Node=incorrectScope',
         correctOneNodeMessage:      'Node:'+wasHost+'Node01',
@@ -348,7 +348,7 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
                     jndiNameCOUJMST:                        '$parameters.jndiName',
                     topicAdministrativeDescriptionCOUJMST:  '$parameters.topicAdministrativeDescription',
                     additionalOptionsCOUJMST:               '$parameters.additionalOption',
-                    wasResourceName:                        '$parameters.wasHost'                   
+                    wasResourceName:                        '$parameters.wasHost',                   
                 ]
             )
         """
@@ -366,7 +366,7 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
                     messagingSystemTypeDJMST:       '$parameters.messagingSystemType',
                     topicAdministrativeNameDJMST:   '$parameters.topicAdministrativeName',
                     topicScopeDJMST:                '$parameters.topicScope',
-                    wasResourceName:                '$parameters.wasHost'                   
+                    wasResourceName:                '$parameters.wasHost',                  
                 ]
             )
         """
