@@ -223,7 +223,6 @@ try {
     }
 
     def runGetResourcesProcedure(def params){
-        //TODO: 
        importProject(params.projectName, 'dsl/GetResources.dsl', [projectName: params.projectName, wasResourceName: params.wasResourceName])
         def code = """
             runProcedure(
