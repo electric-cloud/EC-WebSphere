@@ -17,7 +17,7 @@ limitations under the License.
 -->
 
 <editor>
-    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#DeleteJMSTopic</help>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#DeleteJMSConnectionFactory</help>
     <formElement>
         <type>entry</type>
         <label>Configuration Name:</label>
@@ -34,20 +34,20 @@ limitations under the License.
         <option><name>WMQ</name><value>WMQ</value></option>
         <option><name>SIB</name><value>SIB</value></option>
         <required>1</required>
-        <documentation>The name of the messaging provider. Pass in either WMQ or SIB.</documentation>
+        <documentation>WMQ or SIB.</documentation>
     </formElement>
     <formElement>
-        <label>Topic Scope:</label>
-        <property>topicScope</property>
+        <label>Connection Factory Scope:</label>
+        <property>factorySpecScope</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Scope of the messaging provider at which the JMS Topic is to be deleted.</documentation>
+        <documentation>Scope of the messaging provider at which the JMS ActivationSpec is to be deleted.</documentation>
     </formElement>
     <formElement>
-        <label>Topic Administrative Name:</label>
-        <property>topicAdministrativeName</property>
+        <label>ActivationSpec Administrative Name:</label>
+        <property>factoryAdministrativeName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>The administrative name assigned to this WebSphere MQ messaging provider topic.</documentation>
+        <documentation>The administrative name assigned to this WebSphere MQ messaging provider activationSpec.</documentation>
     </formElement>
 </editor>

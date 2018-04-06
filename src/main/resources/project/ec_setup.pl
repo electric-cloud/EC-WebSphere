@@ -274,6 +274,8 @@ my %deleteJMSTopic = (
 );
 
 ## AS and CF
+
+## Create AS
 my %createOrUpdateWMQJMSActivationSpec = (
     label       => "WebSphere - Create Or Update WMQ JMS Activation Spec",
     procedure   => "CreateOrUpdateWMQJMSActivationSpec",
@@ -288,12 +290,36 @@ my %createOrUpdateSIBJMSActivationSpec = (
     category    => "Application Server"
 );
 
+## Create CF
+my %createOrUpdateWMQJMSConnectionFactory = (
+    label       => "WebSphere - Create Or Update WMQ JMS Connection Factory",
+    procedure   => "CreateOrUpdateWMQJMSConnectionFactory",
+    description => "Creates or updates WMQ JMS Connection Factory",
+    category    => "Application Server"
+);
+
+my %createOrUpdateSIBJMSConnectionFactory = (
+    label       => "WebSphere - Create Or Update SIB JMS Connection Factory",
+    procedure   => "CreateOrUpdateSIBJMSConnectionFactory",
+    description => "Creates or updates SIB JMS Connection Factory",
+    category    => "Application Server"
+);
+
 # deleter for JMS AS
 
 my %deleteJMSActivationSpec = (
-    label       => "WebSphere - Delete JMS ActivationSpec",
+    label       => "WebSphere - Delete JMS Activation Spec",
     procedure   => "DeleteJMSActivationSpec",
     description => "Deletes JMS Activation Spec",
+    category    => "Application Server"
+);
+
+# deleter for JMS CF
+
+my %deleteJMSConnectionFactory = (
+    label       => "WebSphere - Delete JMS Connection Factory",
+    procedure   => "DeleteJMSConnectionFactory",
+    description => "Deletes JMS Connection Factory",
     category    => "Application Server"
 );
 
@@ -349,10 +375,15 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete J
 
 # AS and CF procedures
 
+# AS
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Or Update WMQ JMS Activation Spec");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Or Update SIB JMS Activation Spec");
-$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JMS ActivationSpec");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JMS Activation Spec");
 
+# CF
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Or Update WMQ JMS Connection Factory");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Or Update SIB JMS Connection Factory");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JMS Connection Factory");
 
 # Delete JMS Provider procedure
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JMS Provider");
@@ -377,8 +408,10 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete J
     \%checkNodeStatus,
     \%createOrUpdateJMSQueue, \%createOrUpdateJMSTopic,
     \%deleteJMSTopic, \%deleteJMSQueue,
-    # AS and CF procedures
+    # AS procedures
     \%createOrUpdateWMQJMSActivationSpec, \%createOrUpdateSIBJMSActivationSpec, \%deleteJMSActivationSpec,
+    # CF procedures
+    \%createOrUpdateWMQJMSConnectionFactory, \%createOrUpdateSIBJMSConnectionFactory, \%deleteJMSConnectionFactory
     # Delete JMS Provider procedure
     \%deleteJMSProvider
 );
@@ -693,6 +726,19 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DeleteJMSActivationSpec',
                 stepName => 'DeleteJMSActivationSpec'
+            });
+            
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateOrUpdateWMQJMSConnectionFactory',
+                stepName => 'CreateOrUpdateWMQJMSConnectionFactory'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateOrUpdateSIBJMSConnectionFactory',
+                stepName => 'CreateOrUpdateSIBJMSConnectionFactory'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'DeleteJMSConnectionFactory',
+                stepName => 'DeleteJMSConnectionFactory'
             });
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DeleteJMSProvider',

@@ -17,7 +17,7 @@ limitations under the License.
 -->
 
 <editor>
-    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#DeleteJMSTopic</help>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CreateOrUpdateSIBJMSConnectionFactory</help>
     <formElement>
         <type>entry</type>
         <label>Configuration Name:</label>
@@ -28,26 +28,54 @@ limitations under the License.
         <required>1</required>
     </formElement>
     <formElement>
-        <label>Messaging System Type:</label>
-        <property>messagingSystemType</property>
+        <label>Scope of the Connection Factory:</label>
+        <property>factoryScope</property>
+        <type>entry</type>
+        <required>1</required>
+        <documentation>Resource scope</documentation>
+    </formElement>
+    <formElement>
+        <label>Connection Factory Administrative Name:</label>
+        <property>factoryAdministrativeName</property>
+        <type>entry</type>
+        <required>1</required>
+        <documentation></documentation>
+    </formElement>
+    <formElement>
+        <label>Bus Name:</label>
+        <property>busName</property>
+        <type>entry</type>
+        <required>1</required>
+        <documentation>Bus Name</documentation>
+    </formElement>
+    <formElement>
+        <label>JNDI name:</label>
+        <property>jndiName</property>
+        <type>entry</type>
+        <required>1</required>
+        <documentation>JNDI name</documentation>
+    </formElement>
+    <formElement>
+        <label>Connection Factory Type:</label>
+        <property>factoryType</property>
         <type>select</type>
-        <option><name>WMQ</name><value>WMQ</value></option>
-        <option><name>SIB</name><value>SIB</value></option>
-        <required>1</required>
-        <documentation>The name of the messaging provider. Pass in either WMQ or SIB.</documentation>
+        <option><name>Queue</name><value>Queue</value></option>
+        <option><name>Topic</name><value>Topic</value></option>
+        <required>0</required>
+        <documentation></documentation>
     </formElement>
     <formElement>
-        <label>Topic Scope:</label>
-        <property>topicScope</property>
-        <type>entry</type>
-        <required>1</required>
-        <documentation>Scope of the messaging provider at which the JMS Topic is to be deleted.</documentation>
+        <label>Connection Factory Administrative description:</label>
+        <property>factoryAdministartiveDescription</property>
+        <type>textarea</type>
+        <required>0</required>
+        <documentation>Res desc</documentation>
     </formElement>
     <formElement>
-        <label>Topic Administrative Name:</label>
-        <property>topicAdministrativeName</property>
-        <type>entry</type>
-        <required>1</required>
-        <documentation>The administrative name assigned to this WebSphere MQ messaging provider topic.</documentation>
+        <label>Additional options</label>
+        <property>additionalOptions</property>
+        <type>textarea</type>
+        <required>0</required>
+        <documentation>Additional options</documentation>
     </formElement>
 </editor>
