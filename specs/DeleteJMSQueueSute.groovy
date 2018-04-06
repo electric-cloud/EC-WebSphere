@@ -372,7 +372,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
                     messagingSystemTypeDJMSQ:       '$parameters.messagingSystemType',
                     queueAdministrativeNameDJMSQ:   '$parameters.queueAdministrativeName',
                     queueScopeDJMSQ:                '$parameters.queueScope',
-                    wasResourceName:                '$parameters.wasHost'                   
+                    wasResourceName:                '$parameters.wasHost',                   
                 ]
             )
         """
