@@ -196,8 +196,17 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
             queueAdministrativeDescription: queueAdministrativeDescriptions.correctWMQ,
             additionalOption:               additionalOptions.correctWMQ,
             wasHost:                        wasHost,
-        ]
-        createQueueForDelete(params)
+        ]        
+        def result 
+        result = createQueueForDelete(params)
+        waitUntil {
+            try {
+                jobCompleted(result)
+            } catch (Exception e) {
+                println e.getMessage()
+            }
+        }
+
         params = [
             pluginConfigurationName:        pluginConfigurationNames.correctSOAP,
             messagingSystemType:            messagingSystemTypes.correctSIB,
@@ -210,7 +219,14 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
             additionalOption:               additionalOptions.correctSIB,
             wasHost:                        wasHost,
         ]
-        createQueueForDelete(params)
+        result = createQueueForDelete(params)
+        waitUntil {
+            try {
+                jobCompleted(result)
+            } catch (Exception e) {
+                println e.getMessage()
+            }
+        }
 
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
      }
