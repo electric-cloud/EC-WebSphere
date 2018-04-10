@@ -192,7 +192,17 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
             additionalOption:               additionalOptions.correctWMQ,
             wasHost:                        wasHost,
         ]
-        createTopicForDelete(params)
+
+        def result
+        result = createTopicForDelete(params)
+        waitUntil {
+            try {
+                jobCompleted(result)
+            } catch (Exception e) {
+                println e.getMessage()
+            }
+        }
+
         params = [
             pluginConfigurationName:        pluginConfigurationNames.correctSOAP,
             messagingSystemType:            messagingSystemTypes.correctSIB,
@@ -204,7 +214,14 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
             additionalOption:               additionalOptions.correctSIB,
             wasHost:                        wasHost,
         ]
-        createTopicForDelete(params)
+        result = createTopicForDelete(params)
+        waitUntil {
+            try {
+                jobCompleted(result)
+            } catch (Exception e) {
+                println e.getMessage()
+            }
+        }
 
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
      }
