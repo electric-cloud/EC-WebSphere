@@ -4684,7 +4684,7 @@
             <type>entry</type>
         </formalParameter>
         <formalParameter>
-            <formalParameterName>specAdministartiveDescription</formalParameterName>
+            <formalParameterName>factoryAdministartiveDescription</formalParameterName>
             <defaultValue />
             <description>
                 The name used to bind this object into WebSphere Application Server JNDI.

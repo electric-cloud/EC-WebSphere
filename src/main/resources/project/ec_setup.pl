@@ -411,7 +411,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete J
     # AS procedures
     \%createOrUpdateWMQJMSActivationSpec, \%createOrUpdateSIBJMSActivationSpec, \%deleteJMSActivationSpec,
     # CF procedures
-    \%createOrUpdateWMQJMSConnectionFactory, \%createOrUpdateSIBJMSConnectionFactory, \%deleteJMSConnectionFactory
+    \%createOrUpdateWMQJMSConnectionFactory, \%createOrUpdateSIBJMSConnectionFactory, \%deleteJMSConnectionFactory,
     # Delete JMS Provider procedure
     \%deleteJMSProvider
 );

@@ -81,9 +81,10 @@
         <xpath>//property[propertyName=&quot;delete_jms_provider.py&quot;]/value</xpath>
         <path>wsadmin_scripts/JMS/delete_jms_provider.py</path>
     </file>
-    
+
     <!-- AS and CF -->
 
+    <!-- Activation Spec -->
     <file>
         <xpath>//property[propertyName=&quot;create_or_update_wmq_jms_activation_spec.py&quot;]/value</xpath>
         <path>wsadmin_scripts/JMS/create_or_update_wmq_jms_activation_spec.py</path>
@@ -95,6 +96,21 @@
     <file>
         <xpath>//property[propertyName=&quot;delete_jms_activation_spec.py&quot;]/value</xpath>
         <path>wsadmin_scripts/JMS/delete_jms_activation_spec.py</path>
+    </file>
+
+    <!-- Connection Factory -->
+
+    <file>
+        <xpath>//property[propertyName=&quot;create_or_update_wmq_jms_connection_factory.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/JMS/create_or_update_wmq_jms_connection_factory.py</path>
+    </file>
+    <file>
+        <xpath>//property[propertyName=&quot;create_or_update_sib_jms_connection_factory.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/JMS/create_or_update_sib_jms_connection_factory.py</path>
+    </file>
+    <file>
+        <xpath>//property[propertyName=&quot;delete_jms_connection_factory.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/JMS/delete_jms_connection_factory.py</path>
     </file>
 
     <!-- End of AS and CF -->
@@ -127,11 +143,6 @@
         <xpath>//property[propertyName=&quot;LogTrapper.pm&quot;]/value</xpath>
         <path>WebSphere/LogTrapper.pm</path>
     </file>
-    <!-- CreateConfigForm to ec_config/form property -->
-    <!-- <file> -->
-    <!--     <xpath>//property[propertyName=&quot;ec_config&quot;]/propertySheet/property[propertyName=&quot;form&quot;]/value</xpath> -->
-    <!--     <path>WebSphereCreateConfigForm.xml</path> -->
-    <!-- </file> -->
     <file>
         <xpath>//property[propertyName=&quot;ui_forms&quot;]/propertySheet/property[propertyName=&quot;WebSphereCreateConfigForm&quot;]/value</xpath>
         <path>WebSphereCreateConfigForm.xml</path>
@@ -374,6 +385,7 @@
     </file>
 
     <!-- Activation spec and CF perl scripts going to be here -->
+    <!-- Activation Spec -->
     <file>
         <xpath>//procedure[procedureName=&quot;CreateOrUpdateWMQJMSActivationSpec&quot;]/step[stepName=&quot;CreateOrUpdateWMQJMSActivationSpec&quot;]/command</xpath>
         <path>server/JMS/createOrUpdateWMQJMSActivationSpec.pl</path>
@@ -386,9 +398,20 @@
         <xpath>//procedure[procedureName=&quot;DeleteJMSActivationSpec&quot;]/step[stepName=&quot;DeleteJMSActivationSpec&quot;]/command</xpath>
         <path>server/JMS/deleteJMSActivationSpec.pl</path>
     </file>
-
+    <!-- Connection Factory -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateOrUpdateWMQJMSConnectionFactory&quot;]/step[stepName=&quot;CreateOrUpdateWMQJMSConnectionFactory&quot;]/command</xpath>
+        <path>server/JMS/createOrUpdateWMQJMSConnectionFactory.pl</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateOrUpdateSIBJMSConnectionFactory&quot;]/step[stepName=&quot;CreateOrUpdateSIBJMSConnectionFactory&quot;]/command</xpath>
+        <path>server/JMS/createOrUpdateSIBJMSConnectionFactory.pl</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeleteJMSConnectionFactory&quot;]/step[stepName=&quot;DeleteJMSConnectionFactory&quot;]/command</xpath>
+        <path>server/JMS/deleteJMSConnectionFactory.pl</path>
+    </file>
     <!-- End -->
-    
     <file>
         <xpath>//procedure[procedureName=&quot;CreateConfiguration&quot;]/step[stepName=&quot;CreateConfiguration&quot;]/command</xpath>
         <path>conf/createcfg.pl</path>
@@ -571,6 +594,20 @@
     <file>
         <xpath>//procedure[procedureName=&quot;DeleteJMSActivationSpec&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/JMS/DeleteJMSActivationSpec.xml</path>
+    </file>
+
+    <!-- Connection Factory -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateOrUpdateWMQJMSConnectionFactory&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/JMS/CreateOrUpdateWMQJMSConnectionFactory.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateOrUpdateSIBJMSConnectionFactory&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/JMS/CreateOrUpdateSIBJMSConnectionFactory.xml</path>
+    </file>
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeleteJMSConnectionFactory&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/JMS/DeleteJMSConnectionFactory.xml</path>
     </file>
     <!-- End of AS and CF forms -->
     <file>

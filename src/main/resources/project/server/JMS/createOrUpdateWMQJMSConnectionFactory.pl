@@ -21,7 +21,7 @@ my $opts = {
     configname                          => '$[configname]',
     factoryScope                        => '$[factoryScope]',
     factoryAdministrativeName           => '$[factoryAdministrativeName]',
-    factoryType                         => '$[factoryAdministrativeName]',
+    factoryType                         => '$[factoryType]',
     jndiName                            => '$[jndiName]',
 
     # Non-required parameters:
@@ -67,6 +67,8 @@ $websphere->setTemplateProperties(
     factoryScope      => $parsedFactoryScope
 );
 
+# TODO:
+# Check edit case, looks like type parameter should be omitted in case of edit.
 my $logger = $websphere->log();
 my $file = 'create_or_update_wmq_jms_connection_factory.py';
 my $script = $ec->getProperty("/myProject/wsadmin_scripts/$file")->getNodeText('//value');

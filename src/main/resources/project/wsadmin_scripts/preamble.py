@@ -140,7 +140,7 @@ def getWMQConnectionFactories(scope):
     print topics
     retval = []
     for topic in parseOutput(topics):
-        t = wsadminTaskToDict(AdminTask.listWMQConnectionFactory(topic))
+        t = wsadminTaskToDict(AdminTask.showWMQConnectionFactory(topic))
         t["__raw_resource_scope__"] = topic
         retval.append(t)
     return retval
@@ -218,7 +218,6 @@ def deleteJMSProvider(providerId):
 
 def isResourceExists(scope, resType, resName):
     result = AdminConfig.getid(scope)
-    print result
     records = None
     if resType == 'WMQ_Topic':
         records = getWMQTopics(scope)
@@ -236,8 +235,6 @@ def isResourceExists(scope, resType, resName):
         records = getWMQActivationSpecs(scope)
     elif resType == 'SIB_ActivationSpec':
         records = getSIBJMSActivationSpecs(scope)
-    # elif resType == 'JMS_Provider':
-    #     records = getJMSProviderAtScope(scope, resName)
     else:
         print "Wrong resource type %s" % (resType)
         sys.exit(1)

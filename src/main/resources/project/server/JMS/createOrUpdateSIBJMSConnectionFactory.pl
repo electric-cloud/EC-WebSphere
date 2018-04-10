@@ -22,9 +22,9 @@ my $opts = {
     factoryAdministrativeName        => '$[factoryAdministrativeName]',
     busName                          => '$[busName]',
     jndiName                         => '$[jndiName]',
-    destinationJndiName              => '$[destinationJndiName]',
 
     # Non-required parameters:
+    factoryType                      => '$[factoryType]',
     factoryAdministartiveDescription => '$[factoryAdministartiveDescription]',
     additionalOptions                => '$[additionalOptions]',
 };
@@ -37,19 +37,14 @@ my $websphere = WebSphere::WebSphere->new($ec, $opts->{configname}, '');
 my $r = $websphere->getParamsRenderer(
     name                => $opts->{factoryAdministrativeName},
     jndiName            => $opts->{jndiName},
-    destinationJndiName => $opts->{destinationJndiName},
     busName             => $opts->{busName}
 );
 
 if ($opts->{factoryAdministartiveDescription}) {
     $r->{description} = $opts->{factoryAdministartiveDescription};
 }
-
-if ($opts->{destinationType}) {
-    $r->{destinationType} = $opts->{destinationType};
-}
-if ($opts->{messageSelector}) {
-    $r->{messageSelector} = $opts->{messageSelector};
+if ($opts->{factoryType}) {
+    $r->{type} = $opts->{factoryType};
 }
 my $wasApi = 'SIB_ConnectionFactory';
 
@@ -57,6 +52,7 @@ my $params = $r->render();
 
 $params .= ' ' . $opts->{additionalOptions};
 
+# TODO: Check edit case.
 my $parsedFactoryScope = $websphere->parseScope($opts->{factoryScope});
 $websphere->setTemplateProperties(
     requestParameters => $params,

@@ -38,7 +38,7 @@ limitations under the License.
     </formElement>
     <formElement>
         <label>Connection Factory Scope:</label>
-        <property>factorySpecScope</property>
+        <property>factoryScope</property>
         <type>entry</type>
         <required>1</required>
         <documentation>Scope of the messaging provider at which the JMS ActivationSpec is to be deleted.</documentation>
