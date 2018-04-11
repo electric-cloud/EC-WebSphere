@@ -4,6 +4,9 @@ scope = '''
 $[/myJobStep/tmpl/factoryScope]
 '''.strip()
 
+factoryType = '''
+$[/myJobStep/tmpl/factoryType]
+'''.strip()
 # this parameter is responsible for flow
 api = '''
 $[/myJobStep/tmpl/wasApi]
@@ -13,6 +16,10 @@ requestParams = '''
 $[/myJobStep/tmpl/requestParameters]
 '''.strip()
 
+editParams = '''
+$[/myJobStep/tmpl/editParameters]
+'''.strip()
+
 resName = '''
 $[factoryAdministrativeName]
 '''.strip()
@@ -20,7 +27,7 @@ $[factoryAdministrativeName]
 mode = "create";
 
 ### some logic to switch to edit mode if required goes here:
-editResourceScope = isResourceExists(scope, api, resName)
+editResourceScope = isResourceExists(scope, api, resName, factoryType)
 if editResourceScope:
     print "Raw resource scope: %s" %(editResourceScope)
     mode = "edit"
@@ -43,7 +50,7 @@ elif mode == 'edit':
     print "Edit WMQ JMS Connection Factory"
     actionResult = AdminTask.modifyWMQConnectionFactory(
         editResourceScope,
-        [requestParams]
+        [editParams]
     )
     print "Status: OK, Message: WMQ JMS Connection Factory %s has been updated" % (resName)
 else:

@@ -37,6 +37,10 @@ $ec->abortOnError(0);
 my $websphere = WebSphere::WebSphere->new($ec, $opts->{configname}, '');
 
 my $parsedFactoryScope = $websphere->parseScope($opts->{factoryScope});
+if ($opts->{factoryType} !~ m/^(?:CF|TF|QCF)$/s) {
+    $websphere->bail_out("Connection factory type should be one of: CF, TF, QCF. Found: $opts->{factoryType}");
+}
+
 my $r = $websphere->getParamsRenderer(
     name                => $opts->{factoryAdministrativeName},
     jndiName            => $opts->{jndiName},
@@ -59,12 +63,17 @@ my $wasApi = 'WMQ_ConnectionFactory';
 
 my $params = $r->render();
 
+delete $r->{type};
+my $edit_params = $r->render();
+$edit_params .= ' ' . $opts->{additionalOptions};
 $params .= ' ' . $opts->{additionalOptions};
 
 $websphere->setTemplateProperties(
     requestParameters => $params,
+    editParameters    => $edit_params,
     wasApi            => $wasApi,
-    factoryScope      => $parsedFactoryScope
+    factoryScope      => $parsedFactoryScope,
+    factoryType       => $opts->{factoryType},
 );
 
 # TODO:

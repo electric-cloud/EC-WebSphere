@@ -133,11 +133,13 @@ def getWMQQueues(scope):
         retval.append(t)
     return retval
 
-def getWMQConnectionFactories(scope):
+def getWMQConnectionFactories(scope, resType):
     result = AdminConfig.getid(scope)
     print result
-    topics = AdminTask.listWMQConnectionFactories(result)
+    params = "-type %s" % (resType)
+    topics = AdminTask.listWMQConnectionFactories(result, [params])
     print topics
+    # todo
     retval = []
     for topic in parseOutput(topics):
         t = wsadminTaskToDict(AdminTask.showWMQConnectionFactory(topic))
@@ -196,7 +198,7 @@ def getSIBJMSActivationSpecs(scope):
 def getSIBJMSConnectionFactories(scope):
     result = AdminConfig.getid(scope)
     print result
-    topics = AdminTask.listSIBJMSConnectionFactories(result)
+    topics = AdminTask.listSIBJMSConnectionFactories(result, ["-type all"])
     print topics
     retval = []
     for topic in parseOutput(topics):
@@ -216,7 +218,7 @@ def getJMSProviderAtScope(providerName, scope):
 def deleteJMSProvider(providerId):
     AdminConfig.remove(providerId)
 
-def isResourceExists(scope, resType, resName):
+def isResourceExists(scope, resType, resName, fType = ''):
     result = AdminConfig.getid(scope)
     records = None
     if resType == 'WMQ_Topic':
@@ -228,7 +230,7 @@ def isResourceExists(scope, resType, resName):
     elif resType == 'SIB_Queue':
         records = getSIBJMSQueues(scope)
     elif resType == 'WMQ_ConnectionFactory':
-        records = getWMQConnectionFactories(scope)
+        records = getWMQConnectionFactories(scope, fType)
     elif resType == 'SIB_ConnectionFactory':
         records = getSIBJMSConnectionFactories(scope)
     elif resType == 'WMQ_ActivationSpec':

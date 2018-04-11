@@ -49,6 +49,11 @@ if ($opts->{factoryType}) {
 my $wasApi = 'SIB_ConnectionFactory';
 
 my $params = $r->render();
+# now we need to create edit params, but without type parameter.
+delete $r->{type};
+
+my $edit_params = $r->render();
+$edit_params .= ' ' . $opts->{additionalOptions};
 
 $params .= ' ' . $opts->{additionalOptions};
 
@@ -56,8 +61,9 @@ $params .= ' ' . $opts->{additionalOptions};
 my $parsedFactoryScope = $websphere->parseScope($opts->{factoryScope});
 $websphere->setTemplateProperties(
     requestParameters => $params,
+    editParameters    => $edit_params,
     wasApi            => $wasApi,
-    factoryScope      => $parsedFactoryScope
+    factoryScope      => $parsedFactoryScope,
 );
 
 my $logger = $websphere->log();

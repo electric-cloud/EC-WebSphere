@@ -13,6 +13,10 @@ requestParams = '''
 $[/myJobStep/tmpl/requestParameters]
 '''.strip()
 
+editParams = '''
+$[/myJobStep/tmpl/editParameters]
+'''.strip()
+
 resName = '''
 $[factoryAdministrativeName]
 '''.strip()
@@ -43,7 +47,7 @@ elif mode == 'edit':
     print "Edit SIB JMS Connection Factory"
     actionResult = AdminTask.modifySIBJMSConnectionFactory(
         editResourceScope,
-        [requestParams]
+        [editParams]
     )
     print "Status: OK, Message: SIB JMS Connection Factory %s has been updated" % (resName)
 else:
