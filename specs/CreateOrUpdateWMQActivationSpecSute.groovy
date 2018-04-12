@@ -32,7 +32,7 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
      */
 
     @Shared
-    def testProjectName = 'EC-WebSphere-SystemTests'
+    def testProjectName =   'EC-WebSphere-SystemTests'
     @Shared
     def testProcedureName = 'CreateOrUpdateWMQActivationSpec'
 
