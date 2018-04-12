@@ -11,30 +11,30 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
      */ 
 
     @Shared 
-    def wasUserName =                   System.getenv('WAS_USERNAME')
+    def wasUserName = System.getenv('WAS_USERNAME')
     @Shared 
-    def wasPassword =                   System.getenv('WAS_PASSWORD')
+    def wasPassword = System.getenv('WAS_PASSWORD')
     @Shared 
-    def wasHost =                       System.getenv('WAS_HOST')
+    def wasHost =     System.getenv('WAS_HOST')
     @Shared
-    def wasPort =                       System.getenv('WAS_PORT')
+    def wasPort =     System.getenv('WAS_PORT')
     @Shared
-    def wasConnType =                   System.getenv('WAS_CONNTYPE')
+    def wasConnType = System.getenv('WAS_CONNTYPE')
     @Shared
-    def wasDebug =                      System.getenv('WAS_DEBUG')
+    def wasDebug =    System.getenv('WAS_DEBUG')
     @Shared
-    def wasPath =                       System.getenv('WSADMIN_PATH')
+    def wasPath =     System.getenv('WSADMIN_PATH')
     @Shared
-    def wasAppPath =                    System.getenv('WAS_APPPATH')
+    def wasAppPath =  System.getenv('WAS_APPPATH')
 
     /**
      * Dsl Parameters
      */
 
     @Shared
-    def testProjectName =               'EC-WebSphere-SystemTests'
+    def testProjectName = 'EC-WebSphere-SystemTests'
     @Shared
-    def testProcedureName =             'CreateOrUpdateWMQActivationSpec'
+    def testProcedureName = 'CreateOrUpdateWMQActivationSpec'
 
     /**
      * Common Maps: General Maps fpr different fields
@@ -209,7 +209,7 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
 
     @Unroll //Positive Scenarios for delete should be first
     def "Create Or Update WMQ Activation Spec. Positive Scenarios and Extended Scenarios" (){
-        setup: 'Define the parameters for running'
+        setup: 'Define the parameters for Procedure running'
              def runParams = [
                 pluginConfigurationName:                pluginConfigurationName,
                 specScope:                              specScope,
@@ -227,7 +227,7 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
         when: 'Procedure runs: '
             def result = runProcedure(runParams)
 
-        then: 'Wait until job is completed: '
+        then: 'Wait until job run is completed: '
             waitUntil {
                 try {
                     jobCompleted(result)
@@ -256,7 +256,7 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
 
     @Unroll
     def "Create Or Update WMQ Activation Spec. Negative Scenarios and Extended Scenarios" () {
-        setup: 'Define the parameters for running'
+        setup: 'Define the parameters for Procedure running'
              def runParams = [
                 pluginConfigurationName:                pluginConfigurationName,
                 specScope:                              specScope,
