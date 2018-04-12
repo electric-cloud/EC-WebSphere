@@ -3997,7 +3997,7 @@
             <type>entry</type>
         </formalParameter>
         <formalParameter>
-            <formalParameterName>specAdministartiveDescription</formalParameterName>
+            <formalParameterName>specAdministrativeDescription</formalParameterName>
             <defaultValue />
             <description>
                 The name used to bind this object into WebSphere Application Server JNDI.
@@ -4227,7 +4227,7 @@
             <type>entry</type>
         </formalParameter>
         <formalParameter>
-            <formalParameterName>factoryAdministartiveDescription</formalParameterName>
+            <formalParameterName>factoryAdministrativeDescription</formalParameterName>
             <defaultValue />
             <description>
                 The name used to bind this object into WebSphere Application Server JNDI.
@@ -4456,7 +4456,7 @@
             <type>entry</type>
         </formalParameter>
         <formalParameter>
-            <formalParameterName>specAdministartiveDescription</formalParameterName>
+            <formalParameterName>specAdministrativeDescription</formalParameterName>
             <defaultValue />
             <description>
                 The name used to bind this object into WebSphere Application Server JNDI.
@@ -4684,7 +4684,7 @@
             <type>entry</type>
         </formalParameter>
         <formalParameter>
-            <formalParameterName>factoryAdministartiveDescription</formalParameterName>
+            <formalParameterName>factoryAdministrativeDescription</formalParameterName>
             <defaultValue />
             <description>
                 The name used to bind this object into WebSphere Application Server JNDI.

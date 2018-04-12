@@ -25,7 +25,7 @@ my $opts = {
     jndiName                            => '$[jndiName]',
 
     # Non-required parameters:
-    factoryAdministartiveDescription    => '$[factoryAdministartiveDescription]',
+    factoryAdministrativeDescription    => '$[factoryAdministrativeDescription]',
     clientChannelDefinitionUrl          => '$[clientChannelDefinitionUrl]',
     clientChannelDefinitionQueueManager => '$[clientChannelDefinitionQueueManager]',
     additionalOptions                   => '$[additionalOptions]',
@@ -49,8 +49,8 @@ my $r = $websphere->getParamsRenderer(
     type                => $opts->{factoryType}
 );
 
-if ($opts->{factoryAdministartiveDescription}) {
-    $r->{description} = $opts->{factoryAdministartiveDescription};
+if ($opts->{factoryAdministrativeDescription}) {
+    $r->{description} = $opts->{factoryAdministrativeDescription};
 }
 
 if ($opts->{clientChannelDefinitionUrl}) {

@@ -26,7 +26,7 @@ my $opts = {
     destinationJndiType                 => '$[destinationJndiType]',
 
     # Non-required parameters:
-    specAdministartiveDescription       => '$[specAdministartiveDescription]',
+    specAdministrativeDescription       => '$[specAdministrativeDescription]',
     clientChannelDefinitionUrl          => '$[clientChannelDefinitionUrl]',
     clientChannelDefinitionQueueManager => '$[clientChannelDefinitionQueueManager]',
     additionalOptions                   => '$[additionalOptions]',
@@ -45,8 +45,8 @@ my $r = $websphere->getParamsRenderer(
     destinationType     => $opts->{destinationJndiType},
 );
 
-if ($opts->{specAdministartiveDescription}) {
-    $r->{description} = $opts->{specAdministartiveDescription};
+if ($opts->{specAdministrativeDescription}) {
+    $r->{description} = $opts->{specAdministrativeDescription};
 }
 
 if ($opts->{clientChannelDefinitionUrl}) {

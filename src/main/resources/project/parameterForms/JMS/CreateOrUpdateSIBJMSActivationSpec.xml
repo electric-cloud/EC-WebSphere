@@ -57,7 +57,7 @@ limitations under the License.
     </formElement>
     <formElement>
         <label>Spec Administrative description:</label>
-        <property>specAdministartiveDescription</property>
+        <property>specAdministrativeDescription</property>
         <type>textarea</type>
         <required>0</required>
         <documentation>Res desc</documentation>

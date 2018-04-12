@@ -60,7 +60,7 @@ limitations under the License.
     </formElement>    
     <formElement>
         <label>Connection Factory Administrative description:</label>
-        <property>factoryAdministartiveDescription</property>
+        <property>factoryAdministrativeDescription</property>
         <type>textarea</type>
         <required>0</required>
         <documentation>Res desc</documentation>

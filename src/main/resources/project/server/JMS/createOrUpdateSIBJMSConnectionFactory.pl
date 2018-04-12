@@ -25,7 +25,7 @@ my $opts = {
 
     # Non-required parameters:
     factoryType                      => '$[factoryType]',
-    factoryAdministartiveDescription => '$[factoryAdministartiveDescription]',
+    factoryAdministrativeDescription => '$[factoryAdministrativeDescription]',
     additionalOptions                => '$[additionalOptions]',
 };
 
@@ -40,8 +40,8 @@ my $r = $websphere->getParamsRenderer(
     busName             => $opts->{busName}
 );
 
-if ($opts->{factoryAdministartiveDescription}) {
-    $r->{description} = $opts->{factoryAdministartiveDescription};
+if ($opts->{factoryAdministrativeDescription}) {
+    $r->{description} = $opts->{factoryAdministrativeDescription};
 }
 if ($opts->{factoryType}) {
     $r->{type} = $opts->{factoryType};

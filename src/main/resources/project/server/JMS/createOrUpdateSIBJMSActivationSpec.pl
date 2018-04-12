@@ -24,7 +24,7 @@ my $opts = {
     destinationJndiName           => '$[destinationJndiName]',
 
     # Non-required parameters:
-    specAdministartiveDescription => '$[specAdministartiveDescription]',
+    specAdministrativeDescription => '$[specAdministrativeDescription]',
     destinationType               => '$[destinationType]',
     messageSelector               => '$[messageSelector]',
     additionalOptions             => '$[additionalOptions]',
@@ -41,8 +41,8 @@ my $r = $websphere->getParamsRenderer(
     destinationJndiName => $opts->{destinationJndiName},
 );
 
-if ($opts->{specAdministartiveDescription}) {
-    $r->{description} = $opts->{specAdministartiveDescription};
+if ($opts->{specAdministrativeDescription}) {
+    $r->{description} = $opts->{specAdministrativeDescription};
 }
 
 if ($opts->{destinationType}) {
