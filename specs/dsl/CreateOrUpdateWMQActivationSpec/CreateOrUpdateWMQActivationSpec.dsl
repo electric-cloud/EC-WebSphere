@@ -1,8 +1,11 @@
+def testProjectName = args.projectName
+def wasResourceName = args.wasResourceName
+project testProjectName
 
 procedure 'CreateOrUpdateWMQActivationSpec', {
   description = ''
   jobNameTemplate = ''
-  projectName = 'EC-WebSphere-SystemTests-Manual'
+  projectName = testProjectName
   resourceName = ''
   timeLimit = ''
   timeLimitUnits = 'minutes'
@@ -108,7 +111,7 @@ procedure 'CreateOrUpdateWMQActivationSpec', {
   }
 
   step 'CreateorUpdateWMQActivationSpec', {
-    description = ''
+    description = 'COUWMQAS'
     alwaysRun = '0'
     broadcast = '0'
     command = null
@@ -119,7 +122,7 @@ procedure 'CreateOrUpdateWMQActivationSpec', {
     parallel = '0'
     postProcessor = null
     precondition = ''
-    projectName = 'EC-WebSphere-SystemTests-Manual'
+    projectName = testProjectName
     releaseMode = 'none'
     resourceName = '$[wasResourceName]'
     shell = null
