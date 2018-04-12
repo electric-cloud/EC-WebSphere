@@ -324,8 +324,17 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
                 projectName:                        '$testProjectName',
                 procedureName:                      '$testProcedureName',
                 actualParameter: [
-                    confignameCOUWMQAS:                 '$parameters.pluginConfigurationName',
-                    wasResourceName:                    '$parameters.wasHost',                   
+                    confignameCOUWMQAS:                             '$parameters.pluginConfigurationName',
+                    specScopeCOUWMQAS:                              '$parameters.specScope',
+                    specAdministrativeNameCOUWMQAS:                 '$parameters.specAdministrativeName',
+                    jndiNameCOUWMQAS:                               '$parameters.specJNDIName',
+                    destinationJndiNameCOUWMQAS:                    '$parameters.destinationJNDIName',
+                    destinationJndiTypeCOUWMQAS:                    '$parameters.destinationJNDIType',
+                    specAdministartiveDescriptionCOUWMQAS:          '$parameters.specAdministrativeDescription',
+                    clientChannelDefinitionUrlCOUWMQAS:             '$parameters.clientChannelDefinitionURLs',
+                    clientChannelDefinitionQueueManagerCOUWMQAS:    '$parameters.clientChannelDefinitionQueueManager',
+                    additionalOptionsCOUWMQAS:                      '$parameters.additionalOption',
+                    wasResourceName:                                '$parameters.wasHost',                   
                 ]
             )
         """
