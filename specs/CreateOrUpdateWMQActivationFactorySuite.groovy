@@ -251,23 +251,22 @@ class CreateOrUpdateWMQActivationFactorySuite extends PluginTestHelper {
     def "Create Or Update WMQ Activation Factory. Negative Scenarios and Extended Scenarios" () {
         setup: 'Define the parameters for Procedure running'
              def runParams = [
-                pluginConfigurationName:                pluginConfigurationName,
-                specScope:                              specScope,
-                specAdministrativeName:                 specAdministrativeName,
-                specJNDIName:                           specJNDIName,
-                destinationJNDIName:                    destinationJNDIName,
-                destinationJNDIType:                    destinationJNDIType,
-                specAdministrativeDescription:          specAdministrativeDescription,
-                clientChannelDefinitionURLs:            clientChannelDefinitionURLs,
-                clientChannelDefinitionQueueManager:    clientChannelDefinitionQueueManager,
-                additionalOption:                       additionalOption,
-                wasHost:                                wasHost,
+                pluginConfigurationName:                    pluginConfigurationName,
+                connectionFactoryScopes:                    connectionFactoryScopes,
+                connectionFactoryAdministrativeNames:       connectionFactoryAdministrativeNames,
+                connectionFactoryTypes:                     connectionFactoryTypes,
+                jndiNames:                                  jndiNames,
+                connectionFactoryAdministrativeDescription: specAdministrativeDescription,
+                clientChannelDefinitionURLs:                clientChannelDefinitionURLs,
+                clientChannelDefinitionQueueManager:        clientChannelDefinitionQueueManager,
+                additionalOption:                           additionalOption,
+                wasHost:                                    wasHost,
             ]
-            
+
         when: 'Procedure runs: '
             def result = runProcedure(runParams)
 
-        then: 'Wait until job is completed: '
+        then: 'Wait until job run is completed: '
             waitUntil {
                 try {
                     jobCompleted(result)
@@ -285,8 +284,8 @@ class CreateOrUpdateWMQActivationFactorySuite extends PluginTestHelper {
             upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary              
-            //pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary              
+            pluginConfigurationName                 | connectionFactoryScope               | connectionFactoryAdministrativeName                  | connectionFactoryType                | jndiName                 | connectionFactoryAdministrativeDescription                    | clientChannelDefinitionURL                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary              
+            //pluginConfigurationName                 | connectionFactoryScope               | connectionFactoryAdministrativeName                  | connectionFactoryType                | jndiName                 | connectionFactoryAdministrativeDescription                    | clientChannelDefinitionURL                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary              
 
     }
 
