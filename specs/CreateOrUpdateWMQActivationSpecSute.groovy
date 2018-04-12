@@ -330,7 +330,7 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
                     jndiNameCOUWMQAS:                               '$parameters.specJNDIName',
                     destinationJndiNameCOUWMQAS:                    '$parameters.destinationJNDIName',
                     destinationJndiTypeCOUWMQAS:                    '$parameters.destinationJNDIType',
-                    specAdministartiveDescriptionCOUWMQAS:          '$parameters.specAdministrativeDescription',
+                    specAdministrativeDescriptionCOUWMQAS:          '$parameters.specAdministrativeDescription',
                     clientChannelDefinitionUrlCOUWMQAS:             '$parameters.clientChannelDefinitionURLs',
                     clientChannelDefinitionQueueManagerCOUWMQAS:    '$parameters.clientChannelDefinitionQueueManager',
                     additionalOptionsCOUWMQAS:                      '$parameters.additionalOption',
