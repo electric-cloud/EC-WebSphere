@@ -209,11 +209,22 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
 
     @Unroll //Positive Scenarios for delete should be first
     def "Create Or Update WMQ Activation Spec. Positive Scenarios and Extended Scenarios" (){
-        when: 'Procedure runs: '
+        setup: 'Define the parameters for running'
              def runParams = [
-                pluginConfigurationName:    pluginConfigurationName,
-                wasHost:                    wasHost,
+                pluginConfigurationName:                pluginConfigurationName,
+                specScope:                              specScope,
+                specAdministrativeName:                 specAdministrativeName,
+                specJNDIName:                           specJNDIName,
+                destinationJNDIName:                    destinationJNDIName,
+                destinationJNDIType:                    destinationJNDIType,
+                specAdministrativeDescription:          specAdministrativeDescription,
+                clientChannelDefinitionURLs:            clientChannelDefinitionURLs,
+                clientChannelDefinitionQueueManager:    clientChannelDefinitionQueueManager,
+                additionalOption:                       additionalOption,
+                wasHost:                                wasHost,
             ]
+
+        when: 'Procedure runs: '
             def result = runProcedure(runParams)
 
         then: 'Wait until job is completed: '
@@ -229,10 +240,14 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
             println "Procedure log:\n$debugLog\n"
             def upperStepSummary = getJobUpperStepSummary(result.jobId)
 
-            assert outcome == expectedOutcome
-            assert upperStepSummary.contains(expectedSummaryMessage)
+        expect: 'Outcome and Upper Summary verification'
+            outcome == expectedOutcome
+            upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
+            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary              
+            //pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary              
+
     }
 
     /**
@@ -241,11 +256,22 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
 
     @Unroll
     def "Create Or Update WMQ Activation Spec. Negative Scenarios and Extended Scenarios" () {
-        when: 'Procedure runs: '
+        setup: 'Define the parameters for running'
              def runParams = [
-                pluginConfigurationName:    pluginConfigurationName,
-                wasHost:                    wasHost,
+                pluginConfigurationName:                pluginConfigurationName,
+                specScope:                              specScope,
+                specAdministrativeName:                 specAdministrativeName,
+                specJNDIName:                           specJNDIName,
+                destinationJNDIName:                    destinationJNDIName,
+                destinationJNDIType:                    destinationJNDIType,
+                specAdministrativeDescription:          specAdministrativeDescription,
+                clientChannelDefinitionURLs:            clientChannelDefinitionURLs,
+                clientChannelDefinitionQueueManager:    clientChannelDefinitionQueueManager,
+                additionalOption:                       additionalOption,
+                wasHost:                                wasHost,
             ]
+            
+        when: 'Procedure runs: '
             def result = runProcedure(runParams)
 
         then: 'Wait until job is completed: '
@@ -261,10 +287,13 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
             println "Procedure log:\n$debugLog\n"
             def upperStepSummary = getJobUpperStepSummary(result.jobId)
 
-            assert outcome == expectedOutcome
-            assert upperStepSummary.contains(expectedSummaryMessage)
+        expect: 'Outcome and Upper Summary verification'
+            outcome == expectedOutcome
+            upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
+            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary              
+            //pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary              
 
     }
 
