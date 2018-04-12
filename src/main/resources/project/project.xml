@@ -4002,7 +4002,7 @@
             <description>
                 The name used to bind this object into WebSphere Application Server JNDI.
             </description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
         </formalParameter>
 
@@ -4012,7 +4012,7 @@
             <description>
                 The name used to bind this object into WebSphere Application Server JNDI.
             </description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
         </formalParameter>
         <formalParameter>
@@ -4021,7 +4021,7 @@
             <description>
                 The name used to bind this object into WebSphere Application Server JNDI.
             </description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
         </formalParameter>
         
@@ -4461,7 +4461,7 @@
             <description>
                 The name used to bind this object into WebSphere Application Server JNDI.
             </description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
         </formalParameter>
 
@@ -4471,7 +4471,7 @@
             <description>
                 Dest type
             </description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
         </formalParameter>
         <formalParameter>
@@ -4480,7 +4480,7 @@
             <description>
                 Message selector.
             </description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
         </formalParameter>
         <formalParameter>
@@ -4680,7 +4680,7 @@
             <description>
                 CF type
             </description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
         </formalParameter>
         <formalParameter>
@@ -4689,7 +4689,7 @@
             <description>
                 The name used to bind this object into WebSphere Application Server JNDI.
             </description>
-            <required>1</required>
+            <required>0</required>
             <type>entry</type>
         </formalParameter>
         <formalParameter>
