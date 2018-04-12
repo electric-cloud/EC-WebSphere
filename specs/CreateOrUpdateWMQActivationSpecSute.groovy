@@ -191,7 +191,7 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
         createConfiguration(pluginConfigurationNames.correctNone, [doNotRecreate: false])        
         createConfiguration(pluginConfigurationNames.correctRMI, [doNotRecreate: false])        
         importProject(testProjectName, 'dsl/CheckCreateOrUpdateJMSQueue/CreateOrUpdateJMSQueue.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
-        importProject(testProjectName, 'dsl/DeleteJMSQueue/', [projectName: testProjectName, wasResourceName:wasResourceName])
+        importProject(testProjectName, 'dsl/CreateOrUpdateWMQActivationSpec/.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
      }
 
