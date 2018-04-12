@@ -162,6 +162,7 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
     /**
      * Test Parameters: for Where section 
      */ 
+    // Procedure params
     def pluginConfigurationName
     def specScope
     def specAdministrativeName
@@ -173,7 +174,7 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
     def clientChannelDefinitionQueueManager
     def additionalOption
 
-
+    // expected results
     def expectedOutcome
     def expectedSummaryMessage
     def expectedJobDetailedResult
