@@ -74,7 +74,7 @@ procedure 'CreateOrUpdateWMQActivationSpec', {
     type = 'entry'
   }
 
-  formalParameter 'specAdministartiveDescriptionCOUWMQAS', defaultValue: '', {
+  formalParameter 'specAdministrativeDescriptionCOUWMQAS', defaultValue: '', {
     description = ''
     expansionDeferred = '0'
     label = null
@@ -139,7 +139,7 @@ procedure 'CreateOrUpdateWMQActivationSpec', {
     actualParameter 'destinationJndiName', '$[destinationJndiNameCOUWMQAS]'
     actualParameter 'destinationJndiType', '$[destinationJndiTypeCOUWMQAS]'
     actualParameter 'jndiName', '$[jndiNameCOUWMQAS]'
-    actualParameter 'specAdministartiveDescription', '$[specAdministartiveDescriptionCOUWMQAS]'
+    actualParameter 'specAdministrativeDescription', '$[specAdministrativeDescriptionCOUWMQAS]'
     actualParameter 'specAdministrativeName', '$[specAdministrativeNameCOUWMQAS]'
     actualParameter 'specScope', '$[specScopeCOUWMQAS]'
   }
@@ -196,7 +196,7 @@ procedure 'CreateOrUpdateWMQActivationSpec', {
         formType = 'standard'
       }
 
-      property 'specAdministartiveDescriptionCOUWMQAS', {
+      property 'specAdministrativeDescriptionCOUWMQAS', {
 
         // Custom properties
         formType = 'standard'
