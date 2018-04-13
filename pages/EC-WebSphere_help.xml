@@ -34,12 +34,25 @@
                     
                     <li><a href="#CreateOrUpdateJMSQueue">CreateOrUpdateJMSQueue</a></li>
                     <li><a href="#CreateOrUpdateJMSTopic">CreateOrUpdateJMSTopic</a></li>
+
+                    <!-- Activation Spec procedures -->
+                    <li><a href="#CreateOrUpdateSIBJMSActivationSpec">CreateOrUpdateSIBJMSActivationSpec</a></li>
+                    <li><a href="#CreateOrUpdateWMQJMSActivationSpec">CreateOrUpdateWMQJMSActivationSpec</a></li>
+                    <!-- End of Activation Spec CU procedures -->
+
+                    <!-- Connection factory CU procedures -->
+                    <li><a href="#CreateOrUpdateSIBJMSConnectionFactory">CreateOrUpdateSIBJMSConnectionFactory</a></li>
+                    <li><a href="#CreateOrUpdateWMQJMSConnectionFactory">CreateOrUpdateWMQJMSConnectionFactory</a></li>
+                    <!-- End of connection factory CU procedures -->
                     
                     <li><a href="#DeleteCluster">DeleteCluster (Only for WebSphere Network Deployment)</a></li>
                     <li><a href="#DeleteConfiguration">DeleteConfiguration</a></li>
                     <li><a href="#DeleteDatasource">DeleteDatasource</a></li>
                     <li><a href="#DeleteJDBCProvider">DeleteJDBCProvider</a></li>
 
+                    <li><a href="#DeleteJMSActivationSpec">DeleteJMSActivationSpec</a></li>
+                    <li><a href="#DeleteJMSConnectionFactory">DeleteJMSConnectionFactory</a></li>
+                    <li><a href="#DeleteJMSProvider">DeleteJMSProvider</a></li>
                     <li><a href="#DeleteJMSQueue">DeleteJMSQueue</a></li>
                     <li><a href="#DeleteJMSTopic">DeleteJMSTopic</a></li>
                     
@@ -1302,6 +1315,389 @@
                 diagnostic report.</p>
                 <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureLog.png" />
             </div>
+            <div id="CreateOrUpdateSIBJMSActivationSpec"> <a name="CreateOrUpdateSIBJMSActivationSpec" id="CreateOrUpdateSIBJMSActivationSpec"></a>
+                <h2>CreateOrUpdateSIBJMSActivationSpec</h2>
+                <p>This procedure creates a new JMS Activation Spec or updates an existing JMS Activation Spec.</p>
+                <h3>CreateOrUpdateJMSTopic Parameters</h3>
+                <table class="grid" style="width: 936px; height: 418px;">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="required">Configuration Name</td>
+                            <td>
+                                The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">Messaging System Type</td>
+                            <td>
+                                The name of the messaging provider. Pass in either WMQ or SIB.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">Activation Spec Scope</td>
+                            <td>
+                                Scope of the messaging provider at which the JMS Activation Spec is to be created.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">Activation Spec Administrative Name</td>
+                            <td>
+                                The administrative name assigned to this WebSphere MQ messaging provider Activation Spec.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">Activation Spec Name</td>
+                            <td>
+                                Name of the Activation Spec.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">JNDI Name</td>
+                            <td>
+                                The name used to bind this object into WebSphere Application Server JNDI.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Activation Spec Administrative Description</td>
+                            <td>
+                                An administrative description assigned to Activation Spec.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Additional Options</td>
+                            <td>                                
+                                This parameter can be used to either override defaults or pass Custom Properties.<br />
+                                For example:<br />
+                                <pre>-ccsid 1208 -readAhead YES -customProperties [[prop1 value1][prop2 value2]]</pre>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Create or update SIB JMS Activation Spec</h3>
+                <p>To create or update JMS Activation Spec in Commander interface, do these steps:</p>
+                <ol>
+                    <li>Create procedure.</li>
+                    <li>Create step, choose Plugin, choose CreateOrUpdateSIBJMSActivationSpec from
+                    procedures picker.</li>
+                    <li>Enter the following parameters: </li>
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureConfig.png" />
+                </ol>
+                <p>After the job runs, you can view the results, including the following
+                job details:</p>
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureResult.png" />
+                <p>To create or update JMS Topic in Flow interface, do these steps:</p>
+                <ol>
+                    <li>Create Pipeline.</li>
+                    <li>Create task.</li>
+                    <li>In task definition choose Plugin and choose following parameters:
+                    <p><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelinePicker.png" /></p>
+                    </li>
+                    <li>Click on arrow.</li>
+                    <li>Enter the following parameters: </li>
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineConfig.png" />
+                </ol>
+                <p>After the pipeline runs, you can view the results, including the
+                following step details:</p>
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineResult.png" />
+                <p>In the <b>CreateOrUpdateSIBJMSActivationSpec</b> step, click the Log icon to see
+                the diagnostic information. The output is similar to the following
+                diagnostic report.</p>
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureLog.png" />
+            </div>
+
+                            <div id="CreateOrUpdateWMQJMSActivationSpec"> <a name="CreateOrUpdateWMQJMSActivationSpec" id="CreateOrUpdateWMQJMSActivationSpec"></a>
+                <h2>CreateOrUpdateWMQJMSActivationSpec</h2>
+                <p>This procedure creates a new JMS Activation Spec or updates an existing JMS Activation Spec.</p>
+                <h3>CreateOrUpdateJMSTopic Parameters</h3>
+                <table class="grid" style="width: 936px; height: 418px;">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="required">Configuration Name</td>
+                            <td>
+                                The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">Messaging System Type</td>
+                            <td>
+                                The name of the messaging provider. Pass in either WMQ or SIB.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">Activation Spec Scope</td>
+                            <td>
+                                Scope of the messaging provider at which the JMS Activation Spec is to be created.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">Activation Spec Administrative Name</td>
+                            <td>
+                                The administrative name assigned to this WebSphere MQ messaging provider Activation Spec.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">Activation Spec Name</td>
+                            <td>
+                                Name of the Activation Spec.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">JNDI Name</td>
+                            <td>
+                                The name used to bind this object into WebSphere Application Server JNDI.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Activation Spec Administrative Description</td>
+                            <td>
+                                An administrative description assigned to Activation Spec.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Additional Options</td>
+                            <td>                                
+                                This parameter can be used to either override defaults or pass Custom Properties.<br />
+                                For example:<br />
+                                <pre>-ccsid 1208 -readAhead YES -customProperties [[prop1 value1][prop2 value2]]</pre>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Create or update WMQ JMS Activation Spec</h3>
+                <p>To create or update JMS Activation Spec in Commander interface, do these steps:</p>
+                <ol>
+                    <li>Create procedure.</li>
+                    <li>Create step, choose Plugin, choose CreateOrUpdateWMQJMSActivationSpec from
+                    procedures picker.</li>
+                    <li>Enter the following parameters: </li>
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureConfig.png" />
+                </ol>
+                <p>After the job runs, you can view the results, including the following
+                job details:</p>
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureResult.png" />
+                <p>To create or update JMS Topic in Flow interface, do these steps:</p>
+                <ol>
+                    <li>Create Pipeline.</li>
+                    <li>Create task.</li>
+                    <li>In task definition choose Plugin and choose following parameters:
+                    <p><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelinePicker.png" /></p>
+                    </li>
+                    <li>Click on arrow.</li>
+                    <li>Enter the following parameters: </li>
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineConfig.png" />
+                </ol>
+                <p>After the pipeline runs, you can view the results, including the
+                following step details:</p>
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineResult.png" />
+                <p>In the <b>CreateOrUpdateWMQJMSActivationSpec</b> step, click the Log icon to see
+                the diagnostic information. The output is similar to the following
+                diagnostic report.</p>
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureLog.png" />
+            </div>
+
+                            <div id="CreateOrUpdateSIBJMSConnectionFactory"> <a name="CreateOrUpdateSIBJMSConnectionFactory" id="CreateOrUpdateSIBJMSConnectionFactory"></a>
+                <h2>CreateOrUpdateSIBJMSConnectionFactory</h2>
+                <p>This procedure creates a new JMS Connection Factory or updates an existing JMS Connection Factory.</p>
+                <h3>CreateOrUpdateJMSTopic Parameters</h3>
+                <table class="grid" style="width: 936px; height: 418px;">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="required">Configuration Name</td>
+                            <td>
+                                The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">Messaging System Type</td>
+                            <td>
+                                The name of the messaging provider. Pass in either WMQ or SIB.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">Connection Factory Scope</td>
+                            <td>
+                                Scope of the messaging provider at which the JMS Connection Factory is to be created.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">Connection Factory Administrative Name</td>
+                            <td>
+                                The administrative name assigned to this WebSphere MQ messaging provider Connection Factory.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">Connection Factory Name</td>
+                            <td>
+                                Name of the Connection Factory.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">JNDI Name</td>
+                            <td>
+                                The name used to bind this object into WebSphere Application Server JNDI.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Connection Factory Administrative Description</td>
+                            <td>
+                                An administrative description assigned to Connection Factory.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Additional Options</td>
+                            <td>                                
+                                This parameter can be used to either override defaults or pass Custom Properties.<br />
+                                For example:<br />
+                                <pre>-ccsid 1208 -readAhead YES -customProperties [[prop1 value1][prop2 value2]]</pre>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Create or update SIB JMS Connection Factory</h3>
+                <p>To create or update JMS Connection Factory in Commander interface, do these steps:</p>
+                <ol>
+                    <li>Create procedure.</li>
+                    <li>Create step, choose Plugin, choose CreateOrUpdateSIBJMSConnectionFactory from
+                    procedures picker.</li>
+                    <li>Enter the following parameters: </li>
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureConfig.png" />
+                </ol>
+                <p>After the job runs, you can view the results, including the following
+                job details:</p>
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureResult.png" />
+                <p>To create or update JMS Topic in Flow interface, do these steps:</p>
+                <ol>
+                    <li>Create Pipeline.</li>
+                    <li>Create task.</li>
+                    <li>In task definition choose Plugin and choose following parameters:
+                    <p><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelinePicker.png" /></p>
+                    </li>
+                    <li>Click on arrow.</li>
+                    <li>Enter the following parameters: </li>
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineConfig.png" />
+                </ol>
+                <p>After the pipeline runs, you can view the results, including the
+                following step details:</p>
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineResult.png" />
+                <p>In the <b>CreateOrUpdateSIBJMSConnectionFactory</b> step, click the Log icon to see
+                the diagnostic information. The output is similar to the following
+                diagnostic report.</p>
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureLog.png" />
+            </div>
+            
+            <div id="CreateOrUpdateWMQJMSConnectionFactory"> <a name="CreateOrUpdateWMQJMSConnectionFactory" id="CreateOrUpdateWMQJMSConnectionFactory"></a>
+                <h2>CreateOrUpdateWMQJMSConnectionFactory</h2>
+                <p>This procedure creates a new JMS Connection Factory or updates an existing JMS Connection Factory.</p>
+                <h3>CreateOrUpdateJMSTopic Parameters</h3>
+                <table class="grid" style="width: 936px; height: 418px;">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="required">Configuration Name</td>
+                            <td>
+                                The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">Messaging System Type</td>
+                            <td>
+                                The name of the messaging provider. Pass in either WMQ or SIB.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">Connection Factory Scope</td>
+                            <td>
+                                Scope of the messaging provider at which the JMS Connection Factory is to be created.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">Connection Factory Administrative Name</td>
+                            <td>
+                                The administrative name assigned to this WebSphere MQ messaging provider Connection Factory.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">Connection Factory Name</td>
+                            <td>
+                                Name of the Connection Factory.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">JNDI Name</td>
+                            <td>
+                                The name used to bind this object into WebSphere Application Server JNDI.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Connection Factory Administrative Description</td>
+                            <td>
+                                An administrative description assigned to Connection Factory.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Additional Options</td>
+                            <td>                                
+                                This parameter can be used to either override defaults or pass Custom Properties.<br />
+                                For example:<br />
+                                <pre>-ccsid 1208 -readAhead YES -customProperties [[prop1 value1][prop2 value2]]</pre>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Create or update WMQ JMS Connection Factory</h3>
+                <p>To create or update JMS Connection Factory in Commander interface, do these steps:</p>
+                <ol>
+                    <li>Create procedure.</li>
+                    <li>Create step, choose Plugin, choose CreateOrUpdateWMQJMSConnectionFactory from
+                    procedures picker.</li>
+                    <li>Enter the following parameters: </li>
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureConfig.png" />
+                </ol>
+                <p>After the job runs, you can view the results, including the following
+                job details:</p>
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureResult.png" />
+                <p>To create or update JMS Topic in Flow interface, do these steps:</p>
+                <ol>
+                    <li>Create Pipeline.</li>
+                    <li>Create task.</li>
+                    <li>In task definition choose Plugin and choose following parameters:
+                    <p><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelinePicker.png" /></p>
+                    </li>
+                    <li>Click on arrow.</li>
+                    <li>Enter the following parameters: </li>
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineConfig.png" />
+                </ol>
+                <p>After the pipeline runs, you can view the results, including the
+                following step details:</p>
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineResult.png" />
+                <p>In the <b>CreateOrUpdateWMQJMSConnectionFactory</b> step, click the Log icon to see
+                the diagnostic information. The output is similar to the following
+                diagnostic report.</p>
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureLog.png" />
+            </div>
             
             <div id="DeleteCluster">
                 <a name="DeleteCluster" id="DeleteCluster"></a>
@@ -1451,6 +1847,217 @@
                 <img src="../../plugins/EC-WebSphere/images/DeleteJDBCProvider/EC-WebSphereDeleteJDBCProvider4.png" />
             </div>
 
+            <div id="DeleteJMSActivationSpec"><a name="DeleteJMSActivationSpec" id="DeleteJMSActivationSpec"></a>
+            <h2>DeleteJMSActivationSpec</h2>
+            <p>This procedure deletes an existing JMS ActivationSpec.</p>
+            <h3>DeleteJMSActivationSpec Parameters</h3>
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>
+                            The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="required">Messaging System Type</td>
+                        <td>
+                            The name of the messaging provider. Pass in either WMQ or SIB.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="required">ActivationSpec Scope</td>
+                        <td>
+                            Scope of the messaging provider at which the JMS ActivationSpec is to be deleted.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="required">ActivationSpec Administrative Name</td>
+                        <td>
+                            The administrative name assigned to this WebSphere MQ messaging provider ActivationSpec.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>Delete JMS ActivationSpec</h3>
+            <p>To delete JMS ActivationSpec in Commander interface, do these steps:</p>
+            <ol>
+                <li>Create procedure.</li>
+                <li>Create step, choose Plugin, choose DeleteJMSActivationSpec from procedures
+                picker.</li>
+                <li>Enter the following parameters: </li>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/ProcedureConfig.png" />
+            </ol>
+            <p>After the job runs, you can view the results, including the following
+            job details:</p>
+            <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/ProcedureResult.png" />
+            <p>To delete JMS ActivationSpec in Flow interface, do these steps:</p>
+            <ol>
+                <li>Create Pipeline.</li>
+                <li>Create task.</li>
+                <li>In task definition choose Plugin and choose following parameters:
+                <p><img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/PipelinePicker.png" /></p>
+                </li>
+                <li>Click on arrow.</li>
+                <li>Enter the following parameters: </li>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/PipelineConfig.png" />
+            </ol>
+            <p>After the pipeline runs, you can view the results, including the
+            following step details:</p>
+            <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/PipelineResult.png" />
+            <p>In the <b>DeleteJMSActivationSpec</b> step, click the Log icon to see the
+            diagnostic information. The output is similar to the following
+            diagnostic report.</p>
+            <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/ProcedureLog.png" />
+            </div>
+
+            <div id="DeleteJMSConnectionFactory"><a name="DeleteJMSConnectionFactory" id="DeleteJMSConnectionFactory"></a>
+            <h2>DeleteJMSConnectionFactory</h2>
+            <p>This procedure deletes an existing JMS ConnectionFactory.</p>
+            <h3>DeleteJMSConnectionFactory Parameters</h3>
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>
+                            The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="required">Messaging System Type</td>
+                        <td>
+                            The name of the messaging provider. Pass in either WMQ or SIB.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="required">ConnectionFactory Scope</td>
+                        <td>
+                            Scope of the messaging provider at which the JMS ConnectionFactory is to be deleted.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="required">ConnectionFactory Administrative Name</td>
+                        <td>
+                            The administrative name assigned to this WebSphere MQ messaging provider ConnectionFactory.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>Delete JMS ConnectionFactory</h3>
+            <p>To delete JMS ConnectionFactory in Commander interface, do these steps:</p>
+            <ol>
+                <li>Create procedure.</li>
+                <li>Create step, choose Plugin, choose DeleteJMSConnectionFactory from procedures
+                picker.</li>
+                <li>Enter the following parameters: </li>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSConnectionFactory/ProcedureConfig.png" />
+            </ol>
+            <p>After the job runs, you can view the results, including the following
+            job details:</p>
+            <img src="../../plugins/EC-WebSphere/images/DeleteJMSConnectionFactory/ProcedureResult.png" />
+            <p>To delete JMS ConnectionFactory in Flow interface, do these steps:</p>
+            <ol>
+                <li>Create Pipeline.</li>
+                <li>Create task.</li>
+                <li>In task definition choose Plugin and choose following parameters:
+                <p><img src="../../plugins/EC-WebSphere/images/DeleteJMSConnectionFactory/PipelinePicker.png" /></p>
+                </li>
+                <li>Click on arrow.</li>
+                <li>Enter the following parameters: </li>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSConnectionFactory/PipelineConfig.png" />
+            </ol>
+            <p>After the pipeline runs, you can view the results, including the
+            following step details:</p>
+            <img src="../../plugins/EC-WebSphere/images/DeleteJMSConnectionFactory/PipelineResult.png" />
+            <p>In the <b>DeleteJMSConnectionFactory</b> step, click the Log icon to see the
+            diagnostic information. The output is similar to the following
+            diagnostic report.</p>
+            <img src="../../plugins/EC-WebSphere/images/DeleteJMSConnectionFactory/ProcedureLog.png" />
+            </div>
+
+            <div id="DeleteJMSProvider"><a name="DeleteJMSProvider" id="DeleteJMSProvider"></a>
+            <h2>DeleteJMSProvider</h2>
+            <p>This procedure deletes an existing JMS Provider.</p>
+            <h3>DeleteJMSProvider Parameters</h3>
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="required">Configuration Name</td>
+                        <td>
+                            The name of the configuration to use. ElectricFlow gets the URL, port, and credentials from this configuration.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="required">Messaging System Type</td>
+                        <td>
+                            The name of the messaging provider. Pass in either WMQ or SIB.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="required">Provider Scope</td>
+                        <td>
+                            Scope of the messaging provider at which the JMS Provider is to be deleted.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="required">Provider Administrative Name</td>
+                        <td>
+                            The administrative name assigned to this WebSphere MQ messaging provider Provider.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>Delete JMS Provider</h3>
+            <p>To delete JMS Provider in Commander interface, do these steps:</p>
+            <ol>
+                <li>Create procedure.</li>
+                <li>Create step, choose Plugin, choose DeleteJMSProvider from procedures
+                picker.</li>
+                <li>Enter the following parameters: </li>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSProvider/ProcedureConfig.png" />
+            </ol>
+            <p>After the job runs, you can view the results, including the following
+            job details:</p>
+            <img src="../../plugins/EC-WebSphere/images/DeleteJMSProvider/ProcedureResult.png" />
+            <p>To delete JMS Provider in Flow interface, do these steps:</p>
+            <ol>
+                <li>Create Pipeline.</li>
+                <li>Create task.</li>
+                <li>In task definition choose Plugin and choose following parameters:
+                <p><img src="../../plugins/EC-WebSphere/images/DeleteJMSProvider/PipelinePicker.png" /></p>
+                </li>
+                <li>Click on arrow.</li>
+                <li>Enter the following parameters: </li>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSProvider/PipelineConfig.png" />
+            </ol>
+            <p>After the pipeline runs, you can view the results, including the
+            following step details:</p>
+            <img src="../../plugins/EC-WebSphere/images/DeleteJMSProvider/PipelineResult.png" />
+            <p>In the <b>DeleteJMSProvider</b> step, click the Log icon to see the
+            diagnostic information. The output is similar to the following
+            diagnostic report.</p>
+            <img src="../../plugins/EC-WebSphere/images/DeleteJMSProvider/ProcedureLog.png" />
+            </div>
+                        
+            
             <div id="DeleteJMSQueue"><a name="DeleteJMSQueue" id="DeleteJMSQueue"></a>
             <h2>DeleteJMSQueue</h2>
             <p>This procedure deletes an existing JMS Queue.</p>
