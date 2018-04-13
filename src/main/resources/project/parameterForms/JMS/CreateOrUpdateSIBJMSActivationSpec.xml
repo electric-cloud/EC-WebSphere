@@ -17,7 +17,7 @@ limitations under the License.
 -->
 
 <editor>
-    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CreateOrUpdateWMQJMSActivationSpec</help>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CreateOrUpdateSIBJMSActivationSpec</help>
     <formElement>
         <type>entry</type>
         <label>Configuration Name:</label>
@@ -28,59 +28,69 @@ limitations under the License.
         <required>1</required>
     </formElement>
     <formElement>
-        <label>Scope of the ActivationSpec:</label>
+        <label>Scope of the Activation Spec:</label>
         <property>specScope</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Resource scope</documentation>
+        <documentation>Scope of the WebSphere Default messaging provider at which the Activation Spec is to be created.</documentation>
     </formElement>
     <formElement>
         <label>Activation Spec Administrative Name:</label>
         <property>specAdministrativeName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation></documentation>
+        <documentation>The administrative name assigned to this Activation Spec.</documentation>
     </formElement>
     <formElement>
         <label>JNDI name:</label>
         <property>jndiName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>JNDI name</documentation>
+        <documentation>The name and location used to bind this object into WebSphere Application Server JNDI.</documentation>
     </formElement>
     <formElement>
         <label>Destination JNDI name:</label>
         <property>destinationJndiName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>dest JNDI name</documentation>
+        <documentation>The JNDI name of the destination JMS queue or topic used by the message-driven bean.</documentation>
     </formElement>
     <formElement>
-        <label>Spec Administrative description:</label>
+        <label>Activation Spec Administrative Description:</label>
         <property>specAdministrativeDescription</property>
         <type>textarea</type>
         <required>0</required>
-        <documentation>Res desc</documentation>
+        <documentation>An Administrative description assigned to Activation Spec.</documentation>
     </formElement>
     <formElement>
         <label>Destination Type:</label>
         <property>destinationType</property>
-        <type>entry</type>
+        <type>select</type>
+        <option><name>Queue</name><value>Queue</value></option>
+        <option><name>Topic</name><value>Topic</value></option>
         <required>0</required>
-        <documentation>Res desc</documentation>
+        <documentation>An option to determine whether the message_driven bean uses a JMS queue or a JMS topic.</documentation>
     </formElement>
     <formElement>
         <label>Message Selector:</label>
         <property>messageSelector</property>
         <type>entry</type>
         <required>0</required>
-        <documentation>Res desc</documentation>
+        <documentation>
+            The JMS message selector used to determine which messages the message-driven bean receives.
+            The value is a string that is used to select a subset of the available messages.
+            The syntax is based on a subset of the SQL 92 conditional expression syntax, as described in the JMS specification.
+            Refer to the information center for more information.
+            The selector string can refer to fields in the JMS message header and fields in the message properties.
+            Message selectors cannot reference message body values.
+            A null value (an empty string) indicates that there is no message selector for the message consumer.
+        </documentation>
     </formElement>
     <formElement>
-        <label>Additional options</label>
+        <label>Additional Options:</label>
         <property>additionalOptions</property>
         <type>textarea</type>
         <required>0</required>
-        <documentation>Additional options</documentation>
+        <documentation>Used to either override defaults or pass Custom Properties.</documentation>
     </formElement>
 </editor>

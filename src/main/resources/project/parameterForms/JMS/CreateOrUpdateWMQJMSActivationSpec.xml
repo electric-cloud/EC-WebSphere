@@ -32,67 +32,66 @@ limitations under the License.
         <property>specScope</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Resource scope</documentation>
+        <documentation>
+            Scope of the WebSphere MQ messaging provider at which the Activation Spec is to be created.
+        </documentation>
     </formElement>
     <formElement>
         <label>Activation Spec Administrative Name:</label>
         <property>specAdministrativeName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation></documentation>
+        <documentation>The administrative name assigned to this Activation Spec.</documentation>
     </formElement>
     <formElement>
-        <label>JNDI name:</label>
+        <label>JNDI Name:</label>
         <property>jndiName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>JNDI name</documentation>
+        <documentation>The name and location used to bind this object into WebSphere Application Server JNDI.</documentation>
     </formElement>
-
     <formElement>
         <label>Destination JNDI name:</label>
         <property>destinationJndiName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>dest JNDI name</documentation>
+        <documentation>The JNDI name of the destination JMS queue or topic used by the message-driven bean.</documentation>
     </formElement>
     <formElement>
         <label>Destination JNDI type:</label>
         <property>destinationJndiType</property>
-        <type>entry</type>
+        <type>select</type>
         <required>1</required>
-        <documentation>dest JNDI type</documentation>
+        <option><name>javax.jms.Queue</name><value>javax.jms.Queue</value></option>
+        <option><name>javax.jms.Topic</name><value>javax.jms.Topic</value></option>
+        <documentation>The type of the destination specified by "Destination JNDI Name" parameter.</documentation>
     </formElement>
-    
     <formElement>
-        <label>Queue Administrative description:</label>
+        <label>Activation Spec Administrative Description:</label>
         <property>specAdministrativeDescription</property>
         <type>textarea</type>
         <required>0</required>
-        <documentation>Res desc</documentation>
+        <documentation>An Administrative Description assigned to Activation Spec.</documentation>
     </formElement>
-    
     <formElement>
         <label>Client Channel Definition URL:</label>
         <property>clientChannelDefinitionUrl</property>
         <type>entry</type>
         <required>0</required>
-        <documentation>Res desc</documentation>
+        <documentation>A URL to a client channel definition table to use, for this Activation Spec, when contacting WebSphere MQ.</documentation>
     </formElement>
-
     <formElement>
         <label>Client Channel Definition Queue Manager:</label>
         <property>clientChannelDefinitionQueueManager</property>
         <type>entry</type>
         <required>0</required>
-        <documentation>Res desc</documentation>
+        <documentation>A queue manager name, used to select one or more entries from a client channel definition table.</documentation>
     </formElement>
-        
     <formElement>
-        <label>Additional options</label>
+        <label>Additional Options:</label>
         <property>additionalOptions</property>
         <type>textarea</type>
         <required>0</required>
-        <documentation>Additional options</documentation>
+        <documentation>Used to either override defaults or pass Custom Properties.</documentation>
     </formElement>
 </editor>

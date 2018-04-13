@@ -34,20 +34,22 @@ limitations under the License.
         <option><name>WMQ</name><value>WMQ</value></option>
         <option><name>SIB</name><value>SIB</value></option>
         <required>1</required>
-        <documentation>WMQ or SIB.</documentation>
+        <documentation>The name of the messaging provider. Pass in either WMQ or SIB.</documentation>
     </formElement>
     <formElement>
-        <label>Connection Factory Scope:</label>
+        <label>Scope of the Connection Factory:</label>
         <property>factoryScope</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Scope of the messaging provider at which the JMS ActivationSpec is to be deleted.</documentation>
+        <documentation>
+            Scope of the WebSphere messaging provider at which the Connection Factory is to be deleted.
+        </documentation>
     </formElement>
     <formElement>
         <label>ActivationSpec Administrative Name:</label>
         <property>factoryAdministrativeName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>The administrative name assigned to this WebSphere MQ messaging provider activationSpec.</documentation>
+        <documentation>The administrative name assigned to this Connection Factory.</documentation>
     </formElement>
 </editor>

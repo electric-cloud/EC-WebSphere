@@ -3362,7 +3362,7 @@
             <formalParameterName>messagingSystemType</formalParameterName>
             <defaultValue />
             <description>
-                SIB or WMQ
+                The name of the messaging provider. Pass in either WMQ or SIB.
             </description>
             <required>1</required>
             <type>select</type>
@@ -3371,7 +3371,7 @@
             <formalParameterName>activationSpecScope</formalParameterName>
             <defaultValue />
             <description>
-                Scope of the default messaging provider at which the JMS Activation spec is to be deleted.
+                Scope of the messaging provider at which the JMS ActivationSpec is to be deleted.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -3495,7 +3495,7 @@
             <formalParameterName>messagingSystemType</formalParameterName>
             <defaultValue />
             <description>
-                SIB or WMQ
+                The name of the messaging provider. Pass in either WMQ or SIB.
             </description>
             <required>1</required>
             <type>select</type>
@@ -3504,7 +3504,7 @@
             <formalParameterName>factoryScope</formalParameterName>
             <defaultValue />
             <description>
-                Scope of the default messaging provider at which the JMS Activation spec is to be deleted.
+                Scope of the WebSphere messaging provider at which the Connection Factory is to be deleted.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -3513,7 +3513,7 @@
             <formalParameterName>factoryAdministrativeName</formalParameterName>
             <defaultValue />
             <description>
-                The administrative name assigned to this WebSphere MQ messaging provider Activation Spec.
+                The administrative name assigned to this Connection Factory.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -3954,7 +3954,7 @@
             <formalParameterName>specScope</formalParameterName>
             <defaultValue />
             <description>
-                Scope of the default messaging provider at which the Connection Factory is to be created.
+                Scope of the WebSphere MQ messaging provider at which the Activation Spec is to be created.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -3964,7 +3964,7 @@
             <formalParameterName>specAdministrativeName</formalParameterName>
             <defaultValue />
             <description>
-                The administrative name assigned to this WebSphere MQ messaging provider Queue
+                The administrative name assigned to this Activation Spec.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -3973,7 +3973,7 @@
             <formalParameterName>jndiName</formalParameterName>
             <defaultValue />
             <description>
-                The name used to bind this object into WebSphere Application Server JNDI.
+                The name and location used to bind this object into WebSphere Application Server JNDI.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -3982,7 +3982,7 @@
             <formalParameterName>destinationJndiName</formalParameterName>
             <defaultValue />
             <description>
-                The name used to bind this object into WebSphere Application Server JNDI.
+                The JNDI name of the destination JMS queue or topic used by the message-driven bean.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -3991,7 +3991,7 @@
             <formalParameterName>destinationJndiType</formalParameterName>
             <defaultValue />
             <description>
-                The name used to bind this object into WebSphere Application Server JNDI.
+                The type of the destination specified by "Destination JNDI Name" parameter.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -4000,17 +4000,16 @@
             <formalParameterName>specAdministrativeDescription</formalParameterName>
             <defaultValue />
             <description>
-                The name used to bind this object into WebSphere Application Server JNDI.
+                An Administrative description assigned to Activation Spec.
             </description>
             <required>0</required>
             <type>entry</type>
         </formalParameter>
-
         <formalParameter>
             <formalParameterName>clientChannelDefinitionUrl</formalParameterName>
             <defaultValue />
             <description>
-                The name used to bind this object into WebSphere Application Server JNDI.
+                A URL to a client channel definition table to use, for this activation specification, when contacting WebSphere MQ.
             </description>
             <required>0</required>
             <type>entry</type>
@@ -4019,17 +4018,16 @@
             <formalParameterName>clientChannelDefinitionQueueManager</formalParameterName>
             <defaultValue />
             <description>
-                The name used to bind this object into WebSphere Application Server JNDI.
+                A queue manager name, used to select one or more entries from a client channel definition table.
             </description>
             <required>0</required>
             <type>entry</type>
         </formalParameter>
-        
         <formalParameter>
             <formalParameterName>additionalOptions</formalParameterName>
             <defaultValue />
             <description>
-                Additional options
+                Used to either override defaults or pass Custom Properties.
             </description>
             <required>0</required>
             <type>entry</type>
@@ -4194,7 +4192,7 @@
             <formalParameterName>factoryScope</formalParameterName>
             <defaultValue />
             <description>
-                Scope of the default messaging provider at which the Connection Factory is to be created.
+                Scope of the WebSphere MQ messaging provider at which the Connection Factory is to be created.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -4203,7 +4201,7 @@
             <formalParameterName>factoryAdministrativeName</formalParameterName>
             <defaultValue />
             <description>
-                The administrative name assigned to this WebSphere MQ messaging provider Queue
+                The administrative name assigned to this Connection Factory.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -4212,7 +4210,9 @@
             <formalParameterName>factoryType</formalParameterName>
             <defaultValue />
             <description>
-                Factory type
+                Use this parameter to determine whether a unified connection factory, a queue connection factory or a topic connection factory is to be created.
+                This needs to be one of the values from CF, QCF and TCF. Default is CF.
+                Since factory type can't be updated in existing factory, this parameter will be omited if Connection Factory already exists.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -4221,7 +4221,7 @@
             <formalParameterName>jndiName</formalParameterName>
             <defaultValue />
             <description>
-                The name used to bind this object into WebSphere Application Server JNDI.
+                The name and location used to bind this object into WebSphere Application Server JNDI.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -4230,17 +4230,16 @@
             <formalParameterName>factoryAdministrativeDescription</formalParameterName>
             <defaultValue />
             <description>
-                The name used to bind this object into WebSphere Application Server JNDI.
+                An Administrative description assigned to Connection Factory.
             </description>
             <required>0</required>
             <type>entry</type>
         </formalParameter>
-
         <formalParameter>
             <formalParameterName>clientChannelDefinitionUrl</formalParameterName>
             <defaultValue />
             <description>
-                The name used to bind this object into WebSphere Application Server JNDI.
+                A URL to a client channel definition table to use, for this Connection Factory, when contacting WebSphere MQ.
             </description>
             <required>0</required>
             <type>entry</type>
@@ -4249,7 +4248,7 @@
             <formalParameterName>clientChannelDefinitionQueueManager</formalParameterName>
             <defaultValue />
             <description>
-                The name used to bind this object into WebSphere Application Server JNDI.
+                A queue manager name, used to select one or more entries from a client channel definition table.
             </description>
             <required>0</required>
             <type>entry</type>
@@ -4258,7 +4257,7 @@
             <formalParameterName>additionalOptions</formalParameterName>
             <defaultValue />
             <description>
-                Additional options
+                Used to either override defaults or pass Custom Properties.
             </description>
             <required>0</required>
             <type>entry</type>
@@ -4415,7 +4414,9 @@
         <formalParameter>
             <formalParameterName>configname</formalParameterName>
             <defaultValue />
-            <description>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.</description>
+            <description>
+                Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.
+            </description>
             <required>1</required>
             <type>entry</type>
         </formalParameter>
@@ -4423,7 +4424,7 @@
             <formalParameterName>specScope</formalParameterName>
             <defaultValue />
             <description>
-                Scope of the default messaging provider at which the Connection Factory is to be created.
+                Scope of the WebSphere Default messaging provider at which the Activation Spec is to be created.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -4432,7 +4433,7 @@
             <formalParameterName>specAdministrativeName</formalParameterName>
             <defaultValue />
             <description>
-                The administrative name assigned to this WebSphere MQ messaging provider Queue
+                The administrative name assigned to this Activation Spec.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -4441,7 +4442,7 @@
             <formalParameterName>jndiName</formalParameterName>
             <defaultValue />
             <description>
-                The name used to bind this object into WebSphere Application Server JNDI.
+                The name and location used to bind this object into WebSphere Application Server JNDI.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -4450,7 +4451,7 @@
             <formalParameterName>destinationJndiName</formalParameterName>
             <defaultValue />
             <description>
-                The name used to bind this object into WebSphere Application Server JNDI.
+                The JNDI name of the destination JMS queue or topic used by the message-driven bean.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -4459,17 +4460,16 @@
             <formalParameterName>specAdministrativeDescription</formalParameterName>
             <defaultValue />
             <description>
-                The name used to bind this object into WebSphere Application Server JNDI.
+                An Administrative description assigned to Activation Spec.
             </description>
             <required>0</required>
             <type>entry</type>
         </formalParameter>
-
         <formalParameter>
             <formalParameterName>destinationType</formalParameterName>
             <defaultValue />
             <description>
-                Dest type
+                An option to determine whether the message_driven bean uses a JMS queue or a JMS topic.
             </description>
             <required>0</required>
             <type>entry</type>
@@ -4478,7 +4478,13 @@
             <formalParameterName>messageSelector</formalParameterName>
             <defaultValue />
             <description>
-                Message selector.
+                The JMS message selector used to determine which messages the message-driven bean receives.
+                The value is a string that is used to select a subset of the available messages.
+                The syntax is based on a subset of the SQL 92 conditional expression syntax, as described in the JMS specification.
+                Refer to the information center for more information.
+                The selector string can refer to fields in the JMS message header and fields in the message properties.
+                Message selectors cannot reference message body values.
+                A null value (an empty string) indicates that there is no message selector for the message consumer.
             </description>
             <required>0</required>
             <type>entry</type>
@@ -4487,7 +4493,7 @@
             <formalParameterName>additionalOptions</formalParameterName>
             <defaultValue />
             <description>
-                Additional options
+                Used to either override defaults or pass Custom Properties.
             </description>
             <required>0</required>
             <type>entry</type>
@@ -4642,7 +4648,7 @@
             <formalParameterName>factoryScope</formalParameterName>
             <defaultValue />
             <description>
-                Scope of the default messaging provider at which the Connection Factory is to be created.
+                Scope of the WebSphere Default messaging provider at which the Connection Factory is to be created.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -4651,7 +4657,7 @@
             <formalParameterName>factoryAdministrativeName</formalParameterName>
             <defaultValue />
             <description>
-                The administrative name assigned to this WebSphere MQ messaging provider Queue
+                The administrative name assigned to this Сonnection Factory.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -4660,7 +4666,7 @@
             <formalParameterName>busName</formalParameterName>
             <defaultValue />
             <description>
-                Bus Name
+                Name of the service integration bus to which connections are made.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -4669,7 +4675,7 @@
             <formalParameterName>jndiName</formalParameterName>
             <defaultValue />
             <description>
-                The name used to bind this object into WebSphere Application Server JNDI.
+                The name and location used to bind this object into WebSphere Application Server JNDI.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -4678,7 +4684,10 @@
             <formalParameterName>factoryType</formalParameterName>
             <defaultValue />
             <description>
-                CF type
+                Type of Connection Factory to create. Should be one of Queue or Topic.
+                To create a generic connection factory, leave this parameter unset.
+                This parameter is being used only if Connection Factory is going to be created.
+                Since factory type can't be updated in existing factory, this parameter will be omited if Connection Factory already exists.
             </description>
             <required>0</required>
             <type>entry</type>
@@ -4687,7 +4696,7 @@
             <formalParameterName>factoryAdministrativeDescription</formalParameterName>
             <defaultValue />
             <description>
-                The name used to bind this object into WebSphere Application Server JNDI.
+                An Administrative Description assigned to Connection Factory.
             </description>
             <required>0</required>
             <type>entry</type>
@@ -4696,7 +4705,7 @@
             <formalParameterName>additionalOptions</formalParameterName>
             <defaultValue />
             <description>
-                Additional options
+                Used to either override defaults or pass Custom Properties.
             </description>
             <required>0</required>
             <type>entry</type>
@@ -6257,7 +6266,7 @@
             <formalParameterName>providerScope</formalParameterName>
             <defaultValue />
             <description>
-                Scope of the provider that should be deleted.
+                Scope of the WebSphere messaging provider to be deleted.
             </description>
             <required>1</required>
             <type>entry</type>
@@ -6266,7 +6275,7 @@
             <formalParameterName>providerName</formalParameterName>
             <defaultValue />
             <description>
-Provider name to be delete
+                The administrative name of JMS Provider to be deleted.
             </description>
             <required>1</required>
             <type>entry</type>

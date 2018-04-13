@@ -17,7 +17,7 @@ limitations under the License.
 -->
 
 <editor>
-    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#DeleteJMSActivationSpec</help>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#DeleteJMSConnectionFactory</help>
     <formElement>
         <type>entry</type>
         <label>Configuration Name:</label>
@@ -34,20 +34,20 @@ limitations under the License.
         <option><name>WMQ</name><value>WMQ</value></option>
         <option><name>SIB</name><value>SIB</value></option>
         <required>1</required>
-        <documentation>WMQ or SIB.</documentation>
+        <documentation>The name of the messaging provider. Pass in either WMQ or SIB.</documentation>
     </formElement>
     <formElement>
-        <label>ActivationSpec Scope:</label>
+        <label>Scope of the Activation Spec:</label>
         <property>activationSpecScope</property>
         <type>entry</type>
         <required>1</required>
         <documentation>Scope of the messaging provider at which the JMS ActivationSpec is to be deleted.</documentation>
     </formElement>
     <formElement>
-        <label>ActivationSpec Administrative Name:</label>
+        <label>Activation Spec Administrative Name:</label>
         <property>activationSpecAdministrativeName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>The administrative name assigned to this WebSphere MQ messaging provider activationSpec.</documentation>
+        <documentation>The administrative name assigned to this WebSphere MQ messaging provider Activation Spec.</documentation>
     </formElement>
 </editor>

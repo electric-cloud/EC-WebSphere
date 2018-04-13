@@ -32,28 +32,34 @@ limitations under the License.
         <property>factoryScope</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Resource scope</documentation>
+        <documentation>
+            Scope of the WebSphere Default messaging provider at which the Connection Factory is to be created.
+        </documentation>
     </formElement>
     <formElement>
         <label>Connection Factory Administrative Name:</label>
         <property>factoryAdministrativeName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation></documentation>
+        <documentation>
+            The administrative name assigned to this Сonnection Factory.
+        </documentation>
     </formElement>
     <formElement>
         <label>Bus Name:</label>
         <property>busName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Bus Name</documentation>
+        <documentation>Name of the service integration bus to which connections are made.</documentation>
     </formElement>
     <formElement>
         <label>JNDI name:</label>
         <property>jndiName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>JNDI name</documentation>
+        <documentation>
+            The name and location used to bind this object into WebSphere Application Server JNDI.
+        </documentation>
     </formElement>
     <formElement>
         <label>Connection Factory Type:</label>
@@ -62,20 +68,25 @@ limitations under the License.
         <option><name>Queue</name><value>Queue</value></option>
         <option><name>Topic</name><value>Topic</value></option>
         <required>0</required>
-        <documentation></documentation>
+        <documentation>
+            Type of Connection Factory to create. Should be one of Queue or Topic.
+            To create a generic connection factory, leave this parameter unset.
+            This parameter is being used only if Connection Factory is going to be created.
+            Since factory type can't be updated in existing factory, this parameter will be omited if Connection Factory already exists.
+        </documentation>
     </formElement>
     <formElement>
         <label>Connection Factory Administrative description:</label>
         <property>factoryAdministrativeDescription</property>
         <type>textarea</type>
         <required>0</required>
-        <documentation>Res desc</documentation>
+        <documentation>An Administrative Description assigned to Connection Factory.</documentation>
     </formElement>
     <formElement>
-        <label>Additional options</label>
+        <label>Additional Options:</label>
         <property>additionalOptions</property>
         <type>textarea</type>
         <required>0</required>
-        <documentation>Additional options</documentation>
+        <documentation>Used to either override defaults or pass Custom Properties.</documentation>
     </formElement>
 </editor>

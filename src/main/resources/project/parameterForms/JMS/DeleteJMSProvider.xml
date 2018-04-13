@@ -32,13 +32,13 @@ limitations under the License.
         <property>providerScope</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Scope of the JMS provider.</documentation>
+        <documentation>Scope of the WebSphere messaging provider to be deleted.</documentation>
     </formElement>
     <formElement>
-        <label>JMS Provider Name:</label>
+        <label>JMS Provider Administartive Name:</label>
         <property>providerName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Name of JMS provider to delete.</documentation>
+        <documentation>The administrative name of JMS Provider to be deleted.</documentation>
     </formElement>
 </editor>
