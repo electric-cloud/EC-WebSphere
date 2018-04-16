@@ -46,7 +46,7 @@ limitations under the License.
         </documentation>
     </formElement>
     <formElement>
-        <label>ActivationSpec Administrative Name:</label>
+        <label>Connection Factory Administrative Name:</label>
         <property>factoryAdministrativeName</property>
         <type>entry</type>
         <required>1</required>

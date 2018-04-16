@@ -28,7 +28,7 @@ limitations under the License.
         <required>1</required>
     </formElement>
     <formElement>
-        <label>Scope of the ActivationSpec:</label>
+        <label>Scope of the Activation Spec:</label>
         <property>specScope</property>
         <type>entry</type>
         <required>1</required>

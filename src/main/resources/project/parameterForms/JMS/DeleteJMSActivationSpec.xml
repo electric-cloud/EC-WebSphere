@@ -41,7 +41,7 @@ limitations under the License.
         <property>activationSpecScope</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Scope of the messaging provider at which the JMS ActivationSpec is to be deleted.</documentation>
+        <documentation>Scope of the messaging provider at which the JMS Activation Spec is to be deleted.</documentation>
     </formElement>
     <formElement>
         <label>Activation Spec Administrative Name:</label>
