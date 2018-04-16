@@ -1386,32 +1386,32 @@
                     <li>Create step, choose Plugin, choose CreateOrUpdateSIBJMSActivationSpec from
                     procedures picker.</li>
                     <li>Enter the following parameters: </li>
-                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureConfig.png" />
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSActivationSpec/ProcedureConfig.png" />
                 </ol>
                 <p>After the job runs, you can view the results, including the following
                 job details:</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureResult.png" />
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSActivationSpec/ProcedureResult.png" />
                 <p>To create or update JMS Topic in Flow interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>
                     <li>In task definition choose Plugin and choose following parameters:
-                    <p><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelinePicker.png" /></p>
+                    <p><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSActivationSpec/PipelinePicker.png" /></p>
                     </li>
                     <li>Click on arrow.</li>
                     <li>Enter the following parameters: </li>
-                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineConfig.png" />
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSActivationSpec/PipelineConfig.png" />
                 </ol>
                 <p>After the pipeline runs, you can view the results, including the
                 following step details:</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineResult.png" />
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSActivationSpec/PipelineResult.png" />
                 <p>In the <b>CreateOrUpdateSIBJMSActivationSpec</b> step, click the Log icon to see
                 the diagnostic information. The output is similar to the following
                 diagnostic report.</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureLog.png" />
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSActivationSpec/ProcedureLog.png" />
             </div>
 
-                            <div id="CreateOrUpdateWMQJMSActivationSpec"> <a name="CreateOrUpdateWMQJMSActivationSpec" id="CreateOrUpdateWMQJMSActivationSpec"></a>
+            <div id="CreateOrUpdateWMQJMSActivationSpec"> <a name="CreateOrUpdateWMQJMSActivationSpec" id="CreateOrUpdateWMQJMSActivationSpec"></a>
                 <h2>CreateOrUpdateWMQJMSActivationSpec</h2>
                 <p>This procedure creates a new JMS Activation Spec or updates an existing JMS Activation Spec.</p>
                 <h3>CreateOrUpdateJMSTopic Parameters</h3>
@@ -1482,21 +1482,21 @@
                     <li>Create step, choose Plugin, choose CreateOrUpdateWMQJMSActivationSpec from
                     procedures picker.</li>
                     <li>Enter the following parameters: </li>
-                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureConfig.png" />
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateWMQJMSActivationSpec/ProcedureConfig.png" />
                 </ol>
                 <p>After the job runs, you can view the results, including the following
                 job details:</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureResult.png" />
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateWMQJMSActivationSpec/ProcedureResult.png" />
                 <p>To create or update JMS Topic in Flow interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>
                     <li>In task definition choose Plugin and choose following parameters:
-                    <p><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelinePicker.png" /></p>
+                    <p><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateWMQJMSActivationSpec/PipelinePicker.png" /></p>
                     </li>
                     <li>Click on arrow.</li>
                     <li>Enter the following parameters: </li>
-                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineConfig.png" />
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateWMQJMSActivationSpec/PipelineConfig.png" />
                 </ol>
                 <p>After the pipeline runs, you can view the results, including the
                 following step details:</p>
@@ -1504,10 +1504,10 @@
                 <p>In the <b>CreateOrUpdateWMQJMSActivationSpec</b> step, click the Log icon to see
                 the diagnostic information. The output is similar to the following
                 diagnostic report.</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureLog.png" />
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateWMQJMSActivationSpec/ProcedureLog.png" />
             </div>
 
-                            <div id="CreateOrUpdateSIBJMSConnectionFactory"> <a name="CreateOrUpdateSIBJMSConnectionFactory" id="CreateOrUpdateSIBJMSConnectionFactory"></a>
+            <div id="CreateOrUpdateSIBJMSConnectionFactory"> <a name="CreateOrUpdateSIBJMSConnectionFactory" id="CreateOrUpdateSIBJMSConnectionFactory"></a>
                 <h2>CreateOrUpdateSIBJMSConnectionFactory</h2>
                 <p>This procedure creates a new JMS Connection Factory or updates an existing JMS Connection Factory.</p>
                 <h3>CreateOrUpdateJMSTopic Parameters</h3>
@@ -1578,29 +1578,29 @@
                     <li>Create step, choose Plugin, choose CreateOrUpdateSIBJMSConnectionFactory from
                     procedures picker.</li>
                     <li>Enter the following parameters: </li>
-                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureConfig.png" />
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSConnectionFactory/ProcedureConfig.png" />
                 </ol>
                 <p>After the job runs, you can view the results, including the following
                 job details:</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureResult.png" />
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSConnectionFactory/ProcedureResult.png" />
                 <p>To create or update JMS Topic in Flow interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>
                     <li>In task definition choose Plugin and choose following parameters:
-                    <p><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelinePicker.png" /></p>
+                    <p><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSConnectionFactory/PipelinePicker.png" /></p>
                     </li>
                     <li>Click on arrow.</li>
                     <li>Enter the following parameters: </li>
-                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineConfig.png" />
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSConnectionFactory/PipelineConfig.png" />
                 </ol>
                 <p>After the pipeline runs, you can view the results, including the
                 following step details:</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineResult.png" />
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSConnectionFactory/PipelineResult.png" />
                 <p>In the <b>CreateOrUpdateSIBJMSConnectionFactory</b> step, click the Log icon to see
                 the diagnostic information. The output is similar to the following
                 diagnostic report.</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureLog.png" />
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSConnectionFactory/ProcedureLog.png" />
             </div>
             
             <div id="CreateOrUpdateWMQJMSConnectionFactory"> <a name="CreateOrUpdateWMQJMSConnectionFactory" id="CreateOrUpdateWMQJMSConnectionFactory"></a>
@@ -1674,29 +1674,29 @@
                     <li>Create step, choose Plugin, choose CreateOrUpdateWMQJMSConnectionFactory from
                     procedures picker.</li>
                     <li>Enter the following parameters: </li>
-                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureConfig.png" />
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateWMQJMSConnectionFactory/ProcedureConfig.png" />
                 </ol>
                 <p>After the job runs, you can view the results, including the following
                 job details:</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureResult.png" />
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateWMQJMSConnectionFactory/ProcedureResult.png" />
                 <p>To create or update JMS Topic in Flow interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>
                     <li>In task definition choose Plugin and choose following parameters:
-                    <p><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelinePicker.png" /></p>
+                    <p><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateWMQJMSConnectionFactory/PipelinePicker.png" /></p>
                     </li>
                     <li>Click on arrow.</li>
                     <li>Enter the following parameters: </li>
-                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineConfig.png" />
+                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateWMQJMSConnectionFactory/PipelineConfig.png" />
                 </ol>
                 <p>After the pipeline runs, you can view the results, including the
                 following step details:</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineResult.png" />
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateWMQJMSConnectionFactory/PipelineResult.png" />
                 <p>In the <b>CreateOrUpdateWMQJMSConnectionFactory</b> step, click the Log icon to see
                 the diagnostic information. The output is similar to the following
                 diagnostic report.</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureLog.png" />
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateWMQJMSConnectionFactory/ProcedureLog.png" />
             </div>
             
             <div id="DeleteCluster">

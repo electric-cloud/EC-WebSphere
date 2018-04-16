@@ -13,4 +13,5 @@ result = getJMSProviderAtScope(providerName, scope)
 
 deleteJMSProvider(result)
 
+print "Status: OK, Message: JMS Provider %s has been deleted" % (providerName)
 AdminConfig.save()

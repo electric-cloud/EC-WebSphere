@@ -303,7 +303,7 @@ sub setResult {
         }
     }
     # procedure, schedule and application process are also procedure context.
-    else {
+    # else {
         for my $p (@$procedure) {
             if (!$p->{target} || !exists $p->{msg}) {
                 croak("target and msg are mandatory");
@@ -315,7 +315,7 @@ sub setResult {
             $self->log()->debug("Setting procedure property: '$pp' => '$p->{msg}'");
             $ec->setProperty($pp => $p->{msg});
         }
-    }
+    #}
     return sub {
         print "Will execute exit $exit_code\n";
         exit $exit_code;
@@ -567,6 +567,7 @@ sub bail_out {
     my ($self, @msg) = @_;
 
     my $msg = join('', @msg);
+
     my $result_params = {
         outcome => {
             target => 'myCall',

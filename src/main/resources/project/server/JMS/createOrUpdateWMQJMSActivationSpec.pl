@@ -2,7 +2,6 @@
 use warnings;
 use strict;
 use JSON;
-use Data::Dumper;
 
 use ElectricCommander;
 use ElectricCommander::PropMod qw(/myProject/modules);
@@ -32,7 +31,6 @@ my $opts = {
     additionalOptions                   => '$[additionalOptions]',
 };
 
-print Dumper $opts;
 my $ec = ElectricCommander->new();
 $ec->abortOnError(0);
 my $websphere = WebSphere::WebSphere->new($ec, $opts->{configname}, '');
