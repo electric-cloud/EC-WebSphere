@@ -3369,13 +3369,13 @@
                 <li>
                     Following procedures have been added:
                     <ul>
-                        <li>CreateOrUpdateSIBJMSActivationSpec</li>
-                        <li>CreateOrUpdateWMQJMSActivationSpec</li>
-                        <li>CreateOrUpdateSIBJMSConnectionFactory</li>
-                        <li>CreateOrUpdateWMQJMSConnectionFactory</li>
-                        <li>DeleteJMSActivationSpec</li>
-                        <li>DeleteJMSConnectionFactory</li>
-                        <li>DeleteJMSProvider</li>
+                        <li><a href="#CreateOrUpdateSIBJMSActivationSpec">CreateOrUpdateSIBJMSActivationSpec</a></li>
+                        <li><a href="#CreateOrUpdateWMQJMSActivationSpec">CreateOrUpdateWMQJMSActivationSpec</a></li>
+                        <li><a href="#CreateOrUpdateSIBJMSConnectionFactory">CreateOrUpdateSIBJMSConnectionFactory</a></li>
+                        <li><a href="#CreateOrUpdateWMQJMSConnectionFactory">CreateOrUpdateWMQJMSConnectionFactory</a></li>
+                        <li><a href="#DeleteJMSActivationSpec">DeleteJMSActivationSpec</a></li>
+                        <li><a href="#DeleteJMSConnectionFactory">DeleteJMSConnectionFactory</a></li>
+                        <li><a href="#DeleteJMSProvider">DeleteJMSProvider</a></li>
                     </ul>
                 </li>
             </ul>
