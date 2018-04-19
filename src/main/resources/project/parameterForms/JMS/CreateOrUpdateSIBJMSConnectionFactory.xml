@@ -53,7 +53,7 @@ limitations under the License.
         <documentation>Name of the service integration bus to which connections are made.</documentation>
     </formElement>
     <formElement>
-        <label>JNDI name:</label>
+        <label>JNDI Name:</label>
         <property>jndiName</property>
         <type>entry</type>
         <required>1</required>
@@ -76,7 +76,7 @@ limitations under the License.
         </documentation>
     </formElement>
     <formElement>
-        <label>Connection Factory Administrative description:</label>
+        <label>Connection Factory Administrative Description:</label>
         <property>factoryAdministrativeDescription</property>
         <type>textarea</type>
         <required>0</required>

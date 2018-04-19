@@ -1318,7 +1318,7 @@
             <div id="CreateOrUpdateSIBJMSActivationSpec"> <a name="CreateOrUpdateSIBJMSActivationSpec" id="CreateOrUpdateSIBJMSActivationSpec"></a>
                 <h2>CreateOrUpdateSIBJMSActivationSpec</h2>
                 <p>This procedure creates a new JMS Activation Spec or updates an existing JMS Activation Spec.</p>
-                <h3>CreateOrUpdateJMSTopic Parameters</h3>
+                <h3>CreateOrUpdateSIBJMSActivationSpec Parameters</h3>
                 <table class="grid" style="width: 936px; height: 418px;">
                     <thead>
                         <tr>
@@ -1334,33 +1334,27 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="required">Messaging System Type</td>
+                            <td class="required">Scope of the Activation Spec</td>
                             <td>
-                                The name of the messaging provider. Pass in either WMQ or SIB.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="required">Activation Spec Scope</td>
-                            <td>
-                                Scope of the messaging provider at which the JMS Activation Spec is to be created.
+                                Scope of the WebSphere Default messaging provider at which the Activation Spec is to be created.
                             </td>
                         </tr>
                         <tr>
                             <td class="required">Activation Spec Administrative Name</td>
                             <td>
-                                The administrative name assigned to this WebSphere MQ messaging provider Activation Spec.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="required">Activation Spec Name</td>
-                            <td>
-                                Name of the Activation Spec.
+                                The administrative name assigned to this Activation Spec.
                             </td>
                         </tr>
                         <tr>
                             <td class="required">JNDI Name</td>
                             <td>
-                                The name used to bind this object into WebSphere Application Server JNDI.
+                                The name and location used to bind this object into WebSphere Application Server JNDI.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">Destination JNDI Name</td>
+                            <td>
+                                The JNDI name of the destination JMS queue or topic used by the message-driven bean.
                             </td>
                         </tr>
                         <tr>
@@ -1370,11 +1364,29 @@
                             </td>
                         </tr>
                         <tr>
+                            <td>Destination Type</td>
+                            <td>
+                                An option to determine whether the message_driven bean uses a JMS queue or a JMS topic.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Message Selector</td>
+                            <td>
+                                The JMS message selector used to determine which messages the message-driven bean receives.
+                                The value is a string that is used to select a subset of the available messages.
+                                The syntax is based on a subset of the SQL 92 conditional expression syntax, as described in the JMS specification.
+                                Refer to the information center for more information.
+                                The selector string can refer to fields in the JMS message header and fields in the message properties.
+                                Message selectors cannot reference message body values.
+                                A null value (an empty string) indicates that there is no message selector for the message consumer.
+                            </td>
+                        </tr>
+                        <tr>
                             <td>Additional Options</td>
                             <td>                                
                                 This parameter can be used to either override defaults or pass Custom Properties.<br />
                                 For example:<br />
-                                <pre>-ccsid 1208 -readAhead YES -customProperties [[prop1 value1][prop2 value2]]</pre>
+                                <pre>-subscriptionDurability Durable -durableSubscriptionHome value -customProperties [[prop1 value1][prop2 value2]]</pre>
                             </td>
                         </tr>
                     </tbody>
@@ -1414,7 +1426,7 @@
             <div id="CreateOrUpdateWMQJMSActivationSpec"> <a name="CreateOrUpdateWMQJMSActivationSpec" id="CreateOrUpdateWMQJMSActivationSpec"></a>
                 <h2>CreateOrUpdateWMQJMSActivationSpec</h2>
                 <p>This procedure creates a new JMS Activation Spec or updates an existing JMS Activation Spec.</p>
-                <h3>CreateOrUpdateJMSTopic Parameters</h3>
+                <h3>CreateOrUpdateWMQJMSActivationSpec Parameters</h3>
                 <table class="grid" style="width: 936px; height: 418px;">
                     <thead>
                         <tr>
@@ -1430,33 +1442,33 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="required">Messaging System Type</td>
+                            <td class="required">Scope of the Activation Spec</td>
                             <td>
-                                The name of the messaging provider. Pass in either WMQ or SIB.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="required">Activation Spec Scope</td>
-                            <td>
-                                Scope of the messaging provider at which the JMS Activation Spec is to be created.
+                                Scope of the WebSphere MQ messaging provider at which the Activation Spec is to be created.
                             </td>
                         </tr>
                         <tr>
                             <td class="required">Activation Spec Administrative Name</td>
                             <td>
-                                The administrative name assigned to this WebSphere MQ messaging provider Activation Spec.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="required">Activation Spec Name</td>
-                            <td>
-                                Name of the Activation Spec.
+                                The administrative name assigned to this Activation Spec.
                             </td>
                         </tr>
                         <tr>
                             <td class="required">JNDI Name</td>
                             <td>
-                                The name used to bind this object into WebSphere Application Server JNDI.
+                                The name and location used to bind this object into WebSphere Application Server JNDI.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">Destination JNDI Name</td>
+                            <td>
+                                The JNDI name of the destination JMS queue or topic used by the message-driven bean.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="required">Destination JNDI Type</td>
+                            <td>
+                                The type of the destination specified by "Destination JNDI Name" parameter.
                             </td>
                         </tr>
                         <tr>
@@ -1466,17 +1478,29 @@
                             </td>
                         </tr>
                         <tr>
+                            <td>Client Channel Definition URL</td>
+                            <td>
+                                A URL to a client channel definition table to use, for this Activation Spec, when contacting WebSphere MQ.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Client Channel Definition Queue Manager</td>
+                            <td>
+                                A queue manager name, used to select one or more entries from a client channel definition table.
+                            </td>
+                        </tr>
+                        <tr>
                             <td>Additional Options</td>
                             <td>                                
                                 This parameter can be used to either override defaults or pass Custom Properties.<br />
                                 For example:<br />
-                                <pre>-ccsid 1208 -readAhead YES -customProperties [[prop1 value1][prop2 value2]]</pre>
+                                <pre>-ccsid 819 -msgSelection BROKER -customProperties [[prop1 value1][prop2 value2]]</pre>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 <h3>Create or update WMQ JMS Activation Spec</h3>
-                <p>To create or update JMS Activation Spec in Commander interface, do these steps:</p>
+                <p>To create or update WMQ JMS Activation Spec in Commander interface, do these steps:</p>
                 <ol>
                     <li>Create procedure.</li>
                     <li>Create step, choose Plugin, choose CreateOrUpdateWMQJMSActivationSpec from
@@ -1487,7 +1511,7 @@
                 <p>After the job runs, you can view the results, including the following
                 job details:</p>
                 <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateWMQJMSActivationSpec/ProcedureResult.png" />
-                <p>To create or update JMS Topic in Flow interface, do these steps:</p>
+                <p>To create or update WMQ JMS Activation Spec in Flow interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>
@@ -1500,17 +1524,16 @@
                 </ol>
                 <p>After the pipeline runs, you can view the results, including the
                 following step details:</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/PipelineResult.png" />
+                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateWMQJMSActivationSpec/PipelineResult.png" />
                 <p>In the <b>CreateOrUpdateWMQJMSActivationSpec</b> step, click the Log icon to see
                 the diagnostic information. The output is similar to the following
                 diagnostic report.</p>
                 <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateWMQJMSActivationSpec/ProcedureLog.png" />
             </div>
-
-            <div id="CreateOrUpdateSIBJMSConnectionFactory"> <a name="CreateOrUpdateSIBJMSConnectionFactory" id="CreateOrUpdateSIBJMSConnectionFactory"></a>
+            <div id="CreateOrUpdateSIBJMSConnectionFactory"><a name="CreateOrUpdateSIBJMSConnectionFactory" id="CreateOrUpdateSIBJMSConnectionFactory"></a>
                 <h2>CreateOrUpdateSIBJMSConnectionFactory</h2>
-                <p>This procedure creates a new JMS Connection Factory or updates an existing JMS Connection Factory.</p>
-                <h3>CreateOrUpdateJMSTopic Parameters</h3>
+                <p>This procedure creates a new SIB JMS Connection Factory or updates an existing JMS Connection Factory.</p>
+                <h3>CreateOrUpdateSIBJMSConnectionFactory Parameters</h3>
                 <table class="grid" style="width: 936px; height: 418px;">
                     <thead>
                         <tr>
@@ -1526,33 +1549,36 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="required">Messaging System Type</td>
+                            <td class="required">Scope of the Connection Factory</td>
                             <td>
-                                The name of the messaging provider. Pass in either WMQ or SIB.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="required">Connection Factory Scope</td>
-                            <td>
-                                Scope of the messaging provider at which the JMS Connection Factory is to be created.
+                                Scope of the WebSphere Default messaging provider at which the Connection Factory is to be created.
                             </td>
                         </tr>
                         <tr>
                             <td class="required">Connection Factory Administrative Name</td>
                             <td>
-                                The administrative name assigned to this WebSphere MQ messaging provider Connection Factory.
+                                The administrative name assigned to this Сonnection Factory.
                             </td>
                         </tr>
                         <tr>
-                            <td class="required">Connection Factory Name</td>
+                            <td class="required">Bus Name</td>
                             <td>
-                                Name of the Connection Factory.
+                                Name of the service integration bus to which connections are made.
                             </td>
                         </tr>
                         <tr>
                             <td class="required">JNDI Name</td>
                             <td>
-                                The name used to bind this object into WebSphere Application Server JNDI.
+                                The name and location used to bind this object into WebSphere Application Server JNDI.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Connection Factory Type</td>
+                            <td>
+                                Type of Connection Factory to create. Should be one of Queue or Topic.
+                                To create a generic connection factory, leave this parameter unset.
+                                This parameter is being used only if Connection Factory is going to be created.
+                                Since factory type can't be updated in existing factory, this parameter will be omited if Connection Factory already exists.
                             </td>
                         </tr>
                         <tr>
@@ -1566,13 +1592,13 @@
                             <td>                                
                                 This parameter can be used to either override defaults or pass Custom Properties.<br />
                                 For example:<br />
-                                <pre>-ccsid 1208 -readAhead YES -customProperties [[prop1 value1][prop2 value2]]</pre>
+                                <pre>-shareDataSourceWithCMP True -connectionProximity Host -customProperties [[prop1 value1][prop2 value2]]</pre>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 <h3>Create or update SIB JMS Connection Factory</h3>
-                <p>To create or update JMS Connection Factory in Commander interface, do these steps:</p>
+                <p>To create or update SIB JMS Connection Factory in Commander interface, do these steps:</p>
                 <ol>
                     <li>Create procedure.</li>
                     <li>Create step, choose Plugin, choose CreateOrUpdateSIBJMSConnectionFactory from
@@ -1605,8 +1631,8 @@
             
             <div id="CreateOrUpdateWMQJMSConnectionFactory"> <a name="CreateOrUpdateWMQJMSConnectionFactory" id="CreateOrUpdateWMQJMSConnectionFactory"></a>
                 <h2>CreateOrUpdateWMQJMSConnectionFactory</h2>
-                <p>This procedure creates a new JMS Connection Factory or updates an existing JMS Connection Factory.</p>
-                <h3>CreateOrUpdateJMSTopic Parameters</h3>
+                <p>This procedure creates a new WMQ JMS Connection Factory or updates an existing JMS Connection Factory.</p>
+                <h3>CreateOrUpdateWMQJMSConnectionFactory Parameters</h3>
                 <table class="grid" style="width: 936px; height: 418px;">
                     <thead>
                         <tr>
@@ -1622,53 +1648,57 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="required">Messaging System Type</td>
-                            <td>
-                                The name of the messaging provider. Pass in either WMQ or SIB.
-                            </td>
-                        </tr>
-                        <tr>
                             <td class="required">Connection Factory Scope</td>
                             <td>
-                                Scope of the messaging provider at which the JMS Connection Factory is to be created.
+                                Scope of the Connection Factory.
                             </td>
                         </tr>
                         <tr>
                             <td class="required">Connection Factory Administrative Name</td>
                             <td>
-                                The administrative name assigned to this WebSphere MQ messaging provider Connection Factory.
+                                The administrative name assigned to this Connection Factory.
                             </td>
                         </tr>
                         <tr>
-                            <td class="required">Connection Factory Name</td>
+                            <td class="required">Connection Factory Type</td>
                             <td>
-                                Name of the Connection Factory.
+                                Use this parameter to determine whether a unified connection factory, a queue connection factory or a topic connection factory is to be created.
+                                This needs to be one of the values from CF, QCF and TCF. Default is CF.
+                                Since factory type can't be updated in existing factory, this parameter will be omited if Connection Factory already exists.
                             </td>
                         </tr>
                         <tr>
                             <td class="required">JNDI Name</td>
                             <td>
-                                The name used to bind this object into WebSphere Application Server JNDI.
+                                The name and location used to bind this object into WebSphere Application Server JNDI.
                             </td>
                         </tr>
                         <tr>
                             <td>Connection Factory Administrative Description</td>
                             <td>
-                                An administrative description assigned to Connection Factory.
+                                An Administrative description assigned to Connection Factory.
                             </td>
+                        </tr>
+                        <tr>
+                            <td>Client Channel Definition URL</td>
+                            <td>A URL to a client channel definition table to use, for this Connection Factory, when contacting WebSphere MQ.</td>
+                        </tr>
+                        <tr>
+                            <td>Client Channel Definition Queue Manager</td>
+                            <td>A queue manager name, used to select one or more entries from a client channel definition table.</td>
                         </tr>
                         <tr>
                             <td>Additional Options</td>
                             <td>                                
                                 This parameter can be used to either override defaults or pass Custom Properties.<br />
                                 For example:<br />
-                                <pre>-ccsid 1208 -readAhead YES -customProperties [[prop1 value1][prop2 value2]]</pre>
+                                <pre>-ccsid 819 -failIfQuiescing true -customProperties [[prop1 value1][prop2 value2]]</pre>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 <h3>Create or update WMQ JMS Connection Factory</h3>
-                <p>To create or update JMS Connection Factory in Commander interface, do these steps:</p>
+                <p>To create or update WMQ JMS Connection Factory in Commander interface, do these steps:</p>
                 <ol>
                     <li>Create procedure.</li>
                     <li>Create step, choose Plugin, choose CreateOrUpdateWMQJMSConnectionFactory from
@@ -1872,21 +1902,21 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="required">ActivationSpec Scope</td>
+                        <td class="required">Scope of the Activation Spec</td>
                         <td>
-                            Scope of the messaging provider at which the JMS ActivationSpec is to be deleted.
+                            Scope of the messaging provider at which the JMS Activation Spec is to be deleted.
                         </td>
                     </tr>
                     <tr>
-                        <td class="required">ActivationSpec Administrative Name</td>
+                        <td class="required">Activation Spec Administrative Name</td>
                         <td>
-                            The administrative name assigned to this WebSphere MQ messaging provider ActivationSpec.
+                            The administrative name assigned to this WebSphere MQ messaging provider Activation Spec.
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <h3>Delete JMS ActivationSpec</h3>
-            <p>To delete JMS ActivationSpec in Commander interface, do these steps:</p>
+            <h3>Delete JMS Activation Spec</h3>
+            <p>To delete JMS Activation Spec in Commander interface, do these steps:</p>
             <ol>
                 <li>Create procedure.</li>
                 <li>Create step, choose Plugin, choose DeleteJMSActivationSpec from procedures
@@ -1897,7 +1927,7 @@
             <p>After the job runs, you can view the results, including the following
             job details:</p>
             <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/ProcedureResult.png" />
-            <p>To delete JMS ActivationSpec in Flow interface, do these steps:</p>
+            <p>To delete JMS Activation Spec in Flow interface, do these steps:</p>
             <ol>
                 <li>Create Pipeline.</li>
                 <li>Create task.</li>
@@ -1942,15 +1972,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="required">ConnectionFactory Scope</td>
+                        <td class="required">Scope of the Connection Factory</td>
                         <td>
-                            Scope of the messaging provider at which the JMS ConnectionFactory is to be deleted.
+                            Scope of the WebSphere messaging provider at which the Connection Factory is to be deleted.
                         </td>
                     </tr>
                     <tr>
-                        <td class="required">ConnectionFactory Administrative Name</td>
+                        <td class="required">Connection Factory Administrative Name</td>
                         <td>
-                            The administrative name assigned to this WebSphere MQ messaging provider ConnectionFactory.
+                            The administrative name assigned to this Connection Factory.
                         </td>
                     </tr>
                 </tbody>
@@ -2006,21 +2036,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="required">Messaging System Type</td>
-                        <td>
-                            The name of the messaging provider. Pass in either WMQ or SIB.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="required">Provider Scope</td>
+                        <td class="required">JMS Provider Scope</td>
                         <td>
                             Scope of the messaging provider at which the JMS Provider is to be deleted.
                         </td>
                     </tr>
                     <tr>
-                        <td class="required">Provider Administrative Name</td>
+                        <td class="required">JMS Provider Administartive Name</td>
                         <td>
-                            The administrative name assigned to this WebSphere MQ messaging provider Provider.
+                            Scope of the WebSphere messaging provider to be deleted.
                         </td>
                     </tr>
                 </tbody>
@@ -2056,8 +2080,7 @@
             diagnostic report.</p>
             <img src="../../plugins/EC-WebSphere/images/DeleteJMSProvider/ProcedureLog.png" />
             </div>
-                        
-            
+
             <div id="DeleteJMSQueue"><a name="DeleteJMSQueue" id="DeleteJMSQueue"></a>
             <h2>DeleteJMSQueue</h2>
             <p>This procedure deletes an existing JMS Queue.</p>
@@ -3342,6 +3365,20 @@
             <h1 id="rns">Release Notes</h1>
             <h2>@PLUGIN_KEY@ 2.4.0</h2>
             <!-- Placeholder for 2.4.0 release notes -->
+            <ul>
+                <li>
+                    Following procedures have been added:
+                    <ul>
+                        <li>CreateOrUpdateSIBJMSActivationSpec</li>
+                        <li>CreateOrUpdateWMQJMSActivationSpec</li>
+                        <li>CreateOrUpdateSIBJMSConnectionFactory</li>
+                        <li>CreateOrUpdateWMQJMSConnectionFactory</li>
+                        <li>DeleteJMSActivationSpec</li>
+                        <li>DeleteJMSConnectionFactory</li>
+                        <li>DeleteJMSProvider</li>
+                    </ul>
+                </li>
+            </ul>
             <h2>@PLUGIN_KEY@ 2.3.1</h2>
             <ul>
                 <li>Help links have been updated for DeleteJMSTopic and DeleteJMSQueue procedures.</li>

@@ -42,14 +42,14 @@ limitations under the License.
         <documentation>The administrative name assigned to this Activation Spec.</documentation>
     </formElement>
     <formElement>
-        <label>JNDI name:</label>
+        <label>JNDI Name:</label>
         <property>jndiName</property>
         <type>entry</type>
         <required>1</required>
         <documentation>The name and location used to bind this object into WebSphere Application Server JNDI.</documentation>
     </formElement>
     <formElement>
-        <label>Destination JNDI name:</label>
+        <label>Destination JNDI Name:</label>
         <property>destinationJndiName</property>
         <type>entry</type>
         <required>1</required>
