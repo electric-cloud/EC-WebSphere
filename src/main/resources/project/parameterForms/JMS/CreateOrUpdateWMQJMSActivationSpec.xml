@@ -51,14 +51,14 @@ limitations under the License.
         <documentation>The name and location used to bind this object into WebSphere Application Server JNDI.</documentation>
     </formElement>
     <formElement>
-        <label>Destination JNDI name:</label>
+        <label>Destination JNDI Name:</label>
         <property>destinationJndiName</property>
         <type>entry</type>
         <required>1</required>
         <documentation>The JNDI name of the destination JMS queue or topic used by the message-driven bean.</documentation>
     </formElement>
     <formElement>
-        <label>Destination JNDI type:</label>
+        <label>Destination JNDI Type:</label>
         <property>destinationJndiType</property>
         <type>select</type>
         <required>1</required>
