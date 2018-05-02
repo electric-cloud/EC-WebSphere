@@ -133,14 +133,16 @@ def getWMQQueues(scope):
         retval.append(t)
     return retval
 
-def getWMQConnectionFactories(scope):
+def getWMQConnectionFactories(scope, resType):
     result = AdminConfig.getid(scope)
     print result
-    topics = AdminTask.listWMQConnectionFactories(result)
+    params = "-type %s" % (resType)
+    topics = AdminTask.listWMQConnectionFactories(result, [params])
     print topics
+    # todo
     retval = []
     for topic in parseOutput(topics):
-        t = wsadminTaskToDict(AdminTask.listWMQConnectionFactory(topic))
+        t = wsadminTaskToDict(AdminTask.showWMQConnectionFactory(topic))
         t["__raw_resource_scope__"] = topic
         retval.append(t)
     return retval
@@ -181,9 +183,43 @@ def getSIBJMSQueues(scope):
         retval.append(t)
     return retval
 
-def isResourceExists(scope, resType, resName):
+def getSIBJMSActivationSpecs(scope):
     result = AdminConfig.getid(scope)
     print result
+    topics = AdminTask.listSIBJMSActivationSpecs(result)
+    print topics
+    retval = []
+    for topic in parseOutput(topics):
+        t = wsadminTaskToDict(AdminTask.showSIBJMSActivationSpec(topic))
+        t["__raw_resource_scope__"] = topic
+        retval.append(t)
+    return retval
+
+def getSIBJMSConnectionFactories(scope):
+    result = AdminConfig.getid(scope)
+    print result
+    topics = AdminTask.listSIBJMSConnectionFactories(result, ["-type all"])
+    print topics
+    retval = []
+    for topic in parseOutput(topics):
+        t = wsadminTaskToDict(AdminTask.showSIBJMSConnectionFactory(topic))
+        t["__raw_resource_scope__"] = topic
+        retval.append(t)
+    return retval
+
+def getJMSProviderAtScope(providerName, scope):
+    if not providerName:
+        print "providerName parameter should be present and non-empty"
+        sys.exit(1)
+    providerScope = scope + "JMSProvider:" + providerName
+    result = AdminConfig.getid(providerScope)
+    return result
+
+def deleteJMSProvider(providerId):
+    AdminConfig.remove(providerId)
+
+def isResourceExists(scope, resType, resName, fType = ''):
+    result = AdminConfig.getid(scope)
     records = None
     if resType == 'WMQ_Topic':
         records = getWMQTopics(scope)
@@ -194,9 +230,13 @@ def isResourceExists(scope, resType, resName):
     elif resType == 'SIB_Queue':
         records = getSIBJMSQueues(scope)
     elif resType == 'WMQ_ConnectionFactory':
-        records = getWMQConnectionFactories(scope)
+        records = getWMQConnectionFactories(scope, fType)
+    elif resType == 'SIB_ConnectionFactory':
+        records = getSIBJMSConnectionFactories(scope)
     elif resType == 'WMQ_ActivationSpec':
         records = getWMQActivationSpecs(scope)
+    elif resType == 'SIB_ActivationSpec':
+        records = getSIBJMSActivationSpecs(scope)
     else:
         print "Wrong resource type %s" % (resType)
         sys.exit(1)

@@ -1,0 +1,97 @@
+<!--
+
+Copyright 2015 Electric Cloud, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CreateOrUpdateWMQJMSActivationSpec</help>
+    <formElement>
+        <type>entry</type>
+        <label>Configuration Name:</label>
+        <property>configname</property>
+        <propertyReference>/plugins/@PLUGIN_NAME@/project/websphere_cfgs</propertyReference>
+        <documentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration. To view or create a new configuration, go to the Administration -> Plugins tab, and select 'Configure' action for @PLUGIN_KEY@ plugin.</documentation>
+        <htmlDocumentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" target="_blank" href="/commander/pages/@PLUGIN_NAME@/configurations">configuration page</a>.</htmlDocumentation>
+        <required>1</required>
+    </formElement>
+    <formElement>
+        <label>Scope of the Activation Spec:</label>
+        <property>specScope</property>
+        <type>entry</type>
+        <required>1</required>
+        <documentation>
+            Scope of the WebSphere MQ messaging provider at which the Activation Spec is to be created.
+        </documentation>
+    </formElement>
+    <formElement>
+        <label>Activation Spec Administrative Name:</label>
+        <property>specAdministrativeName</property>
+        <type>entry</type>
+        <required>1</required>
+        <documentation>The administrative name assigned to this Activation Spec.</documentation>
+    </formElement>
+    <formElement>
+        <label>JNDI Name:</label>
+        <property>jndiName</property>
+        <type>entry</type>
+        <required>1</required>
+        <documentation>The name and location used to bind this object into WebSphere Application Server JNDI.</documentation>
+    </formElement>
+    <formElement>
+        <label>Destination JNDI Name:</label>
+        <property>destinationJndiName</property>
+        <type>entry</type>
+        <required>1</required>
+        <documentation>The JNDI name of the destination JMS queue or topic used by the message-driven bean.</documentation>
+    </formElement>
+    <formElement>
+        <label>Destination JNDI Type:</label>
+        <property>destinationJndiType</property>
+        <type>select</type>
+        <required>1</required>
+        <option><name>javax.jms.Queue</name><value>javax.jms.Queue</value></option>
+        <option><name>javax.jms.Topic</name><value>javax.jms.Topic</value></option>
+        <documentation>The type of the destination specified by "Destination JNDI Name" parameter.</documentation>
+    </formElement>
+    <formElement>
+        <label>Activation Spec Administrative Description:</label>
+        <property>specAdministrativeDescription</property>
+        <type>textarea</type>
+        <required>0</required>
+        <documentation>An Administrative Description assigned to Activation Spec.</documentation>
+    </formElement>
+    <formElement>
+        <label>Client Channel Definition URL:</label>
+        <property>clientChannelDefinitionUrl</property>
+        <type>entry</type>
+        <required>0</required>
+        <documentation>A URL to a client channel definition table to use, for this Activation Spec, when contacting WebSphere MQ.</documentation>
+    </formElement>
+    <formElement>
+        <label>Client Channel Definition Queue Manager:</label>
+        <property>clientChannelDefinitionQueueManager</property>
+        <type>entry</type>
+        <required>0</required>
+        <documentation>A queue manager name, used to select one or more entries from a client channel definition table.</documentation>
+    </formElement>
+    <formElement>
+        <label>Additional Options:</label>
+        <property>additionalOptions</property>
+        <type>textarea</type>
+        <required>0</required>
+        <documentation>Used to either override defaults or pass Custom Properties.</documentation>
+    </formElement>
+</editor>

@@ -1,0 +1,101 @@
+<!--
+
+Copyright 2015 Electric Cloud, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CreateOrUpdateWMQJMSConnectionFactory</help>
+    <formElement>
+        <type>entry</type>
+        <label>Configuration Name:</label>
+        <property>configname</property>
+        <propertyReference>/plugins/@PLUGIN_NAME@/project/websphere_cfgs</propertyReference>
+        <documentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration. To view or create a new configuration, go to the Administration -> Plugins tab, and select 'Configure' action for @PLUGIN_KEY@ plugin.</documentation>
+        <htmlDocumentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" target="_blank" href="/commander/pages/@PLUGIN_NAME@/configurations">configuration page</a>.</htmlDocumentation>
+        <required>1</required>
+    </formElement>
+    <formElement>
+        <label>Scope of the Connection Factory:</label>
+        <property>factoryScope</property>
+        <type>entry</type>
+        <required>1</required>
+        <documentation>
+            Scope of the WebSphere MQ messaging provider at which the Connection Factory is to be created.
+        </documentation>
+    </formElement>
+    <formElement>
+        <label>Connection Factory Administrative Name:</label>
+        <property>factoryAdministrativeName</property>
+        <type>entry</type>
+        <required>1</required>
+        <documentation>
+            The administrative name assigned to this Connection Factory.
+        </documentation>
+    </formElement>
+    <formElement>
+        <label>Connection Factory Type:</label>
+        <property>factoryType</property>
+        <type>select</type>
+        <option><name>CF</name><value>CF</value></option>
+        <option><name>QCF</name><value>QCF</value></option>
+        <option><name>TCF</name><value>TCF</value></option>
+        <required>1</required>
+        <documentation>
+            Use this parameter to determine whether a unified connection factory, a queue connection factory or a topic connection factory is to be created.
+            This needs to be one of the values from CF, QCF and TCF. Default is CF.
+            Since factory type can't be updated in existing factory, this parameter will be omited if Connection Factory already exists.
+        </documentation>
+    </formElement>
+    <formElement>
+        <label>JNDI Name:</label>
+        <property>jndiName</property>
+        <type>entry</type>
+        <required>1</required>
+        <documentation>
+            The name and location used to bind this object into WebSphere Application Server JNDI.
+        </documentation>
+    </formElement>    
+    <formElement>
+        <label>Connection Factory Administrative Description:</label>
+        <property>factoryAdministrativeDescription</property>
+        <type>textarea</type>
+        <required>0</required>
+        <documentation>An Administrative description assigned to Connection Factory.</documentation>
+    </formElement>
+    <formElement>
+        <label>Client Channel Definition URL:</label>
+        <property>clientChannelDefinitionUrl</property>
+        <type>entry</type>
+        <required>0</required>
+        <documentation>
+            A URL to a client channel definition table to use, for this Connection Factory, when contacting WebSphere MQ.
+        </documentation>
+    </formElement>
+    <formElement>
+        <label>Client Channel Definition Queue Manager:</label>
+        <property>clientChannelDefinitionQueueManager</property>
+        <type>entry</type>
+        <required>0</required>
+        <documentation>A queue manager name, used to select one or more entries from a client channel definition table.</documentation>
+    </formElement>
+    <formElement>
+        <label>Additional Options:</label>
+        <property>additionalOptions</property>
+        <type>textarea</type>
+        <required>0</required>
+        <documentation>Used to either override defaults or pass Custom Properties.</documentation>
+    </formElement>
+</editor>
