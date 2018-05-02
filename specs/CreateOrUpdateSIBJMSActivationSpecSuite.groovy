@@ -1,0 +1,253 @@
+import spock.lang.*
+import com.electriccloud.spec.SpockTestSupport
+import PluginTestHelper
+
+
+@Stepwise
+class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
+    
+    //verification values
+    @Shared
+    def expectedOutcomes = [
+        success: 'success',
+        error: 'error',
+        warning: 'warning',
+        running: 'running'
+    ]
+    
+    @Shared
+    def expectedUpperStepSummaries = [
+        fieldRequired: 'Some message',
+        incorrectComfigname: '',
+        incorrectMessagingSystemType: '',
+        incorrectTopicScope: '',
+        incorrectTopicAdministrativeName: '',
+        incorrectTopicName: '',
+        incorrectJndiName: ''
+    ]
+
+    @Shared
+    def testProjectName = 'EC-WebSphere-SystemTests'
+    @Shared
+    def testProcedureName = 'CreateOrUpdateSIBJMSActivationSpec'
+    @Shared 
+    def wasHost = System.getenv('WAS_HOST')
+    @Shared 
+    def wasPath = System.getenv('WSADMIN_PATH')
+/**
+ * Maps for Possible Values
+ */
+    @Shared
+    def configNames = [
+        /**
+         * Required
+         */
+        empty: '',
+        correctSOAP: 'Web-Sphere-SOAP',
+        correctIPC: 'Web-Sphere-IPC',
+        correctJSR160RMI: 'Web-Sphere-JSR160RMI',
+        correctNone: 'Web-Sphere-None',
+        correctRMI: 'Web-Sphere-RMI',                        
+        incorrect: 'incorrect'
+    ]
+
+
+    @Shared
+    def ASScopes = [
+        /**
+         * Required
+         */
+        empty: '',
+        correct: 'Node='+wasHost+'Node01',
+        incorrect: 'Node=incorrectScope'
+    ]
+
+    @Shared
+    def ASAdministrativeNames = [
+        /**
+         * Required
+         */
+        empty: '',
+        correct: 'MySIBAS',
+    ]
+
+    @Shared
+    def jndiNames = [
+        /**
+         * Required
+         */
+        empty: '',
+        correct: 'MySIBAS',
+        incorrect: 'incorrect SIB AS NAME'
+    ]
+
+    @Shared
+    def destJndiNames = [
+        /**
+         * Required
+         */
+        empty: '',
+        correct: 'com.jndi.sib.myAS',
+    ]
+
+
+    @Shared
+    def ASDescriptions = [
+        /**
+         * Not Required
+         * Free-type field - no need incorrect value - not relevant
+         */
+        empty: '',
+    ]
+
+    @Shared
+    def additionalOptions = [
+        /**
+         * Not Required
+         * Free-type field - no need incorrect value - not relevant
+         */
+    ]
+
+    @Shared
+    def summaries = [
+        created: "SIB JMS Activation Spec $ASAdministrativeNames.correct has been created",
+        updated: "SIB JMS Activation Spec $ASAdministrativeNames.correct has been updated",
+    ]
+    // params for where section
+    def expectedOutcome
+    def expectedUpperStepSummary
+
+    def configName
+    def jndiName
+    def destJndiName
+    def ASDescription
+    def ASAdministrativeName
+    def ASScope
+    // def additionalOptions
+
+    def doSetupSpec() {
+        def wasResourceName = System.getenv('WAS_HOST');
+        createWorkspace(wasResourceName)
+        createConfiguration(configNames.correctSOAP, [doNotRecreate: false])
+        createConfiguration(configNames.correctIPC, [doNotRecreate: false])        
+        createConfiguration(configNames.correctJSR160RMI, [doNotRecreate: false])        
+        createConfiguration(configNames.correctNone, [doNotRecreate: false])        
+        createConfiguration(configNames.correctRMI, [doNotRecreate: false])        
+        importProject(testProjectName, 'dsl/CreateOrUpdateSIBJMSActivationSpec/Procedure.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
+        dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
+    }
+
+    def doCleanupSpec() {
+    }
+ 
+
+    @Unroll
+    def "Create Or Update JMS Activation Spec. Simplest Scenarios"() {
+
+        when: 'Proceure runs: '
+        print "WASHOST: $wasHost"
+            def runParams = [
+                configName: configName,
+                destinationJndiName: destJndiName,
+                jndiName: jndiName,
+                name: ASAdministrativeName,
+                scope: ASScope,
+                wasHost: wasHost,
+                additionalOptions: '',
+                destinationType: '',
+                wasASDescription: '',
+            messageSelector: '',
+            ]
+
+        def result = runProcedure(runParams)
+
+        then: 'Wait until job is completed: '
+        waitUntil {
+            try {
+                jobCompleted(result)
+            } catch (Exception e) {
+                println e.getMessage()
+            }
+        }
+        def outcome = getJobProperty('/myJob/outcome', result.jobId)
+        def jobSummary = getJobProperty('/myJob/jobSteps/CreateOrUpdateSIBJMSActivationSpec/summary', result.jobId)
+        print "JobSummary: $jobSummary";
+        def debugLog = getJobLogs(result.jobId)
+        println "Procedure log:\n$debugLog\n"
+
+        assert outcome == expectedOutcome
+        assert jobSummary == expectedSummary
+        where: 'The following params will be: '
+
+        configName              | ASScope          | ASAdministrativeName          | destJndiName          | jndiName          | expectedOutcome | expectedSummary
+        configNames.correctSOAP | ASScopes.correct | ASAdministrativeNames.correct | destJndiNames.correct | jndiNames.correct | 'success'       | summaries.created
+        configNames.correctSOAP | ASScopes.correct | ASAdministrativeNames.correct | destJndiNames.correct | jndiNames.correct | 'success'       | summaries.updated
+        
+    }
+
+    @Unroll
+    def "Create Or Update JMS Activation Spec. Simplest Negative Scenario"() {
+
+        when: 'Proceure runs: '
+        print "WASHOST: $wasHost"
+            def runParams = [
+                configName: configName,
+                destinationJndiName: destJndiName,
+                jndiName: jndiName,
+                name: ASAdministrativeName,
+                scope: ASScope,
+                wasHost: wasHost,
+                additionalOptions: '',
+                destinationType: '',
+                wasASDescription: '',
+            messageSelector: '',
+            ]
+
+        def result = runProcedure(runParams)
+
+        then: 'Wait until job is completed: '
+        waitUntil {
+            try {
+                jobCompleted(result)
+            } catch (Exception e) {
+                println e.getMessage()
+            }
+        }
+        def outcome = getJobProperty('/myJob/outcome', result.jobId)
+        def debugLog = getJobLogs(result.jobId)
+        println "Procedure log:\n$debugLog\n"
+
+        assert outcome == expectedOutcome
+        // assert jobSummary == expectedSummary
+        where: 'The following params will be: '
+
+        configName              | ASScope            | ASAdministrativeName          | destJndiName          | jndiName          | expectedOutcome
+        configNames.correctSOAP | ASScopes.incorrect | ASAdministrativeNames.correct | destJndiNames.correct | jndiNames.correct | 'error'
+
+        
+    }
+
+    //Run Test Procedure
+    def runProcedure(def parameters) {
+        def code = """
+            runProcedure(
+                projectName: '$testProjectName',
+                procedureName: '$testProcedureName',
+                actualParameter: [
+                    wasResourceName:          '$parameters.wasHost',
+                    wasConfigName:            '$parameters.configName',
+                    wasAdditionalOptions:     '$parameters.additionalOptions',
+                    wasASDescription:         '$parameters.description',
+                    wasASDestinationJNDIName: '$parameters.destinationJndiName',
+                    wasASJNDIName:            '$parameters.jndiName',
+                    wasASName:                '$parameters.name',
+                    wasASScope:               '$parameters.scope',
+                    wasDestinationType:       '$parameters.destinationType',
+                    wasMessageSelector:       '$parameters.messageSelector',
+                ]
+            )
+        """
+        return dsl(code)
+    }
+
+}
