@@ -3,7 +3,7 @@ import com.electriccloud.spec.SpockTestSupport
 import PluginTestHelper
 
 @Stepwise
-class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
+class CheckCreateOrUpdateWMQJMSConnectionFactory extends PluginTestHelper {
     
     //verification values
     @Shared
@@ -19,9 +19,6 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         fieldRequired: 'Some message',
         incorrectComfigname: '',
         incorrectMessagingSystemType: '',
-        incorrectTopicScope: '',
-        incorrectTopicAdministrativeName: '',
-        incorrectTopicName: '',
         incorrectJndiName: ''
     ]
 

@@ -4,7 +4,7 @@ import PluginTestHelper
 
 
 @Stepwise
-class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
+class CheckCreateOrUpdateSIBJMSConnectionFactory extends PluginTestHelper {
     
     //verification values
     @Shared
@@ -20,9 +20,6 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         fieldRequired: 'Some message',
         incorrectComfigname: '',
         incorrectMessagingSystemType: '',
-        incorrectTopicScope: '',
-        incorrectTopicAdministrativeName: '',
-        incorrectTopicName: '',
         incorrectJndiName: ''
     ]
 
