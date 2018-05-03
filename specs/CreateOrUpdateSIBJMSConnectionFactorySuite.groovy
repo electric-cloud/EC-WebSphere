@@ -29,7 +29,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
     @Shared
     def testProjectName = 'EC-WebSphere-SystemTests'
     @Shared
-    def testProcedureName = 'CreateOrUpdateSIBJMSActivationSpec'
+    def testProcedureName = 'CreateOrUpdateSIBJMSConnectionFactory'
     @Shared 
     def wasHost = System.getenv('WAS_HOST')
     @Shared 
@@ -53,7 +53,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
 
 
     @Shared
-    def ASScopes = [
+    def CFScopes = [
         /**
          * Required
          */
@@ -63,12 +63,12 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
     ]
 
     @Shared
-    def ASAdministrativeNames = [
+    def CFAdministrativeNames = [
         /**
          * Required
          */
         empty: '',
-        correct: 'MySIBAS',
+        correct: 'MySIBCF',
     ]
 
     @Shared
@@ -77,8 +77,8 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
          * Required
          */
         empty: '',
-        correct: 'MySIBAS',
-        incorrect: 'incorrect SIB AS NAME'
+        correct: 'MySIBCF',
+        incorrect: 'incorrect SIB CF NAME'
     ]
 
     @Shared
@@ -87,12 +87,12 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
          * Required
          */
         empty: '',
-        correct: 'com.jndi.sib.myAS',
+        correct: 'com.jndi.sib.myCF',
     ]
 
 
     @Shared
-    def ASDescriptions = [
+    def CFDescriptions = [
         /**
          * Not Required
          * Free-type field - no need incorrect value - not relevant
@@ -110,8 +110,14 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
 
     @Shared
     def summaries = [
-        created: "SIB JMS Activation Spec $ASAdministrativeNames.correct has been created",
-        updated: "SIB JMS Activation Spec $ASAdministrativeNames.correct has been updated",
+        created: "SIB JMS Connection Factory $CFAdministrativeNames.correct has been created",
+        updated: "SIB JMS Connection Factory $CFAdministrativeNames.correct has been updated",
+    ]
+    @Shared
+    def busNames = [
+        correct: 'Default',
+        // TODO: Add incorrect bus name
+        incorrect: 'Incorrect bus name'
     ]
     // params for where section
     def expectedOutcome
@@ -119,10 +125,10 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
 
     def configName
     def jndiName
-    def destJndiName
-    def ASDescription
-    def ASAdministrativeName
-    def ASScope
+    def busName
+    def CFDescription
+    def CFAdministrativeName
+    def CFScope
     // def additionalOptions
 
     def doSetupSpec() {
@@ -133,7 +139,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         createConfiguration(configNames.correctJSR160RMI, [doNotRecreate: false])        
         createConfiguration(configNames.correctNone, [doNotRecreate: false])        
         createConfiguration(configNames.correctRMI, [doNotRecreate: false])        
-        importProject(testProjectName, 'dsl/CreateOrUpdateSIBJMSActivationSpec/Procedure.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
+        importProject(testProjectName, 'dsl/CreateOrUpdateSIBJMSConnectionFactory/Procedure.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
     }
 
@@ -142,22 +148,21 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
  
 
     @Unroll
-    def "Create Or Update JMS Activation Spec. Simplest Scenarios"() {
+    def "Create Or Update JMS Connection Factory. Simplest Scenarios"() {
 
         when: 'Proceure runs: '
         print "WASHOST: $wasHost"
-            def runParams = [
-                configName: configName,
-                destinationJndiName: destJndiName,
-                jndiName: jndiName,
-                name: ASAdministrativeName,
-                scope: ASScope,
-                wasHost: wasHost,
-                additionalOptions: '',
-                destinationType: '',
-                description: '',
-                messageSelector: '',
-            ]
+        def runParams = [
+            wasHost: wasHost,
+            configName: configName,
+            busName: busName,
+            additionalOptions: '',
+            description: '',
+            name: CFAdministrativeName,
+            jndiName: jndiName,
+            scope: CFScope,
+            type: '',
+        ]
 
         def result = runProcedure(runParams)
 
@@ -170,7 +175,7 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
             }
         }
         def outcome = getJobProperty('/myJob/outcome', result.jobId)
-        def jobSummary = getJobProperty('/myJob/jobSteps/CreateOrUpdateSIBJMSActivationSpec/summary', result.jobId)
+        def jobSummary = getJobProperty('/myJob/jobSteps/CreateOrUpdateSIBJMSConnectionFactory/summary', result.jobId)
         print "JobSummary: $jobSummary";
         def debugLog = getJobLogs(result.jobId)
         println "Procedure log:\n$debugLog\n"
@@ -179,29 +184,28 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         assert jobSummary == expectedSummary
         where: 'The following params will be: '
 
-        configName              | ASScope          | ASAdministrativeName          | destJndiName          | jndiName          | expectedOutcome | expectedSummary
-        configNames.correctSOAP | ASScopes.correct | ASAdministrativeNames.correct | destJndiNames.correct | jndiNames.correct | 'success'       | summaries.created
-        configNames.correctSOAP | ASScopes.correct | ASAdministrativeNames.correct | destJndiNames.correct | jndiNames.correct | 'success'       | summaries.updated
+        configName              | CFScope          | CFAdministrativeName          | busName          | jndiName          | expectedOutcome | expectedSummary
+        configNames.correctSOAP | CFScopes.correct | CFAdministrativeNames.correct | busNames.correct | jndiNames.correct | 'success'       | summaries.created
+        configNames.correctSOAP | CFScopes.correct | CFAdministrativeNames.correct | busNames.correct | jndiNames.correct | 'success'       | summaries.updated
         
     }
-    
+
     @Unroll
-    def "Create Or Update JMS Activation Spec. Simplest Negative Scenario"() {
+    def "Create Or Update JMS Connection Factory. Simplest Negative Scenario"() {
 
         when: 'Proceure runs: '
         print "WASHOST: $wasHost"
-            def runParams = [
-                configName: configName,
-                destinationJndiName: destJndiName,
-                jndiName: jndiName,
-                name: ASAdministrativeName,
-                scope: ASScope,
-                wasHost: wasHost,
-                additionalOptions: '',
-                destinationType: '',
-                wasASDescription: '',
-            messageSelector: '',
-            ]
+        def runParams = [
+            wasHost: wasHost,
+            configName: configName,
+            busName: busName,
+            additionalOptions: '',
+            description: '',
+            name: CFAdministrativeName,
+            jndiName: jndiName,
+            scope: CFScope,
+            type: '',
+        ]
 
         def result = runProcedure(runParams)
 
@@ -221,8 +225,8 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
         // assert jobSummary == expectedSummary
         where: 'The following params will be: '
 
-        configName              | ASScope            | ASAdministrativeName          | destJndiName          | jndiName          | expectedOutcome
-        configNames.correctSOAP | ASScopes.incorrect | ASAdministrativeNames.correct | destJndiNames.correct | jndiNames.correct | 'error'
+        configName              | CFScope            | CFAdministrativeName          | destJndiName          | jndiName          | expectedOutcome
+        configNames.correctSOAP | CFScopes.incorrect | CFAdministrativeNames.correct | destJndiNames.correct | jndiNames.correct | 'error'
 
         
     }
@@ -236,14 +240,13 @@ class CheckCreateOrUpdateJMSTopic extends PluginTestHelper {
                 actualParameter: [
                     wasResourceName:          '$parameters.wasHost',
                     wasConfigName:            '$parameters.configName',
+                    wasBusName:               '$parameters.busName',
                     wasAdditionalOptions:     '$parameters.additionalOptions',
-                    wasASDescription:         '$parameters.description',
-                    wasASDestinationJNDIName: '$parameters.destinationJndiName',
-                    wasASJNDIName:            '$parameters.jndiName',
-                    wasASName:                '$parameters.name',
-                    wasASScope:               '$parameters.scope',
-                    wasDestinationType:       '$parameters.destinationType',
-                    wasMessageSelector:       '$parameters.messageSelector',
+                    wasCFDescription:         '$parameters.description',
+                    wasCFName:                '$parameters.name',
+                    wasJNDIName:            '$parameters.jndiName',
+                    wasCFScope:               '$parameters.scope',
+                    wasCFType:                '$parameters.type'
                 ]
             )
         """
