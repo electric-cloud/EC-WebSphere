@@ -205,6 +205,11 @@ class CreateOrUpdateWMQJMSActivationSpecSuite extends PluginTestHelper {
     }
 
     /**
+     * SimpleTestScenarios
+     */
+
+
+    /**
      * Positive Scenarios
      */
 
