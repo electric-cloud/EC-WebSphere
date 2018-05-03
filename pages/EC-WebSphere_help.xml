@@ -1561,7 +1561,7 @@
                         <tr>
                             <td class="required">Connection Factory Administrative Name</td>
                             <td>
-                                The administrative name assigned to this Сonnection Factory.
+                                The administrative name assigned to this Connection Factory.
                             </td>
                         </tr>
                         <tr>

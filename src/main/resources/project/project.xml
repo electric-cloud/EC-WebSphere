@@ -4657,7 +4657,7 @@
             <formalParameterName>factoryAdministrativeName</formalParameterName>
             <defaultValue />
             <description>
-                The administrative name assigned to this Сonnection Factory.
+                The administrative name assigned to this Connection Factory.
             </description>
             <required>1</required>
             <type>entry</type>

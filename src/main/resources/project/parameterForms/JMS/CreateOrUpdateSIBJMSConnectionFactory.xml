@@ -42,7 +42,7 @@ limitations under the License.
         <type>entry</type>
         <required>1</required>
         <documentation>
-            The administrative name assigned to this Сonnection Factory.
+            The administrative name assigned to this Connection Factory.
         </documentation>
     </formElement>
     <formElement>
