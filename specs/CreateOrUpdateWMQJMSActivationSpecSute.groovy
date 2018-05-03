@@ -4,17 +4,17 @@ import PluginTestHelper
 
 
 @Stepwise
-class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
+class CreateOrUpdateWMQJMSActivationSpecSuite extends PluginTestHelper {
 
     /**
      * Environments Variables
-     */ 
+     */
 
-    @Shared 
+    @Shared
     def wasUserName = System.getenv('WAS_USERNAME')
-    @Shared 
+    @Shared
     def wasPassword = System.getenv('WAS_PASSWORD')
-    @Shared 
+    @Shared
     def wasHost =     System.getenv('WAS_HOST')
     @Shared
     def wasPort =     System.getenv('WAS_PORT')
@@ -34,7 +34,7 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
     @Shared
     def testProjectName =   'EC-WebSphere-SystemTests'
     @Shared
-    def testProcedureName = 'CreateOrUpdateWMQActivationSpec'
+    def testProcedureName = 'CreateOrUpdateWMQJMSActivationSpec'
 
     /**
      * Common Maps: General Maps fpr different fields
@@ -53,7 +53,7 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
     /**
      * Procedure Values: test parameters Procedure values
     */
-    
+
     @Shared     // Required Parameter (need incorrect and empty value)
     def pluginConfigurationNames = [
         empty:                          '',
@@ -61,7 +61,7 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
         correctIPC:                     'Web-Sphere-IPC',
         correctJSR160RMI:               'Web-Sphere-JSR160RMI',
         correctNone:                    'Web-Sphere-None',
-        correctRMI:                     'Web-Sphere-RMI', 
+        correctRMI:                     'Web-Sphere-RMI',
         incorrect: 	                    'incorrect config Name',
     ]
 
@@ -87,7 +87,7 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
         correct:                        'com.jndi.myWMQSpec',
         incorrect:                      'incorrect Spec JNDI Name',
     ]
-    
+
     @Shared // Required Parameter (need incorrect and empty value)
     def destinationJNDINames = [
         empty:                          '',
@@ -131,7 +131,7 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
         incorrect:                      'incorrect Additional Options',
     ]
     /**
-     * Verification Values: Assert values 
+     * Verification Values: Assert values
     */
 
     @Shared
@@ -141,7 +141,7 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
         warning: 	                    'warning',
         running: 	                    'running',
     ]
-    
+
     @Shared
     def expectedSummaryMessages = [
         empty:                          "",
@@ -150,7 +150,7 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
         incorrectConfiguration:         "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
         incorrectScope:                 "target object is required",
     ]
-    
+
     @Shared expectedJobDetailedResults = [
         empty: '',
     ]
@@ -160,8 +160,8 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
     ]
 
     /**
-     * Test Parameters: for Where section 
-     */ 
+     * Test Parameters: for Where section
+     */
     // Procedure params
     def pluginConfigurationName
     def specScope
@@ -188,16 +188,16 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
         def wasResourceName = wasHost
         createWorkspace(wasResourceName)
         createConfiguration(pluginConfigurationNames.correctSOAP, [doNotRecreate: false])
-        createConfiguration(pluginConfigurationNames.correctIPC, [doNotRecreate: false])        
-        createConfiguration(pluginConfigurationNames.correctJSR160RMI, [doNotRecreate: false])        
-        createConfiguration(pluginConfigurationNames.correctNone, [doNotRecreate: false])        
-        createConfiguration(pluginConfigurationNames.correctRMI, [doNotRecreate: false])        
+        createConfiguration(pluginConfigurationNames.correctIPC, [doNotRecreate: false])
+        createConfiguration(pluginConfigurationNames.correctJSR160RMI, [doNotRecreate: false])
+        createConfiguration(pluginConfigurationNames.correctNone, [doNotRecreate: false])
+        createConfiguration(pluginConfigurationNames.correctRMI, [doNotRecreate: false])
         importProject(testProjectName, 'dsl/CreateOrUpdateWMQActivationSpec/CreateOrUpdateWMQActivationSpec.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
      }
 
     /**
-     * Clean Up actions after test will finished 
+     * Clean Up actions after test will finished
      */
 
     def doCleanupSpec() {
@@ -246,8 +246,8 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
             upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary              
-            //pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary              
+            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary
+            //pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary
 
     }
 
@@ -271,7 +271,7 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
                 additionalOption:                       additionalOption,
                 wasHost:                                wasHost,
             ]
-            
+
         when: 'Procedure runs: '
             def result = runProcedure(runParams)
 
@@ -293,8 +293,8 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
             upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary              
-            //pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary              
+            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary
+            //pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary
 
     }
 
@@ -334,7 +334,7 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
                     clientChannelDefinitionUrlCOUWMQAS:             '$parameters.clientChannelDefinitionURLs',
                     clientChannelDefinitionQueueManagerCOUWMQAS:    '$parameters.clientChannelDefinitionQueueManager',
                     additionalOptionsCOUWMQAS:                      '$parameters.additionalOption',
-                    wasResourceName:                                '$parameters.wasHost',                   
+                    wasResourceName:                                '$parameters.wasHost',
                 ]
             )
         """
