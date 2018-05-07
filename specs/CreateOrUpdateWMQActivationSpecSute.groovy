@@ -247,11 +247,11 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
             def upperStepSummary = getJobUpperStepSummary(result.jobId)
 
         expect: 'Outcome and Upper Summary verification'
-            outcome == expectedOutcome
+            assert outcome == expectedOutcome
             upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   /*Not required Parameters*/ | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary
+            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   /*Not required Parameters*/ | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | expectedOutcome           | expectedSummaryMessage
             pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode | specAdministrativeNames.correct           | specJNDINames.correct         | destinationJNDINames.correct          | destinationJNDITypes.correct          /*Not required Parameters*/ | specAdministrativeDescriptions.correct        | clientChannelDefinitionURLs.empty             | clientChannelDefinitionQueueManagers.empty            | additionalOptions.empty           | expectedOutcomes.success  | expectedSummaryMessages.successCreate
     }
 
@@ -293,11 +293,11 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
             def upperStepSummary = getJobUpperStepSummary(result.jobId)
 
         expect: 'Outcome and Upper Summary verification'
-            outcome == expectedOutcome
+            assert outcome == expectedOutcome
             upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary
+            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | expectedOutcome           | expectedSummaryMessage
             //pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary
 
     }
