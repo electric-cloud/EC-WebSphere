@@ -4,7 +4,7 @@ import PluginTestHelper
 
 
 @Stepwise
-class CreateOrUpdateWMQJMSActivationSpecSuite extends PluginTestHelper {
+class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
 
     /**
      * Environments Variables
@@ -34,7 +34,7 @@ class CreateOrUpdateWMQJMSActivationSpecSuite extends PluginTestHelper {
     @Shared
     def testProjectName =   'EC-WebSphere-SystemTests'
     @Shared
-    def testProcedureName = 'CreateOrUpdateWMQJMSActivationSpec'
+    def testProcedureName = 'CreateOrUpdateWMQActivationSpec'
 
     /**
      * Common Maps: General Maps fpr different fields
@@ -77,29 +77,29 @@ class CreateOrUpdateWMQJMSActivationSpecSuite extends PluginTestHelper {
     @Shared // Required Parameter (need incorrect and empty value)
     def specAdministrativeNames = [
         empty:                          '',
-        correct:                        '',
-        incorrect:                      '',
+        correct:                        'MyWMQJMSAppSpec',
+        incorrect:                      ':::',
     ]
 
     @Shared // Required Parameter (need incorrect and empty value)
     def specJNDINames = [
         empty:                          '',
-        correct:                        'com.jndi.myWMQSpec',
-        incorrect:                      'incorrect Spec JNDI Name',
+        correct:                        'com.jndi.myWMQJMSAppSpec',
+        incorrect:                      'incorrect WMQ JMS Spec JNDI Name',
     ]
 
     @Shared // Required Parameter (need incorrect and empty value)
     def destinationJNDINames = [
         empty:                          '',
-        correct:                        'com.jndi.myWMQDestSpec',
-        incorrect:                      'incorrect destination JNDI Name',
+        correct:                        'com.jndi.myWMQJMSDestSpec',
+        incorrect:                      'incorrect WMQ Destination JNDI Name',
     ]
 
     @Shared // Required Parameter (need incorrect and empty value)
     def destinationJNDITypes = [
         empty:                          '',
-        correct:                        'com.jndi.myWMQDestType',
-        incorrect:                      'incorrect destination JNDI Types',
+        correct:                        'javax.jms.Queue',
+        incorrect:                      'javax.jms.Incorrect',
     ]
 
         // Not required Parameter
@@ -107,7 +107,7 @@ class CreateOrUpdateWMQJMSActivationSpecSuite extends PluginTestHelper {
     def specAdministrativeDescriptions = [
         empty:                          '',
         correct:                        'Spec Administrative Description',
-        incorrect:                      '',
+        incorrect:                      "",
     ]
 
     @Shared // Optional Parameter
@@ -251,9 +251,8 @@ class CreateOrUpdateWMQJMSActivationSpecSuite extends PluginTestHelper {
             upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary
-            //pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary
-
+            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   /*Not required Parameters*/ | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode | specAdministrativeNames.correct           | specJNDINames.correct         | destinationJNDINames.correct          | destinationJNDITypes.correct          /*Not required Parameters*/ | specAdministrativeDescriptions.correct        | clientChannelDefinitionURLs.empty             | clientChannelDefinitionQueueManagers.empty            | additionalOptions.empty           | expectedOutcomes.success  | expectedSummaryMessages.successCreate
     }
 
     /**
