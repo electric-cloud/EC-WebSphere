@@ -171,7 +171,7 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
     def destinationJNDIType
     //optional parameters
     def specAdministrativeDescription
-    def clientChannelDefinitionURLs
+    def clientChannelDefinitionURL
     def clientChannelDefinitionQueueManager
     def additionalOption
 
