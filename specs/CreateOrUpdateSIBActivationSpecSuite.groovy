@@ -243,7 +243,7 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
 
         where: 'The following params will be: '
             pluginConfigurationName                 | specScope                     | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | destinationType                   | messageSelector                   | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
-            pluginConfigurationNames.correctSOAP    | specScope.correctOneNode      | specAdministrativeNames.correctQueue      | specJNDINames.correctQueue    | destinationJNDINames.correctQueue     | destinationJNDITypes.correctQueue     | specAdministrativeDescriptions.correctQueue   | destinationTypes.correctQueue     | messageSelectors.correct          | additionalOption.correct          | expectedOutcomes.success          | expectedSummaryMessages.successCreate
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode     | specAdministrativeNames.correctQueue      | specJNDINames.correctQueue    | destinationJNDINames.correctQueue     | destinationJNDITypes.correctQueue     | specAdministrativeDescriptions.correctQueue   | destinationTypes.correctQueue     | messageSelectors.correct          | additionalOptions.correct         | expectedOutcomes.success          | expectedSummaryMessages.successCreate
     }
 
     /**
