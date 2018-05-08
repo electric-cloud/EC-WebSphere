@@ -77,21 +77,21 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
     @Shared //* Required Parameter (need incorrect and empty value)
     def specAdministrativeNames = [
         empty:                          '',
-        correct:                        '',
-        incorrect:                      '',
+        correct:                        'MySIBJMSAppSpec',
+        incorrect:                      ':/:/:',
     ]
 
     @Shared //* Required Parameter (need incorrect and empty value)
     def specJNDINames = [
         empty:                          '',
-        correct:                        'com.jndi.myWMQSpec',
+        correct:                        'com.jndi.mySIBJMSAppSpec',
         incorrect:                      'incorrect Spec JNDI Name',
     ]
 
     @Shared //* Required Parameter (need incorrect and empty value)
     def destinationJNDINames = [
         empty:                          '',
-        correct:                        'com.jndi.myWMQDestSpec',
+        correct:                        'com.jndi.mySIBJMSDestSpec',
         incorrect:                      'incorrect destination JNDI Name',
     ]
 
@@ -106,21 +106,22 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
     @Shared //* Optional Parameter
     def destinationTypes = [
         empty:                          '',
-        correct:                        '',
+        correctQueue:                   'Queue',
+        correctTopic:                   'Topic',
         incorrect:                      'incorrect Destination Type',
     ]
 
     @Shared //* Optional Parameter
     def messageSelectors = [
         empty:                          '',
-        correct:                        '',
+        correct:                        'Priority = 9',
         incorrect:                      'incorrect message Selector',
     ]
 
     @Shared //* Optional Parameter
     def additionalOptions = [
         empty:                          '',
-        correct:                        '',
+        correct:                        '-subscriptionDurability Durable',
         incorrect:                      'incorrect Additional Options',
     ]
     /**
@@ -160,8 +161,7 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
     def specScope
     def specAdministrativeName
     def specJNDIName
-    def destinationJNDINames
-    def destinationJNDIType
+    def destinationJNDIName
     //optional parameters
     def specAdministrativeDescription
     def destinationType
@@ -185,7 +185,7 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
         createConfiguration(pluginConfigurationNames.correctJSR160RMI, [doNotRecreate: false])
         createConfiguration(pluginConfigurationNames.correctNone, [doNotRecreate: false])
         createConfiguration(pluginConfigurationNames.correctRMI, [doNotRecreate: false])
-        importProject(testProjectName, 'dsl/CreateOrUpdateWMQActivationSpec/CreateOrUpdateSIBActivationSpec.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
+        importProject(testProjectName, 'dsl/CreateOrUpdateSIBActivationSpec/CreateOrUpdateSIBActivationSpec.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
      }
 
@@ -210,9 +210,9 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
                 specAdministrativeName:                 specAdministrativeName,
                 specJNDIName:                           specJNDIName,
                 destinationJNDIName:                    destinationJNDIName,
-                destinationJNDIType:                    destinationJNDIType,
                 specAdministrativeDescription:          specAdministrativeDescription,
-                clientChannelDefinitionQueueManager:    clientChannelDefinitionQueueManager,
+                destinationType:                        destinationType
+                messageSelector:                        messageSelector,
                 additionalOption:                       additionalOption,
                 wasHost:                                wasHost,
             ]
@@ -238,8 +238,7 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
             upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary
-            //pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary
+            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | destinationType                   | messageSelector                   | additionalOption                  | outcome                   | upperStepSummary
 
     }
 
@@ -256,10 +255,9 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
                 specAdministrativeName:                 specAdministrativeName,
                 specJNDIName:                           specJNDIName,
                 destinationJNDIName:                    destinationJNDIName,
-                destinationJNDIType:                    destinationJNDIType,
                 specAdministrativeDescription:          specAdministrativeDescription,
-                clientChannelDefinitionURLs:            clientChannelDefinitionURLs,
-                clientChannelDefinitionQueueManager:    clientChannelDefinitionQueueManager,
+                destinationType:                        destinationType
+                messageSelector:                        messageSelector,
                 additionalOption:                       additionalOption,
                 wasHost:                                wasHost,
             ]
@@ -285,8 +283,7 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
             upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary
-            //pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary
+            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | destinationType                   | messageSelector                   | additionalOption                  | outcome                   | upperStepSummary
 
     }
 
@@ -316,8 +313,16 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
                 projectName:                        '$testProjectName',
                 procedureName:                      '$testProcedureName',
                 actualParameter: [
-                    confignameCOUWMQAS:                 '$parameters.pluginConfigurationName',
-                    wasResourceName:                    '$parameters.wasHost',
+                    confignameCOUSIBAS:                     '$parameters.pluginConfigurationName',
+                    specScopeCOUSIBAS:                      '$parameters.specScope',
+                    specAdministrativeNameCOUSIBAS:         '$parameters.specAdministrativeName',
+                    jndiNameCOUSIBAS:                       '$parameters.specJNDIName',
+                    destinationJndiNameCOUSIBAS:            '$parameters.destinationJNDIName',
+                    specAdministrativeDescriptionCOUSIBAS:  '$parameters.specAdministrativeDescription',
+                    destinationTypeCOUSIBAS:                '$parameters.destinationType',
+                    messageSelectorCOUSIBAS:                '$parameters.messageSelector',
+                    additionalOptionsCOUSIBAS:              '$parameters.additionalOption',
+                    wasResourceName:                        '$parameters.wasHost',
                 ]
             )
         """
