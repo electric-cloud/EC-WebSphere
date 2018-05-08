@@ -1,8 +1,11 @@
+def testProjectName = args.projectName
+def wasResourceName = args.wasResourceName
+project testProjectName
 
 procedure 'CreateorUpdateSIBActivationSpec', {
-  description = ''
+    description = ''
   jobNameTemplate = ''
-  projectName = 'EC-WebSphere-SystemTests'
+  projectName = testProjectName
   resourceName = ''
   timeLimit = ''
   timeLimitUnits = 'minutes'
@@ -101,7 +104,7 @@ procedure 'CreateorUpdateSIBActivationSpec', {
     parallel = '0'
     postProcessor = null
     precondition = ''
-    projectName = 'EC-WebSphere-SystemTests'
+    projectName = testProjectName
     releaseMode = 'none'
     resourceName = '$[wasResourceName]'
     shell = null
@@ -145,12 +148,6 @@ procedure 'CreateorUpdateSIBActivationSpec', {
       }
 
       property 'destinationJndiNameCOUSIBAS', {
-
-        // Custom properties
-        formType = 'standard'
-      }
-
-      property 'destinationType', {
 
         // Custom properties
         formType = 'standard'
