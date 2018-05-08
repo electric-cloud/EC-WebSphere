@@ -242,8 +242,8 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
             //upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | specScope                     | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationType                   | specAdministrativeDescription                 | destinationType                   | messageSelector                   | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
-            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode     | specAdministrativeNames.correctQueue      | specJNDINames.correctQueue    | destinationJNDINames.correctQueue     | destinationTypes.correctQueue     | specAdministrativeDescriptions.correctQueue   | destinationTypes.correctQueue     | messageSelectors.correct          | additionalOptions.correct         | expectedOutcomes.success          | expectedSummaryMessages.successCreate
+            pluginConfigurationName                 | specScope                     | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | specAdministrativeDescription                 | destinationType                   | messageSelector                   | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode     | specAdministrativeNames.correctQueue      | specJNDINames.correctQueue    | destinationJNDINames.correctQueue     | specAdministrativeDescriptions.correctQueue   | destinationTypes.correctQueue     | messageSelectors.correct          | additionalOptions.correct         | expectedOutcomes.success          | expectedSummaryMessages.successCreate
     }
 
     /**
@@ -287,7 +287,7 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
             //upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationType                      | specAdministrativeDescription                 | destinationType                   | messageSelector                   | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
+            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | specAdministrativeDescription                 | destinationType                   | messageSelector                   | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
 
     }
 
