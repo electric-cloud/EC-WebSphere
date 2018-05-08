@@ -143,10 +143,10 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
     @Shared
     def expectedSummaryMessages = [
         empty:                          "",
-        successCreateQ:                  "SIB JMS Activation Spec $specAdministrativeName.correctQueue has been created",
-        successCreateT:                  "SIB JMS Activation Spec $specAdministrativeName.correctTopic has been created",
-        successUpdateQ:                  "SIB JMS Activation Spec $specAdministrativeName.correctQueue has been updated",
-        successUpdateT:                  "SIB JMS Activation Spec $specAdministrativeName.correctTopic has been updated",
+        successCreateQ:                  "SIB JMS Activation Spec $specAdministrativeNames.correctQueue has been created",
+        successCreateT:                  "SIB JMS Activation Spec $specAdministrativeNames.correctTopic has been created",
+        successUpdateQ:                  "SIB JMS Activation Spec $specAdministrativeNames.correctQueue has been updated",
+        successUpdateT:                  "SIB JMS Activation Spec $specAdministrativeNames.correctTopic has been updated",
         incorrectConfiguration:         "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
         incorrectScope:                 "target object is required",
     ]
