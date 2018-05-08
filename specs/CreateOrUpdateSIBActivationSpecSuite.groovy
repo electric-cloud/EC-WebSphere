@@ -119,7 +119,7 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
     def messageSelectors = [
         empty:                          '',
         correct:                        'Priority = 9',
-        incorrect:                      "\/\/\/\\\\\\ incorrect \" message Selector",
+        incorrect:                      "/// incorrect \" message Selector",
     ]
 
     @Shared //* Optional Parameter
@@ -149,7 +149,7 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
         successUpdateT:                 "SIB JMS Activation Spec $specAdministrativeNames.correctTopic has been updated",
         incorrectConfiguration:         "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
         incorrectScope:                 "target object is required",
-        incorrectMesSel:                "WASX7122E",
+        incorrectMesSel:                "exception information: java.lang.IllegalArgumentException: java.lang.IllegalArgumentException:\nWASX7122E:",
         incorrectAdmNameQ:              "A resource with JNDI name $specJNDINames.correctQueue already exists as a different resource type. You must use a unique name",
         incorrectAdmNameT:              "A resource with JNDI name $specJNDINames.correctTopic already exists as a different resource type. You must use a unique name",
         incorrectDestType:              "incorrect Destination Type is not a valid value for destination type",
