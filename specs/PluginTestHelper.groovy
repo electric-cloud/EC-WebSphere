@@ -47,7 +47,7 @@ class PluginTestHelper extends PluginSpockTestSupport {
         def summary
         def currentProcedureName = getCurrentProcedureName(jobId)
         def property = "/myJob/jobSteps/$currentProcedureName/summary"
-        println "Trying to get the summary for $currentProcedureName $property, $jobId"
+        println "Trying to get the summary for Procedure: $currentProcedureName, property: $property, jobId: $jobId"
         try{
             summary = getJobProperty(property, jobId)
         } catch (Throwable e) {

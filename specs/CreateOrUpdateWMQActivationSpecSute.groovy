@@ -34,7 +34,7 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
     @Shared
     def testProjectName =   'EC-WebSphere-SystemTests'
     @Shared
-    def testProcedureName = 'CreateOrUpdateWMQActivationSpec'
+    def testProcedureName = 'CreateorUpdateWMQActivationSpec'
 
     /**
      * Common Maps: General Maps fpr different fields
@@ -127,7 +127,7 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
     @Shared // Optional Parameter
     def additionalOptions = [
         empty:                          '',
-        correct:                        '',
+        correct:                        '-providerVersion 1.2.3',
         incorrect:                      'incorrect Additional Options',
     ]
     /**
@@ -245,13 +245,18 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
             println "Procedure log:\n$debugLog\n"
             def upperStepSummary = getJobUpperStepSummary(result.jobId)
 
-        //expect: 'Outcome and Upper Summary verification'
+            //expect: 'Outcome and Upper Summary verification'
             assert outcome == expectedOutcome
-            //assert upperStepSummary.contains(expectedSummaryMessage)
+            assert upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
             pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   /*Not required Parameters*/ | specAdministrativeDescription                 | clientChannelDefinitionURL                   | clientChannelDefinitionQueueManager                   | additionalOption                  | expectedOutcome           | expectedSummaryMessage
-            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode | specAdministrativeNames.correct           | specJNDINames.correct         | destinationJNDINames.correct          | destinationJNDITypes.correct          /*Not required Parameters*/ | specAdministrativeDescriptions.correct        | clientChannelDefinitionURLs.empty            | clientChannelDefinitionQueueManagers.empty            | additionalOptions.empty           | expectedOutcomes.success  | expectedSummaryMessages.successCreate
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode | specAdministrativeNames.correct           | specJNDINames.correct         | destinationJNDINames.correct          | destinationJNDITypes.correct          /*Not required Parameters*/ | specAdministrativeDescriptions.empty          | clientChannelDefinitionURLs.empty            | clientChannelDefinitionQueueManagers.empty            | additionalOptions.empty           | expectedOutcomes.success  | expectedSummaryMessages.successCreate
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode | specAdministrativeNames.correct           | specJNDINames.correct         | destinationJNDINames.correct          | destinationJNDITypes.correct          /*Not required Parameters*/ | specAdministrativeDescriptions.empty          | clientChannelDefinitionURLs.empty            | clientChannelDefinitionQueueManagers.empty            | additionalOptions.empty           | expectedOutcomes.success  | expectedSummaryMessages.successUpdate
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode | specAdministrativeNames.correct           | specJNDINames.correct         | destinationJNDINames.correct          | destinationJNDITypes.correct          /*Not required Parameters*/ | specAdministrativeDescriptions.correct        | clientChannelDefinitionURLs.empty            | clientChannelDefinitionQueueManagers.empty            | additionalOptions.empty           | expectedOutcomes.success  | expectedSummaryMessages.successUpdate
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode | specAdministrativeNames.correct           | specJNDINames.correct         | destinationJNDINames.correct          | destinationJNDITypes.correct          /*Not required Parameters*/ | specAdministrativeDescriptions.correct        | clientChannelDefinitionURLs.empty            | clientChannelDefinitionQueueManagers.empty            | additionalOptions.correct         | expectedOutcomes.success  | expectedSummaryMessages.successUpdate
+            //TODO:
+            // clientChannelDefinitionURL, clientChannelDefinitionQueueManager - No example of the correct data
     }
 
     /**
@@ -290,13 +295,21 @@ class CreateOrUpdateWMQActivationSpecSuite extends PluginTestHelper {
             println "Procedure log:\n$debugLog\n"
             def upperStepSummary = getJobUpperStepSummary(result.jobId)
 
-        //expect: 'Outcome and Upper Summary verification'
+            //expect: 'Outcome and Upper Summary verification'
             assert outcome == expectedOutcome
             //upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | expectedOutcome           | expectedSummaryMessage
-            //pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary
+            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   /*Not required Parameters*/ | specAdministrativeDescription                 | clientChannelDefinitionURL                   | clientChannelDefinitionQueueManager                   | additionalOption                  | expectedOutcome           | expectedSummaryMessage
+            pluginConfigurationNames.incorrect      | specScopes.correctOneNode | specAdministrativeNames.correct           | specJNDINames.correct         | destinationJNDINames.correct          | destinationJNDITypes.correct          /*Not required Parameters*/ | specAdministrativeDescriptions.empty          | clientChannelDefinitionURLs.empty            | clientChannelDefinitionQueueManagers.empty            | additionalOptions.empty           | expectedOutcomes.error    | expectedSummaryMessages.incorrectConfiguration
+            pluginConfigurationNames.correctSOAP    | specScopes.incorrect      | specAdministrativeNames.correct           | specJNDINames.correct         | destinationJNDINames.correct          | destinationJNDITypes.correct          /*Not required Parameters*/ | specAdministrativeDescriptions.empty          | clientChannelDefinitionURLs.empty            | clientChannelDefinitionQueueManagers.empty            | additionalOptions.empty           | expectedOutcomes.error    | expectedSummaryMessages.incorrectScope
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode | specAdministrativeNames.incorrect         | specJNDINames.correct         | destinationJNDINames.correct          | destinationJNDITypes.correct          /*Not required Parameters*/ | specAdministrativeDescriptions.empty          | clientChannelDefinitionURLs.empty            | clientChannelDefinitionQueueManagers.empty            | additionalOptions.empty           | expectedOutcomes.error    | expectedSummaryMessages.successCreate
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode | specAdministrativeNames.correct           | specJNDINames.incorrect       | destinationJNDINames.correct          | destinationJNDITypes.correct          /*Not required Parameters*/ | specAdministrativeDescriptions.empty          | clientChannelDefinitionURLs.empty            | clientChannelDefinitionQueueManagers.empty            | additionalOptions.empty           | expectedOutcomes.error    | expectedSummaryMessages.successCreate
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode | specAdministrativeNames.correct           | specJNDINames.correct         | destinationJNDINames.incorrect        | destinationJNDITypes.correct          /*Not required Parameters*/ | specAdministrativeDescriptions.empty          | clientChannelDefinitionURLs.empty            | clientChannelDefinitionQueueManagers.empty            | additionalOptions.empty           | expectedOutcomes.error    | expectedSummaryMessages.successCreate
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode | specAdministrativeNames.correct           | specJNDINames.correct         | destinationJNDINames.correct          | destinationJNDITypes.incorrect        /*Not required Parameters*/ | specAdministrativeDescriptions.empty          | clientChannelDefinitionURLs.empty            | clientChannelDefinitionQueueManagers.empty            | additionalOptions.empty           | expectedOutcomes.error    | expectedSummaryMessages.successCreate
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode | specAdministrativeNames.correct           | specJNDINames.correct         | destinationJNDINames.correct          | destinationJNDITypes.correct          /*Not required Parameters*/ | specAdministrativeDescriptions.empty          | clientChannelDefinitionURLs.incorrect        | clientChannelDefinitionQueueManagers.empty            | additionalOptions.empty           | expectedOutcomes.error    | expectedSummaryMessages.successCreate
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode | specAdministrativeNames.correct           | specJNDINames.correct         | destinationJNDINames.correct          | destinationJNDITypes.correct          /*Not required Parameters*/ | specAdministrativeDescriptions.empty          | clientChannelDefinitionURLs.empty            | clientChannelDefinitionQueueManagers.incorrect        | additionalOptions.empty           | expectedOutcomes.error    | expectedSummaryMessages.successCreate
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode | specAdministrativeNames.correct           | specJNDINames.correct         | destinationJNDINames.correct          | destinationJNDITypes.correct          /*Not required Parameters*/ | specAdministrativeDescriptions.empty          | clientChannelDefinitionURLs.empty            | clientChannelDefinitionQueueManagers.empty            | additionalOptions.incorrect       | expectedOutcomes.error    | expectedSummaryMessages.successCreate
 
     }
 

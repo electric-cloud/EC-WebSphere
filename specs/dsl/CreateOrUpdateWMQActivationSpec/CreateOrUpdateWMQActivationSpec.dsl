@@ -2,7 +2,7 @@ def testProjectName = args.projectName
 def wasResourceName = args.wasResourceName
 project testProjectName
 
-procedure 'CreateOrUpdateWMQActivationSpec', {
+procedure 'CreateorUpdateWMQActivationSpec', {
   description = ''
   jobNameTemplate = ''
   projectName = testProjectName
