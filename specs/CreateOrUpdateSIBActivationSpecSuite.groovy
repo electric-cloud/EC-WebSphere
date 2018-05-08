@@ -119,7 +119,7 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
     def messageSelectors = [
         empty:                          '',
         correct:                        'Priority = 9',
-        incorrect:                      'incorrect message Selector',
+        incorrect:                      "\/\/\/\\\\\\ incorrect \" message Selector",
     ]
 
     @Shared //* Optional Parameter
@@ -143,12 +143,17 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
     @Shared
     def expectedSummaryMessages = [
         empty:                          "",
-        successCreateQ:                  "SIB JMS Activation Spec $specAdministrativeNames.correctQueue has been created",
-        successCreateT:                  "SIB JMS Activation Spec $specAdministrativeNames.correctTopic has been created",
-        successUpdateQ:                  "SIB JMS Activation Spec $specAdministrativeNames.correctQueue has been updated",
-        successUpdateT:                  "SIB JMS Activation Spec $specAdministrativeNames.correctTopic has been updated",
+        successCreateQ:                 "SIB JMS Activation Spec $specAdministrativeNames.correctQueue has been created",
+        successCreateT:                 "SIB JMS Activation Spec $specAdministrativeNames.correctTopic has been created",
+        successUpdateQ:                 "SIB JMS Activation Spec $specAdministrativeNames.correctQueue has been updated",
+        successUpdateT:                 "SIB JMS Activation Spec $specAdministrativeNames.correctTopic has been updated",
         incorrectConfiguration:         "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
         incorrectScope:                 "target object is required",
+        incorrectMesSel:                "WASX7122E",
+        incorrectAdmNameQ:              "A resource with JNDI name $specJNDINames.correctQueue already exists as a different resource type. You must use a unique name",
+        incorrectAdmNameT:              "A resource with JNDI name $specJNDINames.correctTopic already exists as a different resource type. You must use a unique name",
+        incorrectDestType:              "incorrect Destination Type is not a valid value for destination type",
+        incorrectAdOps:                 "incorrect Additional Options",
     ]
 
     @Shared expectedJobDetailedResults = [
@@ -303,20 +308,20 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
 
         expect: 'Outcome and Upper Summary verification'
             assert outcome == expectedOutcome
-            //assert upperStepSummary.contains(expectedSummaryMessage)
+            assert upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
             pluginConfigurationName                 | specScope                     | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   /* Not Required */ | specAdministrativeDescription                  | destinationType                   | messageSelector                   | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
 //for Queue
             pluginConfigurationNames.incorrect      | specScopes.correctOneNode     | specAdministrativeNames.correctQueue      | specJNDINames.correctQueue    | destinationJNDINames.correctQueue      /* Not Required */ | specAdministrativeDescriptions.empty          | destinationTypes.empty            | messageSelectors.empty            | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.incorrectConfiguration
             pluginConfigurationNames.correctSOAP    | specScopes.incorrect          | specAdministrativeNames.correctQueue      | specJNDINames.correctQueue    | destinationJNDINames.correctQueue      /* Not Required */ | specAdministrativeDescriptions.empty          | destinationTypes.empty            | messageSelectors.empty            | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.incorrectScope
-            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode     | specAdministrativeNames.incorrect         | specJNDINames.correctQueue    | destinationJNDINames.correctQueue      /* Not Required */ | specAdministrativeDescriptions.empty          | destinationTypes.empty            | messageSelectors.empty            | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.successCreateQ
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode     | specAdministrativeNames.incorrect         | specJNDINames.correctQueue    | destinationJNDINames.correctQueue      /* Not Required */ | specAdministrativeDescriptions.empty          | destinationTypes.empty            | messageSelectors.empty            | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.incorrectAdmNameQ
 //            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode     | specAdministrativeNames.correctQueue      | specJNDINames.incorrect       | destinationJNDINames.correctQueue      /* Not Required */ | specAdministrativeDescriptions.empty          | destinationTypes.empty            | messageSelectors.empty            | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successCreateQ
 //            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode     | specAdministrativeNames.correctQueue      | specJNDINames.correctQueue    | destinationJNDINames.incorrect         /* Not Required */ | specAdministrativeDescriptions.empty          | destinationTypes.empty            | messageSelectors.empty            | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successCreateQ
 //            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode     | specAdministrativeNames.correctQueue      | specJNDINames.correctQueue    | destinationJNDINames.correctQueue      /* Not Required */ | specAdministrativeDescriptions.incorrect      | destinationTypes.empty            | messageSelectors.empty            | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successCreateQ
-            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode     | specAdministrativeNames.correctQueue      | specJNDINames.correctQueue    | destinationJNDINames.correctQueue      /* Not Required */ | specAdministrativeDescriptions.empty          | destinationTypes.incorrect        | messageSelectors.empty            | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.successCreateQ
-            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode     | specAdministrativeNames.correctQueue      | specJNDINames.correctQueue    | destinationJNDINames.correctQueue      /* Not Required */ | specAdministrativeDescriptions.empty          | destinationTypes.empty            | messageSelectors.incorrect        | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.successCreateQ
-            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode     | specAdministrativeNames.correctQueue      | specJNDINames.correctQueue    | destinationJNDINames.correctQueue      /* Not Required */ | specAdministrativeDescriptions.empty          | destinationTypes.empty            | messageSelectors.empty            | additionalOptions.incorrect       | expectedOutcomes.error            | expectedSummaryMessages.successCreateQ
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode     | specAdministrativeNames.correctQueue      | specJNDINames.correctQueue    | destinationJNDINames.correctQueue      /* Not Required */ | specAdministrativeDescriptions.empty          | destinationTypes.incorrect        | messageSelectors.empty            | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.incorrectDestType
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode     | specAdministrativeNames.correctQueue      | specJNDINames.correctQueue    | destinationJNDINames.correctQueue      /* Not Required */ | specAdministrativeDescriptions.empty          | destinationTypes.empty            | messageSelectors.incorrect        | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.incorrectMesSel
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode     | specAdministrativeNames.correctQueue      | specJNDINames.correctQueue    | destinationJNDINames.correctQueue      /* Not Required */ | specAdministrativeDescriptions.empty          | destinationTypes.empty            | messageSelectors.empty            | additionalOptions.incorrect       | expectedOutcomes.error            | expectedSummaryMessages.incorrectAdOps
 
     }
 
