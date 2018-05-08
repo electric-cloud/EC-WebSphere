@@ -238,8 +238,8 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
             def upperStepSummary = getJobUpperStepSummary(result.jobId)
 
         expect: 'Outcome and Upper Summary verification'
-            outcome == expectedOutcome
-            //upperStepSummary.contains(expectedSummaryMessage)
+            assert outcome == expectedOutcome
+            //assert upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
             pluginConfigurationName                 | specScope                     | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | specAdministrativeDescription                 | destinationType                   | messageSelector                   | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
@@ -283,8 +283,8 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
             def upperStepSummary = getJobUpperStepSummary(result.jobId)
 
         expect: 'Outcome and Upper Summary verification'
-            outcome == expectedOutcome
-            //upperStepSummary.contains(expectedSummaryMessage)
+            assert outcome == expectedOutcome
+            //assert upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
             pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | specAdministrativeDescription                 | destinationType                   | messageSelector                   | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
