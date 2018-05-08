@@ -92,6 +92,15 @@ procedure 'CreateorUpdateSIBActivationSpec', {
     type = 'entry'
   }
 
+  formalParameter 'wasResourceName', defaultValue: '', {
+    description = ''
+    expansionDeferred = '0'
+    label = null
+    orderIndex = null
+    required = '1'
+    type = 'entry'
+  }
+
   step 'CreateorUpdateSIBActivationSpec', {
     description = ''
     alwaysRun = '0'
@@ -184,6 +193,12 @@ procedure 'CreateorUpdateSIBActivationSpec', {
       }
 
       property 'specScopeCOUSIBAS', {
+
+        // Custom properties
+        formType = 'standard'
+      }
+
+      property 'wasResourceName', {
 
         // Custom properties
         formType = 'standard'
