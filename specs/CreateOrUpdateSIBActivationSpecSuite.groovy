@@ -185,7 +185,7 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
         createConfiguration(pluginConfigurationNames.correctJSR160RMI, [doNotRecreate: false])
         createConfiguration(pluginConfigurationNames.correctNone, [doNotRecreate: false])
         createConfiguration(pluginConfigurationNames.correctRMI, [doNotRecreate: false])
-        importProject(testProjectName, 'dsl/CreateOrUpdateWMQActivationSpec/CreateOrUpdateWMQActivationSpec.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
+        importProject(testProjectName, 'dsl/CreateOrUpdateWMQActivationSpec/CreateOrUpdateSIBActivationSpec.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
      }
 
@@ -212,7 +212,6 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
                 destinationJNDIName:                    destinationJNDIName,
                 destinationJNDIType:                    destinationJNDIType,
                 specAdministrativeDescription:          specAdministrativeDescription,
-                clientChannelDefinitionURLs:            clientChannelDefinitionURLs,
                 clientChannelDefinitionQueueManager:    clientChannelDefinitionQueueManager,
                 additionalOption:                       additionalOption,
                 wasHost:                                wasHost,
