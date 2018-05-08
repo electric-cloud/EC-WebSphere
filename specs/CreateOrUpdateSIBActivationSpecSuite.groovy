@@ -8,13 +8,13 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
 
     /**
      * Environments Variables
-     */ 
+     */
 
-    @Shared 
+    @Shared
     def wasUserName = System.getenv('WAS_USERNAME')
-    @Shared 
+    @Shared
     def wasPassword = System.getenv('WAS_PASSWORD')
-    @Shared 
+    @Shared
     def wasHost =     System.getenv('WAS_HOST')
     @Shared
     def wasPort =     System.getenv('WAS_PORT')
@@ -34,7 +34,7 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
     @Shared
     def testProjectName =   'EC-WebSphere-SystemTests'
     @Shared
-    def testProcedureName = 'CreateOrUpdateSIBActivationSpec'
+    def testProcedureName = 'CreateorUpdateSIBActivationSpec'
 
     /**
      * Common Maps: General Maps fpr different fields
@@ -53,20 +53,20 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
     /**
      * Procedure Values: test parameters Procedure values
     */
-    
-    @Shared     // Required Parameter (need incorrect and empty value)
+
+    @Shared     //* Required Parameter (need incorrect and empty value)
     def pluginConfigurationNames = [
         empty:                          '',
         correctSOAP:                    'Web-Sphere-SOAP',
         correctIPC:                     'Web-Sphere-IPC',
         correctJSR160RMI:               'Web-Sphere-JSR160RMI',
         correctNone:                    'Web-Sphere-None',
-        correctRMI:                     'Web-Sphere-RMI', 
+        correctRMI:                     'Web-Sphere-RMI',
         incorrect: 	                    'incorrect config Name',
     ]
 
 
-    @Shared // Required Parameter (need incorrect and empty value)
+    @Shared //* Required Parameter (need incorrect and empty value)
     def specScopes = [
         empty:                          '',
         correctOneNode:                 'Node='+wasHost+'Node01',
@@ -74,21 +74,21 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
         correctOneNodeMessage:          'Node:'+wasHost+'Node01',
     ]
 
-    @Shared // Required Parameter (need incorrect and empty value)
+    @Shared //* Required Parameter (need incorrect and empty value)
     def specAdministrativeNames = [
         empty:                          '',
         correct:                        '',
         incorrect:                      '',
     ]
 
-    @Shared // Required Parameter (need incorrect and empty value)
+    @Shared //* Required Parameter (need incorrect and empty value)
     def specJNDINames = [
         empty:                          '',
         correct:                        'com.jndi.myWMQSpec',
         incorrect:                      'incorrect Spec JNDI Name',
     ]
-    
-    @Shared // Required Parameter (need incorrect and empty value)
+
+    @Shared //* Required Parameter (need incorrect and empty value)
     def destinationJNDINames = [
         empty:                          '',
         correct:                        'com.jndi.myWMQDestSpec',
@@ -96,35 +96,35 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
     ]
 
         // Not required Parameter
-    @Shared // Optional Parameter
+    @Shared //* Optional Parameter
     def specAdministrativeDescriptions = [
         empty:                          '',
         correct:                        'Spec Administrative Description',
         incorrect:                      '',
     ]
 
-    @Shared // Optional Parameter
+    @Shared //* Optional Parameter
     def destinationTypes = [
         empty:                          '',
         correct:                        '',
         incorrect:                      'incorrect Destination Type',
     ]
 
-    @Shared // Optional Parameter
+    @Shared //* Optional Parameter
     def messageSelectors = [
         empty:                          '',
         correct:                        '',
         incorrect:                      'incorrect message Selector',
     ]
 
-    @Shared // Optional Parameter
+    @Shared //* Optional Parameter
     def additionalOptions = [
         empty:                          '',
         correct:                        '',
         incorrect:                      'incorrect Additional Options',
     ]
     /**
-     * Verification Values: Assert values 
+     * Verification Values: Assert values
     */
 
     @Shared
@@ -134,7 +134,7 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
         warning: 	                    'warning',
         running: 	                    'running',
     ]
-    
+
     @Shared
     def expectedSummaryMessages = [
         empty:                          "",
@@ -143,7 +143,7 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
         incorrectConfiguration:         "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
         incorrectScope:                 "target object is required",
     ]
-    
+
     @Shared expectedJobDetailedResults = [
         empty: '',
     ]
@@ -153,19 +153,19 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
     ]
 
     /**
-     * Test Parameters: for Where section 
-     */ 
+     * Test Parameters: for Where section
+     */
     // Procedure params
     def pluginConfigurationName
     def specScope
     def specAdministrativeName
     def specJNDIName
-    def destinationJNDIName
+    def destinationJNDINames
     def destinationJNDIType
     //optional parameters
     def specAdministrativeDescription
-    def clientChannelDefinitionURLs
-    def clientChannelDefinitionQueueManager
+    def destinationType
+    def messageSelector
     def additionalOption
 
     // expected results
@@ -181,16 +181,16 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
         def wasResourceName = wasHost
         createWorkspace(wasResourceName)
         createConfiguration(pluginConfigurationNames.correctSOAP, [doNotRecreate: false])
-        createConfiguration(pluginConfigurationNames.correctIPC, [doNotRecreate: false])        
-        createConfiguration(pluginConfigurationNames.correctJSR160RMI, [doNotRecreate: false])        
-        createConfiguration(pluginConfigurationNames.correctNone, [doNotRecreate: false])        
-        createConfiguration(pluginConfigurationNames.correctRMI, [doNotRecreate: false])        
+        createConfiguration(pluginConfigurationNames.correctIPC, [doNotRecreate: false])
+        createConfiguration(pluginConfigurationNames.correctJSR160RMI, [doNotRecreate: false])
+        createConfiguration(pluginConfigurationNames.correctNone, [doNotRecreate: false])
+        createConfiguration(pluginConfigurationNames.correctRMI, [doNotRecreate: false])
         importProject(testProjectName, 'dsl/CreateOrUpdateWMQActivationSpec/CreateOrUpdateWMQActivationSpec.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
      }
 
     /**
-     * Clean Up actions after test will finished 
+     * Clean Up actions after test will finished
      */
 
     def doCleanupSpec() {
@@ -239,8 +239,8 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
             upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary              
-            //pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary              
+            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary
+            //pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary
 
     }
 
@@ -264,7 +264,7 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
                 additionalOption:                       additionalOption,
                 wasHost:                                wasHost,
             ]
-            
+
         when: 'Procedure runs: '
             def result = runProcedure(runParams)
 
@@ -286,8 +286,8 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
             upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary              
-            //pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary              
+            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary
+            //pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | clientChannelDefinitionURLs                   | clientChannelDefinitionQueueManager                   | additionalOption                  | outcome                   | upperStepSummary
 
     }
 
@@ -318,7 +318,7 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
                 procedureName:                      '$testProcedureName',
                 actualParameter: [
                     confignameCOUWMQAS:                 '$parameters.pluginConfigurationName',
-                    wasResourceName:                    '$parameters.wasHost',                   
+                    wasResourceName:                    '$parameters.wasHost',
                 ]
             )
         """
