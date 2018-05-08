@@ -47,6 +47,7 @@ class PluginTestHelper extends PluginSpockTestSupport {
         def summary
         def currentProcedureName = getCurrentProcedureName(jobId)
         def property = "/myJob/jobSteps/$currentProcedureName/summary"
+        println "Trying to get the summary for $currentProcedureName $property, $jobId"
         try{
             summary = getJobProperty(property, jobId)
         } catch (Throwable e) {
@@ -115,7 +116,7 @@ try {
     // WAS_CONNTYPE
     // WAS_DEBUG
     // WSADMIN_PATH
-    // 
+    //
     def createConfiguration(configName, props = [:])  {
         def username = System.getenv('WAS_USERNAME') ?: 'wsadmin'
         def password = System.getenv('WAS_PASSWORD') ?: 'changeme'
@@ -234,7 +235,7 @@ try {
                     wasResourceName: '$params.wasResourceName',
                 ]
             )
-        """        
+        """
         return dsl(code)
     }
 
