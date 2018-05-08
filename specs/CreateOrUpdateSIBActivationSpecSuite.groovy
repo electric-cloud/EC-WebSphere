@@ -238,7 +238,7 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
             upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | destinationType                   | messageSelector                   | additionalOption                  | outcome                   | upperStepSummary
+            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | destinationType                   | messageSelector                   | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
 
     }
 
@@ -283,7 +283,7 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
             upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | destinationType                   | messageSelector                   | additionalOption                  | outcome                   | upperStepSummary
+            pluginConfigurationName                 | specScope                 | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   | destinationJNDIType                   | specAdministrativeDescription                 | destinationType                   | messageSelector                   | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
 
     }
 
