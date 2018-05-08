@@ -1,0 +1,9 @@
+export WAS_USERNAME="wsadmin"
+export WAS_PASSWORD="changeme";
+export WAS_HOST="WEBSPHERE80S";
+export WAS_PORT="8880";
+export WAS_CONNTYPE="SOAP";
+export WAS_DEBUG="1";
+export WSADMIN_PATH="C:/IBM/WebSphere/profiles/AppSrv01/bin/wsadmin.bat";
+export WAS_APPPATH="C:/IBM/";
+export IS_WINDOWS=1

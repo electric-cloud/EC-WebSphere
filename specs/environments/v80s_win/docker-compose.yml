@@ -1,0 +1,36 @@
+version: '3'
+services:
+  electric-flow:
+    image: "electricflow/efserver:latest-windowsservercore"
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+      - "443:443"
+      - "80:80"
+    container_name: "efserver"
+    hostname: "efserver"
+    tty: true
+  websphere:
+    image: "electricflow/websphere80s:latest-win"
+    ports:
+      - "9060:9060"
+      - "9043:9043"
+      - "9443:9443"
+      - "7808:7800"
+      - "8080:80"
+      - "8880:8880"
+    container_name: websphere80s
+    hostname: "websphere80s"
+    tty: true
+    environment:
+    - EF_SERVER_HOST=efserver
+    - EF_SERVER_ADMIN_USER=admin
+    - EF_SERVER_ADMIN_PASS=changeme
+    - EF_RESOURCE_NAME="websphere80s"
+    - WAS_CELL_NAME=websphere80sCell01
+    - WAS_NODE_NAME=websphere80sNode01
+    restart: always
+networks:
+  default:
+    external:
+      name: nat
