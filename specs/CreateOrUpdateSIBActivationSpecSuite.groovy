@@ -211,7 +211,7 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
                 specJNDIName:                           specJNDIName,
                 destinationJNDIName:                    destinationJNDIName,
                 specAdministrativeDescription:          specAdministrativeDescription,
-                destinationType:                        destinationType
+                destinationType:                        destinationType,
                 messageSelector:                        messageSelector,
                 additionalOption:                       additionalOption,
                 wasHost:                                wasHost,
@@ -256,7 +256,7 @@ class CreateOrUpdateSIBActivationSpecSuite extends PluginTestHelper {
                 specJNDIName:                           specJNDIName,
                 destinationJNDIName:                    destinationJNDIName,
                 specAdministrativeDescription:          specAdministrativeDescription,
-                destinationType:                        destinationType
+                destinationType:                        destinationType,
                 messageSelector:                        messageSelector,
                 additionalOption:                       additionalOption,
                 wasHost:                                wasHost,
