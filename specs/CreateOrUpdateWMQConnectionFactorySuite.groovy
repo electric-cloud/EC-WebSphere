@@ -201,7 +201,7 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
         createConfiguration(pluginConfigurationNames.correctJSR160RMI, [doNotRecreate: false])
         createConfiguration(pluginConfigurationNames.correctNone, [doNotRecreate: false])
         createConfiguration(pluginConfigurationNames.correctRMI, [doNotRecreate: false])
-        importProject(testProjectName, 'dsl/CreateOrUpdateSIBConnectionFactory/CreateOrUpdateSIBConnectionFactory.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
+        importProject(testProjectName, 'dsl/CreateOrUpdateSIBConnectionFactory/CreateOrUpdateWMQConnectionFactory.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
      }
 
