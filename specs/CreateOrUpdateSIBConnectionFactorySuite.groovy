@@ -332,7 +332,7 @@ class CreateOrUpdateSIBConnectionFactorySuite extends PluginTestHelper {
                 projectName:                        '$testProjectName',
                 procedureName:                      '$testProcedureName',
                 actualParameter: [
-                    confignameCOUSIBCFF:                        '$parameters.pluginConfigurationName',
+                    confignameCOUSIBCF:                        '$parameters.pluginConfigurationName',
                     factoryScopeCOUSIBCF:                       '$parameters.factoryScope',
                     factoryAdministrativeNameCOUSIBCF:          '$parameters.factoryAdministrativeName',
                     busNameCOUSIBCF:                            '$parameters.busName',
