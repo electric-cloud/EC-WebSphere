@@ -85,9 +85,9 @@ class CreateOrUpdateSIBConnectionFactorySuite extends PluginTestHelper {
     @Shared //* Required Parameter (need incorrect and empty value)
     def busNames = [
         empty:                          "",
-        correctQueue:                   "",
-        correctTopic:                   "",
-        incorrect:                      "",
+        correctQueue:                   "DefaultBusQ",
+        correctTopic:                   "DefaultBusT",
+        incorrect:                      "/:/:/\" Incorrect Bus Name",
     ]
 
     @Shared //* Required Parameter (need incorrect and empty value)
@@ -95,7 +95,7 @@ class CreateOrUpdateSIBConnectionFactorySuite extends PluginTestHelper {
         empty:                          "",
         correctQueue:                   "com.jndi.mySIBJMSAppFactQueue",
         correctTopic:                   "com.jndi.mySIBJMSAppFactTopic",
-        incorrect:                      "incorrect Factory JNDI Name",
+        incorrect:                      "/:/:/\" incorrect Factory JNDI Name",
     ]
 
         // Not required Parameter
@@ -118,7 +118,7 @@ class CreateOrUpdateSIBConnectionFactorySuite extends PluginTestHelper {
     @Shared //* Optional Parameter
     def additionalOptions = [
         empty:                          "",
-        correct:                        "",
+        correct:                        "-shareDataSourceWithCMP True -connectionProximity Host",
         incorrect:                      "Incorrect Additional Options",
     ]
 
@@ -242,9 +242,21 @@ class CreateOrUpdateSIBConnectionFactorySuite extends PluginTestHelper {
             //assert upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | specScope                     | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   /* Not Required */ | specAdministrativeDescription                  | destinationType                   | messageSelector                   | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
+            pluginConfigurationName                 | factoryScope                      | factoryAdministrativeName                 | busName                   | jndiName              /* Not Required */  | factoryType                   | factoryAdministrativeDescription                      | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
 //for Queue
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctQueue   | busNames.correctQueue     | jndiNames.correctQueue                    | factoryTypes.empty            | factoryAdministrativeDescriptions.empty               | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successCreateQ
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctQueue   | busNames.correctQueue     | jndiNames.correctQueue                    | factoryTypes.correctQueue     | factoryAdministrativeDescriptions.empty               | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successUpdateQ
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctQueue   | busNames.correctQueue     | jndiNames.correctQueue                    | factoryTypes.empty            | factoryAdministrativeDescriptions.correctQueue        | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successUpdateQ
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctQueue   | busNames.correctQueue     | jndiNames.correctQueue                    | factoryTypes.empty            | factoryAdministrativeDescriptions.empty               | additionalOptions.correct         | expectedOutcomes.success          | expectedSummaryMessages.successUpdateQ
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctQueue   | busNames.correctQueue     | jndiNames.correctQueue                    | factoryTypes.correctQueue     | factoryAdministrativeDescriptions.correctQueue        | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successUpdateQ
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctQueue   | busNames.correctQueue     | jndiNames.correctQueue                    | factoryTypes.correctQueue     | factoryAdministrativeDescriptions.correctQueue        | additionalOptions.correct         | expectedOutcomes.success          | expectedSummaryMessages.successUpdateQ
 //for Topic
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTopic   | busNames.correctTopic     | jndiNames.correctTopic                    | factoryTypes.empty            | factoryAdministrativeDescriptions.empty               | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successCreateT
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTopic   | busNames.correctTopic     | jndiNames.correctTopic                    | factoryTypes.correctTopic     | factoryAdministrativeDescriptions.empty               | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successUpdateT
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTopic   | busNames.correctTopic     | jndiNames.correctTopic                    | factoryTypes.empty            | factoryAdministrativeDescriptions.correctTopic        | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successUpdateT
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTopic   | busNames.correctTopic     | jndiNames.correctTopic                    | factoryTypes.empty            | factoryAdministrativeDescriptions.empty               | additionalOptions.correct         | expectedOutcomes.success          | expectedSummaryMessages.successUpdateT
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTopic   | busNames.correctTopic     | jndiNames.correctTopic                    | factoryTypes.correctTopic     | factoryAdministrativeDescriptions.correctTopic        | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successUpdateT
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTopic   | busNames.correctTopic     | jndiNames.correctTopic                    | factoryTypes.correctTopic     | factoryAdministrativeDescriptions.correctTopic        | additionalOptions.correct         | expectedOutcomes.success          | expectedSummaryMessages.successUpdateT
     }
 
     /**
@@ -287,8 +299,10 @@ class CreateOrUpdateSIBConnectionFactorySuite extends PluginTestHelper {
             //assert upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | specScope                     | specAdministrativeName                    | specJNDIName                  | destinationJNDIName                   /* Not Required */ | specAdministrativeDescription                  | destinationType                   | messageSelector                   | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
+            pluginConfigurationName                 | factoryScope                  | factoryAdministrativeName                 | busName                   | jndiName              /* Not Required */| factoryType                     | factoryAdministrativeDescription                      | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
 //for Queue
+
+//for Topic
 
     }
 
