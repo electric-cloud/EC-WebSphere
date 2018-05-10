@@ -180,8 +180,8 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
     def jndiName
     //optional parameters
     def factoryAdministrativeDescription
-    def clientChannelDefinitionQueueManager
     def clientChannelDefinitionUrl
+    def clientChannelDefinitionQueueManager
     def additionalOption
 
     // expected results
@@ -222,6 +222,14 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
         setup: 'Define the parameters for Procedure running'
              def runParams = [
                 pluginConfigurationName:                pluginConfigurationName,
+                factoryScope:                           factoryScope,
+                factoryAdministrativeName:              factoryAdministrativeName,
+                factoryType:                            factoryType,
+                jndiName:                               jndiName,
+                factoryAdministrativeDescription:       factoryAdministrativeDescription,
+                clientChannelDefinitionUrl:             clientChannelDefinitionUrl,
+                clientChannelDefinitionQueueManager:    clientChannelDefinitionQueueManager,
+                additionalOption:                       additionalOption,
                 wasHost:                                wasHost,
             ]
 
@@ -259,6 +267,14 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
         setup: 'Define the parameters for Procedure running'
              def runParams = [
                 pluginConfigurationName:                pluginConfigurationName,
+                factoryScope:                           factoryScope,
+                factoryAdministrativeName:              factoryAdministrativeName,
+                factoryType:                            factoryType,
+                jndiName:                               jndiName,
+                factoryAdministrativeDescription:       factoryAdministrativeDescription,
+                clientChannelDefinitionUrl:             clientChannelDefinitionUrl,
+                clientChannelDefinitionQueueManager:    clientChannelDefinitionQueueManager,
+                additionalOption:                       additionalOption,
                 wasHost:                                wasHost,
             ]
 
@@ -314,8 +330,16 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
                 projectName:                        '$testProjectName',
                 procedureName:                      '$testProcedureName',
                 actualParameter: [
-                    confignameCOUSIBCF:                        '$parameters.pluginConfigurationName',
-                    wasResourceName:                            '$parameters.wasHost',
+                    confignameCOUSIBCF:                             '$parameters.pluginConfigurationName',
+                    factoryScopeCOUWMQCF:                           '$parameters.factoryScope',
+                    factoryAdministrativeNameCOUWMQCF:              '$parameters.factoryAdministrativeName',
+                    factoryTypeCOUWMQCF:                            '$parameters.factoryType',
+                    jndiNameCOUWMQCF:                               '$parameters.jndiName',
+                    factoryAdministrativeDescriptionCOUWMQCF:       '$parameters.factoryAdministrativeDescription',
+                    clientChannelDefinitionUrlCOUWMQCF:             '$parameters.clientChannelDefinitionUrl,
+                    clientChannelDefinitionQueueManagerCOUWMQCF:    '$parameters.clientChannelDefinitionQueueManager',
+                    additionalOptionsCOUWMQCF:                      '$parameters.additionalOption',
+                    wasResourceName:                                '$parameters.wasHost',
                 ]
             )
         """
