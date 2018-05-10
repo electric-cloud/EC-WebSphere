@@ -254,7 +254,9 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
             assert upperStepSummary =~ expectedSummaryMessage
 
         where: 'The following params will be: '
+            pluginConfigurationName                 | factoryScope              | factoryAdministrativeName             | factoryType               | jndiName           /*Not Required*/   | factoryAdministrativeDescription                  | clientChannelDefinitionUrl                | clientChannelDefinitionQueueManager               | additionalOption                  | wasHost                   | expectedOutcome                   | expectedSummaryMessage
 //for Queue
+
 //for Topic
     }
 
@@ -299,7 +301,9 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
             assert upperStepSummary =~ expectedSummaryMessage
 
         where: 'The following params will be: '
+            pluginConfigurationName                 | factoryScope              | factoryAdministrativeName             | factoryType               | jndiName           /*Not Required*/   | factoryAdministrativeDescription                  | clientChannelDefinitionUrl                | clientChannelDefinitionQueueManager               | additionalOption                  | wasHost                   | expectedOutcome                   | expectedSummaryMessage
 //for Queue
+
 //for Topic
 
     }
