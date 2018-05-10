@@ -79,7 +79,8 @@ class CreateOrUpdateSIBConnectionFactorySuite extends PluginTestHelper {
         empty:                          "",
         correctQueue:                   "MySIBJMSConnFactQueue",
         correctTopic:                   "MySIBJMSConnFactTopic",
-        incorrect:                      ":/:/: Incorrect",
+        correctForFactType:             "mySIBJMSAppFactType",
+        incorrect:                      ":/:/: Incorrect Factory Admin Name",
     ]
 
     @Shared //* Required Parameter (need incorrect and empty value)
@@ -95,6 +96,7 @@ class CreateOrUpdateSIBConnectionFactorySuite extends PluginTestHelper {
         empty:                          "",
         correctQueue:                   "com.jndi.mySIBJMSAppFactQueue",
         correctTopic:                   "com.jndi.mySIBJMSAppFactTopic",
+        correctForFactType:             "com.jndi.mySIBJMSAppFactType",
         incorrect:                      "/:/:/\" incorrect Factory JNDI Name",
     ]
 
@@ -137,17 +139,17 @@ class CreateOrUpdateSIBConnectionFactorySuite extends PluginTestHelper {
     @Shared
     def expectedSummaryMessages = [
         empty:                          "",
-        successCreateQ:                 "",
-        successCreateT:                 "",
-        successUpdateQ:                 "",
-        successUpdateT:                 "",
+        successCreateQ:                 "SIB JMS Connection Factory $factoryAdministrativeNames.correctQueue has been created",
+        successCreateT:                 "SIB JMS Connection Factory $factoryAdministrativeNames.correctTopic has been created",
+        successUpdateQ:                 "SIB JMS Connection Factory $factoryAdministrativeNames.correctQueue has been updated",
+        successUpdateT:                 "SIB JMS Connection Factory $factoryAdministrativeNames.correctTopic has been updated",
         incorrectConfiguration:         "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
-        incorrectScope:                 "target object is required",
-        incorrectFactName:              "",
-        incorrectBuName:                "",
-        incorrectJNDIName:              "",
-        incorrectConnFacType:           "",
-        incorrectAdOps:                 "",
+        incorrectScope:                 "Error found in String \"\"; cannot create ObjectName", //"target object is required",
+        incorrectFactName:              "A resource with JNDI name $jndiNames.correctQueue already exists as a different resource type. You must use a unique name",
+        incorrectBusName:               "Incorrect Bus Name",
+        incorrectJNDIName:              "[-jndiName \"$jndiNames.incorrect\" -name \"$factoryAdministrativeNames.correctQueue\" -busName \"$busNames.correctQueue\" ]",
+        incorrectConnFacType:           "Incorrect value for type parameter: incorrect Factory Type",
+        incorrectAdOps:                 "Incorrect Additional Options",
         correctOneNodeMessage:          "Node:"+wasHost+"Node01",
     ]
 
@@ -239,7 +241,7 @@ class CreateOrUpdateSIBConnectionFactorySuite extends PluginTestHelper {
 
         expect: 'Outcome and Upper Summary verification'
             assert outcome == expectedOutcome
-            //assert upperStepSummary.contains(expectedSummaryMessage)
+            assert upperStepSummary =~ expectedSummaryMessage
 
         where: 'The following params will be: '
             pluginConfigurationName                 | factoryScope                      | factoryAdministrativeName                 | busName                   | jndiName              /* Not Required */  | factoryType                   | factoryAdministrativeDescription                      | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
@@ -296,12 +298,19 @@ class CreateOrUpdateSIBConnectionFactorySuite extends PluginTestHelper {
 
         expect: 'Outcome and Upper Summary verification'
             assert outcome == expectedOutcome
-            //assert upperStepSummary.contains(expectedSummaryMessage)
+            assert upperStepSummary =~ expectedSummaryMessage
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | factoryScope                  | factoryAdministrativeName                 | busName                   | jndiName              /* Not Required */| factoryType                     | factoryAdministrativeDescription                      | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
+            pluginConfigurationName                 | factoryScope                      | factoryAdministrativeName                 | busName                       | jndiName              /* Not Required */  | factoryType                     | factoryAdministrativeDescription                      | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
 //for Queue
-
+            pluginConfigurationNames.incorrect      | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctQueue       | busNames.correctQueue     | jndiNames.correctQueue                    | factoryTypes.empty            | factoryAdministrativeDescriptions.empty               | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.incorrectConfiguration
+            pluginConfigurationNames.correctSOAP    | factoryScopes.incorrect           | factoryAdministrativeNames.correctQueue       | busNames.correctQueue     | jndiNames.correctQueue                    | factoryTypes.empty            | factoryAdministrativeDescriptions.empty               | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.incorrectScope
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.incorrect          | busNames.correctQueue     | jndiNames.correctQueue                    | factoryTypes.empty            | factoryAdministrativeDescriptions.empty               | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.incorrectFactName
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctQueue       | busNames.incorrect        | jndiNames.correctQueue                    | factoryTypes.empty            | factoryAdministrativeDescriptions.empty               | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.incorrectBusName
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctQueue       | busNames.correctQueue     | jndiNames.incorrect                       | factoryTypes.empty            | factoryAdministrativeDescriptions.empty               | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.incorrectJNDIName
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctForFactType | busNames.correctQueue     | jndiNames.correctForFactType              | factoryTypes.incorrect        | factoryAdministrativeDescriptions.empty               | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.incorrectConnFacType
+//            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctQueue   | busNames.correctQueue         | jndiNames.correctQueue                    | factoryTypes.empty            | factoryAdministrativeDescriptions.incorrect           | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.successCreateQ
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctQueue   | busNames.correctQueue         | jndiNames.correctQueue                    | factoryTypes.empty            | factoryAdministrativeDescriptions.empty               | additionalOptions.incorrect       | expectedOutcomes.error            | expectedSummaryMessages.incorrectAdOps
 //for Topic
 
     }
