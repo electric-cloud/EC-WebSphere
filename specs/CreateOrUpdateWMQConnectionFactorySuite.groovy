@@ -86,9 +86,9 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
     @Shared //* Required Parameter (need incorrect and empty value)
     def factoryTypes = [
         empty:                          "",
-        correctConnFact:                "CF",
-        correctQueue:                   "QCF",
-        correctTopic:                   "TCF",
+        correctCF:                      "CF",
+        correctQCF:                     "QCF",
+        correctTCF:                     "TCF",
         incorrect:                      "Incorrect Factory Type",
     ]
 
@@ -207,7 +207,7 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
         createConfiguration(pluginConfigurationNames.correctJSR160RMI, [doNotRecreate: false])
         createConfiguration(pluginConfigurationNames.correctNone, [doNotRecreate: false])
         createConfiguration(pluginConfigurationNames.correctRMI, [doNotRecreate: false])
-        importProject(testProjectName, 'dsl/CreateOrUpdateSIBConnectionFactory/CreateOrUpdateWMQConnectionFactory.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
+        importProject(testProjectName, 'dsl/CreateOrUpdateWMQConnectionFactory/CreateOrUpdateWMQConnectionFactory.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
      }
 
@@ -224,7 +224,7 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
      */
 
     @Unroll //Positive Scenarios for delete should be first
-    def "Create Or Update SIB JMS Connection Factory. Positive Scenarios and Extended Scenarios" (){
+    def "Create Or Update WMQ JMS Connection Factory. Positive Scenarios and Extended Scenarios" (){
         setup: 'Define the parameters for Procedure running'
              def runParams = [
                 pluginConfigurationName:                pluginConfigurationName,
@@ -271,7 +271,7 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
      */
 
     @Unroll
-    def "Create Or Update SIB JMS Connection Factory. Negative Scenarios and Extended Scenarios" () {
+    def "Create Or Update WMQ JMS Connection Factory. Negative Scenarios and Extended Scenarios" () {
         setup: 'Define the parameters for Procedure running'
              def runParams = [
                 pluginConfigurationName:                pluginConfigurationName,
