@@ -79,7 +79,7 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
         empty:                          "",
         correctCF:                      "MyWMQJMSConnFact",
         correctQCF:                     "MyWMQJMSQueueConnFact",
-        correctTСF:                      "MyWMQJMSTopicConnFact",
+        correctTСF:                     "MyWMQJMSTopicConnFact",
         correctForFactType:             "myWMQJMSAppFactType",
         incorrect:                      ":/:/:\" Incorrect Factory Admin Name",
     ]
@@ -129,7 +129,7 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
     def clientChannelDefinitionQueueManagers = [
         empty:                          "",
         correct:                        "",
-        incorrect:                      "",
+        incorrect:                      "Incorrect CCD Q Manag",
     ]
 
     @Shared //* Optional Parameter
@@ -338,8 +338,18 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
             //assert upperStepSummary =~ expectedSummaryMessage
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | factoryScope              | factoryAdministrativeName             | factoryType               | jndiName           /*Not Required*/   | factoryAdministrativeDescription                  | clientChannelDefinitionUrl                | clientChannelDefinitionQueueManager               | additionalOption                  | wasHost                   | expectedOutcome                   | expectedSummaryMessage
+            pluginConfigurationName                 | factoryScope                      | factoryAdministrativeName                 | factoryType                   | jndiName         /*Not Required*/ | factoryAdministrativeDescription                  | clientChannelDefinitionUrl                | clientChannelDefinitionQueueManager               | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
 //for CF
+            pluginConfigurationNames.incorrect      | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctCF      | factoryTypes.correctCF        | jndiNames.correctCF               | factoryAdministrativeDescriptions.empty           | clientChannelDefinitionUrls.empty         | clientChannelDefinitionQueueManagers.empty        | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.incorrectConfiguration
+            pluginConfigurationNames.correctSOAP    | factoryScopes.incorrect           | factoryAdministrativeNames.correctCF      | factoryTypes.correctCF        | jndiNames.correctCF               | factoryAdministrativeDescriptions.empty           | clientChannelDefinitionUrls.empty         | clientChannelDefinitionQueueManagers.empty        | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.incorrectScope
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.incorrect      | factoryTypes.correctCF        | jndiNames.correctCF               | factoryAdministrativeDescriptions.empty           | clientChannelDefinitionUrls.empty         | clientChannelDefinitionQueueManagers.empty        | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.incorrectFactAdmName
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctCF      | factoryTypes.incorrect        | jndiNames.correctCF               | factoryAdministrativeDescriptions.empty           | clientChannelDefinitionUrls.empty         | clientChannelDefinitionQueueManagers.empty        | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.incorrectFactType
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctCF      | factoryTypes.correctCF        | jndiNames.incorrect               | factoryAdministrativeDescriptions.empty           | clientChannelDefinitionUrls.empty         | clientChannelDefinitionQueueManagers.empty        | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.incorrectJNDIName
+//            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctCF      | factoryTypes.correctCF        | jndiNames.correctCF               | factoryAdministrativeDescriptions.incorrect       | clientChannelDefinitionUrls.empty         | clientChannelDefinitionQueueManagers.empty        | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.incorrectFactAdmnDescr
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctCF      | factoryTypes.correctCF        | jndiNames.correctCF               | factoryAdministrativeDescriptions.empty           | clientChannelDefinitionUrls.incorrect     | clientChannelDefinitionQueueManagers.empty        | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.incorrectCCDUrl
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctCF      | factoryTypes.correctCF        | jndiNames.correctCF               | factoryAdministrativeDescriptions.empty           | clientChannelDefinitionUrls.empty         | clientChannelDefinitionQueueManagers.incorrect    | additionalOptions.empty           | expectedOutcomes.error            | expectedSummaryMessages.incorrectCCDQM
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctCF      | factoryTypes.correctCF        | jndiNames.correctCF               | factoryAdministrativeDescriptions.empty           | clientChannelDefinitionUrls.empty         | clientChannelDefinitionQueueManagers.empty        | additionalOptions.incorrect       | expectedOutcomes.error            | expectedSummaryMessages.incorrectAdOps
+
 //for QCF
 //for TСF
 
