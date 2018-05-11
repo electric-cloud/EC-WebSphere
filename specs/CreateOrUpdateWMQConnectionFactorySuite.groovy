@@ -262,7 +262,7 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
 
         expect: 'Outcome and Upper Summary verification'
             assert outcome == expectedOutcome
-            //assert upperStepSummary =~ expectedSummaryMessage
+            assert upperStepSummary =~ expectedSummaryMessage
 
         where: 'The following params will be: '
             pluginConfigurationName                 | factoryScope                      | factoryAdministrativeName                 | factoryType                   | jndiName         /*Not Required*/ | factoryAdministrativeDescription                  | clientChannelDefinitionUrl                | clientChannelDefinitionQueueManager               | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
