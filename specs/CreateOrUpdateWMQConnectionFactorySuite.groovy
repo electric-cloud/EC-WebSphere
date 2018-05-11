@@ -375,7 +375,7 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
                     factoryTypeCOUWMQCF:                            '$parameters.factoryType',
                     jndiNameCOUWMQCF:                               '$parameters.jndiName',
                     factoryAdministrativeDescriptionCOUWMQCF:       '$parameters.factoryAdministrativeDescription',
-                    clientChannelDefinitionUrlCOUWMQCF:             '$parameters.clientChannelDefinitionUrl,
+                    clientChannelDefinitionUrlCOUWMQCF:             '$parameters.clientChannelDefinitionUrl',
                     clientChannelDefinitionQueueManagerCOUWMQCF:    '$parameters.clientChannelDefinitionQueueManager',
                     additionalOptionsCOUWMQCF:                      '$parameters.additionalOption',
                     wasResourceName:                                '$parameters.wasHost',
