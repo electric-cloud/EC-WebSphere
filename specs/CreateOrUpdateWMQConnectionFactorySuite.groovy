@@ -369,7 +369,7 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
                 projectName:                        '$testProjectName',
                 procedureName:                      '$testProcedureName',
                 actualParameter: [
-                    confignameCOUSIBCF:                             '$parameters.pluginConfigurationName',
+                    confignameCOUWMQCF:                             '$parameters.pluginConfigurationName',
                     factoryScopeCOUWMQCF:                           '$parameters.factoryScope',
                     factoryAdministrativeNameCOUWMQCF:              '$parameters.factoryAdministrativeName',
                     factoryTypeCOUWMQCF:                            '$parameters.factoryType',
