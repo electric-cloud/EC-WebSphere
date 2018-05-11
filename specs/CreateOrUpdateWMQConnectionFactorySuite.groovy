@@ -89,7 +89,7 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
         empty:                          "",
         correctCF:                      "CF",
         correctQCF:                     "QCF",
-        correctTСF:                     "TСF",
+        correctTСF:                     "TCF",
         incorrect:                      "Incorrect Factory Type",
     ]
 
@@ -164,13 +164,13 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
         successUpdateTСF:               "WMQ JMS Connection Factory $factoryAdministrativeNames.correctTСF has been updated",
         incorrectConfiguration:         "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
         incorrectScope:                 "Error found in String \"\"; cannot create ObjectName", //"target object is required",
-        incorrectFactAdmName:           "A resource with JNDI name $jndiNames.correctCF already exists as a different resource type. You must use a unique name",
-        incorrectFactType:              "",
-        incorrectJNDIName:              "",
+        incorrectFactAdmName:           "Error occured during create of $factoryAdministrativeNames.incorrect",
+        incorrectFactType:              "Connection factory type should be one of: CF, TF, QCF. Found: $factoryTypes.incorrect",
+        incorrectJNDIName:              "[-jndiName \"$jndiNames.incorrect\" -name \"$factoryAdministrativeNames.correctCF\" ]",
         incorrectFactAdmnDescr:         "",
-        incorrectCCDUrl:                "",
-        incorrectCCDQM:                 "",
-        incorrectAdOps:                 "Incorrect Additional Options",
+        incorrectCCDUrl:                "Neither the ccdtUrl or ccdtQmgrName attributes may be specified for non-CCDT WebSphere MQ server connections",
+        incorrectCCDQM:                 "Neither the ccdtUrl or ccdtQmgrName attributes may be specified for non-CCDT WebSphere MQ server connections",
+        incorrectAdOps:                 "$additionalOptions.incorrect",
         correctOneNodeMessage:          "Node:"+wasHost+"Node01",
     ]
 
@@ -335,7 +335,7 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
 
         expect: 'Outcome and Upper Summary verification'
             assert outcome == expectedOutcome
-            //assert upperStepSummary =~ expectedSummaryMessage
+            assert upperStepSummary =~ expectedSummaryMessage
 
         where: 'The following params will be: '
             pluginConfigurationName                 | factoryScope                      | factoryAdministrativeName                 | factoryType                   | jndiName         /*Not Required*/ | factoryAdministrativeDescription                  | clientChannelDefinitionUrl                | clientChannelDefinitionQueueManager               | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
