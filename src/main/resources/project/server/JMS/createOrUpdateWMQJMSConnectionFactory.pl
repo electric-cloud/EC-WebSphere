@@ -37,7 +37,7 @@ $ec->abortOnError(0);
 my $websphere = WebSphere::WebSphere->new($ec, $opts->{configname}, '');
 
 my $parsedFactoryScope = $websphere->parseScope($opts->{factoryScope});
-if ($opts->{factoryType} !~ m/^(?:CF|TF|QCF)$/s) {
+if ($opts->{factoryType} !~ m/^(?:CF|TCF|QCF)$/s) {
     $websphere->bail_out("Connection factory type should be one of: CF, TF, QCF. Found: $opts->{factoryType}");
 }
 
