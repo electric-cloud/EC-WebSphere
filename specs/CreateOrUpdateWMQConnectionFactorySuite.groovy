@@ -77,8 +77,9 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
     @Shared // Required Parameter (need incorrect and empty value)
     def factoryAdministrativeNames = [
         empty:                          "",
-        correctQueue:                   "MyWMQJMSConnFactQueue",
-        correctTopic:                   "MyWMQJMSConnFactTopic",
+        correctCF:                      "MyWMQJMSConnFact",
+        correctQCF:                     "MyWMQJMSQueueConnFact",
+        correctTCF:                     "MyWMQJMSTopicConnFact",
         correctForFactType:             "myWMQJMSAppFactType",
         incorrect:                      ":/:/:\" Incorrect Factory Admin Name",
     ]
@@ -95,8 +96,9 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
     @Shared //* Required Parameter (need incorrect and empty value)
     def jndiNames = [
         empty:                          "",
-        correctQueue:                   "com.jndi.myWMQJMSAppFactQueue",
-        correctTopic:                   "com.jndi.myWMQJMSAppFactTopic",
+        correctCF:                      "com.jndi.myWMQJMSAppConnFact",
+        correctQCF:                     "com.jndi.myWMQJMSAppQConnFact",
+        correctTCF:                     "com.jndi.myWMQJMSAppTConnFact",
         correctForFactType:             "com.jndi.myWMQJMSAppFactType",
         incorrect:                      "/:/:/\" incorrect Factory JNDI Name",
     ]
@@ -106,8 +108,9 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
     @Shared //* Optional Parameter
     def factoryAdministrativeDescriptions = [
         empty:                          "",
-        correctQueue:                   "Factory Administrative Description Queue",
-        correctTopic:                   "Factory Administrative Description Topic",
+        correctCF:                      "Factory Administrative Description Conn Fact",
+        correctQCF:                     "Factory Administrative Description Queue Conn Fact",
+        correctTCF:                     "Factory Administrative Description Topic Conn Fact",
         incorrect:                      "What the incorrect value for this parameter?",
     ]
 
@@ -151,13 +154,15 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
     @Shared
     def expectedSummaryMessages = [
         empty:                          "",
-        successCreateQ:                 "WMQ JMS Connection Factory $factoryAdministrativeNames.correctQueue has been created",
-        successCreateT:                 "WMQ JMS Connection Factory $factoryAdministrativeNames.correctTopic has been created",
-        successUpdateQ:                 "WMQ JMS Connection Factory $factoryAdministrativeNames.correctQueue has been updated",
-        successUpdateT:                 "WMQ JMS Connection Factory $factoryAdministrativeNames.correctTopic has been updated",
+        successCreateCF:                "WMQ JMS Connection Factory $factoryAdministrativeNames.correctCF has been created",
+        successCreateQCF:               "WMQ JMS Connection Factory $factoryAdministrativeNames.correctQCF has been created",
+        successCreateTCF:               "WMQ JMS Connection Factory $factoryAdministrativeNames.correctTCF has been created",
+        successUpdateCF:                "WMQ JMS Connection Factory $factoryAdministrativeNames.correctCF has been updated",
+        successUpdateQCF:               "WMQ JMS Connection Factory $factoryAdministrativeNames.correctQCF has been updated",
+        successUpdateTCF:               "WMQ JMS Connection Factory $factoryAdministrativeNames.correctTCF has been updated",
         incorrectConfiguration:         "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
         incorrectScope:                 "Error found in String \"\"; cannot create ObjectName", //"target object is required",
-        incorrectFactAdmName:           "A resource with JNDI name $jndiNames.correctQueue already exists as a different resource type. You must use a unique name",
+        incorrectFactAdmName:           "A resource with JNDI name $jndiNames.correctCF already exists as a different resource type. You must use a unique name",
         incorrectFactType:              "",
         incorrectJNDIName:              "",
         incorrectFactAdmnDescr:         "",
@@ -260,8 +265,9 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
             //assert upperStepSummary =~ expectedSummaryMessage
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | factoryScope              | factoryAdministrativeName             | factoryType               | jndiName           /*Not Required*/   | factoryAdministrativeDescription                  | clientChannelDefinitionUrl                | clientChannelDefinitionQueueManager               | additionalOption                  | wasHost                   | expectedOutcome                   | expectedSummaryMessage
+            pluginConfigurationName                 | factoryScope                      | factoryAdministrativeName                 | factoryType                   | jndiName         /*Not Required*/ | factoryAdministrativeDescription                  | clientChannelDefinitionUrl                | clientChannelDefinitionQueueManager               | additionalOption                  | expectedOutcome                   | expectedSummaryMessage
 //for CF
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctCF      | factoryTypes.correctCF        | jndiNames.correctCF               | factoryAdministrativeDescriptions.correctCF       | clientChannelDefinitionUrls.correct       | clientChannelDefinitionQueueManagers.correct      | additionalOptions.correct         | expectedOutcomes.success          | expectedSummaryMessages.
 //for QCF
 //for TCF
     }
