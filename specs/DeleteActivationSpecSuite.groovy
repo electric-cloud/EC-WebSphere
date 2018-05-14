@@ -141,7 +141,7 @@ class DeleteActivationSpecSuite extends PluginTestHelper {
         correctSIBTopic:                "MySIBJMSAppSpecTopicForDelete",
         correctWMQQueue:                "MyWMQJMSAppSpecQueueForDelete",
         correctWMQTopic:                "MyWMQJMSAppSpecTopicForDelete",
-        incorrect:                      ":/:/: ForDelete",
+        incorrect:                      "Incorrect ForDelete",
     ]
 
     @Shared     // Required Parameter (need incorrect and empty value)
@@ -157,6 +157,7 @@ class DeleteActivationSpecSuite extends PluginTestHelper {
         empty:                          "",
         correctWMQ:                     "WMQ",
         correctSIB:                     "SIB",
+        incorrect:                      "Incorrect Mes sys Type",
     ]
 
     /**
@@ -180,9 +181,8 @@ class DeleteActivationSpecSuite extends PluginTestHelper {
         successDeleteWMQT:              "WMQ JMS Activation Spec $specAdministrativeNames.correctWMQTopic has been deleted",
         incorrectConfiguration:         "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
         incorrectScope:                 "",
-        incorrectMesSel:                "",
-        incorrectAdmNameQ:              "",
-        incorrectDestType:              "",
+        incorrectAdmName:               "",
+        incorrectMesSysType:            "",
     ]
 
     @Shared expectedJobDetailedResults = [
@@ -362,6 +362,10 @@ class DeleteActivationSpecSuite extends PluginTestHelper {
 
         where: 'The following params will be: '
             pluginConfigurationName                 | specScope                         | specAdministrativeName                    | messagingSystemType                   | expectedOutcome                   | expectedSummaryMessage
+            pluginConfigurationNames.incorrect      | specScopes.correctOneNode         | specAdministrativeNames.correctSIBQueue   | messagingSystemTypes.correctWMQ       | expectedOutcomes.error            | expectedSummaryMessages.incorrectConfiguration
+            pluginConfigurationNames.correctSOAP    | specScopes.incorrect              | specAdministrativeNames.correctSIBQueue   | messagingSystemTypes.correctWMQ       | expectedOutcomes.error            | expectedSummaryMessages.incorrectScope
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode         | specAdministrativeNames.incorrect         | messagingSystemTypes.correctWMQ       | expectedOutcomes.error            | expectedSummaryMessages.incorrectAdmName
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode         | specAdministrativeNames.correctSIBQueue   | messagingSystemTypes.incorrect        | expectedOutcomes.error            | expectedSummaryMessages.incorrectMesSysType
     }
 
     /**
