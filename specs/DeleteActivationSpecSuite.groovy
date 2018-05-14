@@ -180,9 +180,9 @@ class DeleteActivationSpecSuite extends PluginTestHelper {
         successDeleteWMQQ:              "WMQ JMS Activation Spec $specAdministrativeNames.correctWMQQueue has been deleted",
         successDeleteWMQT:              "WMQ JMS Activation Spec $specAdministrativeNames.correctWMQTopic has been deleted",
         incorrectConfiguration:         "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
-        incorrectScope:                 "",
-        incorrectAdmName:               "",
-        incorrectMesSysType:            "",
+        incorrectScope:                 "target object is required",
+        incorrectAdmName:               "does not exist, can't delete",
+        incorrectMesSysType:            "Wrong Messaging System Type",
     ]
 
     @Shared expectedJobDetailedResults = [
@@ -358,7 +358,7 @@ class DeleteActivationSpecSuite extends PluginTestHelper {
 
         expect: 'Outcome and Upper Summary verification'
             assert outcome == expectedOutcome
-            //assert upperStepSummary.contains(expectedSummaryMessage)
+            assert upperStepSummary.contains(expectedSummaryMessage)
 
         where: 'The following params will be: '
             pluginConfigurationName                 | specScope                         | specAdministrativeName                    | messagingSystemType                   | expectedOutcome                   | expectedSummaryMessage
