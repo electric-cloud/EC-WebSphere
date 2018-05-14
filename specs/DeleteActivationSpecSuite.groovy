@@ -404,6 +404,10 @@ class DeleteActivationSpecSuite extends PluginTestHelper {
 
         where: 'The following params will be: '
             pluginConfigurationName                 | specScope                         | specAdministrativeName                    | messagingSystemType                   | expectedOutcome                   | expectedSummaryMessage
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode         | specAdministrativeNames.correctSIBQueue   | messagingSystemTypes.correctSIB       | expectedOutcomes.success          | expectedSummaryMessages.successDeleteSIBQ
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode         | specAdministrativeNames.correctSIBTopic   | messagingSystemTypes.correctSIB       | expectedOutcomes.success          | expectedSummaryMessages.successDeleteSIBT
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode         | specAdministrativeNames.correctWMQQueue   | messagingSystemTypes.correctWMQ       | expectedOutcomes.success          | expectedSummaryMessages.successDeleteWMQQ
+            pluginConfigurationNames.correctSOAP    | specScopes.correctOneNode         | specAdministrativeNames.correctWMQTopic   | messagingSystemTypes.correctWMQ       | expectedOutcomes.success          | expectedSummaryMessages.successDeleteWMQT
     }
 
     /**
