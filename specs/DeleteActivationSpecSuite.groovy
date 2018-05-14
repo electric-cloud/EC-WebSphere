@@ -84,10 +84,10 @@ class DeleteActivationSpecSuite extends PluginTestHelper {
     @Shared // Required Parameter (need incorrect and empty value)
     def destinationTypes = [
         empty:                          "",
-        correctSIBQueue:                "javax.jms.Queue",
-        correctSIBTopic:                "javax.jms.Topic",
-        correctWMQQueue:                "Queue",
-        correctWMQTopic:                "Topic",
+        correctWMQQueue:                "javax.jms.Queue",
+        correctWMQTopic:                "javax.jms.Topic",
+        correctSIBQueue:                "Queue",
+        correctSIBTopic:                "Topic",
         incorrect:                      "Incorrect.destinationTypes",
     ]
 
@@ -278,13 +278,12 @@ class DeleteActivationSpecSuite extends PluginTestHelper {
                 specAdministrativeName:                 specAdministrativeNames.correctWMQQueue,
                 specJNDIName:                           specJNDINames.correctWMQQueue,
                 destinationJNDIName:                    destinationJNDINames.correctWMQQueue,
-                destinationJNDIType:                    destinationTypes.correctWMQQueue,
+                destinationType:                        destinationTypes.correctWMQQueue,
                 specAdministrativeDescription:          specAdministrativeDescriptions.correct,
                 clientChannelDefinitionURL:             clientChannelDefinitionURLs.empty,
                 clientChannelDefinitionQueueManager:    clientChannelDefinitionQueueManagers.empty,
                 additionalOption:                       additionalOptions.empty,
                 wasHost:                                wasHost,
-            ]
         ]
         result = createWMQASForDelete(params)
         waitUntil {
@@ -301,7 +300,7 @@ class DeleteActivationSpecSuite extends PluginTestHelper {
                 specAdministrativeName:                 specAdministrativeNames.correctWMQTopic,
                 specJNDIName:                           specJNDINames.correctWMQTopic,
                 destinationJNDIName:                    destinationJNDINames.correctWMQTopic,
-                destinationJNDIType:                    destinationTypes.correctWMQTopic,
+                destinationType:                        destinationTypes.correctWMQTopic,
                 specAdministrativeDescription:          specAdministrativeDescriptions.correct,
                 clientChannelDefinitionURL:             clientChannelDefinitionURLs.empty,
                 clientChannelDefinitionQueueManager:    clientChannelDefinitionQueueManagers.empty,
