@@ -1,8 +1,11 @@
+def testProjectName = args.projectName
+def wasResourceName = args.wasResourceName
+project testProjectName
 
 procedure 'DeleteActivationSpec', {
   description = ''
   jobNameTemplate = ''
-  projectName = 'WebSphere-Test-JMS-Application'
+  projectName = testProjectName
   resourceName = ''
   timeLimit = ''
   timeLimitUnits = 'minutes'
@@ -65,7 +68,7 @@ procedure 'DeleteActivationSpec', {
     parallel = '0'
     postProcessor = null
     precondition = ''
-    projectName = 'WebSphere-Test-JMS-Application'
+    projectName = testProjectName
     releaseMode = 'none'
     resourceName = '$[wasResourceName]'
     shell = null
