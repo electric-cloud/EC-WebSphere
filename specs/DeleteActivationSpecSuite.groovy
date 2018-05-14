@@ -175,10 +175,10 @@ class DeleteActivationSpecSuite extends PluginTestHelper {
     @Shared
     def expectedSummaryMessages = [
         empty:                          "",
-        successDeleteSIBQ:              "SIB JMS Activation Spec $specAdministrativeNames.correctSIBQueue has been deleted",
-        successDeleteSIBT:              "SIB JMS Activation Spec $specAdministrativeNames.correctSIBTopic has been deleted",
-        successDeleteWMQQ:              "WMQ JMS Activation Spec $specAdministrativeNames.correctWMQQueue has been deleted",
-        successDeleteWMQT:              "WMQ JMS Activation Spec $specAdministrativeNames.correctWMQTopic has been deleted",
+        successDeleteSIBQ:              "SIB JMS Activation Spec $specAdministrativeNames.correctSIBQueue has been deleted for /$specScopes.correctOneNodeMessage/ scope",
+        successDeleteSIBT:              "SIB JMS Activation Spec $specAdministrativeNames.correctSIBTopic has been deleted for /$specScopes.correctOneNodeMessage/ scope",
+        successDeleteWMQQ:              "WMQ JMS Activation Spec $specAdministrativeNames.correctWMQQueue has been deleted for /$specScopes.correctOneNodeMessage/ scope",
+        successDeleteWMQT:              "WMQ JMS Activation Spec $specAdministrativeNames.correctWMQTopic has been deleted for /$specScopes.correctOneNodeMessage/ scope",
         incorrectConfiguration:         "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
         incorrectScope:                 "target object is required",
         incorrectAdmName:               "does not exist, can't delete",
@@ -358,7 +358,7 @@ class DeleteActivationSpecSuite extends PluginTestHelper {
 
         expect: 'Outcome and Upper Summary verification'
             assert outcome == expectedOutcome
-            assert upperStepSummary.contains(expectedSummaryMessage)
+            assert upperStepSummary =~ expectedSummaryMessage
 
         where: 'The following params will be: '
             pluginConfigurationName                 | specScope                         | specAdministrativeName                    | messagingSystemType                   | expectedOutcome                   | expectedSummaryMessage
@@ -400,7 +400,7 @@ class DeleteActivationSpecSuite extends PluginTestHelper {
 
         expect: 'Outcome and Upper Summary verification'
             assert outcome == expectedOutcome
-            //assert upperStepSummary.contains(expectedSummaryMessage)
+            assert upperStepSummary =~ expectedSummaryMessage
 
         where: 'The following params will be: '
             pluginConfigurationName                 | specScope                         | specAdministrativeName                    | messagingSystemType                   | expectedOutcome                   | expectedSummaryMessage
