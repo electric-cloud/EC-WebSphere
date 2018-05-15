@@ -56,7 +56,7 @@ procedure 'Delete\u0421onnectionFactory', {
     type = 'entry'
   }
 
-  step 'Delete\u0421onnectionFactory', {
+  step 'DeleteConnectionFactory', {
     description = ''
     alwaysRun = '0'
     broadcast = '0'
