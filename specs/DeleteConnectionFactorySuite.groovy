@@ -186,7 +186,7 @@ class DeleteConnectionFactorySuite extends PluginTestHelper {
         successDeleteWMQQCF:            "WMQ JMS Connection Factory $factoryAdministrativeNames.correctWMQQCF has been deleted for /$factoryScopes.correctOneNodeMessage/ scope",
         successDeleteWMQTCF:            "WMQ JMS Connection Factory $factoryAdministrativeNames.correctWMQTСF has been deleted for /$factoryScopes.correctOneNodeMessage/ scope",
         incorrectConfiguration:         "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
-        incorrectScope:                 "target object is required",
+        incorrectScope:                 "cannot create ObjectName",
         incorrectAdmName:               "does not exist, can't delete",
         incorrectMesSysType:            "Wrong Messaging System Type",
     ]
@@ -425,12 +425,12 @@ class DeleteConnectionFactorySuite extends PluginTestHelper {
             //assert upperStepSummary =~ expectedSummaryMessage
 
         where: 'The following params will be: '
-            pluginConfigurationName                 | factoryScope                      | factoryAdministrativeName                    | messagingSystemType                   | expectedOutcome                   | expectedSummaryMessage
+            pluginConfigurationName                 | factoryScope                      | factoryAdministrativeName                     | messagingSystemType                   | expectedOutcome                   | expectedSummaryMessage
             pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctSIBQueue    | messagingSystemTypes.correctSIB       | expectedOutcomes.success          | expectedSummaryMessages.successDeleteSIBQ
             pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctSIBTopic    | messagingSystemTypes.correctSIB       | expectedOutcomes.success          | expectedSummaryMessages.successDeleteSIBT
-            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctSIBQueue    | messagingSystemTypes.correctWMQCF     | expectedOutcomes.success          | expectedSummaryMessages.successDeleteWMQCF
-            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctSIBQueue    | messagingSystemTypes.correctWMQQCF    | expectedOutcomes.success          | expectedSummaryMessages.successDeleteWMQQCF
-            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctSIBQueue    | messagingSystemTypes.correctWMQTСF    | expectedOutcomes.success          | expectedSummaryMessages.successDeleteWMQTCF
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctWMQCF       | messagingSystemTypes.correctWMQ       | expectedOutcomes.success          | expectedSummaryMessages.successDeleteWMQCF
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctWMQQCF      | messagingSystemTypes.correctWMQ       | expectedOutcomes.success          | expectedSummaryMessages.successDeleteWMQQCF
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctWMQTСF      | messagingSystemTypes.correctWMQ       | expectedOutcomes.success          | expectedSummaryMessages.successDeleteWMQTCF
 
     }
 
