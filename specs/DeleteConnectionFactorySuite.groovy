@@ -37,7 +37,7 @@ class DeleteConnectionFactorySuite extends PluginTestHelper {
     @Shared
     def testProjectName =           "EC-WebSphere-SystemTests"
     @Shared
-    def testProcedureName =         "DeleteActivationSpec"
+    def testProcedureName =         "DeleteConnectionFactory"
     @Shared
     def preparationProcedureName1 = "CreateorUpdateSIBConnectionFactory"
     @Shared
