@@ -2,7 +2,7 @@ def testProjectName = args.projectName
 def wasResourceName = args.wasResourceName
 project testProjectName
 
-procedure 'Delete\u0421onnectionFactory', {
+procedure 'DeleteConnectionFactory', {
   description = ''
   jobNameTemplate = ''
   projectName = testProjectName
