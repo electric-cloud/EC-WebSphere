@@ -72,7 +72,7 @@ class DeleteConnectionFactorySuite extends PluginTestHelper {
         correctSIBTopic:                "com.jndi.mySIBJMSConnFactTopic",
         correctWMQCF:                   "com.jndi.myWMQJMSConnFact",
         correctWMQQCF:                  "com.jndi.myWMQJMSQConnFact",
-        correctWMQTСF:                  "com.jndi.myWMQJMSTConnFact",
+        correctWMQTCF:                  "com.jndi.myWMQJMSTConnFact",
         incorreWMQct:                   "/:/:/\" incorrect Factory JNDI Name",
     ]
 
@@ -83,7 +83,7 @@ class DeleteConnectionFactorySuite extends PluginTestHelper {
         correctSIBTopic:                "Topic",
         correctWMQCF:                   "CF",
         correctWMQQCF:                  "QCF",
-        correctWMQTСF:                  "TCF",
+        correctWMQTCF:                  "TCF",
         incorrect:                      "Incorrect Factory Type",
     ]
 
@@ -110,7 +110,7 @@ class DeleteConnectionFactorySuite extends PluginTestHelper {
         correctSIBTopic:                "Factory Administrative Description Topic",
         correctWMQCF:                   "Factory Administrative Description Conn Fact",
         correctWMQQCF:                  "Factory Administrative Description Queue Conn Fact",
-        correctWMQTСF:                  "Factory Administrative Description Topic Conn Fact",
+        correctWMQTCF:                  "Factory Administrative Description Topic Conn Fact",
         incorrect:                      "What the incorrect value for this parameter?",
     ]
 
@@ -143,7 +143,7 @@ class DeleteConnectionFactorySuite extends PluginTestHelper {
         correctSIBTopic:                "MySIBJMSConnFactTopicForDelete",
         correctWMQCF:                   "MyWMQJMSConnFact",
         correctWMQQCF:                  "MyWMQJMSQueueConnFact",
-        correctWMQTСF:                  "MyWMQJMSTopicConnFact",
+        correctWMQTCF:                  "MyWMQJMSTopicConnFact",
 
         incorrect:                      "Incorrect ConnFact ForDelete",
     ]
@@ -184,7 +184,7 @@ class DeleteConnectionFactorySuite extends PluginTestHelper {
         successDeleteSIBT:              "SIB JMS Connection Factory $factoryAdministrativeNames.correctSIBTopic has been deleted for /$factoryScopes.correctOneNodeMessage/ scope",
         successDeleteWMQCF:             "WMQ JMS Connection Factory $factoryAdministrativeNames.correctWMQCF has been deleted for /$factoryScopes.correctOneNodeMessage/ scope",
         successDeleteWMQQCF:            "WMQ JMS Connection Factory $factoryAdministrativeNames.correctWMQQCF has been deleted for /$factoryScopes.correctOneNodeMessage/ scope",
-        successDeleteWMQTCF:            "WMQ JMS Connection Factory $factoryAdministrativeNames.correctWMQTСF has been deleted for /$factoryScopes.correctOneNodeMessage/ scope",
+        successDeleteWMQTCF:            "WMQ JMS Connection Factory $factoryAdministrativeNames.correctWMQTCF has been deleted for /$factoryScopes.correctOneNodeMessage/ scope",
         incorrectConfiguration:         "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
         incorrectScope:                 "cannot create ObjectName",
         incorrectAdmName:               "does not exist, can't delete",
@@ -320,9 +320,9 @@ class DeleteConnectionFactorySuite extends PluginTestHelper {
         params = [
                 pluginConfigurationName:                pluginConfigurationNames.correctSOAP,
                 factoryScope:                           factoryScopes.correctOneNode,
-                factoryAdministrativeName:              factoryAdministrativeNames.correctWMQTСF,
-                factoryType:                            factoryTypes.correctWMQTСF,
-                jndiName:                               jndiNames.correctWMQTСF,
+                factoryAdministrativeName:              factoryAdministrativeNames.correctWMQTCF,
+                factoryType:                            factoryTypes.correctWMQTCF,
+                jndiName:                               jndiNames.correctWMQTCF,
                 factoryAdministrativeDescription:       factoryAdministrativeDescriptions.empty,
                 clientChannelDefinitionUrl:             clientChannelDefinitionUrls.empty,
                 clientChannelDefinitionQueueManager:    clientChannelDefinitionQueueManagers.empty,
@@ -430,7 +430,7 @@ class DeleteConnectionFactorySuite extends PluginTestHelper {
             pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctSIBTopic    | messagingSystemTypes.correctSIB       | expectedOutcomes.success          | expectedSummaryMessages.successDeleteSIBT
             pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctWMQCF       | messagingSystemTypes.correctWMQ       | expectedOutcomes.success          | expectedSummaryMessages.successDeleteWMQCF
             pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctWMQQCF      | messagingSystemTypes.correctWMQ       | expectedOutcomes.success          | expectedSummaryMessages.successDeleteWMQQCF
-            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctWMQTСF      | messagingSystemTypes.correctWMQ       | expectedOutcomes.success          | expectedSummaryMessages.successDeleteWMQTCF
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctWMQTCF      | messagingSystemTypes.correctWMQ       | expectedOutcomes.success          | expectedSummaryMessages.successDeleteWMQTCF
 
     }
 

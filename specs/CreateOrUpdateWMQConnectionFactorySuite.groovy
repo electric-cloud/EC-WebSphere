@@ -79,7 +79,7 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
         empty:                          "",
         correctCF:                      "MyWMQJMSConnFact",
         correctQCF:                     "MyWMQJMSQueueConnFact",
-        correctTСF:                     "MyWMQJMSTopicConnFact",
+        correctTCF:                     "MyWMQJMSTopicConnFact",
         correctForFactType:             "myWMQJMSAppFactType",
         incorrect:                      ":/:/:\" Incorrect Factory Admin Name",
     ]
@@ -89,7 +89,7 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
         empty:                          "",
         correctCF:                      "CF",
         correctQCF:                     "QCF",
-        correctTСF:                     "TCF",
+        correctTCF:                     "TCF",
         incorrect:                      "Incorrect Factory Type",
     ]
 
@@ -98,7 +98,7 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
         empty:                          "",
         correctCF:                      "com.jndi.myWMQJMSAppConnFact",
         correctQCF:                     "com.jndi.myWMQJMSAppQConnFact",
-        correctTСF:                     "com.jndi.myWMQJMSAppTConnFact",
+        correctTCF:                     "com.jndi.myWMQJMSAppTConnFact",
         correctForFactType:             "com.jndi.myWMQJMSAppFactType",
         incorrect:                      "/:/:/\" incorrect Factory JNDI Name",
     ]
@@ -110,7 +110,7 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
         empty:                          "",
         correctCF:                      "Factory Administrative Description Conn Fact",
         correctQCF:                     "Factory Administrative Description Queue Conn Fact",
-        correctTСF:                     "Factory Administrative Description Topic Conn Fact",
+        correctTCF:                     "Factory Administrative Description Topic Conn Fact",
         incorrect:                      "What the incorrect value for this parameter?",
     ]
 
@@ -137,7 +137,7 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
         empty:                          "",
         correctCF:                      "-ccsid 819 -msgSelection BROKER",
         correctQCF:                     "-ccsid 819",
-        correctTСF:                     "-ccsid 819 -msgSelection BROKER",
+        correctTCF:                     "-ccsid 819 -msgSelection BROKER",
         incorrect:                      "Incorrect additional Options",
     ]
 
@@ -158,10 +158,10 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
         empty:                          "",
         successCreateCF:                "WMQ JMS Connection Factory $factoryAdministrativeNames.correctCF has been created",
         successCreateQCF:               "WMQ JMS Connection Factory $factoryAdministrativeNames.correctQCF has been created",
-        successCreateTСF:               "WMQ JMS Connection Factory $factoryAdministrativeNames.correctTСF has been created",
+        successCreateTCF:               "WMQ JMS Connection Factory $factoryAdministrativeNames.correctTСF has been created",
         successUpdateCF:                "WMQ JMS Connection Factory $factoryAdministrativeNames.correctCF has been updated",
         successUpdateQCF:               "WMQ JMS Connection Factory $factoryAdministrativeNames.correctQCF has been updated",
-        successUpdateTСF:               "WMQ JMS Connection Factory $factoryAdministrativeNames.correctTСF has been updated",
+        successUpdateTCF:               "WMQ JMS Connection Factory $factoryAdministrativeNames.correctTСF has been updated",
         incorrectConfiguration:         "Configuration '"+pluginConfigurationNames.incorrect+"' doesn't exist",
         incorrectScope:                 "Error found in String \"\"; cannot create ObjectName", //"target object is required",
         incorrectFactAdmName:           "Error occured during create of $factoryAdministrativeNames.incorrect",
@@ -286,15 +286,15 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
             pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctQCF     | factoryTypes.correctQCF       | jndiNames.correctQCF              | factoryAdministrativeDescriptions.correctQCF      | clientChannelDefinitionUrls.correct       | clientChannelDefinitionQueueManagers.empty        | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successUpdateQCF
             pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctQCF     | factoryTypes.correctQCF       | jndiNames.correctQCF              | factoryAdministrativeDescriptions.correctQCF      | clientChannelDefinitionUrls.correct       | clientChannelDefinitionQueueManagers.correct      | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successUpdateQCF
             pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctQCF     | factoryTypes.correctQCF       | jndiNames.correctQCF              | factoryAdministrativeDescriptions.correctQCF      | clientChannelDefinitionUrls.correct       | clientChannelDefinitionQueueManagers.correct      | additionalOptions.correctQCF      | expectedOutcomes.success          | expectedSummaryMessages.successUpdateQCF
-//for TСF
-            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTСF     | factoryTypes.correctTСF       | jndiNames.correctTСF              | factoryAdministrativeDescriptions.empty           | clientChannelDefinitionUrls.empty         | clientChannelDefinitionQueueManagers.empty        | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successCreateTСF
-            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTСF     | factoryTypes.correctTСF       | jndiNames.correctTСF              | factoryAdministrativeDescriptions.correctTСF      | clientChannelDefinitionUrls.empty         | clientChannelDefinitionQueueManagers.empty        | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successUpdateTСF
-            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTСF     | factoryTypes.correctTСF       | jndiNames.correctTСF              | factoryAdministrativeDescriptions.empty           | clientChannelDefinitionUrls.correct       | clientChannelDefinitionQueueManagers.empty        | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successUpdateTСF
-            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTСF     | factoryTypes.correctTСF       | jndiNames.correctTСF              | factoryAdministrativeDescriptions.empty           | clientChannelDefinitionUrls.empty         | clientChannelDefinitionQueueManagers.correct      | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successUpdateTСF
-            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTСF     | factoryTypes.correctTСF       | jndiNames.correctTСF              | factoryAdministrativeDescriptions.empty           | clientChannelDefinitionUrls.empty         | clientChannelDefinitionQueueManagers.empty        | additionalOptions.correctTСF      | expectedOutcomes.success          | expectedSummaryMessages.successUpdateTСF
-            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTСF     | factoryTypes.correctTСF       | jndiNames.correctTСF              | factoryAdministrativeDescriptions.correctTСF      | clientChannelDefinitionUrls.correct       | clientChannelDefinitionQueueManagers.empty        | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successUpdateTСF
-            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTСF     | factoryTypes.correctTСF       | jndiNames.correctTСF              | factoryAdministrativeDescriptions.correctTСF      | clientChannelDefinitionUrls.correct       | clientChannelDefinitionQueueManagers.correct      | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successUpdateTСF
-            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTСF     | factoryTypes.correctTСF       | jndiNames.correctTСF              | factoryAdministrativeDescriptions.correctTСF      | clientChannelDefinitionUrls.correct       | clientChannelDefinitionQueueManagers.correct      | additionalOptions.correctTСF      | expectedOutcomes.success          | expectedSummaryMessages.successUpdateTСF
+//for TCF
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTCF     | factoryTypes.correctTCF       | jndiNames.correctTCF              | factoryAdministrativeDescriptions.empty           | clientChannelDefinitionUrls.empty         | clientChannelDefinitionQueueManagers.empty        | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successCreateTСF
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTCF     | factoryTypes.correctTCF       | jndiNames.correctTCF              | factoryAdministrativeDescriptions.correctTCF      | clientChannelDefinitionUrls.empty         | clientChannelDefinitionQueueManagers.empty        | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successUpdateTСF
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTCF     | factoryTypes.correctTCF       | jndiNames.correctTCF              | factoryAdministrativeDescriptions.empty           | clientChannelDefinitionUrls.correct       | clientChannelDefinitionQueueManagers.empty        | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successUpdateTСF
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTCF     | factoryTypes.correctTCF       | jndiNames.correctTCF              | factoryAdministrativeDescriptions.empty           | clientChannelDefinitionUrls.empty         | clientChannelDefinitionQueueManagers.correct      | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successUpdateTСF
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTCF     | factoryTypes.correctTCF       | jndiNames.correctTCF              | factoryAdministrativeDescriptions.empty           | clientChannelDefinitionUrls.empty         | clientChannelDefinitionQueueManagers.empty        | additionalOptions.correctTCF      | expectedOutcomes.success          | expectedSummaryMessages.successUpdateTСF
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTCF     | factoryTypes.correctTCF       | jndiNames.correctTCF              | factoryAdministrativeDescriptions.correctTCF      | clientChannelDefinitionUrls.correct       | clientChannelDefinitionQueueManagers.empty        | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successUpdateTСF
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTCF     | factoryTypes.correctTCF       | jndiNames.correctTCF              | factoryAdministrativeDescriptions.correctTCF      | clientChannelDefinitionUrls.correct       | clientChannelDefinitionQueueManagers.correct      | additionalOptions.empty           | expectedOutcomes.success          | expectedSummaryMessages.successUpdateTСF
+            pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctTCF     | factoryTypes.correctTCF       | jndiNames.correctTCF              | factoryAdministrativeDescriptions.correctTCF      | clientChannelDefinitionUrls.correct       | clientChannelDefinitionQueueManagers.correct      | additionalOptions.correctTCF      | expectedOutcomes.success          | expectedSummaryMessages.successUpdateTСF
     }
 
     /**
@@ -351,7 +351,7 @@ class CreateOrUpdateWMQConnectionFactorySuite extends PluginTestHelper {
             pluginConfigurationNames.correctSOAP    | factoryScopes.correctOneNode      | factoryAdministrativeNames.correctCF      | factoryTypes.correctCF        | jndiNames.correctCF               | factoryAdministrativeDescriptions.empty           | clientChannelDefinitionUrls.empty         | clientChannelDefinitionQueueManagers.empty        | additionalOptions.incorrect       | expectedOutcomes.error            | expectedSummaryMessages.incorrectAdOps
 
 //for QCF
-//for TСF
+//for TCF
 
     }
 
