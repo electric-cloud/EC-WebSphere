@@ -94,7 +94,7 @@ def isAppInDesiredState(appName, desiredState):
 # this function parses output
 def parseOutput(output):
     records = []
-    for nextArgument in re.split('\n', output):
+    for nextArgument in re.split('(?:\n|\r\n)', output):
         if nextArgument:
             records.append(nextArgument)
     return records
