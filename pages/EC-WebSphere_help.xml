@@ -1933,6 +1933,10 @@
                 <p>After the job runs, you can view the results, including the following
                 job details:</p>
                 <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/ProcedureResult.png" />
+                <p>In the <b>DeleteJMSActivationSpec</b> step, click the Log icon to see the
+                diagnostic information. The output is similar to the following
+                diagnostic report.</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/ProcedureLog.png" />
                 <p>To delete JMS Activation Spec in Flow interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
@@ -1947,10 +1951,10 @@
                 <p>After the pipeline runs, you can view the results, including the
                 following step details:</p>
                 <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/PipelineResult.png" />
-                <p>In the <b>DeleteJMSActivationSpec</b> step, click the Log icon to see the
+                <p>In the pipeline tasks click on "Update SIB JMS Activation Spec", then click the Log icon to see the
                 diagnostic information. The output is similar to the following
                 diagnostic report.</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/ProcedureLog.png" />
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/PipelineLog.png" />
             </div>
 
             <div id="DeleteJMSConnectionFactory">
