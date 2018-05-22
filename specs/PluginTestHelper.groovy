@@ -1,5 +1,6 @@
 import spock.lang.*
 import com.electriccloud.spec.*
+import spock.util.concurrent.PollingConditions;
 
 class PluginTestHelper extends PluginSpockTestSupport {
 
@@ -71,6 +72,14 @@ class PluginTestHelper extends PluginSpockTestSupport {
     def getPipelineLogs(flowRuntimeId) {
         assert flowRuntimeId
         getPipelineProperty('/myPipelineRuntime/debugLogs', flowRuntimeId)
+    }
+    def dslWithTimeout(dslString, timeout = 1200) {
+        def result = dsl(dslString)
+        PollingConditions poll = createPoll(timeout)
+        poll.eventually {
+            jobStatus(result.jobId).status == 'completed'
+        }
+        return result
     }
 
     def runProcedureDsl(dslString) {

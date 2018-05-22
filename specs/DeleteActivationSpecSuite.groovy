@@ -447,7 +447,7 @@ class DeleteActivationSpecSuite extends PluginTestHelper {
                 ]
             )
         """
-        return dsl(code)
+        return dslWithTimeout(code)
     }
 
     //Predefined procedure for Creation SIB Activation Spec
@@ -471,7 +471,7 @@ class DeleteActivationSpecSuite extends PluginTestHelper {
                 ]
             )
         """
-        return dsl(code)
+        return dslWithTimeout(code)
     }
 
 
@@ -491,7 +491,7 @@ class DeleteActivationSpecSuite extends PluginTestHelper {
                  ]
             )
         """
-        return dsl(code)
+        return dslWithTimeout(code)
     }
 
 }

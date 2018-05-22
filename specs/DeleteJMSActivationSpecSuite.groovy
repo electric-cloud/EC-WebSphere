@@ -288,7 +288,7 @@ class DeleteJMSActivationSpecSuite extends PluginTestHelper {
                 ]
             )
         """
-        def sibResult = dsl(sibASCode)
+        def sibResult = dslWithTimeout(sibASCode)
         waitUntil {
             try {
                 jobCompleted(sibResult)
@@ -316,7 +316,7 @@ class DeleteJMSActivationSpecSuite extends PluginTestHelper {
                 ]
             )
         """
-        def wmqResult = dsl(wmqASCode)
+        def wmqResult = dslWithTimeout(wmqASCode)
         waitUntil {
             try {
                 jobCompleted(wmqResult)
@@ -341,6 +341,6 @@ class DeleteJMSActivationSpecSuite extends PluginTestHelper {
                 ]
             )
         """
-        return dsl(code)
+        return dslWithTimeout(code)
     }
 }

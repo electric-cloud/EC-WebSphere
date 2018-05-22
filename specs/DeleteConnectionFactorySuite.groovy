@@ -470,7 +470,7 @@ class DeleteConnectionFactorySuite extends PluginTestHelper {
                 ]
             )
         """
-        return dsl(code)
+        return dslWithTimeout(code)
     }
 
     //Predefined procedure for Creation SIB Activation Spec
@@ -493,7 +493,7 @@ class DeleteConnectionFactorySuite extends PluginTestHelper {
                 ]
             )
         """
-        return dsl(code)
+        return dslWithTimeout(code)
     }
 
 
@@ -513,7 +513,7 @@ class DeleteConnectionFactorySuite extends PluginTestHelper {
                  ]
             )
         """
-        return dsl(code)
+        return dslWithTimeout(code)
     }
 
 

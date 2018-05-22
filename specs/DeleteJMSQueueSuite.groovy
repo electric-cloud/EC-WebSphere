@@ -358,7 +358,7 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
                 ]
             )
         """
-        return dsl(code)
+        return dslWithTimeout(code)
     }
 
     //Run Test Procedure
@@ -376,6 +376,6 @@ class DeleteJMSQueueSuite extends PluginTestHelper {
                 ]
             )
         """
-        return dsl(code)
+        return dslWithTimeout(code)
     }
 }

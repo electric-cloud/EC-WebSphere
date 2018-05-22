@@ -247,7 +247,7 @@ class CheckCreateOrUpdateSIBJMSConnectionFactory extends PluginTestHelper {
                 ]
             )
         """
-        return dsl(code)
+        return dslWithTimeout(code)
     }
 
 }
