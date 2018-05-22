@@ -352,7 +352,7 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
                 ]
             )
         """
-        return dsl(code)
+        return dslWithTimeout(code)
     }
 
     //Run Test Procedure
@@ -370,6 +370,6 @@ class DeleteJMSTopicSuite extends PluginTestHelper {
                 ]
             )
         """
-        return dsl(code)
+        return dslWithTimeout(code)
     }
 }

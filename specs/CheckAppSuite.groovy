@@ -329,7 +329,7 @@ class CheckApp extends PluginTestHelper {
                     ]
                 )
         """
-        return dsl(code)
+        return dslWithTimeout(code)
     }
 
     def runProcedureDeployApp(def parameters){
@@ -352,7 +352,7 @@ class CheckApp extends PluginTestHelper {
                 ]
             )
         """
-        return dsl(code)
+        return dslWithTimeout(code)
     }
 
 }

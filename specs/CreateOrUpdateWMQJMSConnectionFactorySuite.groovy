@@ -244,7 +244,7 @@ class CheckCreateOrUpdateWMQJMSConnectionFactory extends PluginTestHelper {
                 ]
             )
         """
-        return dsl(code)
+        return dslWithTimeout(code)
     }
 
 }

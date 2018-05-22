@@ -287,7 +287,7 @@ class DeleteJMSConnectionFactorySuite extends PluginTestHelper {
                 ]
             )
         """
-        def sibResult = dsl(sibCFCode)
+        def sibResult = dslWithTimeout(sibCFCode)
         waitUntil {
             try {
                 jobCompleted(sibResult)
@@ -314,7 +314,7 @@ class DeleteJMSConnectionFactorySuite extends PluginTestHelper {
                 ]
             )
         """
-        def wmqResult = dsl(wmqCFCode)
+        def wmqResult = dslWithTimeout(wmqCFCode)
         waitUntil {
             try {
                 jobCompleted(wmqResult)
@@ -339,6 +339,6 @@ class DeleteJMSConnectionFactorySuite extends PluginTestHelper {
                 ]
             )
         """
-        return dsl(code)
+        return dslWithTimeout(code)
     }
 }

@@ -258,7 +258,7 @@ class DeleteJMSProvider extends PluginTestHelper {
                 ]
             )
         """
-        def result = dsl(code)
+        def result = dslWithTimeout(code)
         waitUntil {
             try {
                 jobCompleted(result)
@@ -282,6 +282,6 @@ class DeleteJMSProvider extends PluginTestHelper {
                 ]
             )
         """
-        return dsl(code)
+        return dslWithTimeout(code)
     }
 }

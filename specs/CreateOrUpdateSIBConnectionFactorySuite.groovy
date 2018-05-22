@@ -353,6 +353,6 @@ class CreateOrUpdateSIBConnectionFactorySuite extends PluginTestHelper {
                 ]
             )
         """
-        return dsl(code)
+        return dslWithTimeout(code, 1800);
     }
 }
