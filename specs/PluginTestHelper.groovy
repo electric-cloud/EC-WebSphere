@@ -73,7 +73,7 @@ class PluginTestHelper extends PluginSpockTestSupport {
         assert flowRuntimeId
         getPipelineProperty('/myPipelineRuntime/debugLogs', flowRuntimeId)
     }
-    def dslWithTimeout(dslString, timeout = 1200) {
+    def dslWithTimeout(dslString, timeout = 3600) {
         def result = dsl(dslString)
         PollingConditions poll = createPoll(timeout)
         poll.eventually {
