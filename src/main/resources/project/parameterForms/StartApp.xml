@@ -36,6 +36,9 @@
         <required>1</required>
         <documentation>Absolute path of wsadmin, including filename and extension. If the path in which wsadmin is stored in the path environmental variable, the absolute path is ommited. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'. </documentation>
         <propertyReference type="property">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configname/wsadminPath</propertyReference>
+        <!-- Improvements for ECPAPPSERVERJBOSS-773 -->
+        <dependsOn>configName</dependsOn>
+        <!-- End of improvements for ECPAPPSERVERJBOSS-773 -->
     </formElement>
     <formElement>
         <type>entry</type>

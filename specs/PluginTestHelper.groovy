@@ -75,7 +75,8 @@ class PluginTestHelper extends PluginSpockTestSupport {
     }
     def dslWithTimeout(dslString, timeout = 3600) {
         def result = dsl(dslString)
-        PollingConditions poll = createPoll(timeout)
+        PollingConditions poll = new PollingConditions(timeout: timeout, initialDelay: 0,  factor: 1.25)
+        // PollingConditions poll = createPoll(timeout)
         poll.eventually {
             jobStatus(result.jobId).status == 'completed'
         }
