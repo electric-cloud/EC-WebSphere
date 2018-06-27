@@ -34,7 +34,7 @@ $[serverName]
 
 
 updateCommand = r'''
-[-operation $[operation] -contents $[content]
+[-operation $[operation] -contents "$[content]"
 '''.strip()
 if contentURI:
     updateCommand + ' ' # just whitespace - as a delimeter
