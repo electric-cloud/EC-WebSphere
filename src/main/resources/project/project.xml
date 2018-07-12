@@ -6335,27 +6335,7 @@
                         <propertyName>parameters</propertyName>
                         <propertySheet>
                             <property>
-                                <propertyName>wsadminabspath</propertyName>
-                                <propertySheet>
-                                    <property>
-                                        <propertyName>formType</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>standard</value>
-                                    </property>
-                                </propertySheet>
-                            </property>
-                            <property>
                                 <propertyName>configname</propertyName>
-                                <propertySheet>
-                                    <property>
-                                        <propertyName>formType</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>standard</value>
-                                    </property>
-                                </propertySheet>
-                            </property>
-                            <property>
-                                <propertyName>cellname</propertyName>
                                 <propertySheet>
                                     <property>
                                         <propertyName>formType</propertyName>
@@ -6375,7 +6355,7 @@
                                 </propertySheet>
                             </property>
                             <property>
-                                <propertyName>clusterMembers</propertyName>
+                                <propertyName>nodeName</propertyName>
                                 <propertySheet>
                                     <property>
                                         <propertyName>formType</propertyName>
@@ -6384,33 +6364,9 @@
                                     </property>
                                 </propertySheet>
                             </property>
+                            
                             <property>
-                                <propertyName>deployApp</propertyName>
-                                <propertySheet>
-                                    <property>
-                                        <propertyName>checkedValue</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>1</value>
-                                    </property>
-                                    <property>
-                                        <propertyName>formType</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>standard</value>
-                                    </property>
-                                    <property>
-                                        <propertyName>initiallyChecked</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>0</value>
-                                    </property>
-                                    <property>
-                                        <propertyName>uncheckedValue</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>0</value>
-                                    </property>
-                                </propertySheet>
-                            </property>
-                            <property>
-                                <propertyName>commands</propertyName>
+                                <propertyName>firstClusterMemberType</propertyName>
                                 <propertySheet>
                                     <property>
                                         <propertyName>formType</propertyName>
@@ -6419,8 +6375,9 @@
                                     </property>
                                 </propertySheet>
                             </property>
+
                             <property>
-                                <propertyName>appname</propertyName>
+                                <propertyName>firstClusterMemberName</propertyName>
                                 <propertySheet>
                                     <property>
                                         <propertyName>formType</propertyName>
@@ -6429,8 +6386,10 @@
                                     </property>
                                 </propertySheet>
                             </property>
+
+
                             <property>
-                                <propertyName>apppath</propertyName>
+                                <propertyName>firstClusterMemberTemplateName</propertyName>
                                 <propertySheet>
                                     <property>
                                         <propertyName>formType</propertyName>
@@ -6439,38 +6398,9 @@
                                     </property>
                                 </propertySheet>
                             </property>
+
                             <property>
-                                <propertyName>contextRoot</propertyName>
-                                <propertySheet>
-                                    <property>
-                                        <propertyName>formType</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>standard</value>
-                                    </property>
-                                </propertySheet>
-                            </property>
-                            <property>
-                                <propertyName>classpath</propertyName>
-                                <propertySheet>
-                                    <property>
-                                        <propertyName>formType</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>standard</value>
-                                    </property>
-                                </propertySheet>
-                            </property>
-                            <property>
-                                <propertyName>javaparams</propertyName>
-                                <propertySheet>
-                                    <property>
-                                        <propertyName>formType</propertyName>
-                                        <expandable>1</expandable>
-                                        <value>standard</value>
-                                    </property>
-                                </propertySheet>
-                            </property>
-                            <property>
-                                <propertyName>additionalcommands</propertyName>
+                                <propertyName>firstClusterMemberServerName</propertyName>
                                 <propertySheet>
                                     <property>
                                         <propertyName>formType</propertyName>
@@ -6485,14 +6415,6 @@
             </property>
         </propertySheet>
         <formalParameter>
-            <formalParameterName>wsadminabspath</formalParameterName>
-            <defaultValue />
-            <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
-            <required>1</required>
-            <type>entry</type>
-            <expansionDeferred>1</expansionDeferred>
-        </formalParameter>
-        <formalParameter>
             <formalParameterName>configname</formalParameterName>
             <defaultValue />
             <description>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</description>
@@ -6500,9 +6422,9 @@
             <type>entry</type>
         </formalParameter>
         <formalParameter>
-            <formalParameterName>cellname</formalParameterName>
+            <formalParameterName>nodeName</formalParameterName>
             <defaultValue />
-            <description>Name of the cell in which to create a new cluster.</description>
+            <description>Node Name.</description>
             <required>1</required>
             <type>entry</type>
         </formalParameter>
@@ -6513,68 +6435,44 @@
             <required>1</required>
             <type>entry</type>
         </formalParameter>
+
         <formalParameter>
-            <formalParameterName>clusterMembers</formalParameterName>
+            <formalParameterName>firstClusterMemberType</formalParameterName>
             <defaultValue />
-            <description>List of member app servers along with node names.For eg. if server1 and server2 on Node01 and Node02 resp. have to be members give input as Node01=server1,Node02=server2</description>
+            <description>Name of the new cluster. </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>firstClusterMemberName</formalParameterName>
+            <defaultValue />
+            <description>Name of the new cluster. </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+
+        <formalParameter>
+            <formalParameterName>firstClusterMemberTemplateName</formalParameterName>
+            <defaultValue />
+            <description>Name of the new cluster. </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        
+        <formalParameter>
+            <formalParameterName>firstClusterMemberServerName</formalParameterName>
+            <defaultValue />
+            <description>Name of the new cluster. </description>
             <required>1</required>
             <type>entry</type>
         </formalParameter>
         <formalParameter>
-            <formalParameterName>deployApp</formalParameterName>
-            <defaultValue/>
-            <description/>
-            <required>0</required>
-            <type>entry</type>
-        </formalParameter>
-        <formalParameter>
-            <formalParameterName>commands</formalParameterName>
+            <formalParameterName>headerType</formalParameterName>
             <defaultValue />
-            <description>Commands to be entered to wsadmin. Use one command per line.</description>
-            <required>0</required>
-            <type>textarea</type>
-        </formalParameter>
-        <formalParameter>
-            <formalParameterName>javaparams</formalParameterName>
-            <defaultValue />
-            <description>Java options to be passed to wsadmin, separate them using semicolons (;).</description>
-            <required>0</required>
-            <type>textarea</type>
-        </formalParameter>
-        <formalParameter>
-            <formalParameterName>classpath</formalParameterName>
-            <defaultValue />
-            <description>Jars to be passed to the wsadmin classpath.</description>
-            <required>0</required>
-            <type>textarea</type>
-        </formalParameter>
-        <formalParameter>
-            <formalParameterName>appname</formalParameterName>
-            <defaultValue />
-            <description>Name of the application to deploy. i.e: 'webapp'. </description>
-            <required>0</required>
-            <type>entry</type>
-        </formalParameter>
-        <formalParameter>
-            <formalParameterName>apppath</formalParameterName>
-            <defaultValue />
-            <description>Absolute path of the application to deploy. i.e: '/path/to/webapp.war' or 'c:/mydir/webapp.war. </description>
-            <required>0</required>
-            <type>entry</type>
-        </formalParameter>
-        <formalParameter>
-            <formalParameterName>contextRoot</formalParameterName>
-            <defaultValue />
-            <description>Context root for webmodules. If left empty, any web contexts defined in the deployment descriptors will get picked up. </description>
-            <required>0</required>
-            <type>entry</type>
-        </formalParameter>
-        <formalParameter>
-            <formalParameterName>additionalcommands</formalParameterName>
-            <defaultValue />
-            <description>Additional commands to be entered for wsadmin.</description>
-            <required>0</required>
-            <type>textarea</type>
+            <description>Name of the new cluster. </description>
+            <required>1</required>
+            <type>header</type>
         </formalParameter>
         <step>
             <stepName>CreateCluster</stepName>
