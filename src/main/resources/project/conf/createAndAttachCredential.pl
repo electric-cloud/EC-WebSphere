@@ -286,6 +286,11 @@ $xpath = $ec->attachCredential($projName, $credName,
      stepName => 'DeleteJMSProvider'});
 $errors .= $ec->checkAllErrors($xpath);
 
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'CreateServer',
+     stepName => 'CreateServer'});
+$errors .= $ec->checkAllErrors($xpath);
+
 
 
 # CreateDatasource

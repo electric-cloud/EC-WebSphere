@@ -3079,6 +3079,506 @@
         </step>
     </procedure>
     <procedure>
+    <procedureName>CreateServer</procedureName>
+    <description>Creates Server</description>
+    <jobNameTemplate>websphere-create-server-$[jobId]</jobNameTemplate>
+    <resourceName />
+    <workspaceName />
+    <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+    <propertySheet>
+        <property>
+            <propertyName>ec_parameterForm</propertyName>
+            <expandable>1</expandable>
+            <value></value>
+        </property>
+        <property>
+            <propertyName>ec_customEditorData</propertyName>
+            <propertySheet>
+                <property>
+                    <propertyName>parameters</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>configname</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasNodeName</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasServerType</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasServerName</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasSourceType</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasTemplateName</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasSourceServerName</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasStartCmdPath</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasStartCmdArgs</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasWorkingDirectory</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasStopCmdPath</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasStopCmdArgs</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasPort</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasServerInstallRoot</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasPluginInstallPath</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasConfigFilePath</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasWindowsServiceName</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasErrorLogPath</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasAccessLogPath</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasWebProtocol</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <!-- Headers -->
+                        
+                        <property>
+                            <propertyName>headerCreationSource</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>headerGenericServerCreation</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>headerWebServerCreation</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+                        
+                        <!-- End of headers -->
+                    </propertySheet>
+                </property>
+            </propertySheet>
+        </property>
+    </propertySheet>
+    <formalParameter>
+        <formalParameterName>configname</formalParameterName>
+        <defaultValue/>
+        <description>Name of configuration</description>
+        <required>1</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasNodeName</formalParameterName>
+        <defaultValue/>
+        <description>Was node name</description>
+        <required>1</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasServerType</formalParameterName>
+        <defaultValue/>
+        <description>Server type to create</description>
+        <required>1</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasServerName</formalParameterName>
+        <defaultValue/>
+        <description>Server name to create of type provided in previous parameter.</description>
+        <required>1</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasSourceType</formalParameterName>
+        <defaultValue/>
+        <description>Source type to use for server creation, could be server, template or none</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasTemplateName</formalParameterName>
+        <defaultValue/>
+        <description>Template name to use for server creation</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasSourceServerName</formalParameterName>
+        <defaultValue/>
+        <description>Server that should be used as source for server creation.</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasStartCmdPath</formalParameterName>
+        <defaultValue/>
+        <description>Start cmd path</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasStartCmdArgs</formalParameterName>
+        <defaultValue/>
+        <description>was start cmd args</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasWorkingDirectory</formalParameterName>
+        <defaultValue/>
+        <description>Working directory</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasStopCmdPath</formalParameterName>
+        <defaultValue/>
+        <description>WAS stop cmd path</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasStopCmdArgs</formalParameterName>
+        <defaultValue/>
+        <description>WAS stop cmd args</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasPort</formalParameterName>
+        <defaultValue/>
+        <description>Port</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasServerInstallRoot</formalParameterName>
+        <defaultValue/>
+        <description>Server Install Root</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasPluginInstallPath</formalParameterName>
+        <defaultValue/>
+        <description>Plugin install path</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasConfigFilePath</formalParameterName>
+        <defaultValue/>
+        <description>Config File Path</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasWindowsServiceName</formalParameterName>
+        <defaultValue/>
+        <description>Windows Service Name</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasErrorLogPath</formalParameterName>
+        <defaultValue/>
+        <description>wasErrorLogPath</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasAccessLogPath</formalParameterName>
+        <defaultValue/>
+        <description>Access Log Path</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasWebProtocol</formalParameterName>
+        <defaultValue/>
+        <description>Web Protocol</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+    <!-- headers -->
+    
+    <formalParameter>
+        <formalParameterName>headerCreationSource</formalParameterName>
+        <defaultValue />
+        <description></description>
+        <required>0</required>
+        <type>header</type>
+    </formalParameter>
+    <formalParameter>
+        <formalParameterName>headerGenericServerCreation</formalParameterName>
+        <defaultValue />
+        <description></description>
+        <required>0</required>
+        <type>header</type>
+    </formalParameter>
+    <formalParameter>
+        <formalParameterName>headerWebServerCreation</formalParameterName>
+        <defaultValue />
+        <description></description>
+        <required>0</required>
+        <type>header</type>
+    </formalParameter>
+    
+    <!-- end of headerds -->
+    <step>
+        <stepName>CreateServer</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command></command>
+        <condition />
+        <errorHandling>failProcedure</errorHandling>
+        <exclusive>0</exclusive>
+        <logFileName />
+        <parallel>0</parallel>
+        <postProcessor />
+        <releaseExclusive>0</releaseExclusive>
+        <resourceName />
+        <retries>0</retries>
+        <shell>ec-perl</shell>
+        <timeLimit>5</timeLimit>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory />
+        <workspaceName />
+        <procedureName>CreateServer</procedureName>
+        <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+        <propertySheet>
+            <property>
+                <propertyName>ec_customEditorData</propertyName>
+                <propertySheet>
+                    <property>
+                        <propertyName>formType</propertyName>
+                        <expandable>1</expandable>
+                        <value>command</value>
+                    </property>
+                </propertySheet>
+            </property>
+        </propertySheet>
+    </step>
+</procedure>
+
+    <procedure>
         <procedureName>CreateOrUpdateJMSTopic</procedureName>
         <description>Creates or updates JMS Topics</description>
         <jobNameTemplate>websphere-cu-jms-topic-$[jobId]</jobNameTemplate>

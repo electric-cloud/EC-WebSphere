@@ -610,6 +610,12 @@
         <path>parameterForms/JMS/DeleteJMSConnectionFactory.xml</path>
     </file>
     <!-- End of AS and CF forms -->
+    <!-- CreateServer Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Server/CreateServer.xml</path>
+    </file>
+    <!-- End of CreateServer form -->
     <file>
         <xpath>//procedure[procedureName=&quot;MapSharedLibrary&quot;]/step[stepName=&quot;MapSharedLibrary&quot;]/command</xpath>
         <path>server/mapSharedLibrary.pl</path>

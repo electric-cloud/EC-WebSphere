@@ -1,0 +1,244 @@
+<!--
+
+Copyright 2015 Electric Cloud, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CheckApp</help>
+
+<formElement>
+    <label>Config Name:</label>
+    <property>configname</property>
+    <type>entry</type>
+    <required>1</required>
+    <documentation>Name of configuration</documentation>
+</formElement>
+
+
+<formElement>
+    <label>Node Name:</label>
+    <property>wasNodeName</property>
+    <type>entry</type>
+    <required>1</required>
+    <documentation>Was node name</documentation>
+</formElement>
+
+
+<formElement>
+    <label>Server Type:</label>
+    <property>wasServerType</property>
+    <type>select</type>
+    <option><name>Application Server</name><value>ApplicationServer</value></option>
+    <option><name>Generic Server</name><value>GenericServer</value></option>
+    <option><name>Web Server</name><value>WebServer</value></option>
+    <required>1</required>
+    <documentation>Server type to create</documentation>
+</formElement>
+
+
+<formElement>
+    <label>Server Name:</label>
+    <property>wasServerName</property>
+    <type>entry</type>
+    <required>1</required>
+    <documentation>Server name to create of type provided in previous parameter.</documentation>
+</formElement>
+
+<!-- Creation source section -->
+<!-- Header for dynamic form -->
+<formElement>
+        <type>header</type>
+        <label>Server Creation Source</label>
+        <property>headerCreationSource</property>
+        <required>0</required>
+        <documentation>Header</documentation>
+</formElement>
+
+
+<formElement>
+    <label>Source Type:</label>
+    <property>wasSourceType</property>
+    <type>select</type>
+    <value/>
+    <option><name>Server</name><value>server</value></option>
+    <option><name>Template</name><value>template</value></option>
+    <required>0</required>
+    <documentation>Source type to use for server creation, could be server, template or none</documentation>
+</formElement>
+<formElement>
+    <label>Source Template Name:</label>
+    <property>wasTemplateName</property>
+    <type>entry</type>
+    <required>0</required>
+    <documentation>Template name to use for server creation</documentation>
+    <dependsOn>wasSourceType</dependsOn>
+    <condition>${wasSourceType} != '' AND ${wasSourceType} == 'template'</condition>
+</formElement>
+<formElement>
+    <label>Source Server Name:</label>
+    <property>wasSourceServerName</property>
+    <type>entry</type>
+    <required>0</required>
+    <documentation>Server that should be used as source for server creation.</documentation>
+    <dependsOn>wasSourceType</dependsOn>
+    <condition>${wasSourceType} != '' AND ${wasSourceType} == 'server'</condition>
+</formElement>
+
+<!-- End of creation source section -->
+
+<!-- Generic server creation section -->
+<formElement>
+        <type>header</type>
+        <label>Generic Server Parameters</label>
+        <property>headerGenericServerCreation</property>
+        <required>0</required>
+        <documentation>Header</documentation>
+        <dependsOn>wasServerType</dependsOn>
+        <condition>${wasServerType} != '' AND ${wasServerType} == 'GenericServer'</condition>
+</formElement>
+<formElement>
+    <label>Start Cmd Path:</label>
+    <property>wasStartCmdPath</property>
+    <type>entry</type>
+    <required>0</required>
+    <documentation>Start cmd path</documentation>
+    <dependsOn>wasServerType</dependsOn>
+    <condition>${wasServerType} != '' AND ${wasServerType} == 'GenericServer'</condition>
+</formElement>
+<formElement>
+    <label>Start Cmd Args:</label>
+    <property>wasStartCmdArgs</property>
+    <type>entry</type>
+    <required>0</required>
+    <documentation>was start cmd args</documentation>
+    <dependsOn>wasServerType</dependsOn>
+    <condition>${wasServerType} != '' AND ${wasServerType} == 'GenericServer'</condition>
+</formElement>
+<formElement>
+    <label>Working Directory:</label>
+    <property>wasWorkingDirectory</property>
+    <type>entry</type>
+    <required>0</required>
+    <documentation>Working directory</documentation>
+    <dependsOn>wasServerType</dependsOn>
+    <condition>${wasServerType} != '' AND ${wasServerType} == 'GenericServer'</condition>
+</formElement>
+<formElement>
+    <label>Stop Cmd Path:</label>
+    <property>wasStopCmdPath</property>
+    <type>entry</type>
+    <required>0</required>
+    <documentation>WAS stop cmd path</documentation>
+    <dependsOn>wasServerType</dependsOn>
+    <condition>${wasServerType} != '' AND ${wasServerType} == 'GenericServer'</condition>
+</formElement>
+<formElement>
+    <label>Stop Cmd Args:</label>
+    <property>wasStopCmdArgs</property>
+    <type>entry</type>
+    <required>0</required>
+    <documentation>WAS stop cmd args</documentation>
+    <dependsOn>wasServerType</dependsOn>
+    <condition>${wasServerType} != '' AND ${wasServerType} == 'GenericServer'</condition>
+</formElement>
+<!-- Generic server creation section -->
+
+<!-- Web server creation section -->
+<formElement>
+        <type>header</type>
+        <label>Web Server Parameters</label>
+        <property>headerWebServerCreation</property>
+        <required>0</required>
+        <documentation>Header</documentation>
+        <dependsOn>wasServerType</dependsOn>
+        <condition>${wasServerType} != '' AND ${wasServerType} == 'WebServer'</condition>
+</formElement>
+<formElement>
+    <label>Port:</label>
+    <property>wasPort</property>
+    <type>entry</type>
+    <required>0</required>
+    <documentation>Port</documentation>
+    <dependsOn>wasServerType</dependsOn>
+    <condition>${wasServerType} != '' AND ${wasServerType} == 'WebServer'</condition>
+</formElement>
+<formElement>
+    <label>Server Install Root:</label>
+    <property>wasServerInstallRoot</property>
+    <type>entry</type>
+    <required>0</required>
+    <documentation>Server Install Root</documentation>
+    <dependsOn>wasServerType</dependsOn>
+    <condition>${wasServerType} != '' AND ${wasServerType} == 'WebServer'</condition>
+</formElement>
+<formElement>
+    <label>Plugin Install Path:</label>
+    <property>wasPluginInstallPath</property>
+    <type>entry</type>
+    <required>0</required>
+    <documentation>Plugin install path</documentation>
+    <dependsOn>wasServerType</dependsOn>
+    <condition>${wasServerType} != '' AND ${wasServerType} == 'WebServer'</condition>
+</formElement>
+<formElement>
+    <label>ConfigFilePath:</label>
+    <property>wasConfigFilePath</property>
+    <type>entry</type>
+    <required>0</required>
+    <documentation>Config File Path</documentation>
+    <dependsOn>wasServerType</dependsOn>
+    <condition>${wasServerType} != '' AND ${wasServerType} == 'WebServer'</condition>
+</formElement>
+<formElement>
+    <label>Windows Service Name:</label>
+    <property>wasWindowsServiceName</property>
+    <type>entry</type>
+    <required>0</required>
+    <documentation>Windows Service Name</documentation>
+    <dependsOn>wasServerType</dependsOn>
+    <condition>${wasServerType} != '' AND ${wasServerType} == 'WebServer'</condition>
+</formElement>
+<formElement>
+    <label>Error Log Path:</label>
+    <property>wasErrorLogPath</property>
+    <type>entry</type>
+    <required>0</required>
+    <documentation>wasErrorLogPath</documentation>
+    <dependsOn>wasServerType</dependsOn>
+    <condition>${wasServerType} != '' AND ${wasServerType} == 'WebServer'</condition>
+</formElement>
+<formElement>
+    <label>Access Log Path:</label>
+    <property>wasAccessLogPath</property>
+    <type>entry</type>
+    <required>0</required>
+    <documentation>Access Log Path</documentation>
+    <dependsOn>wasServerType</dependsOn>
+    <condition>${wasServerType} != '' AND ${wasServerType} == 'WebServer'</condition>
+</formElement>
+<formElement>
+    <label>Web Protocol:</label>
+    <property>wasWebProtocol</property>
+    <type>select</type>
+    <option><name>HTTP</name><value>HTTP</value></option>
+    <option><name>HTTPS</name><value>HTTPS</value></option>
+    <required>0</required>
+    <documentation>Web Protocol</documentation>
+    <dependsOn>wasServerType</dependsOn>
+    <condition>${wasServerType} != '' AND ${wasServerType} == 'WebServer'</condition>
+</formElement>
+
+<!-- End of web server creation section -->
+</editor>

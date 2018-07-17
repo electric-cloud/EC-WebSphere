@@ -330,6 +330,13 @@ my %deleteJMSProvider = (
     category    => "Application Server"
 );
 
+my %createServer = (
+    label       => "WebSphere - Create Server",
+    procedure   => "CreateServer",
+    description => "Creates WebSphere Server",
+    category    => "Application Server"
+);
+
 
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
@@ -388,6 +395,9 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete J
 # Delete JMS Provider procedure
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JMS Provider");
 
+# Create Server
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Server");
+
 @::createStepPickerSteps = (
     \%checkPageStatus, \%checkServerStatus,
     \%startServer, \%stopServer,
@@ -413,7 +423,8 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete J
     # CF procedures
     \%createOrUpdateWMQJMSConnectionFactory, \%createOrUpdateSIBJMSConnectionFactory, \%deleteJMSConnectionFactory,
     # Delete JMS Provider procedure
-    \%deleteJMSProvider
+    \%deleteJMSProvider,
+    \%createServer
 );
 
 if ($upgradeAction eq "upgrade") {
@@ -743,6 +754,11 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DeleteJMSProvider',
                 stepName => 'DeleteJMSProvider'
+            });
+            # CreateServer
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateServer',
+                stepName => 'CreateServer'
             });
         }
     }
