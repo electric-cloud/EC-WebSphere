@@ -648,4 +648,41 @@
         <path>server/checkNodeStatus.pl</path>
     </file>
 
+    <!-- Starting from 2.5.0 release Manifest file will have procedure-based structure, not type-based -->
+    <!-- CreateApplicationServerTemplate Procedure Files -->
+    <!-- XML form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateApplicationServerTemplate&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Server/CreateApplicationServerTemplate.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;create_application_server_template.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Server/create_application_server_template.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateApplicationServerTemplate&quot;]/step[stepName=&quot;CreateApplicationServerTemplate&quot;]/command</xpath>
+        <path>server/Server/createApplicationServerTemplate.pl</path>
+    </file>
+    <!-- End of CreateApplicationServerTemplate Procedure Files -->
+
+    <!-- DeleteServerTemplate Procedure Files -->
+    <!-- XML form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeleteServerTemplate&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Server/DeleteServerTemplate.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;delete_server_template.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Server/delete_server_template.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeleteServerTemplate&quot;]/step[stepName=&quot;DeleteServerTemplate&quot;]/command</xpath>
+        <path>server/Server/deleteServerTemplate.pl</path>
+    </file>
+    <!-- End of DeleteServerTemplate Procedure Files -->
+    
 </fileset>

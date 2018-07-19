@@ -330,10 +330,26 @@ my %deleteJMSProvider = (
     category    => "Application Server"
 );
 
+# Create server
 my %createServer = (
     label       => "WebSphere - Create Server",
     procedure   => "CreateServer",
     description => "Creates WebSphere Server",
+    category    => "Application Server"
+);
+
+# Create app server template
+my %createAppServerTemplate = (
+    label       => "WebSphere - Create Application Server Template",
+    procedure   => "CreateApplicationServerTemplate",
+    description => "Creates Application Server Template",
+    category    => "Application Server"
+);
+
+my %deleteServerTemplate = (
+    label       => "WebSphere - Delete Server Template",
+    procedure   => "DeleteServerTemplate",
+    description => "Deletes Server Template",
     category    => "Application Server"
 );
 
@@ -398,6 +414,12 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete J
 # Create Server
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Server");
 
+# Create Application Server Template
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Application Server Template");
+
+# Delete Server Template
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Server Template");
+
 @::createStepPickerSteps = (
     \%checkPageStatus, \%checkServerStatus,
     \%startServer, \%stopServer,
@@ -424,7 +446,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create S
     \%createOrUpdateWMQJMSConnectionFactory, \%createOrUpdateSIBJMSConnectionFactory, \%deleteJMSConnectionFactory,
     # Delete JMS Provider procedure
     \%deleteJMSProvider,
-    \%createServer
+    \%createServer, \%createAppServerTemplate, \%deleteServerTemplate
 );
 
 if ($upgradeAction eq "upgrade") {
@@ -759,6 +781,16 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'CreateServer',
                 stepName => 'CreateServer'
+            });
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateApplicationServerTemplate',
+                stepName => 'CreateApplicationServerTemplate'
+            });
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'DeleteServerTemplate',
+                stepName => 'DeleteServerTemplate'
             });
         }
     }

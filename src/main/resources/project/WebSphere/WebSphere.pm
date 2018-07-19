@@ -304,17 +304,17 @@ sub setResult {
     }
     # procedure, schedule and application process are also procedure context.
     # else {
-        for my $p (@$procedure) {
-            if (!$p->{target} || !exists $p->{msg}) {
-                croak("target and msg are mandatory");
-            }
-            if ($p->{target} !~ m/^(?:myJobStep|myJob|myCall)$/s) {
-                croak("target should one of: myJobStep, myJob, myCall. Got: $p->{target}");
-            }
-            my $pp = '/' . $p->{target} . '/summary';
-            $self->log()->debug("Setting procedure property: '$pp' => '$p->{msg}'");
-            $ec->setProperty($pp => $p->{msg});
+    for my $p (@$procedure) {
+        if (!$p->{target} || !exists $p->{msg}) {
+            croak("target and msg are mandatory");
         }
+        if ($p->{target} !~ m/^(?:myJobStep|myJob|myCall)$/s) {
+            croak("target should one of: myJobStep, myJob, myCall. Got: $p->{target}");
+        }
+        my $pp = '/' . $p->{target} . '/summary';
+        $self->log()->debug("Setting procedure property: '$pp' => '$p->{msg}'");
+        $ec->setProperty($pp => $p->{msg});
+    }
     #}
     return sub {
         print "Will execute exit $exit_code\n";

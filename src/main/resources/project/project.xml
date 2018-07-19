@@ -210,6 +210,16 @@
                     <propertyName>create_or_update_sib_jms_connection_factory.py</propertyName>
                     <value/>
                 </property>
+                <!-- CreateApplicationServerTemplate jython script -->
+                <property>
+                    <propertyName>create_application_server_template.py</propertyName>
+                    <value/>
+                </property>
+                <!-- DeleteServerTemplate jython script -->
+                <property>
+                    <propertyName>delete_server_template.py</propertyName>
+                    <value/>
+                </property>
                 <!-- New properties after this line, added due refactoring. TODO: remove this comment after refactoring is done.-->
                 <property>
                     <propertyName>check_app.py</propertyName>
@@ -3079,6 +3089,243 @@
         </step>
     </procedure>
     <procedure>
+        <procedureName>CreateApplicationServerTemplate</procedureName>
+        <description>Creates Application Server Template</description>
+        <jobNameTemplate>websphere-create-appserver-template-$[jobId]</jobNameTemplate>
+        <resourceName />
+        <workspaceName />
+        <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+        <propertySheet>
+            <property>
+                <propertyName>ec_parameterForm</propertyName>
+                <expandable>1</expandable>
+                <value></value>
+            </property>
+            <property>
+                <propertyName>ec_customEditorData</propertyName>
+                <propertySheet>
+                    <property>
+                        <propertyName>parameters</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>configname</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>                            
+                            <property>
+                                <propertyName>wasNodeName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            
+                            <property>
+                                <propertyName>wasAppServerName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            
+                            <property>
+                                <propertyName>wasTemplateName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+
+                        
+                    </propertySheet>
+                </property>
+            </propertySheet>
+        </property>
+    </propertySheet>
+
+    <formalParameter>
+        <formalParameterName>configname</formalParameterName>
+        <defaultValue/>
+        <description>Name of configuration</description>
+        <required>1</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasNodeName</formalParameterName>
+        <defaultValue/>
+        <description>Name of configuration</description>
+        <required>1</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasAppServerName</formalParameterName>
+        <defaultValue/>
+        <description>Name of the websphere application server to create template in format NodeName:servername</description>
+        <required>1</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasTemplateName</formalParameterName>
+        <defaultValue/>
+        <description>Name of configuration</description>
+        <required>1</required>
+        <type>entry</type>
+    </formalParameter>
+
+    
+    <step>
+        <stepName>CreateApplicationServerTemplate</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command></command>
+        <condition />
+        <errorHandling>failProcedure</errorHandling>
+        <exclusive>0</exclusive>
+        <logFileName />
+        <parallel>0</parallel>
+        <postProcessor />
+        <releaseExclusive>0</releaseExclusive>
+        <resourceName />
+        <retries>0</retries>
+        <shell>ec-perl</shell>
+        <timeLimit>5</timeLimit>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory />
+        <workspaceName />
+        <procedureName>CreateApplicationServerTemplate</procedureName>
+        <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+        <propertySheet>
+            <property>
+                <propertyName>ec_customEditorData</propertyName>
+                <propertySheet>
+                    <property>
+                        <propertyName>formType</propertyName>
+                        <expandable>1</expandable>
+                        <value>command</value>
+                    </property>
+                </propertySheet>
+            </property>
+        </propertySheet>
+    </step>
+</procedure>
+<procedure>
+    <procedureName>DeleteServerTemplate</procedureName>
+    <description>Deletes Server Template</description>
+    <jobNameTemplate>websphere-delete-server-template-$[jobId]</jobNameTemplate>
+    <resourceName />
+    <workspaceName />
+    <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+    <propertySheet>
+        <property>
+            <propertyName>ec_parameterForm</propertyName>
+            <expandable>1</expandable>
+            <value></value>
+        </property>
+        <property>
+            <propertyName>ec_customEditorData</propertyName>
+            <propertySheet>
+                <property>
+                    <propertyName>parameters</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>configname</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+                        <property>
+                            <propertyName>wasTemplateName</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        
+                    </propertySheet>
+                </property>
+            </propertySheet>
+        </property>
+    </propertySheet>
+
+    <formalParameter>
+        <formalParameterName>configname</formalParameterName>
+        <defaultValue/>
+        <description>Name of configuration</description>
+        <required>1</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasTemplateName</formalParameterName>
+        <defaultValue/>
+        <description>Name of configuration</description>
+        <required>1</required>
+        <type>entry</type>
+    </formalParameter>
+
+    
+    <step>
+        <stepName>DeleteServerTemplate</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command></command>
+        <condition />
+        <errorHandling>failProcedure</errorHandling>
+        <exclusive>0</exclusive>
+        <logFileName />
+        <parallel>0</parallel>
+        <postProcessor />
+        <releaseExclusive>0</releaseExclusive>
+        <resourceName />
+        <retries>0</retries>
+        <shell>ec-perl</shell>
+        <timeLimit>5</timeLimit>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory />
+        <workspaceName />
+        <procedureName>DeleteServerTemplate</procedureName>
+        <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+        <propertySheet>
+            <property>
+                <propertyName>ec_customEditorData</propertyName>
+                <propertySheet>
+                    <property>
+                        <propertyName>formType</propertyName>
+                        <expandable>1</expandable>
+                        <value>command</value>
+                    </property>
+                </propertySheet>
+            </property>
+        </propertySheet>
+    </step>
+</procedure>
+
+    <procedure>
     <procedureName>CreateServer</procedureName>
     <description>Creates Server</description>
     <jobNameTemplate>websphere-create-server-$[jobId]</jobNameTemplate>
@@ -3524,21 +3771,21 @@
         <defaultValue />
         <description></description>
         <required>0</required>
-        <type>header</type>
+        <type>entry</type>
     </formalParameter>
     <formalParameter>
         <formalParameterName>headerGenericServerCreation</formalParameterName>
         <defaultValue />
         <description></description>
         <required>0</required>
-        <type>header</type>
+        <type>entry</type>
     </formalParameter>
     <formalParameter>
         <formalParameterName>headerWebServerCreation</formalParameterName>
         <defaultValue />
         <description></description>
         <required>0</required>
-        <type>header</type>
+        <type>entry</type>
     </formalParameter>
     
     <!-- end of headerds -->

@@ -291,7 +291,15 @@ $xpath = $ec->attachCredential($projName, $credName,
      stepName => 'CreateServer'});
 $errors .= $ec->checkAllErrors($xpath);
 
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'CreateApplicationServerTemplate',
+     stepName => 'CreateApplicationServerTemplate'});
+$errors .= $ec->checkAllErrors($xpath);
 
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'DeleteServerTemplate',
+     stepName => 'DeleteServerTemplate'});
+$errors .= $ec->checkAllErrors($xpath);
 
 # CreateDatasource
 # DeleteDatasource
