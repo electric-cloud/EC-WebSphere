@@ -684,5 +684,41 @@
         <path>server/Server/deleteServerTemplate.pl</path>
     </file>
     <!-- End of DeleteServerTemplate Procedure Files -->
+
+    <!-- StartMiddlewareServer Procedure Files -->
+    <!-- XML form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StartMiddlewareServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Server/StartMiddlewareServer.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;start_middleware_server.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Server/delete_server_template.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StartMiddlewareServer&quot;]/step[stepName=&quot;StartMiddlewareServer&quot;]/command</xpath>
+        <path>server/Server/startMiddlewareServer.pl</path>
+    </file>
+    <!-- End of StartMiddlewareServer Procedure Files -->
+
+    <!-- StopMiddlewareServer Procedure Files -->
+    <!-- XML form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StopMiddlewareServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Server/StopMiddlewareServer.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;stop_middleware_server.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Server/delete_server_template.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StopMiddlewareServer&quot;]/step[stepName=&quot;StopMiddlewareServer&quot;]/command</xpath>
+        <path>server/Server/stopMiddlewareServer.pl</path>
+    </file>
+    <!-- End of StopMiddlewareServer Procedure Files -->
     
 </fileset>

@@ -323,6 +323,29 @@ sub setResult {
 }
 
 
+sub parseScopeToObject {
+    my ($self, $scope) = @_;
+
+    # TODO: Improve parsing here, to work with both scope formats.
+    if ($scope =~ m|^/.*?/$|) {
+        return $scope;
+    }
+
+    my @elems = split ',', $scope;
+
+    my $retval = {};
+    for my $elem (@elems) {
+        WebSphere::Util::rtrim($elem);
+        my @kv = split '=', $elem;
+        WebSphere::Util::rtrim($kv[0]);
+        WebSphere::Util::rtrim($kv[1]);
+
+        $retval->{$kv[0]} = $kv[1];
+    }
+    return $retval;
+}
+
+
 sub parseScope {
     my ($self, $scope) = @_;
 
