@@ -27,18 +27,29 @@ limitations under the License.
     </formElement>
     <formElement>
         <label>Server List:</label>
-        <property>wasServerList</property>
-        <type>entry</type>
+        <property>wasServersList</property>
+        <type>textarea</type>
         <required>1</required>
         <documentation>Server List to be stopped.</documentation>
     </formElement>
     <!-- TODO: Change it to select when error handling policy will be defined -->
-
     <formElement>
         <label>Error handling:</label>
         <property>wasErrorHandling</property>
-        <type>entry</type>
+        <type>select</type>
+        <value>WARNING</value>
         <required>1</required>
+        <option><name>Warnings are ignored</name><value>SUCCESS</value></option>
+        <option><name>All warnings are warnings</name><value>WARNING</value></option>
+        <option><name>All warnings are fatal</name><value>FATAL</value></option>
         <documentation>Error handling mechanism</documentation>
+    </formElement>
+    <formElement>
+        <label>Wait time:</label>
+        <property>wasWaitTime</property>
+        <type>entry</type>
+        <value>300</value>
+        <required>0</required>
+        <documentation>Maximum duration of check application state retries.</documentation>
     </formElement>
 </editor>

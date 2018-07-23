@@ -694,7 +694,7 @@
     <!-- Python script -->
     <file>
         <xpath>//property[propertyName=&quot;start_middleware_server.py&quot;]/value</xpath>
-        <path>wsadmin_scripts/Server/delete_server_template.py</path>
+        <path>wsadmin_scripts/Server/start_middleware_server.py</path>
     </file>
     <!-- Perl script -->
     <file>
@@ -712,7 +712,7 @@
     <!-- Python script -->
     <file>
         <xpath>//property[propertyName=&quot;stop_middleware_server.py&quot;]/value</xpath>
-        <path>wsadmin_scripts/Server/delete_server_template.py</path>
+        <path>wsadmin_scripts/Server/stop_middleware_server.py</path>
     </file>
     <!-- Perl script -->
     <file>

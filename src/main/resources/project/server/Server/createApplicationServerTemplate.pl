@@ -89,7 +89,8 @@ my $app_state = 'NOT_EXISTS';
 
 $logger->info($cmd_res);
 
-my $code = $? >> 8;
+my $code = $?;
+$code >> 8;
 
 my $result_params = {
     outcome => {

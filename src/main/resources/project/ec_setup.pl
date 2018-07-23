@@ -353,6 +353,20 @@ my %deleteServerTemplate = (
     category    => "Application Server"
 );
 
+my %startMiddlewareServer = (
+    label       => "WebSphere - Start Middleware Server",
+    procedure   => "StartMiddlewareServer",
+    description => "Starts middleware server.",
+    category    => "Application Server"
+);
+
+my %stopMiddlewareServer = (
+    label       => "WebSphere - Stop Middleware Server",
+    procedure   => "StopMiddlewareServer",
+    description => "Stops middleware server.",
+    category    => "Application Server"
+);
+
 
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
@@ -420,6 +434,10 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create A
 # Delete Server Template
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Server Template");
 
+# Start/Stop Middleware Server
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start Middleware Server");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop Middleware Server");
+
 @::createStepPickerSteps = (
     \%checkPageStatus, \%checkServerStatus,
     \%startServer, \%stopServer,
@@ -446,7 +464,9 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete S
     \%createOrUpdateWMQJMSConnectionFactory, \%createOrUpdateSIBJMSConnectionFactory, \%deleteJMSConnectionFactory,
     # Delete JMS Provider procedure
     \%deleteJMSProvider,
-    \%createServer, \%createAppServerTemplate, \%deleteServerTemplate
+    \%createServer, \%createAppServerTemplate, \%deleteServerTemplate,
+    # Start/stop middleware server
+    \%startMiddlewareServer, \%stopMiddlewareServer
 );
 
 if ($upgradeAction eq "upgrade") {
@@ -791,6 +811,15 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DeleteServerTemplate',
                 stepName => 'DeleteServerTemplate'
+            });
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'StartMiddlewareServer',
+                stepName => 'StartMiddlewareServer'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'StopMiddlewareServer',
+                stepName => 'StopMiddlewareServer'
             });
         }
     }

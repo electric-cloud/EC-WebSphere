@@ -326,23 +326,87 @@ sub setResult {
 sub parseScopeToObject {
     my ($self, $scope) = @_;
 
-    # TODO: Improve parsing here, to work with both scope formats.
+    my $split_regex = ',';
+    my $split_regex2 = '=';
+
     if ($scope =~ m|^/.*?/$|) {
-        return $scope;
+        $split_regex = '/';
+        $split_regex2 = ':';
     }
 
-    my @elems = split ',', $scope;
-
+    my @elems = split $split_regex, $scope;
+    @elems = grep {$_ ne ''} @elems;
     my $retval = {};
     for my $elem (@elems) {
-        WebSphere::Util::rtrim($elem);
-        my @kv = split '=', $elem;
-        WebSphere::Util::rtrim($kv[0]);
-        WebSphere::Util::rtrim($kv[1]);
+        rtrim($elem);
+        my @kv = split $split_regex2, $elem;
+        rtrim($kv[0]);
+        rtrim($kv[1]);
 
         $retval->{$kv[0]} = $kv[1];
+        # $retval .= "$kv[0]:$kv[1]/";
     }
     return $retval;
+}
+
+
+sub generatePythonStructure {
+    my ($self, $struct) = @_;
+
+    my $retval = '';
+    if (!ref $struct) {
+        return $struct;
+    }
+    elsif (ref $struct eq 'ARRAY') {
+        $retval = generatePythonList($struct);
+    }
+    elsif (ref $struct eq 'HASH') {
+        $retval = generatePythonDict($struct);
+    }
+
+}
+
+sub generatePythonList {
+    my ($arrayref) = @_;
+
+    my $retval = '';
+    for my $elem (@$arrayref) {
+        if (ref $elem) {
+            if (ref $elem eq 'ARRAY') {
+                $elem = generatePythonList($elem);
+            }
+            elsif (ref $elem eq 'HASH') {
+                $elem = generatePythonDict($elem);
+            }
+        }
+        $retval .= qq|$elem,|;
+    }
+    $retval =~ s/,$//gs;
+    return '[' . $retval . ']';
+}
+
+
+sub generatePythonDict {
+    my ($hashref) = @_;
+
+    my $retval = '';
+    for my $k (keys %$hashref) {
+        my $v = $hashref->{$k};
+        if (ref $v) {
+            if (ref $v eq 'ARRAY') {
+                $v = generatePythonList($v);
+            }
+            elsif (ref $v eq 'HASH') {
+                $v = generatePythonDict($v);
+            }
+        }
+        else {
+            $v = qq|'$v'|;
+        }
+        $retval .= qq|'$k':$v,|;
+    }
+    $retval =~ s/,$//gs;
+    return '{' . $retval . '}';
 }
 
 
@@ -366,6 +430,8 @@ sub parseScope {
     }
     return $retval;
 }
+
+
 
 =head2 C<new>
 

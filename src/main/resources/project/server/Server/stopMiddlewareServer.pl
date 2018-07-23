@@ -32,13 +32,15 @@ $| = 1;
 # -------------------------------------------------------------------------
 
 my $config = '$[configname]';
-my $server_list = '$[wasServerList]';
+my $server_list = '$[wasServersList]';
 my $error_handling = '$[wasErrorHandling]';
+my $wait_time = '$[wasWaitTime]';
 
 rtrim(
     $config,
     $server_list,
-    $error_handling
+    $error_handling,
+    $wait_time
 );
 
 my $ec = ElectricCommander->new();
@@ -49,9 +51,33 @@ my $websphere = WebSphere::WebSphere->new(
     $config,
 );
 
+if ($wait_time ne '' && $wait_time !~ m/^\d+$/s) {
+    $websphere->bail_out("Wait time should be a positive integer, if present. Got: $wait_time");
+}
+if ($error_handling !~ m/^(?:FATAL|WARNING|SUCCESS)$/s) {
+    $websphere->bail_out("Error handling should be one of: FATAL, WARNING, SUCCESS");
+}
+
+my $parsed_server_list = [];
+my @result = split ',', $server_list;
+
+for my $row (@result) {
+    my @row = split '=', $row;
+
+    if (scalar @row != 2) {
+        $websphere->bail_out("Wrong server format. Expected: Node=server, got: $row");
+    }
+    rtrim ($row[0], $row[1]);
+    push @$parsed_server_list, {
+        Node => $row[0], Server => $row[1]
+    };
+}
+
 $websphere->setTemplateProperties(
     # TODO: Think about python dict generation for list
-    serverList  => $server_list
+    rawServersList    => $server_list,
+    parsedServersList => $websphere->generatePythonStructure($parsed_server_list),
+    waitTime          => $wait_time
 );
 
 
@@ -83,11 +109,10 @@ $props{stopMiddlewareServerLine} = $escaped_shellcmd;
 # execute
 my $cmd_res = `$shellcmd 2>&1`;
 
-my $app_state = 'NOT_EXISTS';
-
 $logger->info($cmd_res);
 
-my $code = $? >> 8;
+my $code = $?;
+$code >> 8;
 
 my $result_params = {
     outcome => {
@@ -99,31 +124,37 @@ my $result_params = {
         msg => ''
     },
     pipeline => {
-        target => 'CreateApplicationServerTemplate Result:',
+        target => 'StopMiddlewareServer Result:',
         msg => '',
     }
 };
 
 $logger->info("Exit code: $code\n");
 
-# if ($code == SUCCESS) {
-#     $result_params->{outcome}->{result} = 'success';
-#     $result_params->{procedure}->{msg} = sprintf(
-#         'Server Template %s has been deleted.',
-#         $template_name
-#     );
-#     $result_params->{pipeline}->{msg} = $result_params->{procedure}->{msg};
-# }
-# else {
-#     my $error = $websphere->extractWebSphereExceptions($cmd_res);
-#     $result_params->{outcome}->{result} = 'error';
-#     $result_params->{procedure}->{msg} = $result_params->{pipeline}->{msg} =
-#         sprintf(
-#             'Failed to delete Server Template %s.\nError: %s',
-#             $template_name,
-#             $error
-#         );
-# }
+my @warnings = ();
+if ($error_handling eq 'WARNING') {
+    @warnings = $cmd_res =~ m/(WARNING:.*?)$/gms;
+}
+my $procedure_result = '';
+if ($cmd_res =~ m/^Procedure result:(.*?)===.*?Done/gms) {
+    $procedure_result = $1;
+    rtrim($procedure_result);
+}
+if ($code == SUCCESS) {
+    $result_params->{outcome}->{result} = 'success';
+    $result_params->{procedure}->{msg} = "Stop Middleware Server results:\n$cmd_res";
+    if (@warnings) {
+        $result_params->{outcome}->{result} = 'warning';
+        $result_params->{procedure}->{msg} .= "\nWarnings:\n" . join '', @warnings;
+    }
+    $result_params->{pipeline}->{msg} = $result_params->{procedure}->{msg};
+}
+else {
+    my $error = $websphere->extractWebSphereExceptions($cmd_res);
+    $result_params->{outcome}->{result} = 'error';
+    $result_params->{procedure}->{msg} = $result_params->{pipeline}->{msg} =
+        sprintf("Failed to stop servers\n%s", $procedure_result);
+}
 
 my $exit = $websphere->setResult(%$result_params);
 

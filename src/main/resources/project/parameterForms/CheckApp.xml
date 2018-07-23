@@ -68,7 +68,7 @@
         <type>entry</type>
         <label>Wait Time:</label>
         <property>waitTimeForState</property>
-        <documentation> Maximum duration of check application state retries.</documentation>
+        <documentation>Maximum duration of check application state retries.</documentation>
         <required>0</required>
     </formElement>
 </editor>

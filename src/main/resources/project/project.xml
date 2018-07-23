@@ -3367,7 +3367,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>wasServerList</propertyName>
+                                    <propertyName>wasServersList</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -3378,6 +3378,16 @@
                                 </property>
                                 <property>
                                     <propertyName>wasErrorHandling</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>wasWaitTime</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -3413,6 +3423,13 @@
                 <defaultValue/>
                 <description>Name of configuration</description>
                 <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>wasWaitTime</formalParameterName>
+                <defaultValue>300</defaultValue>
+                <description>Wait time</description>
+                <required>0</required>
                 <type>entry</type>
             </formalParameter>
             <step>
@@ -3485,7 +3502,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>wasServerList</propertyName>
+                                    <propertyName>wasServersList</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -3504,7 +3521,16 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-
+                                <property>
+                                    <propertyName>wasWaitTime</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
                                 
                             </propertySheet>
                         </property>
@@ -3528,6 +3554,13 @@
             </formalParameter>
             <formalParameter>
                 <formalParameterName>wasErrorHandling</formalParameterName>
+                <defaultValue/>
+                <description>Name of configuration</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>wasWaitTime</formalParameterName>
                 <defaultValue/>
                 <description>Name of configuration</description>
                 <required>1</required>

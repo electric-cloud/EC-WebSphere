@@ -301,6 +301,16 @@ $xpath = $ec->attachCredential($projName, $credName,
      stepName => 'DeleteServerTemplate'});
 $errors .= $ec->checkAllErrors($xpath);
 
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'StartMiddlewareServer',
+     stepName => 'StartMiddlewareServer'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'StopMiddlewareServer',
+     stepName => 'StopMiddlewareServer'});
+$errors .= $ec->checkAllErrors($xpath);
+
 # CreateDatasource
 # DeleteDatasource
 if ($errors ne '') {
