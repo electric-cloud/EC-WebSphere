@@ -1,0 +1,73 @@
+<!--
+
+Copyright 2015 Electric Cloud, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#ImportServer</help>
+    <formElement>
+        <label>Config Name:</label>
+        <property>configname</property>
+        <type>entry</type>
+        <required>1</required>
+        <documentation>Name of configuration</documentation>
+        <configuration>1</configuration>
+    </formElement>
+    <formElement>
+        <label>Node Name:</label>
+        <property>wasNodeName</property>
+        <type>entry</type>
+        <required>1</required>
+        <documentation>Name of configuration</documentation>
+    </formElement>
+    <formElement>
+        <label>Application Server Name:</label>
+        <property>wasAppServerName</property>
+        <type>entry</type>
+        <required>1</required>
+        <documentation>Name of the websphere application server to create template in format NodeName:servername</documentation>
+    </formElement>
+    <formElement>
+        <label>Archive:</label>
+        <property>wasArchivePath</property>
+        <type>entry</type>
+        <required>1</required>
+        <documentation>Specifies the fully qualified path of the exported configuration archive.</documentation>
+    </formElement>
+    <formElement>
+        <label>Node Name in Archive:</label>
+        <property>wasNodeNameInArchive</property>
+        <type>entry</type>
+        <required>0</required>
+        <documentation>Specifies the node name of the server defined in the configuration archive.
+        (String, optional if there is only one node defined in the configuration archive, required if there are multiple nodes defined in the configuration archive).</documentation>
+    </formElement>
+    <formElement>
+        <label>Server Name in Archive:</label>
+        <property>wasAppServerNameInArchive</property>
+        <type>entry</type>
+        <required>0</required>
+        <documentation>Specifies the name of the server defined in the configuration archive.
+        (String, optional if there is only one server defined on the specified nodeInConfiguration archive, required if there are multiple servers defined under the specified nodeInConfiguration archive).</documentation>
+    </formElement>
+    <formElement>
+        <label>Core Group:</label>
+        <property>wasCoreGroup</property>
+        <type>entry</type>
+        <required>0</required>
+        <documentation>Specifies the core group name to which the server should belong.</documentation>
+    </formElement>
+
+</editor>

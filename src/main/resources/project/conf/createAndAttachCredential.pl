@@ -311,6 +311,22 @@ $xpath = $ec->attachCredential($projName, $credName,
      stepName => 'StopMiddlewareServer'});
 $errors .= $ec->checkAllErrors($xpath);
 
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'ExportServer',
+     stepName => 'ExportServer'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'ImportServer',
+     stepName => 'ImportServer'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'DeleteApplicationServer',
+     stepName => 'DeleteApplicationServer'});
+$errors .= $ec->checkAllErrors($xpath);
+
+
 # CreateDatasource
 # DeleteDatasource
 if ($errors ne '') {

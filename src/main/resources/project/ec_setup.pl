@@ -367,6 +367,26 @@ my %stopMiddlewareServer = (
     category    => "Application Server"
 );
 
+my %exportServer = (
+    label       => "WebSphere - Export Server",
+    procedure   => "ExportServer",
+    description => "Exports server to file system.",
+    category    => "Application Server"
+);
+
+my %importServer = (
+    label       => "WebSphere - Import Server",
+    procedure   => "ImportServer",
+    description => "Imports server to file system.",
+    category    => "Application Server"
+);
+
+my %deleteApplicationServer = (
+    label       => "WebSphere - Delete Application Server",
+    procedure   => "DeleteApplicationServer",
+    description => "Deletes existing application server.",
+    category    => "Application Server"
+);
 
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
@@ -438,6 +458,13 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete S
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start Middleware Server");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop Middleware Server");
 
+# Export/import Server Srocedures
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Export Server");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Import Server");
+
+# Create and delete application server
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Application Server");
+
 @::createStepPickerSteps = (
     \%checkPageStatus, \%checkServerStatus,
     \%startServer, \%stopServer,
@@ -466,7 +493,11 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop Mid
     \%deleteJMSProvider,
     \%createServer, \%createAppServerTemplate, \%deleteServerTemplate,
     # Start/stop middleware server
-    \%startMiddlewareServer, \%stopMiddlewareServer
+    \%startMiddlewareServer, \%stopMiddlewareServer,
+    # Import/Export server
+    \%exportServer, \%importServer,
+    # Create/Delete application server
+    \%deleteApplicationServer
 );
 
 if ($upgradeAction eq "upgrade") {
@@ -820,6 +851,18 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'StopMiddlewareServer',
                 stepName => 'StopMiddlewareServer'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'ExportServer',
+                stepName      => 'ExportServer'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'ImportServer',
+                stepName      => 'ImportServer'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'DeleteApplicationServer',
+                stepName      => 'DeleteApplicationServer'
             });
         }
     }
