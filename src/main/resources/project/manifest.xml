@@ -610,12 +610,6 @@
         <path>parameterForms/JMS/DeleteJMSConnectionFactory.xml</path>
     </file>
     <!-- End of AS and CF forms -->
-    <!-- CreateServer Form -->
-    <file>
-        <xpath>//procedure[procedureName=&quot;CreateServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/Server/CreateServer.xml</path>
-    </file>
-    <!-- End of CreateServer form -->
     <file>
         <xpath>//procedure[procedureName=&quot;MapSharedLibrary&quot;]/step[stepName=&quot;MapSharedLibrary&quot;]/command</xpath>
         <path>server/mapSharedLibrary.pl</path>
@@ -774,5 +768,22 @@
         <path>server/Server/deleteApplicationServer.pl</path>
     </file>
     <!-- End of ImportServer Procedure Files -->
-    
+
+    <!-- CreateServer procedure Files -->
+    <!-- XML Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateApplicationServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Server/CreateApplicationServer.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;create_application_server.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Server/create_application_server.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateApplicationServer&quot;]/step[stepName=&quot;CreateApplicationServer&quot;]/command</xpath>
+        <path>server/Server/createApplicationServer.pl</path>
+    </file>
+    <!-- End of CreateServer procedure Files -->
 </fileset>

@@ -786,4 +786,223 @@ sub render {
     return $string;
 }
 
+# while we usually using hashrefs for key-value pairs, here we should use an arrayref
+# because since perl 5.18 keys order in hash is not defined. Currently we have 5.8.8 or 5.8.9
+# in these perl versions key order is always the same.
+# But after upgrade this behaviour could case a bunch of issues that are very hard to debug.
+# Arguments structure will be: [[key, ' ' ,value], [key, ' ', value], [key, ' ', value]]
+sub gen_command_line {
+    my ($self, $shell, $arguments, $params) = @_;
+
+    # params parameter is currently not in use, but it is reserver for future usage.
+    my $retval = '';
+    if ($shell) {
+        $retval .= $self->quote_cmd_arg($shell);
+    }
+    for my $arg (@$arguments) {
+        if (scalar(@$arg) != 3) {
+            croak "Expected 3 values in arguments item\n";
+        }
+        my $value = $self->quote_cmd_arg($arg->[2]);
+        my $item = qq| $arg->[0]$arg->[1]$value |;
+        $retval .= $item;
+    }
+
+    return $retval;
+}
+
+
+sub quote_cmd_arg {
+    my ($self, $string) = @_;
+
+    if (!defined $string) {
+        croak "Nothing to quote\n";
+    }
+    if ($self->is_win()) {
+        # current OS is windows, so we can't use single quotes.
+        # we have to use double quotes.
+        $string =~ s|"|\\"|gs;
+        $string = qq|"$string"|;
+    }
+    else {
+        $string =~ s|'|\\'|;
+        $string = qq|'$string'|;
+    }
+    return $string;
+}
+
+
+# step shell is a, basically, shell, which executes logic.
+# In websphere we have mostly 2 kinds of procedures.
+# 1. procedures that are based on wsadmin script
+# 2. procedures that are based on start/stop scripts, like startNode.sh or stopNode.sh
+# Example of params args that could be used for this function as input:
+# my $params = {
+#     jython_script => {
+#         path => '/propety/path',
+#         template => {one => 'two', three => 'four'}
+#     },
+#     args_cb => sub {
+#         my ($self) = @_;
+#         return [['-one', ' ', 'two']];
+#     },
+#     success_cb => sub {
+#         my ($self) = @_;
+#     },
+#     error_cb => sub {
+#         my ($self) = @_;
+#     },
+#     procedure_result_cb => sub {
+#         my ($self) = @_;
+#     }
+# };
+
+sub run_step {
+    my ($self, $step_shell, $params) = @_;
+
+    # 1. Get and check shell.
+    if (!$step_shell) {
+        croak("Shell is mandatory");
+    }
+    if (! -e $step_shell) {
+        croak "Shell $step_shell does not exist";
+    }
+    # 2. Get step parameters
+    # TODO: Improve get_step_parameters to get credentials from params
+    my $step_params = $self->get_step_parameters();
+    $self->{step_params} = $step_params;
+    # 3. Get config values. The could be accessed by get_config_values
+    # 4. Set template properties.
+    if ($params->{jython_script}) {
+        # TODO: Logic when jython script is passed
+        # work with $params->{jython_script}->{path}
+        # TODO: Think about renaming of this
+        # work with $params->{jython_script}->{template};
+    }
+    # 5. build system command
+    my $command_args = [];
+    if ($params->{args_cb} && ref $params->{args_cb}) {
+        $command_args = $params->{args_cb}->($self, $params);
+    }
+    my $cmd_line = $self->gen_command_line($shell, $command_args);
+
+    # 6. Execute command line.
+    # TODO: Replace it with syscall
+    my $cmd_res = `$cmd_line 2>&1`;
+    $self->{cmd_res} = $cmd_res;
+    # 7. Work with exit code.
+    my $code = $?;
+    $code >> 8;
+    # Exit code is 0
+    if (!$code) {
+        # TODO: handle success.
+        # TODO: use $params->{success_cb}->($self); on success.
+    }
+    # Exit code is non-zero.
+    else {
+        # TODO: handle error
+        # TODO: use $params->{error_cb}->($self); on error.
+    }
+    # 8. Handle output status
+    $self->{procedure_result} = {
+        outcome => {
+            target => $params->{target}->{outcome} || 'myCall',
+            result => '',
+        },
+        procedure => {
+            target => $params->{target}->{procedure} || 'myCall',
+            msg => ''
+        },
+        pipeline => {
+            target => $params->{target}->{pipeline} || 'Step Execution Result:',
+            msg => '',
+        }
+    };
+    # Execute callback on these parameters.
+    if ($params->{procedure_result_cb} && ref $params->{procedure_result_cb} eq 'CODE') {
+        $params->{procedure_result_cb}->($self);
+    }
+    my $exit = $websphere->setResult(%{$self->{procedure_result}});
+
+    $exit->();
+}
+
+sub config_values {
+    my ($self) = @_;
+
+    return $self->{configuration};
+}
+
+
+sub step_params {
+    my ($self) = @_;
+
+    return $self->{step_params};
+}
+
+
+sub cmd_res {
+    my ($self) = @_;
+
+    return $self->{cmd_res};
+}
+
+sub get_step_parameters {
+    my ($self) = @_;
+
+    my $params = {};
+    my $procedure_name = $self->ec->getProperty('/myProcedure/name')->findvalue('//value')->string_value;
+    my $xpath = $self->ec->getFormalParameters({projectName => '@PLUGIN_NAME@', procedureName => $procedure_name});
+    for my $param ($xpath->findnodes('//formalParameter')) {
+        my $name = $param->findvalue('formalParameterName')->string_value;
+        my $value = $self->get_param($name);
+
+        my $name_in_list = $name;
+        # $name_in_list =~ s/ecp_weblogic_//;
+        if ($param->findvalue('type')->string_value eq 'credential') {
+            my $cred = $self->ec->getFullCredential($value);
+            my $username = $cred->findvalue('//userName')->string_value;
+            my $password = $cred->findvalue('//password')->string_value;
+
+            $params->{$name_in_list . 'Username'} = $username;
+            $params->{$name_in_list . 'Password'} = $password;
+        }
+        else {
+            # TODO: add trim here
+            # $params->{$name_in_list} = EC::Plugin::Core::trim_input($value);
+            $self->log()->info(qq{Got parameter "$name" with value "$value"\n});
+        }
+    }
+    return $params;
+}
+
+# sub escape_string {
+#     my ($self, $string) = @_;
+
+#     if ($self->is_win()) {
+#         return $self->_escape_string_win32($string);
+#     }
+#     return $self->_escape_string_regular($string);
+# }
+
+# sub _escape_string_win32 {
+#     my ($self, $string) = @_;
+
+#     # TODO: Add escaping logic here
+#     return $string;
+# }
+
+# sub _escape_string_regular {
+#     my ($self, $string) = @_;
+
+#     # TODO: Add escaping logic here
+#     return $string;
+# }
+
+sub is_win {
+    if ($^O eq 'MSWin32') {
+        return 1;
+    }
+    return 0;
+}
 1;

@@ -275,3 +275,4 @@ def showServerStatus(nodeName, serverName):
 
     print "[%s] %s : %s: pid=%s, heap=%dMB, free=%dMB, max=%dMB" % (nodeName, serverName, state, pid, heapSize, freeMem, maxMem)
     return state
+
