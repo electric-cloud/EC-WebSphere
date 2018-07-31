@@ -769,7 +769,7 @@
     </file>
     <!-- End of ImportServer Procedure Files -->
 
-    <!-- CreateServer procedure Files -->
+    <!-- CreateApplicationServer procedure Files -->
     <!-- XML Form -->
     <file>
         <xpath>//procedure[procedureName=&quot;CreateApplicationServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
@@ -785,5 +785,35 @@
         <xpath>//procedure[procedureName=&quot;CreateApplicationServer&quot;]/step[stepName=&quot;CreateApplicationServer&quot;]/command</xpath>
         <path>server/Server/createApplicationServer.pl</path>
     </file>
-    <!-- End of CreateServer procedure Files -->
+    <!-- End of CreateApplicationServer procedure Files -->
+
+
+    <!-- StartDeploymentManager procedure Files -->
+    <!-- XML Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StartDeploymentManager&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Management/StartDeploymentManager.xml</path>
+    </file>
+    <!-- There is no Python script for this procedure -->
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StartDeploymentManager&quot;]/step[stepName=&quot;StartDeploymentManager&quot;]/command</xpath>
+        <path>server/Management/startDeploymentManager.pl</path>
+    </file>
+    <!-- End of StartDeploymentManager procedure Files -->
+
+
+    <!-- StopDeploymentManager procedure Files -->
+    <!-- XML Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StopDeploymentManager&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Management/StopDeploymentManager.xml</path>
+    </file>
+    <!-- There is no Python script for this procedure -->
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StopDeploymentManager&quot;]/step[stepName=&quot;StopDeploymentManager&quot;]/command</xpath>
+        <path>server/Management/stopDeploymentManager.pl</path>
+    </file>
+    <!-- End of StopDeploymentManager procedure Files -->
 </fileset>

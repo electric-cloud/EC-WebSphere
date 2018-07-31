@@ -11977,7 +11977,377 @@
                 </propertySheet>
             </step>
         </procedure>
-        <!-- DeleteApplicationServer procedure -->
+        <!-- End of DeleteApplicationServer procedure -->
+
+        <!-- StopDeploymentManager procedure -->
+        <procedure>
+            <procedureName>StopDeploymentManager</procedureName>
+            <description>Stops Deployment Manager</description>
+            <jobNameTemplate>websphere-stop-dmgr-$[jobId]</jobNameTemplate>
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <expandable>1</expandable>
+                    <value></value>
+                </property>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                               
+                                <property>
+    <propertyName>configname</propertyName>
+    <propertySheet>
+        <property>
+            <propertyName>formType</propertyName>
+            <expandable>1</expandable>
+            <value>standard</value>
+            </property>
+    </propertySheet>
+</property>
+
+<property>
+    <propertyName>wasStopManagerLocation</propertyName>
+    <propertySheet>
+        <property>
+            <propertyName>formType</propertyName>
+            <expandable>1</expandable>
+            <value>standard</value>
+            </property>
+    </propertySheet>
+</property>
+
+<property>
+    <propertyName>wasDeploymentManagerProfile</propertyName>
+    <propertySheet>
+        <property>
+            <propertyName>formType</propertyName>
+            <expandable>1</expandable>
+            <value>standard</value>
+            </property>
+    </propertySheet>
+</property>
+
+<property>
+    <propertyName>wasLogFileLocation</propertyName>
+    <propertySheet>
+        <property>
+            <propertyName>formType</propertyName>
+            <expandable>1</expandable>
+            <value>standard</value>
+            </property>
+    </propertySheet>
+</property>
+
+<property>
+    <propertyName>wasTimeout</propertyName>
+    <propertySheet>
+        <property>
+            <propertyName>formType</propertyName>
+            <expandable>1</expandable>
+            <value>standard</value>
+            </property>
+    </propertySheet>
+</property>
+
+<property>
+    <propertyName>wasAdditionalParameters</propertyName>
+    <propertySheet>
+        <property>
+            <propertyName>formType</propertyName>
+            <expandable>1</expandable>
+            <value>standard</value>
+            </property>
+    </propertySheet>
+</property>
+
+                                
+                            </propertySheet>
+                        </property>
+                    </propertySheet>
+                </property>
+            </propertySheet>
+
+<formalParameter>
+    <formalParameterName>configname</formalParameterName>
+    <defaultValue/>
+    <description>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.
+To view or create a new configuration,
+go to the Administration -> Plugins tab, and select 'Configure' action for @PLUGIN_KEY@ plugin.</description>
+    <required>1</required>
+    <type>entry</type>
+</formalParameter>
+
+<formalParameter>
+    <formalParameterName>wasStopManagerLocation</formalParameterName>
+    <defaultValue/>
+    <description>Absolute Physical path in Filesystem to location of stopManager script i.e., /path/to/stopManager.sh or stopManager.bat</description>
+    <required>1</required>
+    <type>entry</type>
+</formalParameter>
+
+<formalParameter>
+    <formalParameterName>wasDeploymentManagerProfile</formalParameterName>
+    <defaultValue/>
+    <description>Profile name of the DeploymentManager which needs to be stopped.
+If this is not provided StopManager will stop the DeploymentManager which has the default profile.</description>
+    <required>0</required>
+    <type>entry</type>
+</formalParameter>
+
+<formalParameter>
+    <formalParameterName>wasLogFileLocation</formalParameterName>
+    <defaultValue/>
+    <description>Absolute Physical path in Filesystem to location of stopManager.sh logs i.e., /path/to/stopServer.log</description>
+    <required>0</required>
+    <type>entry</type>
+</formalParameter>
+
+<formalParameter>
+    <formalParameterName>wasTimeout</formalParameterName>
+    <defaultValue/>
+    <description>Specifies the waiting time before deployment manager stop times out and returns an error.</description>
+    <required>0</required>
+    <type>entry</type>
+</formalParameter>
+
+<formalParameter>
+    <formalParameterName>wasAdditionalParameters</formalParameterName>
+    <defaultValue/>
+    <description>This parameter can be used to either override defaults or pass Custom Properties. For example:
+-quiet, -nowait, -help.</description>
+    <required>0</required>
+    <type>textarea</type>
+</formalParameter>
+
+
+            
+            <step>
+                <stepName>StopDeploymentManager</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command></command>
+                <condition />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor />
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit>5</timeLimit>
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>StopDeploymentManager</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <!-- End of StopDeploymentManager procedure -->
+
+        <!-- StartDeploymentManager procedure -->
+        <procedure>
+            <procedureName>StartDeploymentManager</procedureName>
+            <description>Starts Deployment Manager</description>
+            <jobNameTemplate>websphere-start-dmgr-$[jobId]</jobNameTemplate>
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <expandable>1</expandable>
+                    <value></value>
+                </property>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                               
+                                <property>
+    <propertyName>configname</propertyName>
+    <propertySheet>
+        <property>
+            <propertyName>formType</propertyName>
+            <expandable>1</expandable>
+            <value>standard</value>
+            </property>
+    </propertySheet>
+</property>
+
+<property>
+    <propertyName>wasStartManagerLocation</propertyName>
+    <propertySheet>
+        <property>
+            <propertyName>formType</propertyName>
+            <expandable>1</expandable>
+            <value>standard</value>
+            </property>
+    </propertySheet>
+</property>
+
+<property>
+    <propertyName>wasDeploymentManagerProfile</propertyName>
+    <propertySheet>
+        <property>
+            <propertyName>formType</propertyName>
+            <expandable>1</expandable>
+            <value>standard</value>
+            </property>
+    </propertySheet>
+</property>
+
+<property>
+    <propertyName>wasLogFileLocation</propertyName>
+    <propertySheet>
+        <property>
+            <propertyName>formType</propertyName>
+            <expandable>1</expandable>
+            <value>standard</value>
+            </property>
+    </propertySheet>
+</property>
+
+<property>
+    <propertyName>wasTimeout</propertyName>
+    <propertySheet>
+        <property>
+            <propertyName>formType</propertyName>
+            <expandable>1</expandable>
+            <value>standard</value>
+            </property>
+    </propertySheet>
+</property>
+
+<property>
+    <propertyName>wasAdditionalParameters</propertyName>
+    <propertySheet>
+        <property>
+            <propertyName>formType</propertyName>
+            <expandable>1</expandable>
+            <value>standard</value>
+            </property>
+    </propertySheet>
+</property>
+
+                                
+                            </propertySheet>
+                        </property>
+                    </propertySheet>
+                </property>
+            </propertySheet>
+
+<formalParameter>
+    <formalParameterName>configname</formalParameterName>
+    <defaultValue/>
+    <description>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.
+To view or create a new configuration,
+go to the Administration -> Plugins tab, and select 'Configure' action for @PLUGIN_KEY@ plugin.</description>
+    <required>1</required>
+    <type>entry</type>
+</formalParameter>
+
+<formalParameter>
+    <formalParameterName>wasStartManagerLocation</formalParameterName>
+    <defaultValue/>
+    <description>Absolute Physical path in Filesystem to location of startManager script i.e., /path/to/startManager.sh or startManager.bat</description>
+    <required>1</required>
+    <type>entry</type>
+</formalParameter>
+
+<formalParameter>
+    <formalParameterName>wasDeploymentManagerProfile</formalParameterName>
+    <defaultValue/>
+    <description>Profile name of the DeploymentManager which needs to be started.
+If this is not provided StartManager will start the DeploymentManager which has the default profile.</description>
+    <required>0</required>
+    <type>entry</type>
+</formalParameter>
+
+<formalParameter>
+    <formalParameterName>wasLogFileLocation</formalParameterName>
+    <defaultValue/>
+    <description>Absolute Physical path in Filesystem to location of startManager.sh logs i.e., /path/to/startServer.log</description>
+    <required>0</required>
+    <type>entry</type>
+</formalParameter>
+
+<formalParameter>
+    <formalParameterName>wasTimeout</formalParameterName>
+    <defaultValue/>
+    <description>Specifies the waiting time before deployment manager start times out and returns an error.</description>
+    <required>0</required>
+    <type>entry</type>
+</formalParameter>
+
+<formalParameter>
+    <formalParameterName>wasAdditionalParameters</formalParameterName>
+    <defaultValue/>
+    <description>This parameter can be used to either override defaults or pass Custom Properties. For example:
+-quiet, -nowait, -help.</description>
+    <required>0</required>
+    <type>textarea</type>
+</formalParameter>
+
+
+            
+            <step>
+                <stepName>StartDeploymentManager</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command></command>
+                <condition />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <postProcessor />
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit>5</timeLimit>
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>StartDeploymentManager</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <!-- End of StartDeploymentManager procedure -->
 
     </project>
 </exportedData>

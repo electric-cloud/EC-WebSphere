@@ -287,8 +287,8 @@ $xpath = $ec->attachCredential($projName, $credName,
 $errors .= $ec->checkAllErrors($xpath);
 
 $xpath = $ec->attachCredential($projName, $credName,
-    {procedureName => 'CreateServer',
-     stepName => 'CreateServer'});
+    {procedureName => 'CreateApplicationServer',
+     stepName => 'CreateApplicationServer'});
 $errors .= $ec->checkAllErrors($xpath);
 
 $xpath = $ec->attachCredential($projName, $credName,
@@ -324,6 +324,16 @@ $errors .= $ec->checkAllErrors($xpath);
 $xpath = $ec->attachCredential($projName, $credName,
     {procedureName => 'DeleteApplicationServer',
      stepName => 'DeleteApplicationServer'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'StartDeploymentManager',
+     stepName => 'StartDeploymentManager'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'StopDeploymentManager',
+     stepName => 'StopDeploymentManager'});
 $errors .= $ec->checkAllErrors($xpath);
 
 

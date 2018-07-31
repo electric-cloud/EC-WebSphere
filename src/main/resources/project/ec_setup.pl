@@ -331,10 +331,10 @@ my %deleteJMSProvider = (
 );
 
 # Create server
-my %createServer = (
-    label       => "WebSphere - Create Server",
-    procedure   => "CreateServer",
-    description => "Creates WebSphere Server",
+my %createApplicationServer = (
+    label       => "WebSphere - Create Application Server",
+    procedure   => "CreateApplicationServer",
+    description => "Creates WebSphere Application Server",
     category    => "Application Server"
 );
 
@@ -388,6 +388,18 @@ my %deleteApplicationServer = (
     category    => "Application Server"
 );
 
+my %startDeploymentManager = (
+    label       => "WebSphere - Start Deployment Manager",
+    procedure   => "StartDeploymentManager",
+    description => "Starts Deployment Manager",
+    category    => "Application Server"
+);
+my %stopDeploymentManager = (
+    label       => "WebSphere - Stop Deployment Manager",
+    procedure   => "StopDeploymentManager",
+    description => "Stops Deployment Manager",
+    category    => "Application Server"
+);
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy App");
@@ -465,6 +477,10 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Import S
 # Create and delete application server
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Application Server");
 
+# Start/Stop Deployment Manager
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start Deployment Manager");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop Deployment Manager");
+
 @::createStepPickerSteps = (
     \%checkPageStatus, \%checkServerStatus,
     \%startServer, \%stopServer,
@@ -491,13 +507,15 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete A
     \%createOrUpdateWMQJMSConnectionFactory, \%createOrUpdateSIBJMSConnectionFactory, \%deleteJMSConnectionFactory,
     # Delete JMS Provider procedure
     \%deleteJMSProvider,
-    \%createServer, \%createAppServerTemplate, \%deleteServerTemplate,
+    \%createApplicationServer, \%createAppServerTemplate, \%deleteServerTemplate,
     # Start/stop middleware server
     \%startMiddlewareServer, \%stopMiddlewareServer,
     # Import/Export server
     \%exportServer, \%importServer,
     # Create/Delete application server
-    \%deleteApplicationServer
+    \%deleteApplicationServer,
+    # Start/Stop Deployment Manager
+    \%startDeploymentManager, \%stopDeploymentManager
 );
 
 if ($upgradeAction eq "upgrade") {
@@ -828,10 +846,10 @@ if ($upgradeAction eq "upgrade") {
                 procedureName => 'DeleteJMSProvider',
                 stepName => 'DeleteJMSProvider'
             });
-            # CreateServer
+            # CreateApplicationServer
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CreateServer',
-                stepName => 'CreateServer'
+                procedureName => 'CreateApplicationServer',
+                stepName => 'CreateApplicationServer'
             });
 
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
@@ -863,6 +881,14 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DeleteApplicationServer',
                 stepName      => 'DeleteApplicationServer'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'StopDeploymentManager',
+                stepName      => 'StopDeploymentManager'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'StartDeploymentManager',
+                stepName      => 'StartDeploymentManager'
             });
         }
     }
