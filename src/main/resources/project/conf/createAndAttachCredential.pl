@@ -286,6 +286,55 @@ $xpath = $ec->attachCredential($projName, $credName,
      stepName => 'DeleteJMSProvider'});
 $errors .= $ec->checkAllErrors($xpath);
 
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'CreateApplicationServer',
+     stepName => 'CreateApplicationServer'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'CreateApplicationServerTemplate',
+     stepName => 'CreateApplicationServerTemplate'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'DeleteServerTemplate',
+     stepName => 'DeleteServerTemplate'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'StartMiddlewareServer',
+     stepName => 'StartMiddlewareServer'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'StopMiddlewareServer',
+     stepName => 'StopMiddlewareServer'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'ExportServer',
+     stepName => 'ExportServer'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'ImportServer',
+     stepName => 'ImportServer'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'DeleteApplicationServer',
+     stepName => 'DeleteApplicationServer'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'StartDeploymentManager',
+     stepName => 'StartDeploymentManager'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'StopDeploymentManager',
+     stepName => 'StopDeploymentManager'});
+$errors .= $ec->checkAllErrors($xpath);
 
 
 # CreateDatasource

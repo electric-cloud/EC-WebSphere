@@ -246,3 +246,33 @@ def isResourceExists(scope, resType, resName, fType = ''):
             if record.get("name") == resName:
                 return record.get("__raw_resource_scope__")
     return 0
+
+
+def showServerStatus(nodeName, serverName):
+    beanId = AdminControl.completeObjectName("node=" + nodeName + ",process=" + serverName + ",name=" + serverName + ",j2eeType=J2EEServer,*")
+    serverId = AdminConfig.getid("/Node:" + nodeName + "/Server:" + serverName + "/")
+    if (serverId == "") :
+        return "Unknown!"
+    #endIf
+
+    if (beanId == "") :
+        state = "Stopped"
+        pid = "N/A"
+    else:
+        state = AdminControl.getAttribute(beanId, "state")
+        pid = AdminControl.getAttribute(beanId, "pid")
+
+    beanId = AdminControl.completeObjectName("J2EEServer=" + serverName + ",name=JVM,*")
+
+    if (beanId == ""):
+        heapSize = 0
+        freeMem = 0
+        maxMem = 0
+    else:
+        heapSize = long(AdminControl.getAttribute(beanId, "heapSize")) / 1024 / 1024
+        freeMem = long(AdminControl.getAttribute(beanId, "freeMemory")) / 1024 / 1024
+        maxMem = long(AdminControl.getAttribute(beanId, "maxMemory")) / 1024 / 1024
+
+    print "[%s] %s : %s: pid=%s, heap=%dMB, free=%dMB, max=%dMB" % (nodeName, serverName, state, pid, heapSize, freeMem, maxMem)
+    return state
+

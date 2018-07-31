@@ -642,4 +642,178 @@
         <path>server/checkNodeStatus.pl</path>
     </file>
 
+    <!-- Starting from 2.5.0 release Manifest file will have procedure-based structure, not type-based -->
+    <!-- CreateApplicationServerTemplate Procedure Files -->
+    <!-- XML form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateApplicationServerTemplate&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Server/CreateApplicationServerTemplate.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;create_application_server_template.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Server/create_application_server_template.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateApplicationServerTemplate&quot;]/step[stepName=&quot;CreateApplicationServerTemplate&quot;]/command</xpath>
+        <path>server/Server/createApplicationServerTemplate.pl</path>
+    </file>
+    <!-- End of CreateApplicationServerTemplate Procedure Files -->
+
+    <!-- DeleteServerTemplate Procedure Files -->
+    <!-- XML form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeleteServerTemplate&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Server/DeleteServerTemplate.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;delete_server_template.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Server/delete_server_template.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeleteServerTemplate&quot;]/step[stepName=&quot;DeleteServerTemplate&quot;]/command</xpath>
+        <path>server/Server/deleteServerTemplate.pl</path>
+    </file>
+    <!-- End of DeleteServerTemplate Procedure Files -->
+
+    <!-- StartMiddlewareServer Procedure Files -->
+    <!-- XML form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StartMiddlewareServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Server/StartMiddlewareServer.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;start_middleware_server.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Server/start_middleware_server.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StartMiddlewareServer&quot;]/step[stepName=&quot;StartMiddlewareServer&quot;]/command</xpath>
+        <path>server/Server/startMiddlewareServer.pl</path>
+    </file>
+    <!-- End of StartMiddlewareServer Procedure Files -->
+
+    <!-- StopMiddlewareServer Procedure Files -->
+    <!-- XML form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StopMiddlewareServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Server/StopMiddlewareServer.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;stop_middleware_server.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Server/stop_middleware_server.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StopMiddlewareServer&quot;]/step[stepName=&quot;StopMiddlewareServer&quot;]/command</xpath>
+        <path>server/Server/stopMiddlewareServer.pl</path>
+    </file>
+    <!-- End of StopMiddlewareServer Procedure Files -->
+
+    <!-- ExportServer Procedure Files -->
+    <!-- XML form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;ExportServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Server/ExportServer.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;export_server.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Server/export_server.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;ExportServer&quot;]/step[stepName=&quot;ExportServer&quot;]/command</xpath>
+        <path>server/Server/exportServer.pl</path>
+    </file>
+    <!-- End of ExportServer Procedure Files -->
+
+    <!-- ImportServer Procedure Files -->
+    <!-- XML form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;ImportServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Server/ImportServer.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;import_server.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Server/import_server.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;ImportServer&quot;]/step[stepName=&quot;ImportServer&quot;]/command</xpath>
+        <path>server/Server/importServer.pl</path>
+    </file>
+    <!-- End of ImportServer Procedure Files -->
+
+    <!-- DeleteApplicationServer Procedure Files -->
+    <!-- XML form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeleteApplicationServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Server/DeleteApplicationServer.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;delete_application_server.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Server/delete_application_server.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeleteApplicationServer&quot;]/step[stepName=&quot;DeleteApplicationServer&quot;]/command</xpath>
+        <path>server/Server/deleteApplicationServer.pl</path>
+    </file>
+    <!-- End of ImportServer Procedure Files -->
+
+    <!-- CreateApplicationServer procedure Files -->
+    <!-- XML Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateApplicationServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Server/CreateApplicationServer.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;create_application_server.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Server/create_application_server.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateApplicationServer&quot;]/step[stepName=&quot;CreateApplicationServer&quot;]/command</xpath>
+        <path>server/Server/createApplicationServer.pl</path>
+    </file>
+    <!-- End of CreateApplicationServer procedure Files -->
+
+
+    <!-- StartDeploymentManager procedure Files -->
+    <!-- XML Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StartDeploymentManager&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Management/StartDeploymentManager.xml</path>
+    </file>
+    <!-- There is no Python script for this procedure -->
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StartDeploymentManager&quot;]/step[stepName=&quot;StartDeploymentManager&quot;]/command</xpath>
+        <path>server/Management/startDeploymentManager.pl</path>
+    </file>
+    <!-- End of StartDeploymentManager procedure Files -->
+
+
+    <!-- StopDeploymentManager procedure Files -->
+    <!-- XML Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StopDeploymentManager&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Management/StopDeploymentManager.xml</path>
+    </file>
+    <!-- There is no Python script for this procedure -->
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StopDeploymentManager&quot;]/step[stepName=&quot;StopDeploymentManager&quot;]/command</xpath>
+        <path>server/Management/stopDeploymentManager.pl</path>
+    </file>
+    <!-- End of StopDeploymentManager procedure Files -->
 </fileset>

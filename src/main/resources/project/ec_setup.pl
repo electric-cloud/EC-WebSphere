@@ -330,7 +330,76 @@ my %deleteJMSProvider = (
     category    => "Application Server"
 );
 
+# Create server
+my %createApplicationServer = (
+    label       => "WebSphere - Create Application Server",
+    procedure   => "CreateApplicationServer",
+    description => "Creates WebSphere Application Server",
+    category    => "Application Server"
+);
 
+# Create app server template
+my %createAppServerTemplate = (
+    label       => "WebSphere - Create Application Server Template",
+    procedure   => "CreateApplicationServerTemplate",
+    description => "Creates Application Server Template",
+    category    => "Application Server"
+);
+
+my %deleteServerTemplate = (
+    label       => "WebSphere - Delete Server Template",
+    procedure   => "DeleteServerTemplate",
+    description => "Deletes Server Template",
+    category    => "Application Server"
+);
+
+my %startMiddlewareServer = (
+    label       => "WebSphere - Start Middleware Server",
+    procedure   => "StartMiddlewareServer",
+    description => "Starts middleware server.",
+    category    => "Application Server"
+);
+
+my %stopMiddlewareServer = (
+    label       => "WebSphere - Stop Middleware Server",
+    procedure   => "StopMiddlewareServer",
+    description => "Stops middleware server.",
+    category    => "Application Server"
+);
+
+my %exportServer = (
+    label       => "WebSphere - Export Server",
+    procedure   => "ExportServer",
+    description => "Exports server to file system.",
+    category    => "Application Server"
+);
+
+my %importServer = (
+    label       => "WebSphere - Import Server",
+    procedure   => "ImportServer",
+    description => "Imports server to file system.",
+    category    => "Application Server"
+);
+
+my %deleteApplicationServer = (
+    label       => "WebSphere - Delete Application Server",
+    procedure   => "DeleteApplicationServer",
+    description => "Deletes existing application server.",
+    category    => "Application Server"
+);
+
+my %startDeploymentManager = (
+    label       => "WebSphere - Start Deployment Manager",
+    procedure   => "StartDeploymentManager",
+    description => "Starts Deployment Manager",
+    category    => "Application Server"
+);
+my %stopDeploymentManager = (
+    label       => "WebSphere - Stop Deployment Manager",
+    procedure   => "StopDeploymentManager",
+    description => "Stops Deployment Manager",
+    category    => "Application Server"
+);
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy App");
@@ -388,6 +457,30 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete J
 # Delete JMS Provider procedure
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete JMS Provider");
 
+# Create Server
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Server");
+
+# Create Application Server Template
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Application Server Template");
+
+# Delete Server Template
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Server Template");
+
+# Start/Stop Middleware Server
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start Middleware Server");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop Middleware Server");
+
+# Export/import Server Srocedures
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Export Server");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Import Server");
+
+# Create and delete application server
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete Application Server");
+
+# Start/Stop Deployment Manager
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start Deployment Manager");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop Deployment Manager");
+
 @::createStepPickerSteps = (
     \%checkPageStatus, \%checkServerStatus,
     \%startServer, \%stopServer,
@@ -413,7 +506,16 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete J
     # CF procedures
     \%createOrUpdateWMQJMSConnectionFactory, \%createOrUpdateSIBJMSConnectionFactory, \%deleteJMSConnectionFactory,
     # Delete JMS Provider procedure
-    \%deleteJMSProvider
+    \%deleteJMSProvider,
+    \%createApplicationServer, \%createAppServerTemplate, \%deleteServerTemplate,
+    # Start/stop middleware server
+    \%startMiddlewareServer, \%stopMiddlewareServer,
+    # Import/Export server
+    \%exportServer, \%importServer,
+    # Create/Delete application server
+    \%deleteApplicationServer,
+    # Start/Stop Deployment Manager
+    \%startDeploymentManager, \%stopDeploymentManager
 );
 
 if ($upgradeAction eq "upgrade") {
@@ -743,6 +845,50 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DeleteJMSProvider',
                 stepName => 'DeleteJMSProvider'
+            });
+            # CreateApplicationServer
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateApplicationServer',
+                stepName => 'CreateApplicationServer'
+            });
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateApplicationServerTemplate',
+                stepName => 'CreateApplicationServerTemplate'
+            });
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'DeleteServerTemplate',
+                stepName => 'DeleteServerTemplate'
+            });
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'StartMiddlewareServer',
+                stepName => 'StartMiddlewareServer'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'StopMiddlewareServer',
+                stepName => 'StopMiddlewareServer'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'ExportServer',
+                stepName      => 'ExportServer'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'ImportServer',
+                stepName      => 'ImportServer'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'DeleteApplicationServer',
+                stepName      => 'DeleteApplicationServer'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'StopDeploymentManager',
+                stepName      => 'StopDeploymentManager'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'StartDeploymentManager',
+                stepName      => 'StartDeploymentManager'
             });
         }
     }
