@@ -216,10 +216,10 @@ sub run_step {
 
     # 1. Get and check shell.
     if (!$step_shell) {
-        croak("Shell is mandatory");
+        die "Shell is mandatory\n";
     }
     if (! -e $step_shell) {
-        croak "Shell $step_shell does not exist";
+        die "Shell $step_shell does not exist\n";
     }
     # 2. Get step parameters
     # TODO: Improve get_step_parameters to get credentials from params

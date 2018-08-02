@@ -32,4 +32,9 @@ my $step_params = {
     args_cb => \&WebSphere::WebSphere::args_cb_stop_deployment_manager,
     procedure_result_cb => \&WebSphere::WebSphere::procedure_result_cb_stop_deployment_manager
 };
-$websphere->run_step($websphere->get_step_parameters()->{wasStopManagerLocation}, $step_params);
+eval {
+    $websphere->run_step($websphere->get_step_parameters()->{wasStopManagerLocation}, $step_params);
+    1;
+} or do {
+    $websphere->bail_out($@);
+};
