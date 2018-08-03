@@ -1124,6 +1124,58 @@ sub procedure_result_cb_start_deployment_manager {
 }
 
 
+# StopNode
+sub args_cb_stop_node {
+    my ($self, $function_params) = @_;
+    my $args = $self->gen_initial_args({trace => 1});
+    my $step_params = $self->step_params();
+    if ($step_params->{wasNodeProfile}) {
+        push @$args, ['-profileName', ' ', $step_params->{wasNodeProfile}];
+    }
+    if (!$step_params->{wasLogFileLocation}) {
+        $step_params->{wasLogFileLocation} = $ENV{COMMANDER_WORKSPACE} . '/stopServer.log';
+        $self->log()->info("Log File Location has been set to $step_params->{wasLogFileLocation}");
+        $self->{local_logfile} = 1;
+    }
+    if ($step_params->{wasLogFileLocation}) {
+        push @$args, ['-logfile', ' ', $step_params->{wasLogFileLocation}];
+    }
+    if ($step_params->{wasTimeout}) {
+        push @$args, ['-timeout', ' ', $step_params->{wasTimeout}];
+    }
+    if ($step_params->{wasAdditionalParameters}) {
+        push @$args, [$step_params->{wasAdditionalParameters}, '',''];
+    }
+    if ($step_params->{wasStopNodePolicy}) {
+        my $snp = $step_params->{wasStopNodePolicy};
+        if ($snp eq 'save_node_state') {
+            push @$args, ['-saveNodeState', '', '']
+        }
+        elsif ($snp eq 'stop_application_servers') {
+            push @$args, ['-stopservers', '', '']
+        }
+    }
+    return $args;
+}
+
+sub procedure_result_cb_stop_node {
+    my ($self) = @_;
+
+    my $jobStepId = $self->{jobStepId};
+    unless ($self->{local_logfile}) {
+        my $log_path = $self->extractLogPath($self->cmd_res());
+        cp($log_path, $ENV{COMMANDER_WORKSPACE} . '/stopServer.log');
+    }
+    my $html = $self->attachLogFile($jobStepId, 'stopServer.log');
+    $self->log()->trace("HTML parameter for pipeline context is set to $html");
+    if ($html) {
+        push @{$self->{procedure_result}->{pipeline}}, {
+            target => 'Stop Node Log:',
+            msg => q|<html><body><a target = "_BLANK" href="/commander/jobSteps/| . $jobStepId . q|/stopServer.log">StopServer.log</a></body></html>|
+        };
+    }
+}
+
 ## internal package, required for logging
 package EC::Plugin::Logger;
 

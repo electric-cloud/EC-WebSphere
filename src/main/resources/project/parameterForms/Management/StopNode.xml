@@ -16,7 +16,7 @@
 
 -->
 <editor>
-    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#StartDeploymentManager</help>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#StopNode</help>
 
     <formElement>
         <type>entry</type>
@@ -32,21 +32,21 @@
     </formElement>
 
     <formElement>
-        <label>StartManager Location:</label>
-        <property>wasStartManagerLocation</property>
+        <label>StopNode Location:</label>
+        <property>wasStopNodeLocation</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Absolute Physical path in Filesystem to location of startManager script i.e., /path/to/startManager.sh or startManager.bat</documentation>
+        <documentation>Absolute Physical path in Filesystem to location of stopManager script i.e., /path/to/stopManager.sh or stopManager.bat</documentation>
     </formElement>
 
 
     <formElement>
-        <label>Deployment Manager Profile:</label>
-        <property>wasDeploymentManagerProfile</property>
+        <label>Node Profile:</label>
+        <property>wasNodeProfile</property>
         <type>entry</type>
         <required>0</required>
-        <documentation>Profile name of the DeploymentManager which needs to be started.
-        If this is not provided StartManager will start the DeploymentManager which has the default profile.</documentation>
+        <documentation>Profile name of the Node which needs to be stopped.
+        If this is not provided StopNode will stop the Node which has the default profile.</documentation>
     </formElement>
 
 
@@ -55,16 +55,25 @@
         <property>wasLogFileLocation</property>
         <type>entry</type>
         <required>0</required>
-        <documentation>Absolute Physical path in Filesystem to location of startManager.sh logs i.e., /path/to/stopServer.log</documentation>
+        <documentation>Absolute Physical path in Filesystem to location of stopNode.sh logs i.e., /path/to/stopServer.log</documentation>
     </formElement>
-
-
     <formElement>
         <label>Timeout:</label>
         <property>wasTimeout</property>
         <type>entry</type>
         <required>0</required>
-        <documentation>Specifies the waiting time before deployment manager start times out and returns an error.</documentation>
+        <documentation>Specifies the waiting time before deployment manager stop times out and returns an error.</documentation>
+    </formElement>
+
+    <formElement>
+        <label>Node Stop Policy:</label>
+        <property>wasStopNodePolicy</property>
+        <type>select</type>
+        <option><name>Default</name><value>default</value></option>
+        <option><name>Stop Application Servers</name><value>stop_application_servers</value></option>
+        <option><name>Save Node State</name><value>save_node_state</value></option>
+        <required>0</required>
+        <documentation>Policy that will be used for node stopping. It could be one of: Just Stop node agent, stop application servers, save node state.</documentation>
     </formElement>
 
 

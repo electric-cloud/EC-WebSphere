@@ -400,6 +400,14 @@ my %stopDeploymentManager = (
     description => "Stops Deployment Manager",
     category    => "Application Server"
 );
+
+my %stopNode = (
+    label       => "WebSphere - Stop Node",
+    procedure   => "StopNode",
+    description => "Stops Node",
+    category    => "Application Server"
+);
+
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy App");
@@ -481,6 +489,9 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Delete A
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start Deployment Manager");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop Deployment Manager");
 
+# Start/Stop Node
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop Node");
+
 @::createStepPickerSteps = (
     \%checkPageStatus, \%checkServerStatus,
     \%startServer, \%stopServer,
@@ -515,7 +526,9 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop Dep
     # Create/Delete application server
     \%deleteApplicationServer,
     # Start/Stop Deployment Manager
-    \%startDeploymentManager, \%stopDeploymentManager
+    \%startDeploymentManager, \%stopDeploymentManager,
+    # Start/Stop Node
+    \%stopNode
 );
 
 if ($upgradeAction eq "upgrade") {
@@ -889,6 +902,11 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'StartDeploymentManager',
                 stepName      => 'StartDeploymentManager'
+            });
+
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'StopNode',
+                stepName      => 'StopNode'
             });
         }
     }

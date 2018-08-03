@@ -816,4 +816,19 @@
         <path>server/Management/stopDeploymentManager.pl</path>
     </file>
     <!-- End of StopDeploymentManager procedure Files -->
+
+    <!-- StopNode procedure Files -->
+    <!-- XML Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StopNode&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Management/StopNode.xml</path>
+    </file>
+    <!-- There is no Python script for this procedure -->
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StopNode&quot;]/step[stepName=&quot;StopNode&quot;]/command</xpath>
+        <path>server/Management/stopNode.pl</path>
+    </file>
+    <!-- End of StopNode procedure Files -->
+    
 </fileset>
