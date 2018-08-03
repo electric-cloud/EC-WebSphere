@@ -336,6 +336,11 @@ $xpath = $ec->attachCredential($projName, $credName,
      stepName => 'StopDeploymentManager'});
 $errors .= $ec->checkAllErrors($xpath);
 
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'StopNode',
+     stepName => 'StopNode'});
+$errors .= $ec->checkAllErrors($xpath);
+
 
 # CreateDatasource
 # DeleteDatasource
