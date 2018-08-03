@@ -249,4 +249,20 @@ try {
         return dsl(code)
     }
 
+    def runCustomShellCommand(command, res='') {
+        def shell = System.getenv('IS_WINDOWS') == "1" ? 'powershell' : 'bash'
+        def result = """
+            runProcedure(
+                projectName: '$projectName',
+                procedureName: 'runCustomShellCommand',
+                actualParameter: [
+                    cli_command: '$command',
+                    stepRes:     '$res',
+                    shellCommand:'$shell',
+                ]
+            )
+        """
+        return dslWithTimeout(result)
+    }
+
 }
