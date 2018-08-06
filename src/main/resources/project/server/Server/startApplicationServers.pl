@@ -33,13 +33,11 @@ $| = 1;
 
 my $config = '$[configname]';
 my $server_list = '$[wasServersList]';
-my $error_handling = '$[wasErrorHandling]';
 my $wait_time = '$[wasWaitTime]';
 
 rtrim(
     $config,
     $server_list,
-    $error_handling,
     $wait_time
 );
 
@@ -54,35 +52,10 @@ my $websphere = WebSphere::WebSphere->new(
 if ($wait_time ne '' && $wait_time !~ m/^\d+$/s) {
     $websphere->bail_out("Wait time should be a positive integer, if present. Got: $wait_time");
 }
-if ($error_handling !~ m/^(?:FATAL|WARNING|SUCCESS)$/s) {
-    $websphere->bail_out("Error handling should be one of: FATAL, WARNING, SUCCESS");
-}
-
-my $parsed_server_list = [];
-my @result = split ',', $server_list;
-
-for my $row (@result) {
-    my @row = split '=', $row;
-
-    if (scalar @row != 2) {
-        $websphere->bail_out("Wrong server format. Expected: Node=server, got: $row");
-    }
-    rtrim ($row[0], $row[1]);
-    push @$parsed_server_list, {
-        Node => $row[0], Server => $row[1]
-    };
-}
-
-$websphere->setTemplateProperties(
-    # TODO: Think about python dict generation for list
-    rawServersList    => $server_list,
-    parsedServersList => $websphere->generatePythonStructure($parsed_server_list),
-    waitTime          => $wait_time
-);
 
 
 my $logger = $websphere->log();
-my $file = 'start_middleware_server.py';
+my $file = 'start_application_servers.py';
 my $script = $ec->getProperty("/myProject/wsadmin_scripts/$file")->getNodeText('//value');
 
 
@@ -104,7 +77,7 @@ $logger->debug("== End of WSAdmin script ==");
 
 my %props = ();
 
-$props{startMiddlewareServerLine} = $escaped_shellcmd;
+$props{startApplicationServersLine} = $escaped_shellcmd;
 
 # execute
 my $cmd_res = `$shellcmd 2>&1`;
@@ -112,7 +85,7 @@ my $cmd_res = `$shellcmd 2>&1`;
 $logger->info($cmd_res);
 
 my $code = $?;
-$code >> 8;
+$code = $code >> 8;
 
 my $result_params = {
     outcome => {
@@ -132,9 +105,8 @@ my $result_params = {
 $logger->info("Exit code: $code\n");
 
 my @warnings = ();
-if ($error_handling eq 'WARNING') {
-    @warnings = $cmd_res =~ m/(WARNING:.*?)$/gms;
-}
+# TODO: extract warnings from log.
+
 my $procedure_result = '';
 if ($cmd_res =~ m/^Procedure result:(.*?)===.*?Done/gms) {
     $procedure_result = $1;
@@ -159,4 +131,3 @@ else {
 my $exit = $websphere->setResult(%$result_params);
 
 $exit->();
-

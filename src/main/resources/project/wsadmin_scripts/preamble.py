@@ -19,6 +19,25 @@ import time
 import re
 import os
 
+# logging functions
+def logWithLevel(level, logLine):
+    print "[OUT][%s]: %s :[%s][OUT]"
+
+def logInfo(logLine):
+    logWithLevel("INFO", logLine)
+
+def logWarning(logLine):
+    logWithLevel("WARNING", logLine)
+
+def logError(logLine):
+    logWithLevel("ERROR", logLine)
+
+def logSummary(logLine):
+    logWithLevel("SUMMARY", logLine)
+
+def logOutcome(logLine):
+    logWithLevel("OUTCOME", logLine)
+
 # Checks application readiness
 def isAppReady(appName):
     ready = AdminApp.isAppReady(appName)
@@ -275,4 +294,63 @@ def showServerStatus(nodeName, serverName):
 
     print "[%s] %s : %s: pid=%s, heap=%dMB, free=%dMB, max=%dMB" % (nodeName, serverName, state, pid, heapSize, freeMem, maxMem)
     return state
+
+def getServersInNode(desiredNodeName, opts):
+    retval = []
+    for node in AdminConfig.list('Node').splitlines() :
+        nodeName = AdminConfig.showAttribute(node, 'name')
+        if desiredNodeName != nodeName :
+            continue
+        for server in AdminConfig.list('Server', node).splitlines() :
+            serverName = AdminConfig.showAttribute(server, 'name')
+            if ('ignoreNodeAgent') in opts.keys() and opts['ignoreNodeAgent'] == 1 and serverName == 'nodeagent':
+                continue
+            retval.append(serverName)
+    return retval
+
+# This function parses pairs in format nodename:servername into python dict.
+def parseServerListAsDict(servers, opts):
+    res = []
+    for nextArgument in re.split(',', servers):
+        res.append(nextArgument.strip())
+    if 'filterUnique' in opts.keys() and opts['filterUnique'] == 1:
+        tempSet = set(res)
+        if len(tempSet) != len(res):
+            print 'WARNING: Non-unique servers are detected'
+        res = list(tempSet)
+    retval = {}
+    for serverString in res:
+        server = re.split(':', serverString)
+        if len(server) != 2:
+            errorString = 'Expected nodename:servername record, got %s' % (serverString)
+            raise ValueError(errorString)
+        nodeName = unicode(server[0])
+        serverName = unicode(server[1])
+        if not nodeName in retval.keys():
+            retval[nodeName] = []
+        if 'expandStar' in opts.keys() and opts['expandStar'] == 1 and serverName == '*':
+            retval[nodeName] = getServersInNode(nodeName, {'ignoreNodeAgent': 1})
+        else:
+            retval[nodeName].append(serverName)
+    return retval
+
+# this function par
+def parseServerListAsList(servers, opts):
+    serverList = parseServerListAsDict(servers, opts)
+    retval = []
+    for nodeName in serverList.keys():
+        for serverName in serverList[nodeName]:
+            retval.append({'Node': nodeName, 'Server': serverName});
+    return retval
+
+def uintOrZero(value):
+    retval = 0
+    try:
+        retval = int(value)
+    except ValueError:
+        return retval
+    if retval < 0:
+        retval = 0
+    return retval
+
 

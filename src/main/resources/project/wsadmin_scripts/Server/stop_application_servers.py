@@ -1,39 +1,39 @@
 $[/myProject/wsadmin_scripts/preamble.py]
 
-# stop middleware server jython script.
+# stop application server jython script.
 
 # properties retrieval section
 
-parsedServerList = $[/myJobStep/tmpl/parsedServersList/]
+serversList = '''
+$[wasServersList]
+'''.strip();
 
-errorHandling = '''
-$[wasErrorHandling]
+waitTime = '''
+$[wasWaitTime]
 '''.strip()
 
-waitTime = $[/myJobStep/tmpl/waitTime/]
-
 # values that defined for script
+waitTime = uintOrZero(waitTime)
 okServerStatus = 'Stopped'
 sleepTime = 5
 iterationsCount = waitTime / sleepTime
 iterationsCount += 1
+
+parsedServerList = parseServerListAsList(serversList, {"expandStar": 1})
 
 # check server states section
 for x in range (0, len(parsedServerList)):
     server = parsedServerList[x]
     serverStatus = showServerStatus(server['Node'], server['Server'])
     if serverStatus == okServerStatus:
-        print "WARNING: Server %s on Node %s has already %s" % (server['Server'], server['Node'], okServerStatus)
+        print "[OUT][WARNING]: Server %s on Node %s has already %s" % (server['Server'], server['Node'], okServerStatus)
         del parsedServerList[x]
-        if errorHandling == 'FATAL':
-            print "ERROR: All warnings are fatal errors"
-            sys.exit(1)
     # Here we should handle exceptions.
     print serverStatus
 # error handling section
 
 if len(parsedServerList) == 0:
-    print "WARNING: Nothing to do, all servers are already %s" % (okServerStatus)
+    print "[OUT][WARNING]: Nothing to do, all servers are already %s" % (okServerStatus)
     os._exit(0)
 
 # stopping the servers
