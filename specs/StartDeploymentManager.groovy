@@ -287,7 +287,6 @@ class StartDeploymentManager extends PluginTestHelper {
         testCases.systemTest10.name | confignames.correctSOAP     | ''                          | ''              | ''                | startLocations.defaultLocation | ''        | summaries.'fail'                | jobLogs.'started'
     }
 
-    @IgnoreRest
     @Unroll
     def "Timeout - DeploymentManager doesn't start in Time"(){
         // setup: "Stop DeploymentManager"
