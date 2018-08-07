@@ -21,7 +21,7 @@ import os
 
 # logging functions
 def logWithLevel(level, logLine):
-    print "[OUT][%s]: %s :[%s][OUT]"
+    print "[OUT][%s]: %s :[%s][OUT]" % (level, logLine, level)
 
 def logInfo(logLine):
     logWithLevel("INFO", logLine)

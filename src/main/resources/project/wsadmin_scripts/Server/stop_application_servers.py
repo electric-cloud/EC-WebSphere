@@ -26,14 +26,14 @@ for x in range (0, len(parsedServerList)):
     server = parsedServerList[x]
     serverStatus = showServerStatus(server['Node'], server['Server'])
     if serverStatus == okServerStatus:
-        print "[OUT][WARNING]: Server %s on Node %s has already %s" % (server['Server'], server['Node'], okServerStatus)
+        logWarning("Server %s on Node %s is already %s" % (server['Server'], server['Node'], okServerStatus))
         del parsedServerList[x]
     # Here we should handle exceptions.
     print serverStatus
 # error handling section
 
 if len(parsedServerList) == 0:
-    print "[OUT][WARNING]: Nothing to do, all servers are already %s" % (okServerStatus)
+    logWarning("Nothing to do, all servers are already %s" % (okServerStatus))
     os._exit(0)
 
 # stopping the servers
@@ -61,7 +61,7 @@ for i in range(0, iterationsCount):
 # handle procedure results
 print "Procedure result:\n"
 for server in parsedServerList:
-    print "Node: %s, Server: %s, State: %s" % (server['Node'], server['Server'], server['State'])
+    logSummary("Node: %s, Server: %s, State: %s" % (server['Node'], server['Server'], server['State']))
 print "==="
 print "Done."
 

@@ -89,7 +89,7 @@ $code = $code >> 8;
 
 my $result_params = {
     outcome => {
-        target => 'myCall',
+        target => 'myJobStep',
         result => '',
     },
     procedure => {
@@ -97,27 +97,22 @@ my $result_params = {
         msg => ''
     },
     pipeline => {
-        target => 'StartMiddlewareServer Result:',
+        target => 'Start Application Servers Result:',
         msg => '',
     }
 };
 
 $logger->info("Exit code: $code\n");
 
-my @warnings = ();
-# TODO: extract warnings from log.
+my $procedure_logs = $websphere->parseProcedureLog($cmd_res);
 
-my $procedure_result = '';
-if ($cmd_res =~ m/^Procedure result:(.*?)===.*?Done/gms) {
-    $procedure_result = $1;
-    rtrim($procedure_result);
-}
 if ($code == SUCCESS) {
     $result_params->{outcome}->{result} = 'success';
-    $result_params->{procedure}->{msg} = "Start Middleware Server results:\n$cmd_res";
-    if (@warnings) {
+    $result_params->{procedure}->{msg} = "Application Servers have been started:\n" . join "\n", @{$procedure_logs->{summary}};
+    if (@{$procedure_logs->{warning}}) {
+        my $warnings = join "\nWARNING: ", @{$procedure_logs->{warning}};
+        $result_params->{procedure}->{msg} .= "\n$warnings";
         $result_params->{outcome}->{result} = 'warning';
-        $result_params->{procedure}->{msg} .= "\nWarnings:\n" . join '', @warnings;
     }
     $result_params->{pipeline}->{msg} = $result_params->{procedure}->{msg};
 }
@@ -125,7 +120,8 @@ else {
     my $error = $websphere->extractWebSphereExceptions($cmd_res);
     $result_params->{outcome}->{result} = 'error';
     $result_params->{procedure}->{msg} = $result_params->{pipeline}->{msg} =
-        sprintf("Failed to start servers\n%s", $procedure_result);
+        sprintf("Failed to start servers:\n%s",
+                join("\n", (@{$procedure_logs->{summary}}, @{$procedure_logs->{error}}, @{$procedure_logs->{exception}})));
 }
 
 my $exit = $websphere->setResult(%$result_params);
