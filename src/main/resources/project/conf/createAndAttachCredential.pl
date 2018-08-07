@@ -302,13 +302,13 @@ $xpath = $ec->attachCredential($projName, $credName,
 $errors .= $ec->checkAllErrors($xpath);
 
 $xpath = $ec->attachCredential($projName, $credName,
-    {procedureName => 'StartMiddlewareServer',
-     stepName => 'StartMiddlewareServer'});
+    {procedureName => 'StartApplicationServer',
+     stepName => 'StartApplicationServer'});
 $errors .= $ec->checkAllErrors($xpath);
 
 $xpath = $ec->attachCredential($projName, $credName,
-    {procedureName => 'StopMiddlewareServer',
-     stepName => 'StopMiddlewareServer'});
+    {procedureName => 'StopApplicationServer',
+     stepName => 'StopApplicationServer'});
 $errors .= $ec->checkAllErrors($xpath);
 
 $xpath = $ec->attachCredential($projName, $credName,

@@ -489,9 +489,41 @@ sub extractWebSphereExceptions {
     if (wantarray()) {
         return @res;
     }
-    else {
-        return join "\n", @res;
+    return join "\n", @res;
+}
+
+
+sub extractMagicValuesFromProcedureLog {
+    my ($self, $log) = @_;
+
+    my $retval = {
+        info    => [],
+        warning => [],
+        error   => [],
+        summary => []
+    };
+
+    # extract error
+    for my $t (qw/WARNING ERROR INFO SUMMARY/) {
+        while ($log =~ m|\[OUT\]\[$t\]:\s(.*?)\s:\[$t\]\[OUT\]|gm) {
+            push @{$retval->{lc($t)}}, $1;
+        }
     }
+    return $retval;
+}
+
+
+sub parseProcedureLog {
+    my ($self, $log) = @_;
+
+    my $retval = {};
+    # 1. Extracting "magic" values from log:
+    $retval = $self->extractMagicValuesFromProcedureLog($log);
+    # 2. Extracting websphere exceptions:
+    my @exceptions = $self->extractWebSphereExceptions($log);
+    $retval->{exception} = \@exceptions;
+
+    return $retval;
 }
 
 

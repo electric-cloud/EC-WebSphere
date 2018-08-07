@@ -220,14 +220,14 @@
                         <propertyName>delete_server_template.py</propertyName>
                         <value/>
                     </property>
-                    <!-- StartMiddlewareServer jython script -->
+                    <!-- StartApplicationServers jython script -->
                     <property>
-                        <propertyName>start_middleware_server.py</propertyName>
+                        <propertyName>start_application_servers.py</propertyName>
                         <value/>
                     </property>
-                    <!-- StopMiddlewareServer jython script -->
+                    <!-- StopApplicationServers jython script -->
                     <property>
-                        <propertyName>stop_middleware_server.py</propertyName>
+                        <propertyName>stop_application_servers.py</propertyName>
                         <value/>
                     </property>
                     <!-- ExportServer jython script -->
@@ -3350,12 +3350,12 @@
             </step>
         </procedure>
 
-        <!-- StartMiddlewareServer Procedure -->
+        <!-- StartApplicationServers Procedure -->
 
         <procedure>
-            <procedureName>StartMiddlewareServer</procedureName>
-            <description>Starts Middleware Server</description>
-            <jobNameTemplate>websphere-start-middleware-server-$[jobId]</jobNameTemplate>
+            <procedureName>StartApplicationServers</procedureName>
+            <description>Starts Application Servers</description>
+            <jobNameTemplate>websphere-start-application-servers-$[jobId]</jobNameTemplate>
             <resourceName />
             <workspaceName />
             <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
@@ -3392,16 +3392,6 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>wasErrorHandling</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
                                     <propertyName>wasWaitTime</propertyName>
                                     <propertySheet>
                                         <property>
@@ -3429,26 +3419,22 @@
             <formalParameter>
                 <formalParameterName>wasServersList</formalParameterName>
                 <defaultValue/>
-                <description>Name of configuration</description>
+                <description>
+                    List of Servers to be started. Provide them in this format :  NodeName:ServerName. For example, 
+                    Node1:Server1, Node2:Server2, Node3:Server3, or Node4:* to start all servers within Node4.
+                </description>
                 <required>1</required>
                 <type>textarea</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>wasErrorHandling</formalParameterName>
-                <defaultValue/>
-                <description>Name of configuration</description>
-                <required>1</required>
-                <type>entry</type>
             </formalParameter>
             <formalParameter>
                 <formalParameterName>wasWaitTime</formalParameterName>
                 <defaultValue>300</defaultValue>
-                <description>Wait time</description>
+                <description>Not Required. Time to wait until all servers are started. If not specified wait time will be treated as 0.</description>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>
             <step>
-                <stepName>StartMiddlewareServer</stepName>
+                <stepName>StartApplicationServers</stepName>
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
                 <command></command>
@@ -3466,7 +3452,7 @@
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
                 <workspaceName />
-                <procedureName>StartMiddlewareServer</procedureName>
+                <procedureName>StartApplicationServers</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
                     <property>
@@ -3483,14 +3469,14 @@
             </step>
         </procedure>
 
-        <!-- End of StartMiddlewareServer Procedure -->
+        <!-- End of StartApplicationServers Procedure -->
 
-        <!-- StopMiddlewareServer Procedure -->
+        <!-- StopApplicationServers Procedure -->
 
         <procedure>
-            <procedureName>StopMiddlewareServer</procedureName>
-            <description>Stops Middleware Server</description>
-            <jobNameTemplate>websphere-stop-middleware-server-$[jobId]</jobNameTemplate>
+            <procedureName>StopApplicationServers</procedureName>
+            <description>Stops Application Servers</description>
+            <jobNameTemplate>websphere-stop-application-servers-$[jobId]</jobNameTemplate>
             <resourceName />
             <workspaceName />
             <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
@@ -3527,16 +3513,6 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>wasErrorHandling</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
                                     <propertyName>wasWaitTime</propertyName>
                                     <propertySheet>
                                         <property>
@@ -3563,26 +3539,22 @@
             <formalParameter>
                 <formalParameterName>wasServersList</formalParameterName>
                 <defaultValue/>
-                <description>Name of configuration</description>
+                <description>
+                    List of Servers to be stopped. Provide them in this format :  NodeName:ServerName. For example, 
+                    Node1:Server1, Node2:Server2, Node3:Server3, or Node4:* to stop all servers within Node4.
+                </description>
                 <required>1</required>
                 <type>textarea</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>wasErrorHandling</formalParameterName>
-                <defaultValue/>
-                <description>Name of configuration</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
                 <formalParameterName>wasWaitTime</formalParameterName>
                 <defaultValue/>
-                <description>Name of configuration</description>
+                <description>Not Required. Time to wait until all servers are started. If not specified wait time will be treated as 0.</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
             <step>
-                <stepName>StopMiddlewareServer</stepName>
+                <stepName>StopApplicationServers</stepName>
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
                 <command></command>
@@ -3600,7 +3572,7 @@
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
                 <workspaceName />
-                <procedureName>StopMiddlewareServer</procedureName>
+                <procedureName>StopApplicationServers</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
                     <property>
@@ -3617,7 +3589,7 @@
             </step>
         </procedure>
 
-        <!-- End of StopMiddlewareServer Procedure -->
+        <!-- End of StopApplicationServers Procedure -->
 
 
         <procedure>
@@ -12546,6 +12518,205 @@
     </step>
 </procedure>
 <!-- End of StopNode procedure -->
+
+<!-- StopNode procedure -->
+<procedure>
+    <procedureName>StartNode</procedureName>
+    <description>Stops Deployment Manager</description>
+    <jobNameTemplate>websphere-stop-node-$[jobId]</jobNameTemplate>
+    <resourceName />
+    <workspaceName />
+    <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+    <propertySheet>
+        <property>
+            <propertyName>ec_parameterForm</propertyName>
+            <expandable>1</expandable>
+            <value></value>
+        </property>
+        <property>
+            <propertyName>ec_customEditorData</propertyName>
+            <propertySheet>
+                <property>
+                    <propertyName>parameters</propertyName>
+                    <propertySheet>
+                        
+                        <property>
+                            <propertyName>configname</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasStopNodeLocation</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasNodeProfile</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasLogFileLocation</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasTimeout</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+
+                        <property>
+                            <propertyName>wasAdditionalParameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+                        <property>
+                            <propertyName>wasStopNodeProfile</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
+                        
+                    </propertySheet>
+                </property>
+            </propertySheet>
+        </property>
+    </propertySheet>
+
+    <formalParameter>
+        <formalParameterName>configname</formalParameterName>
+        <defaultValue/>
+        <description>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.
+        To view or create a new configuration,
+        go to the Administration -> Plugins tab, and select 'Configure' action for @PLUGIN_KEY@ plugin.</description>
+        <required>1</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasStopNodeLocation</formalParameterName>
+        <defaultValue/>
+        <description>Absolute Physical path in Filesystem to location of stopManager script i.e., /path/to/stopManager.sh or stopManager.bat</description>
+        <required>1</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasNodeProfile</formalParameterName>
+        <defaultValue/>
+        <description>Profile name of the Node which needs to be stopped.
+        If this is not provided StopManager will stop the Node which has the default profile.</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasLogFileLocation</formalParameterName>
+        <defaultValue/>
+        <description>Absolute Physical path in Filesystem to location of stopManager.sh logs i.e., /path/to/stopServer.log</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasTimeout</formalParameterName>
+        <defaultValue/>
+        <description>Specifies the waiting time before deployment manager stop times out and returns an error.</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+    <formalParameter>
+        <formalParameterName>wasStopNodePolicy</formalParameterName>
+        <defaultValue/>
+        <description>Policy that will be used for node stopping. It could be one of: Just Stop node agent, stop application servers, save node state.</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+
+    <formalParameter>
+        <formalParameterName>wasAdditionalParameters</formalParameterName>
+        <defaultValue/>
+        <description>This parameter can be used to either override defaults or pass Custom Properties. For example:
+        -quiet, -nowait, -help.</description>
+        <required>0</required>
+        <type>textarea</type>
+    </formalParameter>
+    <step>
+        <stepName>StopNode</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command></command>
+        <condition />
+        <errorHandling>failProcedure</errorHandling>
+        <exclusive>0</exclusive>
+        <logFileName />
+        <parallel>0</parallel>
+        <postProcessor />
+        <releaseExclusive>0</releaseExclusive>
+        <resourceName />
+        <retries>0</retries>
+        <shell>ec-perl</shell>
+        <timeLimit>5</timeLimit>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory />
+        <workspaceName />
+        <procedureName>StopNode</procedureName>
+        <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+        <propertySheet>
+            <property>
+                <propertyName>ec_customEditorData</propertyName>
+                <propertySheet>
+                    <property>
+                        <propertyName>formType</propertyName>
+                        <expandable>1</expandable>
+                        <value>command</value>
+                    </property>
+                </propertySheet>
+            </property>
+        </propertySheet>
+    </step>
+</procedure>
+<!-- End of StopNode procedure -->
+
 
 </project>
 </exportedData>
