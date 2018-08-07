@@ -6,12 +6,26 @@ use WebSphere::WebSphere;
 use WebSphere::Util;
 use Data::Dumper;
 
+my $startServers = '$[wasStartServers]';
+my $wasNodeName = '$[wasNodeName]';
+
+rtrim ($startServers, $wasNodeName);
+
 my $ec = ElectricCommander->new();
 $ec->abortOnError(0);
 my $opts = {
     disabled_wsadmin_check => 1
 };
+
+if ($startServers) {
+    $opts->{disabled_wsadmin_check} = 0;
+}
+
 my $websphere = WebSphere::WebSphere->new($ec, '', '', $opts);
+
+if ($startServers && !$wasNodeName) {
+    $websphere->bail_out("Node Name is mandatory when Start Servers is checked");
+}
 $websphere->{jobStepId} = '$[jobStepId]';
 
 
@@ -33,8 +47,10 @@ my $step_params = {
     procedure_result_cb => \&WebSphere::WebSphere::procedure_result_cb_start_node
 };
 eval {
-    $websphere->run_step($websphere->get_step_parameters()->{wasStartNodelocation}, $step_params);
+    $websphere->run_step($websphere->get_step_parameters()->{wasStartNodeLocation}, $step_params);
     1;
 } or do {
-    $websphere->bail_out($@);
+    my $exception = $@;
+    rtrim($exception);
+    $websphere->bail_out($exception);
 };

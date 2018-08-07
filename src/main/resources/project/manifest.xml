@@ -830,5 +830,19 @@
         <path>server/Management/stopNode.pl</path>
     </file>
     <!-- End of StopNode procedure Files -->
+
+    <!-- StartNode procedure Files -->
+    <!-- XML Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StartNode&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Management/StartNode.xml</path>
+    </file>
+    <!-- There is no Python script for this procedure -->
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StartNode&quot;]/step[stepName=&quot;StartNode&quot;]/command</xpath>
+        <path>server/Management/startNode.pl</path>
+    </file>
+    <!-- End of StartNode procedure Files -->
     
 </fileset>

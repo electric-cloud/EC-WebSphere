@@ -321,7 +321,7 @@ def parseServerListAsDict(servers, opts):
     retval = {}
     for serverString in res:
         server = re.split(':', serverString)
-        if len(server) != 2:
+        if len(server) != 2 or server[0] == '' or server[1] == '':
             errorString = 'Expected nodename:servername record, got %s' % (serverString)
             raise ValueError(errorString)
         nodeName = unicode(server[0])
@@ -330,6 +330,8 @@ def parseServerListAsDict(servers, opts):
             retval[nodeName] = []
         if 'expandStar' in opts.keys() and opts['expandStar'] == 1 and serverName == '*':
             retval[nodeName] = getServersInNode(nodeName, {'ignoreNodeAgent': 1})
+            if len(retval[nodeName]) == 0:
+                raise ValueError('Node %s does not exists or does not have servers')
         else:
             retval[nodeName].append(serverName)
     return retval

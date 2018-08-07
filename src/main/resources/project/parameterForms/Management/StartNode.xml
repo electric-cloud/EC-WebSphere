@@ -16,7 +16,7 @@
 
 -->
 <editor>
-    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#StopNode</help>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#StartNode</help>
 
     <formElement>
         <type>entry</type>
@@ -32,11 +32,11 @@
     </formElement>
 
     <formElement>
-        <label>StopNode Location:</label>
-        <property>wasStopNodeLocation</property>
+        <label>StartNode Location:</label>
+        <property>wasStartNodeLocation</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Absolute Physical path in Filesystem to location of stopNode script i.e., /path/to/stopNode.sh or stopNode.bat</documentation>
+        <documentation>Absolute Physical path in Filesystem to location of startNode script i.e., /path/to/startNode.sh or startNode.bat</documentation>
     </formElement>
 
 
@@ -45,8 +45,8 @@
         <property>wasNodeProfile</property>
         <type>entry</type>
         <required>0</required>
-        <documentation>Profile name of the Node which needs to be stopped.
-        If this is not provided StopNode will stop the Node which has the default profile.</documentation>
+        <documentation>Profile name of the Node which needs to be started.
+        If this is not provided StartNode will start the Node which has the default profile.</documentation>
     </formElement>
 
 
@@ -55,35 +55,42 @@
         <property>wasLogFileLocation</property>
         <type>entry</type>
         <required>0</required>
-        <documentation>Absolute Physical path in Filesystem to location of stopNode.sh logs i.e., /path/to/stopServer.log</documentation>
+        <documentation>Absolute Physical path in Filesystem to location of startNode.sh logs i.e., /path/to/startServer.log</documentation>
     </formElement>
     <formElement>
         <label>Timeout:</label>
         <property>wasTimeout</property>
         <type>entry</type>
         <required>0</required>
-        <documentation>Specifies the waiting time before node stop times out and returns an error.</documentation>
+        <documentation>Specifies the waiting time before node start times out and returns an error.</documentation>
     </formElement>
-
     <formElement>
-        <label>Node Stop Policy:</label>
-        <property>wasStopNodePolicy</property>
-        <type>select</type>
-        <option><name>Default</name><value>default</value></option>
-        <option><name>Stop Application Servers</name><value>stop_application_servers</value></option>
-        <option><name>Save Node State</name><value>save_node_state</value></option>
+        <label>Start all Application Servers?:</label>
+        <property>wasStartServers</property>
+        <type>checkbox</type>
         <required>0</required>
-        <documentation>Policy that will be used for node stopping. It could be one of: Just Stop node agent, stop application servers, save node state.</documentation>
+        <initiallyChecked>0</initiallyChecked>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+        <documentation></documentation>
     </formElement>
-
-
+    <formElement>
+        <label>Node Name to start Servers:</label>
+        <property>wasNodeName</property>
+        <dependsOn>wasStartServers</dependsOn>
+        <condition>${wasStartServers} == '1'</condition>
+        <type>entry</type>
+        <required>0</required>
+        <documentation>Node name that is being used for start servers.</documentation>
+    </formElement>
     <formElement>
         <label>Additional Parameters:</label>
         <property>wasAdditionalParameters</property>
         <type>textarea</type>
         <required>0</required>
-        <documentation>This parameter can be used to either override defaults or pass Custom Properties. For example:
-        -quiet, -nowait, -help.</documentation>
+        <documentation>
+            This parameter can be used to either override defaults or pass Custom Properties. For example: -quiet, -nowait, -help.
+        </documentation>
     </formElement>
 
 </editor>
