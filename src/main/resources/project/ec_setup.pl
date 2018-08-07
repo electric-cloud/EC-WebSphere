@@ -408,6 +408,14 @@ my %stopNode = (
     category    => "Application Server"
 );
 
+my %startNode = (
+    label       => "WebSphere - Start Node",
+    procedure   => "StartNode",
+    description => "Starts Node",
+    category    => "Application Server"
+);
+
+
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Deploy App");
@@ -528,7 +536,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop Nod
     # Start/Stop Deployment Manager
     \%startDeploymentManager, \%stopDeploymentManager,
     # Start/Stop Node
-    \%stopNode
+    \%startNode, \%stopNode
 );
 
 if ($upgradeAction eq "upgrade") {
@@ -907,6 +915,10 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'StopNode',
                 stepName      => 'StopNode'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'StartNode',
+                stepName      => 'StartNode'
             });
         }
     }

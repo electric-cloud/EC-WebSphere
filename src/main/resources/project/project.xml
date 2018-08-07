@@ -3868,7 +3868,7 @@
                                 
                                 <!-- End of headers -->
                             </propertySheet>
-</property>
+                        </property>
 </propertySheet>
 </property>
 </propertySheet>
@@ -12324,7 +12324,7 @@
 <!-- StopNode procedure -->
 <procedure>
     <procedureName>StopNode</procedureName>
-    <description>Stops Deployment Manager</description>
+    <description>Stops Node</description>
     <jobNameTemplate>websphere-stop-node-$[jobId]</jobNameTemplate>
     <resourceName />
     <workspaceName />
@@ -12437,7 +12437,7 @@
     <formalParameter>
         <formalParameterName>wasStopNodeLocation</formalParameterName>
         <defaultValue/>
-        <description>Absolute Physical path in Filesystem to location of stopManager script i.e., /path/to/stopManager.sh or stopManager.bat</description>
+        <description>Absolute Physical path in Filesystem to location of stopNode script i.e., /path/to/stopNode.sh or stopNode.bat</description>
         <required>1</required>
         <type>entry</type>
     </formalParameter>
@@ -12446,7 +12446,7 @@
         <formalParameterName>wasNodeProfile</formalParameterName>
         <defaultValue/>
         <description>Profile name of the Node which needs to be stopped.
-        If this is not provided StopManager will stop the Node which has the default profile.</description>
+        If this is not provided StopNode will stop the Node which has the default profile.</description>
         <required>0</required>
         <type>entry</type>
     </formalParameter>
@@ -12462,7 +12462,7 @@
     <formalParameter>
         <formalParameterName>wasTimeout</formalParameterName>
         <defaultValue/>
-        <description>Specifies the waiting time before deployment manager stop times out and returns an error.</description>
+        <description>Specifies the waiting time before node stop times out and returns an error.</description>
         <required>0</required>
         <type>entry</type>
     </formalParameter>
@@ -12519,11 +12519,12 @@
 </procedure>
 <!-- End of StopNode procedure -->
 
-<!-- StopNode procedure -->
+
+<!-- StartNode procedure -->
 <procedure>
     <procedureName>StartNode</procedureName>
-    <description>Stops Deployment Manager</description>
-    <jobNameTemplate>websphere-stop-node-$[jobId]</jobNameTemplate>
+    <description>Starts Node</description>
+    <jobNameTemplate>websphere-start-node-$[jobId]</jobNameTemplate>
     <resourceName />
     <workspaceName />
     <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
@@ -12552,7 +12553,7 @@
                         </property>
 
                         <property>
-                            <propertyName>wasStopNodeLocation</propertyName>
+                            <propertyName>wasStartNodeLocation</propertyName>
                             <propertySheet>
                                 <property>
                                     <propertyName>formType</propertyName>
@@ -12606,7 +12607,7 @@
                             </propertySheet>
                         </property>
                         <property>
-                            <propertyName>wasStopNodeProfile</propertyName>
+                            <propertyName>wasStartServers</propertyName>
                             <propertySheet>
                                 <property>
                                     <propertyName>formType</propertyName>
@@ -12615,7 +12616,16 @@
                                 </property>
                             </propertySheet>
                         </property>
-                        
+                        <property>
+                            <propertyName>wasNodeName</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
                     </propertySheet>
                 </property>
             </propertySheet>
@@ -12633,9 +12643,9 @@
     </formalParameter>
 
     <formalParameter>
-        <formalParameterName>wasStopNodeLocation</formalParameterName>
+        <formalParameterName>wasStartNodeLocation</formalParameterName>
         <defaultValue/>
-        <description>Absolute Physical path in Filesystem to location of stopManager script i.e., /path/to/stopManager.sh or stopManager.bat</description>
+        <description>Absolute Physical path in Filesystem to location of startNode script i.e., /path/to/startNode.sh or startNode.bat</description>
         <required>1</required>
         <type>entry</type>
     </formalParameter>
@@ -12643,8 +12653,8 @@
     <formalParameter>
         <formalParameterName>wasNodeProfile</formalParameterName>
         <defaultValue/>
-        <description>Profile name of the Node which needs to be stopped.
-        If this is not provided StopManager will stop the Node which has the default profile.</description>
+        <description>Profile name of the Node which needs to be started.
+        If this is not provided StartNode will start the Node which has the default profile.</description>
         <required>0</required>
         <type>entry</type>
     </formalParameter>
@@ -12652,7 +12662,7 @@
     <formalParameter>
         <formalParameterName>wasLogFileLocation</formalParameterName>
         <defaultValue/>
-        <description>Absolute Physical path in Filesystem to location of stopManager.sh logs i.e., /path/to/stopServer.log</description>
+        <description>Absolute Physical path in Filesystem to location of startNode.sh logs i.e., /path/to/startServer.log</description>
         <required>0</required>
         <type>entry</type>
     </formalParameter>
@@ -12660,17 +12670,25 @@
     <formalParameter>
         <formalParameterName>wasTimeout</formalParameterName>
         <defaultValue/>
-        <description>Specifies the waiting time before deployment manager stop times out and returns an error.</description>
+        <description>Specifies the waiting time before StartNode times out and returns an error.</description>
         <required>0</required>
         <type>entry</type>
     </formalParameter>
     <formalParameter>
-        <formalParameterName>wasStopNodePolicy</formalParameterName>
+        <formalParameterName>wasStartServers</formalParameterName>
         <defaultValue/>
-        <description>Policy that will be used for node stopping. It could be one of: Just Stop node agent, stop application servers, save node state.</description>
+        <description>If checked, after nodeagent is started all application servers will be started.</description>
         <required>0</required>
         <type>entry</type>
     </formalParameter>
+    <formalParameter>
+        <formalParameterName>wasNodeName</formalParameterName>
+        <defaultValue/>
+        <description>Node name where servers should be started.</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
+
 
     <formalParameter>
         <formalParameterName>wasAdditionalParameters</formalParameterName>
@@ -12681,12 +12699,12 @@
         <type>textarea</type>
     </formalParameter>
     <step>
-        <stepName>StopNode</stepName>
+        <stepName>StartNode</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command></command>
         <condition />
-        <errorHandling>failProcedure</errorHandling>
+        <errorHandling>abortProcedure</errorHandling>
         <exclusive>0</exclusive>
         <logFileName />
         <parallel>0</parallel>
@@ -12699,7 +12717,7 @@
         <timeLimitUnits>minutes</timeLimitUnits>
         <workingDirectory />
         <workspaceName />
-        <procedureName>StopNode</procedureName>
+        <procedureName>StartNode</procedureName>
         <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
         <propertySheet>
             <property>
@@ -12714,8 +12732,55 @@
             </property>
         </propertySheet>
     </step>
+    <step>
+        <stepName>StartApplicationServers</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <condition>$[wasStartServers]</condition>
+        <description></description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusive>0</exclusive>
+        <parallel>0</parallel>
+        <releaseExclusive>0</releaseExclusive>
+        <resourceName></resourceName>
+        <retries>0</retries>
+        <subprocedure>StartApplicationServers</subprocedure>
+        <timeLimit></timeLimit>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <actualParameters>
+            <property>
+                <propertyName>configname</propertyName>
+                <expandable>0</expandable>
+                <value>$[configname]</value>
+            </property>
+            <property>
+                <propertyName>wasServersList</propertyName>
+                <expandable>0</expandable>
+                <value>$[wasNodeName]:*</value>
+            </property>
+            <property>
+                <propertyName>wasWaitTime</propertyName>
+                <expandable>0</expandable>
+                <value>300</value>
+            </property>
+        </actualParameters>
+        <procedureName>StartApplicationServers</procedureName>
+        <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+        <propertySheet>
+            <property>
+                <propertyName>ec_customEditorData</propertyName>
+                <propertySheet>
+                    <property>
+                        <propertyName>formType</propertyName>
+                        <expandable>1</expandable>
+                        <value>procedure</value>
+                    </property>
+                </propertySheet>
+            </property>
+        </propertySheet>
+    </step>
 </procedure>
-<!-- End of StopNode procedure -->
+<!-- End of StartNode procedure -->
 
 
 </project>

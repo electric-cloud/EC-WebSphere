@@ -302,13 +302,13 @@ $xpath = $ec->attachCredential($projName, $credName,
 $errors .= $ec->checkAllErrors($xpath);
 
 $xpath = $ec->attachCredential($projName, $credName,
-    {procedureName => 'StartApplicationServer',
-     stepName => 'StartApplicationServer'});
+    {procedureName => 'StartApplicationServers',
+     stepName => 'StartApplicationServers'});
 $errors .= $ec->checkAllErrors($xpath);
 
 $xpath = $ec->attachCredential($projName, $credName,
-    {procedureName => 'StopApplicationServer',
-     stepName => 'StopApplicationServer'});
+    {procedureName => 'StopApplicationServers',
+     stepName => 'StopApplicationServers'});
 $errors .= $ec->checkAllErrors($xpath);
 
 $xpath = $ec->attachCredential($projName, $credName,
@@ -339,6 +339,11 @@ $errors .= $ec->checkAllErrors($xpath);
 $xpath = $ec->attachCredential($projName, $credName,
     {procedureName => 'StopNode',
      stepName => 'StopNode'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'StartNode',
+     stepName => 'StartNode'});
 $errors .= $ec->checkAllErrors($xpath);
 
 

@@ -36,5 +36,7 @@ eval {
     $websphere->run_step($websphere->get_step_parameters()->{wasStartManagerLocation}, $step_params);
     1;
 } or do {
-    $websphere->bail_out($@);
+    my $exception = $@;
+    rtrim($exception);
+    $websphere->bail_out($exception);
 };
