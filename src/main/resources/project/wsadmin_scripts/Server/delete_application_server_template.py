@@ -1,7 +1,7 @@
 $[/myProject/wsadmin_scripts/preamble.py]
 
 templateName = '''
-$[/myJobStep/tmpl/templateName]
+$[wasTemplateName]
 '''.strip()
 
 AdminServerManagement.deleteServerTemplate(templateName)

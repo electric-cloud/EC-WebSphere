@@ -1,17 +1,40 @@
 $[/myProject/wsadmin_scripts/preamble.py]
 
 nodeName = '''
-$[/myJobStep/tmpl/nodeName]
+$[wasNodeName]
 '''.strip()
 
 appServerName = '''
-$[/myJobStep/tmpl/appServerName]
+$[wasAppServerName]
 '''.strip()
 
 templateName = '''
-$[/myJobStep/tmpl/templateName]
+$[wasTemplateName]
 '''.strip()
 
-AdminServerManagement.createAppServerTemplate(nodeName, appServerName, templateName)
+templateLocation = '''
+$[wasTemplateLocation]
+'''.strip()
+
+templateDescription = '''
+$[wasTemplateDescription]
+'''.strip()
+
+params = [
+    '-templateName', templateName,
+    '-serverName', appServerName,
+    '-nodeName', nodeName
+]
+
+if templateDescription:
+    params.append('-description')
+    params.append(templateDescription)
+
+if templateLocation:
+    params.append('-templateLocation')
+    params.append(templateLocation)
+
+# AdminServerManagement.createAppServerTemplate(nodeName, appServerName, templateName)
+AdminTask.createApplicationServerTemplate(params)
 
 AdminConfig.save()

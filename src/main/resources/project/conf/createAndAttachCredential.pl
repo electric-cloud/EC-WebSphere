@@ -312,13 +312,13 @@ $xpath = $ec->attachCredential($projName, $credName,
 $errors .= $ec->checkAllErrors($xpath);
 
 $xpath = $ec->attachCredential($projName, $credName,
-    {procedureName => 'ExportServer',
-     stepName => 'ExportServer'});
+    {procedureName => 'ExportApplicationServer',
+     stepName => 'ExportApplicationServer'});
 $errors .= $ec->checkAllErrors($xpath);
 
 $xpath = $ec->attachCredential($projName, $credName,
-    {procedureName => 'ImportServer',
-     stepName => 'ImportServer'});
+    {procedureName => 'ImportApplicationServer',
+     stepName => 'ImportApplicationServer'});
 $errors .= $ec->checkAllErrors($xpath);
 
 $xpath = $ec->attachCredential($projName, $credName,

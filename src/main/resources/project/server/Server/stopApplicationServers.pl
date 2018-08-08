@@ -18,13 +18,15 @@
 # -------------------------------------------------------------------------
 # Includes
 # -------------------------------------------------------------------------
+use warnings;
+use strict;
+
 use ElectricCommander;
 use ElectricCommander::PropMod qw(/myProject/modules);
 use WebSphere::WebSphere;
 use WebSphere::Util;
+use Data::Dumper;
 
-use warnings;
-use strict;
 $| = 1;
 
 # -------------------------------------------------------------------------
@@ -39,7 +41,7 @@ rtrim(
     $config,
     $server_list,
     $wait_time
-);
+    );
 
 my $ec = ElectricCommander->new();
 $ec->abortOnError(0);
@@ -111,6 +113,7 @@ if ($code == SUCCESS) {
     $result_params->{procedure}->{msg} = "Application Servers have been stopped:\n" . join "\n", @{$procedure_logs->{summary}};
     if (@{$procedure_logs->{warning}}) {
         my $warnings = join "\nWARNING: ", @{$procedure_logs->{warning}};
+        $warnings = "WARNING: $warnings";
         $result_params->{procedure}->{msg} .= "\n$warnings";
         $result_params->{outcome}->{result} = 'warning';
     }
@@ -120,7 +123,7 @@ else {
     my $error = $websphere->extractWebSphereExceptions($cmd_res);
     $result_params->{outcome}->{result} = 'error';
     $result_params->{procedure}->{msg} = $result_params->{pipeline}->{msg} =
-        sprintf("Failed to servers servers:\n%s",
+        sprintf("Failed to stop servers:\n%s",
                 join("\n", (@{$procedure_logs->{summary}}, @{$procedure_logs->{error}}, @{$procedure_logs->{exception}})));
 }
 

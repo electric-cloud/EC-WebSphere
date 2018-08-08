@@ -21,7 +21,7 @@ import os
 
 # logging functions
 def logWithLevel(level, logLine):
-    print "[OUT][%s]: %s :[%s][OUT]" % (level, logLine, level)
+    print "\n[OUT][%s]: %s :[%s][OUT]\n" % (level, logLine, level)
 
 def logInfo(logLine):
     logWithLevel("INFO", logLine)
@@ -355,4 +355,20 @@ def uintOrZero(value):
         retval = 0
     return retval
 
+
+def toBoolean(value):
+    if value.lower() == 'true' or value == '1':
+        return 1
+
+    return 0
+
+# Synchronization of configuration changes is only required in network deployment.not in standalone server environment.
+def syncActiveNodes():
+    dm = AdminControl.queryNames('type=DeploymentManager,*')
+    if dm:
+        print 'Synchronizing configuration repository with nodes now.'
+        nodes=AdminControl.invoke(dm, "syncActiveNodes", "true")
+        print 'The following nodes have been synchronized: ' + str(nodes)
+    else:
+        print 'Standalone server, no nodes to sync'
 

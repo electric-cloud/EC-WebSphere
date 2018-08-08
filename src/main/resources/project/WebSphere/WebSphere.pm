@@ -227,20 +227,31 @@ sub run_step {
     # $self->{step_params} = $step_params;
     # 3. Get config values. The could be accessed by get_config_values
     # 4. Set template properties.
+    my $cmd_line;
     if ($params->{jython_script}) {
-        # TODO: Logic when jython script is passed
-        # work with $params->{jython_script}->{path}
-        # TODO: Think about renaming of this
+        if (!$params->{jython_script}->{path}) {
+            die "Missing jythons script path\n";
+        }
+        my $file = $params->{jython_script}->{path};
+        my $script = $self->ec()->getProperty("/myProject/wsadmin_scripts/$file")->getNodeText('//value');
+        $file = $self->write_jython_script(
+            $file, {},
+            augment_filename_with_random_numbers => 1
+        );
+
+
+        $cmd_line = $self->_create_runfile($file, ());
+        # TODO: add template logic when required.
         # work with $params->{jython_script}->{template};
     }
-    # 5. build system command
-    my $command_args = [];
-    if ($params->{args_cb} && ref $params->{args_cb}) {
-        $command_args = $params->{args_cb}->($self, $params);
+    else {
+        # 5. build system command
+        my $command_args = [];
+        if ($params->{args_cb} && ref $params->{args_cb}) {
+            $command_args = $params->{args_cb}->($self, $params);
+        }
+        $cmd_line = $self->gen_command_line($step_shell, $command_args);
     }
-    my $cmd_line = $self->gen_command_line($step_shell, $command_args);
-
-    # TODO: mask password
     my $safe_cmd_line = $self->_mask_password($cmd_line);
     $self->log()->info("Generated command line: $safe_cmd_line");
     # 6. Execute command line.
@@ -485,7 +496,8 @@ sub getWSAdminPath {
 sub extractWebSphereExceptions {
     my ($self, $text) = @_;
 
-    my @res = grep {$_} split '([A-Z]{4}[\d]{4}E:\s)', $text;
+    my @res = $text =~ m/[A-Z]{4}[\d]{4}E:\s(.*?)\n\n/gms;
+    # my @res = grep {$_} split '([A-Z]{4}[\d]{4}E:\s)', $text;
     if (wantarray()) {
         return @res;
     }

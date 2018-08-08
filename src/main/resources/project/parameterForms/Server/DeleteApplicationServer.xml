@@ -16,7 +16,7 @@ limitations under the License.
 
 -->
 <editor>
-    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#DeleteServerTemplate</help>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#DeleteApplicationServer</help>
     <formElement>
         <label>Config Name:</label>
         <property>configname</property>

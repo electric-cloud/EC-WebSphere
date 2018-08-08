@@ -16,14 +16,18 @@ limitations under the License.
 
 -->
 <editor>
-    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#ImportServer</help>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#ImportApplicationServer</help>
     <formElement>
-        <label>Config Name:</label>
-        <property>configname</property>
         <type>entry</type>
-        <required>1</required>
-        <documentation>Name of configuration</documentation>
+        <label>Configuration Name:</label>
+        <!-- Improvements for CEV-18687 -->
         <configuration>1</configuration>
+        <!-- End of improvements for CEV-18687 -->
+        <property>configname</property>
+        <propertyReference>/plugins/@PLUGIN_NAME@/project/websphere_cfgs</propertyReference>
+        <documentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration. To view or create a new configuration, go to the Administration -> Plugins tab, and select 'Configure' action for @PLUGIN_KEY@ plugin.</documentation>
+        <htmlDocumentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" target="_blank" href="/commander/pages/@PLUGIN_NAME@/configurations">configuration page</a>.</htmlDocumentation>
+        <required>1</required>
     </formElement>
     <formElement>
         <label>Node Name:</label>
@@ -68,6 +72,16 @@ limitations under the License.
         <type>entry</type>
         <required>0</required>
         <documentation>Specifies the core group name to which the server should belong.</documentation>
+    </formElement>
+    <formElement>
+        <label>Sync Nodes?:</label>
+        <property>wasSyncNodes</property>
+        <type>checkbox</type>
+        <initiallyChecked>0</initiallyChecked>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+        <required>0</required>
+        <documentation>Sync Nodes if checked.</documentation>
     </formElement>
 
 </editor>
