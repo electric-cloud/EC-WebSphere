@@ -339,17 +339,17 @@ my %createApplicationServer = (
 );
 
 # Create app server template
-my %createAppServerTemplate = (
+my %createApplicationServerTemplate = (
     label       => "WebSphere - Create Application Server Template",
     procedure   => "CreateApplicationServerTemplate",
     description => "Creates Application Server Template",
     category    => "Application Server"
 );
 
-my %deleteServerTemplate = (
-    label       => "WebSphere - Delete Server Template",
-    procedure   => "DeleteServerTemplate",
-    description => "Deletes Server Template",
+my %deleteApplicationServerTemplate = (
+    label       => "WebSphere - Delete Application Server Template",
+    procedure   => "DeleteApplicationServerTemplate",
+    description => "Deletes Application Server Template",
     category    => "Application Server"
 );
 
@@ -367,17 +367,17 @@ my %stopApplicationServers = (
     category    => "Application Server"
 );
 
-my %exportServer = (
-    label       => "WebSphere - Export Server",
-    procedure   => "ExportServer",
-    description => "Exports server to file system.",
+my %exportApplicationServer = (
+    label       => "WebSphere - Export Application Server",
+    procedure   => "ExportApplicationServer",
+    description => "Exports an application server to file system.",
     category    => "Application Server"
 );
 
-my %importServer = (
-    label       => "WebSphere - Import Server",
-    procedure   => "ImportServer",
-    description => "Imports server to file system.",
+my %importApplicationServer = (
+    label       => "WebSphere - Import Application Server",
+    procedure   => "ImportApplicationServer",
+    description => "Imports an application server from file system.",
     category    => "Application Server"
 );
 
@@ -526,12 +526,14 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop Nod
     \%createOrUpdateWMQJMSConnectionFactory, \%createOrUpdateSIBJMSConnectionFactory, \%deleteJMSConnectionFactory,
     # Delete JMS Provider procedure
     \%deleteJMSProvider,
-    \%createApplicationServer, \%createAppServerTemplate, \%deleteServerTemplate,
+    \%createApplicationServerTemplate,
+    \%deleteApplicationServerTemplate,
     # Start/stop application server
     \%startApplicationServers, \%stopApplicationServers,
     # Import/Export server
-    \%exportServer, \%importServer,
+    \%exportApplicationServer, \%importApplicationServer,
     # Create/Delete application server
+    \%createApplicationServer,
     \%deleteApplicationServer,
     # Start/Stop Deployment Manager
     \%startDeploymentManager, \%stopDeploymentManager,
@@ -879,8 +881,8 @@ if ($upgradeAction eq "upgrade") {
             });
 
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'DeleteServerTemplate',
-                stepName => 'DeleteServerTemplate'
+                procedureName => 'DeleteApplicationServerTemplate',
+                stepName => 'DeleteApplicationServerTemplate'
             });
 
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
@@ -892,12 +894,12 @@ if ($upgradeAction eq "upgrade") {
                 stepName => 'StopApplicationServers'
             });
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'ExportServer',
-                stepName      => 'ExportServer'
+                procedureName => 'ExportApplicationServer',
+                stepName      => 'ExportApplicationServer'
             });
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'ImportServer',
-                stepName      => 'ImportServer'
+                procedureName => 'ImportApplicationServer',
+                stepName      => 'ImportApplicationServer'
             });
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DeleteApplicationServer',

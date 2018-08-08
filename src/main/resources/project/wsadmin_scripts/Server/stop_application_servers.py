@@ -27,10 +27,10 @@ for x in range (0, len(parsedServerList)):
     serverStatus = showServerStatus(server['Node'], server['Server'])
     if serverStatus == okServerStatus:
         logWarning("Server %s on Node %s is already %s" % (server['Server'], server['Node'], okServerStatus))
-        del parsedServerList[x]
-    # Here we should handle exceptions.
+        parsedServerList[x] = 0
     print serverStatus
-# error handling section
+
+parsedServerList = filter(lambda x: x, parsedServerList)
 
 if len(parsedServerList) == 0:
     logWarning("Nothing to do, all servers are already %s" % (okServerStatus))

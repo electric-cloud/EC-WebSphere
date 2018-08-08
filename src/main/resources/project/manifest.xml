@@ -661,23 +661,23 @@
     </file>
     <!-- End of CreateApplicationServerTemplate Procedure Files -->
 
-    <!-- DeleteServerTemplate Procedure Files -->
+    <!-- DeleteApplicationServerTemplate Procedure Files -->
     <!-- XML form -->
     <file>
-        <xpath>//procedure[procedureName=&quot;DeleteServerTemplate&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/Server/DeleteServerTemplate.xml</path>
+        <xpath>//procedure[procedureName=&quot;DeleteApplicationServerTemplate&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Server/DeleteApplicationServerTemplate.xml</path>
     </file>
     <!-- Python script -->
     <file>
-        <xpath>//property[propertyName=&quot;delete_server_template.py&quot;]/value</xpath>
-        <path>wsadmin_scripts/Server/delete_server_template.py</path>
+        <xpath>//property[propertyName=&quot;delete_application_server_template.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Server/delete_application_server_template.py</path>
     </file>
     <!-- Perl script -->
     <file>
-        <xpath>//procedure[procedureName=&quot;DeleteServerTemplate&quot;]/step[stepName=&quot;DeleteServerTemplate&quot;]/command</xpath>
-        <path>server/Server/deleteServerTemplate.pl</path>
+        <xpath>//procedure[procedureName=&quot;DeleteApplicationServerTemplate&quot;]/step[stepName=&quot;DeleteApplicationServerTemplate&quot;]/command</xpath>
+        <path>server/Server/deleteApplicationServerTemplate.pl</path>
     </file>
-    <!-- End of DeleteServerTemplate Procedure Files -->
+    <!-- End of DeleteApplicationServerTemplate Procedure Files -->
 
     <!-- StartApplicationServers Procedure Files -->
     <!-- XML form -->
@@ -715,41 +715,41 @@
     </file>
     <!-- End of StopApplicationServers Procedure Files -->
 
-    <!-- ExportServer Procedure Files -->
+    <!-- ExportApplicationServer Procedure Files -->
     <!-- XML form -->
     <file>
-        <xpath>//procedure[procedureName=&quot;ExportServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/Server/ExportServer.xml</path>
+        <xpath>//procedure[procedureName=&quot;ExportApplicationServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Server/ExportApplicationServer.xml</path>
     </file>
     <!-- Python script -->
     <file>
-        <xpath>//property[propertyName=&quot;export_server.py&quot;]/value</xpath>
-        <path>wsadmin_scripts/Server/export_server.py</path>
+        <xpath>//property[propertyName=&quot;export_application_server.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Server/export_application_server.py</path>
     </file>
     <!-- Perl script -->
     <file>
-        <xpath>//procedure[procedureName=&quot;ExportServer&quot;]/step[stepName=&quot;ExportServer&quot;]/command</xpath>
-        <path>server/Server/exportServer.pl</path>
+        <xpath>//procedure[procedureName=&quot;ExportApplicationServer&quot;]/step[stepName=&quot;ExportApplicationServer&quot;]/command</xpath>
+        <path>server/Server/exportApplicationServer.pl</path>
     </file>
-    <!-- End of ExportServer Procedure Files -->
+    <!-- End of ExportApplicationServer Procedure Files -->
 
-    <!-- ImportServer Procedure Files -->
+    <!-- ImportApplicationServer Procedure Files -->
     <!-- XML form -->
     <file>
-        <xpath>//procedure[procedureName=&quot;ImportServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/Server/ImportServer.xml</path>
+        <xpath>//procedure[procedureName=&quot;ImportApplicationServer&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Server/ImportApplicationServer.xml</path>
     </file>
     <!-- Python script -->
     <file>
-        <xpath>//property[propertyName=&quot;import_server.py&quot;]/value</xpath>
-        <path>wsadmin_scripts/Server/import_server.py</path>
+        <xpath>//property[propertyName=&quot;import_application_server.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Server/import_application_server.py</path>
     </file>
     <!-- Perl script -->
     <file>
-        <xpath>//procedure[procedureName=&quot;ImportServer&quot;]/step[stepName=&quot;ImportServer&quot;]/command</xpath>
-        <path>server/Server/importServer.pl</path>
+        <xpath>//procedure[procedureName=&quot;ImportApplicationServer&quot;]/step[stepName=&quot;ImportApplicationServer&quot;]/command</xpath>
+        <path>server/Server/importApplicationServer.pl</path>
     </file>
-    <!-- End of ImportServer Procedure Files -->
+    <!-- End of ImportApplicationServer Procedure Files -->
 
     <!-- DeleteApplicationServer Procedure Files -->
     <!-- XML form -->
@@ -767,7 +767,7 @@
         <xpath>//procedure[procedureName=&quot;DeleteApplicationServer&quot;]/step[stepName=&quot;DeleteApplicationServer&quot;]/command</xpath>
         <path>server/Server/deleteApplicationServer.pl</path>
     </file>
-    <!-- End of ImportServer Procedure Files -->
+    <!-- End of DeleteApplicationServer Procedure Files -->
 
     <!-- CreateApplicationServer procedure Files -->
     <!-- XML Form -->

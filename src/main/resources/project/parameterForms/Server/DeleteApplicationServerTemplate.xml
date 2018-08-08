@@ -16,7 +16,7 @@ limitations under the License.
 
 -->
 <editor>
-    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CreateApplicationServerTemplate</help>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#DeleteApplicationServerTemplate</help>
     <formElement>
         <type>entry</type>
         <label>Configuration Name:</label>
@@ -29,44 +29,11 @@ limitations under the License.
         <htmlDocumentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" target="_blank" href="/commander/pages/@PLUGIN_NAME@/configurations">configuration page</a>.</htmlDocumentation>
         <required>1</required>
     </formElement>
-    
-    <formElement>
-        <label>Node Name:</label>
-        <property>wasNodeName</property>
-        <type>entry</type>
-        <required>1</required>
-        <documentation>Name of the node where application server is located.</documentation>
-    </formElement>
-    <formElement>
-        <label>Application Server Name:</label>
-        <property>wasAppServerName</property>
-        <type>entry</type>
-        <required>1</required>
-        <documentation>Name of the application server to be a source for template.</documentation>
-    </formElement>
     <formElement>
         <label>Template Name:</label>
         <property>wasTemplateName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Application Server Template name to be created.</documentation>
-    </formElement>
-
-    <formElement>
-        <label>Template Location:</label>
-        <property>wasTemplateLocation</property>
-        <type>entry</type>
-        <required>0</required>
-        <documentation>
-            Specifies a configuration Id that represents the location to place the template.
-            The configuration Id value is the application server template, which is templates\servertypes\APPLICATION_SERVER|servertype-metadata.xml
-        </documentation>
-    </formElement>
-    <formElement>
-        <label>Template Description:</label>
-        <property>wasTemplateDescription</property>
-        <type>textarea</type>
-        <required>0</required>
-        <documentation>Description of Application Server template.</documentation>
+        <documentation>Template name to be deleted.</documentation>
     </formElement>
 </editor>

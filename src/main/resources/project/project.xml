@@ -215,9 +215,9 @@
                         <propertyName>create_application_server_template.py</propertyName>
                         <value/>
                     </property>
-                    <!-- DeleteServerTemplate jython script -->
+                    <!-- DeleteApplicationServerTemplate jython script -->
                     <property>
-                        <propertyName>delete_server_template.py</propertyName>
+                        <propertyName>delete_application_server_template.py</propertyName>
                         <value/>
                     </property>
                     <!-- StartApplicationServers jython script -->
@@ -230,14 +230,14 @@
                         <propertyName>stop_application_servers.py</propertyName>
                         <value/>
                     </property>
-                    <!-- ExportServer jython script -->
+                    <!-- ExportApplicationServer jython script -->
                     <property>
-                        <propertyName>export_server.py</propertyName>
+                        <propertyName>export_application_server.py</propertyName>
                         <value/>
                     </property>
-                    <!-- ImportServer jython script -->
+                    <!-- ImportApplicationServer jython script -->
                     <property>
-                        <propertyName>import_server.py</propertyName>
+                        <propertyName>import_application_server.py</propertyName>
                         <value/>
                     </property>
                     <!-- DeleteApplicationServer jython script -->
@@ -3175,6 +3175,27 @@
                                     </propertySheet>
                                 </property>
 
+                                <property>
+                                    <propertyName>wasTemplateDescription</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>wasTemplateLocation</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
                                 
                             </propertySheet>
                         </property>
@@ -3193,7 +3214,7 @@
             <formalParameter>
                 <formalParameterName>wasNodeName</formalParameterName>
                 <defaultValue/>
-                <description>Name of configuration</description>
+                <description>Name of the node where application server is located.</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
@@ -3201,7 +3222,7 @@
             <formalParameter>
                 <formalParameterName>wasAppServerName</formalParameterName>
                 <defaultValue/>
-                <description>Name of the websphere application server to create template in format NodeName:servername</description>
+                <description>Name of the application server to be a source for template.</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
@@ -3209,11 +3230,27 @@
             <formalParameter>
                 <formalParameterName>wasTemplateName</formalParameterName>
                 <defaultValue/>
-                <description>Name of configuration</description>
+                <description>Application Server Template name to be created.</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
-
+            <formalParameter>
+                <formalParameterName>wasTemplateDescription</formalParameterName>
+                <defaultValue/>
+                <description>Description of ApplicationServer template.</description>
+                <required>0</required>
+                <type>textarea</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>wasTemplateLocation</formalParameterName>
+                <defaultValue/>
+                <description>
+                    Specifies a configuration Id that represents the location to place the template.
+                    The configuration Id value is the application server template, which is templates\servertypes\APPLICATION_SERVER|servertype-metadata.xml
+                </description>
+                <required>0</required>
+                <type>textarea</type>
+            </formalParameter>
             
             <step>
                 <stepName>CreateApplicationServerTemplate</stepName>
@@ -3251,9 +3288,9 @@
             </step>
         </procedure>
         <procedure>
-            <procedureName>DeleteServerTemplate</procedureName>
-            <description>Deletes Server Template</description>
-            <jobNameTemplate>websphere-delete-server-template-$[jobId]</jobNameTemplate>
+            <procedureName>DeleteApplicationServerTemplate</procedureName>
+            <description>Deletes Application Server Template</description>
+            <jobNameTemplate>websphere-delete-application-server-template-$[jobId]</jobNameTemplate>
             <resourceName />
             <workspaceName />
             <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
@@ -3315,7 +3352,7 @@
 
             
             <step>
-                <stepName>DeleteServerTemplate</stepName>
+                <stepName>DeleteApplicationServerTemplate</stepName>
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
                 <command></command>
@@ -3333,7 +3370,7 @@
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
                 <workspaceName />
-                <procedureName>DeleteServerTemplate</procedureName>
+                <procedureName>DeleteApplicationServerTemplate</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
                     <property>
@@ -11506,11 +11543,11 @@
     </step>
 </procedure>
 
-<!-- ExportServer procedure -->
+<!-- ExportApplicationServer procedure -->
 <procedure>
-    <procedureName>ExportServer</procedureName>
-    <description>Exports Server to Archive</description>
-    <jobNameTemplate>websphere-export-server-$[jobId]</jobNameTemplate>
+    <procedureName>ExportApplicationServer</procedureName>
+    <description>Exports Application Server to Archive</description>
+    <jobNameTemplate>websphere-export-app-server-$[jobId]</jobNameTemplate>
     <resourceName />
     <workspaceName />
     <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
@@ -11605,7 +11642,7 @@
         <type>entry</type>
     </formalParameter>
     <step>
-        <stepName>ExportServer</stepName>
+        <stepName>ExportApplicationServer</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command></command>
@@ -11623,7 +11660,7 @@
         <timeLimitUnits>minutes</timeLimitUnits>
         <workingDirectory />
         <workspaceName />
-        <procedureName>ExportServer</procedureName>
+        <procedureName>ExportApplicationServer</procedureName>
         <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
         <propertySheet>
             <property>
@@ -11639,13 +11676,13 @@
         </propertySheet>
     </step>
 </procedure>
-<!-- End of ExportServer procedure -->
+<!-- End of ExportApplicationServer procedure -->
 
-<!-- ImportServer procedure -->
+<!-- ImportApplicationServer procedure -->
 <procedure>
-    <procedureName>ImportServer</procedureName>
-    <description>Imports Server from Archive</description>
-    <jobNameTemplate>websphere-import-server-$[jobId]</jobNameTemplate>
+    <procedureName>ImportApplicationServer</procedureName>
+    <description>Imports Application Server from Archive</description>
+    <jobNameTemplate>websphere-import-app-server-$[jobId]</jobNameTemplate>
     <resourceName />
     <workspaceName />
     <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
@@ -11737,6 +11774,16 @@
                                 </property>
                             </propertySheet>
                         </property>
+                        <property>
+                            <propertyName>wasSyncNodes</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
                         
                     </propertySheet>
                 </property>
@@ -11794,9 +11841,15 @@
         <required>0</required>
         <type>entry</type>
     </formalParameter>
-
+    <formalParameter>
+        <formalParameterName>wasSyncNodes</formalParameterName>
+        <defaultValue/>
+        <description>Sync nodes if checked.</description>
+        <required>0</required>
+        <type>entry</type>
+    </formalParameter>
     <step>
-        <stepName>ImportServer</stepName>
+        <stepName>ImportApplicationServer</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command></command>
@@ -11814,7 +11867,7 @@
         <timeLimitUnits>minutes</timeLimitUnits>
         <workingDirectory />
         <workspaceName />
-        <procedureName>ImportServer</procedureName>
+        <procedureName>ImportApplicationServer</procedureName>
         <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
         <propertySheet>
             <property>
@@ -11830,7 +11883,7 @@
         </propertySheet>
     </step>
 </procedure>
-<!-- End of ImportServer procedure -->
+<!-- End of ImportApplicationServer procedure -->
 
 <!-- DeleteApplicationServer procedure -->
 <procedure>
