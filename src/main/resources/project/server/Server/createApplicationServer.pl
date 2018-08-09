@@ -14,124 +14,43 @@
 #  limitations under the License.
 #
 
-
-# -------------------------------------------------------------------------
-# Includes
-# -------------------------------------------------------------------------
+use strict;
+use warnings;
 use ElectricCommander;
 use ElectricCommander::PropMod qw(/myProject/modules);
 use WebSphere::WebSphere;
 use WebSphere::Util;
+use Data::Dumper;
 
-use warnings;
-use strict;
-$| = 1;
-
-# -------------------------------------------------------------------------
-# Variables
-# -------------------------------------------------------------------------
-
-my $config = '$[configname]';
-my $node_name = '$[wasNodeName]';
-my $app_server_name = '$[wasAppServerName]';
-my $template_name = '$[wasTemplateName]';
-
-rtrim(
-    $config,
-    $node_name,
-    $app_server_name,
-    $template_name
-);
 
 my $ec = ElectricCommander->new();
 $ec->abortOnError(0);
 
-my $websphere = WebSphere::WebSphere->new(
-    $ec,
-    $config,
-);
-
-$websphere->setTemplateProperties(
-    nodeName      => $node_name,
-    appServerName => $app_server_name,
-    templateName  => $template_name
-);
-
-my $logger = $websphere->log();
-my $file = 'create_application_server_template.py';
-my $script = $ec->getProperty("/myProject/wsadmin_scripts/$file")->getNodeText('//value');
-
-
-
-$file = $websphere->write_jython_script(
-    $file, {},
-    augment_filename_with_random_numbers => 1
-);
-
-
-my $shellcmd = $websphere->_create_runfile($file, ());
-my $escaped_shellcmd = $websphere->_mask_password($shellcmd);
-
-$logger->info('WSAdmin command line: ', $escaped_shellcmd);
-
-$logger->debug("WSAdmin script:");
-$logger->debug($script);
-$logger->debug("== End of WSAdmin script ==");
-
-my %props = ();
-
-$props{createApplicationServerTemplateLine} = $escaped_shellcmd;
-
-# execute
-my $cmd_res = `$shellcmd 2>&1`;
-
-my $app_state = 'NOT_EXISTS';
-
-$logger->info($cmd_res);
-
-my $code = $?;
-$code >> 8;
-
-my $result_params = {
-    outcome => {
-        target => 'myCall',
-        result => '',
-    },
-    procedure => {
-        target => 'myCall',
-        msg => ''
-    },
-    pipeline => {
-        target => 'CreateApplicationServerTemplate Result:',
-        msg => '',
-    }
+my $opts = {
+    disabled_wsadmin_check => 0
 };
 
-$logger->info("Exit code: $code\n");
-if ($code == SUCCESS) {
-    $result_params->{outcome}->{result} = 'success';
-    $result_params->{procedure}->{msg} = sprintf(
-        'Application Server Template %s has been created from %s:%s',
-        $template_name,
-        $node_name,
-        $app_server_name
-    );
-    $result_params->{pipeline}->{msg} = $result_params->{procedure}->{msg};
-}
-else {
-    my $error = $websphere->extractWebSphereExceptions($cmd_res);
-    $result_params->{outcome}->{result} = 'error';
-    $result_params->{procedure}->{msg} = $result_params->{pipeline}->{msg} =
-        sprintf(
-            'Failed to create Application Server Template %s from %s:%s.\nError: %s',
-            $template_name,
-            $node_name,
-            $app_server_name,
-            $error
-        );
-}
+my $websphere = WebSphere::WebSphere->new($ec, '', '', $opts);
 
-my $exit = $websphere->setResult(%$result_params);
+$websphere->{jobStepId} = '$[jobStepId]';
 
-$exit->();
 
+my $step_params = {
+    target => {
+        pipeline => 'Create Application Server Result:',
+        success_summary => 'Application Server has been created.',
+        error_summary   => 'Failed to create an Application Server.'
+    },
+    jython_script => {
+        path => 'create_application_server.py',
+    },
+};
+
+eval {
+    $websphere->run_step($websphere->config_values()->{wsadminabspath}, $step_params);
+    1;
+} or do {
+    my $exception = $@;
+    rtrim($exception);
+    $websphere->bail_out($exception);
+};

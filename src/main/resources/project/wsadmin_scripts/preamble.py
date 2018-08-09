@@ -18,6 +18,8 @@ import sys
 import time
 import re
 import os
+import traceback
+import uuid
 
 # logging functions
 def logWithLevel(level, logLine):
@@ -36,6 +38,12 @@ def logSummary(logLine):
     logWithLevel("SUMMARY", logLine)
 
 def logOutcome(logLine):
+    logWithLevel("OUTCOME", logLine)
+
+def forwardException(logLine):
+    logWithLevel("EXCEPTION", logLine)
+
+def setOutcome(outcome):
     logWithLevel("OUTCOME", logLine)
 
 # Checks application readiness
@@ -61,6 +69,9 @@ def isAppRunning(appName):
         return 1
     else:
         return 0
+
+def genUUID():
+    return str(uuid.uuid4())
 
 # this function will return high-level application status.
 # Need to do some clarifications. There is application state transitions:
@@ -323,15 +334,21 @@ def parseServerListAsDict(servers, opts):
         server = re.split(':', serverString)
         if len(server) != 2 or server[0] == '' or server[1] == '':
             errorString = 'Expected nodename:servername record, got %s' % (serverString)
+            logError(errorString)
             raise ValueError(errorString)
         nodeName = unicode(server[0])
         serverName = unicode(server[1])
         if not nodeName in retval.keys():
             retval[nodeName] = []
         if 'expandStar' in opts.keys() and opts['expandStar'] == 1 and serverName == '*':
-            retval[nodeName] = getServersInNode(nodeName, {'ignoreNodeAgent': 1})
+            try:
+                retval[nodeName] = getServersInNode(nodeName, {'ignoreNodeAgent': 1})
+            except Exception as e:
+                forwardException(e)
+                sys.exit(1)
             if len(retval[nodeName]) == 0:
-                raise ValueError('Node %s does not exists or does not have servers')
+                logError('Node %s does not exist or does not have servers' % (nodeName))
+                raise ValueError('Node %s does not exists or does not have servers' % (nodeName))
         else:
             retval[nodeName].append(serverName)
     return retval
