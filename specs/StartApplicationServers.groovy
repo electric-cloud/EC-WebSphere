@@ -123,6 +123,8 @@ class StartApplicationServers extends PluginTestHelper {
         'wrongFormat': 'Not added',
         'wrongServer':  "Failed to start servers",
         'wrongServers': 'Not added',
+        'timeoutServer': 'Not added',
+        'timeoutServers': 'Not added',
         'incorrectConfig': "Configuration 'incorrect' doesn't exist",
         ]
 
@@ -138,6 +140,8 @@ class StartApplicationServers extends PluginTestHelper {
         'wrongFormat': ['Not added'],
         'wrongServer':  ['Invalid parameter value wrong_server1 for parameter serverName for command startMiddlewareServer.'],
         'wrongServers': ['Not added'],
+        'timeoutServer': ['Not added'],
+        'timeoutServers': ['Not added'],
         'incorrectConfig': ["Configuration 'incorrect' doesn't exist"],
     ]
 
@@ -280,9 +284,9 @@ class StartApplicationServers extends PluginTestHelper {
         where: 'The following params will be:'
         testCaseID             | configName              | serverList                  | timeout   | expectedSummary              | logs                      | stoppedServers  
         // http://jira.electric-cloud.com/browse/ECPAPPSERVERWEBSPHERE-493 - affect on 16, 17
-        testCases.systemTest16 | confignames.correctSOAP | serverLists.'default'       | '0'       | summaries.'default'          | jobLogs.'default'         | serverLists.'default'
-        testCases.systemTest16 | confignames.correctSOAP | serverLists.'default'       | ''        | summaries.'default'          | jobLogs.'default'         | serverLists.'default'
-        testCases.systemTest17 | confignames.correctSOAP | serverLists.'multiple'      | '5'       | summaries.'default'          | jobLogs.'default'         | serverLists.'multiple'
+        testCases.systemTest16 | confignames.correctSOAP | serverLists.'default'       | '0'       | summaries.'timeoutServer'    | jobLogs.'timeoutServer'   | serverLists.'default'
+        testCases.systemTest16 | confignames.correctSOAP | serverLists.'default'       | ''        | summaries.'timeoutServer'    | jobLogs.'timeoutServer'   | serverLists.'default'
+        testCases.systemTest17 | confignames.correctSOAP | serverLists.'multiple'      | '0'       | summaries.'timeoutServers'   | jobLogs.'timeoutServers'  | serverLists.'multiple'
         testCases.systemTest8  | ''                      | serverLists.'default'       | ''        | summaries.'emptyConfig'      | jobLogs.'emptyConfig'     | null
         // http://jira.electric-cloud.com/browse/ECPAPPSERVERWEBSPHERE-496 on 9
         testCases.systemTest9  | confignames.correctSOAP | ''                          | ''        | summaries.'emptyServer'      | jobLogs.'emptyServer'     | null
