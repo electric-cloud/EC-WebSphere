@@ -86,6 +86,9 @@ class StopNode extends PluginTestHelper {
     def procName = 'StopNode'
 
     @Shared
+    def procStartNodeName = 'StartNode'
+
+    @Shared
     def projectName = "EC-WebSphere Specs $procName Project"
 
     @Shared
@@ -117,7 +120,7 @@ class StopNode extends PluginTestHelper {
     @Shared
     startLocations = [
         'default': '/opt/IBM/WebSphere/AppServer/bin/startNode.sh', 
-        'Dmgr01': '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startNode.sh',
+        'AppSrv01': '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startNode.sh',
     ]
 
     @Shared
@@ -181,10 +184,6 @@ class StopNode extends PluginTestHelper {
         def wasResourceName = wasHost
         createWorkspace(wasResourceName)
         createConfiguration(confignames.correctSOAP, [doNotRecreate: false])
-        createConfiguration(confignames.correctIPC, [doNotRecreate: false])
-        createConfiguration(confignames.correctJSR160RMI, [doNotRecreate: false])
-        createConfiguration(confignames.correctNone, [doNotRecreate: false])
-        createConfiguration(confignames.correctRMI, [doNotRecreate: false])
 
         importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
                 resName : wasResourceName,
@@ -199,6 +198,22 @@ class StopNode extends PluginTestHelper {
                         wasTimeout: ''
                 ]
         ])
+
+        importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
+                resName : wasResourceName,
+                procName: procStartNodeName,
+                params  : [
+                        configname: '',
+                        wasAdditionalParameters: '',
+                        wasLogFileLocation: '',
+                        wasNodeName: '',
+                        wasNodeProfile    : '',
+                        wasStartNodeLocation: '',
+                        wasStartServers: '',
+                        wasTimeout: ''
+                ]
+        ])
+
 
         importProject(projectName, 'dsl/RunCustomShellCommand/RunCustomShellCommand.dsl', [projectName: projectName,
             wasResourceName : wasResourceName,
@@ -247,14 +262,11 @@ class StopNode extends PluginTestHelper {
             assert debugLog =~ text
         }
 
-        // cleanup: 
-        // startNode()
-        // if (stopPolicies.'stop'){
-            // startServer('server1')
-        // }
+        cleanup: 
+        startNode(stopPolicy)
 
         where: 'The following params will be:'
-        testCaseID                  | configName                  | addParameters               | profile           | logLocation       | stopLocation                   | stopPolicy               | timeout   | expectedSummary       | logs
+        testCaseID                  | configName                  | addParameters               | profile           | logLocation       | stopLocation                   | stopPolicy             | timeout   | expectedSummary       | logs
         testCases.systemTest1.name  | confignames.correctSOAP     | ''                          | ''                | ''                | stopLocations.'AppSrv01'       | stopPolicies.'none'    | ''        | summaries.'default'   | jobLogs.'default'
         testCases.systemTest1.name  | confignames.correctSOAP     | ''                          | ''                | ''                | stopLocations.'AppSrv01'       | stopPolicies.'default' | ''        | summaries.'default'   | jobLogs.'default'
         testCases.systemTest2.name  | confignames.correctSOAP     | ''                          | profiles.appSrv01 | ''                | stopLocations.'default'        | stopPolicies.'default' | ''        | summaries.'default'   | jobLogs.'profile'
@@ -266,10 +278,8 @@ class StopNode extends PluginTestHelper {
         testCases.systemTest7.name  | confignames.correctSOAP     | additionalParameters.trace  | ''                | ''                | stopLocations.'AppSrv01'       | stopPolicies.'default' | ''        | summaries.'default'   | jobLogs.'default'
         testCases.systemTest7.name  | confignames.correctSOAP     | additionalParameters.some   | ''                | ''                | stopLocations.'AppSrv01'       | stopPolicies.'default' | ''        | summaries.'default'   | jobLogs.'default'
         testCases.systemTest8.name  | confignames.correctSOAP     | additionalParameters.trace  | profiles.appSrv01 | logLocations.tmp  | stopLocations.'default'        | stopPolicies.'stop'    | '70'      | summaries.'default'   | jobLogs.'all'
-
     }
 
-    @IgnoreRest
     @Unroll
     def "StopNode - Negative"(){
         given: "Parameters for procedure"
@@ -354,8 +364,8 @@ class StopNode extends PluginTestHelper {
             assert debugLog =~ text
         }
 
-        // cleanup: 
-        // startNode()
+        cleanup: 
+        startNode(stopPolicy)
         where: 'The following params will be:'
         testCaseID                  | configName                  | addParameters               | profile           | logLocation       | stopLocation                   | stopPolicy             | timeout   | expectedSummary       | logs
         testCases.systemTest12.name | confignames.correctSOAP     | ''                          | ''                | ''                | stopLocations.'AppSrv01'       | stopPolicies.'none'    | ''        | summaries.'fail'      | jobLogs.'stopped'
@@ -395,37 +405,27 @@ class StopNode extends PluginTestHelper {
             def text = log.replace("stopNodeReplace", stopLocation)      
             assert debugLog =~ text
         }
-        // cleanup: 
-        // startNode()
+        cleanup: 
+        startNode(stopPolicy)
         where: 'The following params will be:'
         testCaseID                  | configName                  | addParameters               | profile           | logLocation       | stopLocation                   | stopPolicy             | timeout   | expectedSummary       | logs
         testCases.systemTest13.name | confignames.correctSOAP     | ''                          | ''                | ''                | stopLocations.'AppSrv01'       | stopPolicies.'none'    | '5'       | summaries.'fail'      | jobLogs.'timeout'
       }
 
 
-    def startNode(){
-        def runParams = [
-         // should be done
-        ]
-        def result = runProcedure(runParams, stopProcName)
-        waitUntil {
-        try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-    }
-
-    def startServer(serverName){
+    def startNode(def stopPolicy){
+        def startServer = stopPolicy == stopPolicies.'stop' ? 1 : 0
         def runParams = [
             configname: confignames.correctSOAP,
-            wasErrorHandling: 'WARNING',
-            wasServersList: 'websphere90ndNode01=server1',
-            wasWaitTime: '300'
-         // should be done
+            wasAdditionalParameters: '',
+            wasLogFileLocation: '',
+            wasNodeName: 'websphere90ndNode01',
+            wasNodeProfile    : '',
+            wasStartNodeLocation: startLocations.'AppSrv01',
+            wasStartServers: startServer,
+            wasTimeout: '300'
         ]
-        def result = runProcedure(runParams, stopProcName)
+        def result = runProcedure(runParams, procStartNodeName)
         waitUntil {
         try {
                 jobCompleted(result)
@@ -435,8 +435,6 @@ class StopNode extends PluginTestHelper {
         }
     }
 
-
-    //Run Test Procedure
     def runProcedure(def parameters, def procedureName=procName) {
         def parametersString = parameters.collect { k, v -> "$k: '$v'" }.join(', ')
         def code = """
