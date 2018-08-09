@@ -297,8 +297,8 @@ $xpath = $ec->attachCredential($projName, $credName,
 $errors .= $ec->checkAllErrors($xpath);
 
 $xpath = $ec->attachCredential($projName, $credName,
-    {procedureName => 'DeleteServerTemplate',
-     stepName => 'DeleteServerTemplate'});
+    {procedureName => 'DeleteApplicationServerTemplate',
+     stepName => 'DeleteApplicationServerTemplate'});
 $errors .= $ec->checkAllErrors($xpath);
 
 $xpath = $ec->attachCredential($projName, $credName,
