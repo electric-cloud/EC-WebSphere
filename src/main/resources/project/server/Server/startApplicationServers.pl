@@ -18,13 +18,15 @@
 # -------------------------------------------------------------------------
 # Includes
 # -------------------------------------------------------------------------
+use warnings;
+use strict;
+
 use ElectricCommander;
 use ElectricCommander::PropMod qw(/myProject/modules);
 use WebSphere::WebSphere;
 use WebSphere::Util;
+use Data::Dumper;
 
-use warnings;
-use strict;
 $| = 1;
 
 # -------------------------------------------------------------------------
@@ -111,6 +113,7 @@ if ($code == SUCCESS) {
     $result_params->{procedure}->{msg} = "Application Servers have been started:\n" . join "\n", @{$procedure_logs->{summary}};
     if (@{$procedure_logs->{warning}}) {
         my $warnings = join "\nWARNING: ", @{$procedure_logs->{warning}};
+        $warnings = "WARNING: $warnings";
         $result_params->{procedure}->{msg} .= "\n$warnings";
         $result_params->{outcome}->{result} = 'warning';
     }

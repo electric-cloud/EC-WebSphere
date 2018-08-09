@@ -29,7 +29,6 @@ use Data::Dumper;
 # wasTemplateName
 # wasTemplateDescription
 
-
 my $ec = ElectricCommander->new();
 $ec->abortOnError(0);
 
@@ -44,9 +43,9 @@ $websphere->{jobStepId} = '$[jobStepId]';
 
 my $step_params = {
     target => {
-        pipeline => 'Create Application Server Template Result:',
-        success_summary => 'Application Server template has been created.',
-        error_summary   => 'Failed to create an Application Server Template.'
+        pipeline => 'Export Application Server Result:',
+        success_summary => 'Application Server has been exported.',
+        error_summary   => 'Failed to export an Application Server.'
     },
     error_cb => sub {
         my ($self) = @_;
@@ -57,7 +56,7 @@ my $step_params = {
         }
     },
     jython_script => {
-        path => 'create_application_server_template.py',
+        path => 'export_application_server.py',
     },
     # args_cb => \&WebSphere::WebSphere::args_cb_start_node,
     # procedure_result_cb => \&WebSphere::WebSphere::procedure_result_cb_start_node
