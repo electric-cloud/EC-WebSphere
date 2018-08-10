@@ -116,6 +116,8 @@ class StartApplicationServers extends PluginTestHelper {
     def summaries = [  
         'default': "Application Servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED",
         'started': "Application Servers have been started:\n\nServer server1 on Node websphere90ndNode01 is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
+        'started2': "Application Servers have been started:\n\nWARNING: Server server1 on Node websphere90ndNode01 is already STARTED\nWARNING: Server serverStartAppServer on Node websphere90ndNode01 is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
+        'started3': "Application Servers have been started:\nNode: websphere90ndNode01, Server: serverStartAppServer, State: STARTED\nWARNING: Server server1 on Node websphere90ndNode01 is already STARTED",
         'multiple': "Application Servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED\nNode: websphere90ndNode01, Server: serverStartAppServer, State: STARTED",
         'first': "Application Servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED\nServer serverStartAppServer on Node websphere90ndNode01 is already STARTED",    
         'emptyConfig': "Configuration '' doesn't exist",
@@ -132,6 +134,8 @@ class StartApplicationServers extends PluginTestHelper {
     def jobLogs = [
         'default':  ['Start completed for middleware server "server1" on node "websphere90ndNode01"', "Node: websphere90ndNode01, Server: server1, State: STARTED"],           
         'started':  ["Server server1 on Node websphere90ndNode01 is already STARTED", "Nothing to do, all servers are already STARTED"],
+        'started2': ["Server server1 on Node websphere90ndNode01 is already STARTED", "Server serverStartAppServer on Node websphere90ndNode01 is already STARTED", "Nothing to do, all servers are already STARTED"],
+        'started3': ["Node: websphere90ndNode01, Server: serverStartAppServer, State: STARTED", "Server server1 on Node websphere90ndNode01 is already STARTED'"],
         'multiple': ['Start completed for middleware server "server1" on node "websphere90ndNode01"', 'Start completed for middleware server "serverStartAppServer" on node "websphere90ndNode01"',
             "Node: websphere90ndNode01, Server: server1, State: STARTED", "Node: websphere90ndNode01, Server: serverStartAppServer, State: STARTED'"],
         'first': ['Server serverStartAppServer on Node websphere90ndNode01 is already STARTED', 'Start completed for middleware server "server1" on node "websphere90ndNode01"'],
@@ -199,6 +203,7 @@ class StartApplicationServers extends PluginTestHelper {
     def doCleanupSpec() {
     }
 
+    @IgnoreRest
     @Unroll
     def 'StartApplicationServer - Positive: #testCaseID.name #testCaseID.description'(){
         if (stoppedServers){
@@ -241,11 +246,9 @@ class StartApplicationServers extends PluginTestHelper {
         // testCases.systemTest3  | confignames.correctSOAP | serverLists.'default'   | '300'     | summaries.'default'   | "success" | jobLogs.'default' | serverLists.'default'
         // testCases.systemTest4  | confignames.correctSOAP | serverLists.'multiple'  | '300'     | summaries.'default'   | "success" | jobLogs.'default' | serverLists.'multiple'
         testCases.systemTest5  | confignames.correctSOAP | serverLists.'default'   | '300'     | summaries.'started'   | "warning" | jobLogs.'started' | null
-        // http://jira.electric-cloud.com/browse/ECPAPPSERVERWEBSPHERE-494
-        testCases.systemTest6  | confignames.correctSOAP | serverLists.'multiple'  | '300'     | summaries.'default'   | "warning" | jobLogs.'default' | null
+        testCases.systemTest6  | confignames.correctSOAP | serverLists.'multiple'  | '300'     | summaries.'started2'  | "warning" | jobLogs.'started2'| null
         testCases.systemTest7  | confignames.correctSOAP | serverLists.'multiple'  | '300'     | summaries.'first'     | "warning" | jobLogs.'first'   | serverLists.'default'
-        // http://jira.electric-cloud.com/browse/ECPAPPSERVERWEBSPHERE-494
-        testCases.systemTest7  | confignames.correctSOAP | serverLists.'multiple'  | '300'     | summaries.'default'   | "warning" | jobLogs.'default' | serverLists.'second'
+        testCases.systemTest7  | confignames.correctSOAP | serverLists.'multiple'  | '300'     | summaries.'started3'  | "warning" | jobLogs.'started3'| serverLists.'second'
     }
 
     @Unroll
