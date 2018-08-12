@@ -389,3 +389,7 @@ def syncActiveNodes():
     else:
         print 'Standalone server, no nodes to sync'
 
+def getExceptionMsg():
+    errorType, errorMsg, errorTraceBack = sys.exc_info()
+    retval = str(errorMsg).strip()
+    return retval
