@@ -12,8 +12,8 @@ $[wasSyncNodes]
 
 try:
     AdminServerManagement.deleteServer(nodeName, appServerName)
-except Exception as e:
-    forwardException(str(e))
+except:
+    forwardException(getExceptionMsg())
     logSummary("Failed to delete server %s on node %s" % (appServerName, nodeName));
     sys.exit(1)
 

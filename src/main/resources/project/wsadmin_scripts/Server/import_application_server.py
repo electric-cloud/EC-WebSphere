@@ -48,9 +48,15 @@ if coreGroup:
     params.append('-coreGroup')
     params.appname(coreGroup)
 
-AdminTask.importServer(params)
+try:
+    AdminTask.importServer(params)
+except:
+    logSummary("Failed to import application server %s to node %s" % (appServerName, nodeName))
+    forwardException(getExceptionMsg())
+    sys.exit(1)
 
 AdminConfig.save()
+logSummary("Application server %s has been imported to node %s" % (appServerName, nodeName))
 
 # sync nodes if required
 if toBoolean(wasSyncNodes):

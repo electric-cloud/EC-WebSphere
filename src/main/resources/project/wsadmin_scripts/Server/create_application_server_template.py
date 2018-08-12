@@ -34,7 +34,12 @@ if templateLocation:
     params.append('-templateLocation')
     params.append(templateLocation)
 
-# AdminServerManagement.createAppServerTemplate(nodeName, appServerName, templateName)
-AdminTask.createApplicationServerTemplate(params)
+try:
+    AdminTask.createApplicationServerTemplate(params)
+except:
+    logSummary("Failed to create Application Server Template %s" % (templateName))
+    forwardException(getExceptionMsg())
+    sys.exit(1)
 
+logSummary("Application Server template %s has been created" % (templateName))
 AdminConfig.save()

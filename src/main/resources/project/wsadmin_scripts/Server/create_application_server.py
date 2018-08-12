@@ -47,8 +47,9 @@ if sourceType == 'server':
     # create intermediate template
     try:
         AdminServerManagement.createAppServerTemplate(server[0], server[1], createdTemplateName)
-    except Exception as e:
-        forwardException(e)
+    except:
+        logSummary("Failed to create intermediate template" % (createdTemplateName))
+        forwardException(getExceptionMsg())
         sys.exit(1)
         # create application server using this template
     templateName = createdTemplateName
@@ -65,13 +66,17 @@ if templateLocation:
     creationParams.append(templateLocation)
 if genUniquePorts:
     creationParams.append('-genUniquePorts')
-    creationParams.append(toBoolean(genUniquePorts))
+    if toBoolean(genUniquePorts):
+        creationParams.append('true')
+    else:
+        creationParams.append('false')
 
 # Server creation
 try:
     AdminTask.createApplicationServer(nodeName, creationParams)
-except Exception as e:
-    forwardException(str(e))
+except:
+    logSummary("Failed to create %s server on %s node" % (serverName, nodeName))
+    forwardException(getExceptionMsg())
     if createdTemplateName:
         AdminServerManagement.deleteServerTemplate(createdTemplateName)
     sys.exit(1)
