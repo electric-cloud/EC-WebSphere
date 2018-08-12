@@ -66,7 +66,10 @@ if templateLocation:
     creationParams.append(templateLocation)
 if genUniquePorts:
     creationParams.append('-genUniquePorts')
-    creationParams.append(toBoolean(genUniquePorts))
+    if toBoolean(genUniquePorts):
+        creationParams.append('true')
+    else:
+        creationParams.append('false')
 
 # Server creation
 try:

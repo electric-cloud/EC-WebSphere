@@ -1,6 +1,6 @@
 $[/myProject/wsadmin_scripts/preamble.py]
 
-# stop application server jython script.
+# start application server jython script.
 
 # properties retrieval section
 
@@ -24,7 +24,13 @@ parsedServerList = parseServerListAsList(serversList, {"expandStar": 1})
 # check server states section
 for x in range (0, len(parsedServerList)):
     server = parsedServerList[x]
-    serverStatus = showServerStatus(server['Node'], server['Server'])
+    serverStatus = ''
+    try:
+        serverStatus = showServerStatus(server['Node'], server['Server'])
+    except:
+        logSummary("Failed to check status of %s on node %s" % (server[Server], server['Node']))
+        forwardException(getExceptionMsg())
+        sys.exit(1)
     if serverStatus == okServerStatus:
         logWarning("Server %s on Node %s is already %s" % (server['Server'], server['Node'], okServerStatus))
         parsedServerList[x] = 0
@@ -34,21 +40,33 @@ parsedServerList = filter(lambda x: x, parsedServerList)
 
 if len(parsedServerList) == 0:
     logWarning("Nothing to do, all servers are already %s" % (okServerStatus))
+    logSummary("All servers are already %s" % (okServerStatus))
     os._exit(0)
 
 # starting the servers
 for server in parsedServerList:
     params = '[-serverName "%s" -nodeName "%s"]' % (server['Server'], server['Node'])
-    result = AdminTask.startMiddlewareServer(params)
-    print "Server start result: ", result;
+    try:
+        result = AdminTask.startMiddlewareServer(params)
+        print "Server start result: ", result;
+    except:
+        forwardException(getExceptionMsg())
+        logSummary("Failed to stop server %s on node %s" % (server['Server'], server['Node']))
+        sys.exit(1)
 
 startResults = []
-# now we're checking that servers are start
+# now we're checking that servers are started
 startedServers = 0
 
 for i in range(0, iterationsCount):
     for server in parsedServerList:
-        serverStatus = showServerStatus(server['Node'], server['Server'])
+        serverStatus = ''
+        try:
+            serverStatus = showServerStatus(server['Node'], server['Server'])
+        except:
+            logSummary("Failed to check state of server %s on node %s" % (server['Server'], server['Node']))
+            forwardException(getExceptionMsg())
+            sys.exit(1)
         # Here we should handle exceptions.
         server['State'] = serverStatus
         if serverStatus == okServerStatus:
@@ -62,10 +80,8 @@ for i in range(0, iterationsCount):
 print "Procedure result:\n"
 for server in parsedServerList:
     logSummary("Node: %s, Server: %s, State: %s" % (server['Node'], server['Server'], server['State']))
-print "==="
-print "Done."
 
 if startedServers != len(parsedServerList):
-    print "Error: Failed to start servers"
+    logError("Failed to start servers")
     sys.exit(1)
 
