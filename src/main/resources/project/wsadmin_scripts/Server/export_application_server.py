@@ -4,7 +4,7 @@ nodeName = '''
 $[wasNodeName]
 '''.strip()
 
-appServerName = '''
+serverName = '''
 $[wasAppServerName]
 '''.strip()
 
@@ -14,9 +14,15 @@ $[wasArchivePath]
 
 params = [
     '-nodeName', nodeName,
-    '-serverName', appServerName,
+    '-serverName', serverName,
     '-archive', archivePath
 ]
-AdminTask.exportServer(params)
+try:
+    AdminTask.exportServer(params)
+except:
+    logSummary("Failed to export application server %s from node %s" % (serverName, nodeName))
+    forwardException(getExceptionMsg())
+    sys.exit(1)
 
+logSummary("Application server %s from node %s has been exported" % (serverName, nodeName));
 AdminConfig.save()
