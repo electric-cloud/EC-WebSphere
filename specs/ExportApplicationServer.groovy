@@ -5,7 +5,7 @@ import PluginTestHelper
 
 @IgnoreIf({ System.getenv('IS_WAS_ND') != "1"})
 @Stepwise
-class StopStartDeploymentManager extends PluginTestHelper {
+class ExportApplicationServerNegative extends PluginTestHelper {
 
     /**
      * Environments Variables
@@ -82,16 +82,6 @@ class StopStartDeploymentManager extends PluginTestHelper {
         error: 		'error',
         warning: 	'warning',
         running: 	'running',
-    ]
-    
-    @Shared
-    def expectedSummaryMessages = [
-        empty:                                              "",
-        successStartDM:                                   "Deployment Manager has been successfully started.",
-        successStopDM:                                    "Deployment Manager has been successfully stopped.",
-        errorStartDM: 'Shell ' + wasStartScript + '-wrong does not exist',
-        errorStopDM:  'Shell ' + wasStopScript + '-wrong does not exist',
-        incorrectScope:                                     "target object is required",
     ]
     
     @Shared expectedJobDetailedResults = [
