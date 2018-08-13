@@ -182,12 +182,13 @@ class StartApplicationServers extends PluginTestHelper {
                 procName: procCreateName,
                 params  : [
                     configname: '',
-                    headerCreationSource: '',
-                    wasArchivePath: '',
+                    wasAppServerName: '',
+                    wasGenUniquePorts: '',
                     wasNodeName: '',
-                    wasServerName: '',
                     wasSourceServerName: '',
                     wasSourceType: '',
+                    wasSyncNodes: '',
+                    wasTemplateLocation: '',
                     wasTemplateName: '',
                 ]
         ])
@@ -199,7 +200,7 @@ class StartApplicationServers extends PluginTestHelper {
 
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")' 
 
-        // createAppServer('serverStartAppServer')   
+        createAppServer('websphere90ndNode01','serverStartAppServer')  
     }
 
     def doCleanupSpec() {
@@ -331,26 +332,27 @@ class StartApplicationServers extends PluginTestHelper {
         }
     }
 
-    def createAppServer(server){
-        def runParams = [
-            configname: '',
-            headerCreationSource: '',
-            wasArchivePath: '',
-            wasNodeName: '',
-            wasServerName: '',
-            wasSourceServerName: '',
-            wasSourceType: '',
-            wasTemplateName: '',
-        ]
-        def result = runProcedure(runParams, stopProcName)
-        waitUntil {
-        try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
+        def createAppServer(node,server){
+            def runParams = [
+                    configname: confignames.correctSOAP,
+                    wasAppServerName: server,
+                    wasGenUniquePorts: '0',
+                    wasNodeName: node,
+                    wasSourceServerName: '',
+                    wasSourceType: '',
+                    wasSyncNodes: '1',
+                    wasTemplateLocation: '',
+                    wasTemplateName: '',
+            ]
+            def result = runProcedure(runParams, procCreateName)
+            waitUntil {
+                try {
+                    jobCompleted(result)
+                } catch (Exception e) {
+                    println e.getMessage()
+                }
             }
-        }
-    }    
+        }   
 
 
     //Run Test Procedure
