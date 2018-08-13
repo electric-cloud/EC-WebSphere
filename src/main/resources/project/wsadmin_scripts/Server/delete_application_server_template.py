@@ -4,6 +4,10 @@ templateName = '''
 $[wasTemplateName]
 '''.strip()
 
+wasSyncNodes = '''
+$[wasSyncNodes]
+'''.strip()
+
 try:
     AdminServerManagement.deleteServerTemplate(templateName)
 except:
@@ -13,3 +17,7 @@ except:
 
 logSummary("Application server template %s has been deleted" % (templateName))
 AdminConfig.save()
+
+wasSyncNodes = '''
+$[wasSyncNodes]
+'''.strip()
