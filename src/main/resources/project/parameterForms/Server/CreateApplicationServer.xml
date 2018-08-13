@@ -18,95 +18,103 @@ limitations under the License.
 <editor>
     <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CheckApp</help>
 
-<formElement>
-    <label>Config Name:</label>
-    <property>configname</property>
-    <type>entry</type>
-    <required>1</required>
-    <documentation>Name of configuration</documentation>
-</formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Configuration Name:</label>
+        <!-- Improvements for CEV-18687 -->
+        <configuration>1</configuration>
+        <!-- End of improvements for CEV-18687 -->
+        <property>configname</property>
+        <propertyReference>/plugins/@PLUGIN_NAME@/project/websphere_cfgs</propertyReference>
+        <documentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration. To view or create a new configuration, go to the Administration -> Plugins tab, and select 'Configure' action for @PLUGIN_KEY@ plugin.</documentation>
+        <htmlDocumentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" target="_blank" href="/commander/pages/@PLUGIN_NAME@/configurations">configuration page</a>.</htmlDocumentation>
+        <required>1</required>
+    </formElement>
 
 
-<formElement>
-    <label>Node Name:</label>
-    <property>wasNodeName</property>
-    <type>entry</type>
-    <required>1</required>
-    <documentation>Was node name</documentation>
-</formElement>
+    <formElement>
+        <label>Node Name:</label>
+        <property>wasNodeName</property>
+        <type>entry</type>
+        <required>1</required>
+        <documentation>Was node name</documentation>
+    </formElement>
 
-<formElement>
-    <label>Server Name:</label>
-    <property>wasAppServerName</property>
-    <type>entry</type>
-    <required>1</required>
-    <documentation>Server name to create of type provided in previous parameter.</documentation>
-</formElement>
-<formElement>
-    <label>Generate Unique Ports?:</label>
-    <property>wasGenUniquePorts</property>
-    <type>entry</type>
-    <required>1</required>
-    <documentation>Generate new ports if checked.</documentation>
-</formElement>
-<!-- Creation source section -->
-<!-- Header for dynamic form -->
-<formElement>
+    <formElement>
+        <label>Server Name:</label>
+        <property>wasAppServerName</property>
+        <type>entry</type>
+        <required>1</required>
+        <documentation>Server name to create of type provided in previous parameter.</documentation>
+    </formElement>
+    <formElement>
+        <label>Generate Unique Ports?:</label>
+        <property>wasGenUniquePorts</property>
+        <type>checkbox</type>
+        <required>0</required>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+        <initiallyChecked>0</initiallyChecked>
+        <documentation>Generate new ports if checked.</documentation>
+    </formElement>
+    <!-- Creation source section -->
+    <!-- Header for dynamic form -->
+    <formElement>
         <type>header</type>
         <label>Server Creation Source</label>
         <property>headerCreationSource</property>
         <required>0</required>
         <documentation>Header</documentation>
-</formElement>
+    </formElement>
 
 
-<formElement>
-    <label>Source Type:</label>
-    <property>wasSourceType</property>
-    <type>select</type>
-    <value/>
-    <option><name>Template</name><value>template</value></option>
-    <option><name>Server</name><value>server</value></option>
-    <required>0</required>
-    <documentation>Source type to use for server creation, could be server, template.</documentation>
-</formElement>
-<formElement>
-    <label>Source Template Name:</label>
-    <property>wasTemplateName</property>
-    <type>entry</type>
-    <required>0</required>
-    <documentation>Template name to use for server creation</documentation>
-    <dependsOn>wasSourceType</dependsOn>
-    <condition>${wasSourceType} != '' AND ${wasSourceType} == 'template'</condition>
-</formElement>
-<formElement>
-    <label>Source Template Location:</label>
-    <property>wasTemplateLocation</property>
-    <type>entry</type>
-    <required>0</required>
-    <documentation>Location of template.</documentation>
-    <dependsOn>wasSourceType</dependsOn>
-    <condition>${wasSourceType} != '' AND ${wasSourceType} == 'template'</condition>
-</formElement>
-<formElement>
-    <label>Source Server Name:</label>
-    <property>wasSourceServerName</property>
-    <type>entry</type>
-    <required>0</required>
-    <documentation>Server that should be used as source for server creation.</documentation>
-    <dependsOn>wasSourceType</dependsOn>
-    <condition>${wasSourceType} != '' AND ${wasSourceType} == 'server'</condition>
-</formElement>
-<!-- End of creation source section -->
-<formElement>
-    <label>Sync Nodes?:</label>
-    <property>wasSyncNodes</property>
-    <type>checkbox</type>
-    <initiallyChecked>0</initiallyChecked>
-    <checkedValue>1</checkedValue>
-    <uncheckedValue>0</uncheckedValue>
-    <required>0</required>
-    <documentation>Sync Nodes if checked.</documentation>
-</formElement>
+    <formElement>
+        <label>Source Type:</label>
+        <property>wasSourceType</property>
+        <type>select</type>
+        <value/>
+        <option><name>Template</name><value>template</value></option>
+        <option><name>Server</name><value>server</value></option>
+        <required>0</required>
+        <documentation>Source type to use for server creation, could be server, template.</documentation>
+    </formElement>
+    <formElement>
+        <label>Source Template Name:</label>
+        <property>wasTemplateName</property>
+        <type>entry</type>
+        <required>0</required>
+        <documentation>Template name to use for server creation</documentation>
+        <dependsOn>wasSourceType</dependsOn>
+        <condition>${wasSourceType} != '' AND ${wasSourceType} == 'template'</condition>
+    </formElement>
+    <formElement>
+        <label>Source Template Location:</label>
+        <property>wasTemplateLocation</property>
+        <type>entry</type>
+        <required>0</required>
+        <documentation>Location of template.</documentation>
+        <dependsOn>wasSourceType</dependsOn>
+        <condition>${wasSourceType} != '' AND ${wasSourceType} == 'template'</condition>
+    </formElement>
+    <formElement>
+        <label>Source Server Name:</label>
+        <property>wasSourceServerName</property>
+        <type>entry</type>
+        <required>0</required>
+        <documentation>Server that should be used as source for server creation.</documentation>
+        <dependsOn>wasSourceType</dependsOn>
+        <condition>${wasSourceType} != '' AND ${wasSourceType} == 'server'</condition>
+    </formElement>
+    <!-- End of creation source section -->
+    <formElement>
+        <label>Sync Nodes?:</label>
+        <property>wasSyncNodes</property>
+        <type>checkbox</type>
+        <initiallyChecked>0</initiallyChecked>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+        <required>0</required>
+        <documentation>Sync Nodes if checked.</documentation>
+    </formElement>
 
 </editor>
