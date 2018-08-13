@@ -4,7 +4,7 @@ templateName = '''
 $[wasTemplateName]
 '''.strip()
 
-wasSyncNodes = '''
+syncNodes = '''
 $[wasSyncNodes]
 '''.strip()
 
@@ -18,6 +18,5 @@ except:
 logSummary("Application server template %s has been deleted" % (templateName))
 AdminConfig.save()
 
-wasSyncNodes = '''
-$[wasSyncNodes]
-'''.strip()
+if toBoolean(syncNodes):
+    syncActiveNodes()

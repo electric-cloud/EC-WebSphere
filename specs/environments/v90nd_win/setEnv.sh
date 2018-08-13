@@ -7,3 +7,6 @@ export WAS_DEBUG="1";
 export WSADMIN_PATH="C:/IBM/WebSphere/profiles/Dmgr01/bin/wsadmin.bat";
 export WAS_APPPATH="C:/IBM/";
 export IS_WINDOWS=1
+export WAS_START_DM_SCRIPT="C:/IBM/WebSphere/profiles/Dmgr01/bin/startManager.bat";
+export WAS_STOP_DM_SCRIPT="C:/IBM/WebSphere/profiles/Dmgr01/bin/stopManager.bat";
+export IS_WAS_ND="1";
