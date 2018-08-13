@@ -64,7 +64,7 @@ limitations under the License.
         <label>Server Creation Source</label>
         <property>headerCreationSource</property>
         <required>0</required>
-        <documentation>Header</documentation>
+        <documentation />
     </formElement>
 
 
