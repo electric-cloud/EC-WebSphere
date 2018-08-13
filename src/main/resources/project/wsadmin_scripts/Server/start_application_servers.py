@@ -65,6 +65,8 @@ startedServers = 0
 
 for i in range(0, iterationsCount):
     for server in parsedServerList:
+        if 'State' in server.keys() and server['State'] == okServerStatus:
+            continue
         serverStatus = ''
         try:
             serverStatus = showServerStatus(server['Node'], server['Server'])
@@ -87,6 +89,6 @@ for server in parsedServerList:
     logSummary("Node: %s, Server: %s, State: %s" % (server['Node'], server['Server'], server['State']))
 
 if startedServers != len(parsedServerList):
-    logError("Failed to start servers")
+    logError("Some servers are failed to start")
     sys.exit(1)
 
