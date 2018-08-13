@@ -115,14 +115,15 @@ class StartApplicationServers extends PluginTestHelper {
     @Shared
     def summaries = [  
         'default': "Application Servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED",
-        'started': "Application Servers have been started:\n\nServer server1 on Node websphere90ndNode01 is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
-        'started2': "Application Servers have been started:\n\nWARNING: Server server1 on Node websphere90ndNode01 is already STARTED\nWARNING: Server serverStartAppServer on Node websphere90ndNode01 is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
+        'started': "Application Servers have been started:\nAll servers are already STARTED\nWARNING: Server server1 on Node websphere90ndNode01 is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
+        'started2': "Application Servers have been started:\nAll servers are already STARTED\nWARNING: Server server1 on Node websphere90ndNode01 is already STARTED\nWARNING: Server serverStartAppServer on Node websphere90ndNode01 is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
         'started3': "Application Servers have been started:\nNode: websphere90ndNode01, Server: serverStartAppServer, State: STARTED\nWARNING: Server server1 on Node websphere90ndNode01 is already STARTED",
         'multiple': "Application Servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED\nNode: websphere90ndNode01, Server: serverStartAppServer, State: STARTED",
-        'first': "Application Servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED\nServer serverStartAppServer on Node websphere90ndNode01 is already STARTED",    
+        'first': "Application Servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED\nWARNING: Server serverStartAppServer on Node websphere90ndNode01 is already STARTED",    
         'emptyConfig': "Configuration '' doesn't exist",
-        'emptyServer': 'Not added',
-        'wrongFormat': 'Not added',
+        'failed': 'Failed to start servers:\nNode: websphere90ndNode01, Server: server1, State: Stopped\nFailed to start servers',
+        'emptyServer': 'Failed to start servers:\nMissing servers list to be started',
+        'wrongFormat': 'Failed to start servers:\nExpected nodename:servername record, got websphere90ndNode01=server1',
         'wrongServer':  "Failed to start servers",
         'wrongServers': 'Not added',
         'timeoutServer': 'Not added',
@@ -140,13 +141,14 @@ class StartApplicationServers extends PluginTestHelper {
             "Node: websphere90ndNode01, Server: server1, State: STARTED", "Node: websphere90ndNode01, Server: serverStartAppServer, State: STARTED'"],
         'first': ['Server serverStartAppServer on Node websphere90ndNode01 is already STARTED', 'Start completed for middleware server "server1" on node "websphere90ndNode01"'],
         'emptyConfig': ["Error: Configuration '' doesn't exist"],
-        'emptyServer': ['Not added'],
-        'wrongFormat': ['Not added'],
+        'emptyServer': ['Missing servers list to be started'],
+        'wrongFormat': ['ValueError: Expected nodename:servername record, got websphere90ndNode01=server1'],
         'wrongServer':  ['Invalid parameter value wrong_server1 for parameter serverName for command startMiddlewareServer.'],
-        'wrongServers': ['Not added'],
+        'wrongServers': ['Expected nodename:servername record, got websphere90ndNode01=wrong_server1'],
         'timeoutServer': ['Not added'],
         'timeoutServers': ['Not added'],
         'incorrectConfig': ["Configuration 'incorrect' doesn't exist"],
+        'failed': ['Failed to start servers', 'Node: websphere90ndNode01, Server: server1, State: Stopped'],
     ]
 
 
@@ -201,9 +203,23 @@ class StartApplicationServers extends PluginTestHelper {
     }
 
     def doCleanupSpec() {
+        def runParams = [
+            configname: confignames.correctSOAP,
+            wasServersList: serverLists.'default',
+            wasWaitTime: '300',
+        ]
+
+        def result = runProcedure(runParams)
+        waitUntil {
+        try {
+                jobCompleted(result)
+            } catch (Exception e) {
+                println e.getMessage()
+            }
+        }
+
     }
 
-    @IgnoreRest
     @Unroll
     def 'StartApplicationServer - Positive: #testCaseID.name #testCaseID.description'(){
         if (stoppedServers){
@@ -286,18 +302,16 @@ class StartApplicationServers extends PluginTestHelper {
 
         where: 'The following params will be:'
         testCaseID             | configName              | serverList                  | timeout   | expectedSummary              | logs                      | stoppedServers  
-        // http://jira.electric-cloud.com/browse/ECPAPPSERVERWEBSPHERE-493 - affect on 16, 17
-        testCases.systemTest16 | confignames.correctSOAP | serverLists.'default'       | '0'       | summaries.'timeoutServer'    | jobLogs.'timeoutServer'   | serverLists.'default'
-        testCases.systemTest16 | confignames.correctSOAP | serverLists.'default'       | ''        | summaries.'timeoutServer'    | jobLogs.'timeoutServer'   | serverLists.'default'
-        testCases.systemTest17 | confignames.correctSOAP | serverLists.'multiple'      | '0'       | summaries.'timeoutServers'   | jobLogs.'timeoutServers'  | serverLists.'multiple'
+        testCases.systemTest16 | confignames.correctSOAP | serverLists.'default'       | '0'       | summaries.'failed'           | jobLogs.'failed'          | serverLists.'default'
+        testCases.systemTest16 | confignames.correctSOAP | serverLists.'default'       | ''        | summaries.'failed'           | jobLogs.'failed'   | serverLists.'default'
+        // testCases.systemTest17 | confignames.correctSOAP | serverLists.'multiple'      | '0'       | summaries.'timeoutServers'   | jobLogs.'timeoutServers'  | serverLists.'multiple'
         testCases.systemTest8  | ''                      | serverLists.'default'       | ''        | summaries.'emptyConfig'      | jobLogs.'emptyConfig'     | null
-        // http://jira.electric-cloud.com/browse/ECPAPPSERVERWEBSPHERE-496 on 9
         testCases.systemTest9  | confignames.correctSOAP | ''                          | ''        | summaries.'emptyServer'      | jobLogs.'emptyServer'     | null
         testCases.systemTest11 | confignames.incorrect   | serverLists.'default'       | ''        | summaries.'incorrectConfig'  | jobLogs.'incorrectConfig' | null
         testCases.systemTest12 | confignames.correctSOAP | serverLists.'wrong'         | ''        | summaries.'wrongFormat'      | jobLogs.'wrongFormat'     | null
         testCases.systemTest13 | confignames.correctSOAP | serverLists.'wrongServer'   | ''        | summaries.'wrongServer'      | jobLogs.'wrongServer'     | null
-        testCases.systemTest14 | confignames.correctSOAP | serverLists.'wrongServers'  | ''        | summaries.'wrongServers'     | jobLogs.'wrongServers'    | serverLists.'default'
-        testCases.systemTest14 | confignames.correctSOAP | serverLists.'wrongServers'  | ''        | summaries.'wrongServers'     | jobLogs.'wrongServers'    | serverLists.'second'
+        testCases.systemTest14 | confignames.correctSOAP | serverLists.'wrongServers'  | ''        | summaries.'wrongServer'      | jobLogs.'wrongServers'     | serverLists.'default'
+        testCases.systemTest14 | confignames.correctSOAP | serverLists.'wrongServers'  | ''        | summaries.'wrongServer'      | jobLogs.'wrongServers'     | serverLists.'second'
 
    }    
 
