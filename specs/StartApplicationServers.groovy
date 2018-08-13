@@ -336,13 +336,13 @@ class StartApplicationServers extends PluginTestHelper {
             def runParams = [
                     configname: confignames.correctSOAP,
                     wasAppServerName: server,
-                    wasGenUniquePorts: '0',
+                    wasGenUniquePorts: '1',
                     wasNodeName: node,
                     wasSourceServerName: '',
-                    wasSourceType: '',
+                    wasSourceType: 'template',
                     wasSyncNodes: '1',
                     wasTemplateLocation: '',
-                    wasTemplateName: '',
+                    wasTemplateName: 'default',
             ]
             def result = runProcedure(runParams, procCreateName)
             waitUntil {
