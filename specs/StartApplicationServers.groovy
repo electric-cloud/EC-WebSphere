@@ -121,7 +121,7 @@ class StartApplicationServers extends PluginTestHelper {
         'multiple': "Application Servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED\nNode: websphere90ndNode01, Server: serverStartAppServer, State: STARTED",
         'first': "Application Servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED\nWARNING: Server serverStartAppServer on Node websphere90ndNode01 is already STARTED",    
         'emptyConfig': "Configuration '' doesn't exist",
-        'failed': 'Failed to start servers:\nNode: websphere90ndNode01, Server: server1, State: Stopped\nFailed to start servers',
+        'failed': 'Failed to start servers:\nNode: websphere90ndNode01, Server: server1, State: Stopped\nSome servers are failed to start',
         'emptyServer': 'Failed to start servers:\nMissing servers list to be started',
         'wrongFormat': 'Failed to start servers:\nExpected nodename:servername record, got websphere90ndNode01=server1',
         'wrongServer':  "Failed to start servers",
