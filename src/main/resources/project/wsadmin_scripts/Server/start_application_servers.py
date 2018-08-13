@@ -12,6 +12,11 @@ waitTime = '''
 $[wasWaitTime]
 '''.strip()
 
+# Mandatory parameters validation.
+if not serversList:
+    logError("Missing servers list to be started")
+    sys.exit(1)
+
 # values that defined for script
 waitTime = uintOrZero(waitTime)
 okServerStatus = 'STARTED'
