@@ -20,6 +20,10 @@ templateDescription = '''
 $[wasTemplateDescription]
 '''.strip()
 
+wasSyncNodes = '''
+$[wasSyncNodes]
+'''.strip()
+
 params = [
     '-templateName', templateName,
     '-serverName', appServerName,
@@ -43,3 +47,7 @@ except:
 
 logSummary("Application Server template %s has been created" % (templateName))
 AdminConfig.save()
+
+wasSyncNodes = '''
+$[wasSyncNodes]
+'''.strip()
