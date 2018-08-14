@@ -5,7 +5,7 @@ import PluginTestHelper
 
 @IgnoreIf({ System.getenv('IS_WAS_ND') != "1"})
 @Stepwise
-class DeleteApplicationServerTemplateNegative extends PluginTestHelper {
+class StartApplicationServersNegative extends PluginTestHelper {
 
     /**
      * Environments Variables
@@ -35,7 +35,7 @@ class DeleteApplicationServerTemplateNegative extends PluginTestHelper {
     @Shared
     def testProjectName =           'EC-WebSphere-SystemTests'
     @Shared
-    def testProcedureName =         'DeleteApplicationServerTemplate'
+    def testProcedureName =         'StartApplicationServers'
 
     /**
      * Procedure Values: test parameters Procedure values
@@ -53,10 +53,24 @@ class DeleteApplicationServerTemplateNegative extends PluginTestHelper {
     ]
 
     @Shared
-    def templateNames = [
-        incorrect2: 'to-be-created',
-        incorrect: 'default'
+    def nodeNames = [
+        correct: wasHost + 'Node01',
+        incorrect: wasHost + 'Node01WRONG'
     ]
+    @Shared
+    def serverNames = [
+        correct: 'server',
+        incorrect: 'server1-wrong',
+    ]
+    @Shared
+    def serversLists = [
+        correct:     nodeNames.correct,
+        wrongNode:   nodeNames.incorrect + ':' + serverNames.correct,
+        wrongServer: nodeNames.correct   + ':' + serverNames.incorrect, 
+        wrongBoth:   nodeNames.incorrect + ':' + serverNames.incorrect,
+        wrongFormat: 'nothing, nothing:nothing nothing'
+    ]
+
     /**
      * Verification Values: Assert values 
     */
@@ -76,18 +90,21 @@ class DeleteApplicationServerTemplateNegative extends PluginTestHelper {
     @Shared
     def exs = [
         wrongConfig: "Configuration '$pluginConfigurationNames.incorrect' doesn't exist",
-        systemTemplate: "Can not delete a System Template",
-        wrongTemplate: "Failed to delete application server template $templateNames.incorrect2"
+        wrongServer: "Failed to start server $serverNames.incorrect on node $nodeNames.correct",
+        wrongNode: "Failed to start server $serverNames.correct on node $nodeNames.incorrect",
+        wrongBoth: "Failed to start server $serverNames.incorrect on node $nodeNames.incorrect",
+        wrongFormat: "Expected nodename:servername record, got",
     ]
 
     /**
      * Test Parameters: for Where section 
      */ 
+    /// cfgName | ASName | MST | expectedOutcome
     def expectedOutcome
     def cfgName;
     def serverName;
     def nodeName;
-    def templateName
+    def archivePath
 
     /**
      * Preparation actions
@@ -102,7 +119,7 @@ class DeleteApplicationServerTemplateNegative extends PluginTestHelper {
         createConfiguration(pluginConfigurationNames.correctNone, [doNotRecreate: true])        
         createConfiguration(pluginConfigurationNames.correctRMI, [doNotRecreate: true])       
         // actual test project
-        importProject(testProjectName, 'dsl/DeleteApplicationServerTemplate/Procedure.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
+        importProject(testProjectName, 'dsl/StartApplicationServers/Procedure.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
      }
 
@@ -119,15 +136,15 @@ class DeleteApplicationServerTemplateNegative extends PluginTestHelper {
      */
 
     @Unroll
-    def "DeleteApplicationServerTemplate. Negative scenario." () {
+    def "StartApplicationServers. Negative scenario." () {
         when: 'Procedure runs: '
-            def runParams = [
-                wasHost:    wasHost,
-                configName: cfgName,
-                templateName: templateName,
-            ]
-            def result = runProcedure(runParams)
-
+        def runParams = [
+            wasHost:    wasHost,
+            configName: cfgName,
+            serversList: serversList,
+        ]
+        def result = runProcedure(runParams)
+        
         then: 'Wait until job is completed: '
             waitUntil {
                 try {
@@ -142,13 +159,15 @@ class DeleteApplicationServerTemplateNegative extends PluginTestHelper {
 
 
         assert outcome == "error"
-        def jobSummary = getJobProperty('/myJob/jobSteps/DeleteApplicationServerTemplate/summary', result.jobId)
+        def jobSummary = getJobProperty('/myJob/jobSteps/StartApplicationServers/summary', result.jobId)
         assert jobSummary.contains(expectedJobSummary)
         where: 'The following params will be: '
-            cfgName                              | templateName             | expectedJobSummary
-            pluginConfigurationNames.incorrect   | templateNames.correct    | exs.wrongConfig
-            pluginConfigurationNames.correctSOAP | templateNames.incorrect  | exs.systemTemplate
-            pluginConfigurationNames.correctSOAP | templateNames.incorrect2 | exs.wrongTemplate
+        cfgName                              | serversList              | expectedJobSummary
+        pluginConfigurationNames.incorrect   | serversLists.correct     | exs.wrongConfig
+        pluginConfigurationNames.correctSOAP | serversLists.wrongServer | exs.wrongServer
+        pluginConfigurationNames.correctSOAP | serversLists.wrongNode   | exs.wrongNode
+        pluginConfigurationNames.correctSOAP | serversLists.wrongBoth   | exs.wrongBoth
+        pluginConfigurationNames.correctSOAP | serversLists.wrongFormat | exs.wrongFormat
 
     }
 
@@ -170,7 +189,7 @@ class DeleteApplicationServerTemplateNegative extends PluginTestHelper {
                 actualParameter: [
                     wasResourceName: '$parameters.wasHost',
                     wasConfigName:   '$parameters.configName',
-                    wasTemplateName: '$parameters.templateName',
+                    wasServersList:  '$parameters.serversList'
 
                 ]
             )

@@ -27,10 +27,6 @@ class CreateApplicationServerTemplateNegative extends PluginTestHelper {
     def wasPath =       System.getenv('WSADMIN_PATH')
     @Shared
     def wasAppPath =    System.getenv('WAS_APPPATH')
-    @Shared
-    def wasStartScript = System.getenv('WAS_START_DM_SCRIPT')
-    @Shared
-    def wasStopScript  = System.getenv('WAS_STOP_DM_SCRIPT')
 
     /**
      * Dsl Parameters

@@ -28,10 +28,6 @@ class DevEndToEndServerProcedures extends PluginTestHelper {
     @Shared
     def wasAppPath =    System.getenv('WAS_APPPATH')
     @Shared
-    def wasStartScript = System.getenv('WAS_START_DM_SCRIPT')
-    @Shared
-    def wasStopScript  = System.getenv('WAS_STOP_DM_SCRIPT')
-    @Shared
     def wasTargetNodeName = wasHost + 'Node01'
     @Shared
     def wasTargetServerName  = 'server1-td'
