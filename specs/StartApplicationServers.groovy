@@ -314,7 +314,7 @@ class StartApplicationServers extends PluginTestHelper {
         testCases.systemTest14 | confignames.correctSOAP | serverLists.'wrongServers'  | ''        | summaries.'wrongServer'      | jobLogs.'wrongServers'     | serverLists.'default'
         testCases.systemTest14 | confignames.correctSOAP | serverLists.'wrongServers'  | ''        | summaries.'wrongServer'      | jobLogs.'wrongServers'     | serverLists.'second'
 
-   }    
+    }    
 
     def stopApplicationServer(serverList){
         def runParams = [
@@ -332,27 +332,27 @@ class StartApplicationServers extends PluginTestHelper {
         }
     }
 
-        def createAppServer(node,server){
-            def runParams = [
-                    configname: confignames.correctSOAP,
-                    wasAppServerName: server,
-                    wasGenUniquePorts: '1',
-                    wasNodeName: node,
-                    wasSourceServerName: '',
-                    wasSourceType: 'template',
-                    wasSyncNodes: '1',
-                    wasTemplateLocation: '',
-                    wasTemplateName: 'default',
-            ]
-            def result = runProcedure(runParams, procCreateName)
-            waitUntil {
-                try {
-                    jobCompleted(result)
-                } catch (Exception e) {
-                    println e.getMessage()
-                }
+    def createAppServer(node,server){
+        def runParams = [
+                configname: confignames.correctSOAP,
+                wasAppServerName: server,
+                wasGenUniquePorts: '1',
+                wasNodeName: node,
+                wasSourceServerName: '',
+                wasSourceType: 'template',
+                wasSyncNodes: '1',
+                wasTemplateLocation: '',
+                wasTemplateName: 'default',
+        ]
+        def result = runProcedure(runParams, procCreateName)
+        waitUntil {
+            try {
+                jobCompleted(result)
+            } catch (Exception e) {
+                println e.getMessage()
             }
-        }   
+        }
+    }   
 
 
     //Run Test Procedure
@@ -369,6 +369,5 @@ class StartApplicationServers extends PluginTestHelper {
         """
         return dslWithTimeout(code)
     }    
-
 
 }
