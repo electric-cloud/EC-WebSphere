@@ -57,11 +57,11 @@ class StopApplicationServers extends PluginTestHelper {
                     name: 'C363730',
                     description: 'stop multiple servers (first is stopped, second is running)'],
             systemTest7: [
-                    name: 'C363',
-                    description: 'stop all stopped server'],
+                    name: 'C363732',
+                    description: 'stop all servers (all are running)'],
             systemTest8: [
-                    name: 'C363',
-                    description: 'stop all stopped servers (all servers are stopped)'],
+                    name: 'C363733',
+                    description: 'stop all servers (all are stopped)'],
             systemTest9: [
                     name: 'C363342',
                     description: 'empty config'],
@@ -119,10 +119,10 @@ class StopApplicationServers extends PluginTestHelper {
     def summaries = [
             'default': "Application Servers have been stopped:\nNode: websphere90ndNode01, Server: server1, State: Stopped",
             'multiple': "Application Servers have been stopped:\nNode: websphere90ndNode01, Server: server1, State: Stopped\nNode: websphere90ndNode01, Server: serverStopAppServer, State: Stopped",
-            'warning': "Application Servers have been stopped:\nServer server1 on Node websphere90ndNode01 is already Stopped\nWARNING: Nothing to do, all servers are already Stopped",
-            'warning_both': "Application Servers have been stopped:\nServer server1 on Node websphere90ndNode01 is already Stopped\nServer serverStopAppServer on Node websphere90ndNode01 is already Stopped\nWARNING: Nothing to do, all servers are already Stopped",
-            'warning_second': "Application Servers have been stopped:\nNode: websphere90ndNode01, Server: server1, State: Stopped\nServer serverStopAppServer on Node websphere90ndNode01 is already Stopped",
-            'warning_first': "Application Servers have been stopped:\nNode: websphere90ndNode01, Server: serverStopAppServer, State: Stopped\nServer server1 on Node websphere90ndNode01 is already Stopped"
+            'warning': "Application Servers have been stopped:\nAll servers are already Stopped\nWARNING: Server server1 on Node websphere90ndNode01 is already Stopped\nWARNING: Nothing to do, all servers are already Stopped",
+            'warning_both': "Application Servers have been stopped:\nAll servers are already Stopped\nWARNING: Server server1 on Node websphere90ndNode01 is already Stopped\nWARNING: Server serverStopAppServer on Node websphere90ndNode01 is already Stopped\nWARNING: Nothing to do, all servers are already Stopped",
+            'warning_second': "Application Servers have been stopped:\nNode: websphere90ndNode01, Server: server1, State: Stopped\nWARNING: Server serverStopAppServer on Node websphere90ndNode01 is already Stopped",
+            'warning_first': "Application Servers have been stopped:\nNode: websphere90ndNode01, Server: serverStopAppServer, State: Stopped\nWARNING: Server server1 on Node websphere90ndNode01 is already Stopped"
     ]
 
     @Shared
@@ -132,7 +132,31 @@ class StopApplicationServers extends PluginTestHelper {
             'warning': ['Server server1 on Node websphere90ndNode01 is already Stopped','Nothing to do, all servers are already Stopped','warning','Application Servers have been stopped'],
             'warning_both': ['Server server1 on Node websphere90ndNode01 is already Stopped','Server serverStopAppServer on Node websphere90ndNode01 is already Stopped','Nothing to do, all servers are already Stopped','warning','Application Servers have been stopped'],
             'warning_second': ['Stop completed for middleware server "server1" on node "websphere90ndNode01"', "Node: websphere90ndNode01, Server: server1, State: Stopped" , 'Server serverStopAppServer on Node websphere90ndNode01 is already Stopped','warning','Application Servers have been stopped'],
-            'warning_first': ['Stop completed for middleware server "serverStopAppServer" on node "websphere90ndNode01"', "Node: websphere90ndNode01, Server: serverStopAppServer, State: Stopped" , 'Server server1 on Node websphere90ndNode01 is already Stopped','warning','Application Servers have been stopped']
+            'warning_first': ['Stop completed for middleware server "serverStopAppServer" on node "websphere90ndNode01"', "Node: websphere90ndNode01, Server: serverStopAppServer, State: Stopped" , 'Server server1 on Node websphere90ndNode01 is already Stopped','warning','Application Servers have been stopped'],
+            'error': ['error','Failed to stop servers:','Node: websphere90ndNode01, Server: server1, State: STOPPING','Some servers are failed to stop'],
+            'error_both': ['error','Failed to stop servers:','Node: websphere90ndNode01, Server: server1, State: STOPPING','Node: websphere90ndNode01, Server: serverStopAppServer, State: STOPPING','Some servers are failed to stop'],
+            'error_empty_config': ["Error: Configuration '' doesn't exist"],
+            'error_config': ["Error: Configuration 'incorrect' doesn't exist"],
+            'error_empty_ServerList': ['error','Failed to stop servers:', 'Missing servers list to be stopped'],
+            'error_ServerList': ['error','Failed to stop servers:', 'Expected nodename:servername record, got websphere90ndNode01=server1'],
+            'error_Server': ['error','Failed to stop servers:', 'Failed to stop server wrong_server1 on node websphere90ndNode01','ADMF0003E: Invalid parameter value wrong_server1 for parameter serverName for command stopMiddlewareServer.'],
+            'error_WaitTime': ['error','Wait time should be a positive integer, if present. Got: 9am']
+    ]
+
+    @Shared
+    def errors = [
+            'emptyConfig': "Configuration '' doesn't exist",
+            'emptyServerList': "Failed to stop servers:\nMissing servers list to be stopped",
+            'incorrectConfig': "Configuration 'incorrect' doesn't exist",
+            'incorrectServerListFormat':"Failed to stop servers:\nExpected nodename:servername record, got websphere90ndNode01=server1",
+            'incorrectServer':"Failed to stop servers:\nFailed to stop server wrong_server1 on node websphere90ndNode01\nADMF0003E: Invalid parameter value wrong_server1 for parameter serverName for command stopMiddlewareServer.",
+            'incorrectServers':"Failed to stop servers:\nFailed to stop server wrong_server1 on node websphere90ndNode01\nADMF0003E: Invalid parameter value wrong_server1 for parameter serverName for command stopMiddlewareServer.",
+            'incorrectWaitTime':"Wait time should be a positive integer, if present. Got: 9am",
+            'zeroWaitTime':"Failed to stop servers:\nNode: websphere90ndNode01, Server: server1, State: (STOPPING|STARTED)\nSome servers are failed to stop",
+            'zeroWaitTimeMultiple':"Failed to stop servers:\nNode: websphere90ndNode01, Server: server1, State: STOPPING\nNode: websphere90ndNode01, Server: serverStopAppServer, State: STOPPING\nSome servers are failed to stop"
+            
+
+
     ]
 
 
@@ -166,12 +190,13 @@ class StopApplicationServers extends PluginTestHelper {
                                                             procName: procCreateName,
                                                             params  : [
                                                                     configname: '',
-                                                                    headerCreationSource: '',
-                                                                    wasArchivePath: '',
+                                                                    wasAppServerName: '',
+                                                                    wasGenUniquePorts: '',
                                                                     wasNodeName: '',
-                                                                    wasServerName: '',
                                                                     wasSourceServerName: '',
                                                                     wasSourceType: '',
+                                                                    wasSyncNodes: '',
+                                                                    wasTemplateLocation: '',
                                                                     wasTemplateName: '',
                                                             ]
         ])
@@ -183,15 +208,16 @@ class StopApplicationServers extends PluginTestHelper {
 
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
 
-        // createAppServer('serverStartAppServer')
+        createAppServer('websphere90ndNode01','serverStopAppServer')
     }
 
     def doCleanupSpec() {
     }
 
+    @Ignore
     @Unroll
     def 'StopApplicationServer - Positive: #testCaseID.name #testCaseID.description'() {
-        // assert true
+        //assert true
         if (startedServers) {
             startApplicationServer(startedServers)
         }
@@ -216,28 +242,27 @@ class StopApplicationServers extends PluginTestHelper {
         def outcome = getJobProperty('/myJob/outcome', result.jobId)
         def jobSummary = getJobProperty("/myJob/jobSteps/$procName/summary", result.jobId)
         def debugLog = getJobLogs(result.jobId)
-        assert outcome == "success"
+        assert outcome == expectedOutcome
         assert jobSummary == expectedSummary
         for (log in logs) {
             assert debugLog =~ log
         }
 
-
         where: 'The following params will be:'
-        testCaseID            | configName              | serverList            | timeout | expectedSummary           | logs                    | startedServers
-        testCases.systemTest1 | confignames.correctSOAP | serverLists.'default' | '60'    | summaries.'default'       | jobLogs.'default'       | serverLists.'default'
-        testCases.systemTest2 | confignames.correctSOAP | serverLists.'multiple'| '60'    | summaries.'multiple'      | jobLogs.'multiple'      | serverLists.'multiple'
-        testCases.systemTest3 | confignames.correctSOAP | serverLists.'default' | '300'   | summaries.'warning'       | jobLogs.'warning'       | null
-        testCases.systemTest4 | confignames.correctSOAP | serverLists.'multiple'| '300'   | summaries.warning_both    | jobLogs.warning_both    | null
-        testCases.systemTest5 | confignames.correctSOAP | serverLists.'multiple'| '300'   | summaries.warning_second  | jobLogs.warning_second  | serverLists.default
-        testCases.systemTest6 | confignames.correctSOAP | serverLists.'multiple'| '300'   | summaries.warning_first   | jobLogs.warning_first   | serverLists.second
-        testCases.systemTest7 | confignames.correctSOAP | serverLists.all       | '300'   | summaries.multiple        | jobLogs.multiple        | serverLists.multiple
-        testCases.systemTest8 | confignames.correctSOAP | serverLists.all       | '300'   | summaries.warning_both    | jobLogs.warning_both    | null
+        testCaseID            | configName              | serverList            | timeout | expectedSummary           | logs                   | expectedOutcome | startedServers
+        testCases.systemTest1 | confignames.correctSOAP | serverLists.'default' | '60'    | summaries.'default'       | jobLogs.'default'      | 'success'       | serverLists.'default'
+        testCases.systemTest2 | confignames.correctSOAP | serverLists.'multiple'| '60'    | summaries.'multiple'      | jobLogs.'multiple'     | 'success'       | serverLists.'multiple'
+        testCases.systemTest3 | confignames.correctSOAP | serverLists.'default' | '300'   | summaries.'warning'       | jobLogs.'warning'      | 'warning'       | null
+        testCases.systemTest4 | confignames.correctSOAP | serverLists.'multiple'| '300'   | summaries.warning_both    | jobLogs.warning_both   | 'warning'       | null
+        testCases.systemTest5 | confignames.correctSOAP | serverLists.'multiple'| '300'   | summaries.warning_second  | jobLogs.warning_second | 'warning'       | serverLists.default
+        testCases.systemTest6 | confignames.correctSOAP | serverLists.'multiple'| '300'   | summaries.warning_first   | jobLogs.warning_first  | 'warning'       | serverLists.second
+        testCases.systemTest7 | confignames.correctSOAP | serverLists.all       | '300'   | summaries.multiple        | jobLogs.multiple       | 'success'       | serverLists.multiple
+        testCases.systemTest8 | confignames.correctSOAP | serverLists.all       | '300'   | summaries.warning_both    | jobLogs.warning_both   | 'warning'       | null
     }
 
-        @Unroll
+    @Unroll
         def 'StopApplicationServer - Negative: : #testCaseID.name #testCaseID.description'(){
-           /* if (startedServers){
+          if (startedServers){
                 startApplicationServer(startedServers)
             }
             given: "Parameters for procedure"
@@ -260,25 +285,29 @@ class StopApplicationServers extends PluginTestHelper {
             then: "Get and compare results"
             def outcome = getJobProperty('/myJob/outcome', result.jobId)
             def jobSummary = getJobProperty("/myJob/jobSteps/$procName/summary", result.jobId)
+            assert outcome == expectedOutcome
+            if (testCaseID != testCases.systemTest16){
+                assert jobSummary == expectedSummary
+            } else {
+                assert jobSummary ==~ expectedSummary
+            }
             def debugLog = getJobLogs(result.jobId)
-            assert outcome == "error"
-            assert jobSummary == expectedSummary
             for (log in logs){
-                def text = log.replace("stopNodeReplace", stopLocation)
-                assert debugLog =~ text
-            }*/
+               assert debugLog =~ log
+            }
 
             assert true
             where: 'The following params will be:'
-            testCaseID                  | configName              | serverList                  | timeout   | expectedSummary       | logs              | startedServers
-            testCases.systemTest16 | confignames.correctSOAP | serverLists.'default'       | '5'       | summaries.'default'   | jobLogs.'default' | serverLists.'default'
-            /*testCases.systemTest17.name | confignames.correctSOAP | serverLists.'multiple'      | '5'       | summaries.'default'   | jobLogs.'default' | serverLists.'multiple'
-            testCases.systemTest8.name  | ''                      | serverLists.'default'       | ''        | summaries.'default'   | jobLogs.'default' | null
-            testCases.systemTest9.name  | confignames.correctSOAP | ''                          | ''        | summaries.'default'   | jobLogs.'default' | null
-            testCases.systemTest11.name | confignames.incorrect   | serverLists.'default'       | ''        | summaries.'default'   | jobLogs.'default' | null
-            testCases.systemTest12.name | confignames.correctSOAP | serverLists.'wrong'         | ''        | summaries.'default'   | jobLogs.'default' | null
-            testCases.systemTest13.name | confignames.correctSOAP | serverLists.'wrongServer'   | ''        | summaries.'default'   | jobLogs.'default' | null
-            testCases.systemTest14.name | confignames.correctSOAP | serverLists.'wrongServers'  | ''        | summaries.'default'   | jobLogs.'default' | serverLists.'default'*/
+            testCaseID             | configName              | serverList                  | timeout   | expectedSummary                  | logs                           | expectedOutcome | startedServers
+            testCases.systemTest9  | ''                      | serverLists.'default'       | '300'     | errors.emptyConfig               | jobLogs.error_empty_config     | 'error'         | null
+            testCases.systemTest10 | confignames.correctSOAP | ''                          | '300'     | errors.emptyServerList           | jobLogs.error_empty_ServerList | 'error'         | null
+            testCases.systemTest11 | confignames.incorrect   | serverLists.'default'       | '300'     | errors.incorrectConfig           | jobLogs.error_config           | 'error'         | null
+            testCases.systemTest12 | confignames.correctSOAP | serverLists.'wrong'         | '300'     | errors.incorrectServerListFormat | jobLogs.error_ServerList       | 'error'         | null
+            testCases.systemTest13 | confignames.correctSOAP | serverLists.'wrongServer'   | '300'     | errors.incorrectServer           | jobLogs.error_Server           | 'error'         | null
+            testCases.systemTest14 | confignames.correctSOAP | serverLists.'wrongServers'  | '300'     | errors.incorrectServers          | jobLogs.error_Server           | 'error'         | serverLists.second
+            testCases.systemTest15 | confignames.correctSOAP | serverLists.'default'       | '9am'     | errors.incorrectWaitTime         | jobLogs.error_WaitTime         | 'error'         | serverLists.default
+            testCases.systemTest16 | confignames.correctSOAP | serverLists.'default'       | '0'       | errors.zeroWaitTime              | jobLogs.error                  | 'error'         | serverLists.default
+            testCases.systemTest17 | confignames.correctSOAP | serverLists.'multiple'      | '0'       | errors.zeroWaitTimeMultiple      | jobLogs.error_both             | 'error'         | serverLists.'multiple'
         }
 
         def startApplicationServer(serverList){
@@ -297,18 +326,19 @@ class StopApplicationServers extends PluginTestHelper {
             }
         }
 
-        def createAppServer(server){
+        def createAppServer(node,server){
             def runParams = [
-                    configname: '',
-                    headerCreationSource: '',
-                    wasArchivePath: '',
-                    wasNodeName: '',
-                    wasServerName: '',
+                    configname: confignames.correctSOAP,
+                    wasAppServerName: server,
+                    wasGenUniquePorts: '1',
+                    wasNodeName: node,
                     wasSourceServerName: '',
-                    wasSourceType: '',
-                    wasTemplateName: '',
+                    wasSourceType: 'template',
+                    wasSyncNodes: '1',
+                    wasTemplateLocation: '',
+                    wasTemplateName: 'default',
             ]
-            def result = runProcedure(runParams, stopProcName)
+            def result = runProcedure(runParams, procCreateName)
             waitUntil {
                 try {
                     jobCompleted(result)
