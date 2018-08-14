@@ -38,8 +38,8 @@ $websphere->{jobStepId} = '$[jobStepId]';
 my $step_params = {
     target => {
         pipeline => 'Create Application Server Result:',
-        success_summary => 'Application Server has been created.',
-        error_summary   => 'Failed to create an Application Server.'
+        success_summary => 'Application server has been created.',
+        error_summary   => 'Failed to create an application server.'
     },
     jython_script => {
         path => 'create_application_server.py',

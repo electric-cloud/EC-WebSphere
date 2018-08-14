@@ -14,10 +14,10 @@ try:
     AdminServerManagement.deleteServer(nodeName, appServerName)
 except:
     forwardException(getExceptionMsg())
-    logSummary("Failed to delete server %s on node %s" % (appServerName, nodeName));
+    logSummary("Failed to delete application server %s on node %s" % (appServerName, nodeName));
     sys.exit(1)
 
-logSummary("Server %s on node %s has been deleted" % (appServerName, nodeName))
+logSummary("Application server %s on node %s has been deleted" % (appServerName, nodeName))
 AdminConfig.save()
 
 if toBoolean(syncNodes):

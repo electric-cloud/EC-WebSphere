@@ -38,8 +38,8 @@ $websphere->{jobStepId} = '$[jobStepId]';
 my $step_params = {
     target => {
         pipeline => 'Delete Application Server Result:',
-        success_summary => 'Application Server has been deleted.',
-        error_summary   => 'Failed to delete an Application Server.'
+        success_summary => 'Application server has been deleted.',
+        error_summary   => 'Failed to delete an application server.'
     },
     # error_cb => sub {
     #     my ($self) = @_;

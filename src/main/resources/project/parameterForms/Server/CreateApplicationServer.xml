@@ -59,13 +59,13 @@ limitations under the License.
     </formElement>
     <!-- Creation source section -->
     <!-- Header for dynamic form -->
-    <formElement>
-        <type>header</type>
-        <label>Server Creation Source</label>
-        <property>headerCreationSource</property>
-        <required>0</required>
-        <documentation />
-    </formElement>
+    <!-- <formElement> -->
+    <!--     <type>header</type> -->
+    <!--     <label>Server Creation Source</label> -->
+    <!--     <property>headerCreationSource</property> -->
+    <!--     <required>0</required> -->
+    <!--     <documentation /> -->
+    <!-- </formElement> -->
 
 
     <formElement>

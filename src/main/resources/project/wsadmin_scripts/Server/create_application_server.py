@@ -34,21 +34,24 @@ syncNodes = '''
 $[wasSyncNodes]
 '''.strip()
 
-# AdminServerManagement.createAppServerTemplate(nodeName, appServerName, templateName)
-
-AdminConfig.save()
+if sourceType and sourceType not in ['server', 'template']:
+    logError("Source type %s is not valid, server or template expected" % (sourceType))
+    sys.exit(1)
 
 createdTemplateName = ''
 # 1. Determine a way of server creation.
 if sourceType == 'server':
     createdTemplateName = genUUID()
+    if not sourceServerName:
+        logError("Source server name is required when source type is set to server")
+        sys.exit(1)
     # TODO: move this to separate function
     server = re.split(':', sourceServerName)
     # create intermediate template
     try:
         AdminServerManagement.createAppServerTemplate(server[0], server[1], createdTemplateName)
     except:
-        logSummary("Failed to create intermediate template" % (createdTemplateName))
+        logSummary("Failed to create intermediate template %s" % (createdTemplateName))
         forwardException(getExceptionMsg())
         sys.exit(1)
         # create application server using this template

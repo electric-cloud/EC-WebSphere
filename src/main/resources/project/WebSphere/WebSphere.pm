@@ -317,6 +317,9 @@ sub run_step {
                 }
             }
             if (@{$ppr->{warning}}) {
+                if ($$pmsg !~ m/\s$/) {
+                    $$pmsg .= "\n";
+                }
                 $self->{procedure_result}->{outcome}->{result} = 'warning';
                 for my $l (@{$ppr->{warning}}) {
                     $$pmsg .= sprintf('WARNING: %s%s', $l, "\n");
@@ -343,12 +346,18 @@ sub run_step {
                 }
             }
             if (@{$ppr->{exception}}) {
+                if ($$pmsg !~ m/\s$/) {
+                    $$pmsg .= "\n";
+                }
                 for my $l (@{$ppr->{exception}}) {
                     $$pmsg .= sprintf('Exception: %s%s', $l, "\n");
                 }
             }
             if (@{$ppr->{error}}) {
-                for my $l (@{$ppr->{exception}}) {
+                if ($$pmsg !~ m/\s$/) {
+                    $$pmsg .= "\n";
+                }
+                for my $l (@{$ppr->{error}}) {
                     $$pmsg .= sprintf('Error: %s%s', $l, "\n");
                 }
             }
