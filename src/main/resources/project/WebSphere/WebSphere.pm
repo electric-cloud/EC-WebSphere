@@ -234,6 +234,10 @@ sub run_step {
         }
         my $file = $params->{jython_script}->{path};
         my $script = $self->ec()->getProperty("/myProject/wsadmin_scripts/$file")->getNodeText('//value');
+        my $logger = $self->log();
+        $logger->debug("WSAdmin script:");
+        $logger->debug('' . $script);
+        $logger->debug("== End of WSAdmin script ==");
         $file = $self->write_jython_script(
             $file, {},
             augment_filename_with_random_numbers => 1
@@ -278,27 +282,86 @@ sub run_step {
             msg => '',
         }
     };
-    if (!$code) {
-        # TODO: handle success.
-        $self->{procedure_result}->{outcome}->{result} = 'success';
-        if ($params->{target}->{success_summary}) {
-            $self->{procedure_result}->{procedure}->{msg} =
-                $self->{procedure_result}->{pipeline}->{msg} = $params->{target}->{success_summary};
+
+    my $parsed_procedure_result = $self->parseProcedureLog($self->cmd_res);
+    my $success = 1;
+    if ($code) {
+        $success = 0;
+    }
+    if ($parsed_procedure_result->{outcome}) {
+        if ($parsed_procedure_result->{outcome} =~ m/^(?:success|warning)$/s) {
+            $success = 1;
         }
+        else {
+            $success = 0;
+        }
+    }
+
+    $self->log()->debug("Succes value: $success");
+    $self->log()->debug("Parsed procedure result:", Dumper $parsed_procedure_result);
+    # step execution has been successful
+    if ($success) {
+        $self->{procedure_result}->{outcome}->{result} = 'success';
         if ($params->{success_cb} && $params->{success_cb} eq 'CODE') {
             $params->{success_cb}->($self);
         }
-    }
-    # Exit code is non-zero.
-    else {
-        # TODO: handle error
-        $self->{procedure_result}->{outcome}->{result} = 'error';
-        if ($params->{target}->{error_summary}) {
-            $self->{procedure_result}->{procedure}->{msg} =
-                $self->{procedure_result}->{pipeline}->{msg} = $params->{target}->{error_summary};
-            if ($params->{error_cb} && $params->{error_cb} eq 'CODE') {
-                $params->{error_cb}->($self);
+        else {
+            # If no summary, default message that has been provided will be used.
+            my $ppr = $parsed_procedure_result;
+            $self->{procedure_result}->{procedure}->{msg} = $params->{target}->{success_summary};
+            my $pmsg = \$self->{procedure_result}->{procedure}->{msg};
+            if (@{$ppr->{summary}}) {
+                $$pmsg = '';
+                for my $l (@{$ppr->{summary}}) {
+                    $$pmsg .= $l . "\n";
+                }
             }
+            if (@{$ppr->{warning}}) {
+                if ($$pmsg !~ m/\s$/) {
+                    $$pmsg .= "\n";
+                }
+                $self->{procedure_result}->{outcome}->{result} = 'warning';
+                for my $l (@{$ppr->{warning}}) {
+                    $$pmsg .= sprintf('WARNING: %s%s', $l, "\n");
+                }
+            }
+
+            $self->{procedure_result}->{pipeline}->{msg} = $self->{procedure_result}->{procedure}->{msg};
+        }
+    }
+    # Now we're handling errors
+    else {
+        $self->{procedure_result}->{outcome}->{result} = 'error';
+        if ($params->{error_cb} && $params->{error_cb} eq 'CODE') {
+            $params->{error_cb}->($self);
+        }
+        else {
+            my $ppr = $parsed_procedure_result;
+            $self->{procedure_result}->{procedure}->{msg} = $params->{target}->{error_summary};
+            my $pmsg = \$self->{procedure_result}->{procedure}->{msg};
+            if (@{$ppr->{summary}}) {
+                $$pmsg = '';
+                for my $l (@{$ppr->{summary}}) {
+                    $$pmsg .= $l . "\n";
+                }
+            }
+            if (@{$ppr->{exception}}) {
+                if ($$pmsg !~ m/\s$/) {
+                    $$pmsg .= "\n";
+                }
+                for my $l (@{$ppr->{exception}}) {
+                    $$pmsg .= sprintf('Exception: %s%s', $l, "\n");
+                }
+            }
+            if (@{$ppr->{error}}) {
+                if ($$pmsg !~ m/\s$/) {
+                    $$pmsg .= "\n";
+                }
+                for my $l (@{$ppr->{error}}) {
+                    $$pmsg .= sprintf('Error: %s%s', $l, "\n");
+                }
+            }
+            $self->{procedure_result}->{pipeline}->{msg} = $self->{procedure_result}->{procedure}->{msg};
         }
     }
     # Execute callback on these parameters.
@@ -496,8 +559,8 @@ sub getWSAdminPath {
 sub extractWebSphereExceptions {
     my ($self, $text) = @_;
 
-    my @res = $text =~ m/[A-Z]{4}[\d]{4}E:\s(.*?)\n\n/gms;
-    # my @res = grep {$_} split '([A-Z]{4}[\d]{4}E:\s)', $text;
+    # my @res = $text =~ m/[A-Z]{4}[\d]{4}E:\s(.*?)\n\n/gms;
+    my @res = grep {$_} split '([A-Z]{4}[\d]{4}E:\s)', $text;
     if (wantarray()) {
         return @res;
     }
@@ -509,17 +572,32 @@ sub extractMagicValuesFromProcedureLog {
     my ($self, $log) = @_;
 
     my $retval = {
-        info    => [],
-        warning => [],
-        error   => [],
-        summary => []
+        info      => [],
+        warning   => [],
+        error     => [],
+        summary   => [],
+        exception => [],
+        outcome   => []
     };
 
     # extract error
-    for my $t (qw/WARNING ERROR INFO SUMMARY/) {
+    for my $t (qw/WARNING ERROR INFO SUMMARY EXCEPTION OUTCOME/) {
         while ($log =~ m|\[OUT\]\[$t\]:\s(.*?)\s:\[$t\]\[OUT\]|gm) {
             push @{$retval->{lc($t)}}, $1;
         }
+    }
+    if (@{$retval->{exception}}) {
+        # my @res = $text =~ m/[A-Z]{4}[\d]{4}E:\s(.*?)\n\n/gms;
+        @{$retval->{exception}} = map {
+            s/.*?([A-Z]{4}[\d]{4}E:\s*)/\1/;
+            $_;
+        } @{$retval->{exception}};
+    }
+    if (@{$retval->{outcome}}) {
+        $retval->{outcome} = $retval->{outcome}->[-1];
+    }
+    else {
+        $retval->{outcome} = '';
     }
     return $retval;
 }
@@ -531,9 +609,6 @@ sub parseProcedureLog {
     my $retval = {};
     # 1. Extracting "magic" values from log:
     $retval = $self->extractMagicValuesFromProcedureLog($log);
-    # 2. Extracting websphere exceptions:
-    my @exceptions = $self->extractWebSphereExceptions($log);
-    $retval->{exception} = \@exceptions;
 
     return $retval;
 }

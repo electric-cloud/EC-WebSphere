@@ -245,6 +245,11 @@
                         <propertyName>delete_application_server.py</propertyName>
                         <value/>
                     </property>
+                    <!-- CreateApplicationServer jython script -->
+                    <property>
+                        <propertyName>create_application_server.py</propertyName>
+                        <value/>
+                    </property>
                     <!-- New properties after this line, added due refactoring. TODO: remove this comment after refactoring is done.-->
                     <property>
                         <propertyName>check_app.py</propertyName>
@@ -3195,8 +3200,16 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-
-                                
+                                <property>
+                                    <propertyName>wasSyncNodes</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -3251,7 +3264,13 @@
                 <required>0</required>
                 <type>textarea</type>
             </formalParameter>
-            
+            <formalParameter>
+                <formalParameterName>wasSyncNodes</formalParameterName>
+                <defaultValue/>
+                <description>Sync nodes?</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
             <step>
                 <stepName>CreateApplicationServerTemplate</stepName>
                 <alwaysRun>0</alwaysRun>
@@ -3326,8 +3345,16 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-
-                                
+                                <property>
+                                    <propertyName>wasSyncNodes</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -3350,7 +3377,13 @@
                 <type>entry</type>
             </formalParameter>
 
-            
+            <formalParameter>
+                <formalParameterName>wasSyncNodes</formalParameterName>
+                <defaultValue/>
+                <description>Sync nodes?</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
             <step>
                 <stepName>DeleteApplicationServerTemplate</stepName>
                 <alwaysRun>0</alwaysRun>
@@ -3671,7 +3704,7 @@
                                 </property>
 
                                 <property>
-                                    <propertyName>wasServerName</propertyName>
+                                    <propertyName>wasAppServerName</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -3723,155 +3756,28 @@
                                     </propertySheet>
                                 </property>
 
-                                <!-- Generic Server part -->
-                                <!-- <property> -->
-                                <!--     <propertyName>wasStartCmdPath</propertyName> -->
-                                <!--     <propertySheet> -->
-                                <!--         <property> -->
-                                <!--             <propertyName>formType</propertyName> -->
-                                <!--             <expandable>1</expandable> -->
-                                <!--             <value>standard</value> -->
-                                <!--         </property> -->
-                                <!--     </propertySheet> -->
-                                <!-- </property> -->
-
-                                <!-- <property> -->
-                                <!--     <propertyName>wasStartCmdArgs</propertyName> -->
-                                <!--     <propertySheet> -->
-                                <!--         <property> -->
-                                <!--             <propertyName>formType</propertyName> -->
-                                <!--             <expandable>1</expandable> -->
-                                <!--             <value>standard</value> -->
-                                <!--         </property> -->
-                                <!--     </propertySheet> -->
-                                <!-- </property> -->
-
-                                <!-- <property> -->
-                                <!--     <propertyName>wasWorkingDirectory</propertyName> -->
-                                <!--     <propertySheet> -->
-                                <!--         <property> -->
-                                <!--             <propertyName>formType</propertyName> -->
-                                <!--             <expandable>1</expandable> -->
-                                <!--             <value>standard</value> -->
-                                <!--         </property> -->
-                                <!--     </propertySheet> -->
-                                <!-- </property> -->
-
-                                <!-- <property> -->
-                                <!--     <propertyName>wasStopCmdPath</propertyName> -->
-                                <!--     <propertySheet> -->
-                                <!--         <property> -->
-                                <!--             <propertyName>formType</propertyName> -->
-                                <!--             <expandable>1</expandable> -->
-                                <!--             <value>standard</value> -->
-                                <!--         </property> -->
-                                <!--     </propertySheet> -->
-                                <!-- </property> -->
-
-                                <!-- <property> -->
-                                <!--     <propertyName>wasStopCmdArgs</propertyName> -->
-                                <!--     <propertySheet> -->
-                                <!--         <property> -->
-                                <!--             <propertyName>formType</propertyName> -->
-                                <!--             <expandable>1</expandable> -->
-                                <!--             <value>standard</value> -->
-                                <!--         </property> -->
-                                <!--     </propertySheet> -->
-                                <!-- </property> -->
-
-                                <!-- WebServer related part -->
-                                <!-- <property> -->
-                                <!--     <propertyName>wasPort</propertyName> -->
-                                <!--     <propertySheet> -->
-                                <!--         <property> -->
-                                <!--             <propertyName>formType</propertyName> -->
-                                <!--             <expandable>1</expandable> -->
-                                <!--             <value>standard</value> -->
-                                <!--         </property> -->
-                                <!--     </propertySheet> -->
-                                <!-- </property> -->
-
-                                <!-- <property> -->
-                                <!--     <propertyName>wasServerInstallRoot</propertyName> -->
-                                <!--     <propertySheet> -->
-                                <!--         <property> -->
-                                <!--             <propertyName>formType</propertyName> -->
-                                <!--             <expandable>1</expandable> -->
-                                <!--             <value>standard</value> -->
-                                <!--         </property> -->
-                                <!--     </propertySheet> -->
-                                <!-- </property> -->
-
-                                <!-- <property> -->
-                                <!--     <propertyName>wasPluginInstallPath</propertyName> -->
-                                <!--     <propertySheet> -->
-                                <!--         <property> -->
-                                <!--             <propertyName>formType</propertyName> -->
-                                <!--             <expandable>1</expandable> -->
-                                <!--             <value>standard</value> -->
-                                <!--         </property> -->
-                                <!--     </propertySheet> -->
-                                <!-- </property> -->
-
-                                <!-- <property> -->
-                                <!--     <propertyName>wasConfigFilePath</propertyName> -->
-                                <!--     <propertySheet> -->
-                                <!--         <property> -->
-                                <!--             <propertyName>formType</propertyName> -->
-                                <!--             <expandable>1</expandable> -->
-                                <!--             <value>standard</value> -->
-                                <!--         </property> -->
-                                <!--     </propertySheet> -->
-                                <!-- </property> -->
-
-                                <!-- <property> -->
-                                <!--     <propertyName>wasWindowsServiceName</propertyName> -->
-                                <!--     <propertySheet> -->
-                                <!--         <property> -->
-                                <!--             <propertyName>formType</propertyName> -->
-                                <!--             <expandable>1</expandable> -->
-                                <!--             <value>standard</value> -->
-                                <!--         </property> -->
-                                <!--     </propertySheet> -->
-                                <!-- </property> -->
-
-                                <!-- <property> -->
-                                <!--     <propertyName>wasErrorLogPath</propertyName> -->
-                                <!--     <propertySheet> -->
-                                <!--         <property> -->
-                                <!--             <propertyName>formType</propertyName> -->
-                                <!--             <expandable>1</expandable> -->
-                                <!--             <value>standard</value> -->
-                                <!--         </property> -->
-                                <!--     </propertySheet> -->
-                                <!-- </property> -->
-
-                                <!-- <property> -->
-                                <!--     <propertyName>wasAccessLogPath</propertyName> -->
-                                <!--     <propertySheet> -->
-                                <!--         <property> -->
-                                <!--             <propertyName>formType</propertyName> -->
-                                <!--             <expandable>1</expandable> -->
-                                <!--             <value>standard</value> -->
-                                <!--         </property> -->
-                                <!--     </propertySheet> -->
-                                <!-- </property> -->
-
-                                <!-- <property> -->
-                                <!--     <propertyName>wasWebProtocol</propertyName> -->
-                                <!--     <propertySheet> -->
-                                <!--         <property> -->
-                                <!--             <propertyName>formType</propertyName> -->
-                                <!--             <expandable>1</expandable> -->
-                                <!--             <value>standard</value> -->
-                                <!--         </property> -->
-                                <!--     </propertySheet> -->
-                                <!-- </property> -->
-
-                                <!-- Headers -->
-                                
                                 <property>
-                                    <propertyName>headerCreationSource</propertyName>
+                                    <propertyName>wasSyncNodes</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>wasGenUniquePorts</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>wasTemplateLocation</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -3881,8 +3787,9 @@
                                     </propertySheet>
                                 </property>
 
+                                <!-- headers -->
                                 <!-- <property> -->
-                                <!--     <propertyName>headerGenericServerCreation</propertyName> -->
+                                <!--     <propertyName>headerCreationSource</propertyName> -->
                                 <!--     <propertySheet> -->
                                 <!--         <property> -->
                                 <!--             <propertyName>formType</propertyName> -->
@@ -3892,23 +3799,12 @@
                                 <!--     </propertySheet> -->
                                 <!-- </property> -->
 
-                                <!-- <property> -->
-                                <!--     <propertyName>headerWebServerCreation</propertyName> -->
-                                <!--     <propertySheet> -->
-                                <!--         <property> -->
-                                <!--             <propertyName>formType</propertyName> -->
-                                <!--             <expandable>1</expandable> -->
-                                <!--             <value>standard</value> -->
-                                <!--         </property> -->
-                                <!--     </propertySheet> -->
-                                <!-- </property> -->
-                                
                                 <!-- End of headers -->
                             </propertySheet>
                         </property>
-</propertySheet>
-</property>
-</propertySheet>
+                    </propertySheet>
+                </property>
+            </propertySheet>
 <formalParameter>
     <formalParameterName>configname</formalParameterName>
     <defaultValue/>
@@ -3926,7 +3822,7 @@
 </formalParameter>
 
 <formalParameter>
-    <formalParameterName>wasServerName</formalParameterName>
+    <formalParameterName>wasAppServerName</formalParameterName>
     <defaultValue/>
     <description>Server name to create of type provided in previous parameter.</description>
     <required>1</required>
@@ -3940,15 +3836,16 @@
     <required>0</required>
     <type>entry</type>
 </formalParameter>
+
 <formalParameter>
-    <formalParameterName>wasArchivePath</formalParameterName>
+    <formalParameterName>wasTemplateName</formalParameterName>
     <defaultValue/>
-    <description>Source type to use for server creation, could be server, template or none</description>
+    <description>Template name to use for server creation</description>
     <required>0</required>
     <type>entry</type>
 </formalParameter>
 <formalParameter>
-    <formalParameterName>wasTemplateName</formalParameterName>
+    <formalParameterName>wasTemplateLocation</formalParameterName>
     <defaultValue/>
     <description>Template name to use for server creation</description>
     <required>0</required>
@@ -3962,18 +3859,32 @@
     <required>0</required>
     <type>entry</type>
 </formalParameter>
+<formalParameter>
+    <formalParameterName>wasSyncNodes</formalParameterName>
+    <defaultValue/>
+    <description>Sync nodes?</description>
+    <required>0</required>
+    <type>entry</type>
+</formalParameter>
+<formalParameter>
+    <formalParameterName>wasGenUniquePorts</formalParameterName>
+    <defaultValue/>
+    <description>Sync nodes?</description>
+    <required>0</required>
+    <type>entry</type>
+</formalParameter>
 
 
 
 <!-- headers -->
 
-<formalParameter>
-    <formalParameterName>headerCreationSource</formalParameterName>
-    <defaultValue />
-    <description></description>
-    <required>0</required>
-    <type>entry</type>
-</formalParameter>
+<!-- <formalParameter> -->
+<!--     <formalParameterName>headerCreationSource</formalParameterName> -->
+<!--     <defaultValue /> -->
+<!--     <description></description> -->
+<!--     <required>0</required> -->
+<!--     <type>entry</type> -->
+<!-- </formalParameter> -->
 
 <!-- end of headerds -->
 <step>
@@ -11935,6 +11846,16 @@
                                 </property>
                             </propertySheet>
                         </property>
+                        <property>
+                            <propertyName>wasSyncNodes</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>formType</propertyName>
+                                    <expandable>1</expandable>
+                                    <value>standard</value>
+                                </property>
+                            </propertySheet>
+                        </property>
 
                         
                     </propertySheet>
@@ -11963,6 +11884,13 @@
         <defaultValue/>
         <description>Name of configuration</description>
         <required>1</required>
+        <type>entry</type>
+    </formalParameter>
+    <formalParameter>
+        <formalParameterName>wasSyncNodes</formalParameterName>
+        <defaultValue/>
+        <description>Sync nodes</description>
+        <required>0</required>
         <type>entry</type>
     </formalParameter>
 

@@ -69,4 +69,14 @@ limitations under the License.
         <required>0</required>
         <documentation>Description of Application Server template.</documentation>
     </formElement>
+    <formElement>
+        <label>Sync Nodes?:</label>
+        <property>wasSyncNodes</property>
+        <type>checkbox</type>
+        <initiallyChecked>0</initiallyChecked>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+        <required>0</required>
+        <documentation>Sync Nodes if checked.</documentation>
+    </formElement>
 </editor>
