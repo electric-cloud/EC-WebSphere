@@ -110,7 +110,7 @@ my $procedure_logs = $websphere->parseProcedureLog($cmd_res);
 
 if ($code == SUCCESS) {
     $result_params->{outcome}->{result} = 'success';
-    $result_params->{procedure}->{msg} = "Application Servers have been stopped:\n" . join "\n", @{$procedure_logs->{summary}};
+    $result_params->{procedure}->{msg} = "Application servers have been stopped:\n" . join "\n", @{$procedure_logs->{summary}};
     if (@{$procedure_logs->{warning}}) {
         my $warnings = join "\nWARNING: ", @{$procedure_logs->{warning}};
         $warnings = "WARNING: $warnings";

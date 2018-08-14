@@ -41,11 +41,11 @@ if templateLocation:
 try:
     AdminTask.createApplicationServerTemplate(params)
 except:
-    logSummary("Failed to create Application Server Template %s" % (templateName))
+    logSummary("Failed to create application server template %s" % (templateName))
     forwardException(getExceptionMsg())
     sys.exit(1)
 
-logSummary("Application Server template %s has been created" % (templateName))
+logSummary("Application server template %s has been created" % (templateName))
 AdminConfig.save()
 
 if toBoolean(syncNodes):
