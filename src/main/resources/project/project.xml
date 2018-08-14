@@ -3786,17 +3786,18 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-                                
-                                <property>
-                                    <propertyName>headerCreationSource</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
+
+                                <!-- headers -->
+                                <!-- <property> -->
+                                <!--     <propertyName>headerCreationSource</propertyName> -->
+                                <!--     <propertySheet> -->
+                                <!--         <property> -->
+                                <!--             <propertyName>formType</propertyName> -->
+                                <!--             <expandable>1</expandable> -->
+                                <!--             <value>standard</value> -->
+                                <!--         </property> -->
+                                <!--     </propertySheet> -->
+                                <!-- </property> -->
 
                                 <!-- End of headers -->
                             </propertySheet>
@@ -3877,13 +3878,13 @@
 
 <!-- headers -->
 
-<formalParameter>
-    <formalParameterName>headerCreationSource</formalParameterName>
-    <defaultValue />
-    <description></description>
-    <required>0</required>
-    <type>entry</type>
-</formalParameter>
+<!-- <formalParameter> -->
+<!--     <formalParameterName>headerCreationSource</formalParameterName> -->
+<!--     <defaultValue /> -->
+<!--     <description></description> -->
+<!--     <required>0</required> -->
+<!--     <type>entry</type> -->
+<!-- </formalParameter> -->
 
 <!-- end of headerds -->
 <step>
