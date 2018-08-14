@@ -155,7 +155,7 @@ class DevEndToEndServerProcedures extends PluginTestHelper {
             assert outcome == "success"
             // 1 create application template
             def summary1 = getJobProperty("/myJob/jobSteps/CreateApplicationServerTemplate/summary", result.jobId)
-            assert summary1.contains("Application Server template $wasTemplateName has been created")
+            assert summary1.contains("Application server template $wasTemplateName has been created")
             // 2 export server
             def summary2 = getJobProperty("/myJob/jobSteps/ExportApplicationServer/summary", result.jobId)
             assert summary2.contains("Application server $wasSourceServerName from node $wasSourceNodeName has been exported")
