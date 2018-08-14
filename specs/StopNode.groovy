@@ -2,6 +2,7 @@ import spock.lang.*
 import com.electriccloud.spec.SpockTestSupport
 import PluginTestHelper
 
+@Requires({ System.getenv('IS_WAS_ND') == "1"})
 class StopNode extends PluginTestHelper {
 
     // Environments Variables
