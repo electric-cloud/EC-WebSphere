@@ -56,7 +56,7 @@ for server in parsedServerList:
         print "Server start result: ", result;
     except:
         forwardException(getExceptionMsg())
-        logSummary("Failed to stop server %s on node %s" % (server['Server'], server['Node']))
+        logSummary("Failed to start server %s on node %s" % (server['Server'], server['Node']))
         sys.exit(1)
 
 startResults = []
