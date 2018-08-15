@@ -346,6 +346,16 @@ $xpath = $ec->attachCredential($projName, $credName,
      stepName => 'StartNode'});
 $errors .= $ec->checkAllErrors($xpath);
 
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'CreateFirstClusterMember',
+     stepName => 'CreateFirstClusterMember'});
+$errors .= $ec->checkAllErrors($xpath);
+
+$xpath = $ec->attachCredential($projName, $credName,
+    {procedureName => 'CreateClusterMembers',
+     stepName => 'CreateClusterMembers'});
+$errors .= $ec->checkAllErrors($xpath);
+
 
 # CreateDatasource
 # DeleteDatasource

@@ -856,4 +856,40 @@
         <path>server/Cluster/createCluster.pl</path>
     </file>
     <!-- End of CreateCluster procedure Files -->
+
+    <!-- CreateFirstClusterMember procedure Files -->
+    <!-- XML Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateFirstClusterMember&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Cluster/CreateFirstClusterMember.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;create_first_cluster_member.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Cluster/create_first_cluster_member.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateFirstClusterMember&quot;]/step[stepName=&quot;CreateFirstClusterMember&quot;]/command</xpath>
+        <path>server/Cluster/createFirstClusterMember.pl</path>
+    </file>
+    <!-- End of CreateFirstClusterMember procedure Files -->
+
+    <!-- CreateClusterMembers procedure Files -->
+    <!-- XML Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateClusterMembers&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Cluster/CreateClusterMembers.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;create_cluster_members.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Cluster/create_cluster_members.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateClusterMembers&quot;]/step[stepName=&quot;CreateClusterMembers&quot;]/command</xpath>
+        <path>server/Cluster/createClusterMembers.pl</path>
+    </file>
+    <!-- End of CreateClusterMembers procedure Files -->
 </fileset>

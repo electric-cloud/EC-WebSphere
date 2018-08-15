@@ -415,6 +415,20 @@ my %startNode = (
     category    => "Application Server"
 );
 
+my %createFirstClusterMember = (
+    label       => "WebSphere - Create First Cluster Member",
+    procedure   => "CreateFirstClusterMember",
+    description => "Creates first cluster member.",
+    category    => "Application Server"
+);
+
+my %createClusterMembers = (
+    label       => "WebSphere - Create Cluster Members",
+    procedure   => "CreateClusterMembers",
+    description => "Creates cluster members",
+    category    => "Application Server"
+);
+
 
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
@@ -502,6 +516,8 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop Nod
 
 # Create Cluster
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Cluster");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create First Cluster Member");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Cluster Members");
 
 @::createStepPickerSteps = (
     \%checkPageStatus, \%checkServerStatus,
@@ -543,7 +559,9 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create C
     # Start/Stop Node
     \%startNode, \%stopNode,
     # Create cluster
-    \%createCluster
+    \%createCluster,
+    # Create 1st cluster member
+    \%createFirstClusterMember, \%createClusterMembers
 );
 
 if ($upgradeAction eq "upgrade") {
@@ -926,6 +944,14 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'StartNode',
                 stepName      => 'StartNode'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateFirstClusterMember',
+                stepName      => 'CreateFirstClusterMember'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateClusterMembers',
+                stepName      => 'CreateClusterMembers'
             });
         }
     }
