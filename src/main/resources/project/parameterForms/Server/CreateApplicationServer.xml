@@ -54,7 +54,7 @@ limitations under the License.
         <required>0</required>
         <checkedValue>1</checkedValue>
         <uncheckedValue>0</uncheckedValue>
-        <initiallyChecked>0</initiallyChecked>
+        <initiallyChecked>1</initiallyChecked>
         <documentation>Generate new ports if checked.</documentation>
     </formElement>
     <!-- Creation source section -->

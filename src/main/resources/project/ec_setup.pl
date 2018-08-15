@@ -188,8 +188,8 @@ my %stopCluster = (
     category    => "Application Server"
 );
 
-my %creatCluster = (
-    label       => "WebSphere - Create Application server cluster",
+my %createCluster = (
+    label       => "WebSphere - Create Application server Cluster",
     procedure   => "CreateCluster",
     description => "Creates a new Application Server cluster.",
     category    => "Application Server"
@@ -500,6 +500,9 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop Dep
 # Start/Stop Node
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop Node");
 
+# Create Cluster
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Cluster");
+
 @::createStepPickerSteps = (
     \%checkPageStatus, \%checkServerStatus,
     \%startServer, \%stopServer,
@@ -508,7 +511,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop Nod
     \%undeployApp, \%checkApp, 
     \%createDatasource, \%deleteDatasource,
     \%createJDBCProvider, \%deleteJDBCProvider,
-    \%creatCluster, \%configureSessionManagement,
+    \%configureSessionManagement,
     \%createJMSProvider, \%listClusterMembers,
     \%deleteCluster, \%removeClusterMembers,
     \%publishWSDL, \%deployOSGi,
@@ -538,7 +541,9 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop Nod
     # Start/Stop Deployment Manager
     \%startDeploymentManager, \%stopDeploymentManager,
     # Start/Stop Node
-    \%startNode, \%stopNode
+    \%startNode, \%stopNode,
+    # Create cluster
+    \%createCluster
 );
 
 if ($upgradeAction eq "upgrade") {

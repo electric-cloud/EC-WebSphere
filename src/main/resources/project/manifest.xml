@@ -211,10 +211,10 @@
         <xpath>//property[propertyName=&quot;deletecluster_matchers&quot;]/value</xpath>
         <path>matchers/deleteClusterMatcher.pl</path>
     </file>
-    <file>
-        <xpath>//property[propertyName=&quot;createcluster_matchers&quot;]/value</xpath>
-        <path>matchers/creatClusterMatcher.pl</path>
-    </file>
+    <!-- <file> -->
+    <!--     <xpath>//property[propertyName=&quot;createcluster_matchers&quot;]/value</xpath> -->
+    <!--     <path>matchers/creatClusterMatcher.pl</path> -->
+    <!-- </file> -->
     <file>
         <xpath>//property[propertyName=&quot;deployosgi_matchers&quot;]/value</xpath>
         <path>matchers/deployOSGiMatchers.pl</path>
@@ -325,16 +325,13 @@
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;DeleteCluster&quot;]/step[stepName=&quot;DeleteCluster&quot;]/command</xpath>
-        <path>server/deleteCluster.pl</path>
+        <path>server/Cluster/deleteCluster.pl</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;ListClusterMembers&quot;]/step[stepName=&quot;ListClusterMembers&quot;]/command</xpath>
         <path>server/listClusterMembers.pl</path>
     </file>
-    <file>
-        <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/step[stepName=&quot;CreateCluster&quot;]/command</xpath>
-        <path>server/createCluster.pl</path>
-    </file>
+
     <file>
         <xpath>//procedure[procedureName=&quot;StartCluster&quot;]/step[stepName=&quot;StartCluster&quot;]/command</xpath>
         <path>server/startCluster.pl</path>
@@ -510,7 +507,7 @@
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;DeleteCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/DeleteCluster.xml</path>
+        <path>parameterForms/Cluster/DeleteCluster.xml</path>
     </file>
 
     <file>
@@ -526,10 +523,7 @@
         <xpath>//procedure[procedureName=&quot;StopCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/StopCluster.xml</path>
     </file>
-    <file>
-        <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/CreateCluster.xml</path>
-    </file>
+
     <file>
         <xpath>//procedure[procedureName=&quot;ConfigureSession&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ConfigureSessionManagement.xml</path>
@@ -844,5 +838,22 @@
         <path>server/Management/startNode.pl</path>
     </file>
     <!-- End of StartNode procedure Files -->
-    
+
+    <!-- CreateCluster procedure Files -->
+    <!-- XML Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Cluster/CreateCluster.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;create_cluster.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Cluster/create_cluster.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/step[stepName=&quot;CreateCluster&quot;]/command</xpath>
+        <path>server/Cluster/createCluster.pl</path>
+    </file>
+    <!-- End of CreateCluster procedure Files -->
 </fileset>
