@@ -214,7 +214,6 @@ class StopApplicationServers extends PluginTestHelper {
     def doCleanupSpec() {
     }
 
-    @Ignore
     @Unroll
     def 'StopApplicationServer - Positive: #testCaseID.name #testCaseID.description'() {
         //assert true
