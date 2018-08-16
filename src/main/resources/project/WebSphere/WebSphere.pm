@@ -95,7 +95,6 @@ sub new {
 
     # Getting step parameters
     my $step_params = $self->get_step_parameters();
-    print Dumper $step_params;
     if (!$configurationName) {                             # this is for compatibility with previous procedures.
         $configurationName = $step_params->{configname} || $step_params->{configName};
     }

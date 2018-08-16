@@ -78,7 +78,7 @@ limitations under the License.
         <type>checkbox</type>
         <checkedValue>1</checkedValue>
         <uncheckedValue>0</uncheckedValue>
-        <initiallyChecked>1</initiallyChecked>
+        <initiallyChecked>0</initiallyChecked>
         <required>0</required>
         <documentation>Sync nodes?</documentation>
     </formElement>

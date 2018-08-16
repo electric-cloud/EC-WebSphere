@@ -476,8 +476,11 @@ def createFirstClusterMember(params):
     if 'targetServer' not in params.keys():
         bailOut('Missing Target Server for 1st cluster member creation')
 
-    if params['creationPolicy'] == 'existing' and 'sourceNode' not in params.keys() or 'sourceServer' not in params.keys():
-        bailOut('Source Node and Source Server are mandatory when creationPolicty is set to existing')
+    if params['creationPolicy'] == 'existing':
+        if 'sourceNode' not in params:
+            bailOut('Source Node is mandatory')
+        if 'sourceServer' not in params:
+            bailOut('Source Server is mandatory')
     elif params['creationPolicy'] == 'template' and 'templateName' not in params.keys():
         bailOut('TemplateName is mandatory when creationPolicty is set to template')
 

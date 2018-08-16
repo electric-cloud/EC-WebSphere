@@ -255,6 +255,11 @@
                         <propertyName>create_cluster.py</propertyName>
                         <value/>
                     </property>
+                    <!-- DeleteCluster jython script -->
+                    <property>
+                        <propertyName>delete_cluster.py</propertyName>
+                        <value/>
+                    </property>
                     <!-- CreateFirstClusterMember jython script -->
                     <property>
                         <propertyName>create_first_cluster_member.py</propertyName>
@@ -327,11 +332,6 @@
                 <value></value>
                 <expandable>0</expandable>
             </property>
-            <!-- <property> -->
-            <!--     <propertyName>createcluster_matchers</propertyName> -->
-            <!--     <value></value> -->
-            <!--     <expandable>0</expandable> -->
-            <!-- </property> -->
             <property>
                 <propertyName>listClusterMembers_matchers</propertyName>
                 <value></value>
@@ -344,11 +344,6 @@
             </property>
             <property>
                 <propertyName>stopCluster_matchers</propertyName>
-                <value></value>
-                <expandable>0</expandable>
-            </property>
-            <property>
-                <propertyName>deletecluster_matchers</propertyName>
                 <value></value>
                 <expandable>0</expandable>
             </property>
@@ -521,7 +516,7 @@
                 <formalParameterName>wsadminabspath</formalParameterName>
                 <defaultValue />
                 <description>wsadmin absolute path </description>
-                <required>0</required>
+                <required>1</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
@@ -7964,7 +7959,7 @@
                             <propertyName>parameters</propertyName>
                             <propertySheet>
                                 <property>
-                                    <propertyName>wsadminabspath</propertyName>
+                                    <propertyName>wasSyncNodes</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -7984,7 +7979,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>clusterName</propertyName>
+                                    <propertyName>wasClusterName</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -7999,12 +7994,11 @@
                 </property>
             </propertySheet>
             <formalParameter>
-                <formalParameterName>wsadminabspath</formalParameterName>
+                <formalParameterName>wasSyncNodes</formalParameterName>
                 <defaultValue />
-                <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
-                <required>1</required>
+                <description>Sync Nodes?</description>
+                <required>0</required>
                 <type>entry</type>
-                <expansionDeferred>1</expansionDeferred>
             </formalParameter>
             <formalParameter>
                 <formalParameterName>configname</formalParameterName>
@@ -8014,9 +8008,9 @@
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>clusterName</formalParameterName>
+                <formalParameterName>wasClusterName</formalParameterName>
                 <defaultValue />
-                <description>A unique name that identifies the JDBC Provider to delete in the WebSphere domain. </description>
+                <description>Cluster name to be deleted</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
@@ -8030,7 +8024,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor>postp --loadProperty /myProject/deletecluster_matchers</postProcessor>
+                <postProcessor />
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -13013,7 +13007,7 @@
                 <formalParameterName>wasFirstClusterMemberName</formalParameterName>
                 <defaultValue/>
                 <description>Name of the server that will be a first cluster member.</description>
-                <required>0</required>
+                <required>1</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>

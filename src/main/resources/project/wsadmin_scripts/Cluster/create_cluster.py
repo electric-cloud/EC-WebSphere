@@ -100,11 +100,13 @@ clusterCreationParams = [
 ]
 
 # now we're adding parameters if we want to convert server to be a first cluster member.
+okConvertedLog = ''
 if toBoolean(createFirstMember) and creationPolicy == 'convert':
     nodeServer = splitNodeServer(sourceServerName)
     clusterCreationParams.append('-convertServer')
     convertParams = "[-serverName '%s' -serverNode '%s' -resourcesScope '%s']" % (nodeServer['Server'], nodeServer['Node'], promotionPolicy)
     clusterCreationParams.append(convertParams)
+    okConvertedLog = "Server %s on node %s has been converted to be the first member of cluster %s" % (nodeServer['Server'], nodeServer['Node'], clusterName)
 
 print clusterCreationParams
 try:
@@ -114,7 +116,10 @@ except:
     sys.exit(1)
 
 logSummary("Cluster %s has been created" % (clusterName))
-# AdminConfig.save()
+
+if creationPolicy == 'convert':
+    logSummary(okConvertedLog)
+
 
 # 3. Add first cluster member
 # TODO: Add weights
@@ -163,8 +168,9 @@ if toBoolean(addClusterMembers):
         except:
             forwardException(getExceptionMsg())
             sys.exit(1)
+        logSummary("Server %s on node %s has been created and added as cluster member" % (server['Server'], server['Node']))
 
-    logSummary("Server %s on node %s has been creted and added as cluster member" % (server['Node'], server['Server']))
 AdminConfig.save()
+
 if toBoolean(syncNodes):
     syncActiveNodes()

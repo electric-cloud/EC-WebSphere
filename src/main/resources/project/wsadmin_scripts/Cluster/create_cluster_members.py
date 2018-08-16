@@ -39,6 +39,7 @@ for server in parsedMembersList:
     except:
         forwardException(getExceptionMsg())
         sys.exit(1)
+    logSummary("Server %s on node %s has been created and added to %s cluster" % (server['Server'], server['Node'], clusterName))
 
 AdminConfig.save()
 
