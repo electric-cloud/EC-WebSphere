@@ -39,7 +39,7 @@ class ExportApplicationServer extends PluginTestHelper {
     @Shared
     def testCases = [
         C363382: [
-            id: 'C363382',
+            id: 'C363382, C363844',
             description: 'Export Server, Export Server - file already exists '],
         C363383: [
             id: 'C363383',
