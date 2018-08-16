@@ -7246,6 +7246,16 @@
                                     </propertySheet>
                                 </property>
                                 <property>
+                                    <propertyName>wasFirstClusterMemberWeight</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
                                     <propertyName>wasFirstClusterMemberName</propertyName>
                                     <propertySheet>
                                         <property>
@@ -7404,6 +7414,13 @@
                 <formalParameterName>wasFirstClusterMemberName</formalParameterName>
                 <defaultValue/>
                 <description>Name of the server that will be a first cluster member.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>wasFirstClusterMemberWeight</formalParameterName>
+                <defaultValue/>
+                <description>Weight of first cluster member</description>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>
@@ -12871,7 +12888,16 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-
+                                <property>
+                                    <propertyName>wasFirstClusterMemberNode</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
                                 <property>
                                     <propertyName>wasFirstClusterMemberWeight</propertyName>
                                     <propertySheet>
@@ -12984,6 +13010,20 @@
             </formalParameter>
 
             <formalParameter>
+                <formalParameterName>wasFirstClusterMemberName</formalParameterName>
+                <defaultValue/>
+                <description>Name of the server that will be a first cluster member.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>wasFirstClusterMemberNode</formalParameterName>
+                <defaultValue/>
+                <description>Node name of first cluster member</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
                 <formalParameterName>wasFirstClusterMemberWeight</formalParameterName>
                 <defaultValue/>
                 <description>Weight of each cluster member from list.</description>
@@ -12991,14 +13031,7 @@
                 <type>entry</type>
             </formalParameter>
 
-            <formalParameter>
-                <formalParameterName>wasFirstClusterMemberName</formalParameterName>
-                <defaultValue/>
-                <description>Name of the server that will be a first cluster member.</description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-
+            
             <formalParameter>
                 <formalParameterName>wasFirstClusterMemberGenUniquePorts</formalParameterName>
                 <defaultValue/>

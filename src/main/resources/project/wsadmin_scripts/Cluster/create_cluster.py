@@ -20,6 +20,10 @@ firstMemberName = '''
 $[wasFirstClusterMemberName]
 '''.strip()
 
+firstMemberWeight = '''
+$[wasFirstClusterMemberWeight]
+'''.strip()
+
 firstMemberGenUniquePorts = '''
 $[wasFirstClusterMemberGenUniquePorts]
 '''.strip()
@@ -70,14 +74,25 @@ if toBoolean(createFirstMember):
         bailOut("Creation policy should be one of: existing, convert or template. Got %s" % (creationPolicy))
     if creationPolicy in ['template', 'existing'] and (not firstMemberName or not firstMemberNode):
         bailOut("First Member Name and First Member Node should be provided when create 1st cluster member is chosen")
-    # TODO: Check promotion policy
+    if promotionPolicy and promotionPolicy not in ['cluster', 'server', 'both']:
+        bailOut("Promotion policy should be cluster, server, or both, got %s" % (promotionPolicy))
+
 # 2. Create cluster
 if toBoolean(preferLocal):
     preferLocal = 'true'
 else:
     preferLocal = 'false'
 
-
+parsedMembersList = []
+if toBoolean(addClusterMembers):
+    if not membersList:
+        bailOut("No members to add")
+    try:
+        parsedMembersList = parseServerListAsList(membersList, {'filterUnique': 1})
+    except:
+        forwardException(getExceptionMsg())
+        sys.exit(1)
+    
 clusterConfig = "[-clusterName '%s' -preferLocal '%s' -clusterType APPLICATION_SERVER]" % (clusterName, preferLocal)
 
 clusterCreationParams = [
@@ -85,7 +100,7 @@ clusterCreationParams = [
 ]
 
 # now we're adding parameters if we want to convert server to be a first cluster member.
-if creationPolicy == 'convert':
+if toBoolean(createFirstMember) and creationPolicy == 'convert':
     nodeServer = splitNodeServer(sourceServerName)
     clusterCreationParams.append('-convertServer')
     convertParams = "[-serverName '%s' -serverNode '%s' -resourcesScope '%s']" % (nodeServer['Server'], nodeServer['Node'], promotionPolicy)
@@ -101,35 +116,55 @@ except:
 logSummary("Cluster %s has been created" % (clusterName))
 # AdminConfig.save()
 
-# 3. Add cluster members
+# 3. Add first cluster member
 # TODO: Add weights
-if creationPolicy == 'template':
+if toBoolean(createFirstMember) and creationPolicy in ['template', 'existing']:
+    logInfo("Creating first member from template or existing server")
     try:
-        createFirstClusterMember({
-            'clusterName': clusterName,
-            'creationPolicy': 'template',
-            'templateName': templateName,
-            'targetNode': firstMemberNode,
-            'targetServer': firstMemberName
-        })
-    except:
-        forwardException(getExceptionMsg())
-        sys.exit(1)
-elif creationPolicy == 'existing':
-    try:
-        nodeServer = splitNodeServer(sourceServerName)
-        createFirstClusterMember({
-            'clusterName': clusterName,
-            'creationPolicy': 'existing',
-            'targetNode': firstMemberNode,
-            'targetServer': firstMemberName,
-            'sourceNode': nodeServer['Node'],
-            'sourceServer': nodeServer['Server']
-        })
-    except:
-        forwardException(getExceptionMsg())
-        sys.exit(1)
+        createFirstMemberParams = {
+            'clusterName'   : clusterName,
+            'creationPolicy': creationPolicy,
+            'targetNode'    : firstMemberNode,
+            'targetServer'  : firstMemberName,
+            'templateName'  : templateName,
+            'memberWeight'  : firstMemberWeight,
+            'resourcesScope': promotionPolicy,
+        }
+        if toBoolean(firstMemberGenUniquePorts):
+            createFirstMemberParams['genUniquePorts'] = 'true'
+        else:
+            createFirstMemberParams['genUniquePorts'] = 'false'
 
+        if creationPolicy == 'existing':
+            nodeServer = splitNodeServer(sourceServerName)
+            createFirstMemberParams['sourceNode'] = nodeServer['Node']
+            createFirstMemberParams['sourceServer'] = nodeServer['Server']
+        createFirstClusterMember(createFirstMemberParams)
+    except:
+        forwardException(getExceptionMsg())
+        sys.exit(1)
+    if creationPolicy == 'template':
+        logSummary("First cluster member %s has been created on node %s from template %s" % (firstMemberName, firstMemberNode, templateName))
+    else:
+        logLine = "First cluster member %s has been created on node %s using server %s on node %s as source" \
+            % (firstMemberName, firstMemberNode, nodeServer['Server'], nodeServer['Node'])
+        logSummary(logLine)
+# 4. Add cluster members
+if toBoolean(addClusterMembers):
+    for server in parsedMembersList:
+        try:
+            createMemberParams = {
+                'clusterName': clusterName,
+                'targetNode': server['Node'],
+                'targetName': server['Server'],
+                'memberWeight': memberWeight
+            }
+            createClusterMembers(createMemberParams)
+        except:
+            forwardException(getExceptionMsg())
+            sys.exit(1)
+
+    logSummary("Server %s on node %s has been creted and added as cluster member" % (server['Node'], server['Server']))
 AdminConfig.save()
 if toBoolean(syncNodes):
     syncActiveNodes()

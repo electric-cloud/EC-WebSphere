@@ -45,6 +45,13 @@ limitations under the License.
     <documentation>Name of the server that will be a first cluster member.</documentation>
 </formElement>
 <formElement>
+    <label>First Cluster Member Node</label>
+    <property>wasFirstClusterMemberNode</property>
+    <type>entry</type>
+    <required>1</required>
+    <documentation>Name of the node where 1st cluster member will be located</documentation>
+</formElement>
+<formElement>
     <label>First Cluster Member weight</label>
     <property>wasFirstClusterMemberWeight</property>
     <type>entry</type>
@@ -58,6 +65,7 @@ limitations under the License.
     <type>checkbox</type>
     <checkedValue>1</checkedValue>
     <uncheckedValue>0</uncheckedValue>
+    <initiallyChecked>1</initiallyChecked>
     <required>0</required>
     <documentation>Generate Unique Ports for 1st cluster member?</documentation>
 </formElement>
@@ -84,10 +92,9 @@ Default is Cluster.</documentation>
     <label>First Cluster Member Creation Policy</label>
     <property>wasFirstClusterMemberCreationPolicy</property>
     <type>select</type>
-    <option><name>existing</name><value>existing</value></option>
-    <option><name>template</name><value>template</value></option>
+    <option><name>Use existing server as template</name><value>existing</value></option>
+    <option><name>Using pre-created application server template</name><value>template</value></option>
     <required>1</required>
-    <!-- <value>existing</value> -->
     <documentation>Controls how 1st cluster member is to be created?
 Existing - use existing server as template
 Template - use app server template to create 1st cluster member</documentation>
@@ -100,6 +107,8 @@ Template - use app server template to create 1st cluster member</documentation>
     <type>entry</type>
     <required>0</required>
     <documentation>Template name to be used as source</documentation>
+    <dependOn>wasFirstClusterMemberCreationPolicy</dependOn>
+    <condition>${wasFirstClusterMemberCreationPolicy} != '' AND wasFirstClusterMemberCreationPolicy == 'template'</condition>
 </formElement>
 
 
@@ -109,6 +118,9 @@ Template - use app server template to create 1st cluster member</documentation>
     <type>entry</type>
     <required>0</required>
     <documentation>Node name where server that will be a source for 1st cluster member is located</documentation>
+    <condition>
+        ${wasFirstClusterMemberCreationPolicy} != '' AND ${wasFirstClusterMemberCreationPolicy} == 'existing'
+    </condition>
 </formElement>
 
 

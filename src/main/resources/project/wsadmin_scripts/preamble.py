@@ -327,7 +327,7 @@ def parseServerListAsDict(servers, opts):
     if 'filterUnique' in opts.keys() and opts['filterUnique'] == 1:
         tempSet = set(res)
         if len(tempSet) != len(res):
-            print 'WARNING: Non-unique servers are detected'
+            logWarning('WARNING: Non-unique servers are detected')
         res = list(tempSet)
     retval = {}
     for serverString in res:
@@ -438,12 +438,32 @@ def createClusterMemberWrapper(params):
             firstMember.append(params['firstMember'][k])
         additionParams.append(firstMember)
 
-    print "Addition Params:"
-    print additionParams
+    if 'memberWeight' in params and params['memberWeight']:
+        additionParams['memberConfig']['-memberWeight'] = params['memberWeight']
+
     return AdminTask.createClusterMember(additionParams)
     
         
-
+def createClusterMembers(params):
+    if 'clusterName' not in params:
+        raise ValueError('clusterName key is mandatory')
+    if 'targetNode' not in params:
+        raise ValueError('targetNode is mandatory')
+    if 'targetName' not in params:
+        raise ValueError('targetName is mandatory')
+    
+    creationParams = {
+        'clusterName': params['clusterName'],
+        'memberConfig': {
+            '-memberName': params['targetName'],
+            '-memberNode': params['targetNode']
+        }
+    }
+    if 'memberWeight' in params and params['memberWeight']:
+        creationParams['memberConfig']['-memberWeight'] = params['memberWeight']
+    return createClusterMemberWrapper(creationParams)
+    
+    
 def createFirstClusterMember(params):
     if 'creationPolicy' not in params.keys():
         bailOut("Creation Policy parameter is missing")
@@ -461,6 +481,8 @@ def createFirstClusterMember(params):
     elif params['creationPolicy'] == 'template' and 'templateName' not in params.keys():
         bailOut('TemplateName is mandatory when creationPolicty is set to template')
 
+    if 'resourcesScope' not in params:
+        bailOut("Missing resourcesScope parameter")
     # TODO: add gen unique ports handling
     # TODO: add resources scope handling
     creationPolicy = params['creationPolicy']
@@ -472,9 +494,11 @@ def createFirstClusterMember(params):
             '-genUniquePorts': 'true',
         },
         'firstMember': {
-            '-resourcesScope': 'cluster'
+            '-resourcesScope': params['resourcesScope']
         }
     }
+    if 'genUniquePorts' in params:
+        additionParams['memberConfig']['-genUniquePorts'] = params['genUniquePorts']
     if creationPolicy == 'template':
         additionParams['firstMember']['-templateName'] = params['templateName']
     else:
