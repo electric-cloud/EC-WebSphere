@@ -43,7 +43,7 @@
         <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configname/clusters</propertyReference>
     </formElement>
     <formElement>
-        <label>Sync Nodes?</label>
+        <label>Sync Nodes?:</label>
         <property>wasSyncNodes</property>
         <type>checkbox</type>
         <checkedValue>1</checkedValue>

@@ -38,7 +38,7 @@ limitations under the License.
     <documentation>Name of the new cluster.</documentation>
 </formElement>
 <formElement>
-    <label>Prefer Local?</label>
+    <label>Prefer Local?:</label>
     <property>wasPreferLocal</property>
     <type>checkbox</type>
     <checkedValue>1</checkedValue>
@@ -52,7 +52,7 @@ limitations under the License.
 <!-- first cluster member related fields -->
 <!-- trigger -->
 <formElement>
-    <label>Create First Cluster Member?</label>
+    <label>Create First Cluster Member?:</label>
     <property>wasCreateFirstClusterMember</property>
     <type>checkbox</type>
     <checkedValue>1</checkedValue>
@@ -63,7 +63,7 @@ limitations under the License.
 </formElement>
 <!-- 1st cluster member related fields -->
 <formElement>
-    <label>First Cluster Member Creation Policy</label>
+    <label>First Cluster Member Creation Policy:</label>
     <property>wasFirstClusterMemberCreationPolicy</property>
     <type>select</type>
     <option><name>Use existing server as template</name><value>existing</value></option>
@@ -80,7 +80,7 @@ limitations under the License.
     <condition>${wasCreateFirstClusterMember} == '1'</condition>
 </formElement>
 <formElement>
-    <label>Template Name</label>
+    <label>Template Name:</label>
     <property>wasFirstClusterMemberTemplateName</property>
     <type>entry</type>
     <required>0</required>
@@ -90,11 +90,11 @@ limitations under the License.
     <condition>${wasCreateFirstClusterMember} == '1' AND ${wasFirstClusterMemberCreationPolicy} == 'template'</condition>
 </formElement>
 <formElement>
-    <label>Source Server Name</label>
+    <label>Source Server Name:</label>
     <property>wasSourceServerName</property>
     <type>entry</type>
     <required>0</required>
-    <documentation>Node name where server that will be a source for 1st cluster member is located</documentation>
+    <documentation>Source server name</documentation>
     <dependsOn>wasCreateFirstClusterMember</dependsOn>
     <condition>
         ${wasCreateFirstClusterMember} == '1' AND (${wasFirstClusterMemberCreationPolicy} == 'existing' OR ${wasFirstClusterMemberCreationPolicy} == 'convert')
@@ -102,7 +102,7 @@ limitations under the License.
     <!-- <condition>${wasCreateFirstClusterMember} == '1'</condition> -->
 </formElement>
 <formElement>
-    <label>First Cluster Member Node</label>
+    <label>First Cluster Member Node:</label>
     <property>wasFirstClusterMemberNode</property>
     <type>entry</type>
     <required>0</required>
@@ -114,7 +114,7 @@ limitations under the License.
     <!-- <condition>${wasCreateFirstClusterMember} == '1'</condition> -->
 </formElement>
 <formElement>
-    <label>First Cluster Member Name</label>
+    <label>First Cluster Member Name:</label>
     <property>wasFirstClusterMemberName</property>
     <type>entry</type>
     <required>0</required>
@@ -126,7 +126,7 @@ limitations under the License.
     <!-- <condition>${wasCreateFirstClusterMember} == '1'</condition> -->
 </formElement>
 <formElement>
-    <label>First Cluster Member weight</label>
+    <label>First Cluster Member Weight:</label>
     <property>wasFirstClusterMemberWeight</property>
     <type>entry</type>
     <required>0</required>
@@ -135,7 +135,7 @@ limitations under the License.
     <condition>${wasCreateFirstClusterMember} == '1'</condition>
 </formElement>
 <formElement>
-    <label>Generate Unique Ports for First cluster member?</label>
+    <label>Generate Unique Ports for First Cluster Member?:</label>
     <property>wasFirstClusterMemberGenUniquePorts</property>
     <type>checkbox</type>
     <checkedValue>1</checkedValue>
@@ -149,7 +149,7 @@ limitations under the License.
     </condition>
 </formElement>
 <formElement>
-    <label>Server Resources Promotion Policy</label>
+    <label>Server Resources Promotion Policy:</label>
     <property>wasServerResourcesPromotionPolicy</property>
     <type>select</type>
     <option><name>cluster</name><value>cluster</value></option>
@@ -171,7 +171,7 @@ limitations under the License.
 <!-- add cluster members -->
 <!-- trigger -->
 <formElement>
-    <label>Add Cluster Members?</label>
+    <label>Add Cluster Members?:</label>
     <property>wasAddClusterMembers</property>
     <type>checkbox</type>
     <checkedValue>1</checkedValue>
@@ -181,7 +181,7 @@ limitations under the License.
     <documentation>If checked, additional cluster members will be added</documentation>
 </formElement>
 <formElement>
-    <label>Gen Unique Ports for Cluster Members</label>
+    <label>Gen Unique Ports for Cluster Members:</label>
     <property>wasClusterMembersGenUniquePorts</property>
     <type>checkbox</type>
     <checkedValue>1</checkedValue>
@@ -193,7 +193,7 @@ limitations under the License.
     <condition>${wasAddClusterMembers} == '1'</condition>
 </formElement>
 <formElement>
-    <label>Weight of Each Cluster Member</label>
+    <label>Weight of Each Cluster Member:</label>
     <property>wasClusterMemberWeight</property>
     <type>entry</type>
     <required>0</required>
@@ -202,7 +202,7 @@ limitations under the License.
     <condition>${wasAddClusterMembers} == '1'</condition>
 </formElement>
 <formElement>
-    <label>Cluster Members List</label>
+    <label>Cluster Members List:</label>
     <property>wasClusterMembersList</property>
     <type>textarea</type>
     <required>0</required>
@@ -212,7 +212,7 @@ limitations under the License.
 </formElement>
 <!-- end of add cluster members section -->
 <formElement>
-    <label>Sync Active Nodes?</label>
+    <label>Sync Active Nodes?:</label>
     <property>wasSyncNodes</property>
     <type>checkbox</type>
     <checkedValue>1</checkedValue>

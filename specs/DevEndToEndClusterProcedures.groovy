@@ -2,23 +2,9 @@ import spock.lang.*
 import com.electriccloud.spec.SpockTestSupport
 import PluginTestHelper
 
-// $[wasConfigName]
-// $[wasClusterName]
-// $[wasSourceServerNameConvert]
-// $[wasSourceNodeNameConvert]
-// $[wasTargetNodeName]
-// $[wasTargetServerName]
-// $[wasResourceName]
-// $[wasTemplateName]
-
-// $[wasSourceNodeName]
-// $[wasSourceServerName]
-
-
-
 @IgnoreIf({ System.getenv('IS_WAS_ND') != "1"})
 @Stepwise
-class DevEndToEndServerProcedures extends PluginTestHelper {
+class DevEndToEndClusterProcedures extends PluginTestHelper {
 
     /**
      * Environments Variables
@@ -40,18 +26,25 @@ class DevEndToEndServerProcedures extends PluginTestHelper {
     def wasPath =       System.getenv('WSADMIN_PATH')
     @Shared
     def wasAppPath =    System.getenv('WAS_APPPATH')
+
+
     @Shared
-    def wasTargetNodeName = wasHost + 'Node01'
-    @Shared
-    def wasTargetServerName  = 'server1-td'
+    def wasClusterName = 'cluster1'
     @Shared
     def wasSourceNodeName = wasHost + 'Node01'
     @Shared
+    def wasSourceNodeNameConvert = wasSourceNodeName
+    @Shared
     def wasSourceServerName = 'server1'
     @Shared
-    def wasTemplateName = 'template-1-td'
-    // TODO: change it for windows
-    def wasArchivePath = '/tmp/server1.car'
+    def wasSourceServerNameConvert = 'server2'
+    @Shared
+    def wasTargetNodeName = wasSourceNodeNameConvert
+    @Shared
+    def wasTargetServerName = wasSourceServerNameConvert
+    @Shared
+    def wasTemplateName = 'default'
+    
 
     /**
      * Dsl Parameters
@@ -60,7 +53,7 @@ class DevEndToEndServerProcedures extends PluginTestHelper {
     @Shared
     def testProjectName =           'EC-WebSphere-SystemTests'
     @Shared
-    def testProcedureName =         'DevEndToEndServerProcedures'
+    def testProcedureName =         'DevEndToEndClusterProcedures'
 
     /**
      * Procedure Values: test parameters Procedure values
@@ -119,7 +112,7 @@ class DevEndToEndServerProcedures extends PluginTestHelper {
         createConfiguration(pluginConfigurationNames.correctNone, [doNotRecreate: true])
         createConfiguration(pluginConfigurationNames.correctRMI, [doNotRecreate: true])
         // actual test project
-        importProject(testProjectName, 'dsl/DevEndToEndServerProcedures/Procedure.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
+        importProject(testProjectName, 'dsl/DevEndToEndClusterProcedures/Procedure.dsl', [projectName: testProjectName, wasResourceName:wasResourceName])
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
      }
 
@@ -132,17 +125,24 @@ class DevEndToEndServerProcedures extends PluginTestHelper {
     }
 
     @Unroll
-    def "Dev server related end to end scenario" () {
+    def "Dev cluster related end to end scenario" () {
         when: 'Procedure runs: '
-             def runParams = [
-                wasHost:    wasHost,
-                configName: pluginConfigurationNames.correctSOAP,
-                sourceNodeName: wasSourceNodeName,
-                sourceServerName: wasSourceServerName,
-                templateName: wasTemplateName,
-                archivePath: wasArchivePath,
-                targetNodeName: wasTargetNodeName,
-                targetServerName: wasTargetServerName
+        def runParams = [
+            wasHost:    wasHost,
+            configName: pluginConfigurationNames.correctSOAP,
+            clusterName: wasClusterName,
+            
+            sourceNodeName: wasSourceNodeName,
+            sourceServerName: wasSourceServerName,
+            
+            sourceNodeNameConvert  : wasSourceNodeNameConvert,
+            sourceServerNameConvert: wasSourceServerNameConvert,
+            
+            targetNodeName: wasTargetNodeName,
+            targetServerName: wasTargetServerName,
+            
+            templateName: wasTemplateName,
+
         ]
         print "Run params:"
         print runParams
@@ -161,34 +161,53 @@ class DevEndToEndServerProcedures extends PluginTestHelper {
             println "Procedure log:\n$debugLog\n"
 
 
-            assert outcome == "success"
-            // 1 create application template
-            def summary1 = getJobProperty("/myJob/jobSteps/CreateApplicationServerTemplate/summary", result.jobId)
-            assert summary1.contains("Application server template $wasTemplateName has been created")
-            // 2 export server
-            def summary2 = getJobProperty("/myJob/jobSteps/ExportApplicationServer/summary", result.jobId)
-            assert summary2.contains("Application server $wasSourceServerName from node $wasSourceNodeName has been exported")
-            // 3 import server
-            def summary3 = getJobProperty("/myJob/jobSteps/ImportApplicationServer/summary", result.jobId)
-            assert summary3.contains("Application server $wasTargetServerName has been imported to node $wasTargetNodeName")
-            // 4 start server
-            def summary4 = getJobProperty("/myJob/jobSteps/StartApplicationServers/summary", result.jobId)
-            assert summary4.contains("Node: $wasTargetNodeName, Server: $wasTargetServerName, State: STARTED")
-            // 5 stop server
-            def summary5 = getJobProperty("/myJob/jobSteps/StopApplicationServers/summary", result.jobId)
-            assert summary5.contains("Node: $wasTargetNodeName, Server: $wasTargetServerName, State: Stopped")
-            // 6 delete server
-            def summary6 = getJobProperty("/myJob/jobSteps/DeleteApplicationServer/summary", result.jobId)
-            assert summary6.contains("Server $wasTargetServerName on node $wasTargetNodeName has been deleted")
-            // 7 create application template
-            def summary7 = getJobProperty("/myJob/jobSteps/CreateApplicationServer/summary", result.jobId)
-            assert summary7.contains("Application server $wasTargetServerName has been created on node $wasTargetNodeName")
-            // 8 delete server
-            def summary8 = getJobProperty("/myJob/jobSteps/DeleteApplicationServer2/summary", result.jobId)
-            assert summary8.contains("Server $wasTargetServerName on node $wasTargetNodeName has been deleted")
-            // 9 delete template
-            def summary9 = getJobProperty("/myJob/jobSteps/DeleteApplicationServrTemplate/summary", result.jobId)
-            assert summary9.contains("Application server template $wasTemplateName has been deleted")
+        assert outcome == "success"
+        // 1 Create application server
+        def summary1 = getJobProperty("/myJob/jobSteps/CreateApplicationServer/summary", result.jobId)
+        assert summary1.contains("Application server $wasSourceServerNameConvert has been created on node $wasSourceNodeNameConvert")
+        
+        // 2 Create cluster and convert server2 to be a first cluster member and add 3 servers
+        def summary2 = getJobProperty("/myJob/jobSteps/CreateCluster/summary", result.jobId)
+        assert summary2.contains("Cluster $wasClusterName has been created")
+        assert summary2.contains("Server $wasSourceServerNameConvert on node $wasSourceNodeNameConvert has been converted to be the first member of cluster $wasClusterName")
+        assert summary2 =~ 'Server .*? on node .*? has been created and added as cluster member'
+        
+        // 3 DeleteCluster
+        def summary3 = getJobProperty("/myJob/jobSteps/DeleteCluster/summary", result.jobId)
+        assert summary3.contains("Cluster $wasClusterName has been deleted")
+        
+        // 4 create cluster again
+        def summary4 = getJobProperty("/myJob/jobSteps/CreateCluster2/summary", result.jobId)
+        assert summary4.contains("Cluster $wasClusterName has been created")
+        assert summary4.contains("First cluster member $wasSourceServerNameConvert has been created on node $wasSourceNodeNameConvert from template $wasTemplateName")
+        
+        // 5 add cluster members
+        def summary5 = getJobProperty("/myJob/jobSteps/CreateClusterMembers/summary", result.jobId)
+        assert summary5 =~ 'Server .*? on node .*? has been created and added';
+        
+        // 6 is delete server, no reason to check it right now
+        
+        // 7 Create cluster with 1st member using existing server as template
+        def summary7 = getJobProperty("/myJob/jobSteps/CreateCluster3/summary", result.jobId)
+        assert summary7.contains("Cluster $wasClusterName has been created");
+        assert summary7.contains("First cluster member $wasSourceServerNameConvert has been created on node $wasSourceNodeNameConvert using server $wasSourceServerName on node $wasSourceNodeName as source")
+
+        // 8 Delete cluster again
+
+        // 9 Create empty cluster
+        def summary9 = getJobProperty("/myJob/jobSteps/CreateEmptyCluster/summary", result.jobId)
+        assert summary9.contains("Cluster $wasClusterName has been created")
+
+        // 10 Create 1st cluster member
+        def summary10 = getJobProperty("/myJob/jobSteps/CreateFirstClusterMember/summary", result.jobId)
+        assert summary10.contains("First cluster member $wasSourceServerNameConvert has been created on $wasSourceNodeNameConvert node and added to cluster $wasClusterName using $wasTemplateName template")
+
+        // 11 Create cluster members
+        def summary11 = getJobProperty("/myJob/jobSteps/CreateClusterMembers2/summary", result.jobId)
+        assert summary11 =~ 'Server .*? on node .*? has been created and added'
+
+        // 12 Delete cluster
+
     }
 
 
@@ -210,12 +229,18 @@ class DevEndToEndServerProcedures extends PluginTestHelper {
                 actualParameter: [
                     wasResourceName: '$parameters.wasHost',
                     wasConfigName:   '$parameters.configName',
+                    wasClusterName: '$parameters.clusterName',
+
                     wasSourceNodeName: '$parameters.sourceNodeName',
                     wasSourceServerName: '$parameters.sourceServerName',
-                    wasTemplateName: '$parameters.templateName',
-                    wasArchivePath: '$parameters.archivePath',
+
+                    wasSourceNodeNameConvert: '$parameters.sourceNodeNameConvert',
+                    wasSourceServerNameConvert: '$parameters.sourceServerNameConvert',
+
                     wasTargetNodeName:'$parameters.targetNodeName',
-                    wasTargetServerName: '$parameters.targetServerName'
+                    wasTargetServerName: '$parameters.targetServerName',
+
+                    wasTemplateName: '$parameters.templateName',
                 ]
             )
         """

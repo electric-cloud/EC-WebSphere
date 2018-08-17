@@ -38,21 +38,21 @@ limitations under the License.
     <documentation>Name of the new cluster.</documentation>
 </formElement>
 <formElement>
-    <label>First Cluster Member Name</label>
+    <label>First Cluster Member Name:</label>
     <property>wasFirstClusterMemberName</property>
     <type>entry</type>
     <required>1</required>
     <documentation>Name of the server that will be a first cluster member.</documentation>
 </formElement>
 <formElement>
-    <label>First Cluster Member Node</label>
+    <label>First Cluster Member Node:</label>
     <property>wasFirstClusterMemberNode</property>
     <type>entry</type>
     <required>1</required>
     <documentation>Name of the node where 1st cluster member will be located</documentation>
 </formElement>
 <formElement>
-    <label>First Cluster Member weight</label>
+    <label>First Cluster Member Weight:</label>
     <property>wasFirstClusterMemberWeight</property>
     <type>entry</type>
     <required>0</required>
@@ -60,7 +60,7 @@ limitations under the License.
 </formElement>
 
 <formElement>
-    <label>Generate Unique Ports for First cluster member?</label>
+    <label>Generate Unique Ports for First cluster member?:</label>
     <property>wasFirstClusterMemberGenUniquePorts</property>
     <type>checkbox</type>
     <checkedValue>1</checkedValue>
@@ -72,7 +72,7 @@ limitations under the License.
 
 
 <formElement>
-    <label>Server Resources Promotion Policy</label>
+    <label>Server Resources Promotion Policy:</label>
     <property>wasServerResourcesPromotionPolicy</property>
     <type>select</type>
     <option><name>cluster</name><value>cluster</value></option>
@@ -89,7 +89,7 @@ Default is Cluster.</documentation>
 
 
 <formElement>
-    <label>First Cluster Member Creation Policy</label>
+    <label>First Cluster Member Creation Policy:</label>
     <property>wasFirstClusterMemberCreationPolicy</property>
     <type>select</type>
     <option><name>Use existing server as template</name><value>existing</value></option>
@@ -102,7 +102,7 @@ Template - use app server template to create 1st cluster member</documentation>
 
 
 <formElement>
-    <label>Source Template Name</label>
+    <label>Source Template Name:</label>
     <property>wasFirstClusterMemberTemplateName</property>
     <type>entry</type>
     <required>0</required>
@@ -113,7 +113,7 @@ Template - use app server template to create 1st cluster member</documentation>
 
 
 <formElement>
-    <label>Source Server Name</label>
+    <label>Source Server Name:</label>
     <property>wasSourceServerName</property>
     <type>entry</type>
     <required>0</required>
@@ -125,7 +125,7 @@ Template - use app server template to create 1st cluster member</documentation>
 
 
 <formElement>
-    <label>Sync Nodes?</label>
+    <label>Sync Nodes?:</label>
     <property>wasSyncNodes</property>
     <type>checkbox</type>
     <checkedValue>1</checkedValue>
