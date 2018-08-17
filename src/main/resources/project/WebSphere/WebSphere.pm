@@ -581,14 +581,14 @@ sub extractMagicValuesFromProcedureLog {
 
     # extract error
     for my $t (qw/WARNING ERROR INFO SUMMARY EXCEPTION OUTCOME/) {
-        while ($log =~ m|\[OUT\]\[$t\]:\s(.*?)\s:\[$t\]\[OUT\]|gm) {
+        while ($log =~ m|\[OUT\]\[$t\]:\s(.*?)\s:\[$t\]\[OUT\]|gms) {
             push @{$retval->{lc($t)}}, $1;
         }
     }
     if (@{$retval->{exception}}) {
         # my @res = $text =~ m/[A-Z]{4}[\d]{4}E:\s(.*?)\n\n/gms;
         @{$retval->{exception}} = map {
-            s/.*?([A-Z]{4}[\d]{4}E:\s*)/\1/;
+            s/.*?([A-Z]{4}[\d]{4}E:\s*)/\1/ms;
             $_;
         } @{$retval->{exception}};
     }
