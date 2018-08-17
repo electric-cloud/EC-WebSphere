@@ -95,7 +95,6 @@ sub new {
 
     # Getting step parameters
     my $step_params = $self->get_step_parameters();
-    print Dumper $step_params;
     if (!$configurationName) {                             # this is for compatibility with previous procedures.
         $configurationName = $step_params->{configname} || $step_params->{configName};
     }
@@ -582,14 +581,14 @@ sub extractMagicValuesFromProcedureLog {
 
     # extract error
     for my $t (qw/WARNING ERROR INFO SUMMARY EXCEPTION OUTCOME/) {
-        while ($log =~ m|\[OUT\]\[$t\]:\s(.*?)\s:\[$t\]\[OUT\]|gm) {
+        while ($log =~ m|\[OUT\]\[$t\]:\s(.*?)\s:\[$t\]\[OUT\]|gms) {
             push @{$retval->{lc($t)}}, $1;
         }
     }
     if (@{$retval->{exception}}) {
         # my @res = $text =~ m/[A-Z]{4}[\d]{4}E:\s(.*?)\n\n/gms;
         @{$retval->{exception}} = map {
-            s/.*?([A-Z]{4}[\d]{4}E:\s*)/\1/;
+            s/.*?([A-Z]{4}[\d]{4}E:\s*)/\1/ms;
             $_;
         } @{$retval->{exception}};
     }

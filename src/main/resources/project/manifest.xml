@@ -208,14 +208,6 @@
         <path>matchers/configEJBContainerMatchers.pl</path>
     </file>
     <file>
-        <xpath>//property[propertyName=&quot;deletecluster_matchers&quot;]/value</xpath>
-        <path>matchers/deleteClusterMatcher.pl</path>
-    </file>
-    <file>
-        <xpath>//property[propertyName=&quot;createcluster_matchers&quot;]/value</xpath>
-        <path>matchers/creatClusterMatcher.pl</path>
-    </file>
-    <file>
         <xpath>//property[propertyName=&quot;deployosgi_matchers&quot;]/value</xpath>
         <path>matchers/deployOSGiMatchers.pl</path>
     </file>
@@ -323,18 +315,12 @@
         <xpath>//procedure[procedureName=&quot;PublishWSDL&quot;]/step[stepName=&quot;PublishWSDL&quot;]/command</xpath>
         <path>server/publishWSDL.pl</path>
     </file>
-    <file>
-        <xpath>//procedure[procedureName=&quot;DeleteCluster&quot;]/step[stepName=&quot;DeleteCluster&quot;]/command</xpath>
-        <path>server/deleteCluster.pl</path>
-    </file>
+
     <file>
         <xpath>//procedure[procedureName=&quot;ListClusterMembers&quot;]/step[stepName=&quot;ListClusterMembers&quot;]/command</xpath>
         <path>server/listClusterMembers.pl</path>
     </file>
-    <file>
-        <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/step[stepName=&quot;CreateCluster&quot;]/command</xpath>
-        <path>server/createCluster.pl</path>
-    </file>
+
     <file>
         <xpath>//procedure[procedureName=&quot;StartCluster&quot;]/step[stepName=&quot;StartCluster&quot;]/command</xpath>
         <path>server/startCluster.pl</path>
@@ -508,10 +494,7 @@
         <xpath>//procedure[procedureName=&quot;DeployOSGiApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/DeployOSGi.xml</path>
     </file>
-    <file>
-        <xpath>//procedure[procedureName=&quot;DeleteCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/DeleteCluster.xml</path>
-    </file>
+
 
     <file>
         <xpath>//procedure[procedureName=&quot;ListClusterMembers&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
@@ -526,10 +509,7 @@
         <xpath>//procedure[procedureName=&quot;StopCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/StopCluster.xml</path>
     </file>
-    <file>
-        <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/CreateCluster.xml</path>
-    </file>
+
     <file>
         <xpath>//procedure[procedureName=&quot;ConfigureSession&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/ConfigureSessionManagement.xml</path>
@@ -844,5 +824,76 @@
         <path>server/Management/startNode.pl</path>
     </file>
     <!-- End of StartNode procedure Files -->
+
+    <!-- CreateCluster procedure Files -->
+    <!-- XML Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Cluster/CreateCluster.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;create_cluster.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Cluster/create_cluster.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/step[stepName=&quot;CreateCluster&quot;]/command</xpath>
+        <path>server/Cluster/createCluster.pl</path>
+    </file>
+    <!-- End of CreateCluster procedure Files -->
+
+    <!-- CreateFirstClusterMember procedure Files -->
+    <!-- XML Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateFirstClusterMember&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Cluster/CreateFirstClusterMember.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;create_first_cluster_member.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Cluster/create_first_cluster_member.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateFirstClusterMember&quot;]/step[stepName=&quot;CreateFirstClusterMember&quot;]/command</xpath>
+        <path>server/Cluster/createFirstClusterMember.pl</path>
+    </file>
+    <!-- End of CreateFirstClusterMember procedure Files -->
+
+    <!-- CreateClusterMembers procedure Files -->
+    <!-- XML Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateClusterMembers&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Cluster/CreateClusterMembers.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;create_cluster_members.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Cluster/create_cluster_members.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CreateClusterMembers&quot;]/step[stepName=&quot;CreateClusterMembers&quot;]/command</xpath>
+        <path>server/Cluster/createClusterMembers.pl</path>
+    </file>
+    <!-- End of CreateClusterMembers procedure Files -->
     
+    <!-- DeleteCluster procedure Files-->
+    <!-- XML Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeleteCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Cluster/DeleteCluster.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;delete_cluster.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Cluster/delete_cluster.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;DeleteCluster&quot;]/step[stepName=&quot;DeleteCluster&quot;]/command</xpath>
+        <path>server/Cluster/deleteCluster.pl</path>
+    </file>
+    <!-- End of DeleteCluster procedure Files -->
 </fileset>

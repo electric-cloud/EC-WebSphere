@@ -30,7 +30,7 @@
         <property>wsadminabspath</property>
         <value></value>
         <documentation>Absolute path to wsadmin script.</documentation>
-		<required>0</required>
+		<required>1</required>
     </formElement>
     <formElement>
         <type>select</type>
