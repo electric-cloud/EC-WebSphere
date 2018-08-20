@@ -1,0 +1,150 @@
+2.4.1:
+  - Configured the plugin to allow the ElectricFlow UI to create configs inline of procedure form.
+2.4.0:
+  - |
+    Following New procedures have been added to support the entire set of IBM JMS functionality:
+      <ul>
+        <li><a href="#CreateOrUpdateSIBJMSActivationSpec">CreateOrUpdateSIBJMSActivationSpec</a></li>
+        <li><a href="#CreateOrUpdateWMQJMSActivationSpec">CreateOrUpdateWMQJMSActivationSpec</a></li>
+        <li><a href="#CreateOrUpdateSIBJMSConnectionFactory">CreateOrUpdateSIBJMSConnectionFactory</a></li>
+        <li><a href="#CreateOrUpdateWMQJMSConnectionFactory">CreateOrUpdateWMQJMSConnectionFactory</a></li>
+        <li><a href="#DeleteJMSActivationSpec">DeleteJMSActivationSpec</a></li>
+        <li><a href="#DeleteJMSConnectionFactory">DeleteJMSConnectionFactory</a></li>
+        <li><a href="#DeleteJMSProvider">DeleteJMSProvider</a></li>
+      </ul>
+2.3.1:
+  - Help links have been updated for DeleteJMSTopic and DeleteJMSQueue procedures.
+  - Configured the plugin to allow the ElectricFlow UI to render the plugin procedure parameters entirely using the configured form XMLs.
+  - Enabled the plugin for managing the plugin configurations in-line when defining an application process step or a pipeline stage task.
+2.3.0:
+  - |
+    Following New procedures have been added:
+      <ul>
+        <li><a href="#DeleteJMSQueue">DeleteJMSQueue</a></li>
+        <li><a href="#DeleteJMSTopic">DeleteJMSTopic</a></li>
+        <li><a href="#CreateOrUpdateJMSQueue">CreateOrUpdateJMSQueue</a></li>
+        <li><a href="#CreateOrUpdateJMSTopic">CreateOrUpdateJMSTopic</a></li>
+      </ul>
+      </li>
+      <li>
+        Fixed non-ascii characters in plugin forms.
+      </li>
+      <li>
+        Following procedures have been extended to support Websphere 9.0:
+        <ul>
+          <li><a href="#StartApp">StartApp</a></li>
+          <li><a href="#StopApp">StopApp</a></li>
+          <li><a href="#StopCluster">StopCluster</a></li>
+        </ul>
+      </li>
+      <li>The Debug Level checkbox has been changed to a dropdown. The level will be defaulted to INFO if no value is chosen.</li>
+      <li>
+        WSAdmin Absolute Path has been added to configuration and made as an optional parameter for all the following procedures:
+        <ul>
+          <li><a href="#CreateJMSProvider">CreateJMSProvider</a></li>
+          <li><a href="#RunCustomJob">RunCustomJob</a></li>
+          <li><a href="#DeployEnterpriseApp">DeployEnterpriseApp</a></li>
+          <li><a href="#CreateJDBCProvider">CreateJDBCProvider</a></li>
+          <li><a href="#CheckApp">CheckApp</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#DeployEnterpriseApp">DeployEnterpriseApp</a>
+        <ul>
+          <li>
+            Fixed an issue when application was not started on all servers during deployment if server name and node name are the same.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#CreateJDBCProvider">CreateJDBCProvider</a>
+        <ul>
+          <li>
+            Fixed an error with attached credentials when in some cases it was not possible to create new JDBC provider.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#CheckApp">CheckApp</a>
+        <ul>
+          <li>Procedure has been improved and now it could check for different application states.</li>
+      </ul>
+2.2.4:
+  - Documentation has been improved.
+  - Cluster Scope field has been added to CreateJDBCProvider procedure.
+2.2.3:
+  - Added support of parallel execution for all plugin procedures.
+  - Added "Context root" parameter for Deploy Enterprise Application procedure.
+  - Bug fixes in CheckPageStatus procedure.
+  - Added warning instead of stack trace in the Stop/StartApp procedures if app was already stoped or started.
+2.2.2:
+  - Added new procedures - SyncNodes, CheckNodeStatus.
+  - |
+    Added following optional parameters to DeployEnterpriseApplication procedure:
+      <ul>
+        <li>"Synchronize active nodes": Sync active nodes after application deployment. Enabled by default.</li>
+        <li>"Start application": Start the deployed application after deploying the application. Enabled by default.</li>
+      </ul>
+  - Changed default value for "Distribute application" from unchecked to checked. (Deploy Enterprise Application procedure).
+2.2.1:
+  - Added new procedures - StartCluster, StopCluster, MapSharedLibrary, ModifyApplicationClassLoader.
+  - DeployEnterpriseApp procedure will now update the application if it is already deployed. This procedure was refactored.
+  - Added debugging in DeployEnterpriseApp procedure.
+  - Bug fixes in DeployEnterpriseApplication procedure on WASND 8.5.5 Windows platform.
+  - Bug fixes in UpdateApp procedure on WAS 8.5 and WASND 8.5.5 Windows platform.
+  - Added application name to step log when ModifyApplicationClassLoader procedure fails to find application.
+  - Added debug flag to plugin configurations.
+2.2.0:
+  - Added suport for discovering WebSphere configuraiton on ElectricFlow resource.
+  - Moved 'Connection Type' parameter for all plugin procedures to plugin's configuration.
+  - Added 'Cluster Name' and 'Server Name' optional parameter to 'Start Application' and 'Stop Application' procedures.
+2.1.2:
+  - Fixed issue with configurations being cached for IE.
+2.1.1:
+  - Added link to plugin Configuration Page in plugin step panels.
+2.1.0:
+  - Added support for WebSphere Network Deployment 8.5
+  - Added support to create a cluster, add application servers to it, deploy applications in the cluster, remove cluster members, and delete the cluster.
+  - Added support to deploy Java enterprise applications (EARs) and web archives (WARs).
+  - Added support to update deployed applications.
+  - Added support to deploy OSGi applications and to configure external and internal bundle repositories.
+  - Added support to configure session management component for deployed applications.
+  - Added support for setting the EJB container properties for improved memory consumption and stateful session bean failover.
+  - Added support for the JavaMail session.
+2.0.6:
+  - Fixed the DeployApp procedure to not include the password in the log file.
+  - Fixed the problem about attaching credentials in the CheckApp procedure.
+  - Fixed the problem where the wsadmin password appeared when you view job step log files and property information.
+  - Fixed instructions to create WebSphere plugin configurations.
+  - Fixed instructions to access plugins in ElectricFlow.
+2.0.5:
+  - Fix minor bugs.
+2.0.4:
+  - Add four new procedures: CreateDatasources, DeleteDatasources, CreateJDBCProviders, and DeleteJDBCProviders.
+  - Fix minor bugs.
+2.0.3:
+  - Change the procedure names in the step picker section.
+2.0.2:
+  - Make improvements to the help document.
+2.0.1:
+  - Features and Enhancements in EC-WebSphere 2.0.1.
+  - Use the new Parameter Form XML.
+  - Add a link directly to the new help document.
+2.0.0:
+  - Use the new help page format.
+  - Add new parameter panels for each procedure.
+1.3.0:
+  - Add the CheckPageStatus procedure.
+  - Remove the CURL dependency from the CheckServerStatus procedure.
+  - Fix minor bugs.
+  - The procedures now have only one step using ec-perl to execute the necessary commands.
+1.2.1:
+  - Fix a minor bug on the Configuration List page.
+1.2.0:
+  - Add the StartApp, StopApp, DeployApp, and UndeployApp procedures.
+1.1.1:
+  - Jython commands can now be entered manually in the RunCustomJob procedure.
+  - The absolute path of executable files now requires the path and filename with an extension.
+1.1.0:
+  - RunCustomJob procedure has been added.
+  

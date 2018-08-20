@@ -1,0 +1,1 @@
+This procedure creates a new JMS Queue or updates an existing JMS Queue.

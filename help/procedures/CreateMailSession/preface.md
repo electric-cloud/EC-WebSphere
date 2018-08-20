@@ -1,0 +1,1 @@
+This procedure creates a JavaMail session object for default mail provider at specified scope.

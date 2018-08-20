@@ -1,0 +1,1 @@
+This procedure creates a new JMS Activation Spec or updates an existing JMS Activation Spec.

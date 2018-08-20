@@ -1,0 +1,1 @@
+This procedure deletes a datasource using a Jython script.

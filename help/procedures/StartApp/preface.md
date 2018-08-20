@@ -1,0 +1,1 @@
+This procedure starts an application using wsadmin. If the application is already running, a warning will be thrown.

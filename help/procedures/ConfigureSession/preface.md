@@ -1,0 +1,1 @@
+This procedure configures the session management related properties for deployed application. For more information on each of the parameter, please refer to the <a href="http://www-01.ibm.com/support/knowledgecenter/SSCKBL_8.5.5/com.ibm.websphere.nd.doc/ae/uprs_rsession_manager.html">WebSphere Knowledge Center Page.</a>
