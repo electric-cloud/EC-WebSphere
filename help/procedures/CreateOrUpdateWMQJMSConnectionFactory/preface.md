@@ -1,0 +1,1 @@
+This procedure creates a new WMQ JMS Connection Factory or updates an existing JMS Connection Factory.

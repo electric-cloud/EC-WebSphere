@@ -1,6 +1,21 @@
-WebSphere Application Server (WAS) is a software product that performs the role of a web application server. More specifically, it is a software framework and middleware that hosts Java based web applications. It is the flagship product within IBM's WebSphere software suite. It was initially created by Donald F. Ferguson, who later became CTO of Software for Dell. The first version was launched in 1998.
-WAS is built using open standards such as Java EE, XML, and Web Services. It is supported on the following platforms: Windows, AIX, Linux, Solaris, IBM i and z/OS. Beginning with Version 6.1 and now into Version 9.0, the open standard specifications are aligned and common across all the platforms. Platform exploitation, to the extent it takes place, is done below the open standard specification line.
-It works with a number of Web servers including Apache HTTP Server, Netscape Enterprise Server, Microsoft Internet Information Services (IIS), IBM HTTP Server for i5/OS, IBM HTTP Server for z/OS, and IBM HTTP Server for AIX/Linux/Microsoft Windows/Solaris. It uses port 9060 for connection as the default administration port and port 9080 as the default website publication port. In case you install more WebSphere instances these values will be changed.
+WebSphere Application Server (WAS) is a software product that performs the role of a web application server.
+More specifically, it is a software framework and middleware that hosts Java based web applications.
+It is the flagship product within IBM's WebSphere software suite.
+It was initially created by Donald F. Ferguson, who later became CTO of Software for Dell.
+The first version was launched in 1998.
+WAS is built using open standards such as Java EE, XML, and Web Services. 
+It is supported on the following platforms:
+ - Windows
+ - AIX
+ - Linux
+ - Solaris
+ - IBM i and z/OS.
+ 
+Beginning with Version 6.1 and now into Version 9.0, the open standard specifications are aligned and common across all the platforms.
+Platform exploitation, to the extent it takes place, is done below the open standard specification line.
+It works with a number of Web servers including Apache HTTP Server, Netscape Enterprise Server, Microsoft Internet Information Services (IIS), IBM HTTP Server for i5/OS, IBM HTTP Server for z/OS, and IBM HTTP Server for AIX/Linux/Microsoft Windows/Solaris.
+It uses port 9060 for connection as the default administration port and port 9080 as the default website publication port.
+In case you install more WebSphere instances these values will be changed.
 
 For more information about WebSphere, go to the <a href="http://www-01.ibm.com/software/websphere/">WebSphere Home Page</a>.
 

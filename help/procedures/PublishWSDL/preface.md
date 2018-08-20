@@ -1,0 +1,1 @@
+This procedure publishes WSDL files in each web services-enabled module to the file system location.

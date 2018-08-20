@@ -1,0 +1,1 @@
+This procedure checks the status of the page with the specified URL.

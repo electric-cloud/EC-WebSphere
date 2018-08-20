@@ -1,0 +1,1 @@
+This procedure creates a new JMS provider using a Jython script.

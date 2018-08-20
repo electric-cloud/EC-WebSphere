@@ -1,0 +1,1 @@
+This procedure deploys java enterprise application (.EAR) or java web application (.WAR) on given targets. If application is already deployed, procedure updates application.

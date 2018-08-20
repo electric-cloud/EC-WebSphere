@@ -1,0 +1,85 @@
+excludeProcedures:
+  - DiscoverResource
+
+proceduresGrouping:
+  groups:
+    - name: WAS Server Component Management
+      description: These procedures for WAS component management
+      procedures:
+        - CreateEndToEndMailProvider
+        - CreateEJBContainer
+        - CreateMailSession
+        - PublishWSDL
+    - name: WAS Server Management Procedures
+      description: These procedures for WAS server management
+      procedures:
+        - CreateApplicationServer
+        - CreateCluster
+        - CreateFirstClusterMember
+        - CreateClusterMembers
+        - DeleteApplicationServer
+        - DeleteCluster
+        - ExportApplicationServer
+        - ImportApplicationServer
+        - ListClusterMembers
+        - RemoveClusterMembers
+        - SyncNodes
+        - ConfigureEJBContainer
+    - name: WAS Server Administration Procedures
+      decription: These procedures for was server administation.
+      procedures:
+        - StartApplicationServers
+        - StopApplicationServers
+        - RunCustomJob
+        - StartCluster
+        - StopCluster
+        - StartDeploymentManager
+        - StopDeploymentManager
+        - StartNode
+        - StopNode
+        - StartServer
+        - StopServer
+    - name: WAS Application Component Management Procedures
+      description: These procedures for application component management.
+      procedures:
+        - ConfigureSession
+        - MapSharedLibrary
+        - ModifyApplicationClassloader
+    - name: WAS Application Administration Procedures
+      description: These procedures for application administration.
+      procedures:
+        - StartApp
+        - StopApp
+    - name: WAS Datasource Management Procedures
+      description: These procedures for datasource management.
+      procedures:
+        - CreateJDBCProvider
+        - CreateDatasource
+        - DeleteDatasource
+        - DeleteJDBCProvider
+    - name: WAS JMS Management Procedures
+      description: These procedures for JMS resources management.
+      procedures:
+        - CreateJMSProvider
+        - DeleteJMSProvider
+        - CreateOrUpdateJMSQueue
+        - CreateOrUpdateJMSTopic
+        - CreateOrUpdateSIBJMSActivationSpec
+        - CreateOrUpdateWMQJMSActivationSpec
+        - CreateOrUpdateSIBJMSConnectionFactory
+        - CreateOrUpdateWMQJMSConnectionFactory
+    - name: WAS Application Deployment Procedures
+      description: These procedures for applications deployment.
+      procedures:
+        - DeployApp
+        - DeployEnterpriseApp
+        - DeployOSGIApp
+        - UndeployApp
+        - UpdateApp
+    - name: Check Procedures
+      description: Procedures for status checking
+      procedures:
+        - CheckApp
+        - CheckNodeStatus
+        - CheckPageStatus
+        - CheckServerStatus
