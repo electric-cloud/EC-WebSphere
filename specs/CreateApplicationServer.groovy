@@ -47,78 +47,101 @@ class CreateApplicationServer extends PluginTestHelper {
     String invalidServer = "\\!\\#\\*\\&server1"
     @Shared
     String invalidNode = "\\!\\#\\*\\&Node1"
+    @Shared
+    String intermediateTemplate = "[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}"
 
     @Shared
     def testCases = [
-            C363364: [
-                    id: 'C363364',
-                    description: 'Synchronize Nodes - True'],
-            C363365a: [
-                    id: 'C363365',
-                    description: 'Synchronize Nodes - False'],
-            C363365b: [
-                    id: 'C363365',
-                    description: 'Synchronize Nodes - False'],
-            C363365c: [
-                    id: 'C363365',
-                    description: 'Synchronize Nodes - False'],
-            C363366_1: [
-                    id: 'C363366 step 1',
-                    description: 'empty required fields - Config Name'],
-            C363366_2: [
-                    id: 'C363366 step 2',
-                    description: 'empty required fields - Node Name'],
-            C363366_3: [
-                    id: 'C363366 step 3',
-                    description: 'empty required fields - Application Server Name'],
-            C363366_4: [
-                    id: 'C363366 step 4',
-                    description: 'empty required fields - Synchronize Nodes?'],
-            C363370_1: [
-                    id: 'C363370 step 1',
-                    description: 'wrong values - Node Name'],
-            C363370_2: [
-                    id: 'C363370 step 2',
-                    description: 'wrong values - Application Server Name'],
-            C363368: [
-                    id: 'C363368',
+            C363899_1: [
+                    id: 'C363899 step 1',
+                    description: 'required values - template'],
+            C363899_2: [
+                    id: 'C363899 step 2',
+                    description: 'required values - server'],
+            C363901_1: [
+                    id: 'C363901 step 1',
+                    description: 'all fields (required + Source fields)'],
+            C363901_2: [
+                    id: 'C363901 step 2',
+                    description: 'all fields (required + Source fields)'],
+            C363901_3: [
+                    id: 'C363901 step 3',
+                    description: 'all fields (required + Source fields)'],
+            C363901_4: [
+                    id: 'C363901 step 4',
+                    description: 'all fields (required + Source fields)'],
+            C363901_5: [
+                    id: 'C363901 step 5',
+                    description: 'all fields (required + Source fields)'],
+            C363901_6: [
+                    id: 'C363901 step 6',
+                    description: 'all fields (required + Source fields) - Source Type=template, template name='],
+            C363892_1: [
+                    id: 'C363892 step 1',
+                    description: 'empty required fields - config'],
+            C363892_2: [
+                    id: 'C363892 step 2',
+                    description: 'empty required fields - node'],
+            C363892_3: [
+                    id: 'C363892 step 3',
+                    description: 'empty required fields - server'],
+            C363892_4: [
+                    id: 'C363892 step 4',
+                    description: 'empty required fields - Source Type=server, server name='],
+            C363893: [
+                    id: 'C363893',
                     description: 'incorrect Config Name'],
-            C363369: [
-                    id: 'C363369',
-                    description: "server doesn't exist"],
-            C363372: [
-                    id: 'C363372',
-                    description: "Node doesn't exist"],
-            C363854: [
-                    id: 'C363854',
-                    description: 'delete running server']
+            C363894_1: [
+                    id: 'C363894 step 1',
+                    description: 'incorrect Node & Server - Node Name = !#*&Node1'],
+            C363894_2: [
+                    id: 'C363894 step 2',
+                    description: 'incorrect Node & Server - Server Name = !#*&server2'],
+            C363894_3: [
+                    id: 'C363894 step 3',
+                    description: 'incorrect Node & Server - Source Server Name = notExist'],
+            C363894_4: [
+                    id: 'C363894 step 4',
+                    description: 'incorrect Node & Server - Node Name = notExist'],
+            C363894_5: [
+                    id: 'C363894 step 5',
+                    description: 'incorrect Node & Server - Source Template Name = incorrectTemplate'],
+
+            C363895: [
+                    id: 'C363895',
+                    description: 'Server name already exists']
     ]
 
     @Shared
     def summaries = [
-            'default': "Application server $serverName on node $serverNode has been deleted\n",
+            'default': "Application server $serverName has been created on node $serverNode\n",
+            'error_server_exist': "Failed to create $serverName server on $serverNode node\nException: ADMG0248E: $serverName exists within node $serverNode.\n",
             'error_config_empty': "Configuration '' doesn't exist",
+            'error_empty_node': "Failed to create $serverName server on  node\nException: ADMG0250E: Node websphere90ndCellManager01 is not a valid node.\n",
+            'error_empty_s_name': "Failed to create  server on $serverNode node\nException: ADMF0002E: Required parameter name is not found for command createApplicationServer.\n",
+            'error_empty_source_s': "Failed to create an application server.\nError: Source server name is required when source type is set to server\n",
             'error_config': "Configuration 'incorrectConfig' doesn't exist",
-            'error_empty_s_name': "Failed to delete application server  on node $serverNode\nException: WASL6041E: The following argument value is not valid: serverName:.\n",
-            'error_empty_node': "Failed to delete application server $serverName on node \nException: WASL6041E: The following argument value is not valid: nodeName:.\n",
-            'error_invalid_node': "Failed to delete application server $serverName on node !#*&Node1\nException: WASL6040E: The nodeName:!#*&Node1 specified argument does not exist.\n",
-            'error_not_ex_node': "Failed to delete application server $serverName on node notExist\nException: WASL6040E: The nodeName:notExist specified argument does not exist.\n",
-            'error_invalid_s_name': "Failed to delete application server !#*&server1 on node $serverNode\nException: WASL6040E: The serverName:!#*&server1 specified argument does not exist.\n",
-            'error_not_ex_s_name': "Failed to delete application server notExist on node $serverNode\nException: WASL6040E: The serverName:notExist specified argument does not exist.\n",
-
+            'error_invalid_node': "Failed to create $serverName server on !#*&Node1 node\nException: ADMG0250E: Node !#*&Node1 is not a valid node.\n",
+            'error_invalid_s_name':  "Failed to create !#*&server1 server on $serverNode node\nException: ADMG0249E: The server name !#*&server1 is invalid.\n",
+            'error_not_ex_node': "Failed to create $serverName server on notExist node\nException: ADMG0250E: Node notExist is not a valid node.\n",
+            'error_not_ex_s_name': "Failed to create intermediate template $intermediateTemplate\nException: index out of range: 1\n",
+            'error_invalid_template': "Failed to create $serverName server on $serverNode node\nException: ADMG0253E: Matching template incorrectTemplate could not be found or is not valid for this server.\n",
     ]
 
     @Shared
     def jobLogs = [
-            'default_cynch':  ['success',"Application server $serverName on node $serverNode has been deleted","The following nodes have been synchronized: $serverNode"],
-            'default_no_cynch':  ['success',"Application server $serverName on node $serverNode has been deleted"],
-            'error_empty_node':  ['error',"Failed to delete application server $serverName on node ","Exception: WASL6041E: The following argument value is not valid: nodeName:."],
-            'error_empty_s_name':  ['error',"Failed to delete application server  on node $serverNode","Exception: WASL6041E: The following argument value is not valid: serverName:."],
-            'error_invalid_node':  ['error',"Failed to delete application server $serverName on node $invalidNode","Exception: WASL6040E: The nodeName:$invalidNode specified argument does not exist."],
-            'error_not_ex_node':  ['error',"Failed to delete application server $serverName on node notExist","Exception: WASL6040E: The nodeName:notExist specified argument does not exist."],
-            'error_invalid_s_name':  ['error',"Failed to delete application server $invalidServer on node $serverNode","Exception: WASL6040E: The serverName:$invalidServer specified argument does not exist."],
-            'error_not_ex_s_name':  ['error',"Failed to delete application server notExist on node $serverNode","Exception: WASL6040E: The serverName:notExist specified argument does not exist."],
+            'default_cynch':  ['success',"Application server $serverName has been created on node $serverNode","The following nodes have been synchronized: $serverNode"],
+            'default_no_cynch':  ['success',"Application server $serverName has been created on node $serverNode"],
+            'error_server_exist':['error', "Failed to create $serverName server on $serverNode node", "Exception: ADMG0248E: $serverName exists within node $serverNode"],
+            'error_empty_node':  ['error',"Failed to create $serverName server on  node","Exception: ADMG0250E: Node websphere90ndCellManager01 is not a valid node."],
+            'error_empty_s_name':  ['error',"Failed to create  server on $serverNode node","Exception: ADMF0002E: Required parameter name is not found for command createApplicationServer."],
+            'error_empty_source_s': ['error',"Failed to create an application server.","Error: Source server name is required when source type is set to server"],
             'error_config':  ["Error: Configuration ('incorrectConfig'|'') doesn't exist"],
+            'error_invalid_node':  ['error',"Failed to create $serverName server on $invalidNode node","Exception: ADMG0250E: Node $invalidNode is not a valid node."],
+            'error_invalid_s_name':  ['error',"Failed to create $invalidServer server on $serverNode node","Exception: ADMG0249E: The server name $invalidServer is invalid."],
+            'error_not_ex_node':  ['error',"Failed to create $serverName server on notExist node","Exception: ADMG0250E: Node notExist is not a valid node."],
+            'error_not_ex_s_name':  ['error',"Failed to create intermediate template $intermediateTemplate","Exception: index out of range: 1"],
+            'error_invalid_template': ['error',"Failed to create $serverName server on $serverNode node","Exception: ADMG0253E: Matching template incorrectTemplate could not be found or is not valid for this server."],
     ]
 
     def doSetupSpec() {
@@ -179,9 +202,6 @@ class CreateApplicationServer extends PluginTestHelper {
         if (deleteServer) {
             deleteAppServer(node,server)
         }
-        /*if (testCaseID.id == 'C363854'){
-            startApplicationServer("$node:$server")
-        }*/
 
         given: "Parameters for procedure"
         def runParams = [
@@ -204,37 +224,36 @@ class CreateApplicationServer extends PluginTestHelper {
         def jobSummary = getJobProperty("/myJob/jobSteps/$procName/summary", result.jobId)
         def debugLog = getJobLogs(result.jobId)
         assert outcome == expectedOutcome
-        /*assert jobSummary == expectedSummary
+        if (testCaseID.id == 'C363894 step 3'){
+            assert jobSummary ==~ expectedSummary
+        }else{
+            assert jobSummary == expectedSummary
+        }
         for (log in logs) {
             assert debugLog =~ log
-        }*/
+        }
 
         where: 'The following params will be:'
-        testCaseID          | configName        | server        | node       | uniquePort | syncNodes| sourceType | sourceTemplate     | sourceServer     | expectedSummary                | logs                          | expectedOutcome | deleteServer
-        /*testCases.C363364   | configname        | serverName    | serverNode | '1'        | '1'      | 'template' | sourceTemplateName | ''               | ''*//*summaries.default*//*        | ''*//*jobLogs.default_cynch*//*   | 'success'       | 1//null
-        testCases.C363365a  | configname        | serverName    | serverNode | '1'        | '0'      | 'server'   | ''                 | sourceServerName | ''*//*summaries.default*//*        | ''*//*jobLogs.default_no_cynch*//*| 'success'       | 1
-        testCases.C363365b  | configname        | serverName    | serverNode | '1'        | '0'      | 'template' | sourceTemplateName | sourceServerName | ''*//*summaries.default*//*        | ''*//*jobLogs.default_no_cynch*//*| 'success'       | 1
-        testCases.C363365c  | configname        | serverName    | serverNode | '1'        | '1'      | 'server'   | sourceTemplateName | sourceServerName | ''*//*summaries.default*//*        | ''*//*jobLogs.default_no_cynch*//*| 'success'       | 1
-        testCases.C363365c  | configname        | serverName    | serverNode | '1'        | '1'      | ''         | sourceTemplateName | sourceServerName | ''*//*summaries.default*//*        | ''*//*jobLogs.default_no_cynch*//*| 'success'       | 1*/
-
-
-        testCases.C363366_1 | ''                | serverName    | serverNode | '1'        | '1'      | 'template' | sourceTemplateName | ''               | summaries.error_config_empty   | jobLogs.error_config         | 'error'         | 1
-        testCases.C363366_2 | configname        | serverName    | ''         | '1'        | '1'      | 'server'   | ''                 | sourceServerName | summaries.error_empty_node     | jobLogs.error_empty_node     | 'error'         | null
-        testCases.C363366_3 | configname        | ''            | serverNode | '1'        | '1'      | 'template' | sourceTemplateName | ''               | summaries.error_empty_s_name   | jobLogs.error_empty_s_name   | 'error'         | null
-        testCases.C363365a  | configname        | serverName    | serverNode | '1'        | '1'      | 'server'   | sourceTemplateName | ''               | ''/*summaries.default*/        | ''/*jobLogs.default_no_cynch*/| 'error'       | null
-        testCases.C363365b  | configname        | serverName    | serverNode | '1'        | '1'      | 'template' | ''                 | sourceServerName | ''/*summaries.default*/        | ''/*jobLogs.default_no_cynch*/| 'error'       | null
-        testCases.C363365c  | configname        | serverName    | serverNode | '1'        | '1'      | ''         | ''                 | ''               | ''/*summaries.default*/        | ''/*jobLogs.default_no_cynch*/| 'error'       | null
-
-
-
-        /*testCases.C363366_4 | configname        | serverName    | serverNode | '1'        | ''       | 'server'   | sourceTemplateName | sourceServerName | summaries.default              | jobLogs.default_no_cynch     | 'success'       | 1
-        testCases.C363370_1 | configname        | serverName    | '!#*&Node1'| '1'        | '1'      | 'template' | sourceTemplateName | sourceServerName | summaries.error_invalid_node   | jobLogs.error_invalid_node   | 'error'         | null
-        testCases.C363370_2 | configname        | '!#*&server1' | serverNode | '1'        | '1'      | 'server'   | sourceTemplateName | sourceServerName | summaries.error_invalid_s_name | jobLogs.error_invalid_s_name | 'error'         | null
-        testCases.C363368   | 'incorrectConfig' | serverName    | serverNode | '1'        | '1'      | 'template' | sourceTemplateName | sourceServerName | summaries.error_config         | jobLogs.error_config         | 'error'         | null
-        testCases.C363369   | configname        | 'notExist'    | serverNode | '1'        | '1'      | 'server'   | sourceTemplateName | sourceServerName | summaries.error_not_ex_s_name  | jobLogs.error_not_ex_s_name  | 'error'         | null
-        testCases.C363372   | configname        | serverName    | 'notExist' | '1'        | '1'      | 'template' | sourceTemplateName | sourceServerName | summaries.error_not_ex_node    | jobLogs.error_not_ex_node    | 'error'         | null
-        testCases.C363854   | configname        | serverName    | serverNode | '1'        | '1'      | 'server'   | sourceTemplateName | sourceServerName | summaries.default              | jobLogs.default_cynch        | 'success'       | 1*/
-
+        testCaseID          | configName        | server        | node        | uniquePort | syncNodes| sourceType | sourceTemplate     | sourceServer     | expectedSummary                 | logs                          | expectedOutcome | deleteServer
+        testCases.C363899_1 | configname        | serverName    | serverNode  | '1'        | '1'      | 'template' | sourceTemplateName | ''               | summaries.default               | jobLogs.default_cynch         | 'success'       | null
+        testCases.C363899_2 | configname        | serverName    | serverNode  | '1'        | '0'      | 'server'   | ''                 | sourceServerName | summaries.default               | jobLogs.default_no_cynch      | 'success'       | 1
+        testCases.C363895   | configname        | serverName    | serverNode  | '1'        | '0'      | 'server'   | ''                 | sourceServerName | summaries.error_server_exist    | jobLogs.error_server_exist    | 'error'         | null
+        testCases.C363901_1 | configname        | serverName    | serverNode  | '1'        | '0'      | 'template' | sourceTemplateName | sourceServerName | summaries.default               | jobLogs.default_no_cynch      | 'success'       | 1
+        testCases.C363901_2 | configname        | serverName    | serverNode  | '1'        | '1'      | 'server'   | sourceTemplateName | sourceServerName | summaries.default               | jobLogs.default_cynch         | 'success'       | 1
+        testCases.C363901_3 | configname        | serverName    | serverNode  | '1'        | '1'      | ''         | sourceTemplateName | sourceServerName | summaries.default               | jobLogs.default_cynch         | 'success'       | 1
+        testCases.C363901_4 | configname        | serverName    | serverNode  | '1'        | '1'      | ''         | ''                 | sourceServerName | summaries.default               | jobLogs.default_cynch         | 'success'       | 1
+        testCases.C363901_5 | configname        | serverName    | serverNode  | '1'        | '1'      | ''         | ''                 | ''               | summaries.default               | jobLogs.default_cynch         | 'success'       | 1
+        testCases.C363901_6 | configname        | serverName    | serverNode  | '1'        | '1'      | 'template' | ''                 | sourceServerName | summaries.default               | jobLogs.default_cynch         | 'success'       | 1
+        testCases.C363892_1 | ''                | serverName    | serverNode  | '1'        | '1'      | 'template' | sourceTemplateName | ''               | summaries.error_config_empty    | jobLogs.error_config          | 'error'         | 1
+        testCases.C363892_2 | configname        | serverName    | ''          | '1'        | '1'      | 'server'   | ''                 | sourceServerName | summaries.error_empty_node      | jobLogs.error_empty_node      | 'error'         | null
+        testCases.C363892_3 | configname        | ''            | serverNode  | '1'        | '1'      | 'template' | sourceTemplateName | ''               | summaries.error_empty_s_name    | jobLogs.error_empty_s_name    | 'error'         | null
+        testCases.C363892_4 | configname        | serverName    | serverNode  | '1'        | '1'      | 'server'   | sourceTemplateName | ''               | summaries.error_empty_source_s  | jobLogs.error_empty_source_s  | 'error'         | null
+        testCases.C363893   | 'incorrectConfig' | serverName    | serverNode  | '1'        | '1'      | 'template' | sourceTemplateName | ''               | summaries.error_config          | jobLogs.error_config          | 'error'         | null
+        testCases.C363894_1 | configname        | serverName    | '!#*&Node1' | '1'        | '1'      | 'template' | sourceTemplateName | ''               | summaries.error_invalid_node    | jobLogs.error_invalid_node    | 'error'         | null
+        testCases.C363894_2 | configname        | '!#*&server1' | serverNode  | '1'        | '1'      | 'server'   | ''                 | sourceServerName | summaries.error_invalid_s_name  | jobLogs.error_invalid_s_name  | 'error'         | null
+        testCases.C363894_3 | configname        | serverName    | serverNode  | '1'        | '1'      | 'server'   | ''                 | 'notExist'       | summaries.error_not_ex_s_name   | jobLogs.error_not_ex_s_name   | 'error'         | null
+        testCases.C363894_4 | configname        | serverName    | 'notExist'  | '1'        | '1'      | 'template' | sourceTemplateName | ''               | summaries.error_not_ex_node     | jobLogs.error_not_ex_node     | 'error'         | null
+        testCases.C363894_5 | configname        | serverName    | serverNode  | '1'        | '1'      | 'template' | 'incorrectTemplate'| ''               | summaries.error_invalid_template| jobLogs.error_invalid_template| 'error'         | null
     }
 
     def deleteAppServer(node,server){
@@ -247,14 +266,14 @@ class CreateApplicationServer extends PluginTestHelper {
         runProcedure(runParams, procDeleteServer)
     }
 
-    def startApplicationServer(serverList){
+    /*def startApplicationServer(serverList){
         def runParams = [
                 configname: configname,
                 wasServersList: serverList,
                 wasWaitTime: '300',
         ]
         runProcedure(runParams, procStartServer)
-    }
+    }*/
 
     def runProcedure(def parameters, def procedureName=procName) {
         def parametersString = parameters.collect { k, v -> "$k: '$v'" }.join(', ')
