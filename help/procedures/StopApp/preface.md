@@ -1,0 +1,1 @@
+This procedure stops an application using wsadmin. If the application is already stopped, a warning will be thrown.

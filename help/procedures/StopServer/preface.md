@@ -1,0 +1,1 @@
+This procedure stops a WebSphere instance.

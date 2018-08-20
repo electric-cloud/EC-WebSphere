@@ -1,0 +1,1 @@
+This procedure creates mail provider with a protocol provider, a mail session and a custom property in the specified scope.

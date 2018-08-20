@@ -188,8 +188,8 @@ my %stopCluster = (
     category    => "Application Server"
 );
 
-my %creatCluster = (
-    label       => "WebSphere - Create Application server cluster",
+my %createCluster = (
+    label       => "WebSphere - Create Application server Cluster",
     procedure   => "CreateCluster",
     description => "Creates a new Application Server cluster.",
     category    => "Application Server"
@@ -415,6 +415,20 @@ my %startNode = (
     category    => "Application Server"
 );
 
+my %createFirstClusterMember = (
+    label       => "WebSphere - Create First Cluster Member",
+    procedure   => "CreateFirstClusterMember",
+    description => "Creates first cluster member.",
+    category    => "Application Server"
+);
+
+my %createClusterMembers = (
+    label       => "WebSphere - Create Cluster Members",
+    procedure   => "CreateClusterMembers",
+    description => "Creates cluster members",
+    category    => "Application Server"
+);
+
 
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
@@ -500,6 +514,11 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop Dep
 # Start/Stop Node
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop Node");
 
+# Create Cluster
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Cluster");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create First Cluster Member");
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Cluster Members");
+
 @::createStepPickerSteps = (
     \%checkPageStatus, \%checkServerStatus,
     \%startServer, \%stopServer,
@@ -508,7 +527,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop Nod
     \%undeployApp, \%checkApp, 
     \%createDatasource, \%deleteDatasource,
     \%createJDBCProvider, \%deleteJDBCProvider,
-    \%creatCluster, \%configureSessionManagement,
+    \%configureSessionManagement,
     \%createJMSProvider, \%listClusterMembers,
     \%deleteCluster, \%removeClusterMembers,
     \%publishWSDL, \%deployOSGi,
@@ -538,7 +557,11 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop Nod
     # Start/Stop Deployment Manager
     \%startDeploymentManager, \%stopDeploymentManager,
     # Start/Stop Node
-    \%startNode, \%stopNode
+    \%startNode, \%stopNode,
+    # Create cluster
+    \%createCluster,
+    # Create 1st cluster member
+    \%createFirstClusterMember, \%createClusterMembers
 );
 
 if ($upgradeAction eq "upgrade") {
@@ -921,6 +944,14 @@ if ($upgradeAction eq "upgrade") {
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'StartNode',
                 stepName      => 'StartNode'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateFirstClusterMember',
+                stepName      => 'CreateFirstClusterMember'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateClusterMembers',
+                stepName      => 'CreateClusterMembers'
             });
         }
     }

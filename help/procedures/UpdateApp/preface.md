@@ -1,0 +1,1 @@
+This procedure updates already deployed application in units of files, modules or entire application.

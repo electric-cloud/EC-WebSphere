@@ -1,0 +1,1 @@
+This procedure starts a WebSphere instance. Note: It is not for starting an Application Server in a node i.e this procedure is not a "WebSphere Network Deployment" procedure.

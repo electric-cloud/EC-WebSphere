@@ -1,0 +1,224 @@
+<!--
+
+Copyright 2015 Electric Cloud, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#CreateCluster</help>
+
+<formElement>
+    <type>entry</type>
+    <label>Configuration Name:</label>
+    <!-- Improvements for CEV-18687 -->
+    <configuration>1</configuration>
+    <!-- End of improvements for CEV-18687 -->
+    <property>configname</property>
+    <propertyReference>/plugins/@PLUGIN_NAME@/project/websphere_cfgs</propertyReference>
+    <documentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration. To view or create a new configuration, go to the Administration -> Plugins tab, and select 'Configure' action for @PLUGIN_KEY@ plugin.</documentation>
+    <htmlDocumentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" target="_blank" href="/commander/pages/@PLUGIN_NAME@/configurations">configuration page</a>.</htmlDocumentation>
+    <required>1</required>
+</formElement>
+<formElement>
+    <label>Cluster Name:</label>
+    <property>wasClusterName</property>
+    <type>entry</type>
+    <required>1</required>
+    <documentation>Name of the new cluster.</documentation>
+</formElement>
+<formElement>
+    <label>Prefer Local?:</label>
+    <property>wasPreferLocal</property>
+    <type>checkbox</type>
+    <checkedValue>1</checkedValue>
+    <uncheckedValue>0</uncheckedValue>
+    <initiallyChecked>1</initiallyChecked>
+    <required>1</required>
+    <documentation>Specifies whether enterprise bean requests are routed to the node on which
+    the client resides whenever such a routing is possible.</documentation>
+</formElement>
+
+<!-- first cluster member related fields -->
+<!-- trigger -->
+<formElement>
+    <label>Create First Cluster Member?:</label>
+    <property>wasCreateFirstClusterMember</property>
+    <type>checkbox</type>
+    <checkedValue>1</checkedValue>
+    <uncheckedValue>0</uncheckedValue>
+    <initiallyChecked>0</initiallyChecked>
+    <required>0</required>
+    <documentation>If not checked, empty cluster will be created</documentation>
+</formElement>
+<!-- 1st cluster member related fields -->
+<formElement>
+    <label>First Cluster Member Creation Policy:</label>
+    <property>wasFirstClusterMemberCreationPolicy</property>
+    <type>select</type>
+    <option><name>Use existing server as template</name><value>existing</value></option>
+    <option><name>Using pre-created application server template</name><value>template</value></option>
+    <option><name>Make an existing server the 1st cluster member (Convert)</name><value>convert</value></option>
+    <required>0</required>
+    <documentation>
+        Controls how 1st cluster member is to be created
+        Existing - use existing server as template
+        Convert - convert existing server to 1st cluster member
+        Template - use app server template to create 1st cluster member
+    </documentation>
+    <dependsOn>wasCreateFirstClusterMember</dependsOn>
+    <condition>${wasCreateFirstClusterMember} == '1'</condition>
+</formElement>
+<formElement>
+    <label>Template Name:</label>
+    <property>wasFirstClusterMemberTemplateName</property>
+    <type>entry</type>
+    <required>0</required>
+    <documentation>Template name to be used for 1st cluster member creation.</documentation>
+    <dependsOn>wasCreateFirstClusterMember</dependsOn>
+    <!-- <condition>${wasCreateFirstClusterMember} == '1'</condition> -->
+    <condition>${wasCreateFirstClusterMember} == '1' AND ${wasFirstClusterMemberCreationPolicy} == 'template'</condition>
+</formElement>
+<formElement>
+    <label>Source Server Name:</label>
+    <property>wasSourceServerName</property>
+    <type>entry</type>
+    <required>0</required>
+    <documentation>Source server name</documentation>
+    <dependsOn>wasCreateFirstClusterMember</dependsOn>
+    <condition>
+        ${wasCreateFirstClusterMember} == '1' AND (${wasFirstClusterMemberCreationPolicy} == 'existing' OR ${wasFirstClusterMemberCreationPolicy} == 'convert')
+    </condition>
+    <!-- <condition>${wasCreateFirstClusterMember} == '1'</condition> -->
+</formElement>
+<formElement>
+    <label>First Cluster Member Node:</label>
+    <property>wasFirstClusterMemberNode</property>
+    <type>entry</type>
+    <required>0</required>
+    <documentation>1st member node.</documentation>
+    <dependsOn>wasCreateFirstClusterMember</dependsOn>
+    <condition>
+        ${wasCreateFirstClusterMember} == '1' AND (${wasFirstClusterMemberCreationPolicy} == 'template' OR ${wasFirstClusterMemberCreationPolicy} == 'existing')
+    </condition>
+    <!-- <condition>${wasCreateFirstClusterMember} == '1'</condition> -->
+</formElement>
+<formElement>
+    <label>First Cluster Member Name:</label>
+    <property>wasFirstClusterMemberName</property>
+    <type>entry</type>
+    <required>0</required>
+    <documentation>Name of the server that will be a first cluster member.</documentation>
+    <dependsOn>wasCreateFirstClusterMember</dependsOn>
+    <condition>
+        ${wasCreateFirstClusterMember} == 1 AND (${wasFirstClusterMemberCreationPolicy} == 'template' OR ${wasFirstClusterMemberCreationPolicy} == 'existing')
+    </condition>
+    <!-- <condition>${wasCreateFirstClusterMember} == '1'</condition> -->
+</formElement>
+<formElement>
+    <label>First Cluster Member Weight:</label>
+    <property>wasFirstClusterMemberWeight</property>
+    <type>entry</type>
+    <required>0</required>
+    <documentation>Weight of each cluster member from list.</documentation>
+    <dependsOn>wasCreateFirstClusterMember</dependsOn>
+    <condition>${wasCreateFirstClusterMember} == '1'</condition>
+</formElement>
+<formElement>
+    <label>Generate Unique Ports for First Cluster Member?:</label>
+    <property>wasFirstClusterMemberGenUniquePorts</property>
+    <type>checkbox</type>
+    <checkedValue>1</checkedValue>
+    <uncheckedValue>0</uncheckedValue>
+    <initiallyChecked>1</initiallyChecked>
+    <required>0</required>
+    <documentation>Generate Unique Ports for 1st cluster member?</documentation>
+    <dependsOn>wasCreateFirstClusterMember</dependsOn>
+    <condition>
+        ${wasCreateFirstClusterMember} == 1 AND (${wasFirstClusterMemberCreationPolicy} == 'template' OR ${wasFirstClusterMemberCreationPolicy} == 'existing')
+    </condition>
+</formElement>
+<formElement>
+    <label>Server Resources Promotion Policy:</label>
+    <property>wasServerResourcesPromotionPolicy</property>
+    <type>select</type>
+    <option><name>cluster</name><value>cluster</value></option>
+    <option><name>server</name><value>server</value></option>
+    <option><name>both</name><value>both</value></option>
+    <required>0</required>
+    <documentation>Specifies how resources such as data sources are initially created in the cluster.
+    Create settings at the cluster scope if the settings can be used across the entire cluster.
+    Otherwise, create settings at the cluster member (server) level.
+    Creating settings at the cluster scope reduces the amount of configuration that you maintain.
+    Default is Cluster.</documentation>
+    <dependsOn>wasCreateFirstClusterMember</dependsOn>
+    <condition>${wasCreateFirstClusterMember} == '1'</condition>
+</formElement>
+
+
+<!-- end of 1st cluster member creation section -->
+
+<!-- add cluster members -->
+<!-- trigger -->
+<formElement>
+    <label>Add Cluster Members?:</label>
+    <property>wasAddClusterMembers</property>
+    <type>checkbox</type>
+    <checkedValue>1</checkedValue>
+    <uncheckedValue>0</uncheckedValue>
+    <initiallyChecked>0</initiallyChecked>
+    <required>0</required>
+    <documentation>If checked, additional cluster members will be added</documentation>
+</formElement>
+<formElement>
+    <label>Gen Unique Ports for Cluster Members:</label>
+    <property>wasClusterMembersGenUniquePorts</property>
+    <type>checkbox</type>
+    <checkedValue>1</checkedValue>
+    <uncheckedValue>0</uncheckedValue>
+    <initiallyChecked>1</initiallyChecked>
+    <required>0</required>
+    <documentation></documentation>
+    <dependsOn>wasAddClusterMembers</dependsOn>
+    <condition>${wasAddClusterMembers} == '1'</condition>
+</formElement>
+<formElement>
+    <label>Weight of Each Cluster Member:</label>
+    <property>wasClusterMemberWeight</property>
+    <type>entry</type>
+    <required>0</required>
+    <documentation>Weight of each cluster member from list.</documentation>
+    <dependsOn>wasAddClusterMembers</dependsOn>
+    <condition>${wasAddClusterMembers} == '1'</condition>
+</formElement>
+<formElement>
+    <label>Cluster Members List:</label>
+    <property>wasClusterMembersList</property>
+    <type>textarea</type>
+    <required>0</required>
+    <documentation>List of cluster members to be created in format NodeName:server1, NodeName2:server2</documentation>
+    <dependsOn>wasAddClusterMembers</dependsOn>
+    <condition>${wasAddClusterMembers} == '1'</condition>
+</formElement>
+<!-- end of add cluster members section -->
+<formElement>
+    <label>Sync Active Nodes?:</label>
+    <property>wasSyncNodes</property>
+    <type>checkbox</type>
+    <checkedValue>1</checkedValue>
+    <uncheckedValue>0</uncheckedValue>
+    <initiallyChecked>0</initiallyChecked>
+    <required>0</required>
+    <documentation>Sync active nodes, if checked</documentation>
+</formElement>
+</editor>

@@ -327,7 +327,7 @@ def parseServerListAsDict(servers, opts):
     if 'filterUnique' in opts.keys() and opts['filterUnique'] == 1:
         tempSet = set(res)
         if len(tempSet) != len(res):
-            print 'WARNING: Non-unique servers are detected'
+            logWarning('WARNING: Non-unique servers are detected')
         res = list(tempSet)
     retval = {}
     for serverString in res:
@@ -393,3 +393,119 @@ def getExceptionMsg():
     errorType, errorMsg, errorTraceBack = sys.exc_info()
     retval = str(errorMsg).strip()
     return retval
+
+def bailOut(msg):
+    logError(msg)
+    sys.exit(1)
+
+def splitNodeServer(nodeServer):
+    vals = re.split(':', nodeServer)
+    if len(vals) != 2:
+        bailOut("Expected nodename:servername, got %s" %(nodeServer))
+    vals[0] = vals[0].strip()
+    vals[1] = vals[1].strip()
+    if not vals[0] or not vals[0]:
+        bailOut("NodeName and ServerName should be present and not empty");
+    retval = {
+        'Node': vals[0],
+        'Server': vals[1]
+    }
+    return retval
+
+def createClusterMemberWrapper(params):
+    print "createClusterMemberWrapper Params:"
+    print params
+    if not params['clusterName']:
+        bailOut("Missing clusterName parameter")
+    if not params['memberConfig']:
+        bailOut("Missing memberConfig parameter")
+
+    memberConfig = []
+    for k in params['memberConfig'].keys():
+        memberConfig.append(k)
+        memberConfig.append(params['memberConfig'][k])
+    additionParams = [
+        '-clusterName',
+        params['clusterName'],
+        '-memberConfig',
+        memberConfig
+    ]
+    if 'firstMember' in params.keys():
+        additionParams.append('-firstMember')
+        firstMember = []
+        for k in params['firstMember'].keys():
+            firstMember.append(k)
+            firstMember.append(params['firstMember'][k])
+        additionParams.append(firstMember)
+
+    if 'memberWeight' in params and params['memberWeight']:
+        additionParams['memberConfig']['-memberWeight'] = params['memberWeight']
+
+    return AdminTask.createClusterMember(additionParams)
+    
+        
+def createClusterMembers(params):
+    if 'clusterName' not in params:
+        raise ValueError('clusterName key is mandatory')
+    if 'targetNode' not in params:
+        raise ValueError('targetNode is mandatory')
+    if 'targetName' not in params:
+        raise ValueError('targetName is mandatory')
+    
+    creationParams = {
+        'clusterName': params['clusterName'],
+        'memberConfig': {
+            '-memberName': params['targetName'],
+            '-memberNode': params['targetNode']
+        }
+    }
+    if 'memberWeight' in params and params['memberWeight']:
+        creationParams['memberConfig']['-memberWeight'] = params['memberWeight']
+    return createClusterMemberWrapper(creationParams)
+    
+    
+def createFirstClusterMember(params):
+    if 'creationPolicy' not in params.keys():
+        bailOut("Creation Policy parameter is missing")
+    if params['creationPolicy'] not in ['existing', 'template']:
+        bailOut("Creation Policy should be existing or template")
+    if 'clusterName' not in params.keys():
+        bailOut('clusterName is mandatory')
+    if 'targetNode' not in params.keys():
+        bailOut('Missing Target Node for 1st cluster member creation')
+    if 'targetServer' not in params.keys():
+        bailOut('Missing Target Server for 1st cluster member creation')
+
+    if params['creationPolicy'] == 'existing':
+        if 'sourceNode' not in params:
+            bailOut('Source Node is mandatory')
+        if 'sourceServer' not in params:
+            bailOut('Source Server is mandatory')
+    elif params['creationPolicy'] == 'template' and 'templateName' not in params.keys():
+        bailOut('TemplateName is mandatory when creationPolicty is set to template')
+
+    if 'resourcesScope' not in params:
+        bailOut("Missing resourcesScope parameter")
+    # TODO: add gen unique ports handling
+    # TODO: add resources scope handling
+    creationPolicy = params['creationPolicy']
+    additionParams = {
+        'clusterName': clusterName,
+        'memberConfig': {
+            '-memberNode': params['targetNode'],
+            '-memberName': params['targetServer'],
+            '-genUniquePorts': 'true',
+        },
+        'firstMember': {
+            '-resourcesScope': params['resourcesScope']
+        }
+    }
+    if 'genUniquePorts' in params:
+        additionParams['memberConfig']['-genUniquePorts'] = params['genUniquePorts']
+    if creationPolicy == 'template':
+        additionParams['firstMember']['-templateName'] = params['templateName']
+    else:
+        additionParams['firstMember']['-templateServerNode'] = params['sourceNode']
+        additionParams['firstMember']['-templateServerName'] = params['sourceServer']
+    
+    return createClusterMemberWrapper(additionParams)

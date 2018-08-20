@@ -1,0 +1,1 @@
+This procedure creates a new JMS Topic or updates an existing JMS Topic.

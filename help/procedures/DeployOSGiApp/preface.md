@@ -1,0 +1,1 @@
+This procedure deploys the OSGi application.It optionally configures external OSGi bundle library if the application to be deployed reference bundles that are stored in an external bundle repository. This procedure can also add the bundles to internal bundle repository, if required.

@@ -1,0 +1,1 @@
+This procedure configures EJB container properites using a Jython script.

@@ -1,0 +1,1 @@
+This procedure undeploys an application using a Jython script and invoking AdminApp.uninstall.

@@ -46,7 +46,7 @@ if appServerNameInArchive:
 
 if coreGroup:
     params.append('-coreGroup')
-    params.appname(coreGroup)
+    params.append(coreGroup)
 
 try:
     AdminTask.importServer(params)

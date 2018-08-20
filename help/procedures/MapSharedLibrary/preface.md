@@ -1,0 +1,1 @@
+This procedure maps shared library to already deployed application.
