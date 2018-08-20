@@ -5,7 +5,7 @@ import PluginTestHelper
 
 @IgnoreIf({ System.getenv('IS_WAS_ND') != "1"})
 @Stepwise
-class ImportApplicationServerNegative extends PluginTestHelper {
+class CreateApplicationServerNegative extends PluginTestHelper {
 
     /**
      * Environments Variables
@@ -104,13 +104,6 @@ class ImportApplicationServerNegative extends PluginTestHelper {
         wrongServer: "$serverNames.incorrect exists within node $nodeNames.correct",
         wrongSource: "Failed to create intermediate template",
 
-        // wrongType: "",
-        // wrongNode: "Failed to import application server $serverNames.correct to node $nodeNames.incorrect",
-        // wrongServer: "Failed to import application server $serverNames.incorrect to node $nodeNames.correct",
-        // wrongTemplate: "",
-        // wrongSource: "",
-        // allWrong: "Failed to import application server $serverNames.incorrect to node $nodeNames.incorrect",
-        // emptySource: ""
     ]
 
     /**
