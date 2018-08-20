@@ -101,6 +101,10 @@ class ImportApplicationServer extends PluginTestHelper {
     def projectName = "EC-WebSphere Specs $procName Project"
 
     @Shared
+    // def archiveUrl = "https://github.com/electric-cloud/EC-WebSphere/specs/resource/WebSphereConfig_2018-08-17.zip"
+    def archiveUrl = "https://github.com/electric-cloud/EC-WebSphere/tree/ECPAPPSERVERWEBSPHERE-528/specs/resource/WebSphereConfig_2018-08-17.zip"
+
+    @Shared
     def servers = [
         'default': 'server1',
         '2': 'server2',
@@ -168,7 +172,12 @@ class ImportApplicationServer extends PluginTestHelper {
         def wasResourceName = wasHost
         createWorkspace(wasResourceName)
         createConfiguration(confignames.correctSOAP, [doNotRecreate: false])
-        downloadWebsphereArchive(paths.backup)
+        runGetResourcesProcedure([
+                                    projectName: projectName,
+                                    resourceProcedureName: resourceProcedureName,
+                                    filePath: paths.backup,
+                                    fileURL: archiveUrl,
+                                    wasResourceName: wasResourceName])
 
         importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
             resName : wasResourceName,
