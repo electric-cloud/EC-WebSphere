@@ -266,15 +266,6 @@ class CreateApplicationServer extends PluginTestHelper {
         runProcedure(runParams, procDeleteServer)
     }
 
-    /*def startApplicationServer(serverList){
-        def runParams = [
-                configname: configname,
-                wasServersList: serverList,
-                wasWaitTime: '300',
-        ]
-        runProcedure(runParams, procStartServer)
-    }*/
-
     def runProcedure(def parameters, def procedureName=procName) {
         def parametersString = parameters.collect { k, v -> "$k: '$v'" }.join(', ')
         def code = """
