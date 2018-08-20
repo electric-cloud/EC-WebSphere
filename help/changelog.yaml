@@ -1,0 +1,229 @@
+2.4.1:
+  - |
+    <ul>
+    <li>Configured the plugin to allow the ElectricFlow UI to create configs inline of procedure form.</li>
+    </ul>
+2.4.0:
+  - |
+    <ul>
+    <li>
+    Following New procedures have been added to support the entire set of IBM JMS functionality:
+      <ul>
+      <li><a href="#CreateOrUpdateSIBJMSActivationSpec">CreateOrUpdateSIBJMSActivationSpec</a></li>
+      <li><a href="#CreateOrUpdateWMQJMSActivationSpec">CreateOrUpdateWMQJMSActivationSpec</a></li>
+      <li><a href="#CreateOrUpdateSIBJMSConnectionFactory">CreateOrUpdateSIBJMSConnectionFactory</a></li>
+      <li><a href="#CreateOrUpdateWMQJMSConnectionFactory">CreateOrUpdateWMQJMSConnectionFactory</a></li>
+      <li><a href="#DeleteJMSActivationSpec">DeleteJMSActivationSpec</a></li>
+      <li><a href="#DeleteJMSConnectionFactory">DeleteJMSConnectionFactory</a></li>
+      <li><a href="#DeleteJMSProvider">DeleteJMSProvider</a></li>
+      </ul>
+      </li>
+      </ul>
+2.3.1:
+  - |
+    <ul>
+    <li>Help links have been updated for DeleteJMSTopic and DeleteJMSQueue procedures.</li>
+    <li>Configured the plugin to allow the ElectricFlow UI to render the plugin procedure parameters entirely using the configured form XMLs.</li>
+    <li>Enabled the plugin for managing the plugin configurations in-line when defining an application process step or a pipeline stage task.</li>
+    </ul>
+2.3.0:
+  - |
+    <ul>
+      <li>
+      Following New procedures have been added:
+      <ul>
+        <li><a href="#DeleteJMSQueue">DeleteJMSQueue</a></li>
+        <li><a href="#DeleteJMSTopic">DeleteJMSTopic</a></li>
+        <li><a href="#CreateOrUpdateJMSQueue">CreateOrUpdateJMSQueue</a></li>
+        <li><a href="#CreateOrUpdateJMSTopic">CreateOrUpdateJMSTopic</a></li>
+      </ul>
+      </li>
+      <li>
+        Fixed non-ascii characters in plugin forms.
+      </li>
+      <li>
+        Following procedures have been extended to support Websphere 9.0:
+        <ul>
+          <li><a href="#StartApp">StartApp</a></li>
+          <li><a href="#StopApp">StopApp</a></li>
+          <li><a href="#StopCluster">StopCluster</a></li>
+        </ul>
+      </li>
+      <li>The Debug Level checkbox has been changed to a dropdown. The level will be defaulted to INFO if no value is chosen.</li>
+      <li>
+        WSAdmin Absolute Path has been added to configuration and made as an optional parameter for all the following procedures:
+          <ul>
+          <li><a href="#CreateJMSProvider">CreateJMSProvider</a></li>
+          <li><a href="#RunCustomJob">RunCustomJob</a></li>
+          <li><a href="#DeployEnterpriseApp">DeployEnterpriseApp</a></li>
+          <li><a href="#CreateJDBCProvider">CreateJDBCProvider</a></li>
+          <li><a href="#CheckApp">CheckApp</a></li>
+          </ul>
+          </li>
+          <li>
+          <a href="#DeployEnterpriseApp">DeployEnterpriseApp</a>
+          <ul>
+          <li>
+          Fixed an issue when application was not started on all servers during deployment
+          if server name and node name are the same.
+          </li>
+          </ul>
+          </li>
+          <li>
+          <a href="#CreateJDBCProvider">CreateJDBCProvider</a>
+          <ul>
+          <li>
+          Fixed an error with attached credentials when in some cases it was not possible to create new JDBC provider.
+          </li>
+          </ul>
+          </li>
+          <li>
+          <a href="#CheckApp">CheckApp</a>
+          <ul>
+          <li>Procedure has been improved and now it could check for different application states.</li>
+          </ul>
+          </li>
+          </ul>
+2.2.4:
+  - |
+    <ul>
+    <li>Documentation has been improved.</li>
+    <li>Cluster Scope field has been added to CreateJDBCProvider procedure.</li>
+    </ul>
+2.2.3:
+  - |
+    <ul>
+    <li>Added support of parallel execution for all plugin procedures.</li>
+    <li>Added "Context root" parameter for Deploy Enterprise Application procedure.</li>
+    <li>Bug fixes in CheckPageStatus procedure.</li>
+    <li>Added warning instead of stack trace in the Stop/StartApp procedures if app was already stoped or started.</li>
+    </ul>
+2.2.2:
+  - |
+    <ul>
+      <li>Added new procedures - SyncNodes, CheckNodeStatus.</li>
+      <li>
+      Added following optional parameters to DeployEnterpriseApplication procedure:
+      <ul>
+        <li>"Synchronize active nodes": Sync active nodes after application deployment. Enabled by default.</li>
+        <li>"Start application": Start the deployed application after deploying the application. Enabled by default.</li>
+      </ul>
+      </li>
+      <li>Changed default value for "Distribute application" from unchecked to checked. (Deploy Enterprise Application procedure).</li>
+    </ul>
+2.2.1:
+  - |
+    <ul>
+    <li>Added new procedures - StartCluster, StopCluster, MapSharedLibrary, ModifyApplicationClassLoader.</li>
+    <li>DeployEnterpriseApp procedure will now update the application if it is already deployed. This procedure was refactored.</li>
+    <li>Added debugging in DeployEnterpriseApp procedure.</li>
+    <li>Bug fixes in DeployEnterpriseApplication procedure on WASND 8.5.5 Windows platform.</li>
+    <li>Bug fixes in UpdateApp procedure on WAS 8.5 and WASND 8.5.5 Windows platform.</li>
+    <li>Added application name to step log when ModifyApplicationClassLoader procedure fails to find application.</li>
+    <li>Added debug flag to plugin configurations.</li>
+    </ul>
+2.2.0:
+  - |
+    <ul>
+    <li>Added suport for discovering WebSphere configuraiton on ElectricFlow resource.</li>
+    <li>Moved 'Connection Type' parameter for all plugin procedures to plugin's configuration.</li>
+    <li>Added 'Cluster Name' and 'Server Name' optional parameter to 'Start Application' and 'Stop Application' procedures.</li>
+    </ul>
+2.1.2:
+  - |
+    <ul>
+    <li>Fixed issue with configurations being cached for IE.</li>
+    </ul>
+2.1.1:
+  - |
+    <ul>
+    <li>Added link to plugin Configuration Page in plugin step panels.</li>
+    </ul>
+2.1.0:
+  - |
+     <ul>
+     <li>Added support for WebSphere Network Deployment 8.5</li>
+     <li>Added support to create a cluster, add application servers to it, deploy applications in the cluster, remove cluster members, and delete the cluster.</li>
+     <li>Added support to deploy Java enterprise applications (EARs) and web archives (WARs).</li>
+     <li>Added support to update deployed applications.</li>
+     <li>Added support to deploy OSGi applications and to configure external and internal bundle repositories.</li>
+     <li>Added support to configure session management component for deployed applications.</li>
+     <li>Added support for setting the EJB container properties for improved memory consumption and stateful session bean failover.</li>
+     <li>Added support for the JavaMail session.</li>
+     </ul>
+2.0.6:
+  - |
+    <ul>
+    <li>Fixed the DeployApp procedure to not include the password in the log file.</li>
+    <li>Fixed the problem about attaching credentials in the CheckApp procedure. <!--Need more information about this bug.--></li>
+    <li>Fixed the problem where the wsadmin password appeared when you view job step log files and property information.</li>
+    <li>Fixed instructions to create WebSphere plugin configurations.</li>
+    <li>Fixed instructions to access plugins in ElectricFlow. </li>
+    </ul>
+2.0.5:
+  - |
+    <ul>
+    <li>Fix minor bugs.</li>
+    </ul>
+2.0.4:
+  - |
+    <ul>
+    <li>Add four new procedures: CreateDatasources, DeleteDatasources, CreateJDBCProviders, and DeleteJDBCProviders.</li>
+    <li>Fix minor bugs.</li>
+    </ul>
+2.0.3:
+  - |
+    <ul>
+    <li>Change the procedure names in the step picker section.</li>
+    </ul>
+2.0.2:
+  - |
+    <ul>
+    <li>Make improvements to the help document.</li>
+    </ul>
+2.0.1:
+  - |
+    <h2>Features and Enhancements in EC-WebSphere 2.0.1.</h2>
+    <ul>
+    <li>Use the new Parameter Form XML.</li>
+    <li>Add a link directly to the new help
+    document.</li>
+    </ul>
+2.0.0:
+  - |
+    <ul>
+    <li>Use the new help page format.</li>
+    <li>Add new parameter panels for each procedure.</li>
+    </ul>
+1.3.0:
+  - |
+    <ul>
+    <li>Add the CheckPageStatus procedure.</li>
+    <li>Remove the CURL dependency from the
+    CheckServerStatus procedure.</li>
+    <li>Fix minor bugs.</li>
+    <li>The procedures now have only one step using ec-perl
+    to execute the necessary commands.</li>
+    </ul>
+1.2.1:
+  - |
+    <ul>
+      <li>Fix a minor bug on the Configuration List page.</li>
+    </ul>
+1.2.0:
+  - |
+    <ul>
+    <li>Add the StartApp, StopApp, DeployApp, and
+      UndeployApp procedures.</li>
+    </ul>
+1.1.1:
+  - |
+    <ul>
+    <li>Jython commands can now be entered manually in the
+    RunCustomJob procedure.</li>
+    <li>The absolute path of executable files now requires the path and
+    filename with an extension.</li>
+    </ul>
+1.1.0:
+  - RunCustomJob procedure has been added.
+  
