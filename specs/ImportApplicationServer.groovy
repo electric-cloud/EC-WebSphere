@@ -98,11 +98,14 @@ class ImportApplicationServer extends PluginTestHelper {
     def procCreateServer = 'CreateApplicationServer'
 
     @Shared
+    def resourceProcedureName = 'GetResources'
+
+    @Shared
     def projectName = "EC-WebSphere Specs $procName Project"
 
     @Shared
     // def archiveUrl = "https://github.com/electric-cloud/EC-WebSphere/specs/resource/WebSphereConfig_2018-08-17.zip"
-    def archiveUrl = "https://github.com/electric-cloud/EC-WebSphere/tree/ECPAPPSERVERWEBSPHERE-528/specs/resource/WebSphereConfig_2018-08-17.zip"
+    def archiveUrl = "https://github.com/electric-cloud/EC-WebSphere/blob/ECPAPPSERVERWEBSPHERE-528/specs/resource/WebSphereConfig_2018-08-17.zip?raw=true"
 
     @Shared
     def servers = [
