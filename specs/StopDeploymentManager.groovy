@@ -130,7 +130,7 @@ class StopDeploymentManager extends PluginTestHelper {
         'logs':     ["Generated command line: 'stopManagerReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '$logLocations.tmp'" ,
                     "ADMU0116I: Tool information is being logged in file $logLocations.tmp", "ADMU3201I: Server stop request issued. Waiting for stop status", "ADMU4000I: Server dmgr stop completed."],
         'timeOk':   ["Generated command line: 'stopManagerReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'",
-                    "'wasTimeout' => '70',", "ADMU3201I: Server stop request issued. Waiting for stop status", "ADMU4000I: Server dmgr stop completed."],
+                     "ADMU3201I: Server stop request issued. Waiting for stop status", "ADMU4000I: Server dmgr stop completed."],
         'addParam': ["Generated command line: 'stopManagerReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'  -quiet",
                     "(?!ADMU3201I: Server stop request issued. Waiting for stop status)", "(?!ADMU4000I: Server dmgr stop completed.)"],
         'addParams': ["Generated command line: 'stopManagerReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'  -quiet -nowait",

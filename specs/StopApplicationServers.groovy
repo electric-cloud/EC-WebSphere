@@ -117,22 +117,22 @@ class StopApplicationServers extends PluginTestHelper {
 
     @Shared
     def summaries = [
-            'default': "Application Servers have been stopped:\nNode: websphere90ndNode01, Server: server1, State: Stopped",
-            'multiple': "Application Servers have been stopped:\nNode: websphere90ndNode01, Server: server1, State: Stopped\nNode: websphere90ndNode01, Server: serverStopAppServer, State: Stopped",
-            'warning': "Application Servers have been stopped:\nAll servers are already Stopped\nWARNING: Server server1 on Node websphere90ndNode01 is already Stopped\nWARNING: Nothing to do, all servers are already Stopped",
-            'warning_both': "Application Servers have been stopped:\nAll servers are already Stopped\nWARNING: Server server1 on Node websphere90ndNode01 is already Stopped\nWARNING: Server serverStopAppServer on Node websphere90ndNode01 is already Stopped\nWARNING: Nothing to do, all servers are already Stopped",
-            'warning_second': "Application Servers have been stopped:\nNode: websphere90ndNode01, Server: server1, State: Stopped\nWARNING: Server serverStopAppServer on Node websphere90ndNode01 is already Stopped",
-            'warning_first': "Application Servers have been stopped:\nNode: websphere90ndNode01, Server: serverStopAppServer, State: Stopped\nWARNING: Server server1 on Node websphere90ndNode01 is already Stopped"
+            'default': "Application servers have been stopped:\nNode: websphere90ndNode01, Server: server1, State: Stopped",
+            'multiple': "Application servers have been stopped:\nNode: websphere90ndNode01, Server: server1, State: Stopped\nNode: websphere90ndNode01, Server: serverStopAppServer, State: Stopped",
+            'warning': "Application servers have been stopped:\nAll servers are already Stopped\nWARNING: Server server1 on Node websphere90ndNode01 is already Stopped\nWARNING: Nothing to do, all servers are already Stopped",
+            'warning_both': "Application servers have been stopped:\nAll servers are already Stopped\nWARNING: Server server1 on Node websphere90ndNode01 is already Stopped\nWARNING: Server serverStopAppServer on Node websphere90ndNode01 is already Stopped\nWARNING: Nothing to do, all servers are already Stopped",
+            'warning_second': "Application servers have been stopped:\nNode: websphere90ndNode01, Server: server1, State: Stopped\nWARNING: Server serverStopAppServer on Node websphere90ndNode01 is already Stopped",
+            'warning_first': "Application servers have been stopped:\nNode: websphere90ndNode01, Server: serverStopAppServer, State: Stopped\nWARNING: Server server1 on Node websphere90ndNode01 is already Stopped"
     ]
 
     @Shared
     def jobLogs = [
             'default':  ['Stop completed for middleware server "server1" on node "websphere90ndNode01"', "Node: websphere90ndNode01, Server: server1, State: Stopped"],
             'multiple': ['Stop completed for middleware server "server1" on node "websphere90ndNode01"','Stop completed for middleware server "serverStopAppServer" on node "websphere90ndNode01"', "Node: websphere90ndNode01, Server: server1, State: Stopped", "Node: websphere90ndNode01, Server: serverStopAppServer, State: Stopped"],
-            'warning': ['Server server1 on Node websphere90ndNode01 is already Stopped','Nothing to do, all servers are already Stopped','warning','Application Servers have been stopped'],
-            'warning_both': ['Server server1 on Node websphere90ndNode01 is already Stopped','Server serverStopAppServer on Node websphere90ndNode01 is already Stopped','Nothing to do, all servers are already Stopped','warning','Application Servers have been stopped'],
-            'warning_second': ['Stop completed for middleware server "server1" on node "websphere90ndNode01"', "Node: websphere90ndNode01, Server: server1, State: Stopped" , 'Server serverStopAppServer on Node websphere90ndNode01 is already Stopped','warning','Application Servers have been stopped'],
-            'warning_first': ['Stop completed for middleware server "serverStopAppServer" on node "websphere90ndNode01"', "Node: websphere90ndNode01, Server: serverStopAppServer, State: Stopped" , 'Server server1 on Node websphere90ndNode01 is already Stopped','warning','Application Servers have been stopped'],
+            'warning': ['Server server1 on Node websphere90ndNode01 is already Stopped','Nothing to do, all servers are already Stopped','warning','Application servers have been stopped'],
+            'warning_both': ['Server server1 on Node websphere90ndNode01 is already Stopped','Server serverStopAppServer on Node websphere90ndNode01 is already Stopped','Nothing to do, all servers are already Stopped','warning','Application servers have been stopped'],
+            'warning_second': ['Stop completed for middleware server "server1" on node "websphere90ndNode01"', "Node: websphere90ndNode01, Server: server1, State: Stopped" , 'Server serverStopAppServer on Node websphere90ndNode01 is already Stopped','warning','Application servers have been stopped'],
+            'warning_first': ['Stop completed for middleware server "serverStopAppServer" on node "websphere90ndNode01"', "Node: websphere90ndNode01, Server: serverStopAppServer, State: Stopped" , 'Server server1 on Node websphere90ndNode01 is already Stopped','warning','Application servers have been stopped'],
             'error': ['error','Failed to stop servers:','Node: websphere90ndNode01, Server: server1, State: STOPPING','Some servers are failed to stop'],
             'error_both': ['error','Failed to stop servers:','Node: websphere90ndNode01, Server: server1, State: STOPPING','Node: websphere90ndNode01, Server: serverStopAppServer, State: STOPPING','Some servers are failed to stop'],
             'error_empty_config': ["Error: Configuration '' doesn't exist"],

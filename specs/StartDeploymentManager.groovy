@@ -130,7 +130,7 @@ class StartDeploymentManager extends PluginTestHelper {
         'log':      ["Generated command line: 'startManagerReplace' -logfile '$logLocations.tmp'",
                     "ADMU0116I: Tool information is being logged in file $logLocations.tmp", "ADMU3200I: Server launched. Waiting for initialization status"],
         'timeOk':   ["Generated command line: 'startManagerReplace' -logfile '.*startServer.log'  -timeout '70'",
-                    "'wasTimeout' => '70'", "ADMU3200I: Server launched. Waiting for initialization status"],
+                    "ADMU3200I: Server launched. Waiting for initialization status"],
         'addParam': ["Generated command line: 'startManagerReplace' -logfile '.*startServer.log'  -trace",
                     "ADMU0128I: Starting tool with the Dmgr01 profile", "ADMU3200I: Server launched. Waiting for initialization status"],
         'addParams': ["Generated command line: 'startManagerReplace' -logfile '.*startServer.log'  -trace -replacelog",
