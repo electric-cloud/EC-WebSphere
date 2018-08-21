@@ -502,6 +502,10 @@ def createFirstClusterMember(params):
             '-resourcesScope': params['resourcesScope']
         }
     }
+
+    if 'memberWeight' in params and params['memberWeight']:
+        additionParams['memberConfig']['-memberWeight'] = params['memberWeight']
+
     if 'genUniquePorts' in params:
         gup = params['genUniquePorts']
         if gup not in ['true', 'false']:
