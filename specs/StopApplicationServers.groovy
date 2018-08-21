@@ -2,6 +2,8 @@ import spock.lang.*
 import com.electriccloud.spec.SpockTestSupport
 import PluginTestHelper
 
+@Unroll
+@Stepwise
 class StopApplicationServers extends PluginTestHelper {
 
     // Environments Variables
