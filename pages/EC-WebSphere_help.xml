@@ -14,7 +14,7 @@
     <h1>@PLUGIN_KEY@</h1>
     <p>Plugin version @PLUGIN_VERSION@</p>
     
-    <p>Revised on August 20, 2018</p>
+    <p>Revised on August 21, 2018</p>
     
     <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade"/>
     <h3>Overview</h3>
@@ -596,6 +596,25 @@ Each configuration is given a unique name that is entered in designated paramete
             </tbody>
         </table>
         
+        <p>
+            <h3>Create Application Server</h3>
+<p>To Create Application Server in Flow interface, do these steps:</p>
+<ul>
+<li>Create Pipeline.</li>
+<li>Create task.</li>
+<li>In task definition choose Plugin and choose following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServer/PipelinePicker.png" /></li>
+<li>Click on arrow.</li>
+<li>Enter the following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServer/PipelineConfig.png" /></li>
+</ul>
+<p>After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServer/PipelineResult.png" />
+<br />In the <b>CreateApplicationServer</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServer/PipelineLog.png" /></p>
+
+        </p>
+        
     </div>
 
     
@@ -716,20 +735,21 @@ This procedure creates a cluster, adds members to it, and can deploy an applicat
         </table>
         
         <p>
-            <h3>Create cluster</h3>
-                <p>To create new cluster, add application servers as its members and deploy an application on it, do these steps:</p>
-                <ol>
-                    <li>Go to the CreateCluster procedure.</li>
-                    <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateCluster/EC-WebSphereCreateCluster2.png" />
-                </ol>
-                <p>After the job runs, you can view the results, including the following job details, which show that
-                the cluster was created successfully:</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateCluster/EC-WebSphereCreateCluster3.png" />
-                <p>In the <b>CreateCluster</b> step, click the Log icon
-                to see the diagnostic information. The output is similar to
-                the following diagnostic
-                report.</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateCluster/EC-WebSphereCreateCluster4.png" />
+            <h3>Create Cluster</h3>
+<p>To Create Cluster in Flow interface, do these steps:</p>
+<ul>
+<li>Create Pipeline.</li>
+<li>Create task.</li>
+<li>In task definition choose Plugin and choose following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/CreateCluster/PipelinePicker.png" /></li>
+<li>Click on arrow.</li>
+<li>Enter the following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/CreateCluster/PipelineConfig.png" /></li>
+</ul>
+<p>After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/CreateCluster/PipelineResult.png" />
+<br />In the <b>CreateCluster</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/CreateCluster/PipelineLog.png" /></p>
 
         </p>
         
@@ -814,6 +834,25 @@ Template - use app server template to create 1st cluster member</td>
             </tbody>
         </table>
         
+        <p>
+            <h3>Create First Cluster Member</h3>
+<p>To Create First Cluster Member in Flow interface, do these steps:</p>
+<ul>
+<li>Create Pipeline.</li>
+<li>Create task.</li>
+<li>In task definition choose Plugin and choose following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/CreateFirstClusterMember/PipelinePicker.png" /></li>
+<li>Click on arrow.</li>
+<li>Enter the following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/CreateFirstClusterMember/PipelineConfig.png" /></li>
+</ul>
+<p>After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/CreateFirstClusterMember/PipelineResult.png" />
+<br />In the <b>CreateFirstClusterMember</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/CreateFirstClusterMember/PipelineLog.png" /></p>
+
+        </p>
+        
     </div>
 
     
@@ -864,6 +903,25 @@ Template - use app server template to create 1st cluster member</td>
             </tbody>
         </table>
         
+        <p>
+            <h3>Create Cluster Members</h3>
+<p>To Create Cluster Members in Flow interface, do these steps:</p>
+<ul>
+<li>Create Pipeline.</li>
+<li>Create task.</li>
+<li>In task definition choose Plugin and choose following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/CreateClusterMembers/PipelinePicker.png" /></li>
+<li>Click on arrow.</li>
+<li>Enter the following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/CreateClusterMembers/PipelineConfig.png" /></li>
+</ul>
+<p>After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/CreateClusterMembers/PipelineResult.png" />
+<br />In the <b>CreateClusterMembers</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/CreateClusterMembers/PipelineLog.png" /></p>
+
+        </p>
+        
     </div>
 
     
@@ -903,6 +961,25 @@ Template - use app server template to create 1st cluster member</td>
             
             </tbody>
         </table>
+        
+        <p>
+            <h3>Delete Application Server</h3>
+<p>To Delete Application Server in Flow interface, do these steps:</p>
+<ul>
+<li>Create Pipeline.</li>
+<li>Create task.</li>
+<li>In task definition choose Plugin and choose following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServer/PipelinePicker.png" /></li>
+<li>Click on arrow.</li>
+<li>Enter the following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServer/PipelineConfig.png" /></li>
+</ul>
+<p>After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServer/PipelineResult.png" />
+<br />In the <b>DeleteApplicationServer</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServer/PipelineLog.png" /></p>
+
+        </p>
         
     </div>
 
@@ -945,19 +1022,20 @@ This procedure delete the specified cluster.</p>
         
         <p>
             <h3>Delete Cluster</h3>
-                <p>To delete application server cluster, do these steps:</p>
-                <ol>
-                    <li>Go to the DeleteCluster procedure. </li>
-                    <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeleteCluster/EC-WebSphereDeleteCluster2.png" />
-                </ol>
-                <p>After the job runs, you can view the results, including the following job details, which show that
-                cluster is deleted successfully:</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteCluster/EC-WebSphereDeleteCluster3.png" />
-                <p>In the <b>DeleteCluster</b> step, click the Log icon
-                to see the diagnostic information. The output is similar to
-                the following diagnostic
-                report.</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteCluster/EC-WebSphereDeleteCluster4.png" />
+<p>To Delete Cluster in Flow interface, do these steps:</p>
+<ul>
+<li>Create Pipeline.</li>
+<li>Create task.</li>
+<li>In task definition choose Plugin and choose following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteCluster/PipelinePicker.png" /></li>
+<li>Click on arrow.</li>
+<li>Enter the following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteCluster/PipelineConfig.png" /></li>
+</ul>
+<p>After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteCluster/PipelineResult.png" />
+<br />In the <b>DeleteCluster</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteCluster/PipelineLog.png" /></p>
 
         </p>
         
@@ -1000,6 +1078,25 @@ This procedure delete the specified cluster.</p>
             
             </tbody>
         </table>
+        
+        <p>
+            <h3>Export Application Server</h3>
+<p>To Export Application Server in Flow interface, do these steps:</p>
+<ul>
+<li>Create Pipeline.</li>
+<li>Create task.</li>
+<li>In task definition choose Plugin and choose following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/ExportApplicationServer/PipelinePicker.png" /></li>
+<li>Click on arrow.</li>
+<li>Enter the following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/ExportApplicationServer/PipelineConfig.png" /></li>
+</ul>
+<p>After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/ExportApplicationServer/PipelineResult.png" />
+<br />In the <b>ExportApplicationServer</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/ExportApplicationServer/PipelineLog.png" /></p>
+
+        </p>
         
     </div>
 
@@ -1062,6 +1159,25 @@ This procedure delete the specified cluster.</p>
             
             </tbody>
         </table>
+        
+        <p>
+            <h3>Import Application Server</h3>
+<p>To Import Application Server in Flow interface, do these steps:</p>
+<ul>
+<li>Create Pipeline.</li>
+<li>Create task.</li>
+<li>In task definition choose Plugin and choose following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/ImportApplicationServer/PipelinePicker.png" /></li>
+<li>Click on arrow.</li>
+<li>Enter the following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/ImportApplicationServer/PipelineConfig.png" /></li>
+</ul>
+<p>After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/ImportApplicationServer/PipelineResult.png" />
+<br />In the <b>ImportApplicationServer</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/ImportApplicationServer/PipelineLog.png" /></p>
+
+        </p>
         
     </div>
 
@@ -1290,6 +1406,25 @@ Synchronizes Cell's Deployment Manager config repository with nodes of the cell.
             
             </tbody>
         </table>
+        
+        <p>
+            <h3>Stop Application Servers</h3>
+<p>To Stop Application Servers in Flow interface, do these steps:</p>
+<ul>
+<li>Create Pipeline.</li>
+<li>Create task.</li>
+<li>In task definition choose Plugin and choose following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/StopApplicationServers/PipelinePicker.png" /></li>
+<li>Click on arrow.</li>
+<li>Enter the following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/StopApplicationServers/PipelineConfig.png" /></li>
+</ul>
+<p>After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/StopApplicationServers/PipelineResult.png" />
+<br />In the <b>StopApplicationServers</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/StopApplicationServers/PipelineLog.png" /></p>
+
+        </p>
         
     </div>
 
@@ -1551,6 +1686,25 @@ This procedure stops a cluster.</p>
             </tbody>
         </table>
         
+        <p>
+            <h3>Start Deployment Manager</h3>
+<p>To Start Deployment Manager in Flow interface, do these steps:</p>
+<ul>
+<li>Create Pipeline.</li>
+<li>Create task.</li>
+<li>In task definition choose Plugin and choose following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/StartDeploymentManager/PipelinePicker.png" /></li>
+<li>Click on arrow.</li>
+<li>Enter the following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/StartDeploymentManager/PipelineConfig.png" /></li>
+</ul>
+<p>After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/StartDeploymentManager/PipelineResult.png" />
+<br />In the <b>StartDeploymentManager</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/StartDeploymentManager/PipelineLog.png" /></p>
+
+        </p>
+        
     </div>
 
     
@@ -1602,6 +1756,25 @@ This procedure stops a cluster.</p>
             
             </tbody>
         </table>
+        
+        <p>
+            <h3>Stop Deployment Manager</h3>
+<p>To Stop Deployment Manager in Flow interface, do these steps:</p>
+<ul>
+<li>Create Pipeline.</li>
+<li>Create task.</li>
+<li>In task definition choose Plugin and choose following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/StopDeploymentManager/PipelinePicker.png" /></li>
+<li>Click on arrow.</li>
+<li>Enter the following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/StopDeploymentManager/PipelineConfig.png" /></li>
+</ul>
+<p>After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/StopDeploymentManager/PipelineResult.png" />
+<br />In the <b>StopDeploymentManager</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/StopDeploymentManager/PipelineLog.png" /></p>
+
+        </p>
         
     </div>
 
@@ -1666,6 +1839,25 @@ This procedure stops a cluster.</p>
             </tbody>
         </table>
         
+        <p>
+            <h3>Start Node</h3>
+<p>To Start Node in Flow interface, do these steps:</p>
+<ul>
+<li>Create Pipeline.</li>
+<li>Create task.</li>
+<li>In task definition choose Plugin and choose following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/StartNode/PipelinePicker.png" /></li>
+<li>Click on arrow.</li>
+<li>Enter the following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/StartNode/PipelineConfig.png" /></li>
+</ul>
+<p>After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/StartNode/PipelineResult.png" />
+<br />In the <b>StartNode</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/StartNode/PipelineLog.png" /></p>
+
+        </p>
+        
     </div>
 
     
@@ -1722,6 +1914,25 @@ This procedure stops a cluster.</p>
             
             </tbody>
         </table>
+        
+        <p>
+            <h3>Stop Node</h3>
+<p>To Stop Node in Flow interface, do these steps:</p>
+<ul>
+<li>Create Pipeline.</li>
+<li>Create task.</li>
+<li>In task definition choose Plugin and choose following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/StopNode/PipelinePicker.png" /></li>
+<li>Click on arrow.</li>
+<li>Enter the following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/StopNode/PipelineConfig.png" /></li>
+</ul>
+<p>After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/StopNode/PipelineResult.png" />
+<br />In the <b>StopNode</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/StopNode/PipelineLog.png" /></p>
+
+        </p>
         
     </div>
 
@@ -4100,6 +4311,25 @@ This procedure checks WebSphere node status. It checks Node Agent and all server
             </tbody>
         </table>
         
+        <p>
+            <h3>Create Application Server Template</h3>
+<p>To Create Application Server Template in Flow interface, do these steps:</p>
+<ul>
+<li>Create Pipeline.</li>
+<li>Create task.</li>
+<li>In task definition choose Plugin and choose following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServerTemplate/PipelinePicker.png" /></li>
+<li>Click on arrow.</li>
+<li>Enter the following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServerTemplate/PipelineConfig.png" /></li>
+</ul>
+<p>After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServerTemplate/PipelineResult.png" />
+<br />In the <b>CreateApplicationServerTemplate</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServerTemplate/PipelineLog.png" /></p>
+
+        </p>
+        
     </div>
 
     
@@ -4134,6 +4364,25 @@ This procedure checks WebSphere node status. It checks Node Agent and all server
             
             </tbody>
         </table>
+        
+        <p>
+            <h3>Delete Application Server Template</h3>
+<p>To Delete Application Server Template in Flow interface, do these steps:</p>
+<ul>
+<li>Create Pipeline.</li>
+<li>Create task.</li>
+<li>In task definition choose Plugin and choose following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServerTemplate/PipelinePicker.png" /></li>
+<li>Click on arrow.</li>
+<li>Enter the following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServerTemplate/PipelineConfig.png" /></li>
+</ul>
+<p>After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServerTemplate/PipelineResult.png" />
+<br />In the <b>DeleteApplicationServerTemplate</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServerTemplate/PipelineLog.png" /></p>
+
+        </p>
         
     </div>
 
