@@ -3,7 +3,9 @@ import com.electriccloud.spec.SpockTestSupport
 import PluginTestHelper
 
 
-@IgnoreIf({ System.getenv('IS_WAS_ND') != "1"})
+// @IgnoreIf({ System.getenv('IS_WAS_ND') != "1"})
+// Ignoring this for 2.5.0 release.
+@Ignore
 @Stepwise
 class CreateClusterMembersNegative extends PluginTestHelper {
 

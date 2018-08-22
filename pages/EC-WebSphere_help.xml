@@ -14,7 +14,7 @@
     <h1>@PLUGIN_KEY@</h1>
     <p>Plugin version @PLUGIN_VERSION@</p>
     
-    <p>Revised on August 21, 2018</p>
+    <p>Revised on August 22, 2018</p>
     
     <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade"/>
     <h3>Overview</h3>
@@ -70,7 +70,7 @@ Please refer to this <a href="https://www-01.ibm.com/common/ssi/ShowDoc.wss?docU
     
 
     <li><a href="#procedures">Plugin Procedures</a></li>
-    <li>WAS Server Component Management<br/><i>These procedures for WAS component management</i></li><ul><li><a href="#CreateEndToEndMailProvider">CreateEndToEndMailProvider</a></li><li><a href="#CreateEJBContainer">CreateEJBContainer</a></li><li><a href="#CreateMailSession">CreateMailSession</a></li><li><a href="#PublishWSDL">PublishWSDL</a></li></ul><li>WAS Server Management Procedures<br/><i>These procedures for WAS server management</i></li><ul><li><a href="#CreateApplicationServer">CreateApplicationServer</a></li><li><a href="#CreateCluster">CreateCluster</a></li><li><a href="#CreateFirstClusterMember">CreateFirstClusterMember</a></li><li><a href="#CreateClusterMembers">CreateClusterMembers</a></li><li><a href="#DeleteApplicationServer">DeleteApplicationServer</a></li><li><a href="#DeleteCluster">DeleteCluster</a></li><li><a href="#ExportApplicationServer">ExportApplicationServer</a></li><li><a href="#ImportApplicationServer">ImportApplicationServer</a></li><li><a href="#ListClusterMembers">ListClusterMembers</a></li><li><a href="#RemoveClusterMembers">RemoveClusterMembers</a></li><li><a href="#SyncNodes">SyncNodes</a></li><li><a href="#ConfigureEJBContainer">ConfigureEJBContainer</a></li></ul><li>WAS Server Administration Proceduresnull</li><ul><li><a href="#StartApplicationServers">StartApplicationServers</a></li><li><a href="#StopApplicationServers">StopApplicationServers</a></li><li><a href="#RunCustomJob">RunCustomJob</a></li><li><a href="#StartCluster">StartCluster</a></li><li><a href="#StopCluster">StopCluster</a></li><li><a href="#StartDeploymentManager">StartDeploymentManager</a></li><li><a href="#StopDeploymentManager">StopDeploymentManager</a></li><li><a href="#StartNode">StartNode</a></li><li><a href="#StopNode">StopNode</a></li><li><a href="#StartServer">StartServer</a></li><li><a href="#StopServer">StopServer</a></li></ul><li>WAS Application Component Management Procedures<br/><i>These procedures for application component management.</i></li><ul><li><a href="#ConfigureSession">ConfigureSession</a></li><li><a href="#MapSharedLibrary">MapSharedLibrary</a></li><li><a href="#ModifyApplicationClassloader">ModifyApplicationClassloader</a></li></ul><li>WAS Application Administration Procedures<br/><i>These procedures for application administration.</i></li><ul><li><a href="#StartApp">StartApp</a></li><li><a href="#StopApp">StopApp</a></li></ul><li>WAS Datasource Management Procedures<br/><i>These procedures for datasource management.</i></li><ul><li><a href="#CreateJDBCProvider">CreateJDBCProvider</a></li><li><a href="#CreateDatasource">CreateDatasource</a></li><li><a href="#DeleteDatasource">DeleteDatasource</a></li><li><a href="#DeleteJDBCProvider">DeleteJDBCProvider</a></li></ul><li>WAS JMS Management Procedures<br/><i>These procedures for JMS resources management.</i></li><ul><li><a href="#CreateJMSProvider">CreateJMSProvider</a></li><li><a href="#DeleteJMSProvider">DeleteJMSProvider</a></li><li><a href="#CreateOrUpdateJMSQueue">CreateOrUpdateJMSQueue</a></li><li><a href="#CreateOrUpdateJMSTopic">CreateOrUpdateJMSTopic</a></li><li><a href="#CreateOrUpdateSIBJMSActivationSpec">CreateOrUpdateSIBJMSActivationSpec</a></li><li><a href="#CreateOrUpdateWMQJMSActivationSpec">CreateOrUpdateWMQJMSActivationSpec</a></li><li><a href="#CreateOrUpdateSIBJMSConnectionFactory">CreateOrUpdateSIBJMSConnectionFactory</a></li><li><a href="#CreateOrUpdateWMQJMSConnectionFactory">CreateOrUpdateWMQJMSConnectionFactory</a></li></ul><li>WAS Application Deployment Procedures<br/><i>These procedures for applications deployment.</i></li><ul><li><a href="#DeployApp">DeployApp</a></li><li><a href="#DeployEnterpriseApp">DeployEnterpriseApp</a></li><li><a href="#DeployOSGIApp">DeployOSGIApp</a></li><li><a href="#UndeployApp">UndeployApp</a></li><li><a href="#UpdateApp">UpdateApp</a></li></ul><li>Check Procedures<br/><i>Procedures for status checking</i></li><ul><li><a href="#CheckApp">CheckApp</a></li><li><a href="#CheckNodeStatus">CheckNodeStatus</a></li><li><a href="#CheckPageStatus">CheckPageStatus</a></li><li><a href="#CheckServerStatus">CheckServerStatus</a></li></ul>
+    <li>WAS Server Component Management<br/><i>These procedures for WAS component management</i></li><ul><li><a href="#CreateEndToEndMailProvider">CreateEndToEndMailProvider</a></li><li><a href="#CreateEJBContainer">CreateEJBContainer</a></li><li><a href="#CreateMailSession">CreateMailSession</a></li><li><a href="#PublishWSDL">PublishWSDL</a></li></ul><li>WAS Server Management Procedures<br/><i>These procedures for WAS server management</i></li><ul><li><a href="#CreateApplicationServer">CreateApplicationServer</a></li><li><a href="#CreateCluster">CreateCluster</a></li><li><a href="#DeleteApplicationServer">DeleteApplicationServer</a></li><li><a href="#DeleteCluster">DeleteCluster</a></li><li><a href="#ExportApplicationServer">ExportApplicationServer</a></li><li><a href="#ImportApplicationServer">ImportApplicationServer</a></li><li><a href="#ListClusterMembers">ListClusterMembers</a></li><li><a href="#RemoveClusterMembers">RemoveClusterMembers</a></li><li><a href="#SyncNodes">SyncNodes</a></li><li><a href="#ConfigureEJBContainer">ConfigureEJBContainer</a></li></ul><li>WAS Server Administration Proceduresnull</li><ul><li><a href="#StartApplicationServers">StartApplicationServers</a></li><li><a href="#StopApplicationServers">StopApplicationServers</a></li><li><a href="#RunCustomJob">RunCustomJob</a></li><li><a href="#StartCluster">StartCluster</a></li><li><a href="#StopCluster">StopCluster</a></li><li><a href="#StartDeploymentManager">StartDeploymentManager</a></li><li><a href="#StopDeploymentManager">StopDeploymentManager</a></li><li><a href="#StartNode">StartNode</a></li><li><a href="#StopNode">StopNode</a></li><li><a href="#StartServer">StartServer</a></li><li><a href="#StopServer">StopServer</a></li></ul><li>WAS Application Component Management Procedures<br/><i>These procedures for application component management.</i></li><ul><li><a href="#ConfigureSession">ConfigureSession</a></li><li><a href="#MapSharedLibrary">MapSharedLibrary</a></li><li><a href="#ModifyApplicationClassloader">ModifyApplicationClassloader</a></li></ul><li>WAS Application Administration Procedures<br/><i>These procedures for application administration.</i></li><ul><li><a href="#StartApp">StartApp</a></li><li><a href="#StopApp">StopApp</a></li></ul><li>WAS Datasource Management Procedures<br/><i>These procedures for datasource management.</i></li><ul><li><a href="#CreateJDBCProvider">CreateJDBCProvider</a></li><li><a href="#CreateDatasource">CreateDatasource</a></li><li><a href="#DeleteDatasource">DeleteDatasource</a></li><li><a href="#DeleteJDBCProvider">DeleteJDBCProvider</a></li></ul><li>WAS JMS Management Procedures<br/><i>These procedures for JMS resources management.</i></li><ul><li><a href="#CreateJMSProvider">CreateJMSProvider</a></li><li><a href="#DeleteJMSProvider">DeleteJMSProvider</a></li><li><a href="#CreateOrUpdateJMSQueue">CreateOrUpdateJMSQueue</a></li><li><a href="#CreateOrUpdateJMSTopic">CreateOrUpdateJMSTopic</a></li><li><a href="#CreateOrUpdateSIBJMSActivationSpec">CreateOrUpdateSIBJMSActivationSpec</a></li><li><a href="#CreateOrUpdateWMQJMSActivationSpec">CreateOrUpdateWMQJMSActivationSpec</a></li><li><a href="#CreateOrUpdateSIBJMSConnectionFactory">CreateOrUpdateSIBJMSConnectionFactory</a></li><li><a href="#CreateOrUpdateWMQJMSConnectionFactory">CreateOrUpdateWMQJMSConnectionFactory</a></li></ul><li>WAS Application Deployment Procedures<br/><i>These procedures for applications deployment.</i></li><ul><li><a href="#DeployApp">DeployApp</a></li><li><a href="#DeployEnterpriseApp">DeployEnterpriseApp</a></li><li><a href="#DeployOSGIApp">DeployOSGIApp</a></li><li><a href="#UndeployApp">UndeployApp</a></li><li><a href="#UpdateApp">UpdateApp</a></li></ul><li>Check Procedures<br/><i>Procedures for status checking</i></li><ul><li><a href="#CheckApp">CheckApp</a></li><li><a href="#CheckNodeStatus">CheckNodeStatus</a></li><li><a href="#CheckPageStatus">CheckPageStatus</a></li><li><a href="#CheckServerStatus">CheckServerStatus</a></li></ul>
     
     
     <li><a href="#releaseNotes">Release Notes</a></li>
@@ -642,137 +642,13 @@ This procedure creates a cluster, adds members to it, and can deploy an applicat
             </tr>
             
             <tr>
-                <td class="required">Cluster Name</td>
-                <td>Name of the new cluster.</td>
+                <td class="required">Wsadmin Absolute Path</td>
+                <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. '/path/to/wsadmin.sh' or 'wsadmin.bat'.</td>
             </tr>
             
             <tr>
-                <td class="required">Prefer Local?</td>
-                <td>Specifies whether enterprise bean requests are routed to the node on which
-    the client resides whenever such a routing is possible.</td>
-            </tr>
-            
-            <tr>
-                <td >Create First Cluster Member?</td>
-                <td>If not checked, empty cluster will be created</td>
-            </tr>
-            
-            <tr>
-                <td >First Cluster Member Creation Policy</td>
-                <td>
-        Controls how 1st cluster member is to be created
-        Existing - use existing server as template
-        Convert - convert existing server to 1st cluster member
-        Template - use app server template to create 1st cluster member
-    </td>
-            </tr>
-            
-            <tr>
-                <td >Template Name</td>
-                <td>Template name to be used for 1st cluster member creation.</td>
-            </tr>
-            
-            <tr>
-                <td >Source Server Name</td>
-                <td>Source server name</td>
-            </tr>
-            
-            <tr>
-                <td >First Cluster Member Node</td>
-                <td>1st member node.</td>
-            </tr>
-            
-            <tr>
-                <td >First Cluster Member Name</td>
-                <td>Name of the server that will be a first cluster member.</td>
-            </tr>
-            
-            <tr>
-                <td >First Cluster Member Weight</td>
-                <td>Weight of each cluster member from list.</td>
-            </tr>
-            
-            <tr>
-                <td >Generate Unique Ports for First Cluster Member?</td>
-                <td>Generate Unique Ports for 1st cluster member?</td>
-            </tr>
-            
-            <tr>
-                <td >Server Resources Promotion Policy</td>
-                <td>Specifies how resources such as data sources are initially created in the cluster.
-    Create settings at the cluster scope if the settings can be used across the entire cluster.
-    Otherwise, create settings at the cluster member (server) level.
-    Creating settings at the cluster scope reduces the amount of configuration that you maintain.
-    Default is Cluster.</td>
-            </tr>
-            
-            <tr>
-                <td >Add Cluster Members?</td>
-                <td>If checked, additional cluster members will be added</td>
-            </tr>
-            
-            <tr>
-                <td >Gen Unique Ports for Cluster Members</td>
-                <td></td>
-            </tr>
-            
-            <tr>
-                <td >Weight of Each Cluster Member</td>
-                <td>Weight of each cluster member from list.</td>
-            </tr>
-            
-            <tr>
-                <td >Cluster Members List</td>
-                <td>List of cluster members to be created in format NodeName:server1, NodeName2:server2</td>
-            </tr>
-            
-            <tr>
-                <td >Sync Active Nodes?</td>
-                <td>Sync active nodes, if checked</td>
-            </tr>
-            
-            </tbody>
-        </table>
-        
-        <p>
-            <h3>Create Cluster</h3>
-<p>To Create Cluster in Flow interface, do these steps:</p>
-<ul>
-<li>Create Pipeline.</li>
-<li>Create task.</li>
-<li>In task definition choose Plugin and choose following parameters:
-<br /><img src="../../plugins/EC-WebSphere/images/CreateCluster/PipelinePicker.png" /></li>
-<li>Click on arrow.</li>
-<li>Enter the following parameters:
-<br /><img src="../../plugins/EC-WebSphere/images/CreateCluster/PipelineConfig.png" /></li>
-</ul>
-<p>After the pipeline runs, you can view the results, including the following step details:
-<br /><img src="../../plugins/EC-WebSphere/images/CreateCluster/PipelineResult.png" />
-<br />In the <b>CreateCluster</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
-<br /><img src="../../plugins/EC-WebSphere/images/CreateCluster/PipelineLog.png" /></p>
-
-        </p>
-        
-    </div>
-
-    
-    <div id="CreateFirstClusterMember">
-        <h2>CreateFirstClusterMember</h2>
-        <p>Creates first cluster member</p>
-        
-        <h3>CreateFirstClusterMember Parameters</h3>
-        <table class="grid">
-            <thead>
-            <tr>
-                <th>Parameter</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            
-            <tr>
-                <td class="required">Configuration Name</td>
-                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
+                <td class="required">Cell name</td>
+                <td>Name of the cell in which to create a new cluster.</td>
             </tr>
             
             <tr>
@@ -781,144 +657,68 @@ This procedure creates a cluster, adds members to it, and can deploy an applicat
             </tr>
             
             <tr>
-                <td class="required">First Cluster Member Name</td>
-                <td>Name of the server that will be a first cluster member.</td>
+                <td class="required">Cluster Members</td>
+                <td>List of member app servers along with node names.For eg. if server1 and server2 on Node01 and Node02 resp. have to be members give input as Node01=server1,Node02=server2 </td>
             </tr>
             
             <tr>
-                <td class="required">First Cluster Member Node</td>
-                <td>Name of the node where 1st cluster member will be located</td>
+                <td >Deploy Application on new cluster?</td>
+                <td>Select the checkbox if you want to deploy an app on new cluster.</td>
             </tr>
             
             <tr>
-                <td >First Cluster Member Weight</td>
-                <td>Weight of each cluster member from list.</td>
+                <td >Commands</td>
+                <td>Commands to be entered to wsadmin. Use one command per line.</td>
             </tr>
             
             <tr>
-                <td >Generate Unique Ports for First cluster member?</td>
-                <td>Generate Unique Ports for 1st cluster member?</td>
+                <td >Java Parameters</td>
+                <td>    Java options to be passed to wsadmin, separate them using semicolons (;).</td>
             </tr>
             
             <tr>
-                <td class="required">Server Resources Promotion Policy</td>
-                <td>Specifies how resources such as data sources are initially created in the cluster.
-Create settings at the cluster scope if the settings can be used across the entire cluster.
-Otherwise, create settings at the cluster member (server) level.
-Creating settings at the cluster scope reduces the amount of configuration that you maintain.
-Default is Cluster.</td>
+                <td >Classpath</td>
+                <td>Jars to be passed to the wsadmin classpath. It is a string containing paths (semicolon-separated) the required JARs to execute wsadmin in a particular job. i.e: 'c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar' or '/MyDir/Myjar.jar;/yourdir/yourdir.jar'</td>
             </tr>
             
             <tr>
-                <td class="required">First Cluster Member Creation Policy</td>
-                <td>Controls how 1st cluster member is to be created?
-Existing - use existing server as template
-Template - use app server template to create 1st cluster member</td>
+                <td >Application Name</td>
+                <td>Name of the web application to be deploy. i.e: 'webapp'. </td>
             </tr>
             
             <tr>
-                <td >Source Template Name</td>
-                <td>Template name to be used as source</td>
+                <td >Application Path</td>
+                <td>Absolute path of the application to deploy. i.e: '/path/to/webapp.war' or 'c:/mydir/webapp.war'. </td>
             </tr>
             
             <tr>
-                <td >Source Server Name</td>
-                <td>Node name where server that will be a source for 1st cluster member is located</td>
+                <td >Context root</td>
+                <td>Context root for webmodules. If left empty, any web contexts defined in the deployment descriptors will get picked up. </td>
             </tr>
             
             <tr>
-                <td >Sync Nodes?</td>
-                <td>Sync nodes?</td>
+                <td >Additional Commands</td>
+                <td>Additional commands to be entered for wsadmin.</td>
             </tr>
             
             </tbody>
         </table>
         
         <p>
-            <h3>Create First Cluster Member</h3>
-<p>To Create First Cluster Member in Flow interface, do these steps:</p>
-<ul>
-<li>Create Pipeline.</li>
-<li>Create task.</li>
-<li>In task definition choose Plugin and choose following parameters:
-<br /><img src="../../plugins/EC-WebSphere/images/CreateFirstClusterMember/PipelinePicker.png" /></li>
-<li>Click on arrow.</li>
-<li>Enter the following parameters:
-<br /><img src="../../plugins/EC-WebSphere/images/CreateFirstClusterMember/PipelineConfig.png" /></li>
-</ul>
-<p>After the pipeline runs, you can view the results, including the following step details:
-<br /><img src="../../plugins/EC-WebSphere/images/CreateFirstClusterMember/PipelineResult.png" />
-<br />In the <b>CreateFirstClusterMember</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
-<br /><img src="../../plugins/EC-WebSphere/images/CreateFirstClusterMember/PipelineLog.png" /></p>
-
-        </p>
-        
-    </div>
-
-    
-    <div id="CreateClusterMembers">
-        <h2>CreateClusterMembers</h2>
-        <p>Creates cluster members </p>
-        
-        <h3>CreateClusterMembers Parameters</h3>
-        <table class="grid">
-            <thead>
-            <tr>
-                <th>Parameter</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            
-            <tr>
-                <td class="required">Configuration Name</td>
-                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Cluster Name</td>
-                <td>A name of the cluster where servers is to be created.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Gen Unique Ports?</td>
-                <td>Generate unique ports number if checked.</td>
-            </tr>
-            
-            <tr>
-                <td >Cluster Member Weight</td>
-                <td>Weight of each cluster member</td>
-            </tr>
-            
-            <tr>
-                <td class="required">List of the cluster members</td>
-                <td>List of the cluster members</td>
-            </tr>
-            
-            <tr>
-                <td >Sync Nodes?</td>
-                <td>Sync nodes?</td>
-            </tr>
-            
-            </tbody>
-        </table>
-        
-        <p>
-            <h3>Create Cluster Members</h3>
-<p>To Create Cluster Members in Flow interface, do these steps:</p>
-<ul>
-<li>Create Pipeline.</li>
-<li>Create task.</li>
-<li>In task definition choose Plugin and choose following parameters:
-<br /><img src="../../plugins/EC-WebSphere/images/CreateClusterMembers/PipelinePicker.png" /></li>
-<li>Click on arrow.</li>
-<li>Enter the following parameters:
-<br /><img src="../../plugins/EC-WebSphere/images/CreateClusterMembers/PipelineConfig.png" /></li>
-</ul>
-<p>After the pipeline runs, you can view the results, including the following step details:
-<br /><img src="../../plugins/EC-WebSphere/images/CreateClusterMembers/PipelineResult.png" />
-<br />In the <b>CreateClusterMembers</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
-<br /><img src="../../plugins/EC-WebSphere/images/CreateClusterMembers/PipelineLog.png" /></p>
+            <h3>Create cluster</h3>
+<p>To create new cluster, add application servers as its members and deploy an application on it, do these steps:</p>
+<ol>
+<li>Go to the CreateCluster procedure.</li>
+<li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/CreateCluster/EC-WebSphereCreateCluster2.png" />
+</ol>
+<p>After the job runs, you can view the results, including the following job details, which show that
+the cluster was created successfully:</p>
+<img src="../../plugins/EC-WebSphere/images/CreateCluster/EC-WebSphereCreateCluster3.png" />
+<p>In the <b>CreateCluster</b> step, click the Log icon
+to see the diagnostic information. The output is similar to
+the following diagnostic
+report.</p>
+<img src="../../plugins/EC-WebSphere/images/CreateCluster/EC-WebSphereCreateCluster4.png" />
 
         </p>
         
@@ -1008,13 +808,13 @@ This procedure delete the specified cluster.</p>
             </tr>
             
             <tr>
-                <td class="required">Cluster Name</td>
-                <td>The name of the cluster to delete.</td>
+                <td class="required">Wsadmin Absolute Path</td>
+                <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. /path/to/wsadmin.sh or wsadmin.bat.</td>
             </tr>
             
             <tr>
-                <td >Sync Nodes?</td>
-                <td>Sync nodes?</td>
+                <td class="required">Cluster Name</td>
+                <td>The name of the cluster to delete.</td>
             </tr>
             
             </tbody>
@@ -1022,20 +822,19 @@ This procedure delete the specified cluster.</p>
         
         <p>
             <h3>Delete Cluster</h3>
-<p>To Delete Cluster in Flow interface, do these steps:</p>
-<ul>
-<li>Create Pipeline.</li>
-<li>Create task.</li>
-<li>In task definition choose Plugin and choose following parameters:
-<br /><img src="../../plugins/EC-WebSphere/images/DeleteCluster/PipelinePicker.png" /></li>
-<li>Click on arrow.</li>
-<li>Enter the following parameters:
-<br /><img src="../../plugins/EC-WebSphere/images/DeleteCluster/PipelineConfig.png" /></li>
-</ul>
-<p>After the pipeline runs, you can view the results, including the following step details:
-<br /><img src="../../plugins/EC-WebSphere/images/DeleteCluster/PipelineResult.png" />
-<br />In the <b>DeleteCluster</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
-<br /><img src="../../plugins/EC-WebSphere/images/DeleteCluster/PipelineLog.png" /></p>
+<p>To delete application server cluster, do these steps:</p>
+<ol>
+<li>Go to the DeleteCluster procedure. </li>
+<li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeleteCluster/EC-WebSphereDeleteCluster2.png" />
+</ol>
+<p>After the job runs, you can view the results, including the following job details, which show that
+cluster is deleted successfully:</p>
+<img src="../../plugins/EC-WebSphere/images/DeleteCluster/EC-WebSphereDeleteCluster3.png" />
+<p>In the <b>DeleteCluster</b> step, click the Log icon
+to see the diagnostic information. The output is similar to
+the following diagnostic
+report.</p>
+<img src="../../plugins/EC-WebSphere/images/DeleteCluster/EC-WebSphereDeleteCluster4.png" />
 
         </p>
         
