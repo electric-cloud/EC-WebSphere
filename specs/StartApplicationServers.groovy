@@ -114,12 +114,12 @@ class StartApplicationServers extends PluginTestHelper {
 
     @Shared
     def summaries = [  
-        'default': "Application Servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED",
-        'started': "Application Servers have been started:\nAll servers are already STARTED\nWARNING: Server server1 on Node websphere90ndNode01 is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
-        'started2': "Application Servers have been started:\nAll servers are already STARTED\nWARNING: Server server1 on Node websphere90ndNode01 is already STARTED\nWARNING: Server serverStartAppServer on Node websphere90ndNode01 is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
-        'started3': "Application Servers have been started:\nNode: websphere90ndNode01, Server: serverStartAppServer, State: STARTED\nWARNING: Server server1 on Node websphere90ndNode01 is already STARTED",
-        'multiple': "Application Servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED\nNode: websphere90ndNode01, Server: serverStartAppServer, State: STARTED",
-        'first': "Application Servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED\nWARNING: Server serverStartAppServer on Node websphere90ndNode01 is already STARTED",    
+        'default': "Application servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED",
+        'started': "Application servers have been started:\nAll servers are already STARTED\nWARNING: Server server1 on Node websphere90ndNode01 is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
+        'started2': "Application servers have been started:\nAll servers are already STARTED\nWARNING: Server server1 on Node websphere90ndNode01 is already STARTED\nWARNING: Server serverStartAppServer on Node websphere90ndNode01 is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
+        'started3': "Application servers have been started:\nNode: websphere90ndNode01, Server: serverStartAppServer, State: STARTED\nWARNING: Server server1 on Node websphere90ndNode01 is already STARTED",
+        'multiple': "Application servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED\nNode: websphere90ndNode01, Server: serverStartAppServer, State: STARTED",
+        'first': "Application servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED\nWARNING: Server serverStartAppServer on Node websphere90ndNode01 is already STARTED",
         'emptyConfig': "Configuration '' doesn't exist",
         'failed': 'Failed to start servers:\nNode: websphere90ndNode01, Server: server1, State: Stopped\nSome servers are failed to start',
         'emptyServer': 'Failed to start servers:\nMissing servers list to be started',

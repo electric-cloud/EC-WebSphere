@@ -144,8 +144,8 @@ class StartNode extends PluginTestHelper {
         'incorrectConfig': "Configuration 'incorrect' doesn't exist",
         'mandatoryShell': "Shell is mandatory",
         'mandatoryNode': 'Node Name is mandatory when Start Servers is checked',
-        'childSummaryWarning': "Application Servers have been started:\n\nWARNING: Server server1 on Node websphere90ndNode01 is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
-        'childSummarySuccess': "Application Servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED",
+        'childSummaryWarning': "Application servers have been started:\nAll servers are already STARTED\nWARNING: Server server1 on Node websphere90ndNode01 is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
+        'childSummarySuccess': "Application servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED",
         'childSummaryError':   "Failed to start servers:\nNode wrongNodeName does not exist or does not have servers",
         'wrongStartLocation': "Shell $startLocations.wrong does not exist",
         'fail': "Failed to start Node",    
@@ -225,7 +225,7 @@ class StartNode extends PluginTestHelper {
     }
 
     @Unroll
-    def "StopNode - Positive #testCaseID.name #testCaseID.description"(){
+    def "StartNode - Positive #testCaseID.name #testCaseID.description"(){
         stopNode(stopServers)
 
         given: "Parameters for procedure"
@@ -289,7 +289,7 @@ class StartNode extends PluginTestHelper {
     }
 
     @Unroll
-    def "StopNode - Negative #testCaseID.name #testCaseID.description"(){
+    def "StartNode - Negative #testCaseID.name #testCaseID.description"(){
         if (timeout == '10'){
             stopNode()
         }
@@ -340,7 +340,7 @@ class StartNode extends PluginTestHelper {
     }
 
     @Unroll
-    def "StopNode - Negative, wrongNode #testCaseID.name #testCaseID.description"(){
+    def "StartNode - Negative, wrongNode #testCaseID.name #testCaseID.description"(){
         stopNode()
         given: "Parameters for procedure"
         def runParams = [
