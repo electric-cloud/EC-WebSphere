@@ -34,14 +34,14 @@ limitations under the License.
         <property>wasNodeName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Name of configuration</documentation>
+        <documentation>Name of application server node.</documentation>
     </formElement>
     <formElement>
         <label>Application Server Name:</label>
         <property>wasAppServerName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Name of the websphere application server to create template in format NodeName:servername</documentation>
+        <documentation>Application Server name to be exported.</documentation>
     </formElement>
     <formElement>
         <label>Archive:</label>

@@ -29,7 +29,6 @@ limitations under the License.
         <htmlDocumentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" target="_blank" href="/commander/pages/@PLUGIN_NAME@/configurations">configuration page</a>.</htmlDocumentation>
         <required>1</required>
     </formElement>
-    
     <formElement>
         <label>Node Name:</label>
         <property>wasNodeName</property>
@@ -49,7 +48,7 @@ limitations under the License.
         <property>wasTemplateName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Application Server Template name to be created.</documentation>
+        <documentation>Application server template name to be created.</documentation>
     </formElement>
 
     <formElement>
@@ -59,7 +58,6 @@ limitations under the License.
         <required>0</required>
         <documentation>
             Specifies a configuration Id that represents the location to place the template.
-            The configuration Id value is the application server template, which is templates\servertypes\APPLICATION_SERVER|servertype-metadata.xml
         </documentation>
     </formElement>
     <formElement>
@@ -67,7 +65,7 @@ limitations under the License.
         <property>wasTemplateDescription</property>
         <type>textarea</type>
         <required>0</required>
-        <documentation>Description of Application Server template.</documentation>
+        <documentation>Description of application server template.</documentation>
     </formElement>
     <formElement>
         <label>Sync Nodes?:</label>
@@ -77,6 +75,8 @@ limitations under the License.
         <checkedValue>1</checkedValue>
         <uncheckedValue>0</uncheckedValue>
         <required>0</required>
-        <documentation>Sync Nodes if checked.</documentation>
+        <documentation>
+            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+        </documentation>
     </formElement>
 </editor>

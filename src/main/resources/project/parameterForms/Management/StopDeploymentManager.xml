@@ -17,7 +17,6 @@
 -->
 <editor>
     <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#StopDeploymentManager</help>
-
     <formElement>
         <type>entry</type>
         <label>Configuration Name:</label>
@@ -30,7 +29,6 @@
         <htmlDocumentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" target="_blank" href="/commander/pages/@PLUGIN_NAME@/configurations">configuration page</a>.</htmlDocumentation>
         <required>1</required>
     </formElement>
-
     <formElement>
         <label>StopManager Location:</label>
         <property>wasStopManagerLocation</property>
@@ -38,18 +36,16 @@
         <required>1</required>
         <documentation>Absolute Physical path in Filesystem to location of stopManager script i.e., /path/to/stopManager.sh or stopManager.bat</documentation>
     </formElement>
-
-
     <formElement>
         <label>Deployment Manager Profile:</label>
         <property>wasDeploymentManagerProfile</property>
         <type>entry</type>
         <required>0</required>
-        <documentation>Profile name of the DeploymentManager which needs to be stopped.
-        If this is not provided StopManager will stop the DeploymentManager which has the default profile.</documentation>
+        <documentation>
+            Profile name of the DeploymentManager which needs to be stopped.
+            If this is not provided StopManager will stop the DeploymentManager which has the default profile.
+        </documentation>
     </formElement>
-
-
     <formElement>
         <label>Log File Location:</label>
         <property>wasLogFileLocation</property>
@@ -57,8 +53,6 @@
         <required>0</required>
         <documentation>Absolute Physical path in Filesystem to location of stopManager.sh logs i.e., /path/to/stopServer.log</documentation>
     </formElement>
-
-
     <formElement>
         <label>Timeout:</label>
         <property>wasTimeout</property>
@@ -66,15 +60,13 @@
         <required>0</required>
         <documentation>Specifies the waiting time before deployment manager stop times out and returns an error.</documentation>
     </formElement>
-
-
     <formElement>
         <label>Additional Parameters:</label>
         <property>wasAdditionalParameters</property>
         <type>textarea</type>
         <required>0</required>
-        <documentation>This parameter can be used to either override defaults or pass Custom Properties. For example:
-        -quiet, -nowait, -help.</documentation>
+        <documentation>
+            This parameter can be used to either override defaults or pass Custom Properties. For example: -quiet, -nowait, -help.
+        </documentation>
     </formElement>
-
 </editor>
