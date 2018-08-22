@@ -120,9 +120,9 @@ class StopApplicationServers extends PluginTestHelper {
     @Shared
     def summaries = [
             'default': "Application servers have been stopped:\nNode: websphere90ndNode01, Server: server1, State: Stopped",
-            'multiple': "Application servers have been stopped:\nNode: websphere90ndNode01, Server: server1, State: Stopped\nNode: websphere90ndNode01, Server: serverStopAppServer, State: Stopped",
+            'multiple': "Application servers have been stopped:\n(Node: websphere90ndNode01, Server: .*, State: Stopped\n?)+",
             'warning': "Application servers have been stopped:\nAll servers are already Stopped\nWARNING: Server server1 on Node websphere90ndNode01 is already Stopped\nWARNING: Nothing to do, all servers are already Stopped",
-            'warning_both': "Application servers have been stopped:\nAll servers are already Stopped\nWARNING: Server server1 on Node websphere90ndNode01 is already Stopped\nWARNING: Server serverStopAppServer on Node websphere90ndNode01 is already Stopped\nWARNING: Nothing to do, all servers are already Stopped",
+            'warning_both': "Application servers have been stopped:\nAll servers are already Stopped\n(WARNING: Server .* on Node websphere90ndNode01 is already Stopped\n)+WARNING: Nothing to do, all servers are already Stopped",
             'warning_second': "Application servers have been stopped:\nNode: websphere90ndNode01, Server: server1, State: Stopped\nWARNING: Server serverStopAppServer on Node websphere90ndNode01 is already Stopped",
             'warning_first': "Application servers have been stopped:\nNode: websphere90ndNode01, Server: serverStopAppServer, State: Stopped\nWARNING: Server server1 on Node websphere90ndNode01 is already Stopped"
     ]
@@ -130,7 +130,7 @@ class StopApplicationServers extends PluginTestHelper {
     @Shared
     def jobLogs = [
             'default':  ['Stop completed for middleware server "server1" on node "websphere90ndNode01"', "Node: websphere90ndNode01, Server: server1, State: Stopped"],
-            'multiple': ['Stop completed for middleware server "server1" on node "websphere90ndNode01"','Stop completed for middleware server "serverStopAppServer" on node "websphere90ndNode01"', "Node: websphere90ndNode01, Server: server1, State: Stopped", "Node: websphere90ndNode01, Server: serverStopAppServer, State: Stopped"],
+            'multiple': ['Stop completed for middleware server "server1" on node "websphere90ndNode01"','Stop completed for middleware server "serverStopAppServer" on node "websphere90ndNode01"'],
             'warning': ['Server server1 on Node websphere90ndNode01 is already Stopped','Nothing to do, all servers are already Stopped','warning','Application servers have been stopped'],
             'warning_both': ['Server server1 on Node websphere90ndNode01 is already Stopped','Server serverStopAppServer on Node websphere90ndNode01 is already Stopped','Nothing to do, all servers are already Stopped','warning','Application servers have been stopped'],
             'warning_second': ['Stop completed for middleware server "server1" on node "websphere90ndNode01"', "Node: websphere90ndNode01, Server: server1, State: Stopped" , 'Server serverStopAppServer on Node websphere90ndNode01 is already Stopped','warning','Application servers have been stopped'],
@@ -156,11 +156,7 @@ class StopApplicationServers extends PluginTestHelper {
             'incorrectWaitTime':"Wait time should be a positive integer, if present. Got: 9am",
             'zeroWaitTime':"Failed to stop servers:\nNode: websphere90ndNode01, Server: server1, State: (STOPPING|STARTED)\nSome servers are failed to stop",
             'zeroWaitTimeMultiple':"Failed to stop servers:\nNode: websphere90ndNode01, Server: server1, State: STOPPING\nNode: websphere90ndNode01, Server: serverStopAppServer, State: STOPPING\nSome servers are failed to stop"
-            
-
-
     ]
-
 
     def doSetupSpec() {
         def wasResourceName = wasHost
@@ -218,7 +214,7 @@ class StopApplicationServers extends PluginTestHelper {
 
     @Unroll
     def 'StopApplicationServer - Positive: #testCaseID.name #testCaseID.description'() {
-        //assert true
+
         if (startedServers) {
             startApplicationServer(startedServers)
         }
@@ -244,126 +240,161 @@ class StopApplicationServers extends PluginTestHelper {
         def jobSummary = getJobProperty("/myJob/jobSteps/$procName/summary", result.jobId)
         def debugLog = getJobLogs(result.jobId)
         assert outcome == expectedOutcome
-        assert jobSummary == expectedSummary
+
+        if ( expectedSummary == summaries.warning_both){
+            assert jobSummary ==~ expectedSummary
+        } else {
+            assert jobSummary == expectedSummary
+        }
+
         for (log in logs) {
             assert debugLog =~ log
         }
 
         where: 'The following params will be:'
         testCaseID            | configName              | serverList            | timeout | expectedSummary           | logs                   | expectedOutcome | startedServers
-        testCases.systemTest1 | confignames.correctSOAP | serverLists.'default' | '60'    | summaries.'default'       | jobLogs.'default'      | 'success'       | serverLists.'default'
-        testCases.systemTest2 | confignames.correctSOAP | serverLists.'multiple'| '60'    | summaries.'multiple'      | jobLogs.'multiple'     | 'success'       | serverLists.'multiple'
+        testCases.systemTest1 | confignames.correctSOAP | serverLists.'default' | '60'    | summaries.'default'       | jobLogs.'default'      | 'success'       | serverLists.default
         testCases.systemTest3 | confignames.correctSOAP | serverLists.'default' | '300'   | summaries.'warning'       | jobLogs.'warning'      | 'warning'       | null
         testCases.systemTest4 | confignames.correctSOAP | serverLists.'multiple'| '300'   | summaries.warning_both    | jobLogs.warning_both   | 'warning'       | null
         testCases.systemTest5 | confignames.correctSOAP | serverLists.'multiple'| '300'   | summaries.warning_second  | jobLogs.warning_second | 'warning'       | serverLists.default
         testCases.systemTest6 | confignames.correctSOAP | serverLists.'multiple'| '300'   | summaries.warning_first   | jobLogs.warning_first  | 'warning'       | serverLists.second
-        testCases.systemTest7 | confignames.correctSOAP | serverLists.all       | '300'   | summaries.multiple        | jobLogs.multiple       | 'success'       | serverLists.multiple
         testCases.systemTest8 | confignames.correctSOAP | serverLists.all       | '300'   | summaries.warning_both    | jobLogs.warning_both   | 'warning'       | null
     }
 
     @Unroll
-        def 'StopApplicationServer - Negative: : #testCaseID.name #testCaseID.description'(){
-          if (startedServers){
-                startApplicationServer(startedServers)
-            }
-            given: "Parameters for procedure"
-            def runParams = [
-                    configname: configName,
-                    wasServersList: serverList,
-                    wasWaitTime: timeout,
-            ]
+    def 'StopApplicationServer - Positive(for multiple): #testCaseID.name #testCaseID.description'() {
 
-            when: "Run procedure and wait until job is completed"
-            def result = runProcedure(runParams)
-            waitUntil {
-                try {
-                    jobCompleted(result)
-                } catch (Exception e) {
-                    println e.getMessage()
-                }
-            }
+        startApplicationServer(startedServers)
 
-            then: "Get and compare results"
-            def outcome = getJobProperty('/myJob/outcome', result.jobId)
-            def jobSummary = getJobProperty("/myJob/jobSteps/$procName/summary", result.jobId)
-            assert outcome == expectedOutcome
-            if (testCaseID != testCases.systemTest16){
-                assert jobSummary == expectedSummary
-            } else {
-                assert jobSummary ==~ expectedSummary
-            }
-            def debugLog = getJobLogs(result.jobId)
-            for (log in logs){
-               assert debugLog =~ log
-            }
+        given: "Parameters for procedure"
+        def runParams = [
+                configname    : configName,
+                wasServersList: serverList,
+                wasWaitTime   : timeout,
+        ]
 
-            assert true
-            where: 'The following params will be:'
-            testCaseID             | configName              | serverList                  | timeout   | expectedSummary                  | logs                           | expectedOutcome | startedServers
-            testCases.systemTest9  | ''                      | serverLists.'default'       | '300'     | errors.emptyConfig               | jobLogs.error_empty_config     | 'error'         | null
-            testCases.systemTest10 | confignames.correctSOAP | ''                          | '300'     | errors.emptyServerList           | jobLogs.error_empty_ServerList | 'error'         | null
-            testCases.systemTest11 | confignames.incorrect   | serverLists.'default'       | '300'     | errors.incorrectConfig           | jobLogs.error_config           | 'error'         | null
-            testCases.systemTest12 | confignames.correctSOAP | serverLists.'wrong'         | '300'     | errors.incorrectServerListFormat | jobLogs.error_ServerList       | 'error'         | null
-            testCases.systemTest13 | confignames.correctSOAP | serverLists.'wrongServer'   | '300'     | errors.incorrectServer           | jobLogs.error_Server           | 'error'         | null
-            testCases.systemTest14 | confignames.correctSOAP | serverLists.'wrongServers'  | '300'     | errors.incorrectServers          | jobLogs.error_Server           | 'error'         | serverLists.second
-            testCases.systemTest15 | confignames.correctSOAP | serverLists.'default'       | '9am'     | errors.incorrectWaitTime         | jobLogs.error_WaitTime         | 'error'         | serverLists.default
-            testCases.systemTest16 | confignames.correctSOAP | serverLists.'default'       | '0'       | errors.zeroWaitTime              | jobLogs.error                  | 'error'         | serverLists.default
-            testCases.systemTest17 | confignames.correctSOAP | serverLists.'multiple'      | '0'       | errors.zeroWaitTimeMultiple      | jobLogs.error_both             | 'error'         | serverLists.'multiple'
-        }
-
-        def startApplicationServer(serverList){
-            def runParams = [
-                    configname: confignames.correctSOAP,
-                    wasServersList: serverList,
-                    wasWaitTime: '300',
-            ]
-            def result = runProcedure(runParams, procStartName)
-            waitUntil {
-                try {
-                    jobCompleted(result)
-                } catch (Exception e) {
-                    println e.getMessage()
-                }
+        when: "Run procedure and wait until job is completed"
+        def result = runProcedure(runParams)
+        waitUntil {
+            try {
+                jobCompleted(result)
+            } catch (Exception e) {
+                println e.getMessage()
             }
         }
 
-        def createAppServer(node,server){
-            def runParams = [
-                    configname: confignames.correctSOAP,
-                    wasAppServerName: server,
-                    wasGenUniquePorts: '1',
-                    wasNodeName: node,
-                    wasSourceServerName: '',
-                    wasSourceType: 'template',
-                    wasSyncNodes: '1',
-                    wasTemplateLocation: '',
-                    wasTemplateName: 'default',
-            ]
-            def result = runProcedure(runParams, procCreateName)
-            waitUntil {
-                try {
-                    jobCompleted(result)
-                } catch (Exception e) {
-                    println e.getMessage()
-                }
-            }
+        then: "Get and compare results"
+        def outcome = getJobProperty('/myJob/outcome', result.jobId)
+        def jobSummary = getJobProperty("/myJob/jobSteps/$procName/summary", result.jobId)
+        def debugLog = getJobLogs(result.jobId)
+
+        if (outcome == 'success'){
+            assert jobSummary ==~ summaries.multiple
         }
 
-
-        //Run Test Procedure
-        def runProcedure(def parameters, def procedureName=procName) {
-            def parametersString = parameters.collect { k, v -> "$k: '$v'" }.join(', ')
-            def code = """
-            runProcedure(
-                projectName: '$projectName',
-                procedureName: '$procedureName',
-                actualParameter: [
-                    $parametersString                 
-                ]
-            )
-        """
-            return dslWithTimeout(code)
+        for (log in logs) {
+            assert debugLog =~ logs
         }
 
-
+        where: 'The following params will be:'
+        testCaseID            | configName              | serverList            | timeout | logs             | startedServers
+        testCases.systemTest2 | confignames.correctSOAP | serverLists.multiple  | '60'    | jobLogs.multiple | serverLists.multiple
+        testCases.systemTest7 | confignames.correctSOAP | serverLists.all       | '300'   | jobLogs.multiple | serverLists.all
     }
+
+    @Unroll
+    def 'StopApplicationServer - Negative: : #testCaseID.name #testCaseID.description'(){
+        if (startedServers){
+            startApplicationServer(startedServers)
+        }
+        given: "Parameters for procedure"
+        def runParams = [
+                configname: configName,
+                wasServersList: serverList,
+                wasWaitTime: timeout,
+        ]
+        when: "Run procedure and wait until job is completed"
+        def result = runProcedure(runParams)
+        waitUntil {
+            try {
+                jobCompleted(result)
+            } catch (Exception e) {
+                println e.getMessage()
+            }
+        }
+        then: "Get and compare results"
+        def outcome = getJobProperty('/myJob/outcome', result.jobId)
+        def jobSummary = getJobProperty("/myJob/jobSteps/$procName/summary", result.jobId)
+        assert outcome == expectedOutcome
+        if (testCaseID != testCases.systemTest16){
+            assert jobSummary == expectedSummary
+        } else {
+            assert jobSummary ==~ expectedSummary
+        }
+        def debugLog = getJobLogs(result.jobId)
+        for (log in logs){
+            assert debugLog =~ log
+        }
+        where: 'The following params will be:'
+        testCaseID             | configName              | serverList                  | timeout   | expectedSummary                  | logs                           | expectedOutcome | startedServers
+        testCases.systemTest9  | ''                      | serverLists.'default'       | '300'     | errors.emptyConfig               | jobLogs.error_empty_config     | 'error'         | null
+        testCases.systemTest10 | confignames.correctSOAP | ''                          | '300'     | errors.emptyServerList           | jobLogs.error_empty_ServerList | 'error'         | null
+        testCases.systemTest11 | confignames.incorrect   | serverLists.'default'       | '300'     | errors.incorrectConfig           | jobLogs.error_config           | 'error'         | null
+        testCases.systemTest12 | confignames.correctSOAP | serverLists.'wrong'         | '300'     | errors.incorrectServerListFormat | jobLogs.error_ServerList       | 'error'         | null
+        testCases.systemTest13 | confignames.correctSOAP | serverLists.'wrongServer'   | '300'     | errors.incorrectServer           | jobLogs.error_Server           | 'error'         | null
+        testCases.systemTest14 | confignames.correctSOAP | serverLists.'wrongServers'  | '300'     | errors.incorrectServers          | jobLogs.error_Server           | 'error'         | serverLists.second
+        testCases.systemTest15 | confignames.correctSOAP | serverLists.'default'       | '9am'     | errors.incorrectWaitTime         | jobLogs.error_WaitTime         | 'error'         | serverLists.default
+        testCases.systemTest16 | confignames.correctSOAP | serverLists.'default'       | '0'       | errors.zeroWaitTime              | jobLogs.error                  | 'error'         | serverLists.default
+        testCases.systemTest17 | confignames.correctSOAP | serverLists.'multiple'      | '0'       | errors.zeroWaitTimeMultiple      | jobLogs.error_both             | 'error'         | serverLists.'multiple'
+    }
+    def startApplicationServer(serverList){
+        def runParams = [
+                configname: confignames.correctSOAP,
+                wasServersList: serverList,
+                wasWaitTime: '300',
+        ]
+        def result = runProcedure(runParams, procStartName)
+        waitUntil {
+            try {
+                jobCompleted(result)
+            } catch (Exception e) {
+                println e.getMessage()
+            }
+        }
+    }
+    def createAppServer(node,server){
+        def runParams = [
+                configname: confignames.correctSOAP,
+                wasAppServerName: server,
+                wasGenUniquePorts: '1',
+                wasNodeName: node,
+                wasSourceServerName: '',
+                wasSourceType: 'template',
+                wasSyncNodes: '1',
+                wasTemplateLocation: '',
+                wasTemplateName: 'default',
+        ]
+        def result = runProcedure(runParams, procCreateName)
+        waitUntil {
+            try {
+                jobCompleted(result)
+            } catch (Exception e) {
+                println e.getMessage()
+            }
+        }
+    }
+    //Run Test Procedure
+    def runProcedure(def parameters, def procedureName=procName) {
+        def parametersString = parameters.collect { k, v -> "$k: '$v'" }.join(', ')
+        def code = """
+           runProcedure(
+               projectName: '$projectName',
+               procedureName: '$procedureName',
+               actualParameter: [
+                   $parametersString                 
+               ]
+           )
+       """
+        return dslWithTimeout(code)
+    }
+}
