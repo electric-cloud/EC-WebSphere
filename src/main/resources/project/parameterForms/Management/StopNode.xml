@@ -17,7 +17,6 @@
 -->
 <editor>
     <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#StopNode</help>
-
     <formElement>
         <type>entry</type>
         <label>Configuration Name:</label>
@@ -30,7 +29,6 @@
         <htmlDocumentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" target="_blank" href="/commander/pages/@PLUGIN_NAME@/configurations">configuration page</a>.</htmlDocumentation>
         <required>1</required>
     </formElement>
-
     <formElement>
         <label>StopNode Location:</label>
         <property>wasStopNodeLocation</property>
@@ -38,18 +36,16 @@
         <required>1</required>
         <documentation>Absolute Physical path in Filesystem to location of stopNode script i.e., /path/to/stopNode.sh or stopNode.bat</documentation>
     </formElement>
-
-
     <formElement>
         <label>Node Profile:</label>
         <property>wasNodeProfile</property>
         <type>entry</type>
         <required>0</required>
-        <documentation>Profile name of the Node which needs to be stopped.
-        If this is not provided StopNode will stop the Node which has the default profile.</documentation>
+        <documentation>
+            Profile name of the Node which needs to be stopped.
+            If this is not provided StopNode will stop the Node which has the default profile.
+        </documentation>
     </formElement>
-
-
     <formElement>
         <label>Log File Location:</label>
         <property>wasLogFileLocation</property>
@@ -64,7 +60,6 @@
         <required>0</required>
         <documentation>Specifies the waiting time before node stop times out and returns an error.</documentation>
     </formElement>
-
     <formElement>
         <label>Node Stop Policy:</label>
         <property>wasStopNodePolicy</property>
@@ -73,17 +68,15 @@
         <option><name>Stop Application Servers</name><value>stop_application_servers</value></option>
         <option><name>Save Node State</name><value>save_node_state</value></option>
         <required>0</required>
-        <documentation>Policy that will be used for node stopping. It could be one of: Just Stop node agent, stop application servers, save node state.</documentation>
+        <documentation>Policy that will be used for node stopping. It could be one of: Just Stop node agent, stop Spplication Servers, Save Node State.</documentation>
     </formElement>
-
-
     <formElement>
         <label>Additional Parameters:</label>
         <property>wasAdditionalParameters</property>
         <type>textarea</type>
         <required>0</required>
-        <documentation>This parameter can be used to either override defaults or pass Custom Properties. For example:
-        -quiet, -nowait, -help.</documentation>
+        <documentation>
+            This parameter can be used to either override defaults or pass Custom Properties. For example: -quiet, -nowait, -help.
+        </documentation>
     </formElement>
-
 </editor>

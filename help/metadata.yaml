@@ -16,10 +16,12 @@ proceduresGrouping:
       description: These procedures for WAS server management
       procedures:
         - CreateApplicationServer
+        - CreateApplicationServerTemplate
         - CreateCluster
         # - CreateFirstClusterMember
         # - CreateClusterMembers
         - DeleteApplicationServer
+        - DeleteApplicationServerTemplate
         - DeleteCluster
         - ExportApplicationServer
         - ImportApplicationServer

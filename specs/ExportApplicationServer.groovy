@@ -130,12 +130,15 @@ class ExportApplicationServer extends PluginTestHelper {
     }
 
     @Unroll
-    def 'ExportApplicationServer - Positive: #testCaseID.name #testCaseID.description'(){
+    def 'ExportApplicationServer - Positive: #testCaseID.id #testCaseID.description'(){
+        def numberOfTest = specificationContext.currentIteration.parent.iterationNameProvider.iterationCount
+        def newPath = path + numberOfTest
+
         given: "Parameters for procedure"
         def runParams = [
                     configname:  configName,
                     wasAppServerName: serverName,
-                    wasArchivePath: path + testCaseID.name,
+                    wasArchivePath: newPath,
                     wasNodeName:  nodeName,
         ]
         when: "Run procedure and wait until job is completed"
@@ -152,7 +155,7 @@ class ExportApplicationServer extends PluginTestHelper {
         }
  
         then: "does file exist on file system?"
-        def command = 'ls '+path + testCaseID.name
+        def command = 'ls '+ newPath
         def outcome2 = getJobProperty('/myJob/outcome', runCliCommand(command, wasHost).jobId)
         assert outcome2 == status
 
@@ -164,9 +167,9 @@ class ExportApplicationServer extends PluginTestHelper {
     }
 
     @Unroll
-    def 'ExportApplicationServer - Negative: #testCaseID.name #testCaseID.description'(){
+    def 'ExportApplicationServer - Negative: #testCaseID.id #testCaseID.description'(){
         given: "Parameters for procedure"
-        path = (path != '') ? path + testCaseID.name : path
+        path = (path != '') ? path + testCaseID.id : path
         def runParams = [
                     configname:  configName,
                     wasAppServerName: serverName,

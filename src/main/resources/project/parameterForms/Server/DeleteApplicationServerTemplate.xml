@@ -34,7 +34,7 @@ limitations under the License.
         <property>wasTemplateName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Template name to be deleted.</documentation>
+        <documentation>Application server template name to be deleted.</documentation>
     </formElement>
     <formElement>
         <label>Sync Nodes?:</label>
@@ -44,6 +44,8 @@ limitations under the License.
         <checkedValue>1</checkedValue>
         <uncheckedValue>0</uncheckedValue>
         <required>0</required>
-        <documentation>Sync Nodes if checked.</documentation>
+        <documentation>
+            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+        </documentation>
     </formElement>
 </editor>
