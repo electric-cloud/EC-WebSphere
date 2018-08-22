@@ -379,6 +379,11 @@ def toBoolean(value):
 
     return 0
 
+def toBooleanString(value):
+    if value.lower() == 'true' or value == '1':
+        return 'true'
+    return 'false'
+
 # Synchronization of configuration changes is only required in network deployment.not in standalone server environment.
 def syncActiveNodes():
     dm = AdminControl.queryNames('type=DeploymentManager,*')
@@ -486,22 +491,27 @@ def createFirstClusterMember(params):
 
     if 'resourcesScope' not in params:
         bailOut("Missing resourcesScope parameter")
-    # TODO: add gen unique ports handling
-    # TODO: add resources scope handling
     creationPolicy = params['creationPolicy']
     additionParams = {
         'clusterName': clusterName,
         'memberConfig': {
             '-memberNode': params['targetNode'],
-            '-memberName': params['targetServer'],
-            '-genUniquePorts': 'true',
+            '-memberName': params['targetServer']
         },
         'firstMember': {
             '-resourcesScope': params['resourcesScope']
         }
     }
+
+    if 'memberWeight' in params and params['memberWeight']:
+        additionParams['memberConfig']['-memberWeight'] = params['memberWeight']
+
     if 'genUniquePorts' in params:
-        additionParams['memberConfig']['-genUniquePorts'] = params['genUniquePorts']
+        gup = params['genUniquePorts']
+        if gup not in ['true', 'false']:
+            gup = toBooleanString(gup)
+            
+        additionParams['memberConfig']['-genUniquePorts'] = gup
     if creationPolicy == 'template':
         additionParams['firstMember']['-templateName'] = params['templateName']
     else:

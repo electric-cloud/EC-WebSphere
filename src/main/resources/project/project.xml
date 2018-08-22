@@ -333,6 +333,11 @@
                 <expandable>0</expandable>
             </property>
             <property>
+                <propertyName>createcluster_matchers</propertyName>
+                <value></value>
+                <expandable>0</expandable>
+            </property>
+            <property>
                 <propertyName>listClusterMembers_matchers</propertyName>
                 <value></value>
                 <expandable>0</expandable>
@@ -344,6 +349,11 @@
             </property>
             <property>
                 <propertyName>stopCluster_matchers</propertyName>
+                <value></value>
+                <expandable>0</expandable>
+            </property>
+            <property>
+                <propertyName>deletecluster_matchers</propertyName>
                 <value></value>
                 <expandable>0</expandable>
             </property>
@@ -7170,6 +7180,7 @@
                 </propertySheet>
             </step>
         </procedure>
+        <!-- Old version of CreateCluster -->
         <procedure>
             <procedureName>CreateCluster</procedureName>
             <description>Creates a new Application Server cluster.</description>
@@ -7189,7 +7200,16 @@
                         <property>
                             <propertyName>parameters</propertyName>
                             <propertySheet>
-
+                                <property>
+                                    <propertyName>wsadminabspath</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
                                 <property>
                                     <propertyName>configname</propertyName>
                                     <propertySheet>
@@ -7201,7 +7221,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>wasClusterName</propertyName>
+                                    <propertyName>cellname</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -7211,7 +7231,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>wasPreferLocal</propertyName>
+                                    <propertyName>clusterName</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -7221,7 +7241,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>wasCreateFirstClusterMember</propertyName>
+                                    <propertyName>clusterMembers</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -7231,7 +7251,32 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>wasFirstClusterMemberNode</propertyName>
+                                    <propertyName>deployApp</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>commands</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -7241,7 +7286,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>wasFirstClusterMemberWeight</propertyName>
+                                    <propertyName>appname</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -7251,7 +7296,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>wasFirstClusterMemberName</propertyName>
+                                    <propertyName>apppath</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -7261,7 +7306,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>wasFirstClusterMemberGenUniquePorts</propertyName>
+                                    <propertyName>contextRoot</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -7271,7 +7316,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>wasServerResourcesPromotionPolicy</propertyName>
+                                    <propertyName>classpath</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -7281,7 +7326,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>wasFirstClusterMemberCreationPolicy</propertyName>
+                                    <propertyName>javaparams</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -7291,68 +7336,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>wasFirstClusterMemberTemplateName</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>wasSourceServerName</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>wasAddClusterMembers</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>wasClusterMembersGenUniquePorts</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>wasClusterMemberWeight</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>wasClusterMembersList</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-
-                                <property>
-                                    <propertyName>wasSyncNodes</propertyName>
+                                    <propertyName>additionalcommands</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -7366,138 +7350,97 @@
                     </propertySheet>
                 </property>
             </propertySheet>
-
+            <formalParameter>
+                <formalParameterName>wsadminabspath</formalParameterName>
+                <defaultValue />
+                <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
+                <required>1</required>
+                <type>entry</type>
+                <expansionDeferred>1</expansionDeferred>
+            </formalParameter>
             <formalParameter>
                 <formalParameterName>configname</formalParameterName>
-                <defaultValue/>
-                <description>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.
-                To view or create a new configuration,
-                go to the Administration -> Plugins tab, and select 'Configure' action for @PLUGIN_KEY@ plugin.</description>
+                <defaultValue />
+                <description>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>wasClusterName</formalParameterName>
-                <defaultValue/>
-                <description>Name of the new cluster.</description>
+                <formalParameterName>cellname</formalParameterName>
+                <defaultValue />
+                <description>Name of the cell in which to create a new cluster.</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>wasPreferLocal</formalParameterName>
-                <defaultValue/>
-                <description>Specifies whether enterprise bean requests are routed to the node on which
-                the client resides whenever such a routing is possible.</description>
+                <formalParameterName>clusterName</formalParameterName>
+                <defaultValue />
+                <description>Name of the new cluster. </description>
                 <required>1</required>
-                <type>checkbox</type>
+                <type>entry</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>wasCreateFirstClusterMember</formalParameterName>
+                <formalParameterName>clusterMembers</formalParameterName>
+                <defaultValue />
+                <description>List of member app servers along with node names.For eg. if server1 and server2 on Node01 and Node02 resp. have to be members give input as Node01=server1,Node02=server2</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>deployApp</formalParameterName>
                 <defaultValue/>
-                <description>If not checked, empty cluster will be created</description>
+                <description/>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>wasFirstClusterMemberNode</formalParameterName>
-                <defaultValue/>
-                <description>Node of 1st cluster member.</description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>wasFirstClusterMemberName</formalParameterName>
-                <defaultValue/>
-                <description>Name of the server that will be a first cluster member.</description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>wasFirstClusterMemberWeight</formalParameterName>
-                <defaultValue/>
-                <description>Weight of first cluster member</description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>wasFirstClusterMemberGenUniquePorts</formalParameterName>
-                <defaultValue/>
-                <description>Generate Unique Ports for 1st cluster member?</description>
-                <required>0</required>
-                <type>checkbox</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>wasServerResourcesPromotionPolicy</formalParameterName>
-                <defaultValue/>
-                <description>
-                    Specifies how resources such as data sources are initially created in the cluster.
-                    Create settings at the cluster scope if the settings can be used across the entire cluster.
-                    Otherwise, create settings at the cluster member (server) level.
-                    Creating settings at the cluster scope reduces the amount of configuration that you maintain.
-                    Default is Cluster.
-                </description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-
-            <formalParameter>
-                <formalParameterName>wasFirstClusterMemberCreationPolicy</formalParameterName>
-                <defaultValue/>
-                <description>Controls how 1st cluster member is to be created?
-                Existing - use existing server as template
-                Convert - convert existing server to 1st cluster member
-                Template - use app server template to create 1st cluster member</description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>wasFirstClusterMemberTemplateName</formalParameterName>
-                <defaultValue/>
-                <description>Template name to be used for 1st cluster member creation.</description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>wasSourceServerName</formalParameterName>
-                <defaultValue/>
-                <description>Node name where server that will be a source for 1st cluster member is located</description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>wasAddClusterMembers</formalParameterName>
-                <defaultValue/>
-                <description>If checked, additional cluster members will be added</description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>wasClusterMembersGenUniquePorts</formalParameterName>
-                <defaultValue/>
-                <description></description>
-                <required>0</required>
-                <type>checkbox</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>wasClusterMemberWeight</formalParameterName>
-                <defaultValue/>
-                <description>Weight of each cluster member from list.</description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>wasClusterMembersList</formalParameterName>
-                <defaultValue/>
-                <description>List of cluster members to be created in format NodeName:server1, NodeName2:server2</description>
+                <formalParameterName>commands</formalParameterName>
+                <defaultValue />
+                <description>Commands to be entered to wsadmin. Use one command per line.</description>
                 <required>0</required>
                 <type>textarea</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>wasSyncNodes</formalParameterName>
-                <defaultValue/>
-                <description>Sync active nodes, if checked</description>
+                <formalParameterName>javaparams</formalParameterName>
+                <defaultValue />
+                <description>Java options to be passed to wsadmin, separate them using semicolons (;).</description>
+                <required>0</required>
+                <type>textarea</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>classpath</formalParameterName>
+                <defaultValue />
+                <description>Jars to be passed to the wsadmin classpath.</description>
+                <required>0</required>
+                <type>textarea</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>appname</formalParameterName>
+                <defaultValue />
+                <description>Name of the application to deploy. i.e: 'webapp'. </description>
                 <required>0</required>
                 <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>apppath</formalParameterName>
+                <defaultValue />
+                <description>Absolute path of the application to deploy. i.e: '/path/to/webapp.war' or 'c:/mydir/webapp.war. </description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>contextRoot</formalParameterName>
+                <defaultValue />
+                <description>Context root for webmodules. If left empty, any web contexts defined in the deployment descriptors will get picked up. </description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>additionalcommands</formalParameterName>
+                <defaultValue />
+                <description>Additional commands to be entered for wsadmin.</description>
+                <required>0</required>
+                <type>textarea</type>
             </formalParameter>
             <step>
                 <stepName>CreateCluster</stepName>
@@ -7509,31 +7452,508 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
+                <postProcessor>postp --loadProperty /myProject/createcluster_matchers</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
-                <timeLimit>5</timeLimit>
-                <timeLimitUnits>minutes</timeLimitUnits>
-                <workingDirectory />
-                <workspaceName />
-                <procedureName>CreateCluster</procedureName>
-                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <shell>ec-perl</shell>
+            <timeLimit>5</timeLimit>
+            <timeLimitUnits>minutes</timeLimitUnits>
+            <workingDirectory />
+            <workspaceName />
+            <procedureName>CreateCluster</procedureName>
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>formType</propertyName>
+                            <expandable>1</expandable>
+                            <value>command</value>
+                        </property>
+                    </propertySheet>
+                </property>
+            </propertySheet>
+            </step>
+        </procedure>
+        <!-- Old version of DeleteCluster -->
+        <procedure>
+        <procedureName>DeleteCluster</procedureName>
+        <description>Deletes an existing cluster using the wsadmin tool</description>
+        <jobNameTemplate>websphere-deletecluster-$[jobId]</jobNameTemplate>
+        <resourceName />
+        <workspaceName />
+        <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+        <propertySheet>
+            <property>
+                <propertyName>ec_parameterForm</propertyName>
+                <expandable>1</expandable>
+                <value></value>
+            </property>
+            <property>
+                <propertyName>ec_customEditorData</propertyName>
                 <propertySheet>
                     <property>
-                        <propertyName>ec_customEditorData</propertyName>
+                        <propertyName>parameters</propertyName>
                         <propertySheet>
                             <property>
-                                <propertyName>formType</propertyName>
-                                <expandable>1</expandable>
-                                <value>command</value>
+                                <propertyName>wsadminabspath</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>configname</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
+                            </property>
+                            <property>
+                                <propertyName>clusterName</propertyName>
+                                <propertySheet>
+                                    <property>
+                                        <propertyName>formType</propertyName>
+                                        <expandable>1</expandable>
+                                        <value>standard</value>
+                                    </property>
+                                </propertySheet>
                             </property>
                         </propertySheet>
                     </property>
                 </propertySheet>
-            </step>
-        </procedure>
+            </property>
+        </propertySheet>
+        <formalParameter>
+            <formalParameterName>wsadminabspath</formalParameterName>
+            <defaultValue />
+            <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
+            <required>1</required>
+            <type>entry</type>
+            <expansionDeferred>1</expansionDeferred>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>configname</formalParameterName>
+            <defaultValue />
+            <description>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <formalParameter>
+            <formalParameterName>clusterName</formalParameterName>
+            <defaultValue />
+            <description>A unique name that identifies the JDBC Provider to delete in the WebSphere domain. </description>
+            <required>1</required>
+            <type>entry</type>
+        </formalParameter>
+        <step>
+            <stepName>DeleteCluster</stepName>
+            <alwaysRun>0</alwaysRun>
+            <broadcast>0</broadcast>
+            <command></command>
+            <condition />
+            <errorHandling>failProcedure</errorHandling>
+            <exclusive>0</exclusive>
+            <logFileName />
+            <parallel>0</parallel>
+            <postProcessor>postp --loadProperty /myProject/deletecluster_matchers</postProcessor>
+            <releaseExclusive>0</releaseExclusive>
+            <resourceName />
+            <retries>0</retries>
+            <shell>ec-perl</shell>
+            <timeLimit>5</timeLimit>
+            <timeLimitUnits>minutes</timeLimitUnits>
+            <workingDirectory />
+            <workspaceName />
+            <procedureName>DeleteCluster</procedureName>
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>formType</propertyName>
+                            <expandable>1</expandable>
+                            <value>command</value>
+                        </property>
+                    </propertySheet>
+                </property>
+            </propertySheet>
+        </step>
+    </procedure>
+        <!-- TODO: Uncomment after 2.5.0 release -->
+        <!-- <procedure> -->
+        <!--     <procedureName>CreateCluster</procedureName> -->
+        <!--     <description>Creates a new Application Server cluster.</description> -->
+        <!--     <jobNameTemplate>websphere-CreateCluster-$[jobId]</jobNameTemplate> -->
+        <!--     <resourceName /> -->
+        <!--     <workspaceName /> -->
+        <!--     <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName> -->
+        <!--     <propertySheet> -->
+        <!--         <property> -->
+        <!--             <propertyName>ec_parameterForm</propertyName> -->
+        <!--             <expandable>1</expandable> -->
+        <!--             <value></value> -->
+        <!--         </property> -->
+        <!--         <property> -->
+        <!--             <propertyName>ec_customEditorData</propertyName> -->
+        <!--             <propertySheet> -->
+        <!--                 <property> -->
+        <!--                     <propertyName>parameters</propertyName> -->
+        <!--                     <propertySheet> -->
+
+        <!--                         <property> -->
+        <!--                             <propertyName>configname</propertyName> -->
+        <!--                             <propertySheet> -->
+        <!--                                 <property> -->
+        <!--                                     <propertyName>formType</propertyName> -->
+        <!--                                     <expandable>1</expandable> -->
+        <!--                                     <value>standard</value> -->
+        <!--                                 </property> -->
+        <!--                             </propertySheet> -->
+        <!--                         </property> -->
+        <!--                         <property> -->
+        <!--                             <propertyName>wasClusterName</propertyName> -->
+        <!--                             <propertySheet> -->
+        <!--                                 <property> -->
+        <!--                                     <propertyName>formType</propertyName> -->
+        <!--                                     <expandable>1</expandable> -->
+        <!--                                     <value>standard</value> -->
+        <!--                                 </property> -->
+        <!--                             </propertySheet> -->
+        <!--                         </property> -->
+        <!--                         <property> -->
+        <!--                             <propertyName>wasPreferLocal</propertyName> -->
+        <!--                             <propertySheet> -->
+        <!--                                 <property> -->
+        <!--                                     <propertyName>formType</propertyName> -->
+        <!--                                     <expandable>1</expandable> -->
+        <!--                                     <value>standard</value> -->
+        <!--                                 </property> -->
+        <!--                             </propertySheet> -->
+        <!--                         </property> -->
+        <!--                         <property> -->
+        <!--                             <propertyName>wasCreateFirstClusterMember</propertyName> -->
+        <!--                             <propertySheet> -->
+        <!--                                 <property> -->
+        <!--                                     <propertyName>formType</propertyName> -->
+        <!--                                     <expandable>1</expandable> -->
+        <!--                                     <value>standard</value> -->
+        <!--                                 </property> -->
+        <!--                             </propertySheet> -->
+        <!--                         </property> -->
+        <!--                         <property> -->
+        <!--                             <propertyName>wasFirstClusterMemberNode</propertyName> -->
+        <!--                             <propertySheet> -->
+        <!--                                 <property> -->
+        <!--                                     <propertyName>formType</propertyName> -->
+        <!--                                     <expandable>1</expandable> -->
+        <!--                                     <value>standard</value> -->
+        <!--                                 </property> -->
+        <!--                             </propertySheet> -->
+        <!--                         </property> -->
+        <!--                         <property> -->
+        <!--                             <propertyName>wasFirstClusterMemberWeight</propertyName> -->
+        <!--                             <propertySheet> -->
+        <!--                                 <property> -->
+        <!--                                     <propertyName>formType</propertyName> -->
+        <!--                                     <expandable>1</expandable> -->
+        <!--                                     <value>standard</value> -->
+        <!--                                 </property> -->
+        <!--                             </propertySheet> -->
+        <!--                         </property> -->
+        <!--                         <property> -->
+        <!--                             <propertyName>wasFirstClusterMemberName</propertyName> -->
+        <!--                             <propertySheet> -->
+        <!--                                 <property> -->
+        <!--                                     <propertyName>formType</propertyName> -->
+        <!--                                     <expandable>1</expandable> -->
+        <!--                                     <value>standard</value> -->
+        <!--                                 </property> -->
+        <!--                             </propertySheet> -->
+        <!--                         </property> -->
+        <!--                         <property> -->
+        <!--                             <propertyName>wasFirstClusterMemberGenUniquePorts</propertyName> -->
+        <!--                             <propertySheet> -->
+        <!--                                 <property> -->
+        <!--                                     <propertyName>formType</propertyName> -->
+        <!--                                     <expandable>1</expandable> -->
+        <!--                                     <value>standard</value> -->
+        <!--                                 </property> -->
+        <!--                             </propertySheet> -->
+        <!--                         </property> -->
+        <!--                         <property> -->
+        <!--                             <propertyName>wasServerResourcesPromotionPolicy</propertyName> -->
+        <!--                             <propertySheet> -->
+        <!--                                 <property> -->
+        <!--                                     <propertyName>formType</propertyName> -->
+        <!--                                     <expandable>1</expandable> -->
+        <!--                                     <value>standard</value> -->
+        <!--                                 </property> -->
+        <!--                             </propertySheet> -->
+        <!--                         </property> -->
+        <!--                         <property> -->
+        <!--                             <propertyName>wasFirstClusterMemberCreationPolicy</propertyName> -->
+        <!--                             <propertySheet> -->
+        <!--                                 <property> -->
+        <!--                                     <propertyName>formType</propertyName> -->
+        <!--                                     <expandable>1</expandable> -->
+        <!--                                     <value>standard</value> -->
+        <!--                                 </property> -->
+        <!--                             </propertySheet> -->
+        <!--                         </property> -->
+        <!--                         <property> -->
+        <!--                             <propertyName>wasFirstClusterMemberTemplateName</propertyName> -->
+        <!--                             <propertySheet> -->
+        <!--                                 <property> -->
+        <!--                                     <propertyName>formType</propertyName> -->
+        <!--                                     <expandable>1</expandable> -->
+        <!--                                     <value>standard</value> -->
+        <!--                                 </property> -->
+        <!--                             </propertySheet> -->
+        <!--                         </property> -->
+        <!--                         <property> -->
+        <!--                             <propertyName>wasSourceServerName</propertyName> -->
+        <!--                             <propertySheet> -->
+        <!--                                 <property> -->
+        <!--                                     <propertyName>formType</propertyName> -->
+        <!--                                     <expandable>1</expandable> -->
+        <!--                                     <value>standard</value> -->
+        <!--                                 </property> -->
+        <!--                             </propertySheet> -->
+        <!--                         </property> -->
+        <!--                         <property> -->
+        <!--                             <propertyName>wasAddClusterMembers</propertyName> -->
+        <!--                             <propertySheet> -->
+        <!--                                 <property> -->
+        <!--                                     <propertyName>formType</propertyName> -->
+        <!--                                     <expandable>1</expandable> -->
+        <!--                                     <value>standard</value> -->
+        <!--                                 </property> -->
+        <!--                             </propertySheet> -->
+        <!--                         </property> -->
+        <!--                         <property> -->
+        <!--                             <propertyName>wasClusterMembersGenUniquePorts</propertyName> -->
+        <!--                             <propertySheet> -->
+        <!--                                 <property> -->
+        <!--                                     <propertyName>formType</propertyName> -->
+        <!--                                     <expandable>1</expandable> -->
+        <!--                                     <value>standard</value> -->
+        <!--                                 </property> -->
+        <!--                             </propertySheet> -->
+        <!--                         </property> -->
+        <!--                         <property> -->
+        <!--                             <propertyName>wasClusterMemberWeight</propertyName> -->
+        <!--                             <propertySheet> -->
+        <!--                                 <property> -->
+        <!--                                     <propertyName>formType</propertyName> -->
+        <!--                                     <expandable>1</expandable> -->
+        <!--                                     <value>standard</value> -->
+        <!--                                 </property> -->
+        <!--                             </propertySheet> -->
+        <!--                         </property> -->
+        <!--                         <property> -->
+        <!--                             <propertyName>wasClusterMembersList</propertyName> -->
+        <!--                             <propertySheet> -->
+        <!--                                 <property> -->
+        <!--                                     <propertyName>formType</propertyName> -->
+        <!--                                     <expandable>1</expandable> -->
+        <!--                                     <value>standard</value> -->
+        <!--                                 </property> -->
+        <!--                             </propertySheet> -->
+        <!--                         </property> -->
+
+        <!--                         <property> -->
+        <!--                             <propertyName>wasSyncNodes</propertyName> -->
+        <!--                             <propertySheet> -->
+        <!--                                 <property> -->
+        <!--                                     <propertyName>formType</propertyName> -->
+        <!--                                     <expandable>1</expandable> -->
+        <!--                                     <value>standard</value> -->
+        <!--                                 </property> -->
+        <!--                             </propertySheet> -->
+        <!--                         </property> -->
+        <!--                     </propertySheet> -->
+        <!--                 </property> -->
+        <!--             </propertySheet> -->
+        <!--         </property> -->
+        <!--     </propertySheet> -->
+
+        <!--     <formalParameter> -->
+        <!--         <formalParameterName>configname</formalParameterName> -->
+        <!--         <defaultValue/> -->
+        <!--         <description>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration. -->
+        <!--         To view or create a new configuration, -->
+        <!--         go to the Administration -> Plugins tab, and select 'Configure' action for @PLUGIN_KEY@ plugin.</description> -->
+        <!--         <required>1</required> -->
+        <!--         <type>entry</type> -->
+        <!--     </formalParameter> -->
+        <!--     <formalParameter> -->
+        <!--         <formalParameterName>wasClusterName</formalParameterName> -->
+        <!--         <defaultValue/> -->
+        <!--         <description>Name of the new cluster.</description> -->
+        <!--         <required>1</required> -->
+        <!--         <type>entry</type> -->
+        <!--     </formalParameter> -->
+        <!--     <formalParameter> -->
+        <!--         <formalParameterName>wasPreferLocal</formalParameterName> -->
+        <!--         <defaultValue/> -->
+        <!--         <description>Specifies whether enterprise bean requests are routed to the node on which -->
+        <!--         the client resides whenever such a routing is possible.</description> -->
+        <!--         <required>1</required> -->
+        <!--         <type>checkbox</type> -->
+        <!--     </formalParameter> -->
+        <!--     <formalParameter> -->
+        <!--         <formalParameterName>wasCreateFirstClusterMember</formalParameterName> -->
+        <!--         <defaultValue/> -->
+        <!--         <description>If not checked, empty cluster will be created</description> -->
+        <!--         <required>0</required> -->
+        <!--         <type>entry</type> -->
+        <!--     </formalParameter> -->
+        <!--     <formalParameter> -->
+        <!--         <formalParameterName>wasFirstClusterMemberNode</formalParameterName> -->
+        <!--         <defaultValue/> -->
+        <!--         <description>Node of 1st cluster member.</description> -->
+        <!--         <required>0</required> -->
+        <!--         <type>entry</type> -->
+        <!--     </formalParameter> -->
+        <!--     <formalParameter> -->
+        <!--         <formalParameterName>wasFirstClusterMemberName</formalParameterName> -->
+        <!--         <defaultValue/> -->
+        <!--         <description>Name of the server that will be a first cluster member.</description> -->
+        <!--         <required>0</required> -->
+        <!--         <type>entry</type> -->
+        <!--     </formalParameter> -->
+        <!--     <formalParameter> -->
+        <!--         <formalParameterName>wasFirstClusterMemberWeight</formalParameterName> -->
+        <!--         <defaultValue/> -->
+        <!--         <description>Weight of first cluster member</description> -->
+        <!--         <required>0</required> -->
+        <!--         <type>entry</type> -->
+        <!--     </formalParameter> -->
+        <!--     <formalParameter> -->
+        <!--         <formalParameterName>wasFirstClusterMemberGenUniquePorts</formalParameterName> -->
+        <!--         <defaultValue/> -->
+        <!--         <description>Generate Unique Ports for 1st cluster member?</description> -->
+        <!--         <required>0</required> -->
+        <!--         <type>checkbox</type> -->
+        <!--     </formalParameter> -->
+        <!--     <formalParameter> -->
+        <!--         <formalParameterName>wasServerResourcesPromotionPolicy</formalParameterName> -->
+        <!--         <defaultValue/> -->
+        <!--         <description> -->
+        <!--             Specifies how resources such as data sources are initially created in the cluster. -->
+        <!--             Create settings at the cluster scope if the settings can be used across the entire cluster. -->
+        <!--             Otherwise, create settings at the cluster member (server) level. -->
+        <!--             Creating settings at the cluster scope reduces the amount of configuration that you maintain. -->
+        <!--             Default is Cluster. -->
+        <!--         </description> -->
+        <!--         <required>0</required> -->
+        <!--         <type>entry</type> -->
+        <!--     </formalParameter> -->
+
+        <!--     <formalParameter> -->
+        <!--         <formalParameterName>wasFirstClusterMemberCreationPolicy</formalParameterName> -->
+        <!--         <defaultValue/> -->
+        <!--         <description>Controls how 1st cluster member is to be created? -->
+        <!--         Existing - use existing server as template -->
+        <!--         Convert - convert existing server to 1st cluster member -->
+        <!--         Template - use app server template to create 1st cluster member</description> -->
+        <!--         <required>0</required> -->
+        <!--         <type>entry</type> -->
+        <!--     </formalParameter> -->
+        <!--     <formalParameter> -->
+        <!--         <formalParameterName>wasFirstClusterMemberTemplateName</formalParameterName> -->
+        <!--         <defaultValue/> -->
+        <!--         <description>Template name to be used for 1st cluster member creation.</description> -->
+        <!--         <required>0</required> -->
+        <!--         <type>entry</type> -->
+        <!--     </formalParameter> -->
+        <!--     <formalParameter> -->
+        <!--         <formalParameterName>wasSourceServerName</formalParameterName> -->
+        <!--         <defaultValue/> -->
+        <!--         <description>Node name where server that will be a source for 1st cluster member is located</description> -->
+        <!--         <required>0</required> -->
+        <!--         <type>entry</type> -->
+        <!--     </formalParameter> -->
+        <!--     <formalParameter> -->
+        <!--         <formalParameterName>wasAddClusterMembers</formalParameterName> -->
+        <!--         <defaultValue/> -->
+        <!--         <description>If checked, additional cluster members will be added</description> -->
+        <!--         <required>0</required> -->
+        <!--         <type>entry</type> -->
+        <!--     </formalParameter> -->
+        <!--     <formalParameter> -->
+        <!--         <formalParameterName>wasClusterMembersGenUniquePorts</formalParameterName> -->
+        <!--         <defaultValue/> -->
+        <!--         <description></description> -->
+        <!--         <required>0</required> -->
+        <!--         <type>checkbox</type> -->
+        <!--     </formalParameter> -->
+        <!--     <formalParameter> -->
+        <!--         <formalParameterName>wasClusterMemberWeight</formalParameterName> -->
+        <!--         <defaultValue/> -->
+        <!--         <description>Weight of each cluster member from list.</description> -->
+        <!--         <required>0</required> -->
+        <!--         <type>entry</type> -->
+        <!--     </formalParameter> -->
+        <!--     <formalParameter> -->
+        <!--         <formalParameterName>wasClusterMembersList</formalParameterName> -->
+        <!--         <defaultValue/> -->
+        <!--         <description>List of cluster members to be created in format NodeName:server1, NodeName2:server2</description> -->
+        <!--         <required>0</required> -->
+        <!--         <type>textarea</type> -->
+        <!--     </formalParameter> -->
+        <!--     <formalParameter> -->
+        <!--         <formalParameterName>wasSyncNodes</formalParameterName> -->
+        <!--         <defaultValue/> -->
+        <!--         <description>Sync active nodes, if checked</description> -->
+        <!--         <required>0</required> -->
+        <!--         <type>entry</type> -->
+        <!--     </formalParameter> -->
+        <!--     <step> -->
+        <!--         <stepName>CreateCluster</stepName> -->
+        <!--         <alwaysRun>0</alwaysRun> -->
+        <!--         <broadcast>0</broadcast> -->
+        <!--         <command></command> -->
+        <!--         <condition /> -->
+        <!--         <errorHandling>failProcedure</errorHandling> -->
+        <!--         <exclusive>0</exclusive> -->
+        <!--         <logFileName /> -->
+        <!--         <parallel>0</parallel> -->
+        <!--         <postProcessor /> -->
+        <!--         <releaseExclusive>0</releaseExclusive> -->
+        <!--         <resourceName /> -->
+        <!--         <retries>0</retries> -->
+        <!--         <shell>ec-perl</shell> -->
+        <!--         <timeLimit>5</timeLimit> -->
+        <!--         <timeLimitUnits>minutes</timeLimitUnits> -->
+        <!--         <workingDirectory /> -->
+        <!--         <workspaceName /> -->
+        <!--         <procedureName>CreateCluster</procedureName> -->
+        <!--         <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName> -->
+        <!--         <propertySheet> -->
+        <!--             <property> -->
+        <!--                 <propertyName>ec_customEditorData</propertyName> -->
+        <!--                 <propertySheet> -->
+        <!--                     <property> -->
+        <!--                         <propertyName>formType</propertyName> -->
+        <!--                         <expandable>1</expandable> -->
+        <!--                         <value>command</value> -->
+        <!--                     </property> -->
+        <!--                 </propertySheet> -->
+        <!--             </property> -->
+        <!--         </propertySheet> -->
+        <!--     </step> -->
+        <!-- </procedure> -->
         <procedure>
             <procedureName>ListClusterMembers</procedureName>
             <description>Lists all the members of cluster using wsadmin tool.</description>
@@ -7939,116 +8359,117 @@
                 </propertySheet>
             </step>
         </procedure>
-        <procedure>
-            <procedureName>DeleteCluster</procedureName>
-            <description>Deletes an existing cluster using the wsadmin tool</description>
-            <jobNameTemplate>websphere-deletecluster-$[jobId]</jobNameTemplate>
-            <resourceName />
-            <workspaceName />
-            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
-            <propertySheet>
-                <property>
-                    <propertyName>ec_parameterForm</propertyName>
-                    <expandable>1</expandable>
-                    <value></value>
-                </property>
-                <property>
-                    <propertyName>ec_customEditorData</propertyName>
-                    <propertySheet>
-                        <property>
-                            <propertyName>parameters</propertyName>
-                            <propertySheet>
-                                <property>
-                                    <propertyName>wasSyncNodes</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>configname</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>wasClusterName</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                            </propertySheet>
-                        </property>
-                    </propertySheet>
-                </property>
-            </propertySheet>
-            <formalParameter>
-                <formalParameterName>wasSyncNodes</formalParameterName>
-                <defaultValue />
-                <description>Sync Nodes?</description>
-                <required>0</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>configname</formalParameterName>
-                <defaultValue />
-                <description>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>wasClusterName</formalParameterName>
-                <defaultValue />
-                <description>Cluster name to be deleted</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <step>
-                <stepName>DeleteCluster</stepName>
-                <alwaysRun>0</alwaysRun>
-                <broadcast>0</broadcast>
-                <command></command>
-                <condition />
-                <errorHandling>failProcedure</errorHandling>
-                <exclusive>0</exclusive>
-                <logFileName />
-                <parallel>0</parallel>
-                <postProcessor />
-                <releaseExclusive>0</releaseExclusive>
-                <resourceName />
-                <retries>0</retries>
-                <shell>ec-perl</shell>
-                <timeLimit>5</timeLimit>
-                <timeLimitUnits>minutes</timeLimitUnits>
-                <workingDirectory />
-                <workspaceName />
-                <procedureName>DeleteCluster</procedureName>
-                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
-                <propertySheet>
-                    <property>
-                        <propertyName>ec_customEditorData</propertyName>
-                        <propertySheet>
-                            <property>
-                                <propertyName>formType</propertyName>
-                                <expandable>1</expandable>
-                                <value>command</value>
-                            </property>
-                        </propertySheet>
-                    </property>
-                </propertySheet>
-            </step>
-        </procedure>
+        <!-- TODO: Uncomment after 2.5.0 release-->
+        <!-- <procedure> -->
+        <!--     <procedureName>DeleteCluster</procedureName> -->
+        <!--     <description>Deletes an existing cluster using the wsadmin tool</description> -->
+        <!--     <jobNameTemplate>websphere-deletecluster-$[jobId]</jobNameTemplate> -->
+        <!--     <resourceName /> -->
+        <!--     <workspaceName /> -->
+        <!--     <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName> -->
+        <!--     <propertySheet> -->
+        <!--         <property> -->
+        <!--             <propertyName>ec_parameterForm</propertyName> -->
+        <!--             <expandable>1</expandable> -->
+        <!--             <value></value> -->
+        <!--         </property> -->
+        <!--         <property> -->
+        <!--             <propertyName>ec_customEditorData</propertyName> -->
+        <!--             <propertySheet> -->
+        <!--                 <property> -->
+        <!--                     <propertyName>parameters</propertyName> -->
+        <!--                     <propertySheet> -->
+        <!--                         <property> -->
+        <!--                             <propertyName>wasSyncNodes</propertyName> -->
+        <!--                             <propertySheet> -->
+        <!--                                 <property> -->
+        <!--                                     <propertyName>formType</propertyName> -->
+        <!--                                     <expandable>1</expandable> -->
+        <!--                                     <value>standard</value> -->
+        <!--                                 </property> -->
+        <!--                             </propertySheet> -->
+        <!--                         </property> -->
+        <!--                         <property> -->
+        <!--                             <propertyName>configname</propertyName> -->
+        <!--                             <propertySheet> -->
+        <!--                                 <property> -->
+        <!--                                     <propertyName>formType</propertyName> -->
+        <!--                                     <expandable>1</expandable> -->
+        <!--                                     <value>standard</value> -->
+        <!--                                 </property> -->
+        <!--                             </propertySheet> -->
+        <!--                         </property> -->
+        <!--                         <property> -->
+        <!--                             <propertyName>wasClusterName</propertyName> -->
+        <!--                             <propertySheet> -->
+        <!--                                 <property> -->
+        <!--                                     <propertyName>formType</propertyName> -->
+        <!--                                     <expandable>1</expandable> -->
+        <!--                                     <value>standard</value> -->
+        <!--                                 </property> -->
+        <!--                             </propertySheet> -->
+        <!--                         </property> -->
+        <!--                     </propertySheet> -->
+        <!--                 </property> -->
+        <!--             </propertySheet> -->
+        <!--         </property> -->
+        <!--     </propertySheet> -->
+        <!--     <formalParameter> -->
+        <!--         <formalParameterName>wasSyncNodes</formalParameterName> -->
+        <!--         <defaultValue /> -->
+        <!--         <description>Sync Nodes?</description> -->
+        <!--         <required>0</required> -->
+        <!--         <type>entry</type> -->
+        <!--     </formalParameter> -->
+        <!--     <formalParameter> -->
+        <!--         <formalParameterName>configname</formalParameterName> -->
+        <!--         <defaultValue /> -->
+        <!--         <description>Name of the configuration to be used. URL, port and credentials are gathered from the given configuration.</description> -->
+        <!--         <required>1</required> -->
+        <!--         <type>entry</type> -->
+        <!--     </formalParameter> -->
+        <!--     <formalParameter> -->
+        <!--         <formalParameterName>wasClusterName</formalParameterName> -->
+        <!--         <defaultValue /> -->
+        <!--         <description>Cluster name to be deleted</description> -->
+        <!--         <required>1</required> -->
+        <!--         <type>entry</type> -->
+        <!--     </formalParameter> -->
+        <!--     <step> -->
+        <!--         <stepName>DeleteCluster</stepName> -->
+        <!--         <alwaysRun>0</alwaysRun> -->
+        <!--         <broadcast>0</broadcast> -->
+        <!--         <command></command> -->
+        <!--         <condition /> -->
+        <!--         <errorHandling>failProcedure</errorHandling> -->
+        <!--         <exclusive>0</exclusive> -->
+        <!--         <logFileName /> -->
+        <!--         <parallel>0</parallel> -->
+        <!--         <postProcessor /> -->
+        <!--         <releaseExclusive>0</releaseExclusive> -->
+        <!--         <resourceName /> -->
+        <!--         <retries>0</retries> -->
+        <!--         <shell>ec-perl</shell> -->
+        <!--         <timeLimit>5</timeLimit> -->
+        <!--         <timeLimitUnits>minutes</timeLimitUnits> -->
+        <!--         <workingDirectory /> -->
+        <!--         <workspaceName /> -->
+        <!--         <procedureName>DeleteCluster</procedureName> -->
+        <!--         <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName> -->
+        <!--         <propertySheet> -->
+        <!--             <property> -->
+        <!--                 <propertyName>ec_customEditorData</propertyName> -->
+        <!--                 <propertySheet> -->
+        <!--                     <property> -->
+        <!--                         <propertyName>formType</propertyName> -->
+        <!--                         <expandable>1</expandable> -->
+        <!--                         <value>command</value> -->
+        <!--                     </property> -->
+        <!--                 </propertySheet> -->
+        <!--             </property> -->
+        <!--         </propertySheet> -->
+        <!--     </step> -->
+        <!-- </procedure> -->
         <procedure>
             <procedureName>RemoveClusterMembers</procedureName>
             <description>Removes list of application servers from existing cluster</description>

@@ -208,6 +208,14 @@
         <path>matchers/configEJBContainerMatchers.pl</path>
     </file>
     <file>
+        <xpath>//property[propertyName=&quot;deletecluster_matchers&quot;]/value</xpath>
+        <path>matchers/deleteClusterMatcher.pl</path>
+    </file>
+    <file>
+        <xpath>//property[propertyName=&quot;createcluster_matchers&quot;]/value</xpath>
+        <path>matchers/creatClusterMatcher.pl</path>
+    </file>
+    <file>
         <xpath>//property[propertyName=&quot;deployosgi_matchers&quot;]/value</xpath>
         <path>matchers/deployOSGiMatchers.pl</path>
     </file>
@@ -829,7 +837,9 @@
     <!-- XML Form -->
     <file>
         <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/Cluster/CreateCluster.xml</path>
+        <!-- <path>parameterForms/Cluster/CreateCluster.xml</path> -->
+        <!-- Old form -->
+        <path>parameterForms/CreateCluster.xml</path>
     </file>
     <!-- Python script -->
     <file>
@@ -839,7 +849,9 @@
     <!-- Perl script -->
     <file>
         <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/step[stepName=&quot;CreateCluster&quot;]/command</xpath>
-        <path>server/Cluster/createCluster.pl</path>
+        <!-- <path>server/Cluster/createCluster.pl</path> -->
+        <!-- Old form -->
+        <path>server/createCluster.pl</path>
     </file>
     <!-- End of CreateCluster procedure Files -->
 
@@ -883,7 +895,9 @@
     <!-- XML Form -->
     <file>
         <xpath>//procedure[procedureName=&quot;DeleteCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/Cluster/DeleteCluster.xml</path>
+        <!-- <path>parameterForms/Cluster/DeleteCluster.xml</path> -->
+        <!-- Old form -->
+        <path>parameterForms/DeleteCluster.xml</path>
     </file>
     <!-- Python script -->
     <file>
@@ -893,6 +907,8 @@
     <!-- Perl script -->
     <file>
         <xpath>//procedure[procedureName=&quot;DeleteCluster&quot;]/step[stepName=&quot;DeleteCluster&quot;]/command</xpath>
+        <!-- <path>server/Cluster/deleteCluster.pl</path> -->
+        <!-- Old script -->
         <path>server/Cluster/deleteCluster.pl</path>
     </file>
     <!-- End of DeleteCluster procedure Files -->

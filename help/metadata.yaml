@@ -1,5 +1,7 @@
 excludeProcedures:
   - DiscoverResource
+  - CreateFirstClusterMember
+  - CreateClusterMembers
 
 proceduresGrouping:
   groups:
@@ -15,8 +17,8 @@ proceduresGrouping:
       procedures:
         - CreateApplicationServer
         - CreateCluster
-        - CreateFirstClusterMember
-        - CreateClusterMembers
+        # - CreateFirstClusterMember
+        # - CreateClusterMembers
         - DeleteApplicationServer
         - DeleteCluster
         - ExportApplicationServer
