@@ -60,6 +60,7 @@
         <property>credential</property>
         <value></value>
         <required>0</required>
+        <documentation>Credentials used to connect to WebSphere instance.</documentation>
     </formElement>
     <formElement>
         <label>Debug Level:</label>

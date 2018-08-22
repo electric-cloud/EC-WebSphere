@@ -146,7 +146,7 @@ Each configuration is given a unique name that is entered in designated paramete
             
             <tr>
                 <td >Login as</td>
-                <td></td>
+                <td>Credentials used to connect to WebSphere instance.</td>
             </tr>
             
             <tr>
