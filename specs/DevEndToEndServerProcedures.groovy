@@ -166,13 +166,13 @@ class DevEndToEndServerProcedures extends PluginTestHelper {
             assert summary5.contains("Node: $wasTargetNodeName, Server: $wasTargetServerName, State: Stopped")
             // 6 delete server
             def summary6 = getJobProperty("/myJob/jobSteps/DeleteApplicationServer/summary", result.jobId)
-            assert summary6.contains("Server $wasTargetServerName on node $wasTargetNodeName has been deleted")
+            assert summary6.contains("Application server $wasTargetServerName on node $wasTargetNodeName has been deleted")
             // 7 create application template
             def summary7 = getJobProperty("/myJob/jobSteps/CreateApplicationServer/summary", result.jobId)
             assert summary7.contains("Application server $wasTargetServerName has been created on node $wasTargetNodeName")
             // 8 delete server
             def summary8 = getJobProperty("/myJob/jobSteps/DeleteApplicationServer2/summary", result.jobId)
-            assert summary8.contains("Server $wasTargetServerName on node $wasTargetNodeName has been deleted")
+            assert summary8.contains("Application server $wasTargetServerName on node $wasTargetNodeName has been deleted")
             // 9 delete template
             def summary9 = getJobProperty("/myJob/jobSteps/DeleteApplicationServrTemplate/summary", result.jobId)
             assert summary9.contains("Application server template $wasTemplateName has been deleted")
