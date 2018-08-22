@@ -45,8 +45,10 @@
         <property>wasDeploymentManagerProfile</property>
         <type>entry</type>
         <required>0</required>
-        <documentation>Profile name of the DeploymentManager which needs to be started.
-        If this is not provided StartManager will start the DeploymentManager which has the default profile.</documentation>
+        <documentation>
+            Profile name of the DeploymentManager which needs to be started.
+            If this is not provided StartManager will start the DeploymentManager which has the default profile.
+        </documentation>
     </formElement>
 
 
@@ -55,7 +57,7 @@
         <property>wasLogFileLocation</property>
         <type>entry</type>
         <required>0</required>
-        <documentation>Absolute Physical path in Filesystem to location of startManager.sh logs i.e., /path/to/stopServer.log</documentation>
+        <documentation>Absolute Physical path in Filesystem to location of startManager.sh logs i.e., /path/to/startServer.log</documentation>
     </formElement>
 
 
@@ -73,8 +75,9 @@
         <property>wasAdditionalParameters</property>
         <type>textarea</type>
         <required>0</required>
-        <documentation>This parameter can be used to either override defaults or pass Custom Properties. For example:
-        -quiet, -nowait, -help.</documentation>
+        <documentation>
+            This parameter can be used to either override defaults or pass Custom Properties. For example: -quiet, -nowait, -help.
+        </documentation>
     </formElement>
 
 </editor>

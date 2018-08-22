@@ -34,37 +34,43 @@ limitations under the License.
         <property>wasNodeName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Name of configuration</documentation>
+        <documentation>Specifies the node name where the server is to be imported.</documentation>
     </formElement>
     <formElement>
         <label>Application Server Name:</label>
         <property>wasAppServerName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Name of the websphere application server to create template in format NodeName:servername</documentation>
+        <documentation>Name of the application server to be imported.</documentation>
     </formElement>
     <formElement>
         <label>Archive:</label>
         <property>wasArchivePath</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Specifies the fully qualified path of the exported configuration archive.</documentation>
+        <documentation>Specifies the fully qualified path of the configuration archive.</documentation>
     </formElement>
     <formElement>
         <label>Node Name in Archive:</label>
         <property>wasNodeNameInArchive</property>
         <type>entry</type>
         <required>0</required>
-        <documentation>Specifies the node name of the server defined in the configuration archive.
-        (String, optional if there is only one node defined in the configuration archive, required if there are multiple nodes defined in the configuration archive).</documentation>
+        <documentation>
+            Specifies the node name of the server defined in the configuration archive.
+            Not required if there is only one Node in the Archive to be imported.
+            If there are multiple nodes in the Archive, mention the node name of the Server to be imported.
+        </documentation>
     </formElement>
     <formElement>
         <label>Server Name in Archive:</label>
         <property>wasAppServerNameInArchive</property>
         <type>entry</type>
         <required>0</required>
-        <documentation>Specifies the name of the server defined in the configuration archive.
-        (String, optional if there is only one server defined on the specified nodeInConfiguration archive, required if there are multiple servers defined under the specified nodeInConfiguration archive).</documentation>
+        <documentation>
+            Specifies the name of the server defined in the configuration archive.
+            Not required if there is only one Server in the Archive to be imported.
+            If there are multiple servers in the Archive, mention the name of the Server to be imported.
+        </documentation>
     </formElement>
     <formElement>
         <label>Core Group:</label>
@@ -81,7 +87,8 @@ limitations under the License.
         <checkedValue>1</checkedValue>
         <uncheckedValue>0</uncheckedValue>
         <required>0</required>
-        <documentation>Sync Nodes if checked.</documentation>
+        <documentation>
+            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+        </documentation>
     </formElement>
-
 </editor>

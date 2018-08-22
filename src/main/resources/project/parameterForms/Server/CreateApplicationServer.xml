@@ -30,22 +30,19 @@ limitations under the License.
         <htmlDocumentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" target="_blank" href="/commander/pages/@PLUGIN_NAME@/configurations">configuration page</a>.</htmlDocumentation>
         <required>1</required>
     </formElement>
-
-
     <formElement>
         <label>Node Name:</label>
         <property>wasNodeName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Was node name</documentation>
+        <documentation>Name of the node where application server is to be created.</documentation>
     </formElement>
-
     <formElement>
         <label>Server Name:</label>
         <property>wasAppServerName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Server name to create of type provided in previous parameter.</documentation>
+        <documentation>Name of application server to be created.</documentation>
     </formElement>
     <formElement>
         <label>Generate Unique Ports?:</label>
@@ -55,7 +52,10 @@ limitations under the License.
         <checkedValue>1</checkedValue>
         <uncheckedValue>0</uncheckedValue>
         <initiallyChecked>1</initiallyChecked>
-        <documentation>Generate new ports if checked.</documentation>
+        <documentation>
+            By default ports generated during server creation will be created uniquely.
+            If not checked ports in template will be used as is for server creation.
+        </documentation>
     </formElement>
     <!-- Creation source section -->
     <!-- Header for dynamic form -->
@@ -66,8 +66,6 @@ limitations under the License.
     <!--     <required>0</required> -->
     <!--     <documentation /> -->
     <!-- </formElement> -->
-
-
     <formElement>
         <label>Source Type:</label>
         <property>wasSourceType</property>
@@ -76,14 +74,19 @@ limitations under the License.
         <option><name>Template</name><value>template</value></option>
         <option><name>Server</name><value>server</value></option>
         <required>0</required>
-        <documentation>Source type to use for server creation, could be server, template.</documentation>
+        <documentation>
+            Type of source which should be used for server creation. Select Template or Application Server.
+            In case of template, application server template will be used for server creation, in case of Application Server,
+            template will be created from existing application server and new server will be created from this template then.
+            After successful creation template will be deleted.
+        </documentation>
     </formElement>
     <formElement>
         <label>Source Template Name:</label>
         <property>wasTemplateName</property>
         <type>entry</type>
         <required>0</required>
-        <documentation>Template name to use for server creation</documentation>
+        <documentation>Name of server template to be the source for a new server.</documentation>
         <dependsOn>wasSourceType</dependsOn>
         <condition>${wasSourceType} != '' AND ${wasSourceType} == 'template'</condition>
     </formElement>
@@ -92,7 +95,9 @@ limitations under the License.
         <property>wasTemplateLocation</property>
         <type>entry</type>
         <required>0</required>
-        <documentation>Location of template.</documentation>
+        <documentation>
+            The configuration Id that represents the location of a template.
+        </documentation>
         <dependsOn>wasSourceType</dependsOn>
         <condition>${wasSourceType} != '' AND ${wasSourceType} == 'template'</condition>
     </formElement>
@@ -101,7 +106,9 @@ limitations under the License.
         <property>wasSourceServerName</property>
         <type>entry</type>
         <required>0</required>
-        <documentation>Server that should be used as source for server creation.</documentation>
+        <documentation>
+            Name of application server to be the source for a new server in format nodename:servername.
+        </documentation>
         <dependsOn>wasSourceType</dependsOn>
         <condition>${wasSourceType} != '' AND ${wasSourceType} == 'server'</condition>
     </formElement>
@@ -114,7 +121,8 @@ limitations under the License.
         <checkedValue>1</checkedValue>
         <uncheckedValue>0</uncheckedValue>
         <required>0</required>
-        <documentation>Sync Nodes if checked.</documentation>
+        <documentation>
+            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+        </documentation>
     </formElement>
-
 </editor>

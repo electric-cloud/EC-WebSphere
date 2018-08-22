@@ -34,14 +34,14 @@ limitations under the License.
         <property>wasNodeName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Node name.</documentation>
+        <documentation>Name of the node where application server to be deleted.</documentation>
     </formElement>
     <formElement>
         <label>Server Name:</label>
         <property>wasAppServerName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Server Name to be deleted.</documentation>
+        <documentation>Name of application server to be deleted.</documentation>
     </formElement>
     <formElement>
         <label>Sync Nodes?:</label>
@@ -51,6 +51,8 @@ limitations under the License.
         <checkedValue>1</checkedValue>
         <uncheckedValue>0</uncheckedValue>
         <required>0</required>
-        <documentation>Sync Nodes if checked.</documentation>
+        <documentation>
+            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+        </documentation>
     </formElement>
 </editor>

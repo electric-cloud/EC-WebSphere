@@ -70,7 +70,7 @@ Please refer to this <a href="https://www-01.ibm.com/common/ssi/ShowDoc.wss?docU
     
 
     <li><a href="#procedures">Plugin Procedures</a></li>
-    <li>WAS Server Component Management<br/><i>These procedures for WAS component management</i></li><ul><li><a href="#CreateEndToEndMailProvider">CreateEndToEndMailProvider</a></li><li><a href="#CreateEJBContainer">CreateEJBContainer</a></li><li><a href="#CreateMailSession">CreateMailSession</a></li><li><a href="#PublishWSDL">PublishWSDL</a></li></ul><li>WAS Server Management Procedures<br/><i>These procedures for WAS server management</i></li><ul><li><a href="#CreateApplicationServer">CreateApplicationServer</a></li><li><a href="#CreateCluster">CreateCluster</a></li><li><a href="#DeleteApplicationServer">DeleteApplicationServer</a></li><li><a href="#DeleteCluster">DeleteCluster</a></li><li><a href="#ExportApplicationServer">ExportApplicationServer</a></li><li><a href="#ImportApplicationServer">ImportApplicationServer</a></li><li><a href="#ListClusterMembers">ListClusterMembers</a></li><li><a href="#RemoveClusterMembers">RemoveClusterMembers</a></li><li><a href="#SyncNodes">SyncNodes</a></li><li><a href="#ConfigureEJBContainer">ConfigureEJBContainer</a></li></ul><li>WAS Server Administration Proceduresnull</li><ul><li><a href="#StartApplicationServers">StartApplicationServers</a></li><li><a href="#StopApplicationServers">StopApplicationServers</a></li><li><a href="#RunCustomJob">RunCustomJob</a></li><li><a href="#StartCluster">StartCluster</a></li><li><a href="#StopCluster">StopCluster</a></li><li><a href="#StartDeploymentManager">StartDeploymentManager</a></li><li><a href="#StopDeploymentManager">StopDeploymentManager</a></li><li><a href="#StartNode">StartNode</a></li><li><a href="#StopNode">StopNode</a></li><li><a href="#StartServer">StartServer</a></li><li><a href="#StopServer">StopServer</a></li></ul><li>WAS Application Component Management Procedures<br/><i>These procedures for application component management.</i></li><ul><li><a href="#ConfigureSession">ConfigureSession</a></li><li><a href="#MapSharedLibrary">MapSharedLibrary</a></li><li><a href="#ModifyApplicationClassloader">ModifyApplicationClassloader</a></li></ul><li>WAS Application Administration Procedures<br/><i>These procedures for application administration.</i></li><ul><li><a href="#StartApp">StartApp</a></li><li><a href="#StopApp">StopApp</a></li></ul><li>WAS Datasource Management Procedures<br/><i>These procedures for datasource management.</i></li><ul><li><a href="#CreateJDBCProvider">CreateJDBCProvider</a></li><li><a href="#CreateDatasource">CreateDatasource</a></li><li><a href="#DeleteDatasource">DeleteDatasource</a></li><li><a href="#DeleteJDBCProvider">DeleteJDBCProvider</a></li></ul><li>WAS JMS Management Procedures<br/><i>These procedures for JMS resources management.</i></li><ul><li><a href="#CreateJMSProvider">CreateJMSProvider</a></li><li><a href="#DeleteJMSProvider">DeleteJMSProvider</a></li><li><a href="#CreateOrUpdateJMSQueue">CreateOrUpdateJMSQueue</a></li><li><a href="#CreateOrUpdateJMSTopic">CreateOrUpdateJMSTopic</a></li><li><a href="#CreateOrUpdateSIBJMSActivationSpec">CreateOrUpdateSIBJMSActivationSpec</a></li><li><a href="#CreateOrUpdateWMQJMSActivationSpec">CreateOrUpdateWMQJMSActivationSpec</a></li><li><a href="#CreateOrUpdateSIBJMSConnectionFactory">CreateOrUpdateSIBJMSConnectionFactory</a></li><li><a href="#CreateOrUpdateWMQJMSConnectionFactory">CreateOrUpdateWMQJMSConnectionFactory</a></li></ul><li>WAS Application Deployment Procedures<br/><i>These procedures for applications deployment.</i></li><ul><li><a href="#DeployApp">DeployApp</a></li><li><a href="#DeployEnterpriseApp">DeployEnterpriseApp</a></li><li><a href="#DeployOSGIApp">DeployOSGIApp</a></li><li><a href="#UndeployApp">UndeployApp</a></li><li><a href="#UpdateApp">UpdateApp</a></li></ul><li>Check Procedures<br/><i>Procedures for status checking</i></li><ul><li><a href="#CheckApp">CheckApp</a></li><li><a href="#CheckNodeStatus">CheckNodeStatus</a></li><li><a href="#CheckPageStatus">CheckPageStatus</a></li><li><a href="#CheckServerStatus">CheckServerStatus</a></li></ul>
+    <li>WAS Server Component Management<br/><i>These procedures for WAS component management</i></li><ul><li><a href="#CreateEndToEndMailProvider">CreateEndToEndMailProvider</a></li><li><a href="#CreateEJBContainer">CreateEJBContainer</a></li><li><a href="#CreateMailSession">CreateMailSession</a></li><li><a href="#PublishWSDL">PublishWSDL</a></li></ul><li>WAS Server Management Procedures<br/><i>These procedures for WAS server management</i></li><ul><li><a href="#CreateApplicationServer">CreateApplicationServer</a></li><li><a href="#CreateApplicationServerTemplate">CreateApplicationServerTemplate</a></li><li><a href="#CreateCluster">CreateCluster</a></li><li><a href="#DeleteApplicationServer">DeleteApplicationServer</a></li><li><a href="#DeleteApplicationServerTemplate">DeleteApplicationServerTemplate</a></li><li><a href="#DeleteCluster">DeleteCluster</a></li><li><a href="#ExportApplicationServer">ExportApplicationServer</a></li><li><a href="#ImportApplicationServer">ImportApplicationServer</a></li><li><a href="#ListClusterMembers">ListClusterMembers</a></li><li><a href="#RemoveClusterMembers">RemoveClusterMembers</a></li><li><a href="#SyncNodes">SyncNodes</a></li><li><a href="#ConfigureEJBContainer">ConfigureEJBContainer</a></li></ul><li>WAS Server Administration Proceduresnull</li><ul><li><a href="#StartApplicationServers">StartApplicationServers</a></li><li><a href="#StopApplicationServers">StopApplicationServers</a></li><li><a href="#RunCustomJob">RunCustomJob</a></li><li><a href="#StartCluster">StartCluster</a></li><li><a href="#StopCluster">StopCluster</a></li><li><a href="#StartDeploymentManager">StartDeploymentManager</a></li><li><a href="#StopDeploymentManager">StopDeploymentManager</a></li><li><a href="#StartNode">StartNode</a></li><li><a href="#StopNode">StopNode</a></li><li><a href="#StartServer">StartServer</a></li><li><a href="#StopServer">StopServer</a></li></ul><li>WAS Application Component Management Procedures<br/><i>These procedures for application component management.</i></li><ul><li><a href="#ConfigureSession">ConfigureSession</a></li><li><a href="#MapSharedLibrary">MapSharedLibrary</a></li><li><a href="#ModifyApplicationClassloader">ModifyApplicationClassloader</a></li></ul><li>WAS Application Administration Procedures<br/><i>These procedures for application administration.</i></li><ul><li><a href="#StartApp">StartApp</a></li><li><a href="#StopApp">StopApp</a></li></ul><li>WAS Datasource Management Procedures<br/><i>These procedures for datasource management.</i></li><ul><li><a href="#CreateJDBCProvider">CreateJDBCProvider</a></li><li><a href="#CreateDatasource">CreateDatasource</a></li><li><a href="#DeleteDatasource">DeleteDatasource</a></li><li><a href="#DeleteJDBCProvider">DeleteJDBCProvider</a></li></ul><li>WAS JMS Management Procedures<br/><i>These procedures for JMS resources management.</i></li><ul><li><a href="#CreateJMSProvider">CreateJMSProvider</a></li><li><a href="#DeleteJMSProvider">DeleteJMSProvider</a></li><li><a href="#CreateOrUpdateJMSQueue">CreateOrUpdateJMSQueue</a></li><li><a href="#CreateOrUpdateJMSTopic">CreateOrUpdateJMSTopic</a></li><li><a href="#CreateOrUpdateSIBJMSActivationSpec">CreateOrUpdateSIBJMSActivationSpec</a></li><li><a href="#CreateOrUpdateWMQJMSActivationSpec">CreateOrUpdateWMQJMSActivationSpec</a></li><li><a href="#CreateOrUpdateSIBJMSConnectionFactory">CreateOrUpdateSIBJMSConnectionFactory</a></li><li><a href="#CreateOrUpdateWMQJMSConnectionFactory">CreateOrUpdateWMQJMSConnectionFactory</a></li></ul><li>WAS Application Deployment Procedures<br/><i>These procedures for applications deployment.</i></li><ul><li><a href="#DeployApp">DeployApp</a></li><li><a href="#DeployEnterpriseApp">DeployEnterpriseApp</a></li><li><a href="#DeployOSGIApp">DeployOSGIApp</a></li><li><a href="#UndeployApp">UndeployApp</a></li><li><a href="#UpdateApp">UpdateApp</a></li></ul><li>Check Procedures<br/><i>Procedures for status checking</i></li><ul><li><a href="#CheckApp">CheckApp</a></li><li><a href="#CheckNodeStatus">CheckNodeStatus</a></li><li><a href="#CheckPageStatus">CheckPageStatus</a></li><li><a href="#CheckServerStatus">CheckServerStatus</a></li></ul>
     
     
     <li><a href="#releaseNotes">Release Notes</a></li>
@@ -555,42 +555,56 @@ Each configuration is given a unique name that is entered in designated paramete
             
             <tr>
                 <td class="required">Node Name</td>
-                <td>Was node name</td>
+                <td>Name of the node where application server is to be created.</td>
             </tr>
             
             <tr>
                 <td class="required">Server Name</td>
-                <td>Server name to create of type provided in previous parameter.</td>
+                <td>Name of application server to be created.</td>
             </tr>
             
             <tr>
                 <td >Generate Unique Ports?</td>
-                <td>Generate new ports if checked.</td>
+                <td>
+            By default ports generated during server creation will be created uniquely.
+            If not checked ports in template will be used as is for server creation.
+        </td>
             </tr>
             
             <tr>
                 <td >Source Type</td>
-                <td>Source type to use for server creation, could be server, template.</td>
+                <td>
+            Type of source which should be used for server creation. Select Template or Application Server.
+            In case of template, application server template will be used for server creation, in case of Application Server,
+            template will be created from existing application server and new server will be created from this template then.
+            After successful creation template will be deleted.
+        </td>
             </tr>
             
             <tr>
                 <td >Source Template Name</td>
-                <td>Template name to use for server creation</td>
+                <td>Name of server template to be the source for a new server.</td>
             </tr>
             
             <tr>
                 <td >Source Template Location</td>
-                <td>Location of template.</td>
+                <td>
+            The configuration Id that represents the location of a template.
+        </td>
             </tr>
             
             <tr>
                 <td >Source Server Name</td>
-                <td>Server that should be used as source for server creation.</td>
+                <td>
+            Name of application server to be the source for a new server in format nodename:servername.
+        </td>
             </tr>
             
             <tr>
                 <td >Sync Nodes?</td>
-                <td>Sync Nodes if checked.</td>
+                <td>
+            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+        </td>
             </tr>
             
             </tbody>
@@ -618,12 +632,90 @@ Each configuration is given a unique name that is entered in designated paramete
     </div>
 
     
+    <div id="CreateApplicationServerTemplate">
+        <h2>CreateApplicationServerTemplate</h2>
+        <p>Creates Application Server Template</p>
+        
+        <h3>CreateApplicationServerTemplate Parameters</h3>
+        <table class="grid">
+            <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+            <tr>
+                <td class="required">Configuration Name</td>
+                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">Node Name</td>
+                <td>Name of the node where application server is located.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">Application Server Name</td>
+                <td>Name of the application server to be a source for template.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">Template Name</td>
+                <td>Application server template name to be created.</td>
+            </tr>
+            
+            <tr>
+                <td >Template Location</td>
+                <td>
+            Specifies a configuration Id that represents the location to place the template.
+        </td>
+            </tr>
+            
+            <tr>
+                <td >Template Description</td>
+                <td>Description of application server template.</td>
+            </tr>
+            
+            <tr>
+                <td >Sync Nodes?</td>
+                <td>
+            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+        </td>
+            </tr>
+            
+            </tbody>
+        </table>
+        
+        <p>
+            <h3>Create Application Server Template</h3>
+<p>To Create Application Server Template in Flow interface, do these steps:</p>
+<ul>
+<li>Create Pipeline.</li>
+<li>Create task.</li>
+<li>In task definition choose Plugin and choose following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServerTemplate/PipelinePicker.png" /></li>
+<li>Click on arrow.</li>
+<li>Enter the following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServerTemplate/PipelineConfig.png" /></li>
+</ul>
+<p>After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServerTemplate/PipelineResult.png" />
+<br />In the <b>CreateApplicationServerTemplate</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServerTemplate/PipelineLog.png" /></p>
+
+        </p>
+        
+    </div>
+
+    
     <div id="CreateCluster">
         <h2>CreateCluster</h2>
         <p>Creates a new Application Server cluster.</p>
         
-            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong>
-This procedure creates a cluster, adds members to it, and can deploy an application in it using a Jython script.</p>
+            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
+<p>This procedure creates a cluster, adds members to it, and can deploy an application in it using a Jython script.</p>
 
         
         <h3>CreateCluster Parameters</h3>
@@ -746,17 +838,19 @@ report.</p>
             
             <tr>
                 <td class="required">Node Name</td>
-                <td>Node name.</td>
+                <td>Name of the node where application server to be deleted.</td>
             </tr>
             
             <tr>
                 <td class="required">Server Name</td>
-                <td>Server Name to be deleted.</td>
+                <td>Name of application server to be deleted.</td>
             </tr>
             
             <tr>
                 <td >Sync Nodes?</td>
-                <td>Sync Nodes if checked.</td>
+                <td>
+            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+        </td>
             </tr>
             
             </tbody>
@@ -784,12 +878,68 @@ report.</p>
     </div>
 
     
+    <div id="DeleteApplicationServerTemplate">
+        <h2>DeleteApplicationServerTemplate</h2>
+        <p>Deletes Application Server Template</p>
+        
+        <h3>DeleteApplicationServerTemplate Parameters</h3>
+        <table class="grid">
+            <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+            <tr>
+                <td class="required">Configuration Name</td>
+                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">Template Name</td>
+                <td>Application server template name to be deleted.</td>
+            </tr>
+            
+            <tr>
+                <td >Sync Nodes?</td>
+                <td>
+            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+        </td>
+            </tr>
+            
+            </tbody>
+        </table>
+        
+        <p>
+            <h3>Delete Application Server Template</h3>
+<p>To Delete Application Server Template in Flow interface, do these steps:</p>
+<ul>
+<li>Create Pipeline.</li>
+<li>Create task.</li>
+<li>In task definition choose Plugin and choose following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServerTemplate/PipelinePicker.png" /></li>
+<li>Click on arrow.</li>
+<li>Enter the following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServerTemplate/PipelineConfig.png" /></li>
+</ul>
+<p>After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServerTemplate/PipelineResult.png" />
+<br />In the <b>DeleteApplicationServerTemplate</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServerTemplate/PipelineLog.png" /></p>
+
+        </p>
+        
+    </div>
+
+    
     <div id="DeleteCluster">
         <h2>DeleteCluster</h2>
         <p>Deletes an existing cluster using the wsadmin tool</p>
         
-            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong>
-This procedure delete the specified cluster.</p>
+            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
+<p>This procedure delete the specified cluster.</p>
 
         
         <h3>DeleteCluster Parameters</h3>
@@ -862,12 +1012,12 @@ report.</p>
             
             <tr>
                 <td class="required">Node Name</td>
-                <td>Name of configuration</td>
+                <td>Name of application server node.</td>
             </tr>
             
             <tr>
                 <td class="required">Application Server Name</td>
-                <td>Name of the websphere application server to create template in format NodeName:servername</td>
+                <td>Application Server name to be exported.</td>
             </tr>
             
             <tr>
@@ -921,29 +1071,35 @@ report.</p>
             
             <tr>
                 <td class="required">Node Name</td>
-                <td>Name of configuration</td>
+                <td>Specifies the node name where the server is to be imported.</td>
             </tr>
             
             <tr>
                 <td class="required">Application Server Name</td>
-                <td>Name of the websphere application server to create template in format NodeName:servername</td>
+                <td>Name of the application server to be imported.</td>
             </tr>
             
             <tr>
                 <td class="required">Archive</td>
-                <td>Specifies the fully qualified path of the exported configuration archive.</td>
+                <td>Specifies the fully qualified path of the configuration archive.</td>
             </tr>
             
             <tr>
                 <td >Node Name in Archive</td>
-                <td>Specifies the node name of the server defined in the configuration archive.
-        (String, optional if there is only one node defined in the configuration archive, required if there are multiple nodes defined in the configuration archive).</td>
+                <td>
+            Specifies the node name of the server defined in the configuration archive.
+            Not required if there is only one Node in the Archive to be imported.
+            If there are multiple nodes in the Archive, mention the node name of the Server to be imported.
+        </td>
             </tr>
             
             <tr>
                 <td >Server Name in Archive</td>
-                <td>Specifies the name of the server defined in the configuration archive.
-        (String, optional if there is only one server defined on the specified nodeInConfiguration archive, required if there are multiple servers defined under the specified nodeInConfiguration archive).</td>
+                <td>
+            Specifies the name of the server defined in the configuration archive.
+            Not required if there is only one Server in the Archive to be imported.
+            If there are multiple servers in the Archive, mention the name of the Server to be imported.
+        </td>
             </tr>
             
             <tr>
@@ -953,7 +1109,9 @@ report.</p>
             
             <tr>
                 <td >Sync Nodes?</td>
-                <td>Sync Nodes if checked.</td>
+                <td>
+            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+        </td>
             </tr>
             
             </tbody>
@@ -985,8 +1143,8 @@ report.</p>
         <h2>ListClusterMembers</h2>
         <p>Lists all the members of cluster using wsadmin tool.</p>
         
-            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong>
-This procedure lists down all the members (application servers) of the cluster using a Jython script.</p>
+            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
+<p>This procedure lists down all the members (application servers) of the cluster using a Jython script.</p>
 
         
         <h3>ListClusterMembers Parameters</h3>
@@ -1041,8 +1199,8 @@ This procedure lists down all the members (application servers) of the cluster u
         <h2>RemoveClusterMembers</h2>
         <p>Removes list of application servers from existing cluster</p>
         
-            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong>
-This procedure removes specified application servers from the cluster using a Jython script.</p>
+            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
+<p>This procedure removes specified application servers from the cluster using a Jython script.</p>
 
         
         <h3>RemoveClusterMembers Parameters</h3>
@@ -1103,8 +1261,11 @@ This procedure removes specified application servers from the cluster using a Jy
         <h2>SyncNodes</h2>
         <p>Synchronizes active nodes.</p>
         
-            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong>
-Synchronizes Cell's Deployment Manager config repository with nodes of the cell. By default, WebSphere nodes are configured for auto-sync. This procedure should be used for manual nodes synchronization. For example: New custom property for node was added, and configuration was saved. Next, to make it available on each server it should be propagated to all servers of the node by nodes synchronization.</p>
+            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
+<p>Synchronizes Cell's Deployment Manager config repository with nodes of the cell. By default, WebSphere nodes are configured for auto-sync.
+This procedure should be used for manual nodes synchronization.
+For example: New custom property for node was added, and configuration was saved.
+Next, to make it available on each server it should be propagated to all servers of the node by nodes synchronization.</p>
 
         
         <h3>SyncNodes Parameters</h3>
@@ -1306,8 +1467,8 @@ Synchronizes Cell's Deployment Manager config repository with nodes of the cell.
         <h2>StartCluster</h2>
         <p>Starts cluster using wsadmin tool.</p>
         
-            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong>
-This procedure starts a cluster.</p>
+            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
+<p>This procedure starts a cluster.</p>
 
         
         <h3>StartCluster Parameters</h3>
@@ -1373,8 +1534,8 @@ This procedure starts a cluster.</p>
         <h2>StopCluster</h2>
         <p>Stops cluster using wsadmin tool.</p>
         
-            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong>
-This procedure stops a cluster.</p>
+            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
+<p>This procedure stops a cluster.</p>
 
         
         <h3>StopCluster Parameters</h3>
@@ -1462,13 +1623,15 @@ This procedure stops a cluster.</p>
             
             <tr>
                 <td >Deployment Manager Profile</td>
-                <td>Profile name of the DeploymentManager which needs to be started.
-        If this is not provided StartManager will start the DeploymentManager which has the default profile.</td>
+                <td>
+            Profile name of the DeploymentManager which needs to be started.
+            If this is not provided StartManager will start the DeploymentManager which has the default profile.
+        </td>
             </tr>
             
             <tr>
                 <td >Log File Location</td>
-                <td>Absolute Physical path in Filesystem to location of startManager.sh logs i.e., /path/to/stopServer.log</td>
+                <td>Absolute Physical path in Filesystem to location of startManager.sh logs i.e., /path/to/startServer.log</td>
             </tr>
             
             <tr>
@@ -1478,8 +1641,9 @@ This procedure stops a cluster.</p>
             
             <tr>
                 <td >Additional Parameters</td>
-                <td>This parameter can be used to either override defaults or pass Custom Properties. For example:
-        -quiet, -nowait, -help.</td>
+                <td>
+            This parameter can be used to either override defaults or pass Custom Properties. For example: -quiet, -nowait, -help.
+        </td>
             </tr>
             
             </tbody>
@@ -1533,8 +1697,10 @@ This procedure stops a cluster.</p>
             
             <tr>
                 <td >Deployment Manager Profile</td>
-                <td>Profile name of the DeploymentManager which needs to be stopped.
-        If this is not provided StopManager will stop the DeploymentManager which has the default profile.</td>
+                <td>
+            Profile name of the DeploymentManager which needs to be stopped.
+            If this is not provided StopManager will stop the DeploymentManager which has the default profile.
+        </td>
             </tr>
             
             <tr>
@@ -1549,8 +1715,9 @@ This procedure stops a cluster.</p>
             
             <tr>
                 <td >Additional Parameters</td>
-                <td>This parameter can be used to either override defaults or pass Custom Properties. For example:
-        -quiet, -nowait, -help.</td>
+                <td>
+            This parameter can be used to either override defaults or pass Custom Properties. For example: -quiet, -nowait, -help.
+        </td>
             </tr>
             
             </tbody>
@@ -1604,8 +1771,10 @@ This procedure stops a cluster.</p>
             
             <tr>
                 <td >Node Profile</td>
-                <td>Profile name of the Node which needs to be started.
-        If this is not provided StartNode will start the Node which has the default profile.</td>
+                <td>
+            Profile name of the Node which needs to be started.
+            If this is not provided StartNode will start the Node which has the default profile.
+        </td>
             </tr>
             
             <tr>
@@ -1620,12 +1789,12 @@ This procedure stops a cluster.</p>
             
             <tr>
                 <td >Start all Application Servers?</td>
-                <td></td>
+                <td>Start all application servers within node after nodeagent is started.</td>
             </tr>
             
             <tr>
                 <td >Node Name to start Servers</td>
-                <td>Node name that is being used for start servers.</td>
+                <td>Name of the node where application servers needs to be started.</td>
             </tr>
             
             <tr>
@@ -1686,8 +1855,10 @@ This procedure stops a cluster.</p>
             
             <tr>
                 <td >Node Profile</td>
-                <td>Profile name of the Node which needs to be stopped.
-        If this is not provided StopNode will stop the Node which has the default profile.</td>
+                <td>
+            Profile name of the Node which needs to be stopped.
+            If this is not provided StopNode will stop the Node which has the default profile.
+        </td>
             </tr>
             
             <tr>
@@ -1702,13 +1873,14 @@ This procedure stops a cluster.</p>
             
             <tr>
                 <td >Node Stop Policy</td>
-                <td>Policy that will be used for node stopping. It could be one of: Just Stop node agent, stop application servers, save node state.</td>
+                <td>Policy that will be used for node stopping. It could be one of: Just Stop node agent, stop Spplication Servers, Save Node State.</td>
             </tr>
             
             <tr>
                 <td >Additional Parameters</td>
-                <td>This parameter can be used to either override defaults or pass Custom Properties. For example:
-        -quiet, -nowait, -help.</td>
+                <td>
+            This parameter can be used to either override defaults or pass Custom Properties. For example: -quiet, -nowait, -help.
+        </td>
             </tr>
             
             </tbody>
@@ -3810,8 +3982,8 @@ A context root for each web module is defined in the application deployment desc
         <h2>CheckNodeStatus</h2>
         <p>Checks Node Status.</p>
         
-            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong>
-This procedure checks WebSphere node status. It checks Node Agent and all servers associated with node by it's name.</p>
+            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
+<p>This procedure checks WebSphere node status. It checks Node Agent and all servers associated with node by it's name.</p>
 
         
         <h3>CheckNodeStatus Parameters</h3>
@@ -4049,137 +4221,6 @@ This procedure checks WebSphere node status. It checks Node Agent and all server
                 the following diagnostic
                 report.</p>
                 <img src="../../plugins/EC-WebSphere/images/ConfigEJBContainer/EC-WebSphereConfigEJBContainer4.png" />
-
-        </p>
-        
-    </div>
-
-    
-    <div id="CreateApplicationServerTemplate">
-        <h2>CreateApplicationServerTemplate</h2>
-        <p>Creates Application Server Template</p>
-        
-        <h3>CreateApplicationServerTemplate Parameters</h3>
-        <table class="grid">
-            <thead>
-            <tr>
-                <th>Parameter</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            
-            <tr>
-                <td class="required">Configuration Name</td>
-                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Node Name</td>
-                <td>Name of the node where application server is located.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Application Server Name</td>
-                <td>Name of the application server to be a source for template.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Template Name</td>
-                <td>Application Server Template name to be created.</td>
-            </tr>
-            
-            <tr>
-                <td >Template Location</td>
-                <td>
-            Specifies a configuration Id that represents the location to place the template.
-            The configuration Id value is the application server template, which is templates\servertypes\APPLICATION_SERVER|servertype-metadata.xml
-        </td>
-            </tr>
-            
-            <tr>
-                <td >Template Description</td>
-                <td>Description of Application Server template.</td>
-            </tr>
-            
-            <tr>
-                <td >Sync Nodes?</td>
-                <td>Sync Nodes if checked.</td>
-            </tr>
-            
-            </tbody>
-        </table>
-        
-        <p>
-            <h3>Create Application Server Template</h3>
-<p>To Create Application Server Template in Flow interface, do these steps:</p>
-<ul>
-<li>Create Pipeline.</li>
-<li>Create task.</li>
-<li>In task definition choose Plugin and choose following parameters:
-<br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServerTemplate/PipelinePicker.png" /></li>
-<li>Click on arrow.</li>
-<li>Enter the following parameters:
-<br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServerTemplate/PipelineConfig.png" /></li>
-</ul>
-<p>After the pipeline runs, you can view the results, including the following step details:
-<br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServerTemplate/PipelineResult.png" />
-<br />In the <b>CreateApplicationServerTemplate</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
-<br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServerTemplate/PipelineLog.png" /></p>
-
-        </p>
-        
-    </div>
-
-    
-    <div id="DeleteApplicationServerTemplate">
-        <h2>DeleteApplicationServerTemplate</h2>
-        <p>Deletes Application Server Template</p>
-        
-        <h3>DeleteApplicationServerTemplate Parameters</h3>
-        <table class="grid">
-            <thead>
-            <tr>
-                <th>Parameter</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            
-            <tr>
-                <td class="required">Configuration Name</td>
-                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Template Name</td>
-                <td>Template name to be deleted.</td>
-            </tr>
-            
-            <tr>
-                <td >Sync Nodes?</td>
-                <td>Sync Nodes if checked.</td>
-            </tr>
-            
-            </tbody>
-        </table>
-        
-        <p>
-            <h3>Delete Application Server Template</h3>
-<p>To Delete Application Server Template in Flow interface, do these steps:</p>
-<ul>
-<li>Create Pipeline.</li>
-<li>Create task.</li>
-<li>In task definition choose Plugin and choose following parameters:
-<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServerTemplate/PipelinePicker.png" /></li>
-<li>Click on arrow.</li>
-<li>Enter the following parameters:
-<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServerTemplate/PipelineConfig.png" /></li>
-</ul>
-<p>After the pipeline runs, you can view the results, including the following step details:
-<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServerTemplate/PipelineResult.png" />
-<br />In the <b>DeleteApplicationServerTemplate</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
-<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServerTemplate/PipelineLog.png" /></p>
 
         </p>
         
