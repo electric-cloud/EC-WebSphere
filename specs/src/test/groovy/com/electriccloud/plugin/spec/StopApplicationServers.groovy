@@ -105,6 +105,9 @@ class StopApplicationServers extends PluginTestHelper {
     def procCreateName = 'CreateApplicationServer'
 
     @Shared
+    def procDeleteName = 'DeleteApplicationServer'
+
+    @Shared
     def serverLists = [
             'default':      'websphere90ndNode01:server1',
             'second':       'websphere90ndNode01:serverStopAppServer',
@@ -137,8 +140,8 @@ class StopApplicationServers extends PluginTestHelper {
             'warning_both': ['Server server1 on Node websphere90ndNode01 is already Stopped','Server serverStopAppServer on Node websphere90ndNode01 is already Stopped','Nothing to do, all servers are already Stopped','warning','Application servers have been stopped'],
             'warning_second': ['Stop completed for middleware server "server1" on node "websphere90ndNode01"', "Node: websphere90ndNode01, Server: server1, State: Stopped" , 'Server serverStopAppServer on Node websphere90ndNode01 is already Stopped','warning','Application servers have been stopped'],
             'warning_first': ['Stop completed for middleware server "serverStopAppServer" on node "websphere90ndNode01"', "Node: websphere90ndNode01, Server: serverStopAppServer, State: Stopped" , 'Server server1 on Node websphere90ndNode01 is already Stopped','warning','Application servers have been stopped'],
-            'error': ['error','Failed to stop servers:','Node: websphere90ndNode01, Server: server1, State: STOPPING','Some servers are failed to stop'],
-            'error_both': ['error','Failed to stop servers:','Node: websphere90ndNode01, Server: server1, State: STOPPING','Node: websphere90ndNode01, Server: serverStopAppServer, State: STOPPING','Some servers are failed to stop'],
+            'error': ['error','Failed to stop servers:','Node: websphere90ndNode01, Server: server1, State: (STOPPING|STARTED)','Some servers are failed to stop'],
+            'error_both': ['error','Failed to stop servers:','Node: websphere90ndNode01, Server: server1, State: (STOPPING|STARTED)','Node: websphere90ndNode01, Server: serverStopAppServer, State: (STOPPING|STARTED)','Some servers are failed to stop'],
             'error_empty_config': ["Error: Configuration '' doesn't exist"],
             'error_config': ["Error: Configuration 'incorrect' doesn't exist"],
             'error_empty_ServerList': ['error','Failed to stop servers:', 'Missing servers list to be stopped'],
@@ -157,7 +160,7 @@ class StopApplicationServers extends PluginTestHelper {
             'incorrectServers':"Failed to stop servers:\nFailed to stop server wrong_server1 on node websphere90ndNode01\nADMF0003E: Invalid parameter value wrong_server1 for parameter serverName for command stopMiddlewareServer.",
             'incorrectWaitTime':"Wait time should be a positive integer, if present. Got: 9am",
             'zeroWaitTime':"Failed to stop servers:\nNode: websphere90ndNode01, Server: server1, State: (STOPPING|STARTED)\nSome servers are failed to stop",
-            'zeroWaitTimeMultiple':"Failed to stop servers:\nNode: websphere90ndNode01, Server: server1, State: STOPPING\nNode: websphere90ndNode01, Server: serverStopAppServer, State: STOPPING\nSome servers are failed to stop"
+            'zeroWaitTimeMultiple':"Failed to stop servers:\nNode: websphere90ndNode01, Server: server1, State: (STOPPING|STARTED)\nNode: websphere90ndNode01, Server: serverStopAppServer, State: (STOPPING|STARTED)\nSome servers are failed to stop"
     ]
 
     def doSetupSpec() {
@@ -212,6 +215,20 @@ class StopApplicationServers extends PluginTestHelper {
     }
 
     def doCleanupSpec() {
+        def wasResourceName = wasHost
+
+        importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
+                                                            resName : wasResourceName,
+                                                            procName: procDeleteName,
+                                                            params  : [
+                                                                    configname: '',
+                                                                    wasAppServerName: '',
+                                                                    wasNodeName: '',
+                                                                    wasSyncNodes: '',
+                                                            ]
+        ])
+
+        deleteApplicationServer('websphere90ndNode01','serverStopAppServer')
     }
 
     @Unroll
@@ -328,7 +345,7 @@ class StopApplicationServers extends PluginTestHelper {
         def outcome = getJobProperty('/myJob/outcome', result.jobId)
         def jobSummary = getJobProperty("/myJob/jobSteps/$procName/summary", result.jobId)
         assert outcome == expectedOutcome
-        if (testCaseID != testCases.systemTest16){
+        if (testCaseID != testCases.systemTest16 && testCaseID != testCases.systemTest17){
             assert jobSummary == expectedSummary
         } else {
             assert jobSummary ==~ expectedSummary
@@ -370,11 +387,11 @@ class StopApplicationServers extends PluginTestHelper {
                 wasAppServerName: server,
                 wasGenUniquePorts: '1',
                 wasNodeName: node,
-                wasSourceServerName: '',
-                wasSourceType: 'template',
+                wasSourceServerName: 'websphere90ndNode01:server1',
+                wasSourceType: 'server',
                 wasSyncNodes: '1',
                 wasTemplateLocation: '',
-                wasTemplateName: 'default',
+                wasTemplateName: '',
         ]
         def result = runProcedure(runParams, procCreateName)
         waitUntil {
@@ -385,6 +402,23 @@ class StopApplicationServers extends PluginTestHelper {
             }
         }
     }
+    def deleteApplicationServer(node,server){
+        def runParams = [
+                configname: confignames.correctSOAP,
+                wasAppServerName: server,
+                wasNodeName: node,
+                wasSyncNodes: '1',
+        ]
+        def result = runProcedure(runParams, procDeleteName)
+        waitUntil {
+            try {
+                jobCompleted(result)
+            } catch (Exception e) {
+                println e.getMessage()
+            }
+        }
+    }
+
     //Run Test Procedure
     def runProcedure(def parameters, def procedureName=procName) {
         def parametersString = parameters.collect { k, v -> "$k: '$v'" }.join(', ')
