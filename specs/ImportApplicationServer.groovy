@@ -2,6 +2,7 @@ import spock.lang.*
 import com.electriccloud.spec.SpockTestSupport
 import PluginTestHelper
 
+@Stepwise
 class ImportApplicationServer extends PluginTestHelper {
 
     // Environments Variables
@@ -96,6 +97,9 @@ class ImportApplicationServer extends PluginTestHelper {
 
     @Shared
     def procCreateServer = 'CreateApplicationServer'
+
+    @Shared
+    def procDeleteServer = 'DeleteApplicationServer'    
 
     @Shared
     def resourceProcedureName = 'GetResources'
@@ -197,6 +201,17 @@ class ImportApplicationServer extends PluginTestHelper {
             ]
         ])
 
+        importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
+            resName : wasResourceName,
+            procName: procDeleteServer,
+            params  : [
+                    configname: '',
+                    wasAppServerName: '',
+                    wasNodeName: '',
+                    wasSyncNodes: '',
+            ]
+        ])                
+
 
         importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
             resName : wasResourceName,
@@ -275,6 +290,8 @@ class ImportApplicationServer extends PluginTestHelper {
         for (log in logs){
             assert debugLog =~ log.replace("serverReplace", newServer).replace("serverInArcReplace", serverNameInArchive).replace("nodeReplace", nodeName).replace("coreGroupReplace", coreGroup)
         }
+        cleanup:
+        deleteAppServer(nodeName, newServer)        
  
         where: 'The following params will be:'
         testCaseID        | configname              | serverName        | serverNameInArchive | arcPath         | coreGroup            | nodeName        | nodeNameInArchive | syncNodes | serverExport       | nodeExport      | arcExport       | status      | expectedSummary     | exportServer | logs                    
@@ -347,7 +364,17 @@ class ImportApplicationServer extends PluginTestHelper {
         testCases.C363447   | confignames.correctSOAP | servers.'default' | ''                  | paths.'backup'  | ''                 | nodes.'default' | nodes.'wrong'     | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "error"     | summaries.'wrongArcNode'           | jobLogs.'wrongArcNode'           | 0    
         testCases.C363448   | confignames.correctSOAP | servers.'default' | servers.'wrong'     | paths.'backup'  | ''                 | nodes.'default' | nodes.'default'   | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "error"     | summaries.'wrongArcServer'         | jobLogs.'wrongArcServer'         | 0    
         testCases.C363451   | confignames.correctSOAP | servers.'default' | ''                  | paths.'default' | coreGroups.'wrong' | nodes.'default' | ''                | '0'       | servers.'default'  | nodes.'default' | paths.'default' | "error"     | summaries.'wrongGroup'             | jobLogs.'wrongGroup'             | 0
-   }    
+    }    
+
+    def deleteAppServer(node,server){
+        def runParams = [
+                configname: confignames.correctSOAP,
+                wasAppServerName: server,
+                wasNodeName: node,
+                wasSyncNodes: '1',
+        ]
+        runProcedure(runParams, procDeleteServer)
+    }
 
     //Run Test Procedure
     def runProcedure(def parameters, def procedureName=procName) {
