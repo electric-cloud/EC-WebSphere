@@ -2,6 +2,7 @@ import spock.lang.*
 import com.electriccloud.spec.SpockTestSupport
 import PluginTestHelper
 
+@Stepwise
 class StartApplicationServers extends PluginTestHelper {
 
     // Environments Variables
@@ -98,6 +99,9 @@ class StartApplicationServers extends PluginTestHelper {
     def procCreateName = 'CreateApplicationServer'
 
     @Shared
+    def procDeleteServer = 'DeleteApplicationServer'    
+
+    @Shared
     def serverLists = [
         'default':      'websphere90ndNode01:server1',
         'multiple':     'websphere90ndNode01:server1,websphere90ndNode01:serverStartAppServer',
@@ -178,6 +182,17 @@ class StartApplicationServers extends PluginTestHelper {
         ])
 
         importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
+            resName : wasResourceName,
+            procName: procDeleteServer,
+            params  : [
+                    configname: '',
+                    wasAppServerName: '',
+                    wasNodeName: '',
+                    wasSyncNodes: '',
+            ]
+        ])         
+
+        importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
                 resName : wasResourceName,
                 procName: procCreateName,
                 params  : [
@@ -219,6 +234,7 @@ class StartApplicationServers extends PluginTestHelper {
             }
         }
 
+        deleteAppServer('websphere90ndNode01','serverStartAppServer')
     }
 
     @Unroll
@@ -354,6 +370,15 @@ class StartApplicationServers extends PluginTestHelper {
         }
     }   
 
+    def deleteAppServer(node,server){
+        def runParams = [
+                configname: confignames.correctSOAP,
+                wasAppServerName: server,
+                wasNodeName: node,
+                wasSyncNodes: '1',
+        ]
+        runProcedure(runParams, procDeleteServer)
+    }
 
     //Run Test Procedure
     def runProcedure(def parameters, def procedureName=procName) {
