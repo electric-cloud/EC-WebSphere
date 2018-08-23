@@ -3,7 +3,7 @@ import com.electriccloud.spec.SpockTestSupport
 import PluginTestHelper
 
 
-@IgnoreIf({ System.getenv('IS_WAS_ND') != "1"})
+@IgnoreIf({ System.getenv('IS_MANUAL_RUN') != "1"})
 @Stepwise
 class DevEndToEndServerProcedures extends PluginTestHelper {
 
