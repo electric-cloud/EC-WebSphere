@@ -50,7 +50,6 @@ test {
     systemProperties['EC_SPECS_CLI'] = true
 
     def destination = findProperty('reportDestination') ?: "spec-report"
-    //html.destination = destination
     if (destination) {
         systemProperty 'com.athaydes.spockframework.report.outputDir', destination
     }

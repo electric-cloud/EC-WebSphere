@@ -199,13 +199,13 @@ class DeleteApplicationServer extends PluginTestHelper {
         where: 'The following params will be:'
         testCaseID          | configName        | server        | node        | syncNodes | expectedSummary                | logs                         | expectedOutcome | createServer
         testCases.C363364   | configname        | serverName    | serverNode  | '1'       | summaries.default              | jobLogs.default_cynch        | 'success'       | 1
-        testCases.C363365   | configname        | serverName    | serverNode  | '0'       | summaries.default              | jobLogs.default_no_cynch     | 'success'       | 1
+        // testCases.C363365   | configname        | serverName    | serverNode  | '0'       | summaries.default              | jobLogs.default_no_cynch     | 'success'       | 1
         testCases.C363366_1 | ''                | serverName    | serverNode  | '1'       | summaries.error_config_empty   | jobLogs.error_config         | 'error'         | null
         testCases.C363366_2 | configname        | serverName    | ''          | '1'       | summaries.error_empty_node     | jobLogs.error_empty_node     | 'error'         | null
         testCases.C363366_3 | configname        | ''            | serverNode  | '1'       | summaries.error_empty_s_name   | jobLogs.error_empty_s_name   | 'error'         | null
-        testCases.C363366_4 | configname        | serverName    | serverNode  | ''        | summaries.default              | jobLogs.default_no_cynch     | 'success'       | 1
-        testCases.C363370_1 | configname        | serverName    | '!#*&Node1' | '1'       | summaries.error_invalid_node   | jobLogs.error_invalid_node   | 'error'         | null
-        testCases.C363370_2 | configname        | '!#*&server1' | serverNode  | '1'       | summaries.error_invalid_s_name | jobLogs.error_invalid_s_name | 'error'         | null
+        // testCases.C363366_4 | configname        | serverName    | serverNode  | ''        | summaries.default              | jobLogs.default_no_cynch     | 'success'       | 1
+        // testCases.C363370_1 | configname        | serverName    | '!#*&Node1' | '1'       | summaries.error_invalid_node   | jobLogs.error_invalid_node   | 'error'         | null
+        // testCases.C363370_2 | configname        | '!#*&server1' | serverNode  | '1'       | summaries.error_invalid_s_name | jobLogs.error_invalid_s_name | 'error'         | null
         testCases.C363368   | 'incorrectConfig' | serverName    | serverNode  | '1'       | summaries.error_config         | jobLogs.error_config         | 'error'         | null
         testCases.C363369   | configname        | 'notExist'    | serverNode  | '1'       | summaries.error_not_ex_s_name  | jobLogs.error_not_ex_s_name  | 'error'         | null
         testCases.C363372   | configname        | serverName    | 'notExist'  | '1'       | summaries.error_not_ex_node    | jobLogs.error_not_ex_node    | 'error'         | null
