@@ -19,7 +19,15 @@ import time
 import re
 import os
 import traceback
-import uuid
+import string
+import random
+
+def genRandomString(l):
+    result = ''
+    for _ in range(l):
+        result = result + random.choice('0123456789abcdef')
+
+    return result
 
 # logging functions
 def logWithLevel(level, logLine):
@@ -54,6 +62,12 @@ def isAppReady(appName):
     else:
         return 0
 
+# exception functions:
+def getExceptionMsg():
+    errorType, errorMsg, errorTraceBack = sys.exc_info()
+    retval = str(errorMsg).strip()
+    return retval
+
 # Checks application for existance
 def isAppExists(appName):
     deployment = AdminConfig.getid('/Deployment:%s/' % (appName));
@@ -71,7 +85,7 @@ def isAppRunning(appName):
         return 0
 
 def genUUID():
-    return str(uuid.uuid4())
+    return str(genRandomString(32))
 
 # this function will return high-level application status.
 # Need to do some clarifications. There is application state transitions:
@@ -343,8 +357,8 @@ def parseServerListAsDict(servers, opts):
         if 'expandStar' in opts.keys() and opts['expandStar'] == 1 and serverName == '*':
             try:
                 retval[nodeName] = getServersInNode(nodeName, {'ignoreNodeAgent': 1})
-            except Exception as e:
-                forwardException(e)
+            except:
+                forwardException(getExceptionMsg())
                 sys.exit(1)
             if len(retval[nodeName]) == 0:
                 logError('Node %s does not exist or does not have servers' % (nodeName))
@@ -393,11 +407,6 @@ def syncActiveNodes():
         print 'The following nodes have been synchronized: ' + str(nodes)
     else:
         print 'Standalone server, no nodes to sync'
-
-def getExceptionMsg():
-    errorType, errorMsg, errorTraceBack = sys.exc_info()
-    retval = str(errorMsg).strip()
-    return retval
 
 def bailOut(msg):
     logError(msg)
