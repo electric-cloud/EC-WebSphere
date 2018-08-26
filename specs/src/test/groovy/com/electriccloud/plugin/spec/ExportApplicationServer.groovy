@@ -73,7 +73,7 @@ class ExportApplicationServer extends PluginTestHelper {
 
     @Shared
     def nodes = [
-        'default': 'websphere90ndNode01',
+        'default': wasHost + 'Node01',
         'wrong': 'wrong',
     ]
 
