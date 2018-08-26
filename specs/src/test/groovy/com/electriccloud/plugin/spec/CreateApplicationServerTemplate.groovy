@@ -77,7 +77,7 @@ class CreateApplicationServerTemplate extends PluginTestHelper {
 
     @Shared
     def nodes = [
-        'default': 'websphere90ndNode01',
+        'default': wasHost + 'Node01',
         'wrong': 'wrong',
     ]
 
@@ -97,22 +97,22 @@ class CreateApplicationServerTemplate extends PluginTestHelper {
         'emptyServer': "Failed to create application server template templateReplace\nException: ADMG0261E: Could not validate Create server template command java.lang.NullPointerException.\n",
         'emptyNode': "Failed to create application server template templateReplace\nException: ADMG0504E: Cannot create server template using a server in a node  whose operating system is not known.\n",
         'emptyName': "Failed to create application server template \nException: ADMG0255E: Template Name is required.\n",
-        'wrongServer': 'Failed to create application server template templateReplace\nException: ADMG0256E: wrong does not exist within node websphere90ndNode01.\n',
+        'wrongServer': "Failed to create application server template templateReplace\nException: ADMG0256E: wrong does not exist within node ${nodes.'default'}.\n",
         'wrongNode': 'Failed to create application server template templateReplace\nException: ADMG0258E: Node wrong is not a valid node.\n',
         'alreadyExist': 'Failed to create application server template templateReplace\nException: ADMG0262E: Template templateReplace already exists.\n'
     ]
 
     @Shared
     def jobLogs = [
-        'default': ["Application server template templateReplace has been created", "(?!Synchronizing configuration repository with nodes now.)", "(?!The following nodes have been synchronized: websphere90ndNode01)"],
-        'syncNode': ["Application server template templateReplace has been created", "Synchronizing configuration repository with nodes now.", "The following nodes have been synchronized: websphere90ndNode01"],
+        'default': ["Application server template templateReplace has been created", "(?!Synchronizing configuration repository with nodes now.)", "(?!The following nodes have been synchronized: ${nodes.'default'})"],
+        'syncNode': ["Application server template templateReplace has been created", "Synchronizing configuration repository with nodes now.", "The following nodes have been synchronized: ${nodes.'default'}"],
         'description': ["if templateDescription:\n    params.append\\('-description'\\)\n    params.append\\(templateDescription\\)"],
         'emptyConfig': ["Configuration '' doesn't exist"],
         'incorrectConfig': ["Configuration 'incorrect' doesn't exist"],
         'emptyServer': ["Failed to create application server template templateReplace", "Could not validate Create server template command java.lang.NullPointerException."],
         'emptyNode': ["Exception: ADMG0504E: Cannot create server template using a server in a node  whose operating system is not known."],
         'emptyName': ["Failed to create application server template", "Template Name is required."],
-        'wrongServer': ['Failed to create application server template templateReplace', 'wrong does not exist within node websphere90ndNode01.'],
+        'wrongServer': ['Failed to create application server template templateReplace', "wrong does not exist within node ${nodes.'default'}."],
         'wrongNode': ['Failed to create application server template templateReplace', 'Node wrong is not a valid node.'],  
         'alreadyExist': ['Failed to create application server template templateReplace', 'Exception: ADMG0262E: Template templateReplace already exists.']                             
     ]
