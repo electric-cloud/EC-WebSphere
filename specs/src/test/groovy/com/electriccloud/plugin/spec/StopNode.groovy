@@ -114,6 +114,12 @@ class StopNode extends PluginTestHelper {
     ]
 
     @Shared
+    def nodes = [
+        'default': wasHost + 'Node01',
+        'wrong': 'wrong',
+    ]
+
+    @Shared
     stopLocations = [
         'default': '/opt/IBM/WebSphere/AppServer/bin/stopNode.sh', 
         'AppSrv01': '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/stopNode.sh',
@@ -165,13 +171,13 @@ class StopNode extends PluginTestHelper {
         'saveNode':  ["Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'  -saveNodeState",
             "Server nodeagent stop completed", "Node has been successfully stopped"],                    
         'stop':  ["Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'  -stopservers",
-            "Server server1 is now STOPPED", "Stopping all server processes for node websphere90ndNode01", "Server nodeagent is now STOPPED"],   
+            "Server server1 is now STOPPED", "Stopping all server processes for node ${nodes.'default'}", "Server nodeagent is now STOPPED"],   
         'addParam': ["Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'   -trace",
             "Server nodeagent stop completed", "Node has been successfully stopped"],
         'addParams': ["Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'   -trace -replacelog",
             "Server nodeagent stop completed", "Node has been successfully stopped"],
         'all':  ["Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -profileName 'AppSrv01'  -logfile '$logLocations.tmp'  -timeout '70'  -trace  -stopservers",
-            "Server server1 is now STOPPED", "Stopping all server processes for node websphere90ndNode01", "Server nodeagent is now STOPPED"],                            
+            "Server server1 is now STOPPED", "Stopping all server processes for node ${nodes.'default'}", "Server nodeagent is now STOPPED"],                            
         'emptyConfig': ["Error: Configuration '' doesn't exist"],
         'incorrectConfig': ["Configuration 'incorrect' doesn't exist"],
         'mandatoryShell': ["Shell is mandatory"],
@@ -422,7 +428,7 @@ class StopNode extends PluginTestHelper {
             configname: confignames.correctSOAP,
             wasAdditionalParameters: '',
             wasLogFileLocation: '',
-            wasNodeName: 'websphere90ndNode01',
+            wasNodeName: nodes.'default',
             wasNodeProfile    : '',
             wasStartNodeLocation: startLocations.'AppSrv01',
             wasStartServers: startServer,
