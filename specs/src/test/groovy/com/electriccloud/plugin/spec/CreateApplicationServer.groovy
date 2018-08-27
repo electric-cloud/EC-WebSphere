@@ -30,11 +30,11 @@ class CreateApplicationServer extends PluginTestHelper {
     @Shared
     def serverName = 'serverCreateApplicationServer'
     @Shared
-    def serverNode = 'websphere90ndNode01'
+    def serverNode = wasHost + 'Node01'
     @Shared
     def sourceTemplateName = 'default'
     @Shared
-    def sourceServerName = 'websphere90ndNode01:server1'
+    def sourceServerName = "$serverNode:server1"
 
     @Shared
     def procName = 'CreateApplicationServer'

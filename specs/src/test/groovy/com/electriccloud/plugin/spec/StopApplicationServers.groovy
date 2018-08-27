@@ -1,8 +1,8 @@
 package com.electriccloud.plugin.spec
 
 import spock.lang.*
-import com.electriccloud.spec.SpockTestSupport
 import com.electriccloud.plugin.spec.PluginTestHelper
+import com.electriccloud.spec.SpockTestSupport
 
 @Unroll
 @Stepwise
@@ -108,14 +108,17 @@ class StopApplicationServers extends PluginTestHelper {
     def procDeleteName = 'DeleteApplicationServer'
 
     @Shared
+    def serverNode = wasHost + 'Node01'
+
+    @Shared
     def serverLists = [
-            'default':      'websphere90ndNode01:server1',
-            'second':       'websphere90ndNode01:serverStopAppServer',
-            'multiple':     'websphere90ndNode01:server1,websphere90ndNode01:serverStopAppServer',
-            'all':          'websphere90ndNode01:*',
-            'wrong':        'websphere90ndNode01=server1',
-            'wrongServer':  'websphere90ndNode01:wrong_server1',
-            'wrongServers': 'websphere90ndNode01:server1,websphere90ndNode01:wrong_server1'
+            'default':      "$serverNode:server1",
+            'second':       "$serverNode:serverStopAppServer",
+            'multiple':     "$serverNode:server1,$serverNode:serverStopAppServer",
+            'all':          "$serverNode:*",
+            'wrong':        "$serverNode=server1",
+            'wrongServer':  "$serverNode:wrong_server1",
+            'wrongServers': "$serverNode:server1,$serverNode:wrong_server1"
 
     ]
 
@@ -124,29 +127,29 @@ class StopApplicationServers extends PluginTestHelper {
 
     @Shared
     def summaries = [
-            'default': "Application servers have been stopped:\nNode: websphere90ndNode01, Server: server1, State: Stopped",
-            'multiple': "Application servers have been stopped:\n(Node: websphere90ndNode01, Server: .*, State: Stopped\n?)+",
-            'warning': "Application servers have been stopped:\nAll servers are already Stopped\nWARNING: Server server1 on Node websphere90ndNode01 is already Stopped\nWARNING: Nothing to do, all servers are already Stopped",
-            'warning_both': "Application servers have been stopped:\nAll servers are already Stopped\n(WARNING: Server .* on Node websphere90ndNode01 is already Stopped\n)+WARNING: Nothing to do, all servers are already Stopped",
-            'warning_second': "Application servers have been stopped:\nNode: websphere90ndNode01, Server: server1, State: Stopped\nWARNING: Server serverStopAppServer on Node websphere90ndNode01 is already Stopped",
-            'warning_first': "Application servers have been stopped:\nNode: websphere90ndNode01, Server: serverStopAppServer, State: Stopped\nWARNING: Server server1 on Node websphere90ndNode01 is already Stopped"
+            'default': "Application servers have been stopped:\nNode: $serverNode, Server: server1, State: Stopped",
+            'multiple': "Application servers have been stopped:\n(Node: $serverNode, Server: .*, State: Stopped\n?)+",
+            'warning': "Application servers have been stopped:\nAll servers are already Stopped\nWARNING: Server server1 on Node $serverNode is already Stopped\nWARNING: Nothing to do, all servers are already Stopped",
+            'warning_both': "Application servers have been stopped:\nAll servers are already Stopped\n(WARNING: Server .* on Node $serverNode is already Stopped\n)+WARNING: Nothing to do, all servers are already Stopped",
+            'warning_second': "Application servers have been stopped:\nNode: $serverNode, Server: server1, State: Stopped\nWARNING: Server serverStopAppServer on Node $serverNode is already Stopped",
+            'warning_first': "Application servers have been stopped:\nNode: $serverNode, Server: serverStopAppServer, State: Stopped\nWARNING: Server server1 on Node $serverNode is already Stopped"
     ]
 
     @Shared
     def jobLogs = [
-            'default':  ['Stop completed for middleware server "server1" on node "websphere90ndNode01"', "Node: websphere90ndNode01, Server: server1, State: Stopped"],
-            'multiple': ['Stop completed for middleware server "server1" on node "websphere90ndNode01"','Stop completed for middleware server "serverStopAppServer" on node "websphere90ndNode01"'],
-            'warning': ['Server server1 on Node websphere90ndNode01 is already Stopped','Nothing to do, all servers are already Stopped','warning','Application servers have been stopped'],
-            'warning_both': ['Server server1 on Node websphere90ndNode01 is already Stopped','Server serverStopAppServer on Node websphere90ndNode01 is already Stopped','Nothing to do, all servers are already Stopped','warning','Application servers have been stopped'],
-            'warning_second': ['Stop completed for middleware server "server1" on node "websphere90ndNode01"', "Node: websphere90ndNode01, Server: server1, State: Stopped" , 'Server serverStopAppServer on Node websphere90ndNode01 is already Stopped','warning','Application servers have been stopped'],
-            'warning_first': ['Stop completed for middleware server "serverStopAppServer" on node "websphere90ndNode01"', "Node: websphere90ndNode01, Server: serverStopAppServer, State: Stopped" , 'Server server1 on Node websphere90ndNode01 is already Stopped','warning','Application servers have been stopped'],
-            'error': ['error','Failed to stop servers:','Node: websphere90ndNode01, Server: server1, State: (STOPPING|STARTED)','Some servers are failed to stop'],
-            'error_both': ['error','Failed to stop servers:','Node: websphere90ndNode01, Server: server1, State: (STOPPING|STARTED)','Node: websphere90ndNode01, Server: serverStopAppServer, State: (STOPPING|STARTED)','Some servers are failed to stop'],
+            'default':  ["Stop completed for middleware server \"server1\" on node \"$serverNode\"", "Node: $serverNode, Server: server1, State: Stopped"],
+            'multiple': ["Stop completed for middleware server \"server1\" on node \"$serverNode\"","Stop completed for middleware server \"serverStopAppServer\" on node \"$serverNode\""],
+            'warning': ["Server server1 on Node $serverNode is already Stopped",'Nothing to do, all servers are already Stopped','warning','Application servers have been stopped'],
+            'warning_both': ["Server server1 on Node $serverNode is already Stopped","Server serverStopAppServer on Node $serverNode is already Stopped",'Nothing to do, all servers are already Stopped','warning','Application servers have been stopped'],
+            'warning_second': ["Stop completed for middleware server \"server1\" on node \"$serverNode\"", "Node: $serverNode, Server: server1, State: Stopped" , "Server serverStopAppServer on Node $serverNode is already Stopped",'warning','Application servers have been stopped'],
+            'warning_first': ["Stop completed for middleware server \"serverStopAppServer\" on node \"$serverNode\"", "Node: $serverNode, Server: serverStopAppServer, State: Stopped" , "Server server1 on Node $serverNode is already Stopped",'warning','Application servers have been stopped'],
+            'error': ['error','Failed to stop servers:',"Node: $serverNode, Server: server1, State: (STOPPING|STARTED)",'Some servers are failed to stop'],
+            'error_both': ['error','Failed to stop servers:',"Node: $serverNode, Server: server1, State: (STOPPING|STARTED)","Node: $serverNode, Server: serverStopAppServer, State: (STOPPING|STARTED)",'Some servers are failed to stop'],
             'error_empty_config': ["Error: Configuration '' doesn't exist"],
             'error_config': ["Error: Configuration 'incorrect' doesn't exist"],
             'error_empty_ServerList': ['error','Failed to stop servers:', 'Missing servers list to be stopped'],
-            'error_ServerList': ['error','Failed to stop servers:', 'Expected nodename:servername record, got websphere90ndNode01=server1'],
-            'error_Server': ['error','Failed to stop servers:', 'Failed to stop server wrong_server1 on node websphere90ndNode01','ADMF0003E: Invalid parameter value wrong_server1 for parameter serverName for command stopMiddlewareServer.'],
+            'error_ServerList': ['error','Failed to stop servers:', "Expected nodename:servername record, got $serverNode=server1"],
+            'error_Server': ['error','Failed to stop servers:', "Failed to stop server wrong_server1 on node $serverNode",'ADMF0003E: Invalid parameter value wrong_server1 for parameter serverName for command stopMiddlewareServer.'],
             'error_WaitTime': ['error','Wait time should be a positive integer, if present. Got: 9am']
     ]
 
@@ -155,12 +158,12 @@ class StopApplicationServers extends PluginTestHelper {
             'emptyConfig': "Configuration '' doesn't exist",
             'emptyServerList': "Failed to stop servers:\nMissing servers list to be stopped",
             'incorrectConfig': "Configuration 'incorrect' doesn't exist",
-            'incorrectServerListFormat':"Failed to stop servers:\nExpected nodename:servername record, got websphere90ndNode01=server1",
-            'incorrectServer':"Failed to stop servers:\nFailed to stop server wrong_server1 on node websphere90ndNode01\nADMF0003E: Invalid parameter value wrong_server1 for parameter serverName for command stopMiddlewareServer.",
-            'incorrectServers':"Failed to stop servers:\nFailed to stop server wrong_server1 on node websphere90ndNode01\nADMF0003E: Invalid parameter value wrong_server1 for parameter serverName for command stopMiddlewareServer.",
+            'incorrectServerListFormat':"Failed to stop servers:\nExpected nodename:servername record, got $serverNode=server1",
+            'incorrectServer':"Failed to stop servers:\nFailed to stop server wrong_server1 on node $serverNode\nADMF0003E: Invalid parameter value wrong_server1 for parameter serverName for command stopMiddlewareServer.",
+            'incorrectServers':"Failed to stop servers:\nFailed to stop server wrong_server1 on node $serverNode\nADMF0003E: Invalid parameter value wrong_server1 for parameter serverName for command stopMiddlewareServer.",
             'incorrectWaitTime':"Wait time should be a positive integer, if present. Got: 9am",
-            'zeroWaitTime':"Failed to stop servers:\nNode: websphere90ndNode01, Server: server1, State: (STOPPING|STARTED)\nSome servers are failed to stop",
-            'zeroWaitTimeMultiple':"Failed to stop servers:\nNode: websphere90ndNode01, Server: server1, State: (STOPPING|STARTED)\nNode: websphere90ndNode01, Server: serverStopAppServer, State: (STOPPING|STARTED)\nSome servers are failed to stop"
+            'zeroWaitTime':"Failed to stop servers:\nNode: $serverNode, Server: server1, State: (STOPPING|STARTED)\nSome servers are failed to stop",
+            'zeroWaitTimeMultiple':"Failed to stop servers:\nNode: $serverNode, Server: server1, State: (STOPPING|STARTED)\nNode: $serverNode, Server: serverStopAppServer, State: (STOPPING|STARTED)\nSome servers are failed to stop"
     ]
 
     def doSetupSpec() {
@@ -211,7 +214,7 @@ class StopApplicationServers extends PluginTestHelper {
 
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
 
-        createAppServer('websphere90ndNode01','serverStopAppServer')
+        createAppServer(serverNode,'serverStopAppServer')
     }
 
     def doCleanupSpec() {
@@ -228,7 +231,7 @@ class StopApplicationServers extends PluginTestHelper {
                                                             ]
         ])
 
-        deleteApplicationServer('websphere90ndNode01','serverStopAppServer')
+        deleteApplicationServer(serverNode,'serverStopAppServer')
     }
 
     @Unroll
@@ -387,7 +390,7 @@ class StopApplicationServers extends PluginTestHelper {
                 wasAppServerName: server,
                 wasGenUniquePorts: '1',
                 wasNodeName: node,
-                wasSourceServerName: 'websphere90ndNode01:server1',
+                wasSourceServerName: "$serverNode:server1",
                 wasSourceType: 'server',
                 wasSyncNodes: '1',
                 wasTemplateLocation: '',
