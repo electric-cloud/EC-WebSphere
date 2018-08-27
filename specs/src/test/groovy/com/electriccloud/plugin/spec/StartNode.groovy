@@ -107,6 +107,12 @@ class StartNode extends PluginTestHelper {
     ]
 
     @Shared
+    def nodes = [
+        'default': wasHost + 'Node01',
+        'wrong': 'wrong',
+    ]
+
+    @Shared
     def profiles = [
         appSrv01: 'AppSrv01',
         dmgr01: 'Dmgr01',
@@ -146,8 +152,8 @@ class StartNode extends PluginTestHelper {
         'incorrectConfig': "Configuration 'incorrect' doesn't exist",
         'mandatoryShell': "Shell is mandatory",
         'mandatoryNode': 'Node Name is mandatory when Start Servers is checked',
-        'childSummaryWarning': "Application servers have been started:\nAll servers are already STARTED\nWARNING: Server server1 on Node websphere90ndNode01 is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
-        'childSummarySuccess': "Application servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED",
+        'childSummaryWarning': "Application servers have been started:\nAll servers are already STARTED\nWARNING: Server server1 on Node ${nodes.'default'} is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
+        'childSummarySuccess': "Application servers have been started:\nNode: ${nodes.'default'}, Server: server1, State: STARTED",
         'childSummaryError':   "Failed to start servers:\nNode wrongNodeName does not exist or does not have servers",
         'wrongStartLocation': "Shell $startLocations.wrong does not exist",
         'fail': "Failed to start Node",    
@@ -283,11 +289,11 @@ class StartNode extends PluginTestHelper {
         testCases.systemTest2  | confignames.correctSOAP     | ''                          | ''                    | profiles.appSrv01 | ''                | startLocations.'AppSrv01'       | '0'    | '0'         | ''        | summaries.'default'   | "success" | jobLogs.'profile'
         testCases.systemTest3  | confignames.correctSOAP     | ''                          | ''                    | ''                | logLocations.tmp  | startLocations.'AppSrv01'       | '0'    | '0'         | ''        | summaries.'default'   | "success" | jobLogs.'log'
         testCases.systemTest4  | confignames.correctSOAP     | ''                          | ''                    | ''                | ''                | startLocations.'AppSrv01'       | '0'    | '0'         | '300'     | summaries.'default'   | "success" | jobLogs.'timeOk'
-        testCases.systemTest7  | confignames.correctSOAP     | ''                          | 'websphere90ndNode01' | ''                | ''                | startLocations.'AppSrv01'       | '1'    | 1           | ''        | summaries.'default'   | "success" | jobLogs.'default'
-        testCases.systemTest7  | confignames.correctSOAP     | ''                          | 'websphere90ndNode01' | ''                | ''                | startLocations.'AppSrv01'       | '1'    | 0           | ''        | summaries.'default'   | "warning" | jobLogs.'default'
+        testCases.systemTest7  | confignames.correctSOAP     | ''                          | nodes.'default'       | ''                | ''                | startLocations.'AppSrv01'       | '1'    | 1           | ''        | summaries.'default'   | "success" | jobLogs.'default'
+        testCases.systemTest7  | confignames.correctSOAP     | ''                          | nodes.'default'       | ''                | ''                | startLocations.'AppSrv01'       | '1'    | 0           | ''        | summaries.'default'   | "warning" | jobLogs.'default'
         testCases.systemTest8  | confignames.correctSOAP     | additionalParameters.trace  | ''                    | ''                | ''                | startLocations.'AppSrv01'       | '0'    | '0'         | ''        | summaries.'default'   | "success" | jobLogs.'addParam'
         testCases.systemTest8  | confignames.correctSOAP     | additionalParameters.some   | ''                    | ''                | ''                | startLocations.'AppSrv01'       | '0'    | '0'         | ''        | summaries.'default'   | "success" | jobLogs.'addParams'
-        testCases.systemTest9  | confignames.correctSOAP     | additionalParameters.some   | 'websphere90ndNode01' | profiles.appSrv01 | logLocations.tmp  | startLocations.'default'        | '1'    | '1'         | '300'     | summaries.'default'   | "success" | jobLogs.'all'
+        testCases.systemTest9  | confignames.correctSOAP     | additionalParameters.some   | nodes.'default'       | profiles.appSrv01 | logLocations.tmp  | startLocations.'default'        | '1'    | '1'         | '300'     | summaries.'default'   | "success" | jobLogs.'all'
     }
 
     @Unroll

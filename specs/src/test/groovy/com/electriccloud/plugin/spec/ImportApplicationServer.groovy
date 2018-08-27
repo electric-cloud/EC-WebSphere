@@ -124,7 +124,8 @@ class ImportApplicationServer extends PluginTestHelper {
 
     @Shared
     def nodes = [
-        'default': 'websphere90ndNode01',
+        'default': wasHost + 'Node01',
+        '1': 'websphere90ndNode01',
         '2': 'websphere90ndNode02',
         'wrong': 'wrong',
     ]
@@ -161,7 +162,7 @@ class ImportApplicationServer extends PluginTestHelper {
     @Shared
     def jobLogs = [
         'default': ["Application server serverReplace has been imported to node nodeReplace"],
-        'syncNodes': ["Application server serverReplace has been imported to node nodeReplace", "Synchronizing configuration repository with nodes now.", "The following nodes have been synchronized: websphere90ndNode01"],
+        'syncNodes': ["Application server serverReplace has been imported to node nodeReplace", "Synchronizing configuration repository with nodes now.", "The following nodes have been synchronized: ${nodes.'default'}"],
         'serverInArc': ["appServerNameInArchive = '''\nserverInArcReplace\n", "if appServerNameInArchive:\n    params.append\\('-serverInArchive'\\)\n    params.append\\(appServerNameInArchive\\)"],
         'coreGroup': ["coreGroup = '''\ncoreGroupReplace\n", "if coreGroup:\n    params.append\\('-coreGroup'\\)\n    params.append\\(coreGroup\\)"],
         'emptyConfig': ["Configuration '' doesn't exist"],
@@ -359,13 +360,14 @@ class ImportApplicationServer extends PluginTestHelper {
         testCases.C363441   | confignames.correctSOAP | ''                | ''                  | paths.'default' | ''                 | nodes.'default' | ''                | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "error"     | summaries.'emptyServer'            | jobLogs.'emptyServer'            | 0
         testCases.C363441   | confignames.correctSOAP | servers.'default' | ''                  | ''              | ''                 | nodes.'default' | ''                | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "error"     | summaries.'emptyPath'              | jobLogs.'emptyPath'              | 0
         testCases.C363441_2 | confignames.correctSOAP | servers.'default' | ''                  | paths.'default' | ''                 | ''              | ''                | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "error"     | summaries.'emptyNode'              | jobLogs.'emptyNode'              | 0
-        testCases.C363441_2 | confignames.correctSOAP | servers.'default' | ''                  | paths.'backup'  | ''                 | nodes.'default' | nodes.'default'   | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "error"     | summaries.'wrongServerNodeInArch'  | jobLogs.'wrongServerNodeInArch'  | 0
+        testCases.C363441_2 | confignames.correctSOAP | servers.'default' | ''                  | paths.'backup'  | ''                 | nodes.'default' | nodes.'1'         | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "error"     | summaries.'wrongServerNodeInArch'  | jobLogs.'wrongServerNodeInArch'  | 0
         testCases.C363441   | confignames.correctSOAP | servers.'default' | servers.'default'   | paths.'backup'  | ''                 | nodes.'default' | ''                | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "error"     | summaries.'wrongServerNodeInArch'  | jobLogs.'wrongServerNodeInArch'  | 0
         testCases.C363444   | confignames.incorrect   | servers.'default' | ''                  | paths.'default' | ''                 | nodes.'default' | ''                | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "error"     | summaries.'incorrectConfig'        | jobLogs.'incorrectConfig'        | 0
         testCases.C363445   | confignames.correctSOAP | servers.'default' | ''                  | paths.'default' | ''                 | nodes.'wrong'   | ''                | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "error"     | summaries.'wrongNode'              | jobLogs.'wrongNode'              | 1
         testCases.C363447   | confignames.correctSOAP | servers.'default' | ''                  | paths.'backup'  | ''                 | nodes.'default' | nodes.'wrong'     | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "error"     | summaries.'wrongArcNode'           | jobLogs.'wrongArcNode'           | 0    
         testCases.C363448   | confignames.correctSOAP | servers.'default' | servers.'wrong'     | paths.'backup'  | ''                 | nodes.'default' | nodes.'default'   | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "error"     | summaries.'wrongArcServer'         | jobLogs.'wrongArcServer'         | 0    
         testCases.C363451   | confignames.correctSOAP | servers.'default' | ''                  | paths.'default' | coreGroups.'wrong' | nodes.'default' | ''                | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "error"     | summaries.'wrongGroup'             | jobLogs.'wrongGroup'             | 0
+
     }    
 
     def deleteAppServer(node,server){

@@ -104,15 +104,19 @@ class StartApplicationServers extends PluginTestHelper {
     def procDeleteServer = 'DeleteApplicationServer'    
 
     @Shared
-    def serverLists = [
-        'default':      'websphere90ndNode01:server1',
-        'multiple':     'websphere90ndNode01:server1,websphere90ndNode01:serverStartAppServer',
-        'second':       'websphere90ndNode01:serverStartAppServer',
-        'all':          'websphere90ndNode01:*',
-        'wrong':        'websphere90ndNode01=server1',
-        'wrongServer':  'websphere90ndNode01:wrong_server1',
-        'wrongServers': 'websphere90ndNode01:server1,websphere90ndNode01=wrong_server1',
+    def nodes = [
+        'default': wasHost + 'Node01',
+    ] 
 
+    @Shared
+    def serverLists = [
+        'default':      "${nodes.'default'}:server1",
+        'multiple':     "${nodes.'default'}:server1,${nodes.'default'}:server-start-appserver",
+        'second':       "${nodes.'default'}:server-start-appserver",
+        'all':          "${nodes.'default'}:*",
+        'wrong':        "${nodes.'default'}=server1",
+        'wrongServer':  "${nodes.'default'}:wrong_server1",
+        'wrongServers': "${nodes.'default'}:server1,${nodes.'default'}=wrong_server1",
     ]
 
     @Shared
@@ -120,16 +124,16 @@ class StartApplicationServers extends PluginTestHelper {
 
     @Shared
     def summaries = [  
-        'default': "Application servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED",
-        'started': "Application servers have been started:\nAll servers are already STARTED\nWARNING: Server server1 on Node websphere90ndNode01 is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
-        'started2': "Application servers have been started:\nAll servers are already STARTED\nWARNING: Server server1 on Node websphere90ndNode01 is already STARTED\nWARNING: Server serverStartAppServer on Node websphere90ndNode01 is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
-        'started3': "Application servers have been started:\nNode: websphere90ndNode01, Server: serverStartAppServer, State: STARTED\nWARNING: Server server1 on Node websphere90ndNode01 is already STARTED",
-        'multiple': "Application servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED\nNode: websphere90ndNode01, Server: serverStartAppServer, State: STARTED",
-        'first': "Application servers have been started:\nNode: websphere90ndNode01, Server: server1, State: STARTED\nWARNING: Server serverStartAppServer on Node websphere90ndNode01 is already STARTED",
+        'default': "Application servers have been started:\nNode: ${nodes.'default'}, Server: server1, State: STARTED",
+        'started': "Application servers have been started:\nAll servers are already STARTED\nWARNING: Server server1 on Node ${nodes.'default'} is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
+        'started2': "Application servers have been started:\nAll servers are already STARTED\nWARNING: Server server1 on Node ${nodes.'default'} is already STARTED\nWARNING: Server server-start-appserver on Node ${nodes.'default'} is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
+        'started3': "Application servers have been started:\nNode: ${nodes.'default'}, Server: server-start-appserver, State: STARTED\nWARNING: Server server1 on Node ${nodes.'default'} is already STARTED",
+        'multiple': "Application servers have been started:\nNode: ${nodes.'default'}, Server: server1, State: STARTED\nNode: ${nodes.'default'}, Server: server-start-appserver, State: STARTED",
+        'first': "Application servers have been started:\nNode: ${nodes.'default'}, Server: server1, State: STARTED\nWARNING: Server server-start-appserver on Node ${nodes.'default'} is already STARTED",
         'emptyConfig': "Configuration '' doesn't exist",
-        'failed': 'Failed to start servers:\nNode: websphere90ndNode01, Server: server1, State: Stopped\nSome servers are failed to start',
+        'failed': "Failed to start servers:\nNode: ${nodes.'default'}, Server: server1, State: Stopped\nSome servers are failed to start",
         'emptyServer': 'Failed to start servers:\nMissing servers list to be started',
-        'wrongFormat': 'Failed to start servers:\nExpected nodename:servername record, got websphere90ndNode01=server1',
+        'wrongFormat': "Failed to start servers:\nExpected nodename:servername record, got ${nodes.'default'}=server1",
         'wrongServer':  "Failed to start servers",
         'wrongServers': 'Not added',
         'timeoutServer': 'Not added',
@@ -139,22 +143,22 @@ class StartApplicationServers extends PluginTestHelper {
 
     @Shared
     def jobLogs = [
-        'default':  ['Start completed for middleware server "server1" on node "websphere90ndNode01"', "Node: websphere90ndNode01, Server: server1, State: STARTED"],           
-        'started':  ["Server server1 on Node websphere90ndNode01 is already STARTED", "Nothing to do, all servers are already STARTED"],
-        'started2': ["Server server1 on Node websphere90ndNode01 is already STARTED", "Server serverStartAppServer on Node websphere90ndNode01 is already STARTED", "Nothing to do, all servers are already STARTED"],
-        'started3': ["Node: websphere90ndNode01, Server: serverStartAppServer, State: STARTED", "Server server1 on Node websphere90ndNode01 is already STARTED'"],
-        'multiple': ['Start completed for middleware server "server1" on node "websphere90ndNode01"', 'Start completed for middleware server "serverStartAppServer" on node "websphere90ndNode01"',
-            "Node: websphere90ndNode01, Server: server1, State: STARTED", "Node: websphere90ndNode01, Server: serverStartAppServer, State: STARTED'"],
-        'first': ['Server serverStartAppServer on Node websphere90ndNode01 is already STARTED', 'Start completed for middleware server "server1" on node "websphere90ndNode01"'],
+        'default':  ["Start completed for middleware server \"server1\" on node \"${nodes.'default'}\"", "Node: ${nodes.'default'}, Server: server1, State: STARTED"],           
+        'started':  ["Server server1 on Node ${nodes.'default'} is already STARTED", "Nothing to do, all servers are already STARTED"],
+        'started2': ["Server server1 on Node ${nodes.'default'} is already STARTED", "Server server-start-appserver on Node ${nodes.'default'} is already STARTED", "Nothing to do, all servers are already STARTED"],
+        'started3': ["Node: ${nodes.'default'}, Server: server-start-appserver, State: STARTED", "Server server1 on Node ${nodes.'default'} is already STARTED'"],
+        'multiple': ["Start completed for middleware server \"server1\" on node \"${nodes.'default'}\"", "Start completed for middleware server \"server-start-appserver\" on node \"${nodes.'default'}\"",
+            "Node: ${nodes.'default'}, Server: server1, State: STARTED", "Node: ${nodes.'default'}, Server: server-start-appserver, State: STARTED'"],
+        'first': ["Server server-start-appserver on Node ${nodes.'default'} is already STARTED", "Start completed for middleware server \"server1\" on node \"${nodes.'default'}\""],
         'emptyConfig': ["Error: Configuration '' doesn't exist"],
         'emptyServer': ['Missing servers list to be started'],
-        'wrongFormat': ['ValueError: Expected nodename:servername record, got websphere90ndNode01=server1'],
+        'wrongFormat': ["ValueError: Expected nodename:servername record, got ${nodes.'default'}=server1"],
         'wrongServer':  ['Invalid parameter value wrong_server1 for parameter serverName for command startMiddlewareServer.'],
-        'wrongServers': ['Expected nodename:servername record, got websphere90ndNode01=wrong_server1'],
+        'wrongServers': ["Expected nodename:servername record, got ${nodes.'default'}=wrong_server1"],
         'timeoutServer': ['Not added'],
         'timeoutServers': ['Not added'],
         'incorrectConfig': ["Configuration 'incorrect' doesn't exist"],
-        'failed': ['Failed to start servers', 'Node: websphere90ndNode01, Server: server1, State: Stopped'],
+        'failed': ['Failed to start servers', "Node: ${nodes.'default'}, Server: server1, State: Stopped"],
     ]
 
 
@@ -217,7 +221,7 @@ class StartApplicationServers extends PluginTestHelper {
 
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")' 
 
-        createAppServer('websphere90ndNode01','serverStartAppServer')  
+        createAppServer(nodes.'default','server-start-appserver')  
     }
 
     def doCleanupSpec() {
@@ -236,7 +240,7 @@ class StartApplicationServers extends PluginTestHelper {
             }
         }
 
-        deleteAppServer('websphere90ndNode01','serverStartAppServer')
+        deleteAppServer(nodes.'default','server-start-appserver')
     }
 
     @Unroll

@@ -12,3 +12,4 @@ ecplugin.properties
 .DS_Store
 /.vscode/
 Thumbs.db
+specs/spec-report/
