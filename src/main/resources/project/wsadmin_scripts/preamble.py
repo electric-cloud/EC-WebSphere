@@ -85,7 +85,12 @@ def isAppRunning(appName):
         return 0
 
 def genUUID():
-    return str(genRandomString(32))
+    length = [4, 4, 4, 12]
+    retval = genRandomString(8)
+    for i in length:
+        retval = retval + '-' + genRandomString(i)
+    return retval;
+
 
 # this function will return high-level application status.
 # Need to do some clarifications. There is application state transitions:
@@ -528,3 +533,14 @@ def createFirstClusterMember(params):
         additionParams['firstMember']['-templateServerName'] = params['sourceServer']
     
     return createClusterMemberWrapper(additionParams)
+# Commenting it out right now
+# def getServerId(nodeName, serverName):
+#     serverId = AdminConfig.getid('/Node:%s/Server:%s/' % (nodeName, serverName))
+#     return serverId
+
+# def deleteApplicationServer(nodeName, serverName):
+#     serverId = getServerId(nodeName, serverName)
+#     if not serverId:
+#         logError("Server %s not found on node %s" % (serverName, nodeName))
+#     print "Deleting server with id %s on node %s" % (serverName, nodeName)
+#     AdminConfig.remove(serverId)
