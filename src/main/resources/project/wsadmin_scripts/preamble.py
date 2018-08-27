@@ -85,7 +85,12 @@ def isAppRunning(appName):
         return 0
 
 def genUUID():
-    return str(genRandomString(32))
+    length = [4, 4, 4, 12]
+    retval = genRandomString(8)
+    for i in length:
+        retval = retval + '-' + genRandomString(i)
+    return retval;
+
 
 # this function will return high-level application status.
 # Need to do some clarifications. There is application state transitions:

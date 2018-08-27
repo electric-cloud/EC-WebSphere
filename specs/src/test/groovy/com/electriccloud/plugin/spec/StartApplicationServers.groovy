@@ -128,7 +128,7 @@ class StartApplicationServers extends PluginTestHelper {
         'started': "Application servers have been started:\nAll servers are already STARTED\nWARNING: Server server1 on Node ${nodes.'default'} is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
         'started2': "Application servers have been started:\nAll servers are already STARTED\nWARNING: Server server1 on Node ${nodes.'default'} is already STARTED\nWARNING: Server server-start-appserver on Node ${nodes.'default'} is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
         'started3': "Application servers have been started:\nNode: ${nodes.'default'}, Server: server-start-appserver, State: STARTED\nWARNING: Server server1 on Node ${nodes.'default'} is already STARTED",
-        'multiple': "Application servers have been started:\nNode: ${nodes.'default'}, Server: server1, State: STARTED\nNode: ${nodes.'default'}, Server: server-start-appserver, State: STARTED",
+        'multiple': "Application servers have been started:\nNode: ${nodes.'default'}, Server: (?:server1|server-start-appserver), State: STARTED\nNode: ${nodes.'default'}, Server: (?:server1|server-start-appserver), State: STARTED",
         'first': "Application servers have been started:\nNode: ${nodes.'default'}, Server: server1, State: STARTED\nWARNING: Server server-start-appserver on Node ${nodes.'default'} is already STARTED",
         'emptyConfig': "Configuration '' doesn't exist",
         'failed': "Failed to start servers:\nNode: ${nodes.'default'}, Server: server1, State: Stopped\nSome servers are failed to start",
@@ -270,7 +270,7 @@ class StartApplicationServers extends PluginTestHelper {
         def jobSummary = getJobProperty("/myJob/jobSteps/$procName/summary", result.jobId)
         def debugLog = getJobLogs(result.jobId)
         assert outcome == status
-        assert jobSummary == expectedSummary
+        assert jobSummary =~ expectedSummary
         for (log in logs){
             assert debugLog =~ log
         }
