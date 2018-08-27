@@ -30,7 +30,7 @@ class DeleteApplicationServer extends PluginTestHelper {
     @Shared
     def serverName = 'serverDeleteApplicationServer'
     @Shared
-    def serverNode = 'websphere90ndNode01'
+    def serverNode = wasHost + 'Node01'
 
     @Shared
     def procName = 'DeleteApplicationServer'

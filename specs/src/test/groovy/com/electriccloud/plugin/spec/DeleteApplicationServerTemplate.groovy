@@ -32,7 +32,7 @@ class DeleteApplicationServerTemplate extends PluginTestHelper {
     def templateName = 'template1'
 
     @Shared
-    def templateNode = 'websphere90ndNode01'
+    def templateNode = wasHost + 'Node01'
 
     @Shared
     def templateServer = 'server1'
