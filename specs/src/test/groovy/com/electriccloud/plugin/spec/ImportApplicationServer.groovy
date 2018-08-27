@@ -125,8 +125,8 @@ class ImportApplicationServer extends PluginTestHelper {
     @Shared
     def nodes = [
         'default': wasHost + 'Node01',
-        '1': 'websphere90ndNode01',
-        '2': 'websphere90ndNode02',
+        '1': wasHost + 'Node01',
+        '2': wasHost + 'Node02',
         'wrong': 'wrong',
     ]
 
