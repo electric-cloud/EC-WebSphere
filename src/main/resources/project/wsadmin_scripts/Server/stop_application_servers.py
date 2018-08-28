@@ -52,8 +52,13 @@ if len(parsedServerList) == 0:
 for server in parsedServerList:
     params = '[-serverName "%s" -nodeName "%s"]' % (server['Server'], server['Node'])
     try:
-        result = AdminTask.stopMiddlewareServer(params)
-        print "Server stop result: ", result;
+        if not is_8_0_0(server['Node']):
+            result = AdminTask.stopMiddlewareServer(params)
+            print "Server stop result: ", result;
+        else:
+            print "Falling back to 8.0.0 mode"
+            result = stopApplicationServer8_0_0(server['Node'], server['Server'])
+            print "Server stop result: ", result
     except:
         forwardException(getExceptionMsg())
         logSummary("Failed to stop server %s on node %s" % (server['Server'], server['Node']))
