@@ -18,10 +18,10 @@ repositories {
     maven {
         url  "https://dl.bintray.com/ecpluginsdev/maven"
     }
-    maven {
-//        Local snapshots
-        url "http://10.200.1.182:8081/artifactory/libs-snapshot-local"
-    }
+//     maven {
+// //        Local snapshots
+//         url "http://10.200.1.182:8081/artifactory/libs-snapshot-local"
+//     }
 }
 
 dependencies {
