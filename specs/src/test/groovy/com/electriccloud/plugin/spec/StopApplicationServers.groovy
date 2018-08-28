@@ -6,6 +6,7 @@ import com.electriccloud.spec.SpockTestSupport
 
 @Unroll
 @Stepwise
+@Requires({ System.getenv('IS_WAS_ND') == "1"})
 class StopApplicationServers extends PluginTestHelper {
 
     // Environments Variables

@@ -4,7 +4,9 @@ import spock.lang.*
 import com.electriccloud.spec.SpockTestSupport
 import com.electriccloud.plugin.spec.PluginTestHelper
 
-//@Ignore
+@Unroll
+@Stepwise
+@Requires({ System.getenv('IS_WAS_ND') == "1"})
 class DeleteApplicationServer extends PluginTestHelper {
 
     // Environments Variables

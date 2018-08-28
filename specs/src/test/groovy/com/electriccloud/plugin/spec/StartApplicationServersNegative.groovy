@@ -4,9 +4,9 @@ import spock.lang.*
 import com.electriccloud.spec.SpockTestSupport
 import com.electriccloud.plugin.spec.PluginTestHelper
 
-
-@IgnoreIf({ System.getenv('IS_WAS_ND') != "1"})
+@Unroll
 @Stepwise
+@IgnoreIf({ System.getenv('IS_WAS_ND') != "1"})
 class StartApplicationServersNegative extends PluginTestHelper {
 
     /**
