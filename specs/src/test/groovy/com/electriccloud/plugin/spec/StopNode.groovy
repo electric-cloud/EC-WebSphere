@@ -290,15 +290,15 @@ class StopNode extends PluginTestHelper {
         def jobSummary = getJobProperty("/myJob/jobSteps/$procName/summary", result.jobId)
         def reportUrls  = getJobProperty('/myJob/report-urls/stopServer.log', result.jobId)
         def debugLog = getJobLogs(result.jobId)
-        assert reportUrls =~ "jobSteps/.*/stopServer.log" 
+        assert reportUrls =~ "jobSteps/.*/stopServer.log"
         assert outcome == "success"
         assert jobSummary == expectedSummary
         for (log in logs){
-            def text = log.replace("stopNodeReplace", stopLocation)      
+            def text = log.replace("stopNodeReplace", stopLocation)
             assert debugLog =~ text
         }
 
-        cleanup: 
+        cleanup:
         startNode(stopPolicy)
 
         where: 'The following params will be:'
