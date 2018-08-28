@@ -111,8 +111,8 @@ class StartApplicationServers extends PluginTestHelper {
     @Shared
     def serverLists = [
         'default':      "${nodes.'default'}:server1",
-        'multiple':     "${nodes.'default'}:server1,${nodes.'default'}:server-start-appserver",
-        'second':       "${nodes.'default'}:server-start-appserver",
+        'multiple':     "${nodes.'default'}:server1,${nodes.'default'}:startserver",
+        'second':       "${nodes.'default'}:startserver",
         'all':          "${nodes.'default'}:*",
         'wrong':        "${nodes.'default'}=server1",
         'wrongServer':  "${nodes.'default'}:wrong_server1",
@@ -126,10 +126,10 @@ class StartApplicationServers extends PluginTestHelper {
     def summaries = [  
         'default': "Application servers have been started:\nNode: ${nodes.'default'}, Server: server1, State: STARTED",
         'started': "Application servers have been started:\nAll servers are already STARTED\nWARNING: Server server1 on Node ${nodes.'default'} is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
-        'started2': "Application servers have been started:\nAll servers are already STARTED\nWARNING: Server server1 on Node ${nodes.'default'} is already STARTED\nWARNING: Server server-start-appserver on Node ${nodes.'default'} is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
-        'started3': "Application servers have been started:\nNode: ${nodes.'default'}, Server: server-start-appserver, State: STARTED\nWARNING: Server server1 on Node ${nodes.'default'} is already STARTED",
-        'multiple': 'Application servers have been started:\nNode: NodeRepalace, Server: (server1|server\\-start\\-appserver), State: STARTED\nNode: NodeRepalace, Server: (server1|server\\-start\\-appserver), State: STARTED'.replace('NodeRepalace', nodes.'default'),
-        'first': "Application servers have been started:\nNode: ${nodes.'default'}, Server: server1, State: STARTED\nWARNING: Server server-start-appserver on Node ${nodes.'default'} is already STARTED",
+        'started2': "Application servers have been started:\nAll servers are already STARTED\nWARNING: Server server1 on Node ${nodes.'default'} is already STARTED\nWARNING: Server startserver on Node ${nodes.'default'} is already STARTED\nWARNING: Nothing to do, all servers are already STARTED",
+        'started3': "Application servers have been started:\nNode: ${nodes.'default'}, Server: startserver, State: STARTED\nWARNING: Server server1 on Node ${nodes.'default'} is already STARTED",
+        'multiple': 'Application servers have been started:\nNode: NodeRepalace, Server: (server1|startserver), State: STARTED\nNode: NodeRepalace, Server: (server1|startserver), State: STARTED'.replace('NodeRepalace', nodes.'default'),
+        'first': "Application servers have been started:\nNode: ${nodes.'default'}, Server: server1, State: STARTED\nWARNING: Server startserver on Node ${nodes.'default'} is already STARTED",
         'emptyConfig': "Configuration '' doesn't exist",
         'failed': "Failed to start servers:\nNode: ${nodes.'default'}, Server: server1, State: Stopped\nSome servers are failed to start",
         'emptyServer': 'Failed to start servers:\nMissing servers list to be started',
@@ -145,11 +145,11 @@ class StartApplicationServers extends PluginTestHelper {
     def jobLogs = [
         'default':  ["Start completed for middleware server \"server1\" on node \"${nodes.'default'}\"", "Node: ${nodes.'default'}, Server: server1, State: STARTED"],           
         'started':  ["Server server1 on Node ${nodes.'default'} is already STARTED", "Nothing to do, all servers are already STARTED"],
-        'started2': ["Server server1 on Node ${nodes.'default'} is already STARTED", "Server server-start-appserver on Node ${nodes.'default'} is already STARTED", "Nothing to do, all servers are already STARTED"],
-        'started3': ["Node: ${nodes.'default'}, Server: server-start-appserver, State: STARTED", "Server server1 on Node ${nodes.'default'} is already STARTED'"],
-        'multiple': ["Start completed for middleware server \"server1\" on node \"${nodes.'default'}\"", "Start completed for middleware server \"server-start-appserver\" on node \"${nodes.'default'}\"",
-            "Node: ${nodes.'default'}, Server: server1, State: STARTED", "Node: ${nodes.'default'}, Server: server-start-appserver, State: STARTED'"],
-        'first': ["Server server-start-appserver on Node ${nodes.'default'} is already STARTED", "Start completed for middleware server \"server1\" on node \"${nodes.'default'}\""],
+        'started2': ["Server server1 on Node ${nodes.'default'} is already STARTED", "Server startserver on Node ${nodes.'default'} is already STARTED", "Nothing to do, all servers are already STARTED"],
+        'started3': ["Node: ${nodes.'default'}, Server: startserver, State: STARTED", "Server server1 on Node ${nodes.'default'} is already STARTED'"],
+        'multiple': ["Start completed for middleware server \"server1\" on node \"${nodes.'default'}\"", "Start completed for middleware server \"startserver\" on node \"${nodes.'default'}\"",
+            "Node: ${nodes.'default'}, Server: server1, State: STARTED", "Node: ${nodes.'default'}, Server: startserver, State: STARTED'"],
+        'first': ["Server startserver on Node ${nodes.'default'} is already STARTED", "Start completed for middleware server \"server1\" on node \"${nodes.'default'}\""],
         'emptyConfig': ["Error: Configuration '' doesn't exist"],
         'emptyServer': ['Missing servers list to be started'],
         'wrongFormat': ["ValueError: Expected nodename:servername record, got ${nodes.'default'}=server1"],
@@ -219,9 +219,12 @@ class StartApplicationServers extends PluginTestHelper {
             procName: 'runCustomShellCommand',
         ])
 
-        dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")' 
-
-        createAppServer(nodes.'default','server-start-appserver')  
+        dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
+        // fix for websphere weird behavior
+        createAppServer(nodes.'default', 'dummy-server')
+        // end of fix
+        createAppServer(nodes.'default','startserver')
+        deleteAppServer(nodes.'default', 'dummy-server')
     }
 
     def doCleanupSpec() {
@@ -240,7 +243,7 @@ class StartApplicationServers extends PluginTestHelper {
             }
         }
 
-        deleteAppServer(nodes.'default','server-start-appserver')
+        deleteAppServer(nodes.'default','startserver')
     }
 
     @Unroll
@@ -282,9 +285,10 @@ class StartApplicationServers extends PluginTestHelper {
 
 
         where: 'The following params will be:'
-        testCaseID             | configName              | serverList              | timeout   | expectedSummary       | status    | logs              | stoppedServers  
-        testCases.systemTest1  | confignames.correctSOAP | serverLists.'default'   | '300'     | summaries.'default'   | "success" | jobLogs.'default' | serverLists.'default'
+        testCaseID             | configName              | serverList              | timeout   | expectedSummary       | status    | logs              | stoppedServers
         testCases.systemTest2  | confignames.correctSOAP | serverLists.'multiple'  | '300'     | summaries.'multiple'  | "success" | jobLogs.'default' | serverLists.'multiple'
+        testCases.systemTest1  | confignames.correctSOAP | serverLists.'default'   | '300'     | summaries.'default'   | "success" | jobLogs.'default' | serverLists.'default'
+
         testCases.systemTest2  | confignames.correctSOAP | serverLists.'all'       | '300'     | summaries.'multiple'  | "success" | jobLogs.'default' | serverLists.'multiple'
         // logic of this test cases(3,4) are included in the first two cases
         // testCases.systemTest3  | confignames.correctSOAP | serverLists.'default'   | '300'     | summaries.'default'   | "success" | jobLogs.'default' | serverLists.'default'

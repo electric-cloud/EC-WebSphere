@@ -4,7 +4,7 @@ import spock.lang.*
 import com.electriccloud.spec.SpockTestSupport
 import com.electriccloud.plugin.spec.PluginTestHelper
 
-@Ignore
+//@Ignore
 class DeleteApplicationServer extends PluginTestHelper {
 
     // Environments Variables
