@@ -533,6 +533,28 @@ def createFirstClusterMember(params):
         additionParams['firstMember']['-templateServerName'] = params['sourceServer']
     
     return createClusterMemberWrapper(additionParams)
+
+def is_8_0_0(nodeName):
+    wasVersion = AdminTask.getNodeBaseProductVersion('[-nodeName %s]' % (nodeName))
+    if re.match("^8\.0\.0\..", wasVersion):
+        return 1
+    else:
+        return 0
+
+def getNodeAgentObjectId(nodeName):
+    nodeAgentObjectName = AdminControl.completeObjectName('node=%s,process=nodeagent,type=NodeAgent,*' % (nodeName))
+    return nodeAgentObjectName
+
+def startApplicationServer8_0_0(nodeName, serverName):
+    nodeAgentObjectName = getNodeAgentObjectId(nodeName)
+    result = AdminControl.invoke(nodeAgentObjectName, 'launchProcess', serverName)
+    return result
+
+def stopApplicationServer8_0_0(nodeName, serverName):
+    nodeAgentObjectName = getNodeAgentObjectId(nodeName)
+    result = AdminControl.invoke(nodeAgentObjectName, 'terminate', serverName)
+    return result
+
 # Commenting it out right now
 # def getServerId(nodeName, serverName):
 #     serverId = AdminConfig.getid('/Node:%s/Server:%s/' % (nodeName, serverName))

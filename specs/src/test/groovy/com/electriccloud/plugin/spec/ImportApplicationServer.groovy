@@ -131,7 +131,12 @@ class ImportApplicationServer extends PluginTestHelper {
         '2': wasHost + 'Node02',
         'wrong': 'wrong',
     ]
-
+    @Shared
+    nodesInArchive = [
+        // This name is already present in zip archive, should be hard coded for now.
+        first: 'websphere90ndNode01',
+        second: 'websphere90ndNode02'
+    ]
     @Shared
     def paths = [
         'default': '/tmp/test/file',
@@ -299,16 +304,16 @@ class ImportApplicationServer extends PluginTestHelper {
         deleteAppServer(nodeName, newServer)        
  
         where: 'The following params will be:'
-        testCaseID        | configname              | serverName        | serverNameInArchive | arcPath         | coreGroup            | nodeName        | nodeNameInArchive | syncNodes | serverExport       | nodeExport      | arcExport       | status      | expectedSummary     | exportServer | logs                    
-        testCases.C363397 | confignames.correctSOAP | servers.'default' | ''                  | paths.'default' | ''                   | nodes.'default' | ''                | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "success"   | summaries.'default' | 1            | jobLogs.'syncNodes'     
-        testCases.C363400 | confignames.correctSOAP | servers.'default' | ''                  | paths.'default' | ''                   | nodes.'default' | ''                | '0'       | servers.'default'  | nodes.'default' | paths.'default' | "success"   | summaries.'default' | 0            | jobLogs.'default'       
-        testCases.C363401 | confignames.correctSOAP | servers.'default' | ''                  | paths.'default' | ''                   | nodes.'default' | nodes.'default'   | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "success"   | summaries.'default' | 0            | jobLogs.'default'       
-        testCases.C363434 | confignames.correctSOAP | servers.'default' | servers.'default'   | paths.'default' | ''                   | nodes.'default' | ''                | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "success"   | summaries.'default' | 0            | jobLogs.'serverInArc'    
-        testCases.C363435 | confignames.correctSOAP | servers.'default' | servers.'default'   | paths.'backup'  | ''                   | nodes.'default' | nodes.'default'   | '1'       | servers.'default'  | ''              | paths.'default' | "success"   | summaries.'default' | 0            | jobLogs.'serverInArc'   
-        testCases.C363433 | confignames.correctSOAP | servers.'default' | servers.'2'         | paths.'backup'  | ''                   | nodes.'default' | nodes.'default'   | '1'       | servers.'default'  | ''              | paths.'default' | "success"   | summaries.'default' | 0            | jobLogs.'serverInArc'   
-        testCases.C363436 | confignames.correctSOAP | servers.'default' | servers.'3'         | paths.'backup'  | ''                   | nodes.'default' | nodes.'2'         | '1'       | servers.'default'  | ''              | paths.'default' | "success"   | summaries.'default' | 0            | jobLogs.'serverInArc'   
-        testCases.C363437 | confignames.correctSOAP | servers.'default' | ''                  | paths.'default' | coreGroups.'default' | nodes.'default' | ''                | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "success"   | summaries.'default' | 0            | jobLogs.'coreGroup'     
-        testCases.C363439 | confignames.correctSOAP | servers.'default' | servers.'default'   | paths.'backup'  | coreGroups.'default' | nodes.'default' | nodes.'2'         | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "success"   | summaries.'default' | 0            | jobLogs.'default'+jobLogs.'syncNodes'+jobLogs.'serverInArc'+jobLogs.'coreGroup'       
+        testCaseID        | configname              | serverName        | serverNameInArchive | arcPath         | coreGroup            | nodeName        | nodeNameInArchive     | syncNodes | serverExport       | nodeExport      | arcExport       | status      | expectedSummary     | exportServer | logs                    
+        testCases.C363397 | confignames.correctSOAP | servers.'default' | ''                  | paths.'default' | ''                   | nodes.'default' | ''                    | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "success"   | summaries.'default' | 1            | jobLogs.'syncNodes'     
+        testCases.C363400 | confignames.correctSOAP | servers.'default' | ''                  | paths.'default' | ''                   | nodes.'default' | ''                    | '0'       | servers.'default'  | nodes.'default' | paths.'default' | "success"   | summaries.'default' | 0            | jobLogs.'default'       
+        testCases.C363401 | confignames.correctSOAP | servers.'default' | ''                  | paths.'default' | ''                   | nodes.'default' | nodesInArchive.first  | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "success"   | summaries.'default' | 0            | jobLogs.'default'       
+        testCases.C363434 | confignames.correctSOAP | servers.'default' | servers.'default'   | paths.'default' | ''                   | nodes.'default' | ''                    | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "success"   | summaries.'default' | 0            | jobLogs.'serverInArc'    
+        testCases.C363435 | confignames.correctSOAP | servers.'default' | servers.'default'   | paths.'backup'  | ''                   | nodes.'default' | nodesInArchive.first  | '1'       | servers.'default'  | ''              | paths.'default' | "success"   | summaries.'default' | 0            | jobLogs.'serverInArc'   
+        testCases.C363433 | confignames.correctSOAP | servers.'default' | servers.'2'         | paths.'backup'  | ''                   | nodes.'default' | nodesInArchive.first  | '1'       | servers.'default'  | ''              | paths.'default' | "success"   | summaries.'default' | 0            | jobLogs.'serverInArc'   
+        testCases.C363436 | confignames.correctSOAP | servers.'default' | servers.'3'         | paths.'backup'  | ''                   | nodes.'default' | nodesInArchive.second | '1'       | servers.'default'  | ''              | paths.'default' | "success"   | summaries.'default' | 0            | jobLogs.'serverInArc'   
+        testCases.C363437 | confignames.correctSOAP | servers.'default' | ''                  | paths.'default' | coreGroups.'default' | nodes.'default' | ''                    | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "success"   | summaries.'default' | 0            | jobLogs.'coreGroup'     
+        testCases.C363439 | confignames.correctSOAP | servers.'default' | servers.'default'   | paths.'backup'  | coreGroups.'default' | nodes.'default' | nodesInArchive.second | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "success"   | summaries.'default' | 0            | jobLogs.'default'+jobLogs.'syncNodes'+jobLogs.'serverInArc'+jobLogs.'coreGroup'       
     }
 
     @Unroll
