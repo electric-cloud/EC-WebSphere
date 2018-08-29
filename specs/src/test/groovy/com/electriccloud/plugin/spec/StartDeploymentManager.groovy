@@ -26,6 +26,8 @@ class StartDeploymentManager extends PluginTestHelper {
     def wasPath =     System.getenv('WSADMIN_PATH')
     @Shared
     def wasAppPath =  System.getenv('WAS_APPPATH')
+    @Shared
+    def is_windows = System.getenv("IS_WINDOWS")
 
     @Shared
     def confignames = [
@@ -80,12 +82,12 @@ class StartDeploymentManager extends PluginTestHelper {
 
     @Shared
     def stopLocations = [
-        defaultLocation: '/opt/IBM/WebSphere/AppServer/bin/stopManager.sh',
+        defaultLocation: is_windows ? 'C:/IBM/WebSphere/AppServer/bin/stopManager.bat' : '/opt/IBM/WebSphere/AppServer/bin/stopManager.sh',
     ]
 
     @Shared
     def startLocations = [
-        defaultLocation: '/opt/IBM/WebSphere/AppServer/bin/startManager.sh',
+        defaultLocation: is_windows ? 'C:/IBM/WebSphere/AppServer/bin/startManager.bat' : '/opt/IBM/WebSphere/AppServer/bin/startManager.sh',
         wrong: 'wrong/path/startManager.sh'
     ]
 
@@ -106,7 +108,7 @@ class StartDeploymentManager extends PluginTestHelper {
 
     @Shared
     def logLocations = [
-        tmp: '/tmp/startLog.log'
+        tmp: is_windows ? 'C:/IBM/startLog.log' : '/tmp/startLog.log'
     ]
 
     @Shared

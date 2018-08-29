@@ -24,6 +24,8 @@ class StartNode extends PluginTestHelper {
     def wasPath =     System.getenv('WSADMIN_PATH')
     @Shared
     def wasAppPath =  System.getenv('WAS_APPPATH')
+    @Shared
+    def is_windows = System.getenv("IS_WINDOWS")
 
     @Shared
     def confignames = [
@@ -121,7 +123,7 @@ class StartNode extends PluginTestHelper {
 
     @Shared
     def logLocations = [
-        tmp: '/tmp/startLog.log'
+        tmp: is_windows ? 'C:/IBM/startLog.log' : '/tmp/startLog.log'
     ]
 
     @Shared
@@ -133,15 +135,15 @@ class StartNode extends PluginTestHelper {
 
     @Shared
     stopLocations = [
-        'default': '/opt/IBM/WebSphere/AppServer/bin/stopNode.sh', 
-        'AppSrv01': '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/stopNode.sh',
+        'default': is_windows ? 'C:/IBM/WebSphere/AppServer/bin/stopNode.bat' : '/opt/IBM/WebSphere/AppServer/bin/stopNode.sh',
+        'AppSrv01': is_windows ? 'C:/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/stopNode.bat' : '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/stopNode.sh',
         'wrong': '/wrong/stopNode.sh',
     ]
 
     @Shared
     startLocations = [
-        'default': '/opt/IBM/WebSphere/AppServer/bin/startNode.sh', 
-        'AppSrv01': '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startNode.sh',
+        'default': is_windows ? 'C:/IBM/WebSphere/AppServer/bin/startNode.bat' : '/opt/IBM/WebSphere/AppServer/bin/startNode.sh',
+        'AppSrv01': is_windows ? 'C:/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startNode.bat' : '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startNode.sh',
         'wrong': '/wrong/startNode.sh',
     ]
 

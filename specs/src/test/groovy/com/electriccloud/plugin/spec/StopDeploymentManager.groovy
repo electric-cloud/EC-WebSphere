@@ -26,6 +26,8 @@ class StopDeploymentManager extends PluginTestHelper {
     def wasPath =     System.getenv('WSADMIN_PATH')
     @Shared
     def wasAppPath =  System.getenv('WAS_APPPATH')
+    @Shared
+    def is_windows = System.getenv("IS_WINDOWS")
 
     @Shared
     def confignames = [
@@ -80,13 +82,13 @@ class StopDeploymentManager extends PluginTestHelper {
 
     @Shared
     def stopLocations = [
-        defaultLocation: '/opt/IBM/WebSphere/AppServer/bin/stopManager.sh',
+        defaultLocation: is_windows ? 'C:/IBM/WebSphere/AppServer/bin/stopManager.bat' : '/opt/IBM/WebSphere/AppServer/bin/stopManager.sh',
         wrong: '/wrong/path/stopManager.sh'
     ]
 
     @Shared
     def startLocations = [
-        defaultLocation: '/opt/IBM/WebSphere/AppServer/bin/startManager.sh'
+        defaultLocation: is_windows ? 'C:/IBM/WebSphere/AppServer/bin/startManager.bat' : '/opt/IBM/WebSphere/AppServer/bin/startManager.sh'
     ]
 
     @Shared
@@ -106,7 +108,7 @@ class StopDeploymentManager extends PluginTestHelper {
 
     @Shared
     def logLocations = [
-        tmp: "/tmp/stopLog.log"
+        tmp: is_windows ? 'C:/IBM/stopLog.log' : "/tmp/stopLog.log"
     ]
 
     @Shared
@@ -140,7 +142,7 @@ class StopDeploymentManager extends PluginTestHelper {
                     "(?!ADMU3201I: Server stop request issued. Waiting for stop status)", "(?!ADMU4000I: Server dmgr stop completed.)"],
         'addParams': ["Generated command line: 'stopManagerReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'  -quiet -nowait",
                     "(?!ADMU3201I: Server stop request issued. Waiting for stop status)", "(?!ADMU4000I: Server dmgr stop completed.)"],
-        'all':      ["Generated command line: 'stopManagerReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -profileName 'Dmgr01'  -logfile '/tmp/stopLog.log'  -timeout '70'  -quiet",
+        'all':      ["Generated command line: 'stopManagerReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -profileName 'Dmgr01'  -logfile '$logLocations.tmp'  -timeout '70'  -quiet",
                     "(?!ADMU3201I: Server stop request issued. Waiting for stop status)", "(?!ADMU4000I: Server dmgr stop completed.)"],
         'emptyConfig': ["Error: Configuration '' doesn't exist"],
         'incorrect': ["Configuration 'incorrect' doesn't exist"],

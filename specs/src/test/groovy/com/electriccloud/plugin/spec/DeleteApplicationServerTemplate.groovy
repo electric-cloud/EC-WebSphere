@@ -94,14 +94,6 @@ class DeleteApplicationServerTemplate extends PluginTestHelper {
             'error_config':  ["Error: Configuration ('incorrectConfig'|'') doesn't exist"],
     ]
 
-    /*def change_logs(){
-        if version == 80nd {
-
-            jobLogs.default_synch = jobLogs.default_80nd
-        }
-        if ver
-    }*/
-
     def doSetupSpec() {
         def wasResourceName = wasHost
         createWorkspace(wasResourceName)
