@@ -93,12 +93,12 @@ class DeleteApplicationServer extends PluginTestHelper {
             'default': "Application server $serverName on node $serverNode has been deleted\n",
             'error_config_empty': "Configuration '' doesn't exist",
             'error_config': "Configuration 'incorrectConfig' doesn't exist",
-            'error_empty_s_name': "Failed to delete application server  on node $serverNode\nException: WASL6041E: The following argument value is not valid: serverName:.\n",
-            'error_empty_node': "Failed to delete application server $serverName on node \nException: WASL6041E: The following argument value is not valid: nodeName:.\n",
-            'error_invalid_node': "Failed to delete application server $serverName on node !#*&Node1\nException: WASL6040E: The nodeName:!#*&Node1 specified argument does not exist.\n",
-            'error_not_ex_node': "Failed to delete application server $serverName on node notExist\nException: WASL6040E: The nodeName:notExist specified argument does not exist.\n",
-            'error_invalid_s_name': "Failed to delete application server !#*&server1 on node $serverNode\nException: WASL6040E: The serverName:!#*&server1 specified argument does not exist.\n",
-            'error_not_ex_s_name': "Failed to delete application server notExist on node $serverNode\nException: WASL6040E: The serverName:notExist specified argument does not exist.\n",
+            'error_empty_s_name': "Failed to delete application server  on node $serverNode\nException: WASL6041E: The following argument value is not valid: serverName:.",
+            'error_empty_node': "Failed to delete application server $serverName on node \nException: WASL6041E: The following argument value is not valid: nodeName:.",
+            'error_invalid_node': "Failed to delete application server $serverName on node !#*&Node1\nException: WASL6040E: The nodeName:!#*&Node1 specified argument does not exist.",
+            'error_not_ex_node': "Failed to delete application server $serverName on node notExist\nException: WASL6040E: The nodeName:notExist specified argument does not exist.",
+            'error_invalid_s_name': "Failed to delete application server !#*&server1 on node $serverNode\nException: WASL6040E: The serverName:!#*&server1 specified argument does not exist.",
+            'error_not_ex_s_name': "Failed to delete application server notExist on node $serverNode\nException: WASL6040E: The serverName:notExist specified argument does not exist.",
 
     ]
 
@@ -119,6 +119,7 @@ class DeleteApplicationServer extends PluginTestHelper {
         def wasResourceName = wasHost
         createWorkspace(wasResourceName)
         createConfiguration(configname, [doNotRecreate: false])
+        change_summary(wasHost)
 
         importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
                                                             resName : wasResourceName,
@@ -259,5 +260,21 @@ class DeleteApplicationServer extends PluginTestHelper {
         }
         return result
     }
-
+    def change_summary(version){
+        if (version == "websphere80nd" || version == "websphere85nd"){
+            summaries.error_empty_s_name += "'\n"
+            summaries.error_empty_node += "'\n"
+            summaries.error_invalid_node += "'\n"
+            summaries.error_not_ex_node += "'\n"
+            summaries.error_invalid_s_name += "'\n"
+            summaries.error_not_ex_s_name += "'\n"
+        } else {
+            summaries.error_empty_s_name += "\n"
+            summaries.error_empty_node += "\n"
+            summaries.error_invalid_node += "\n"
+            summaries.error_not_ex_node += "\n"
+            summaries.error_invalid_s_name += "\n"
+            summaries.error_not_ex_s_name += "\n"
+        }
+    }
 }

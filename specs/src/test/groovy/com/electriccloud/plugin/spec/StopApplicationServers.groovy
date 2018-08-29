@@ -139,11 +139,14 @@ class StopApplicationServers extends PluginTestHelper {
     @Shared
     def jobLogs = [
             'default':  ["Stop completed for middleware server \"server1\" on node \"$serverNode\"", "Node: $serverNode, Server: server1, State: Stopped"],
+            'default_80nd':  ["Node: $serverNode, Server: server1, State: Stopped"],
             'multiple': ["Stop completed for middleware server \"server1\" on node \"$serverNode\"","Stop completed for middleware server \"serverStopAppServer\" on node \"$serverNode\""],
             'warning': ["Server server1 on Node $serverNode is already Stopped",'Nothing to do, all servers are already Stopped','warning','Application servers have been stopped'],
             'warning_both': ["Server server1 on Node $serverNode is already Stopped","Server serverStopAppServer on Node $serverNode is already Stopped",'Nothing to do, all servers are already Stopped','warning','Application servers have been stopped'],
             'warning_second': ["Stop completed for middleware server \"server1\" on node \"$serverNode\"", "Node: $serverNode, Server: server1, State: Stopped" , "Server serverStopAppServer on Node $serverNode is already Stopped",'warning','Application servers have been stopped'],
+            'warning_second_80nd': ["Node: $serverNode, Server: server1, State: Stopped" , "Server serverStopAppServer on Node $serverNode is already Stopped",'warning','Application servers have been stopped'],
             'warning_first': ["Stop completed for middleware server \"serverStopAppServer\" on node \"$serverNode\"", "Node: $serverNode, Server: serverStopAppServer, State: Stopped" , "Server server1 on Node $serverNode is already Stopped",'warning','Application servers have been stopped'],
+            'warning_first_80nd': ["Node: $serverNode, Server: serverStopAppServer, State: Stopped" , "Server server1 on Node $serverNode is already Stopped",'warning','Application servers have been stopped'],
             'error': ['error','Failed to stop servers:',"Node: $serverNode, Server: server1, State: (STOPPING|STARTED)",'Some servers are failed to stop'],
             'error_both': ['error','Failed to stop servers:',"Node: $serverNode, Server: server1, State: (STOPPING|STARTED)","Node: $serverNode, Server: serverStopAppServer, State: (STOPPING|STARTED)",'Some servers are failed to stop'],
             'error_empty_config': ["Error: Configuration '' doesn't exist"],
@@ -171,6 +174,7 @@ class StopApplicationServers extends PluginTestHelper {
         def wasResourceName = wasHost
         createWorkspace(wasResourceName)
         createConfiguration(confignames.correctSOAP, [doNotRecreate: false])
+        change_logs(wasHost)
 
         importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
                                                             resName : wasResourceName,
@@ -353,7 +357,7 @@ class StopApplicationServers extends PluginTestHelper {
         if (testCaseID != testCases.systemTest16 && testCaseID != testCases.systemTest17){
             assert jobSummary == expectedSummary
         } else {
-            assert jobSummary ==~ expectedSummary
+            assert jobSummary =~ expectedSummary
         }
         def debugLog = getJobLogs(result.jobId)
         for (log in logs){
@@ -437,5 +441,13 @@ class StopApplicationServers extends PluginTestHelper {
            )
        """
         return dslWithTimeout(code)
+    }
+
+    def change_logs(version){
+        if (version == "websphere80nd"){
+            jobLogs.default = jobLogs.default_80nd
+            jobLogs.warning_first = jobLogs.warning_first_80nd
+            jobLogs.warning_second = jobLogs.warning_second_80nd
+        }
     }
 }

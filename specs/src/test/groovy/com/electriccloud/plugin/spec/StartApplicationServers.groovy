@@ -146,12 +146,14 @@ class StartApplicationServers extends PluginTestHelper {
     @Shared
     def jobLogs = [
         'default':  ["Start completed for middleware server \"server1\" on node \"${nodes.'default'}\"", "Node: ${nodes.'default'}, Server: server1, State: STARTED"],           
+        'default_80nd':  ["Node: ${nodes.'default'}, Server: server1, State: STARTED"],
         'started':  ["Server server1 on Node ${nodes.'default'} is already STARTED", "Nothing to do, all servers are already STARTED"],
         'started2': ["Server server1 on Node ${nodes.'default'} is already STARTED", "Server startserver on Node ${nodes.'default'} is already STARTED", "Nothing to do, all servers are already STARTED"],
         'started3': ["Node: ${nodes.'default'}, Server: startserver, State: STARTED", "Server server1 on Node ${nodes.'default'} is already STARTED'"],
         'multiple': ["Start completed for middleware server \"server1\" on node \"${nodes.'default'}\"", "Start completed for middleware server \"startserver\" on node \"${nodes.'default'}\"",
             "Node: ${nodes.'default'}, Server: server1, State: STARTED", "Node: ${nodes.'default'}, Server: startserver, State: STARTED'"],
         'first': ["Server startserver on Node ${nodes.'default'} is already STARTED", "Start completed for middleware server \"server1\" on node \"${nodes.'default'}\""],
+        'first_80nd': ["Server startserver on Node ${nodes.'default'} is already STARTED"],
         'emptyConfig': ["Error: Configuration '' doesn't exist"],
         'emptyServer': ['Missing servers list to be started'],
         'wrongFormat': ["ValueError: Expected nodename:servername record, got ${nodes.'default'}=server1"],
@@ -168,6 +170,7 @@ class StartApplicationServers extends PluginTestHelper {
         def wasResourceName = wasHost
         createWorkspace(wasResourceName)
         createConfiguration(confignames.correctSOAP, [doNotRecreate: false])
+        change_logs(wasHost)
 
         importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
                 resName : wasResourceName,
@@ -410,6 +413,12 @@ class StartApplicationServers extends PluginTestHelper {
             )
         """
         return dslWithTimeout(code)
-    }    
+    }
+    def change_logs(version){
+        if (version == "websphere80nd"){
+            jobLogs.default = jobLogs.default_80nd
+            jobLogs.first = jobLogs.first_80nd
+        }
+    }
 
 }
