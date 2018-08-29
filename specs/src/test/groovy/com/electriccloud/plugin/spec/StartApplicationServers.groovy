@@ -157,7 +157,7 @@ class StartApplicationServers extends PluginTestHelper {
         'emptyConfig': ["Error: Configuration '' doesn't exist"],
         'emptyServer': ['Missing servers list to be started'],
         'wrongFormat': ["ValueError: Expected nodename:servername record, got ${nodes.'default'}=server1"],
-        'wrongServer':  ['Invalid parameter value wrong_server1 for parameter serverName for command startMiddlewareServer.'],
+        'wrongServer':  ["Failed to start server wrong_server1 on node ${nodes.'default'}"],
         'wrongServers': ["Expected nodename:servername record, got ${nodes.'default'}=wrong_server1"],
         'timeoutServer': ['Not added'],
         'timeoutServers': ['Not added'],

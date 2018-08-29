@@ -148,12 +148,12 @@ class StopApplicationServers extends PluginTestHelper {
             'warning_first': ["Stop completed for middleware server \"serverStopAppServer\" on node \"$serverNode\"", "Node: $serverNode, Server: serverStopAppServer, State: Stopped" , "Server server1 on Node $serverNode is already Stopped",'warning','Application servers have been stopped'],
             'warning_first_80nd': ["Node: $serverNode, Server: serverStopAppServer, State: Stopped" , "Server server1 on Node $serverNode is already Stopped",'warning','Application servers have been stopped'],
             'error': ['error','Failed to stop servers:',"Node: $serverNode, Server: server1, State: (STOPPING|STARTED)",'Some servers are failed to stop'],
-            'error_both': ['error','Failed to stop servers:',"Node: $serverNode, Server: server1, State: (STOPPING|STARTED)","Node: $serverNode, Server: serverStopAppServer, State: (STOPPING|STARTED)",'Some servers are failed to stop'],
+            'error_both': ['error','Failed to stop servers:',"Node: $serverNode, Server: server1, State: (STOPPING|STARTED)","Server serverStopAppServer on Node $serverNode is already Stopped",'Some servers are failed to stop'],
             'error_empty_config': ["Error: Configuration '' doesn't exist"],
             'error_config': ["Error: Configuration 'incorrect' doesn't exist"],
             'error_empty_ServerList': ['error','Failed to stop servers:', 'Missing servers list to be stopped'],
             'error_ServerList': ['error','Failed to stop servers:', "Expected nodename:servername record, got $serverNode=server1"],
-            'error_Server': ['error','Failed to stop servers:', "Failed to stop server wrong_server1 on node $serverNode",'ADMF0003E: Invalid parameter value wrong_server1 for parameter serverName for command stopMiddlewareServer.'],
+            'error_Server': ['error','Failed to stop servers:', "Failed to stop server wrong_server1 on node $serverNode"],
             'error_WaitTime': ['error','Wait time should be a positive integer, if present. Got: 9am']
     ]
 
@@ -163,11 +163,11 @@ class StopApplicationServers extends PluginTestHelper {
             'emptyServerList': "Failed to stop servers:\nMissing servers list to be stopped",
             'incorrectConfig': "Configuration 'incorrect' doesn't exist",
             'incorrectServerListFormat':"Failed to stop servers:\nExpected nodename:servername record, got $serverNode=server1",
-            'incorrectServer':"Failed to stop servers:\nFailed to stop server wrong_server1 on node $serverNode\nADMF0003E: Invalid parameter value wrong_server1 for parameter serverName for command stopMiddlewareServer.",
-            'incorrectServers':"Failed to stop servers:\nFailed to stop server wrong_server1 on node $serverNode\nADMF0003E: Invalid parameter value wrong_server1 for parameter serverName for command stopMiddlewareServer.",
+            'incorrectServer':"Failed to stop servers:\nFailed to stop server wrong_server1 on node $serverNode(\nADMF0003E: Invalid parameter value wrong_server1 for parameter serverName for command stopMiddlewareServer.)?",
+            'incorrectServers':"Failed to stop servers:\nFailed to stop server wrong_server1 on node $serverNode(\nADMF0003E: Invalid parameter value wrong_server1 for parameter serverName for command stopMiddlewareServer.)?",
             'incorrectWaitTime':"Wait time should be a positive integer, if present. Got: 9am",
             'zeroWaitTime':"Failed to stop servers:\nNode: $serverNode, Server: server1, State: (STOPPING|STARTED)\nSome servers are failed to stop",
-            'zeroWaitTimeMultiple':"Failed to stop servers:\nNode: $serverNode, Server: server1, State: (STOPPING|STARTED)\nNode: $serverNode, Server: serverStopAppServer, State: (STOPPING|STARTED)\nSome servers are failed to stop"
+            'zeroWaitTimeMultiple':"Failed to stop servers:\nNode: $serverNode, Server: server1, State: (STOPPING|STARTED)\nSome servers are failed to stop"
     ]
 
     def doSetupSpec() {
@@ -354,10 +354,10 @@ class StopApplicationServers extends PluginTestHelper {
         def outcome = getJobProperty('/myJob/outcome', result.jobId)
         def jobSummary = getJobProperty("/myJob/jobSteps/$procName/summary", result.jobId)
         assert outcome == expectedOutcome
-        if (testCaseID != testCases.systemTest16 && testCaseID != testCases.systemTest17){
-            assert jobSummary == expectedSummary
-        } else {
+        if (testCaseID == testCases.systemTest16 || testCaseID == testCases.systemTest17 || testCaseID == testCases.systemTest13 || testCaseID == testCases.systemTest14 ){
             assert jobSummary =~ expectedSummary
+        } else {
+            assert jobSummary == expectedSummary
         }
         def debugLog = getJobLogs(result.jobId)
         for (log in logs){
