@@ -142,7 +142,7 @@ class StopDeploymentManager extends PluginTestHelper {
                     "(?!ADMU3201I: Server stop request issued. Waiting for stop status)", "(?!ADMU4000I: Server dmgr stop completed.)"],
         'addParams': ["Generated command line: 'stopManagerReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'  -quiet -nowait",
                     "(?!ADMU3201I: Server stop request issued. Waiting for stop status)", "(?!ADMU4000I: Server dmgr stop completed.)"],
-        'all':      ["Generated command line: 'stopManagerReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -profileName 'Dmgr01'  -logfile '$logLocations.tmp'  -timeout '70'  -quiet",
+        'all':      ["Generated command line: 'stopManagerReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -profileName 'Dmgr01'  -logfile '$logLocations.tmp'  -timeout '140'  -quiet",
                     "(?!ADMU3201I: Server stop request issued. Waiting for stop status)", "(?!ADMU4000I: Server dmgr stop completed.)"],
         'emptyConfig': ["Error: Configuration '' doesn't exist"],
         'incorrect': ["Configuration 'incorrect' doesn't exist"],
@@ -244,10 +244,10 @@ class StopDeploymentManager extends PluginTestHelper {
         testCases.systemTest1.name  | confignames.correctSOAP     | ''                          | ''              | ''                | stopLocations.defaultLocation | ''        | summaries.'default'   | jobLogs.'default'
         testCases.systemTest2.name  | confignames.correctSOAP     | ''                          | profiles.dmgr01 | ''                | stopLocations.defaultLocation | ''        | summaries.'default'   | jobLogs.'profile'
         testCases.systemTest3.name  | confignames.correctSOAP     | ''                          | ''              | logLocations.tmp  | stopLocations.defaultLocation | ''        | summaries.'default'   | jobLogs.'logs'
-        testCases.systemTest4.name  | confignames.correctSOAP     | ''                          | ''              | ''                | stopLocations.defaultLocation | '70'      | summaries.'default'   | jobLogs.'timeOk'
+        testCases.systemTest4.name  | confignames.correctSOAP     | ''                          | ''              | ''                | stopLocations.defaultLocation | '140'     | summaries.'default'   | jobLogs.'timeOk'
         testCases.systemTest5.name  | confignames.correctSOAP     | additionalParameters.quiet  | ''              | ''                | stopLocations.defaultLocation | ''        | summaries.'default'   | jobLogs.'addParam'
         testCases.systemTest5.name  | confignames.correctSOAP     | additionalParameters.some   | ''              | ''                | stopLocations.defaultLocation | ''        | summaries.'default'   | jobLogs.'addParams'
-        testCases.systemTest6.name  | confignames.correctSOAP     | additionalParameters.quiet  | profiles.dmgr01 | logLocations.tmp  | stopLocations.defaultLocation | '70'      | summaries.'default'   | jobLogs.'all'
+        testCases.systemTest6.name  | confignames.correctSOAP     | additionalParameters.quiet  | profiles.dmgr01 | logLocations.tmp  | stopLocations.defaultLocation | '140'     | summaries.'default'   | jobLogs.'all'
     }
 
     @Unroll
