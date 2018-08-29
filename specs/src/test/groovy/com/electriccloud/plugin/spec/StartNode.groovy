@@ -301,6 +301,10 @@ class StartNode extends PluginTestHelper {
         if (timeout == '10'){
             stopNode()
         }
+        // for version 80, node starts in 10 seconds, so we need to reduce the time
+        if (wasHost == 'websphere80nd' && testCaseID == testCases.systemTest14){
+            timeout = '1'
+        }
         given: "Parameters for procedure"
         def runParams = [
             configname: configName,

@@ -116,6 +116,12 @@ class ImportApplicationServer extends PluginTestHelper {
     def archiveUrl = "https://github.com/electric-cloud/EC-WebSphere/blob/ECPAPPSERVERWEBSPHERE-528/specs/resource/WebSphereConfig_2018-08-17.zip?raw=true"
 
     @Shared
+    def archiveUrl80 = "https://github.com/electric-cloud/EC-WebSphere/raw/ECPAPPSERVERWEBSPHERE-561/specs/resource/WebSphereConfig_2018-08-29.zip"
+
+    @Shared
+    def archiveUrl85 = "https://github.com/electric-cloud/EC-WebSphere/raw/ECPAPPSERVERWEBSPHERE-561/specs/resource/WebSphereConfig85_2018-08-29.zip"
+
+    @Shared
     def servers = [
         'default': 'server1',
         '2': 'server2',
@@ -134,13 +140,15 @@ class ImportApplicationServer extends PluginTestHelper {
     @Shared
     nodesInArchive = [
         // This name is already present in zip archive, should be hard coded for now.
-        first: 'websphere90ndNode01',
-        second: 'websphere90ndNode02'
+        first: wasHost + 'Node01',
+        second: wasHost + 'Node02',
     ]
     @Shared
     def paths = [
         'default': '/tmp/test/file',
         'backup': '/WebSphereConfig_2018-08-17.zip',
+        'backup80': '/WebSphereConfig_2018-08-29.zip',
+        'backup85': '/WebSphereConfig85_2018-08-29.zip',
         'wrong': 'E:/tmp/'
     ]
 
@@ -187,6 +195,7 @@ class ImportApplicationServer extends PluginTestHelper {
 
     def doSetupSpec() {
         def wasResourceName = wasHost
+        changeBackupVersions()
         createWorkspace(wasResourceName)
         createConfiguration(confignames.correctSOAP, [doNotRecreate: false])
         runGetResourcesProcedure([
@@ -376,6 +385,17 @@ class ImportApplicationServer extends PluginTestHelper {
         testCases.C363451   | confignames.correctSOAP | servers.'default' | ''                  | paths.'default' | coreGroups.'wrong' | nodes.'default' | ''                | '1'       | servers.'default'  | nodes.'default' | paths.'default' | "error"     | summaries.'wrongGroup'             | jobLogs.'wrongGroup'             | 0
 
     }    
+
+    def changeBackupVersions(){
+        if (wasHost == "websphere80nd"){
+            archiveUrl = archiveUrl80
+            paths.'backup' = paths.'backup80'
+        }
+        if (wasHost == "websphere85nd"){
+            archiveUrl = archiveUrl85
+            paths.'backup' = paths.'backup85'
+        }
+    }
 
     def deleteAppServer(node,server){
         def runParams = [
