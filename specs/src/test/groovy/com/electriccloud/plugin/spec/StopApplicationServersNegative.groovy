@@ -7,6 +7,7 @@ import com.electriccloud.plugin.spec.PluginTestHelper
 
 @IgnoreIf({ System.getenv('IS_WAS_ND') != "1"})
 @Stepwise
+@Unroll
 class StopApplicationServersNegative extends PluginTestHelper {
 
     /**
