@@ -26,6 +26,8 @@ class ExportApplicationServer extends PluginTestHelper {
     def wasPath =     System.getenv('WSADMIN_PATH')
     @Shared
     def wasAppPath =  System.getenv('WAS_APPPATH')
+    @Shared
+    def is_windows = System.getenv("IS_WINDOWS")
 
     @Shared
     def confignames = [
@@ -82,7 +84,7 @@ class ExportApplicationServer extends PluginTestHelper {
 
     @Shared
     def paths = [
-        'default': '/tmp/test/',
+        'default': is_windows ? 'C:/IBM/test/' : '/tmp/test/',
         'wrong': 'E:/tmp/'
     ]
 

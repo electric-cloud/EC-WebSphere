@@ -24,6 +24,8 @@ class StopNode extends PluginTestHelper {
     def wasPath =     System.getenv('WSADMIN_PATH')
     @Shared
     def wasAppPath =  System.getenv('WAS_APPPATH')
+    @Shared
+    def is_windows = System.getenv("IS_WINDOWS")
 
     @Shared
     def confignames = [
@@ -103,7 +105,7 @@ class StopNode extends PluginTestHelper {
 
     @Shared
     def logLocations = [
-        tmp: '/tmp/startLog.log'
+        tmp: is_windows ? 'C:/IBM/startLog.log' : '/tmp/startLog.log'
     ]
 
     @Shared
@@ -121,22 +123,22 @@ class StopNode extends PluginTestHelper {
 
     @Shared
     stopLocations = [
-        'default': '/opt/IBM/WebSphere/AppServer/bin/stopNode.sh', 
-        'AppSrv01': '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/stopNode.sh',
+        'default': is_windows ? 'C:/IBM/WebSphere/AppServer/bin/stopNode.bat' : '/opt/IBM/WebSphere/AppServer/bin/stopNode.sh',
+        'AppSrv01': is_windows ? 'C:/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/stopNode.bat' : '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/stopNode.sh',
         'wrong': '/wrong/stopNode.sh',
     ]
 
     @Shared
     startLocations = [
-        'default': '/opt/IBM/WebSphere/AppServer/bin/startNode.sh', 
-        'AppSrv01': '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startNode.sh',
+        'default': is_windows ? 'C:/IBM/WebSphere/AppServer/bin/startNode.bat' : '/opt/IBM/WebSphere/AppServer/bin/startNode.sh',
+        'AppSrv01': is_windows ? 'C:/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startNode.bat' : '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startNode.sh',
     ]
 
     @Shared
     startServerLocations = [
-        'default': '/opt/IBM/WebSphere/AppServer/bin/startServer.sh', 
-        'AppSrv01': '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startServer.sh',
-        'Dmgr01': '/opt/IBM/WebSphere/AppServer/profiles/Dmgr01/bin/startServer.sh'
+        'default': is_windows ? 'C:/IBM/WebSphere/AppServer/bin/startServer.bat' : '/opt/IBM/WebSphere/AppServer/bin/startServer.sh',
+        'AppSrv01': is_windows ? 'C:/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startServer.bat' : '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startServer.sh',
+        'Dmgr01': is_windows ? 'C:/IBM/WebSphere/AppServer/profiles/Dmgr01/bin/startServer.bat' : '/opt/IBM/WebSphere/AppServer/profiles/Dmgr01/bin/startServer.sh'
     ]
 
     @Shared
@@ -364,7 +366,7 @@ class StopNode extends PluginTestHelper {
     }
 
     @Unroll
-    def "StopNode - Negative"(){
+    def "StopNode 1 - Negative"(){
         given: "Parameters for procedure"
         def runParams = [
             configname: configName,
@@ -408,7 +410,7 @@ class StopNode extends PluginTestHelper {
       }
 
     @Unroll
-    def "StopNode - Negative"(){
+    def "StopNode 2 - Negative"(){
         given: "Parameters for procedure"
         def runParams = [
             configname: configName,

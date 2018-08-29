@@ -26,6 +26,8 @@ class ImportApplicationServer extends PluginTestHelper {
     def wasPath =     System.getenv('WSADMIN_PATH')
     @Shared
     def wasAppPath =  System.getenv('WAS_APPPATH')
+    @Shared
+    def is_windows = System.getenv("IS_WINDOWS")
 
     @Shared
     def confignames = [
@@ -145,10 +147,10 @@ class ImportApplicationServer extends PluginTestHelper {
     ]
     @Shared
     def paths = [
-        'default': '/tmp/test/file',
-        'backup': '/WebSphereConfig_2018-08-17.zip',
-        'backup80': '/WebSphereConfig_2018-08-29.zip',
-        'backup85': '/WebSphereConfig85_2018-08-29.zip',
+        'default': is_windows ? 'C:/IBM/test/file' : '/tmp/test/file',
+        'backup': is_windows ? 'C:/IBM/WebSphereConfig_2018-08-17.zip' : '/WebSphereConfig_2018-08-17.zip',
+        'backup80': is_windows ? 'C:/IBM/WebSphereConfig_2018-08-29.zip' : '/WebSphereConfig_2018-08-29.zip',
+        'backup85': is_windows ? 'C:/IBM/WebSphereConfig85_2018-08-29.zip' : '/WebSphereConfig85_2018-08-29.zip',
         'wrong': 'E:/tmp/'
     ]
 

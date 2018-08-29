@@ -183,7 +183,7 @@ class CreateApplicationServerTemplate extends PluginTestHelper {
     }
 
     @Unroll
-    def 'CreateApplicationServerTemplate - Negative: #testCaseID.name #testCaseID.description'(){
+    def 'CreateApplicationServerTemplate 1 - Negative: #testCaseID.name #testCaseID.description'(){
         given: "Parameters for procedure"
         def runParams = [
             configname:  configName,
