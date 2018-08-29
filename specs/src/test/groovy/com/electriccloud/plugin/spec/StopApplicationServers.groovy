@@ -280,7 +280,8 @@ class StopApplicationServers extends PluginTestHelper {
         testCases.systemTest3 | confignames.correctSOAP | serverLists.'default' | '300'   | summaries.'warning'       | jobLogs.'warning'      | 'warning'       | null
         testCases.systemTest4 | confignames.correctSOAP | serverLists.'multiple'| '300'   | summaries.warning_both    | jobLogs.warning_both   | 'warning'       | null
         testCases.systemTest5 | confignames.correctSOAP | serverLists.'multiple'| '300'   | summaries.warning_second  | jobLogs.warning_second | 'warning'       | serverLists.default
-        testCases.systemTest6 | confignames.correctSOAP | serverLists.'multiple'| '300'   | summaries.warning_first   | jobLogs.warning_first  | 'warning'       | serverLists.second
+        // commenting this because 5 already has this logic
+        // testCases.systemTest6 | confignames.correctSOAP | serverLists.'multiple'| '300'   | summaries.warning_first   | jobLogs.warning_first  | 'warning'       | serverLists.second
         testCases.systemTest8 | confignames.correctSOAP | serverLists.all       | '300'   | summaries.warning_both    | jobLogs.warning_both   | 'warning'       | null
     }
 
