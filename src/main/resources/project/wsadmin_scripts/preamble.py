@@ -301,7 +301,7 @@ def showServerStatus(nodeName, serverName):
     beanId = AdminControl.completeObjectName("node=" + nodeName + ",process=" + serverName + ",name=" + serverName + ",j2eeType=J2EEServer,*")
     serverId = AdminConfig.getid("/Node:" + nodeName + "/Server:" + serverName + "/")
     if (serverId == "") :
-        return "Unknown!"
+        return "UNKNOWN!"
     #endIf
 
     if (beanId == "") :
