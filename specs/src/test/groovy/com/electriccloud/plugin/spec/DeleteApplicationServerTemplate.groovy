@@ -78,25 +78,36 @@ class DeleteApplicationServerTemplate extends PluginTestHelper {
     def summaries = [
             'default': "Application server template $templateName has been deleted\n",
             'error_empty_config': "Configuration '' doesn't exist",
-            'error_empty_name': "Failed to delete application server template \nException: WASL6041E: The following argument value is not valid: templateName:.\n",
+            'error_empty_name': "Failed to delete application server template \nException: WASL6041E: The following argument value is not valid: templateName:.",
             'error_invalid_config': "Configuration 'incorrectConfig' doesn't exist",
-            'error_invalid_name': "Failed to delete application server template incorrectName\nException: WASL6040E: The templateName:incorrectName specified argument does not exist.\n",
-            'error_name': "Failed to delete application server template $templateName\nException: WASL6040E: The templateName:$templateName specified argument does not exist.\n"
+            'error_invalid_name': "Failed to delete application server template incorrectName\nException: WASL6040E: The templateName:incorrectName specified argument does not exist.",
+            'error_name': "Failed to delete application server template $templateName\nException: WASL6040E: The templateName:$templateName specified argument does not exist."
     ]
 
     @Shared
     def jobLogs = [
-            'default_cynch':  ['success',"Application server template $templateName has been deleted","The following nodes have been synchronized: $templateNode"],
-            'default_no_cynch':  ['success',"Application server template $templateName has been deleted"],
+            'default_synch':  ['success',"Application server template $templateName has been deleted","The following nodes have been synchronized: $templateNode"],
+            'default_synch_version_s': ['success',"Application server template $templateName has been deleted"],
+            'default_no_synch':  ['success',"Application server template $templateName has been deleted"],
             'error_empty_name':  ['error','Failed to delete application server template',"Exception: WASL6041E: The following argument value is not valid: templateName:."],
             'error_name':  ['error',"Failed to delete application server template (incorrectName|$templateName)","Exception: WASL6040E: The templateName:(incorrectName|$templateName) specified argument does not exist."],
             'error_config':  ["Error: Configuration ('incorrectConfig'|'') doesn't exist"],
     ]
 
+    /*def change_logs(){
+        if version == 80nd {
+
+            jobLogs.default_synch = jobLogs.default_80nd
+        }
+        if ver
+    }*/
+
     def doSetupSpec() {
         def wasResourceName = wasHost
         createWorkspace(wasResourceName)
         createConfiguration(configname, [doNotRecreate: false])
+        change_summary(wasHost)
+        change_logs(wasHost)
 
         importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
                                                             resName : wasResourceName,
@@ -161,8 +172,8 @@ class DeleteApplicationServerTemplate extends PluginTestHelper {
 
         where: 'The following params will be:'
         testCaseID            | configName        | template        | syncNodes | expectedSummary                | logs                     | expectedOutcome | createTemplate
-        testCases.systemTest1 | configname        | templateName    | '1'       | summaries.default              | jobLogs.default_cynch    | 'success'       | 1
-        testCases.systemTest2 | configname        | templateName    | '0'       | summaries.default              | jobLogs.default_no_cynch | 'success'       | 1
+        testCases.systemTest1 | configname        | templateName    | '1'       | summaries.default              | jobLogs.default_synch    | 'success'       | 1
+        testCases.systemTest2 | configname        | templateName    | '0'       | summaries.default              | jobLogs.default_no_synch | 'success'       | 1
         testCases.systemTest3 | configname        | templateName    | '0'       | summaries.error_name           | jobLogs.error_name       | 'error'         | null
         testCases.systemTest4 | ''                | templateName    | '1'       | summaries.error_empty_config   | jobLogs.error_config     | 'error'         | null
         testCases.systemTest5 | configname        | ''              | '1'       | summaries.error_empty_name     | jobLogs.error_empty_name | 'error'         | null
@@ -203,6 +214,23 @@ class DeleteApplicationServerTemplate extends PluginTestHelper {
             }
         }
         return result
+    }
+    def change_summary(version){
+        if (version == "websphere80nd" || version == "websphere85nd"){
+            summaries.error_empty_name += "'\n"
+            summaries.error_invalid_name += "'\n"
+            summaries.error_name += "'\n"
+
+        } else {
+            summaries.error_empty_name += "\n"
+            summaries.error_invalid_name += "\n"
+            summaries.error_name += "\n"
+        }
+    }
+    def change_logs(version){
+        if (version == "websphere80s" || version == "websphere85s" || version == "websphere90s"){
+            jobLogs.default_synch = jobLogs.default_synch_version_s
+        }
     }
 
 }
