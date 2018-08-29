@@ -39,6 +39,9 @@ for x in range (0, len(parsedServerList)):
     if serverStatus == okServerStatus:
         logWarning("Server %s on Node %s is already %s" % (server['Server'], server['Node'], okServerStatus))
         parsedServerList[x] = 0
+    elif serverStatus == 'UNKNOWN!':
+        logError("Failed to stop server %s on node %s" % (server['Server'], server['Node']))
+        sys.exit(1)
     print serverStatus
 
 parsedServerList = filter(lambda x: x, parsedServerList)

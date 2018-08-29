@@ -154,57 +154,30 @@ class StopNode extends PluginTestHelper {
         'incorrectConfig': "Configuration 'incorrect' doesn't exist",
         'mandatoryShell': "Shell is mandatory",
         'wrongStopLocation': "Shell $stopLocations.wrong does not exist",
-        'fail': "Failed to stop Node",
+        'fail': "Failed to stop Node",    
 
     ]
 
     @Shared
     def jobLogs = [
-        'default': [
-            "Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'",
-            "Server nodeagent stop completed",
-            "Node has been successfully stopped"
-        ],
-        'profile': [
-            "Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -profileName 'AppSrv01'  -logfile '.*stopServer.log'",
-            "Server nodeagent stop completed",
-            "Node has been successfully stopped"
-        ],
-        'log': [
-            "Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '$logLocations.tmp'",
-            "Server nodeagent stop completed",
-            "Node has been successfully stopped"
-        ],
-        'timeOk': [
-            "Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'  -timeout '70'",
-            "Server nodeagent stop completed",
-            "Node has been successfully stopped"
-        ],
-        'saveNode':  [
-            "Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'  -saveNodeState",
-            "Server nodeagent stop completed",
-            "Node has been successfully stopped"
-        ],
-        'stop': [
-            "Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'  -stopservers",
-            "(?:Server server1 is now STOPPED|Server server1 cannot be reached. It appears to be stopped.)",
-            "Stopping all server processes for node ${nodes.'default'}", "Server nodeagent is now STOPPED"
-        ],
-        'addParam': [
-            "Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'   -trace",
-            "Server nodeagent stop completed",
-            "Node has been successfully stopped"
-        ],
-        'addParams': [
-            "Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'   -trace -replacelog",
-            "Server nodeagent stop completed",
-            "Node has been successfully stopped"
-        ],
-        'all': [
-            "Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -profileName 'AppSrv01'  -logfile '$logLocations.tmp'  -timeout '70'  -trace  -stopservers",
-            "Server server1 is now STOPPED", "Stopping all server processes for node ${nodes.'default'}",
-            "Server nodeagent is now STOPPED"
-        ],
+        'default':  ["Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'",
+            "Server nodeagent stop completed", "Node has been successfully stopped"],
+        'profile':  ["Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -profileName 'AppSrv01'  -logfile '.*stopServer.log'",
+            "Server nodeagent stop completed", "Node has been successfully stopped"],
+        'log':  ["Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '$logLocations.tmp'",
+            "Server nodeagent stop completed", "Node has been successfully stopped"],
+        'timeOk':  ["Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'  -timeout '70'",
+            "Server nodeagent stop completed", "Node has been successfully stopped"],
+        'saveNode':  ["Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'  -saveNodeState",
+            "Server nodeagent stop completed", "Node has been successfully stopped"],                    
+        'stop':  ["Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'  -stopservers",
+            "Server server1 is now STOPPED", "Stopping all server processes for node ${nodes.'default'}", "Server nodeagent is now STOPPED"],   
+        'addParam': ["Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'   -trace",
+            "Server nodeagent stop completed", "Node has been successfully stopped"],
+        'addParams': ["Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -logfile '.*stopServer.log'   -trace -replacelog",
+            "Server nodeagent stop completed", "Node has been successfully stopped"],
+        'all':  ["Generated command line: 'stopNodeReplace' -user 'wsadmin'  -password '\\*\\*\\*\\*\\*'  -conntype 'SOAP'  -profileName 'AppSrv01'  -logfile '$logLocations.tmp'  -timeout '70'  -trace  -stopservers",
+            "Server server1 is now STOPPED", "Stopping all server processes for node ${nodes.'default'}", "Server nodeagent is now STOPPED"],                            
         'emptyConfig': ["Error: Configuration '' doesn't exist"],
         'incorrectConfig': ["Configuration 'incorrect' doesn't exist"],
         'mandatoryShell': ["Shell is mandatory"],
@@ -212,7 +185,7 @@ class StopNode extends PluginTestHelper {
         'wrongProfile': ['The specified profile "wrong" cannot be found'],
         'wrongOption': ["Unknown option: -wrong"],
         'stopped': ['The server "nodeagent" cannot be reached. It appears to be stopped'],
-        'timeout': ["Timed out waiting for server shutdown"],
+        'timeout': ["Timed out waiting for server shutdown"],                  
     ]
 
     // Preparation actions
@@ -290,15 +263,15 @@ class StopNode extends PluginTestHelper {
         def jobSummary = getJobProperty("/myJob/jobSteps/$procName/summary", result.jobId)
         def reportUrls  = getJobProperty('/myJob/report-urls/stopServer.log', result.jobId)
         def debugLog = getJobLogs(result.jobId)
-        assert reportUrls =~ "jobSteps/.*/stopServer.log"
+        assert reportUrls =~ "jobSteps/.*/stopServer.log" 
         assert outcome == "success"
         assert jobSummary == expectedSummary
         for (log in logs){
-            def text = log.replace("stopNodeReplace", stopLocation)
+            def text = log.replace("stopNodeReplace", stopLocation)      
             assert debugLog =~ text
         }
 
-        cleanup:
+        cleanup: 
         startNode(stopPolicy)
 
         where: 'The following params will be:'
