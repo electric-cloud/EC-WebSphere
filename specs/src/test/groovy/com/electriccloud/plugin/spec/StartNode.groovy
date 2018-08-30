@@ -310,10 +310,10 @@ class StartNode extends PluginTestHelper {
         }
 
         // http://jira.electric-cloud.com/browse/ECPAPPSERVERWEBSPHERE-563
-        if (wasHost == 'websphere80nd' && (profile == profiles.'wrong') && is_windows){
-            status = "success"
-            expectedSummary = summaries.'default'
-        }
+        // if (wasHost == 'websphere80nd' && (profile == profiles.'wrong') && is_windows){
+        //     status = "success"
+        //     expectedSummary = summaries.'default'
+        // }
 
         given: "Parameters for procedure"
         def runParams = [
