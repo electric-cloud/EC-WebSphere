@@ -96,6 +96,7 @@ class ExportApplicationServer extends PluginTestHelper {
         'emptyServer':'Failed to export application server  from node nodeReplace\nException: ADMF0002E: Required parameter serverName is not found for command exportServer.\n',
         'emptyNode':'Failed to export application server serverReplace from node \nException: ADMF0002E: Required parameter nodeName is not found for command exportServer.\n',
         'emptyPath':'Failed to export application server serverReplace from node nodeReplace\nException: com.ibm.ws.scripting.ScriptingException: java.io.FileNotFoundException: java.io.FileNotFoundException:  (No such file or directory)\n',
+        'emptyPathWin':'Failed to export application server serverReplace from node nodeReplace\nException: com.ibm.ws.scripting.ScriptingException: java.io.FileNotFoundException: java.io.FileNotFoundException:\n',
         'wrongServer': 'Failed to export application server serverReplace from node nodeReplace\nException: ADMB0005E: Server serverReplace on Node nodeReplace does not exist.\n',
         'wrongNode': 'Failed to export application server serverReplace from node nodeReplace\nException: ADMB0005E: Server serverReplace on Node nodeReplace does not exist.\n',
     ]
@@ -108,6 +109,7 @@ class ExportApplicationServer extends PluginTestHelper {
         'emptyServer':['Failed to export application server  from node nodeReplace', 'Required parameter serverName is not found for command exportServer'],
         'emptyNode':['Failed to export application server serverReplace from node','Exception: ADMF0002E: Required parameter nodeName is not found for command exportServer'],
         'emptyPath':['Failed to export application server serverReplace from node nodeReplace', 'com.ibm.ws.scripting.ScriptingException: java.io.FileNotFoundException: java.io.FileNotFoundException'],
+        'emptyPathWin':['Failed to export application server serverReplace from node nodeReplace', 'com.ibm.ws.scripting.ScriptingException: java.io.FileNotFoundException: java.io.FileNotFoundException'],
         'wrongServer': ['Server serverReplace on Node nodeReplace does not exist'],
         'wrongNode': ['Server serverReplace on Node nodeReplace does not exist'],
     ]
@@ -116,6 +118,7 @@ class ExportApplicationServer extends PluginTestHelper {
         def wasResourceName = wasHost
         createWorkspace(wasResourceName)
         createConfiguration(confignames.correctSOAP, [doNotRecreate: false])
+        change_logs()
 
         importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
                 resName : wasResourceName,
@@ -243,6 +246,13 @@ class ExportApplicationServer extends PluginTestHelper {
             }
         }
         return result
-    }    
+    }
+
+    def change_logs(version){
+        if (is_windows){
+            summaries.'emptyPath' = summaries.'emptyPathWin'
+            jobLogs.'emptyPath' = jobLogs.'emptyPathWin'
+        }
+    }
 
 }
