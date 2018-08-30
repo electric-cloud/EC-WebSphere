@@ -3,6 +3,7 @@ package com.electriccloud.plugin.spec
 import spock.lang.*
 import com.electriccloud.spec.SpockTestSupport
 import com.electriccloud.plugin.spec.PluginTestHelper
+import static org.junit.Assume.*
 
 @Unroll
 @Stepwise
@@ -274,6 +275,7 @@ class ImportApplicationServer extends PluginTestHelper {
 
     @Unroll
     def 'ImportApplicationServer - Positive: #testCaseID.id #testCaseID.description'(){
+        assumeFalse(is_windows && (arcPath == paths.backup))
         def numberOfTest = specificationContext.currentIteration.parent.iterationNameProvider.iterationCount
         
         given: "Precondition - Export a server, Run procedure "
