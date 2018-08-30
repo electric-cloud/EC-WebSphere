@@ -14,7 +14,7 @@
     <h1>@PLUGIN_KEY@</h1>
     <p>Plugin version @PLUGIN_VERSION@</p>
     
-    <p>Revised on August 23, 2018</p>
+    <p>Revised on August 30, 2018</p>
     
     <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade"/>
     <h3>Overview</h3>
@@ -70,8 +70,30 @@ Please refer to this <a href="https://www-01.ibm.com/common/ssi/ShowDoc.wss?docU
     
 
     <li><a href="#procedures">Plugin Procedures</a></li>
-    <li>WAS Server Component Management<br/><i>These procedures for WAS component management</i></li><ul><li><a href="#CreateEndToEndMailProvider">CreateEndToEndMailProvider</a></li><li><a href="#CreateEJBContainer">CreateEJBContainer</a></li><li><a href="#CreateMailSession">CreateMailSession</a></li><li><a href="#PublishWSDL">PublishWSDL</a></li></ul><li>WAS Server Management Procedures<br/><i>These procedures for WAS server management</i></li><ul><li><a href="#CreateApplicationServer">CreateApplicationServer</a></li><li><a href="#CreateApplicationServerTemplate">CreateApplicationServerTemplate</a></li><li><a href="#CreateCluster">CreateCluster</a></li><li><a href="#DeleteApplicationServer">DeleteApplicationServer</a></li><li><a href="#DeleteApplicationServerTemplate">DeleteApplicationServerTemplate</a></li><li><a href="#DeleteCluster">DeleteCluster</a></li><li><a href="#ExportApplicationServer">ExportApplicationServer</a></li><li><a href="#ImportApplicationServer">ImportApplicationServer</a></li><li><a href="#ListClusterMembers">ListClusterMembers</a></li><li><a href="#RemoveClusterMembers">RemoveClusterMembers</a></li><li><a href="#SyncNodes">SyncNodes</a></li><li><a href="#ConfigureEJBContainer">ConfigureEJBContainer</a></li></ul><li>WAS Server Administration Proceduresnull</li><ul><li><a href="#StartApplicationServers">StartApplicationServers</a></li><li><a href="#StopApplicationServers">StopApplicationServers</a></li><li><a href="#RunCustomJob">RunCustomJob</a></li><li><a href="#StartCluster">StartCluster</a></li><li><a href="#StopCluster">StopCluster</a></li><li><a href="#StartDeploymentManager">StartDeploymentManager</a></li><li><a href="#StopDeploymentManager">StopDeploymentManager</a></li><li><a href="#StartNode">StartNode</a></li><li><a href="#StopNode">StopNode</a></li><li><a href="#StartServer">StartServer</a></li><li><a href="#StopServer">StopServer</a></li></ul><li>WAS Application Component Management Procedures<br/><i>These procedures for application component management.</i></li><ul><li><a href="#ConfigureSession">ConfigureSession</a></li><li><a href="#MapSharedLibrary">MapSharedLibrary</a></li><li><a href="#ModifyApplicationClassloader">ModifyApplicationClassloader</a></li></ul><li>WAS Application Administration Procedures<br/><i>These procedures for application administration.</i></li><ul><li><a href="#StartApp">StartApp</a></li><li><a href="#StopApp">StopApp</a></li></ul><li>WAS Datasource Management Procedures<br/><i>These procedures for datasource management.</i></li><ul><li><a href="#CreateJDBCProvider">CreateJDBCProvider</a></li><li><a href="#CreateDatasource">CreateDatasource</a></li><li><a href="#DeleteDatasource">DeleteDatasource</a></li><li><a href="#DeleteJDBCProvider">DeleteJDBCProvider</a></li></ul><li>WAS JMS Management Procedures<br/><i>These procedures for JMS resources management.</i></li><ul><li><a href="#CreateJMSProvider">CreateJMSProvider</a></li><li><a href="#DeleteJMSProvider">DeleteJMSProvider</a></li><li><a href="#CreateOrUpdateJMSQueue">CreateOrUpdateJMSQueue</a></li><li><a href="#CreateOrUpdateJMSTopic">CreateOrUpdateJMSTopic</a></li><li><a href="#CreateOrUpdateSIBJMSActivationSpec">CreateOrUpdateSIBJMSActivationSpec</a></li><li><a href="#CreateOrUpdateWMQJMSActivationSpec">CreateOrUpdateWMQJMSActivationSpec</a></li><li><a href="#CreateOrUpdateSIBJMSConnectionFactory">CreateOrUpdateSIBJMSConnectionFactory</a></li><li><a href="#CreateOrUpdateWMQJMSConnectionFactory">CreateOrUpdateWMQJMSConnectionFactory</a></li></ul><li>WAS Application Deployment Procedures<br/><i>These procedures for applications deployment.</i></li><ul><li><a href="#DeployApp">DeployApp</a></li><li><a href="#DeployEnterpriseApp">DeployEnterpriseApp</a></li><li><a href="#DeployOSGIApp">DeployOSGIApp</a></li><li><a href="#UndeployApp">UndeployApp</a></li><li><a href="#UpdateApp">UpdateApp</a></li></ul><li>Check Procedures<br/><i>Procedures for status checking</i></li><ul><li><a href="#CheckApp">CheckApp</a></li><li><a href="#CheckNodeStatus">CheckNodeStatus</a></li><li><a href="#CheckPageStatus">CheckPageStatus</a></li><li><a href="#CheckServerStatus">CheckServerStatus</a></li></ul>
+    <li>WAS Server Component Management<br/><i>These procedures for WAS component management</i></li><ul><li><a href="#CreateEndToEndMailProvider">CreateEndToEndMailProvider</a></li><li><a href="#CreateEJBContainer">CreateEJBContainer</a></li><li><a href="#CreateMailSession">CreateMailSession</a></li><li><a href="#PublishWSDL">PublishWSDL</a></li></ul><li>WAS Server Management Procedures<br/><i>These procedures for WAS server management</i></li><ul><li><a href="#CreateApplicationServer">CreateApplicationServer <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#CreateApplicationServerTemplate">CreateApplicationServerTemplate <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#CreateCluster">CreateCluster <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#DeleteApplicationServer">DeleteApplicationServer <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#DeleteApplicationServerTemplate">DeleteApplicationServerTemplate <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#DeleteCluster">DeleteCluster <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#ExportApplicationServer">ExportApplicationServer <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#ImportApplicationServer">ImportApplicationServer <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#ListClusterMembers">ListClusterMembers <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#RemoveClusterMembers">RemoveClusterMembers <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#SyncNodes">SyncNodes <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#ConfigureEJBContainer">ConfigureEJBContainer</a></li></ul><li>WAS Server Administration Proceduresnull</li><ul><li><a href="#StartApplicationServers">StartApplicationServers <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#StopApplicationServers">StopApplicationServers <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#RunCustomJob">RunCustomJob</a></li><li><a href="#StartCluster">StartCluster <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#StopCluster">StopCluster <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#StartDeploymentManager">StartDeploymentManager <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#StopDeploymentManager">StopDeploymentManager <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#StartNode">StartNode <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#StopNode">StopNode <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#StartServer">StartServer</a></li><li><a href="#StopServer">StopServer</a></li></ul><li>WAS Application Component Management Procedures<br/><i>These procedures for application component management.</i></li><ul><li><a href="#ConfigureSession">ConfigureSession</a></li><li><a href="#MapSharedLibrary">MapSharedLibrary</a></li><li><a href="#ModifyApplicationClassloader">ModifyApplicationClassloader</a></li></ul><li>WAS Application Administration Procedures<br/><i>These procedures for application administration.</i></li><ul><li><a href="#StartApp">StartApp</a></li><li><a href="#StopApp">StopApp</a></li></ul><li>WAS Datasource Management Procedures<br/><i>These procedures for datasource management.</i></li><ul><li><a href="#CreateJDBCProvider">CreateJDBCProvider</a></li><li><a href="#CreateDatasource">CreateDatasource</a></li><li><a href="#DeleteDatasource">DeleteDatasource</a></li><li><a href="#DeleteJDBCProvider">DeleteJDBCProvider</a></li></ul><li>WAS JMS Management Procedures<br/><i>These procedures for JMS resources management.</i></li><ul><li><a href="#CreateJMSProvider">CreateJMSProvider</a></li><li><a href="#DeleteJMSProvider">DeleteJMSProvider</a></li><li><a href="#CreateOrUpdateJMSQueue">CreateOrUpdateJMSQueue</a></li><li><a href="#CreateOrUpdateJMSTopic">CreateOrUpdateJMSTopic</a></li><li><a href="#CreateOrUpdateSIBJMSActivationSpec">CreateOrUpdateSIBJMSActivationSpec</a></li><li><a href="#CreateOrUpdateWMQJMSActivationSpec">CreateOrUpdateWMQJMSActivationSpec</a></li><li><a href="#CreateOrUpdateSIBJMSConnectionFactory">CreateOrUpdateSIBJMSConnectionFactory</a></li><li><a href="#CreateOrUpdateWMQJMSConnectionFactory">CreateOrUpdateWMQJMSConnectionFactory</a></li></ul><li>WAS Application Deployment Procedures<br/><i>These procedures for applications deployment.</i></li><ul><li><a href="#DeployApp">DeployApp</a></li><li><a href="#DeployEnterpriseApp">DeployEnterpriseApp</a></li><li><a href="#DeployOSGIApp">DeployOSGIApp</a></li><li><a href="#UndeployApp">UndeployApp</a></li><li><a href="#UpdateApp">UpdateApp</a></li></ul><li>Check Procedures<br/><i>Procedures for status checking</i></li><ul><li><a href="#CheckApp">CheckApp</a></li><li><a href="#CheckNodeStatus">CheckNodeStatus <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#CheckPageStatus">CheckPageStatus</a></li><li><a href="#CheckServerStatus">CheckServerStatus</a></li></ul>
     
+    
+    <li><a href="#knownIssues">Known Issues</a></li>
     
     <li><a href="#releaseNotes">Release Notes</a></li>
 </ul>
@@ -157,6 +179,12 @@ Each configuration is given a unique name that is entered in designated paramete
             </tbody>
         </table>
         
+        <br />
+<p>
+<b>Note: After you perform the setup below it is important to make sure that the Electric Flow agent machine on which WebLogic runs is registered as a resource that can be pinged.</b>
+</p>
+
+        
     </div>
     
 
@@ -166,6 +194,7 @@ Each configuration is given a unique name that is entered in designated paramete
     
     <div id="CreateEndToEndMailProvider">
         <h2>CreateEndToEndMailProvider</h2>
+        
         <p>Creates a mail provider along with protocol provider and mail session.</p>
         
             <p>This procedure creates mail provider with a protocol provider, a mail session and a custom property in the specified scope.</p>
@@ -327,6 +356,7 @@ Each configuration is given a unique name that is entered in designated paramete
     
     <div id="CreateMailSession">
         <h2>CreateMailSession</h2>
+        
         <p>Creates a new JavaMail session using the wsadmin tool.</p>
         
             <p>This procedure creates a JavaMail session object for default mail provider at specified scope.</p>
@@ -458,6 +488,7 @@ Each configuration is given a unique name that is entered in designated paramete
     
     <div id="PublishWSDL">
         <h2>PublishWSDL</h2>
+        
         <p>Publishes WSDL files in each web services-enabled module to the file system location</p>
         
             <p>This procedure publishes WSDL files in each web services-enabled module to the file system location.</p>
@@ -536,6 +567,12 @@ Each configuration is given a unique name that is entered in designated paramete
     
     <div id="CreateApplicationServer">
         <h2>CreateApplicationServer</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         <p>Creates Application Server</p>
         
         <h3>CreateApplicationServer Parameters</h3>
@@ -634,6 +671,12 @@ Each configuration is given a unique name that is entered in designated paramete
     
     <div id="CreateApplicationServerTemplate">
         <h2>CreateApplicationServerTemplate</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         <p>Creates Application Server Template</p>
         
         <h3>CreateApplicationServerTemplate Parameters</h3>
@@ -712,6 +755,12 @@ Each configuration is given a unique name that is entered in designated paramete
     
     <div id="CreateCluster">
         <h2>CreateCluster</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         <p>Creates a new Application Server cluster.</p>
         
             <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
@@ -819,6 +868,12 @@ report.</p>
     
     <div id="DeleteApplicationServer">
         <h2>DeleteApplicationServer</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         <p>Deletes Application Server</p>
         
         <h3>DeleteApplicationServer Parameters</h3>
@@ -880,6 +935,12 @@ report.</p>
     
     <div id="DeleteApplicationServerTemplate">
         <h2>DeleteApplicationServerTemplate</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         <p>Deletes Application Server Template</p>
         
         <h3>DeleteApplicationServerTemplate Parameters</h3>
@@ -936,6 +997,12 @@ report.</p>
     
     <div id="DeleteCluster">
         <h2>DeleteCluster</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         <p>Deletes an existing cluster using the wsadmin tool</p>
         
             <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
@@ -993,6 +1060,12 @@ report.</p>
     
     <div id="ExportApplicationServer">
         <h2>ExportApplicationServer</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         <p>Exports Application Server to Archive</p>
         
         <h3>ExportApplicationServer Parameters</h3>
@@ -1052,6 +1125,12 @@ report.</p>
     
     <div id="ImportApplicationServer">
         <h2>ImportApplicationServer</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         <p>Imports Application Server from Archive</p>
         
         <h3>ImportApplicationServer Parameters</h3>
@@ -1141,6 +1220,12 @@ report.</p>
     
     <div id="ListClusterMembers">
         <h2>ListClusterMembers</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         <p>Lists all the members of cluster using wsadmin tool.</p>
         
             <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
@@ -1197,6 +1282,12 @@ report.</p>
     
     <div id="RemoveClusterMembers">
         <h2>RemoveClusterMembers</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         <p>Removes list of application servers from existing cluster</p>
         
             <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
@@ -1259,6 +1350,12 @@ report.</p>
     
     <div id="SyncNodes">
         <h2>SyncNodes</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         <p>Synchronizes active nodes.</p>
         
             <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
@@ -1296,6 +1393,12 @@ Next, to make it available on each server it should be propagated to all servers
     
     <div id="StartApplicationServers">
         <h2>StartApplicationServers</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         <p>Starts Application Servers</p>
         
         <h3>StartApplicationServers Parameters</h3>
@@ -1329,11 +1432,36 @@ Next, to make it available on each server it should be propagated to all servers
             </tbody>
         </table>
         
+        <p>
+            <h3>Start Application Servers</h3>
+<p>To Start Application Servers in Flow interface, do these steps:</p>
+<ul>
+<li>Create Pipeline.</li>
+<li>Create task.</li>
+<li>In task definition choose Plugin and choose following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/StartApplicationServers/PipelinePicker.png" /></li>
+<li>Click on arrow.</li>
+<li>Enter the following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/StartApplicationServers/PipelineConfig.png" /></li>
+</ul>
+<p>After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/StartApplicationServers/PipelineResult.png" />
+<br />In the <b>StartApplicationServers</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/StartApplicationServers/PipelineLog.png" /></p>
+
+        </p>
+        
     </div>
 
     
     <div id="StopApplicationServers">
         <h2>StopApplicationServers</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         <p>Stops Application Servers</p>
         
         <h3>StopApplicationServers Parameters</h3>
@@ -1391,6 +1519,7 @@ Next, to make it available on each server it should be propagated to all servers
     
     <div id="RunCustomJob">
         <h2>RunCustomJob</h2>
+        
         <p>Runs a task using wsadmin</p>
         
             <p>This procedure runs a task using wsadmin and the Jython code files.</p>
@@ -1465,6 +1594,12 @@ Next, to make it available on each server it should be propagated to all servers
     
     <div id="StartCluster">
         <h2>StartCluster</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         <p>Starts cluster using wsadmin tool.</p>
         
             <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
@@ -1532,6 +1667,12 @@ Next, to make it available on each server it should be propagated to all servers
     
     <div id="StopCluster">
         <h2>StopCluster</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         <p>Stops cluster using wsadmin tool.</p>
         
             <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
@@ -1599,6 +1740,12 @@ Next, to make it available on each server it should be propagated to all servers
     
     <div id="StartDeploymentManager">
         <h2>StartDeploymentManager</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         <p>Starts Deployment Manager</p>
         
         <h3>StartDeploymentManager Parameters</h3>
@@ -1673,6 +1820,12 @@ Next, to make it available on each server it should be propagated to all servers
     
     <div id="StopDeploymentManager">
         <h2>StopDeploymentManager</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         <p>Stops Deployment Manager</p>
         
         <h3>StopDeploymentManager Parameters</h3>
@@ -1747,6 +1900,12 @@ Next, to make it available on each server it should be propagated to all servers
     
     <div id="StartNode">
         <h2>StartNode</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         <p>Starts Node</p>
         
         <h3>StartNode Parameters</h3>
@@ -1831,6 +1990,12 @@ Next, to make it available on each server it should be propagated to all servers
     
     <div id="StopNode">
         <h2>StopNode</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         <p>Stops Node</p>
         
         <h3>StopNode Parameters</h3>
@@ -1910,9 +2075,10 @@ Next, to make it available on each server it should be propagated to all servers
     
     <div id="StartServer">
         <h2>StartServer</h2>
+        
         <p>Starts a WebSphere instance</p>
         
-            <p>This procedure starts a WebSphere instance. Note: It is not for starting an Application Server in a node i.e this procedure is not a &quot;WebSphere Network Deployment&quot; procedure.</p>
+            <p>This procedure starts a WebSphere instance or an application server using startServer.sh.</p>
 
         
         <h3>StartServer Parameters</h3>
@@ -1948,9 +2114,10 @@ Next, to make it available on each server it should be propagated to all servers
     
     <div id="StopServer">
         <h2>StopServer</h2>
+        
         <p>Stops a WebSphere instance</p>
         
-            <p>This procedure stops a WebSphere instance.</p>
+            <p>This procedure stops a WebSphere instance or an application server using stopServer.sh</p>
 
         
         <h3>StopServer Parameters</h3>
@@ -1991,6 +2158,7 @@ Next, to make it available on each server it should be propagated to all servers
     
     <div id="ConfigureSession">
         <h2>ConfigureSession</h2>
+        
         <p>Configures the session management properties for the deployed application.</p>
         
             <p>This procedure configures the session management related properties for deployed application. For more information on each of the parameter, please refer to the <a href="http://www-01.ibm.com/support/knowledgecenter/SSCKBL_8.5.5/com.ibm.websphere.nd.doc/ae/uprs_rsession_manager.html">WebSphere Knowledge Center Page.</a></p>
@@ -2102,6 +2270,7 @@ Next, to make it available on each server it should be propagated to all servers
     
     <div id="MapSharedLibrary">
         <h2>MapSharedLibrary</h2>
+        
         <p>Maps shared library.</p>
         
             <p>This procedure maps shared library to already deployed application.</p>
@@ -2162,6 +2331,7 @@ Next, to make it available on each server it should be propagated to all servers
     
     <div id="StartApp">
         <h2>StartApp</h2>
+        
         <p>Start an application using wsadmin</p>
         
             <p>This procedure starts an application using wsadmin. If the application is already running, a warning will be thrown.</p>
@@ -2247,6 +2417,7 @@ Next, to make it available on each server it should be propagated to all servers
     
     <div id="StopApp">
         <h2>StopApp</h2>
+        
         <p>Stop an application using wsadmin</p>
         
             <p>This procedure stops an application using wsadmin. If the application is already stopped, a warning will be thrown.</p>
@@ -2332,6 +2503,7 @@ Next, to make it available on each server it should be propagated to all servers
     
     <div id="CreateJDBCProvider">
         <h2>CreateJDBCProvider</h2>
+        
         <p>Creates a JDBC Provider using the wsadmin tool</p>
         
             <p>This procedure creates a JDBC provider using a Jython script.</p>
@@ -2424,6 +2596,7 @@ Next, to make it available on each server it should be propagated to all servers
     
     <div id="CreateDatasource">
         <h2>CreateDatasource</h2>
+        
         <p>Creates a datasource using the wsadmin tool. The scope assigned to the datasource is provided by the JDBC Provider.</p>
         
             <p>The procedure creates a datasource by using a Jython script.</p>
@@ -2510,6 +2683,7 @@ Next, to make it available on each server it should be propagated to all servers
     
     <div id="DeleteDatasource">
         <h2>DeleteDatasource</h2>
+        
         <p>Deletes a datasource using the wsadmin tool</p>
         
             <p>This procedure deletes a datasource using a Jython script.</p>
@@ -2566,6 +2740,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
     
     <div id="DeleteJDBCProvider">
         <h2>DeleteJDBCProvider</h2>
+        
         <p>Deletes a JDBC Provider using the wsadmin tool</p>
         
             <p>This procedure deletes a JDBC provider using a Jython script.</p>
@@ -2622,6 +2797,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
     
     <div id="CreateJMSProvider">
         <h2>CreateJMSProvider</h2>
+        
         <p>Creates a JMS Provider using the wsadmin tool</p>
         
             <p>This procedure creates a new JMS provider using a Jython script.</p>
@@ -2720,6 +2896,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
     
     <div id="DeleteJMSProvider">
         <h2>DeleteJMSProvider</h2>
+        
         <p>Deletes JMS Provider</p>
         
             <p>This procedure deletes an existing JMS Provider.</p>
@@ -2792,6 +2969,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
     
     <div id="CreateOrUpdateJMSQueue">
         <h2>CreateOrUpdateJMSQueue</h2>
+        
         <p>Creates or updates JMS Queues</p>
         
             <p>This procedure creates a new JMS Queue or updates an existing JMS Queue.</p>
@@ -2897,6 +3075,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
     
     <div id="CreateOrUpdateJMSTopic">
         <h2>CreateOrUpdateJMSTopic</h2>
+        
         <p>Creates or updates JMS Topics</p>
         
             <p>This procedure creates a new JMS Topic or updates an existing JMS Topic.</p>
@@ -2997,6 +3176,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
     
     <div id="CreateOrUpdateSIBJMSActivationSpec">
         <h2>CreateOrUpdateSIBJMSActivationSpec</h2>
+        
         <p>Creates or updates SIB JMS Activation Specs</p>
         
             <p>This procedure creates a new JMS Activation Spec or updates an existing JMS Activation Spec.</p>
@@ -3107,6 +3287,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
     
     <div id="CreateOrUpdateWMQJMSActivationSpec">
         <h2>CreateOrUpdateWMQJMSActivationSpec</h2>
+        
         <p>Creates or updates WMQ JMS Activation Specs</p>
         
             <p>This procedure creates a new JMS Activation Spec or updates an existing JMS Activation Spec.</p>
@@ -3216,6 +3397,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
     
     <div id="CreateOrUpdateSIBJMSConnectionFactory">
         <h2>CreateOrUpdateSIBJMSConnectionFactory</h2>
+        
         <p>Creates or updates SIB JMS Connection Factories</p>
         
             <p>This procedure creates a new SIB JMS Connection Factory or updates an existing JMS Connection Factory.</p>
@@ -3324,6 +3506,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
     
     <div id="CreateOrUpdateWMQJMSConnectionFactory">
         <h2>CreateOrUpdateWMQJMSConnectionFactory</h2>
+        
         <p>Creates or updates WMQ JMS Connection Factories</p>
         
             <p>This procedure creates a new WMQ JMS Connection Factory or updates an existing JMS Connection Factory.</p>
@@ -3438,6 +3621,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
     
     <div id="DeployApp">
         <h2>DeployApp</h2>
+        
         <p>Deploys an application using AdminApp.install</p>
         
             <p>This procedure undeploys an application using a Jython script and invoking AdminApp.uninstall.</p>
@@ -3520,6 +3704,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
     
     <div id="DeployEnterpriseApp">
         <h2>DeployEnterpriseApp</h2>
+        
         <p>Deploys an enterprise application using wsadmin tool</p>
         
             <p>This procedure deploys java enterprise application (.EAR) or java web application (.WAR) on given targets. If application is already deployed, procedure updates application.</p>
@@ -3734,6 +3919,7 @@ A context root for each web module is defined in the application deployment desc
     
     <div id="UndeployApp">
         <h2>UndeployApp</h2>
+        
         <p>Undeploys an application using AdminApp.uninstall</p>
         
             <p>This procedure undeploys an application using a Jython script and invoking AdminApp.uninstall.</p>
@@ -3809,6 +3995,7 @@ A context root for each web module is defined in the application deployment desc
     
     <div id="UpdateApp">
         <h2>UpdateApp</h2>
+        
         <p>Updates existing application</p>
         
             <p>This procedure updates already deployed application in units of files, modules or entire application.</p>
@@ -3900,6 +4087,7 @@ A context root for each web module is defined in the application deployment desc
     
     <div id="CheckApp">
         <h2>CheckApp</h2>
+        
         <p>Checks if a web application is ready</p>
         
             <p>This procedure checks if a web application is ready by using a Jython script.</p>
@@ -3980,6 +4168,12 @@ A context root for each web module is defined in the application deployment desc
     
     <div id="CheckNodeStatus">
         <h2>CheckNodeStatus</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         <p>Checks Node Status.</p>
         
             <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
@@ -4024,6 +4218,7 @@ A context root for each web module is defined in the application deployment desc
     
     <div id="CheckPageStatus">
         <h2>CheckPageStatus</h2>
+        
         <p>Check the status of a page on a given URL</p>
         
             <p>This procedure checks the status of the page with the specified URL.</p>
@@ -4085,6 +4280,7 @@ A context root for each web module is defined in the application deployment desc
     
     <div id="CheckServerStatus">
         <h2>CheckServerStatus</h2>
+        
         <p>Check the status of the given server URL</p>
         
             <p>This procedure checks the status of the specified server URL.</p>
@@ -4128,6 +4324,7 @@ A context root for each web module is defined in the application deployment desc
     
     <div id="ConfigEJBContainer">
         <h2>ConfigEJBContainer</h2>
+        
         <p>Configures EJB container using the wsadmin tool</p>
         
             <p>This procedure configures EJB container properites using a Jython script.</p>
@@ -4229,6 +4426,7 @@ A context root for each web module is defined in the application deployment desc
     
     <div id="DeleteJMSActivationSpec">
         <h2>DeleteJMSActivationSpec</h2>
+        
         <p>Deletes JMS Activation Specs</p>
         
             <p>This procedure deletes an existing JMS ActivationSpec.</p>
@@ -4310,6 +4508,7 @@ A context root for each web module is defined in the application deployment desc
     
     <div id="DeleteJMSConnectionFactory">
         <h2>DeleteJMSConnectionFactory</h2>
+        
         <p>Deletes JMS Connection Factories</p>
         
             <p>This procedure deletes an existing JMS ConnectionFactory.</p>
@@ -4389,6 +4588,7 @@ A context root for each web module is defined in the application deployment desc
     
     <div id="DeleteJMSQueue">
         <h2>DeleteJMSQueue</h2>
+        
         <p>Deletes JMS Queues</p>
         
             <p>This procedure deletes an existing JMS Queue.</p>
@@ -4466,6 +4666,7 @@ A context root for each web module is defined in the application deployment desc
     
     <div id="DeleteJMSTopic">
         <h2>DeleteJMSTopic</h2>
+        
         <p>Deletes JMS Topics</p>
         
             <p>This procedure deletes an existing JMS Topic.</p>
@@ -4543,6 +4744,7 @@ A context root for each web module is defined in the application deployment desc
     
     <div id="DeployOSGiApp">
         <h2>DeployOSGiApp</h2>
+        
         <p>Deploy OSGi application using the wsadmin tool</p>
         
             <p>This procedure deploys the OSGi application.It optionally configures external OSGi bundle library if the application to be deployed reference bundles that are stored in an external bundle repository. This procedure can also add the bundles to internal bundle repository, if required.</p>
@@ -4629,6 +4831,7 @@ A context root for each web module is defined in the application deployment desc
     
     <div id="Discover">
         <h2>Discover</h2>
+        
         <p>Discover WebSphere instance configuration on a resources or environment</p>
         
         <h3>Discover Parameters</h3>
@@ -4659,6 +4862,7 @@ A context root for each web module is defined in the application deployment desc
     
     <div id="ModifyApplicationClassLoader">
         <h2>ModifyApplicationClassLoader</h2>
+        
         <p>Modify Application ClassLoader.</p>
         
             <p>This procedure modifies ClassLoader of the deployed Application.</p>
@@ -4725,6 +4929,12 @@ A context root for each web module is defined in the application deployment desc
 
     
 
+    
+    <h1 id="knownIssues">Known Issues</h1>
+    <div>
+        <p>[During testing by our automation undefined behaviour has been discovered. After quick multiple creation-deletion of application server without pauses newly created application servers sometimes this application server could not be started. In that case websphere log will contain nullpointer exception. This issue doesn't happen in real use cases inend-to-end scenarios.]</p>
+
+    </div>
     
 
     <h1 id="releaseNotes">Release Notes</h1>
