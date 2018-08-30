@@ -123,22 +123,22 @@ class StopNode extends PluginTestHelper {
 
     @Shared
     stopLocations = [
-        'default': is_windows ? 'C:/IBM/WebSphere/AppServer/bin/stopNode.bat' : '/opt/IBM/WebSphere/AppServer/bin/stopNode.sh',
-        'AppSrv01': is_windows ? 'C:/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/stopNode.bat' : '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/stopNode.sh',
+        'default': is_windows ? 'C:/IBM/WebSphere/bin/stopNode.bat' : '/opt/IBM/WebSphere/AppServer/bin/stopNode.sh',
+        'AppSrv01': is_windows ? 'C:/IBM/WebSphere/profiles/AppSrv01/bin/stopNode.bat' : '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/stopNode.sh',
         'wrong': '/wrong/stopNode.sh',
     ]
 
     @Shared
     startLocations = [
-        'default': is_windows ? 'C:/IBM/WebSphere/AppServer/bin/startNode.bat' : '/opt/IBM/WebSphere/AppServer/bin/startNode.sh',
-        'AppSrv01': is_windows ? 'C:/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startNode.bat' : '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startNode.sh',
+        'default': is_windows ? 'C:/IBM/WebSphere/bin/startNode.bat' : '/opt/IBM/WebSphere/AppServer/bin/startNode.sh',
+        'AppSrv01': is_windows ? 'C:/IBM/WebSphere/profiles/AppSrv01/bin/startNode.bat' : '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startNode.sh',
     ]
 
     @Shared
     startServerLocations = [
-        'default': is_windows ? 'C:/IBM/WebSphere/AppServer/bin/startServer.bat' : '/opt/IBM/WebSphere/AppServer/bin/startServer.sh',
-        'AppSrv01': is_windows ? 'C:/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startServer.bat' : '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startServer.sh',
-        'Dmgr01': is_windows ? 'C:/IBM/WebSphere/AppServer/profiles/Dmgr01/bin/startServer.bat' : '/opt/IBM/WebSphere/AppServer/profiles/Dmgr01/bin/startServer.sh'
+        'default': is_windows ? 'C:/IBM/WebSphere/bin/startServer.bat' : '/opt/IBM/WebSphere/AppServer/bin/startServer.sh',
+        'AppSrv01': is_windows ? 'C:/IBM/WebSphere/profiles/AppSrv01/bin/startServer.bat' : '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startServer.sh',
+        'Dmgr01': is_windows ? 'C:/IBM/WebSphere/profiles/Dmgr01/bin/startServer.bat' : '/opt/IBM/WebSphere/AppServer/profiles/Dmgr01/bin/startServer.sh'
     ]
 
     @Shared
@@ -222,6 +222,7 @@ class StopNode extends PluginTestHelper {
         def wasResourceName = wasHost
         createWorkspace(wasResourceName)
         createConfiguration(confignames.correctSOAP, [doNotRecreate: false])
+        change_logs()
 
         importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
                 resName : wasResourceName,
@@ -321,6 +322,13 @@ class StopNode extends PluginTestHelper {
     @Unroll
     def "StopNode - Negative"(){
         given: "Parameters for procedure"
+        // http://jira.electric-cloud.com/browse/ECPAPPSERVERWEBSPHERE-563
+        def status = "error"
+        if (wasHost == 'websphere80nd' && (profile == profiles.'wrong') && is_windows){
+            status = "success"
+            expectedSummary = summaries.'default'
+        }
+
         def runParams = [
             configname: configName,
             wasAdditionalParameters: addParameters,
@@ -346,7 +354,7 @@ class StopNode extends PluginTestHelper {
         def jobSummary = getJobProperty("/myJob/jobSteps/$procName/summary", result.jobId)
         def debugLog = getJobLogs(result.jobId)
 
-        assert outcome == "error"
+        assert outcome == status
         assert jobSummary == expectedSummary
         for (log in logs){
             def text = log.replace("stopNodeReplace", stopLocation)      
@@ -485,6 +493,20 @@ class StopNode extends PluginTestHelper {
             )
         """
         return dslWithTimeout(code)
-    }    
+    }
+
+    def change_logs(version){
+        if (is_windows){
+            jobLogs.'default'[0] = jobLogs.'default'[0].replace("'", "\"")
+            jobLogs.'profile'[0] = jobLogs.'profile'[0].replace("'", "\"")
+            jobLogs.'log'[0] = jobLogs.'log'[0].replace("'", "\"")
+            jobLogs.'timeOk'[0] = jobLogs.'timeOk'[0].replace("'", "\"")
+            jobLogs.'saveNode'[0] = jobLogs.'saveNode'[0].replace("'", "\"")
+            jobLogs.'stop'[0] = jobLogs.'stop'[0].replace("'", "\"")
+            jobLogs.'addParam'[0] = jobLogs.'addParam'[0].replace("'", "\"")
+            jobLogs.'addParams'[0] = jobLogs.'addParams'[0].replace("'", "\"")
+            jobLogs.'all'[0] = jobLogs.'all'[0].replace("'", "\"")
+        }
+    }
 
 }
