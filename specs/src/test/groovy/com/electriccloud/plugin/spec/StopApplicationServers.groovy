@@ -3,6 +3,7 @@ package com.electriccloud.plugin.spec
 import spock.lang.*
 import com.electriccloud.plugin.spec.PluginTestHelper
 import com.electriccloud.spec.SpockTestSupport
+import static org.junit.Assume.*
 
 @Unroll
 @Stepwise
@@ -332,6 +333,8 @@ class StopApplicationServers extends PluginTestHelper {
 
     @Unroll
     def 'StopApplicationServer - Negative: : #testCaseID.name #testCaseID.description'(){
+        assumeFalse(wasHost=='websphere80nd' && (testCaseID.name=='C363350' || testCaseID.name=='C363351'))
+
         if (startedServers){
             startApplicationServer(startedServers)
         }
