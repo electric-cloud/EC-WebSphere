@@ -161,9 +161,10 @@ class ExportApplicationServer extends PluginTestHelper {
  
         then: "does file exist on file system?"
         def command = 'ls '+ newPath
-        def outcome2 = getJobProperty('/myJob/outcome', runCliCommand(command, wasHost).jobId)
-        assert outcome2 == status
-
+        if (!is_windows){
+            def outcome2 = getJobProperty('/myJob/outcome', runCliCommand(command, wasHost).jobId)
+            assert outcome2 == status
+        }
 
         where: 'The following params will be:'
         testCaseID         | configName              | serverName        | nodeName        | path               | status      | expectedSummary     | logs 
