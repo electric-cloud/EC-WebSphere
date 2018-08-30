@@ -87,3 +87,7 @@ proceduresGrouping:
         - CheckNodeStatus
         - CheckPageStatus
         - CheckServerStatus
+knownIssues:
+  - During testing by our automation undefined behaviour has been discovered.
+    After quick multiple creation-deletion of application server without pauses newly created application servers sometimes this application server could not be started.
+    In that case websphere log will contain nullpointer exception. This issue doesn't happen in real use cases inend-to-end scenarios.
