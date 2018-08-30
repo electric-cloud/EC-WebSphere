@@ -81,7 +81,7 @@ Please refer to this <a href="https://www-01.ibm.com/common/ssi/ShowDoc.wss?docU
 </a></li><li><a href="#ListClusterMembers">ListClusterMembers <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#RemoveClusterMembers">RemoveClusterMembers <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#SyncNodes">SyncNodes <b>(Applicable only for WebSphere Network Deployment installation.)</b>
-</a></li><li><a href="#ConfigureEJBContainer">ConfigureEJBContainer</a></li></ul><li>WAS Server Administration Proceduresnull</li><ul><li><a href="#StartApplicationServers">StartApplicationServers <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#ConfigureEJBContainer">ConfigureEJBContainer</a></li></ul><li>WAS Server Administration Procedures<br/><i>These procedures for was server administation.</i></li><ul><li><a href="#StartApplicationServers">StartApplicationServers <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#StopApplicationServers">StopApplicationServers <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#RunCustomJob">RunCustomJob</a></li><li><a href="#StartCluster">StartCluster <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#StopCluster">StopCluster <b>(Applicable only for WebSphere Network Deployment installation.)</b>
@@ -763,8 +763,7 @@ Each configuration is given a unique name that is entered in designated paramete
         
         <p>Creates a new Application Server cluster.</p>
         
-            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
-<p>This procedure creates a cluster, adds members to it, and can deploy an application in it using a Jython script.</p>
+            <p>This procedure creates a cluster, adds members to it, and can deploy an application in it using a Jython script.</p>
 
         
         <h3>CreateCluster Parameters</h3>
@@ -1005,8 +1004,7 @@ report.</p>
         
         <p>Deletes an existing cluster using the wsadmin tool</p>
         
-            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
-<p>This procedure delete the specified cluster.</p>
+            <p>This procedure delete the specified cluster.</p>
 
         
         <h3>DeleteCluster Parameters</h3>
@@ -1228,8 +1226,7 @@ report.</p>
         
         <p>Lists all the members of cluster using wsadmin tool.</p>
         
-            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
-<p>This procedure lists down all the members (application servers) of the cluster using a Jython script.</p>
+            <p>This procedure lists down all the members (application servers) of the cluster using a Jython script.</p>
 
         
         <h3>ListClusterMembers Parameters</h3>
@@ -1290,8 +1287,7 @@ report.</p>
         
         <p>Removes list of application servers from existing cluster</p>
         
-            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
-<p>This procedure removes specified application servers from the cluster using a Jython script.</p>
+            <p>This procedure removes specified application servers from the cluster using a Jython script.</p>
 
         
         <h3>RemoveClusterMembers Parameters</h3>
@@ -1358,8 +1354,7 @@ report.</p>
         
         <p>Synchronizes active nodes.</p>
         
-            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
-<p>Synchronizes Cell's Deployment Manager config repository with nodes of the cell. By default, WebSphere nodes are configured for auto-sync.
+            <p>Synchronizes Cell's Deployment Manager config repository with nodes of the cell. By default, WebSphere nodes are configured for auto-sync.
 This procedure should be used for manual nodes synchronization.
 For example: New custom property for node was added, and configuration was saved.
 Next, to make it available on each server it should be propagated to all servers of the node by nodes synchronization.</p>
@@ -1602,8 +1597,7 @@ Next, to make it available on each server it should be propagated to all servers
         
         <p>Starts cluster using wsadmin tool.</p>
         
-            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
-<p>This procedure starts a cluster.</p>
+            <p>This procedure starts a cluster.</p>
 
         
         <h3>StartCluster Parameters</h3>
@@ -1675,8 +1669,7 @@ Next, to make it available on each server it should be propagated to all servers
         
         <p>Stops cluster using wsadmin tool.</p>
         
-            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
-<p>This procedure stops a cluster.</p>
+            <p>This procedure stops a cluster.</p>
 
         
         <h3>StopCluster Parameters</h3>
@@ -4176,8 +4169,7 @@ A context root for each web module is defined in the application deployment desc
         
         <p>Checks Node Status.</p>
         
-            <p><strong>Applicable only for WebSphere Network Deployment installation.</strong></p>
-<p>This procedure checks WebSphere node status. It checks Node Agent and all servers associated with node by it's name.</p>
+            <p>This procedure checks WebSphere node status. It checks Node Agent and all servers associated with node by it's name.</p>
 
         
         <h3>CheckNodeStatus Parameters</h3>
@@ -4932,7 +4924,10 @@ A context root for each web module is defined in the application deployment desc
     
     <h1 id="knownIssues">Known Issues</h1>
     <div>
-        <p>[During testing by our automation undefined behaviour has been discovered. After quick multiple creation-deletion of application server without pauses newly created application servers sometimes this application server could not be started. In that case websphere log will contain nullpointer exception. This issue doesn't happen in real use cases inend-to-end scenarios.]</p>
+        <p>During testing by our automation undefined behaviour has been discovered.
+If one try to delete application server with server name or node name with special characters, like !#<em>&amp;Node1 or !#</em>&amp;Node1,
+websphere will throw an exception as expected, but next created application server will not be able to start.
+In that case websphere log will contain nullpointer exception. This issue doesn't happen in real use cases inend-to-end scenarios.</p>
 
     </div>
     
