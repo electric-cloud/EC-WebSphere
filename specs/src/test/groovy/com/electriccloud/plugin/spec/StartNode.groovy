@@ -135,15 +135,15 @@ class StartNode extends PluginTestHelper {
 
     @Shared
     stopLocations = [
-        'default': is_windows ? 'C:/IBM/WebSphere/AppServer/bin/stopNode.bat' : '/opt/IBM/WebSphere/AppServer/bin/stopNode.sh',
-        'AppSrv01': is_windows ? 'C:/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/stopNode.bat' : '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/stopNode.sh',
+        'default': is_windows ? 'C:/IBM/WebSphere/bin/stopNode.bat' : '/opt/IBM/WebSphere/AppServer/bin/stopNode.sh',
+        'AppSrv01': is_windows ? 'C:/IBM/WebSphere/profiles/AppSrv01/bin/stopNode.bat' : '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/stopNode.sh',
         'wrong': '/wrong/stopNode.sh',
     ]
 
     @Shared
     startLocations = [
-        'default': is_windows ? 'C:/IBM/WebSphere/AppServer/bin/startNode.bat' : '/opt/IBM/WebSphere/AppServer/bin/startNode.sh',
-        'AppSrv01': is_windows ? 'C:/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startNode.bat' : '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startNode.sh',
+        'default': is_windows ? 'C:/IBM/WebSphere/bin/startNode.bat' : '/opt/IBM/WebSphere/AppServer/bin/startNode.sh',
+        'AppSrv01': is_windows ? 'C:/IBM/WebSphere/profiles/AppSrv01/bin/startNode.bat' : '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/startNode.sh',
         'wrong': '/wrong/startNode.sh',
     ]
 
@@ -193,6 +193,7 @@ class StartNode extends PluginTestHelper {
         def wasResourceName = wasHost
         createWorkspace(wasResourceName)
         createConfiguration(confignames.correctSOAP, [doNotRecreate: false])
+        change_logs()
 
         importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
                 resName : wasResourceName,
@@ -307,6 +308,13 @@ class StartNode extends PluginTestHelper {
         if (wasHost == 'websphere80nd' && testCaseID == testCases.systemTest14){
             timeout = '1'
         }
+
+        // http://jira.electric-cloud.com/browse/ECPAPPSERVERWEBSPHERE-563
+        if (wasHost == 'websphere80nd' && (profile == profiles.'wrong')){
+            status = "success"
+            expectedSummary = summaries.'default'
+        }
+
         given: "Parameters for procedure"
         def runParams = [
             configname: configName,
@@ -437,5 +445,17 @@ class StartNode extends PluginTestHelper {
         """
         return dslWithTimeout(code)
     }        
+
+    def change_logs(version){
+        if (is_windows){
+            jobLogs.'default'[0] = jobLogs.'default'[0].replace("'", "\"")
+            jobLogs.'profile'[0] = jobLogs.'profile'[0].replace("'", "\"")
+            jobLogs.'log'[0] = jobLogs.'log'[0].replace("'", "\"")
+            jobLogs.'timeOk'[0] = jobLogs.'timeOk'[0].replace("'", "\"")
+            jobLogs.'addParam'[0] = jobLogs.'addParam'[0].replace("'", "\"")
+            jobLogs.'addParams'[0] = jobLogs.'addParams'[0].replace("'", "\"")
+            jobLogs.'all'[0] = jobLogs.'all'[0].replace("'", "\"")
+        }
+    }
 
 }
