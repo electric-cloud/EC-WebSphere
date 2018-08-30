@@ -26,6 +26,8 @@ class CreateApplicationServer extends PluginTestHelper {
     def wasPath =     System.getenv('WSADMIN_PATH')
     @Shared
     def wasAppPath =  System.getenv('WAS_APPPATH')
+    @Shared
+    def is_windows = System.getenv("IS_WINDOWS")
 
     @Shared
     def configname = 'Web-Sphere-SOAP'
@@ -122,6 +124,7 @@ class CreateApplicationServer extends PluginTestHelper {
             'error_server_exist': "Failed to create $serverName server on $serverNode node\nException: ADMG0248E: $serverName exists within node $serverNode.\n",
             'error_config_empty': "Configuration '' doesn't exist",
             'error_empty_node': "Failed to create $serverName server on  node\nException: ADMG0250E: Node " + wasHost + "CellManager01 is not a valid node.\n",
+            'error_empty_node_win': "Failed to create $serverName server on  node\nException: ADMG0250E: Node " + wasHost.toUpperCase() + "CellManager01 is not a valid node.\n",
             'error_empty_s_name': "Failed to create  server on $serverNode node\nException: ADMF0002E: Required parameter name is not found for command createApplicationServer.\n",
             'error_empty_source_s': "Failed to create an application server.\nError: Source server name is required when source type is set to server\n",
             'error_config': "Configuration 'incorrectConfig' doesn't exist",
@@ -138,6 +141,7 @@ class CreateApplicationServer extends PluginTestHelper {
             'default_no_cynch':  ['success',"Application server $serverName has been created on node $serverNode"],
             'error_server_exist':['error', "Failed to create $serverName server on $serverNode node", "Exception: ADMG0248E: $serverName exists within node $serverNode"],
             'error_empty_node':  ['error',"Failed to create $serverName server on  node","Exception: ADMG0250E: Node " + wasHost + "CellManager01 is not a valid node."],
+            'error_empty_node_win':  ['error',"Failed to create $serverName server on  node","Exception: ADMG0250E: Node " + wasHost.toUpperCase() + "CellManager01 is not a valid node."],
             'error_empty_s_name':  ['error',"Failed to create  server on $serverNode node","Exception: ADMF0002E: Required parameter name is not found for command createApplicationServer."],
             'error_empty_source_s': ['error',"Failed to create an application server.","Error: Source server name is required when source type is set to server"],
             'error_config':  ["Error: Configuration ('incorrectConfig'|'') doesn't exist"],
@@ -152,6 +156,7 @@ class CreateApplicationServer extends PluginTestHelper {
         def wasResourceName = wasHost
         createWorkspace(wasResourceName)
         createConfiguration(configname, [doNotRecreate: false])
+        change_logs()
 
         importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
                                                             resName : wasResourceName,
@@ -290,6 +295,13 @@ class CreateApplicationServer extends PluginTestHelper {
             }
         }
         return result
+    }
+
+    def change_logs(version){
+        if (is_windows){
+            summaries.'error_empty_node' = summaries.'error_empty_node_win'
+            jobLogs.'error_empty_node' = jobLogs.'error_empty_node_win'
+        }
     }
 
 }
