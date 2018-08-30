@@ -265,6 +265,15 @@ sub run_step {
     # 7. Work with exit code.
     my $code = $?;
     $code = $code >> 8;
+
+    # Here goes logic for windows issues when non-wsadmin scripts can't forward exit code.
+    if ($self->is_win()) {
+        if (!$code && $self->looks_like_error($self->cmd_res())) {
+            $self->log()->debug("Detected an error on windows. Changing code to 1.");
+            $code = 1;
+        }
+    }
+    # End of windows spike
     # Exit code is 0
     # 8. Handle output status
     $self->{procedure_result} = {
@@ -296,7 +305,7 @@ sub run_step {
         }
     }
 
-    $self->log()->debug("Succes value: $success");
+    $self->log()->debug("Success value: $success");
     $self->log()->debug("Parsed procedure result:", Dumper $parsed_procedure_result);
     # step execution has been successful
     if ($success) {
@@ -396,6 +405,16 @@ sub attachLogFile {
     $retval = $self->getLinkForReport4Pipeline('/commander/' . $propertyPath, $text);
 
     return $retval;
+}
+
+
+sub looks_like_error {
+    my ($self, $log) = @_;
+
+    if ($log =~ m/[\w\d]{8}E:/ms) {
+        return 1;
+    }
+    return 0;
 }
 
 sub getLinkForReport4Pipeline {
