@@ -324,10 +324,10 @@ class StopNode extends PluginTestHelper {
         given: "Parameters for procedure"
         // http://jira.electric-cloud.com/browse/ECPAPPSERVERWEBSPHERE-563
         def status = "error"
-        if (wasHost == 'websphere80nd' && (profile == profiles.'wrong') && is_windows){
-            status = "success"
-            expectedSummary = summaries.'default'
-        }
+        // if (wasHost == 'websphere80nd' && (profile == profiles.'wrong') && is_windows){
+        //     status = "success"
+        //     expectedSummary = summaries.'default'
+        // }
 
         def runParams = [
             configname: configName,
