@@ -82,12 +82,12 @@ class StartDeploymentManager extends PluginTestHelper {
 
     @Shared
     def stopLocations = [
-        defaultLocation: is_windows ? 'C:/IBM/WebSphere/AppServer/bin/stopManager.bat' : '/opt/IBM/WebSphere/AppServer/bin/stopManager.sh',
+        defaultLocation: is_windows ? 'C:/IBM/WebSphere/bin/stopManager.bat' : '/opt/IBM/WebSphere/AppServer/bin/stopManager.sh',
     ]
 
     @Shared
     def startLocations = [
-        defaultLocation: is_windows ? 'C:/IBM/WebSphere/AppServer/bin/startManager.bat' : '/opt/IBM/WebSphere/AppServer/bin/startManager.sh',
+        defaultLocation: is_windows ? 'C:/IBM/WebSphere/bin/startManager.bat' : '/opt/IBM/WebSphere/AppServer/bin/startManager.sh',
         wrong: 'wrong/path/startManager.sh'
     ]
 
@@ -162,6 +162,7 @@ class StartDeploymentManager extends PluginTestHelper {
         createConfiguration(confignames.correctJSR160RMI, [doNotRecreate: false])
         createConfiguration(confignames.correctNone, [doNotRecreate: false])
         createConfiguration(confignames.correctRMI, [doNotRecreate: false])
+        change_logs()
 
         importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
                 resName : wasResourceName,
@@ -372,6 +373,17 @@ class StartDeploymentManager extends PluginTestHelper {
         return dslWithTimeout(code)
     }
 
-
+    def change_logs(version){
+        if (is_windows){
+            jobLogs.'default'[0] = jobLogs.'default'[0].replace("'", "\"")
+            jobLogs.'profile'[0] = jobLogs.'profile'[0].replace("'", "\"")
+            jobLogs.'log'[0] = jobLogs.'log'[0].replace("'", "\"")
+            jobLogs.'timeOk'[0] = jobLogs.'timeOk'[0].replace("'", "\"")
+            jobLogs.'addParam'[0] = jobLogs.'addParam'[0].replace("'", "\"")
+            jobLogs.'addParams'[0] = jobLogs.'addParams'[0].replace("'", "\"")
+            jobLogs.'all'[0] = jobLogs.'all'[0].replace("'", "\"")
+            jobLogs.'log'[1] = ''
+        }
+    }
 
 }

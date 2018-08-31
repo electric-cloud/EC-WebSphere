@@ -27,6 +27,8 @@ class StopApplicationServers extends PluginTestHelper {
     def wasPath =     System.getenv('WSADMIN_PATH')
     @Shared
     def wasAppPath =  System.getenv('WAS_APPPATH')
+    @Shared
+    def is_windows = System.getenv("IS_WINDOWS")
 
     @Shared
     def confignames = [
@@ -290,6 +292,7 @@ class StopApplicationServers extends PluginTestHelper {
         testCases.systemTest8 | confignames.correctSOAP | serverLists.all       | '300'   | summaries.warning_both    | jobLogs.warning_both   | 'warning'       | null
     }
 
+
     @Unroll
     def 'StopApplicationServer - Positive(for multiple): #testCaseID.name #testCaseID.description'() {
 
@@ -334,6 +337,7 @@ class StopApplicationServers extends PluginTestHelper {
     @Unroll
     def 'StopApplicationServer - Negative: : #testCaseID.name #testCaseID.description'(){
         assumeFalse(wasHost=='websphere80nd' && (testCaseID.name=='C363350' || testCaseID.name=='C363351'))
+        assumeFalse(is_windows && (testCaseID.name=='C363350' || testCaseID.name=='C363351'))
 
         if (startedServers){
             startApplicationServer(startedServers)
