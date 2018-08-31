@@ -334,7 +334,7 @@ my %deleteJMSProvider = (
 my %createApplicationServer = (
     label       => "WebSphere - Create Application Server",
     procedure   => "CreateApplicationServer",
-    description => "Creates WebSphere Application Server",
+    description => "This procedure creates an Application Server identical to an existing Application Server or an Application Server definition which is part of a template. In addition it will synchronize nodes if checked.",
     category    => "Application Server"
 );
 
@@ -342,76 +342,76 @@ my %createApplicationServer = (
 my %createApplicationServerTemplate = (
     label       => "WebSphere - Create Application Server Template",
     procedure   => "CreateApplicationServerTemplate",
-    description => "Creates Application Server Template",
+    description => "This procedure creates a template of an existing Application Server.",
     category    => "Application Server"
 );
 
 my %deleteApplicationServerTemplate = (
     label       => "WebSphere - Delete Application Server Template",
     procedure   => "DeleteApplicationServerTemplate",
-    description => "Deletes Application Server Template",
+    description => "This procedure deletes an existing Application Server Template.",
     category    => "Application Server"
 );
 
 my %startApplicationServers = (
     label       => "WebSphere - Start Application Servers",
     procedure   => "StartApplicationServers",
-    description => "Starts application servers.",
+    description => "This procedure starts one or more Application Servers that can be spread across nodes.",
     category    => "Application Server"
 );
 
 my %stopApplicationServers = (
     label       => "WebSphere - Stop Application Servers",
     procedure   => "StopApplicationServers",
-    description => "Stops application servers.",
+    description => "This procedure stops one or more Application Servers that can be spread across nodes.",
     category    => "Application Server"
 );
 
 my %exportApplicationServer = (
     label       => "WebSphere - Export Application Server",
     procedure   => "ExportApplicationServer",
-    description => "Exports an application server to file system.",
+    description => "This procedure exports the definition of an Application Server in an environment to an archive (with extension .car) in the filesystem, that can in turn be used import into another environment and create an identical server.",
     category    => "Application Server"
 );
 
 my %importApplicationServer = (
     label       => "WebSphere - Import Application Server",
     procedure   => "ImportApplicationServer",
-    description => "Imports an application server from file system.",
+    description => "This procedure imports an Application Server from an Archive and creates an identical server in the environment the Archive is imported into.",
     category    => "Application Server"
 );
 
 my %deleteApplicationServer = (
     label       => "WebSphere - Delete Application Server",
     procedure   => "DeleteApplicationServer",
-    description => "Deletes existing application server.",
+    description => "This procedure deletes an existing Application Server. In addition it will synchronize nodes if checked.",
     category    => "Application Server"
 );
 
 my %startDeploymentManager = (
     label       => "WebSphere - Start Deployment Manager",
     procedure   => "StartDeploymentManager",
-    description => "Starts Deployment Manager",
+    description => "This procedure starts the Deployment Manager in a WAS network deployment.",
     category    => "Application Server"
 );
 my %stopDeploymentManager = (
     label       => "WebSphere - Stop Deployment Manager",
     procedure   => "StopDeploymentManager",
-    description => "Stops Deployment Manager",
+    description => "This procedure starts the Deployment Manager in a WAS network deployment.",
     category    => "Application Server"
 );
 
 my %stopNode = (
     label       => "WebSphere - Stop Node",
     procedure   => "StopNode",
-    description => "Stops Node",
+    description => "This procedure stops a WAS node and stops the Application Servers in that Node based on the Stop Node policy.",
     category    => "Application Server"
 );
 
 my %startNode = (
     label       => "WebSphere - Start Node",
     procedure   => "StartNode",
-    description => "Starts Node",
+    description => "This procedure starts a WAS node and optionally starts all Application Servers in that Node.",
     category    => "Application Server"
 );
 

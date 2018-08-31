@@ -86,7 +86,10 @@ limitations under the License.
         <property>wasTemplateName</property>
         <type>entry</type>
         <required>0</required>
-        <documentation>Name of server template to be the source for a new server.</documentation>
+        <documentation>
+            This parameter is applicable only when the source is a Template.
+            Name of server template to be the source for a new server.
+        </documentation>
         <dependsOn>wasSourceType</dependsOn>
         <condition>${wasSourceType} != '' AND ${wasSourceType} == 'template'</condition>
     </formElement>
@@ -97,6 +100,7 @@ limitations under the License.
         <required>0</required>
         <documentation>
             The configuration Id that represents the location of a template.
+            This parameter is applicable only when the source is a Template.
         </documentation>
         <dependsOn>wasSourceType</dependsOn>
         <condition>${wasSourceType} != '' AND ${wasSourceType} == 'template'</condition>

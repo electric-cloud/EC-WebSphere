@@ -41,7 +41,7 @@ limitations under the License.
         <property>wasAppServerName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Name of the application server to be a source for template.</documentation>
+        <documentation>Name of the application server the template will be based out of.</documentation>
     </formElement>
     <formElement>
         <label>Template Name:</label>

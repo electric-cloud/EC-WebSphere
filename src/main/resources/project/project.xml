@@ -3140,7 +3140,7 @@
         </procedure>
         <procedure>
             <procedureName>CreateApplicationServerTemplate</procedureName>
-            <description>Creates Application Server Template</description>
+            <description>This procedure creates a template of an existing Application Server.</description>
             <jobNameTemplate>websphere-create-appserver-template-$[jobId]</jobNameTemplate>
             <resourceName />
             <workspaceName />
@@ -3328,7 +3328,7 @@
         </procedure>
         <procedure>
             <procedureName>DeleteApplicationServerTemplate</procedureName>
-            <description>Deletes Application Server Template</description>
+            <description>This procedure deletes an existing Application Server Template.</description>
             <jobNameTemplate>websphere-delete-application-server-template-$[jobId]</jobNameTemplate>
             <resourceName />
             <workspaceName />
@@ -3444,7 +3444,7 @@
 
         <procedure>
             <procedureName>StartApplicationServers</procedureName>
-            <description>Starts Application Servers</description>
+            <description>This procedure starts one or more Application Servers that can be spread across nodes.</description>
             <jobNameTemplate>websphere-start-application-servers-$[jobId]</jobNameTemplate>
             <resourceName />
             <workspaceName />
@@ -3565,7 +3565,7 @@
 
         <procedure>
             <procedureName>StopApplicationServers</procedureName>
-            <description>Stops Application Servers</description>
+            <description>This procedure stops one or more Application Servers that can be spread across nodes.</description>
             <jobNameTemplate>websphere-stop-application-servers-$[jobId]</jobNameTemplate>
             <resourceName />
             <workspaceName />
@@ -3684,7 +3684,11 @@
 
         <procedure>
             <procedureName>CreateApplicationServer</procedureName>
-            <description>Creates Application Server</description>
+            <description>
+                This procedure creates an Application Server identical to an existing Application Server
+                or an Application Server definition which is part of a template.
+                In addition it will synchronize nodes if checked.
+            </description>
             <jobNameTemplate>websphere-create-application-server-$[jobId]</jobNameTemplate>
             <resourceName />
             <workspaceName />
@@ -11955,7 +11959,10 @@
         <!-- ExportApplicationServer procedure -->
         <procedure>
             <procedureName>ExportApplicationServer</procedureName>
-            <description>Exports Application Server to Archive</description>
+            <description>
+                This procedure exports the definition of an Application Server in an environment to an archive (with extension .car)
+                in the filesystem, that can in turn be used import into another environment and create an identical server.
+            </description>
             <jobNameTemplate>websphere-export-app-server-$[jobId]</jobNameTemplate>
             <resourceName />
             <workspaceName />
@@ -12090,7 +12097,9 @@
         <!-- ImportApplicationServer procedure -->
         <procedure>
             <procedureName>ImportApplicationServer</procedureName>
-            <description>Imports Application Server from Archive</description>
+            <description>
+                This procedure imports an Application Server from an Archive and creates an identical server in the environment the Archive is imported into.
+            </description>
             <jobNameTemplate>websphere-import-app-server-$[jobId]</jobNameTemplate>
             <resourceName />
             <workspaceName />
@@ -12297,7 +12306,7 @@
         <!-- DeleteApplicationServer procedure -->
         <procedure>
             <procedureName>DeleteApplicationServer</procedureName>
-            <description>Deletes Application Server</description>
+            <description>This procedure deletes an existing Application Server. In addition it will synchronize nodes if checked.</description>
             <jobNameTemplate>websphere-delete-application-server-$[jobId]</jobNameTemplate>
             <resourceName />
             <workspaceName />
@@ -12618,7 +12627,7 @@
         <!-- StartDeploymentManager procedure -->
         <procedure>
             <procedureName>StartDeploymentManager</procedureName>
-            <description>Starts Deployment Manager</description>
+            <description>This procedure starts the Deployment Manager in a WAS network deployment.</description>
             <jobNameTemplate>websphere-start-dmgr-$[jobId]</jobNameTemplate>
             <resourceName />
             <workspaceName />
@@ -12803,7 +12812,7 @@
         <!-- StopNode procedure -->
         <procedure>
             <procedureName>StopNode</procedureName>
-            <description>Stops Node</description>
+            <description>This procedure stops a WAS node and stops the Application Servers in that Node based on the Stop Node policy.</description>
             <jobNameTemplate>websphere-stop-node-$[jobId]</jobNameTemplate>
             <resourceName />
             <workspaceName />
@@ -13002,7 +13011,7 @@
         <!-- StartNode procedure -->
         <procedure>
             <procedureName>StartNode</procedureName>
-            <description>Starts Node</description>
+            <description>This procedure starts a WAS node and optionally starts all Application Servers in that Node.</description>
             <jobNameTemplate>websphere-start-node-$[jobId]</jobNameTemplate>
             <resourceName />
             <workspaceName />

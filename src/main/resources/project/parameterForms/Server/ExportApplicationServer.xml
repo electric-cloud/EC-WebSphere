@@ -41,7 +41,7 @@ limitations under the License.
         <property>wasAppServerName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Application Server name to be exported.</documentation>
+        <documentation>Name of the application server to be exported.</documentation>
     </formElement>
     <formElement>
         <label>Archive:</label>

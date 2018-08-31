@@ -3,8 +3,8 @@
     Following New procedures have been added to support application server management:
       <ul>
       <li><a href="#CreateApplicationServer">CreateApplicationServer</a></li>
-      <li><a href="#CreateApplicationServerTemplate">CreateApplicationServerTemplate</a></li>
       <li><a href="#DeleteApplicationServer">DeleteApplicationServer</a></li>
+      <li><a href="#CreateApplicationServerTemplate">CreateApplicationServerTemplate</a></li>
       <li><a href="#DeleteApplicationServerTemplate">DeleteApplicationServerTemplate</a></li>
       <li><a href="#ExportApplicationServer">ExportApplicationServer</a></li>
       <li><a href="#ImportApplicationServer">ImportApplicationServer</a></li>
@@ -14,8 +14,8 @@
       <li>Following New procedures have been added to support start and stop of Node and Deployment Manager:</li>
       <ul>
       <li><a href="#StartDeploymentManager">StartDeploymentManager</a></li>
-      <li><a href="#StartNode">StartNode</a></li>
       <li><a href="#StopDeploymentManager">StopDeploymentManager</a></li>
+      <li><a href="#StartNode">StartNode</a></li>
       <li><a href="#StopNode">StopNode</a></li>
       </ul>
       <li>WSAdmin Absolute path has been changed from non-required to required in plugin configuration.</li>
