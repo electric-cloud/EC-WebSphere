@@ -14,7 +14,7 @@
     <h1>@PLUGIN_KEY@</h1>
     <p>Plugin version @PLUGIN_VERSION@</p>
     
-    <p>Revised on August 30, 2018</p>
+    <p>Revised on August 31, 2018</p>
     
     <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade"/>
     <h3>Overview</h3>
@@ -71,10 +71,10 @@ Please refer to this <a href="https://www-01.ibm.com/common/ssi/ShowDoc.wss?docU
 
     <li><a href="#procedures">Plugin Procedures</a></li>
     <li>WAS Server Component Management<br/><i>These procedures for WAS component management</i></li><ul><li><a href="#CreateEndToEndMailProvider">CreateEndToEndMailProvider</a></li><li><a href="#CreateEJBContainer">CreateEJBContainer</a></li><li><a href="#CreateMailSession">CreateMailSession</a></li><li><a href="#PublishWSDL">PublishWSDL</a></li></ul><li>WAS Server Management Procedures<br/><i>These procedures for WAS server management</i></li><ul><li><a href="#CreateApplicationServer">CreateApplicationServer <b>(Applicable only for WebSphere Network Deployment installation.)</b>
-</a></li><li><a href="#CreateApplicationServerTemplate">CreateApplicationServerTemplate <b>(Applicable only for WebSphere Network Deployment installation.)</b>
-</a></li><li><a href="#CreateCluster">CreateCluster <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#DeleteApplicationServer">DeleteApplicationServer <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#CreateApplicationServerTemplate">CreateApplicationServerTemplate <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#DeleteApplicationServerTemplate">DeleteApplicationServerTemplate <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#CreateCluster">CreateCluster <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#DeleteCluster">DeleteCluster <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#ExportApplicationServer">ExportApplicationServer <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#ImportApplicationServer">ImportApplicationServer <b>(Applicable only for WebSphere Network Deployment installation.)</b>
@@ -83,17 +83,15 @@ Please refer to this <a href="https://www-01.ibm.com/common/ssi/ShowDoc.wss?docU
 </a></li><li><a href="#SyncNodes">SyncNodes <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#ConfigureEJBContainer">ConfigureEJBContainer</a></li></ul><li>WAS Server Administration Procedures<br/><i>These procedures for was server administation.</i></li><ul><li><a href="#StartApplicationServers">StartApplicationServers <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#StopApplicationServers">StopApplicationServers <b>(Applicable only for WebSphere Network Deployment installation.)</b>
-</a></li><li><a href="#RunCustomJob">RunCustomJob</a></li><li><a href="#StartCluster">StartCluster <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#StartCluster">StartCluster <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#StopCluster">StopCluster <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#StartDeploymentManager">StartDeploymentManager <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#StopDeploymentManager">StopDeploymentManager <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#StartNode">StartNode <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#StopNode">StopNode <b>(Applicable only for WebSphere Network Deployment installation.)</b>
-</a></li><li><a href="#StartServer">StartServer</a></li><li><a href="#StopServer">StopServer</a></li></ul><li>WAS Application Component Management Procedures<br/><i>These procedures for application component management.</i></li><ul><li><a href="#ConfigureSession">ConfigureSession</a></li><li><a href="#MapSharedLibrary">MapSharedLibrary</a></li><li><a href="#ModifyApplicationClassloader">ModifyApplicationClassloader</a></li></ul><li>WAS Application Administration Procedures<br/><i>These procedures for application administration.</i></li><ul><li><a href="#StartApp">StartApp</a></li><li><a href="#StopApp">StopApp</a></li></ul><li>WAS Datasource Management Procedures<br/><i>These procedures for datasource management.</i></li><ul><li><a href="#CreateJDBCProvider">CreateJDBCProvider</a></li><li><a href="#CreateDatasource">CreateDatasource</a></li><li><a href="#DeleteDatasource">DeleteDatasource</a></li><li><a href="#DeleteJDBCProvider">DeleteJDBCProvider</a></li></ul><li>WAS JMS Management Procedures<br/><i>These procedures for JMS resources management.</i></li><ul><li><a href="#CreateJMSProvider">CreateJMSProvider</a></li><li><a href="#DeleteJMSProvider">DeleteJMSProvider</a></li><li><a href="#CreateOrUpdateJMSQueue">CreateOrUpdateJMSQueue</a></li><li><a href="#CreateOrUpdateJMSTopic">CreateOrUpdateJMSTopic</a></li><li><a href="#CreateOrUpdateSIBJMSActivationSpec">CreateOrUpdateSIBJMSActivationSpec</a></li><li><a href="#CreateOrUpdateWMQJMSActivationSpec">CreateOrUpdateWMQJMSActivationSpec</a></li><li><a href="#CreateOrUpdateSIBJMSConnectionFactory">CreateOrUpdateSIBJMSConnectionFactory</a></li><li><a href="#CreateOrUpdateWMQJMSConnectionFactory">CreateOrUpdateWMQJMSConnectionFactory</a></li></ul><li>WAS Application Deployment Procedures<br/><i>These procedures for applications deployment.</i></li><ul><li><a href="#DeployApp">DeployApp</a></li><li><a href="#DeployEnterpriseApp">DeployEnterpriseApp</a></li><li><a href="#DeployOSGIApp">DeployOSGIApp</a></li><li><a href="#UndeployApp">UndeployApp</a></li><li><a href="#UpdateApp">UpdateApp</a></li></ul><li>Check Procedures<br/><i>Procedures for status checking</i></li><ul><li><a href="#CheckApp">CheckApp</a></li><li><a href="#CheckNodeStatus">CheckNodeStatus <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#StartServer">StartServer</a></li><li><a href="#StopServer">StopServer</a></li><li><a href="#RunCustomJob">RunCustomJob</a></li></ul><li>WAS Application Component Management Procedures<br/><i>These procedures for application component management.</i></li><ul><li><a href="#ConfigureSession">ConfigureSession</a></li><li><a href="#MapSharedLibrary">MapSharedLibrary</a></li><li><a href="#ModifyApplicationClassloader">ModifyApplicationClassloader</a></li></ul><li>WAS Application Administration Procedures<br/><i>These procedures for application administration.</i></li><ul><li><a href="#StartApp">StartApp</a></li><li><a href="#StopApp">StopApp</a></li></ul><li>WAS Datasource Management Procedures<br/><i>These procedures for datasource management.</i></li><ul><li><a href="#CreateJDBCProvider">CreateJDBCProvider</a></li><li><a href="#DeleteJDBCProvider">DeleteJDBCProvider</a></li><li><a href="#CreateDatasource">CreateDatasource</a></li><li><a href="#DeleteDatasource">DeleteDatasource</a></li></ul><li>WAS JMS Management Procedures<br/><i>These procedures for JMS resources management.</i></li><ul><li><a href="#CreateJMSProvider">CreateJMSProvider</a></li><li><a href="#DeleteJMSProvider">DeleteJMSProvider</a></li><li><a href="#CreateOrUpdateJMSQueue">CreateOrUpdateJMSQueue</a></li><li><a href="#DeleteJMSQueue">DeleteJMSQueue</a></li><li><a href="#CreateOrUpdateJMSTopic">CreateOrUpdateJMSTopic</a></li><li><a href="#DeleteJMSTopic">DeleteJMSTopic</a></li><li><a href="#CreateOrUpdateSIBJMSActivationSpec">CreateOrUpdateSIBJMSActivationSpec</a></li><li><a href="#CreateOrUpdateWMQJMSActivationSpec">CreateOrUpdateWMQJMSActivationSpec</a></li><li><a href="#DeleteJMSActivationSpec">DeleteJMSActivationSpec</a></li><li><a href="#CreateOrUpdateSIBJMSConnectionFactory">CreateOrUpdateSIBJMSConnectionFactory</a></li><li><a href="#CreateOrUpdateWMQJMSConnectionFactory">CreateOrUpdateWMQJMSConnectionFactory</a></li><li><a href="#DeleteJMSConnectionFactory">DeleteJMSConnectionFactory</a></li></ul><li>WAS Application Deployment Procedures<br/><i>These procedures for applications deployment.</i></li><ul><li><a href="#DeployApp">DeployApp</a></li><li><a href="#DeployEnterpriseApp">DeployEnterpriseApp</a></li><li><a href="#DeployOSGIApp">DeployOSGIApp</a></li><li><a href="#UndeployApp">UndeployApp</a></li><li><a href="#UpdateApp">UpdateApp</a></li></ul><li>Check Procedures<br/><i>Procedures for status checking</i></li><ul><li><a href="#CheckApp">CheckApp</a></li><li><a href="#CheckNodeStatus">CheckNodeStatus <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#CheckPageStatus">CheckPageStatus</a></li><li><a href="#CheckServerStatus">CheckServerStatus</a></li></ul>
     
-    
-    <li><a href="#knownIssues">Known Issues</a></li>
     
     <li><a href="#releaseNotes">Release Notes</a></li>
 </ul>
@@ -124,7 +122,8 @@ Please refer to this <a href="https://www-01.ibm.com/common/ssi/ShowDoc.wss?docU
              Configurations page.</li>
         <li>Click <b>Create Configuration</b>.</li>
         
-        <p><img src="../../plugins/EC-WebSphere/images/Config/parameters.png" /><br />
+        <p><b>Note: After you perform the setup below it is important to make sure that the Electric Flow agent machine on which Websphere runs is registered as a resource that can be pinged.</b>
+<img src="../../plugins/EC-WebSphere/images/Config/parameters.png" /><br />
 Plugin configurations are sets of parameters that apply across some or all of the plugin procedures.
 They reduce repetition of common values, create predefined parameter sets for end users,
 and securely store credentials where needed.
@@ -178,12 +177,6 @@ Each configuration is given a unique name that is entered in designated paramete
             
             </tbody>
         </table>
-        
-        <br />
-<p>
-<b>Note: After you perform the setup below it is important to make sure that the Electric Flow agent machine on which WebLogic runs is registered as a resource that can be pinged.</b>
-</p>
-
         
     </div>
     
@@ -573,7 +566,11 @@ Each configuration is given a unique name that is entered in designated paramete
 </p>
 
         
-        <p>Creates Application Server</p>
+        <p>
+                This procedure creates an Application Server identical to an existing Application Server
+                or an Application Server definition which is part of a template.
+                In addition it will synchronize nodes if checked.
+            </p>
         
         <h3>CreateApplicationServer Parameters</h3>
         <table class="grid">
@@ -620,13 +617,17 @@ Each configuration is given a unique name that is entered in designated paramete
             
             <tr>
                 <td >Source Template Name</td>
-                <td>Name of server template to be the source for a new server.</td>
+                <td>
+            This parameter is applicable only when the source is a Template.
+            Name of server template to be the source for a new server.
+        </td>
             </tr>
             
             <tr>
                 <td >Source Template Location</td>
                 <td>
             The configuration Id that represents the location of a template.
+            This parameter is applicable only when the source is a Template.
         </td>
             </tr>
             
@@ -669,6 +670,73 @@ Each configuration is given a unique name that is entered in designated paramete
     </div>
 
     
+    <div id="DeleteApplicationServer">
+        <h2>DeleteApplicationServer</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
+        <p>This procedure deletes an existing Application Server. In addition it will synchronize nodes if checked.</p>
+        
+        <h3>DeleteApplicationServer Parameters</h3>
+        <table class="grid">
+            <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+            <tr>
+                <td class="required">Configuration Name</td>
+                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">Node Name</td>
+                <td>Name of the node where application server to be deleted.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">Server Name</td>
+                <td>Name of application server to be deleted.</td>
+            </tr>
+            
+            <tr>
+                <td >Sync Nodes?</td>
+                <td>
+            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+        </td>
+            </tr>
+            
+            </tbody>
+        </table>
+        
+        <p>
+            <h3>Delete Application Server</h3>
+<p>To Delete Application Server in Flow interface, do these steps:</p>
+<ul>
+<li>Create Pipeline.</li>
+<li>Create task.</li>
+<li>In task definition choose Plugin and choose following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServer/PipelinePicker.png" /></li>
+<li>Click on arrow.</li>
+<li>Enter the following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServer/PipelineConfig.png" /></li>
+</ul>
+<p>After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServer/PipelineResult.png" />
+<br />In the <b>DeleteApplicationServer</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServer/PipelineLog.png" /></p>
+
+        </p>
+        
+    </div>
+
+    
     <div id="CreateApplicationServerTemplate">
         <h2>CreateApplicationServerTemplate</h2>
         
@@ -677,7 +745,7 @@ Each configuration is given a unique name that is entered in designated paramete
 </p>
 
         
-        <p>Creates Application Server Template</p>
+        <p>This procedure creates a template of an existing Application Server.</p>
         
         <h3>CreateApplicationServerTemplate Parameters</h3>
         <table class="grid">
@@ -701,7 +769,7 @@ Each configuration is given a unique name that is entered in designated paramete
             
             <tr>
                 <td class="required">Application Server Name</td>
-                <td>Name of the application server to be a source for template.</td>
+                <td>Name of the application server the template will be based out of.</td>
             </tr>
             
             <tr>
@@ -747,6 +815,68 @@ Each configuration is given a unique name that is entered in designated paramete
 <br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServerTemplate/PipelineResult.png" />
 <br />In the <b>CreateApplicationServerTemplate</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 <br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServerTemplate/PipelineLog.png" /></p>
+
+        </p>
+        
+    </div>
+
+    
+    <div id="DeleteApplicationServerTemplate">
+        <h2>DeleteApplicationServerTemplate</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
+        <p>This procedure deletes an existing Application Server Template.</p>
+        
+        <h3>DeleteApplicationServerTemplate Parameters</h3>
+        <table class="grid">
+            <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+            <tr>
+                <td class="required">Configuration Name</td>
+                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">Template Name</td>
+                <td>Application server template name to be deleted.</td>
+            </tr>
+            
+            <tr>
+                <td >Sync Nodes?</td>
+                <td>
+            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+        </td>
+            </tr>
+            
+            </tbody>
+        </table>
+        
+        <p>
+            <h3>Delete Application Server Template</h3>
+<p>To Delete Application Server Template in Flow interface, do these steps:</p>
+<ul>
+<li>Create Pipeline.</li>
+<li>Create task.</li>
+<li>In task definition choose Plugin and choose following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServerTemplate/PipelinePicker.png" /></li>
+<li>Click on arrow.</li>
+<li>Enter the following parameters:
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServerTemplate/PipelineConfig.png" /></li>
+</ul>
+<p>After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServerTemplate/PipelineResult.png" />
+<br />In the <b>DeleteApplicationServerTemplate</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServerTemplate/PipelineLog.png" /></p>
 
         </p>
         
@@ -865,135 +995,6 @@ report.</p>
     </div>
 
     
-    <div id="DeleteApplicationServer">
-        <h2>DeleteApplicationServer</h2>
-        
-
-        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
-</p>
-
-        
-        <p>Deletes Application Server</p>
-        
-        <h3>DeleteApplicationServer Parameters</h3>
-        <table class="grid">
-            <thead>
-            <tr>
-                <th>Parameter</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            
-            <tr>
-                <td class="required">Configuration Name</td>
-                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Node Name</td>
-                <td>Name of the node where application server to be deleted.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Server Name</td>
-                <td>Name of application server to be deleted.</td>
-            </tr>
-            
-            <tr>
-                <td >Sync Nodes?</td>
-                <td>
-            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
-        </td>
-            </tr>
-            
-            </tbody>
-        </table>
-        
-        <p>
-            <h3>Delete Application Server</h3>
-<p>To Delete Application Server in Flow interface, do these steps:</p>
-<ul>
-<li>Create Pipeline.</li>
-<li>Create task.</li>
-<li>In task definition choose Plugin and choose following parameters:
-<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServer/PipelinePicker.png" /></li>
-<li>Click on arrow.</li>
-<li>Enter the following parameters:
-<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServer/PipelineConfig.png" /></li>
-</ul>
-<p>After the pipeline runs, you can view the results, including the following step details:
-<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServer/PipelineResult.png" />
-<br />In the <b>DeleteApplicationServer</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
-<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServer/PipelineLog.png" /></p>
-
-        </p>
-        
-    </div>
-
-    
-    <div id="DeleteApplicationServerTemplate">
-        <h2>DeleteApplicationServerTemplate</h2>
-        
-
-        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
-</p>
-
-        
-        <p>Deletes Application Server Template</p>
-        
-        <h3>DeleteApplicationServerTemplate Parameters</h3>
-        <table class="grid">
-            <thead>
-            <tr>
-                <th>Parameter</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            
-            <tr>
-                <td class="required">Configuration Name</td>
-                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Template Name</td>
-                <td>Application server template name to be deleted.</td>
-            </tr>
-            
-            <tr>
-                <td >Sync Nodes?</td>
-                <td>
-            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
-        </td>
-            </tr>
-            
-            </tbody>
-        </table>
-        
-        <p>
-            <h3>Delete Application Server Template</h3>
-<p>To Delete Application Server Template in Flow interface, do these steps:</p>
-<ul>
-<li>Create Pipeline.</li>
-<li>Create task.</li>
-<li>In task definition choose Plugin and choose following parameters:
-<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServerTemplate/PipelinePicker.png" /></li>
-<li>Click on arrow.</li>
-<li>Enter the following parameters:
-<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServerTemplate/PipelineConfig.png" /></li>
-</ul>
-<p>After the pipeline runs, you can view the results, including the following step details:
-<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServerTemplate/PipelineResult.png" />
-<br />In the <b>DeleteApplicationServerTemplate</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
-<br /><img src="../../plugins/EC-WebSphere/images/DeleteApplicationServerTemplate/PipelineLog.png" /></p>
-
-        </p>
-        
-    </div>
-
-    
     <div id="DeleteCluster">
         <h2>DeleteCluster</h2>
         
@@ -1064,7 +1065,10 @@ report.</p>
 </p>
 
         
-        <p>Exports Application Server to Archive</p>
+        <p>
+                This procedure exports the definition of an Application Server in an environment to an archive (with extension .car)
+                in the filesystem, that can in turn be used import into another environment and create an identical server.
+            </p>
         
         <h3>ExportApplicationServer Parameters</h3>
         <table class="grid">
@@ -1088,7 +1092,7 @@ report.</p>
             
             <tr>
                 <td class="required">Application Server Name</td>
-                <td>Application Server name to be exported.</td>
+                <td>Name of the application server to be exported.</td>
             </tr>
             
             <tr>
@@ -1129,7 +1133,9 @@ report.</p>
 </p>
 
         
-        <p>Imports Application Server from Archive</p>
+        <p>
+                This procedure imports an Application Server from an Archive and creates an identical server in the environment the Archive is imported into.
+            </p>
         
         <h3>ImportApplicationServer Parameters</h3>
         <table class="grid">
@@ -1148,12 +1154,12 @@ report.</p>
             
             <tr>
                 <td class="required">Node Name</td>
-                <td>Specifies the node name where the server is to be imported.</td>
+                <td>Name of the Node in which the Application Server is to be Imported.</td>
             </tr>
             
             <tr>
                 <td class="required">Application Server Name</td>
-                <td>Name of the application server to be imported.</td>
+                <td>Name of the Application Server to be created based on the server in the Imported Archive.</td>
             </tr>
             
             <tr>
@@ -1394,7 +1400,7 @@ Next, to make it available on each server it should be propagated to all servers
 </p>
 
         
-        <p>Starts Application Servers</p>
+        <p>This procedure starts one or more Application Servers that can be spread across nodes.</p>
         
         <h3>StartApplicationServers Parameters</h3>
         <table class="grid">
@@ -1457,7 +1463,7 @@ Next, to make it available on each server it should be propagated to all servers
 </p>
 
         
-        <p>Stops Application Servers</p>
+        <p>This procedure stops one or more Application Servers that can be spread across nodes.</p>
         
         <h3>StopApplicationServers Parameters</h3>
         <table class="grid">
@@ -1506,81 +1512,6 @@ Next, to make it available on each server it should be propagated to all servers
 <br /><img src="../../plugins/EC-WebSphere/images/StopApplicationServers/PipelineResult.png" />
 <br />In the <b>StopApplicationServers</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 <br /><img src="../../plugins/EC-WebSphere/images/StopApplicationServers/PipelineLog.png" /></p>
-
-        </p>
-        
-    </div>
-
-    
-    <div id="RunCustomJob">
-        <h2>RunCustomJob</h2>
-        
-        <p>Runs a task using wsadmin</p>
-        
-            <p>This procedure runs a task using wsadmin and the Jython code files.</p>
-
-        
-        <h3>RunCustomJob Parameters</h3>
-        <table class="grid">
-            <thead>
-            <tr>
-                <th>Parameter</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            
-            <tr>
-                <td >Configuration Name</td>
-                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
-            </tr>
-            
-            <tr>
-                <td >Wsadmin Absolute Path</td>
-                <td>Absolute path of wsadmin, including filename and extension. If the path in which wsadmin is stored in the path environmental variable, the absolute path is ommited. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'. </td>
-            </tr>
-            
-            <tr>
-                <td >Commands</td>
-                <td>Commands to be entered to wsadmin. Use one command per line.</td>
-            </tr>
-            
-            <tr>
-                <td >Java Parameters</td>
-                <td>Java options to be passed to wsadmin, separate them using semicolons (;).</td>
-            </tr>
-            
-            <tr>
-                <td >Classpath</td>
-                <td>Jars to be passed to the wsadmin classpath. It is a string containing paths (semicolon-separated) the required JARs to execute wsadmin in a particular job. i.e: 'c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar' or '/MyDir/Myjar.jar;/yourdir/yourdir.jar'.</td>
-            </tr>
-            
-            <tr>
-                <td >Script File Absolute Path</td>
-                <td>Path of a Jython script that will be run using wsadmin. i.e: '/path/to/scriptFile.jython' or 'c:/dir/scriptFile.jython'.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Script File Source</td>
-                <td>Indicates either if a script file route or an embedded script file will be provided. </td>
-            </tr>
-            
-            <tr>
-                <td >Script File</td>
-                <td>Content of the script file to run if Embedded File is chosen in the Script File Source.</td>
-            </tr>
-            
-            <tr>
-                <td >Additional Commands</td>
-                <td>Additional commands to be entered for wsadmin.</td>
-            </tr>
-            
-            </tbody>
-        </table>
-        
-        <p>
-            <h3>Running Custom Jobs</h3>
-                <p>For a complete example, go to the <i>Examples and Use Cases</i> section.</p>
 
         </p>
         
@@ -1739,7 +1670,7 @@ Next, to make it available on each server it should be propagated to all servers
 </p>
 
         
-        <p>Starts Deployment Manager</p>
+        <p>This procedure starts the Deployment Manager in a WAS network deployment.</p>
         
         <h3>StartDeploymentManager Parameters</h3>
         <table class="grid">
@@ -1899,7 +1830,7 @@ Next, to make it available on each server it should be propagated to all servers
 </p>
 
         
-        <p>Starts Node</p>
+        <p>This procedure starts a WAS node and optionally starts all Application Servers in that Node.</p>
         
         <h3>StartNode Parameters</h3>
         <table class="grid">
@@ -1989,7 +1920,7 @@ Next, to make it available on each server it should be propagated to all servers
 </p>
 
         
-        <p>Stops Node</p>
+        <p>This procedure stops a WAS node and stops the Application Servers in that Node based on the Stop Node policy.</p>
         
         <h3>StopNode Parameters</h3>
         <table class="grid">
@@ -2145,6 +2076,81 @@ Next, to make it available on each server it should be propagated to all servers
             
             </tbody>
         </table>
+        
+    </div>
+
+    
+    <div id="RunCustomJob">
+        <h2>RunCustomJob</h2>
+        
+        <p>Runs a task using wsadmin</p>
+        
+            <p>This procedure runs a task using wsadmin and the Jython code files.</p>
+
+        
+        <h3>RunCustomJob Parameters</h3>
+        <table class="grid">
+            <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+            <tr>
+                <td >Configuration Name</td>
+                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
+            </tr>
+            
+            <tr>
+                <td >Wsadmin Absolute Path</td>
+                <td>Absolute path of wsadmin, including filename and extension. If the path in which wsadmin is stored in the path environmental variable, the absolute path is ommited. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'. </td>
+            </tr>
+            
+            <tr>
+                <td >Commands</td>
+                <td>Commands to be entered to wsadmin. Use one command per line.</td>
+            </tr>
+            
+            <tr>
+                <td >Java Parameters</td>
+                <td>Java options to be passed to wsadmin, separate them using semicolons (;).</td>
+            </tr>
+            
+            <tr>
+                <td >Classpath</td>
+                <td>Jars to be passed to the wsadmin classpath. It is a string containing paths (semicolon-separated) the required JARs to execute wsadmin in a particular job. i.e: 'c:/MyDir/Myjar.jar;d:/yourdir/yourdir.jar' or '/MyDir/Myjar.jar;/yourdir/yourdir.jar'.</td>
+            </tr>
+            
+            <tr>
+                <td >Script File Absolute Path</td>
+                <td>Path of a Jython script that will be run using wsadmin. i.e: '/path/to/scriptFile.jython' or 'c:/dir/scriptFile.jython'.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">Script File Source</td>
+                <td>Indicates either if a script file route or an embedded script file will be provided. </td>
+            </tr>
+            
+            <tr>
+                <td >Script File</td>
+                <td>Content of the script file to run if Embedded File is chosen in the Script File Source.</td>
+            </tr>
+            
+            <tr>
+                <td >Additional Commands</td>
+                <td>Additional commands to be entered for wsadmin.</td>
+            </tr>
+            
+            </tbody>
+        </table>
+        
+        <p>
+            <h3>Running Custom Jobs</h3>
+                <p>For a complete example, go to the <i>Examples and Use Cases</i> section.</p>
+
+        </p>
         
     </div>
 
@@ -2587,6 +2593,63 @@ Next, to make it available on each server it should be propagated to all servers
     </div>
 
     
+    <div id="DeleteJDBCProvider">
+        <h2>DeleteJDBCProvider</h2>
+        
+        <p>Deletes a JDBC Provider using the wsadmin tool</p>
+        
+            <p>This procedure deletes a JDBC provider using a Jython script.</p>
+
+        
+        <h3>DeleteJDBCProvider Parameters</h3>
+        <table class="grid">
+            <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+            <tr>
+                <td class="required">Configuration Name</td>
+                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">Wsadmin Absolute Path</td>
+                <td>Absolute path of wsadmin, including filename and extension. If the path in which wsadmin is stored in the path environmental variable, the absolute path is ommited. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">JDBC Provider Name</td>
+                <td>A unique name that identifies the JDBC Provider to delete in the WebSphere domain.</td>
+            </tr>
+            
+            </tbody>
+        </table>
+        
+        <p>
+            <h3>Deleting JDBC Providers</h3>
+                <p>To delete a JDBC provider, do these steps:</p>
+                <ol>
+                    <li>Go to the DeleteJDBCProvider procedure. </li>
+                    <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeleteJDBCProvider/EC-WebSphereDeleteJDBCProvider2.png" />
+                </ol>
+                <p>After the job runs, you can view the results, including the following job details, which show that
+                the JDBC provider was deleted successfully:</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJDBCProvider/EC-WebSphereDeleteJDBCProvider3.png" />
+                <p>In the <b>DeleteJDBCProvider</b> step, click the Log icon
+                to see the diagnostic information. The output is similar to
+                the following diagnostic
+                report.</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJDBCProvider/EC-WebSphereDeleteJDBCProvider4.png" />
+
+        </p>
+        
+    </div>
+
+    
     <div id="CreateDatasource">
         <h2>CreateDatasource</h2>
         
@@ -2725,63 +2788,6 @@ successfully:</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC
 to see the diagnostic information. The output is similar to
 the following diagnostic
 report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSphereDeleteDatasource4.png" />
-
-        </p>
-        
-    </div>
-
-    
-    <div id="DeleteJDBCProvider">
-        <h2>DeleteJDBCProvider</h2>
-        
-        <p>Deletes a JDBC Provider using the wsadmin tool</p>
-        
-            <p>This procedure deletes a JDBC provider using a Jython script.</p>
-
-        
-        <h3>DeleteJDBCProvider Parameters</h3>
-        <table class="grid">
-            <thead>
-            <tr>
-                <th>Parameter</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            
-            <tr>
-                <td class="required">Configuration Name</td>
-                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Wsadmin Absolute Path</td>
-                <td>Absolute path of wsadmin, including filename and extension. If the path in which wsadmin is stored in the path environmental variable, the absolute path is ommited. i.e: '/path/to/wsadmin.sh' or 'wsadmin.bat'.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">JDBC Provider Name</td>
-                <td>A unique name that identifies the JDBC Provider to delete in the WebSphere domain.</td>
-            </tr>
-            
-            </tbody>
-        </table>
-        
-        <p>
-            <h3>Deleting JDBC Providers</h3>
-                <p>To delete a JDBC provider, do these steps:</p>
-                <ol>
-                    <li>Go to the DeleteJDBCProvider procedure. </li>
-                    <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeleteJDBCProvider/EC-WebSphereDeleteJDBCProvider2.png" />
-                </ol>
-                <p>After the job runs, you can view the results, including the following job details, which show that
-                the JDBC provider was deleted successfully:</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJDBCProvider/EC-WebSphereDeleteJDBCProvider3.png" />
-                <p>In the <b>DeleteJDBCProvider</b> step, click the Log icon
-                to see the diagnostic information. The output is similar to
-                the following diagnostic
-                report.</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJDBCProvider/EC-WebSphereDeleteJDBCProvider4.png" />
 
         </p>
         
@@ -3066,6 +3072,84 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
     </div>
 
     
+    <div id="DeleteJMSQueue">
+        <h2>DeleteJMSQueue</h2>
+        
+        <p>Deletes JMS Queues</p>
+        
+            <p>This procedure deletes an existing JMS Queue.</p>
+
+        
+        <h3>DeleteJMSQueue Parameters</h3>
+        <table class="grid">
+            <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+            <tr>
+                <td class="required">Configuration Name</td>
+                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">Messaging System Type</td>
+                <td>The name of the messaging provider. Pass in either WMQ or SIB.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">Queue Scope</td>
+                <td>Scope of the messaging provider at which the JMS Queue is to be deleted.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">Queue Administrative Name</td>
+                <td>The administrative name assigned to this WebSphere MQ messaging provider queue.</td>
+            </tr>
+            
+            </tbody>
+        </table>
+        
+        <p>
+            <h3>Delete JMS Queue</h3>
+                <p>To delete JMS Queue in Commander interface, do these steps:</p>
+                <ol>
+                    <li>Create procedure.</li>
+                    <li>Create step, choose Plugin, choose DeleteJMSQueue from procedures
+                    picker.</li>
+                    <li>Enter the following parameters: </li>
+                    <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/ProcedureConfig.png" />
+                </ol>
+                <p>After the job runs, you can view the results, including the following
+                job details:</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/ProcedureResult.png" />
+                <p>To delete JMS Queue in Flow interface, do these steps:</p>
+                <ol>
+                    <li>Create Pipeline.</li>
+                    <li>Create task.</li>
+                    <li>In task definition choose Plugin and choose following parameters:
+                    <p><img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/PipelinePicker.png" /></p>
+                    </li>
+                    <li>Click on arrow.</li>
+                    <li>Enter the following parameters: </li>
+                    <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/PipelineConfig.png" />
+                </ol>
+                <p>After the pipeline runs, you can view the results, including the
+                following step details:</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/PipelineResult.png" />
+                <p>In the <b>DeleteJMSQueue</b> step, click the Log icon to see the
+                diagnostic information. The output is similar to the following
+                diagnostic report.</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/ProcedureLog.png" />
+
+        </p>
+        
+    </div>
+
+    
     <div id="CreateOrUpdateJMSTopic">
         <h2>CreateOrUpdateJMSTopic</h2>
         
@@ -3161,6 +3245,84 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
                 the diagnostic information. The output is similar to the following
                 diagnostic report.</p>
                 <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureLog.png" />
+
+        </p>
+        
+    </div>
+
+    
+    <div id="DeleteJMSTopic">
+        <h2>DeleteJMSTopic</h2>
+        
+        <p>Deletes JMS Topics</p>
+        
+            <p>This procedure deletes an existing JMS Topic.</p>
+
+        
+        <h3>DeleteJMSTopic Parameters</h3>
+        <table class="grid">
+            <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+            <tr>
+                <td class="required">Configuration Name</td>
+                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">Messaging System Type</td>
+                <td>The name of the messaging provider. Pass in either WMQ or SIB.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">Topic Scope</td>
+                <td>Scope of the messaging provider at which the JMS Topic is to be deleted.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">Topic Administrative Name</td>
+                <td>The administrative name assigned to this WebSphere MQ messaging provider topic.</td>
+            </tr>
+            
+            </tbody>
+        </table>
+        
+        <p>
+            <h3>Delete JMS Topic</h3>
+                <p>To delete JMS Topic in Commander interface, do these steps:</p>
+                <ol>
+                    <li>Create procedure.</li>
+                    <li>Create step, choose Plugin, choose DeleteJMSTopic from procedures
+                    picker.</li>
+                    <li>Enter the following parameters: </li>
+                    <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/ProcedureConfig.png" />
+                </ol>
+                <p>After the job runs, you can view the results, including the following
+                job details:</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/ProcedureResult.png" />
+                <p>To delete JMS Topic in Flow interface, do these steps:</p>
+                <ol>
+                    <li>Create Pipeline.</li>
+                    <li>Create task.</li>
+                    <li>In task definition choose Plugin and choose following parameters:
+                    <p><img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/PipelinePicker.png" /></p>
+                    </li>
+                    <li>Click on arrow.</li>
+                    <li>Enter the following parameters: </li>
+                    <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/PipelineConfig.png" />
+                </ol>
+                <p>After the pipeline runs, you can view the results, including the
+                following step details:</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/PipelineResult.png" />
+                <p>In the <b>DeleteJMSTopic</b> step, click the Log icon to see the
+                diagnostic information. The output is similar to the following
+                diagnostic report.</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/ProcedureLog.png" />
 
         </p>
         
@@ -3388,6 +3550,88 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
     </div>
 
     
+    <div id="DeleteJMSActivationSpec">
+        <h2>DeleteJMSActivationSpec</h2>
+        
+        <p>Deletes JMS Activation Specs</p>
+        
+            <p>This procedure deletes an existing JMS ActivationSpec.</p>
+
+        
+        <h3>DeleteJMSActivationSpec Parameters</h3>
+        <table class="grid">
+            <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+            <tr>
+                <td class="required">Configuration Name</td>
+                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">Messaging System Type</td>
+                <td>The name of the messaging provider. Pass in either WMQ or SIB.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">Scope of the Activation Spec</td>
+                <td>Scope of the messaging provider at which the JMS Activation Spec is to be deleted.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">Activation Spec Administrative Name</td>
+                <td>The administrative name assigned to this WebSphere MQ messaging provider Activation Spec.</td>
+            </tr>
+            
+            </tbody>
+        </table>
+        
+        <p>
+            <h3>Delete JMS Activation Spec</h3>
+                <p>To delete JMS Activation Spec in Commander interface, do these steps:</p>
+                <ol>
+                    <li>Create procedure.</li>
+                    <li>Create step, choose Plugin, choose DeleteJMSActivationSpec from procedures
+                    picker.</li>
+                    <li>Enter the following parameters: </li>
+                    <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/ProcedureConfig.png" />
+                </ol>
+                <p>After the job runs, you can view the results, including the following
+                job details:</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/ProcedureResult.png" />
+                <p>In the <b>DeleteJMSActivationSpec</b> step, click the Log icon to see the
+                diagnostic information. The output is similar to the following
+                diagnostic report.</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/ProcedureLog.png" />
+                <p>To delete JMS Activation Spec in Flow interface, do these steps:</p>
+                <ol>
+                    <li>Create Pipeline.</li>
+                    <li>Create task.</li>
+                    <li>In task definition choose Plugin and choose following parameters:
+                    <p><img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/PipelinePicker.png" /></p>
+                    </li>
+                    <li>Click on arrow.</li>
+                    <li>Enter the following parameters: </li>
+                    <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/PipelineConfig.png" />
+                </ol>
+                <p>After the pipeline runs, you can view the results, including the
+                following step details:</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/PipelineResult.png" />
+                <p>In the pipeline tasks click on "Update SIB JMS Activation Spec", then click the Log icon to see the
+                diagnostic information. The output is similar to the following
+                diagnostic report.</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/PipelineLog.png" />
+
+        </p>
+        
+    </div>
+
+    
     <div id="CreateOrUpdateSIBJMSConnectionFactory">
         <h2>CreateOrUpdateSIBJMSConnectionFactory</h2>
         
@@ -3606,6 +3850,86 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
                 the diagnostic information. The output is similar to the following
                 diagnostic report.</p>
                 <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateWMQJMSConnectionFactory/ProcedureLog.png" />
+
+        </p>
+        
+    </div>
+
+    
+    <div id="DeleteJMSConnectionFactory">
+        <h2>DeleteJMSConnectionFactory</h2>
+        
+        <p>Deletes JMS Connection Factories</p>
+        
+            <p>This procedure deletes an existing JMS ConnectionFactory.</p>
+
+        
+        <h3>DeleteJMSConnectionFactory Parameters</h3>
+        <table class="grid">
+            <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+            <tr>
+                <td class="required">Configuration Name</td>
+                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">Messaging System Type</td>
+                <td>The name of the messaging provider. Pass in either WMQ or SIB.</td>
+            </tr>
+            
+            <tr>
+                <td class="required">Scope of the Connection Factory</td>
+                <td>
+            Scope of the WebSphere messaging provider at which the Connection Factory is to be deleted.
+        </td>
+            </tr>
+            
+            <tr>
+                <td class="required">Connection Factory Administrative Name</td>
+                <td>The administrative name assigned to this Connection Factory.</td>
+            </tr>
+            
+            </tbody>
+        </table>
+        
+        <p>
+            <h3>Delete JMS ConnectionFactory</h3>
+                <p>To delete JMS ConnectionFactory in Commander interface, do these steps:</p>
+                <ol>
+                    <li>Create procedure.</li>
+                    <li>Create step, choose Plugin, choose DeleteJMSConnectionFactory from procedures
+                    picker.</li>
+                    <li>Enter the following parameters: </li>
+                    <img src="../../plugins/EC-WebSphere/images/DeleteJMSConnectionFactory/ProcedureConfig.png" />
+                </ol>
+                <p>After the job runs, you can view the results, including the following
+                job details:</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSConnectionFactory/ProcedureResult.png" />
+                <p>To delete JMS ConnectionFactory in Flow interface, do these steps:</p>
+                <ol>
+                    <li>Create Pipeline.</li>
+                    <li>Create task.</li>
+                    <li>In task definition choose Plugin and choose following parameters:
+                    <p><img src="../../plugins/EC-WebSphere/images/DeleteJMSConnectionFactory/PipelinePicker.png" /></p>
+                    </li>
+                    <li>Click on arrow.</li>
+                    <li>Enter the following parameters: </li>
+                    <img src="../../plugins/EC-WebSphere/images/DeleteJMSConnectionFactory/PipelineConfig.png" />
+                </ol>
+                <p>After the pipeline runs, you can view the results, including the
+                following step details:</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSConnectionFactory/PipelineResult.png" />
+                <p>In the <b>DeleteJMSConnectionFactory</b> step, click the Log icon to see the
+                diagnostic information. The output is similar to the following
+                diagnostic report.</p>
+                <img src="../../plugins/EC-WebSphere/images/DeleteJMSConnectionFactory/ProcedureLog.png" />
 
         </p>
         
@@ -4416,324 +4740,6 @@ A context root for each web module is defined in the application deployment desc
     </div>
 
     
-    <div id="DeleteJMSActivationSpec">
-        <h2>DeleteJMSActivationSpec</h2>
-        
-        <p>Deletes JMS Activation Specs</p>
-        
-            <p>This procedure deletes an existing JMS ActivationSpec.</p>
-
-        
-        <h3>DeleteJMSActivationSpec Parameters</h3>
-        <table class="grid">
-            <thead>
-            <tr>
-                <th>Parameter</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            
-            <tr>
-                <td class="required">Configuration Name</td>
-                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Messaging System Type</td>
-                <td>The name of the messaging provider. Pass in either WMQ or SIB.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Scope of the Activation Spec</td>
-                <td>Scope of the messaging provider at which the JMS Activation Spec is to be deleted.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Activation Spec Administrative Name</td>
-                <td>The administrative name assigned to this WebSphere MQ messaging provider Activation Spec.</td>
-            </tr>
-            
-            </tbody>
-        </table>
-        
-        <p>
-            <h3>Delete JMS Activation Spec</h3>
-                <p>To delete JMS Activation Spec in Commander interface, do these steps:</p>
-                <ol>
-                    <li>Create procedure.</li>
-                    <li>Create step, choose Plugin, choose DeleteJMSActivationSpec from procedures
-                    picker.</li>
-                    <li>Enter the following parameters: </li>
-                    <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/ProcedureConfig.png" />
-                </ol>
-                <p>After the job runs, you can view the results, including the following
-                job details:</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/ProcedureResult.png" />
-                <p>In the <b>DeleteJMSActivationSpec</b> step, click the Log icon to see the
-                diagnostic information. The output is similar to the following
-                diagnostic report.</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/ProcedureLog.png" />
-                <p>To delete JMS Activation Spec in Flow interface, do these steps:</p>
-                <ol>
-                    <li>Create Pipeline.</li>
-                    <li>Create task.</li>
-                    <li>In task definition choose Plugin and choose following parameters:
-                    <p><img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/PipelinePicker.png" /></p>
-                    </li>
-                    <li>Click on arrow.</li>
-                    <li>Enter the following parameters: </li>
-                    <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/PipelineConfig.png" />
-                </ol>
-                <p>After the pipeline runs, you can view the results, including the
-                following step details:</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/PipelineResult.png" />
-                <p>In the pipeline tasks click on "Update SIB JMS Activation Spec", then click the Log icon to see the
-                diagnostic information. The output is similar to the following
-                diagnostic report.</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/PipelineLog.png" />
-
-        </p>
-        
-    </div>
-
-    
-    <div id="DeleteJMSConnectionFactory">
-        <h2>DeleteJMSConnectionFactory</h2>
-        
-        <p>Deletes JMS Connection Factories</p>
-        
-            <p>This procedure deletes an existing JMS ConnectionFactory.</p>
-
-        
-        <h3>DeleteJMSConnectionFactory Parameters</h3>
-        <table class="grid">
-            <thead>
-            <tr>
-                <th>Parameter</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            
-            <tr>
-                <td class="required">Configuration Name</td>
-                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Messaging System Type</td>
-                <td>The name of the messaging provider. Pass in either WMQ or SIB.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Scope of the Connection Factory</td>
-                <td>
-            Scope of the WebSphere messaging provider at which the Connection Factory is to be deleted.
-        </td>
-            </tr>
-            
-            <tr>
-                <td class="required">Connection Factory Administrative Name</td>
-                <td>The administrative name assigned to this Connection Factory.</td>
-            </tr>
-            
-            </tbody>
-        </table>
-        
-        <p>
-            <h3>Delete JMS ConnectionFactory</h3>
-                <p>To delete JMS ConnectionFactory in Commander interface, do these steps:</p>
-                <ol>
-                    <li>Create procedure.</li>
-                    <li>Create step, choose Plugin, choose DeleteJMSConnectionFactory from procedures
-                    picker.</li>
-                    <li>Enter the following parameters: </li>
-                    <img src="../../plugins/EC-WebSphere/images/DeleteJMSConnectionFactory/ProcedureConfig.png" />
-                </ol>
-                <p>After the job runs, you can view the results, including the following
-                job details:</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSConnectionFactory/ProcedureResult.png" />
-                <p>To delete JMS ConnectionFactory in Flow interface, do these steps:</p>
-                <ol>
-                    <li>Create Pipeline.</li>
-                    <li>Create task.</li>
-                    <li>In task definition choose Plugin and choose following parameters:
-                    <p><img src="../../plugins/EC-WebSphere/images/DeleteJMSConnectionFactory/PipelinePicker.png" /></p>
-                    </li>
-                    <li>Click on arrow.</li>
-                    <li>Enter the following parameters: </li>
-                    <img src="../../plugins/EC-WebSphere/images/DeleteJMSConnectionFactory/PipelineConfig.png" />
-                </ol>
-                <p>After the pipeline runs, you can view the results, including the
-                following step details:</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSConnectionFactory/PipelineResult.png" />
-                <p>In the <b>DeleteJMSConnectionFactory</b> step, click the Log icon to see the
-                diagnostic information. The output is similar to the following
-                diagnostic report.</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSConnectionFactory/ProcedureLog.png" />
-
-        </p>
-        
-    </div>
-
-    
-    <div id="DeleteJMSQueue">
-        <h2>DeleteJMSQueue</h2>
-        
-        <p>Deletes JMS Queues</p>
-        
-            <p>This procedure deletes an existing JMS Queue.</p>
-
-        
-        <h3>DeleteJMSQueue Parameters</h3>
-        <table class="grid">
-            <thead>
-            <tr>
-                <th>Parameter</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            
-            <tr>
-                <td class="required">Configuration Name</td>
-                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Messaging System Type</td>
-                <td>The name of the messaging provider. Pass in either WMQ or SIB.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Queue Scope</td>
-                <td>Scope of the messaging provider at which the JMS Queue is to be deleted.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Queue Administrative Name</td>
-                <td>The administrative name assigned to this WebSphere MQ messaging provider queue.</td>
-            </tr>
-            
-            </tbody>
-        </table>
-        
-        <p>
-            <h3>Delete JMS Queue</h3>
-                <p>To delete JMS Queue in Commander interface, do these steps:</p>
-                <ol>
-                    <li>Create procedure.</li>
-                    <li>Create step, choose Plugin, choose DeleteJMSQueue from procedures
-                    picker.</li>
-                    <li>Enter the following parameters: </li>
-                    <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/ProcedureConfig.png" />
-                </ol>
-                <p>After the job runs, you can view the results, including the following
-                job details:</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/ProcedureResult.png" />
-                <p>To delete JMS Queue in Flow interface, do these steps:</p>
-                <ol>
-                    <li>Create Pipeline.</li>
-                    <li>Create task.</li>
-                    <li>In task definition choose Plugin and choose following parameters:
-                    <p><img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/PipelinePicker.png" /></p>
-                    </li>
-                    <li>Click on arrow.</li>
-                    <li>Enter the following parameters: </li>
-                    <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/PipelineConfig.png" />
-                </ol>
-                <p>After the pipeline runs, you can view the results, including the
-                following step details:</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/PipelineResult.png" />
-                <p>In the <b>DeleteJMSQueue</b> step, click the Log icon to see the
-                diagnostic information. The output is similar to the following
-                diagnostic report.</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/ProcedureLog.png" />
-
-        </p>
-        
-    </div>
-
-    
-    <div id="DeleteJMSTopic">
-        <h2>DeleteJMSTopic</h2>
-        
-        <p>Deletes JMS Topics</p>
-        
-            <p>This procedure deletes an existing JMS Topic.</p>
-
-        
-        <h3>DeleteJMSTopic Parameters</h3>
-        <table class="grid">
-            <thead>
-            <tr>
-                <th>Parameter</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            
-            <tr>
-                <td class="required">Configuration Name</td>
-                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Messaging System Type</td>
-                <td>The name of the messaging provider. Pass in either WMQ or SIB.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Topic Scope</td>
-                <td>Scope of the messaging provider at which the JMS Topic is to be deleted.</td>
-            </tr>
-            
-            <tr>
-                <td class="required">Topic Administrative Name</td>
-                <td>The administrative name assigned to this WebSphere MQ messaging provider topic.</td>
-            </tr>
-            
-            </tbody>
-        </table>
-        
-        <p>
-            <h3>Delete JMS Topic</h3>
-                <p>To delete JMS Topic in Commander interface, do these steps:</p>
-                <ol>
-                    <li>Create procedure.</li>
-                    <li>Create step, choose Plugin, choose DeleteJMSTopic from procedures
-                    picker.</li>
-                    <li>Enter the following parameters: </li>
-                    <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/ProcedureConfig.png" />
-                </ol>
-                <p>After the job runs, you can view the results, including the following
-                job details:</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/ProcedureResult.png" />
-                <p>To delete JMS Topic in Flow interface, do these steps:</p>
-                <ol>
-                    <li>Create Pipeline.</li>
-                    <li>Create task.</li>
-                    <li>In task definition choose Plugin and choose following parameters:
-                    <p><img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/PipelinePicker.png" /></p>
-                    </li>
-                    <li>Click on arrow.</li>
-                    <li>Enter the following parameters: </li>
-                    <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/PipelineConfig.png" />
-                </ol>
-                <p>After the pipeline runs, you can view the results, including the
-                following step details:</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/PipelineResult.png" />
-                <p>In the <b>DeleteJMSTopic</b> step, click the Log icon to see the
-                diagnostic information. The output is similar to the following
-                diagnostic report.</p>
-                <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/ProcedureLog.png" />
-
-        </p>
-        
-    </div>
-
-    
     <div id="DeployOSGiApp">
         <h2>DeployOSGiApp</h2>
         
@@ -4921,15 +4927,6 @@ A context root for each web module is defined in the application deployment desc
 
     
 
-    
-    <h1 id="knownIssues">Known Issues</h1>
-    <div>
-        <p>During testing by our automation undefined behaviour has been discovered.
-If one try to delete application server with server name or node name with special characters, like !#<em>&amp;Node1 or !#</em>&amp;Node1,
-websphere will throw an exception as expected, but next created application server will not be able to start.
-In that case websphere log will contain nullpointer exception. This issue doesn't happen in real use cases inend-to-end scenarios.</p>
-
-    </div>
     
 
     <h1 id="releaseNotes">Release Notes</h1>

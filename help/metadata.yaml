@@ -16,12 +16,10 @@ proceduresGrouping:
       description: These procedures for WAS server management
       procedures:
         - CreateApplicationServer
-        - CreateApplicationServerTemplate
-        - CreateCluster
-        # - CreateFirstClusterMember
-        # - CreateClusterMembers
         - DeleteApplicationServer
+        - CreateApplicationServerTemplate
         - DeleteApplicationServerTemplate
+        - CreateCluster
         - DeleteCluster
         - ExportApplicationServer
         - ImportApplicationServer
@@ -29,12 +27,13 @@ proceduresGrouping:
         - RemoveClusterMembers
         - SyncNodes
         - ConfigureEJBContainer
+        # - CreateFirstClusterMember
+        # - CreateClusterMembers
     - name: WAS Server Administration Procedures
       description: These procedures for was server administation.
       procedures:
         - StartApplicationServers
         - StopApplicationServers
-        - RunCustomJob
         - StartCluster
         - StopCluster
         - StartDeploymentManager
@@ -43,12 +42,13 @@ proceduresGrouping:
         - StopNode
         - StartServer
         - StopServer
+        - RunCustomJob
     - name: WAS Application Component Management Procedures
       description: These procedures for application component management.
       procedures:
         - ConfigureSession
         - MapSharedLibrary
-        - ModifyApplicationClassloader
+        - ModifyApplicationClassLoader
     - name: WAS Application Administration Procedures
       description: These procedures for application administration.
       procedures:
@@ -58,20 +58,24 @@ proceduresGrouping:
       description: These procedures for datasource management.
       procedures:
         - CreateJDBCProvider
+        - DeleteJDBCProvider
         - CreateDatasource
         - DeleteDatasource
-        - DeleteJDBCProvider
     - name: WAS JMS Management Procedures
       description: These procedures for JMS resources management.
       procedures:
         - CreateJMSProvider
         - DeleteJMSProvider
         - CreateOrUpdateJMSQueue
+        - DeleteJMSQueue
         - CreateOrUpdateJMSTopic
+        - DeleteJMSTopic
         - CreateOrUpdateSIBJMSActivationSpec
         - CreateOrUpdateWMQJMSActivationSpec
+        - DeleteJMSActivationSpec
         - CreateOrUpdateSIBJMSConnectionFactory
         - CreateOrUpdateWMQJMSConnectionFactory
+        - DeleteJMSConnectionFactory
     - name: WAS Application Deployment Procedures
       description: These procedures for applications deployment.
       procedures:
@@ -87,8 +91,3 @@ proceduresGrouping:
         - CheckNodeStatus
         - CheckPageStatus
         - CheckServerStatus
-knownIssues: |
-  During testing by our automation undefined behaviour has been discovered.
-  If one try to delete application server with server name or node name with special characters, like !#*&Node1 or !#*&Node1,
-  websphere will throw an exception as expected, but next created application server will not be able to start.
-  In that case websphere log will contain nullpointer exception. This issue doesn't happen in real use cases inend-to-end scenarios.
