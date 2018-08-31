@@ -82,13 +82,13 @@ class StopDeploymentManager extends PluginTestHelper {
 
     @Shared
     def stopLocations = [
-        defaultLocation: is_windows ? 'C:/IBM/WebSphere/AppServer/bin/stopManager.bat' : '/opt/IBM/WebSphere/AppServer/bin/stopManager.sh',
+        defaultLocation: is_windows ? 'C:/IBM/WebSphere/bin/stopManager.bat' : '/opt/IBM/WebSphere/AppServer/bin/stopManager.sh',
         wrong: '/wrong/path/stopManager.sh'
     ]
 
     @Shared
     def startLocations = [
-        defaultLocation: is_windows ? 'C:/IBM/WebSphere/AppServer/bin/startManager.bat' : '/opt/IBM/WebSphere/AppServer/bin/startManager.sh'
+        defaultLocation: is_windows ? 'C:/IBM/WebSphere/bin/startManager.bat' : '/opt/IBM/WebSphere/AppServer/bin/startManager.sh'
     ]
 
     @Shared
