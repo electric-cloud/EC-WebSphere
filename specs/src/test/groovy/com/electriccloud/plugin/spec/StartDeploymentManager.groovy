@@ -382,6 +382,7 @@ class StartDeploymentManager extends PluginTestHelper {
             jobLogs.'addParam'[0] = jobLogs.'addParam'[0].replace("'", "\"")
             jobLogs.'addParams'[0] = jobLogs.'addParams'[0].replace("'", "\"")
             jobLogs.'all'[0] = jobLogs.'all'[0].replace("'", "\"")
+            jobLogs.'log'[1] = ''
         }
     }
 
