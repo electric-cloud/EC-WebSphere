@@ -349,10 +349,7 @@
         <xpath>//procedure[procedureName=&quot;CreateMailSession&quot;]/step[stepName=&quot;CreateMailSession&quot;]/command</xpath>
         <path>server/createMailSession.pl</path>
     </file>
-    <file>
-        <xpath>//procedure[procedureName=&quot;RemoveClusterMembers&quot;]/step[stepName=&quot;RemoveClusterMembers&quot;]/command</xpath>
-        <path>server/removeClusterMembers.pl</path>
-    </file>
+
     <file>
         <xpath>//procedure[procedureName=&quot;ConfigEJBContainer&quot;]/step[stepName=&quot;ConfigEJBContainer&quot;]/command</xpath>
         <path>server/configureEJBContainer.pl</path>
@@ -525,10 +522,6 @@
     <file>
         <xpath>//procedure[procedureName=&quot;CreateJMSProvider&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/CreateJMSProvider.xml</path>
-    </file>
-    <file>
-        <xpath>//procedure[procedureName=&quot;RemoveClusterMembers&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/RemoveClusterMembers.xml</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;CreateMailSession&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
@@ -837,9 +830,7 @@
     <!-- XML Form -->
     <file>
         <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <!-- <path>parameterForms/Cluster/CreateCluster.xml</path> -->
-        <!-- Old form -->
-        <path>parameterForms/CreateCluster.xml</path>
+        <path>parameterForms/Cluster/CreateCluster.xml</path>
     </file>
     <!-- Python script -->
     <file>
@@ -849,9 +840,7 @@
     <!-- Perl script -->
     <file>
         <xpath>//procedure[procedureName=&quot;CreateCluster&quot;]/step[stepName=&quot;CreateCluster&quot;]/command</xpath>
-        <!-- <path>server/Cluster/createCluster.pl</path> -->
-        <!-- Old form -->
-        <path>server/createCluster.pl</path>
+        <path>server/Cluster/createCluster.pl</path>
     </file>
     <!-- End of CreateCluster procedure Files -->
 
@@ -895,9 +884,7 @@
     <!-- XML Form -->
     <file>
         <xpath>//procedure[procedureName=&quot;DeleteCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <!-- <path>parameterForms/Cluster/DeleteCluster.xml</path> -->
-        <!-- Old form -->
-        <path>parameterForms/DeleteCluster.xml</path>
+        <path>parameterForms/Cluster/DeleteCluster.xml</path>
     </file>
     <!-- Python script -->
     <file>
@@ -907,9 +894,25 @@
     <!-- Perl script -->
     <file>
         <xpath>//procedure[procedureName=&quot;DeleteCluster&quot;]/step[stepName=&quot;DeleteCluster&quot;]/command</xpath>
-        <!-- <path>server/Cluster/deleteCluster.pl</path> -->
-        <!-- Old script -->
         <path>server/Cluster/deleteCluster.pl</path>
     </file>
     <!-- End of DeleteCluster procedure Files -->
+
+    <!-- RemoveClusterMembers procedure Files -->
+    <!-- XML Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;RemoveClusterMembers&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Cluster/RemoveClusterMembers.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;remove_cluster_members.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Cluster/remove_cluster_members.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;RemoveClusterMembers&quot;]/step[stepName=&quot;RemoveClusterMembers&quot;]/command</xpath>
+        <path>server/Cluster/removeClusterMembers.pl</path>
+    </file>
+    <!-- End of RemoveClusterMembers procedure Files-->
 </fileset>

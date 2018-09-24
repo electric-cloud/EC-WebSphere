@@ -562,7 +562,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create C
     \%createCluster,
     # Create 1st cluster member
     # Uncomment after 2.5.0 release
-    # \%createFirstClusterMember, \%createClusterMembers
+    \%createFirstClusterMember, \%createClusterMembers
 );
 
 if ($upgradeAction eq "upgrade") {
@@ -946,15 +946,14 @@ if ($upgradeAction eq "upgrade") {
                 procedureName => 'StartNode',
                 stepName      => 'StartNode'
             });
-            # TODO: Uncomment after 2.5.0 release
-            # $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-            #     procedureName => 'CreateFirstClusterMember',
-            #     stepName      => 'CreateFirstClusterMember'
-            # });
-            # $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-            #     procedureName => 'CreateClusterMembers',
-            #     stepName      => 'CreateClusterMembers'
-            # });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateFirstClusterMember',
+                stepName      => 'CreateFirstClusterMember'
+            });
+            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                procedureName => 'CreateClusterMembers',
+                stepName      => 'CreateClusterMembers'
+            });
         }
     }
 }
