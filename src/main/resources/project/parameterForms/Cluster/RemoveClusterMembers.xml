@@ -1,16 +1,12 @@
 <!--
 
-
      Copyright 2015 Electric Cloud, Inc.
-
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
 
-
          http://www.apache.org/licenses/LICENSE-2.0
-
 
      Unless required by applicable law or agreed to in writing, software
      distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,14 +14,17 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 
-
 -->
 <editor>
-    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#DeleteCluster</help>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#RemoveClusterMembers</help>
+
     <formElement>
         <type>entry</type>
         <label>Configuration Name:</label>
-        <property>configname</property>
+        <!-- Improvements for CEV-18687 -->
+        <configuration>1</configuration>
+        <!-- End of improvements for CEV-18687 -->
+        <property>configName</property>
         <propertyReference>/plugins/@PLUGIN_NAME@/project/websphere_cfgs</propertyReference>
         <documentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration. To view or create a new configuration, go to the Administration -> Plugins tab, and select 'Configure' action for @PLUGIN_KEY@ plugin.</documentation>
         <htmlDocumentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" target="_blank" href="/commander/pages/@PLUGIN_NAME@/configurations">configuration page</a>.</htmlDocumentation>
@@ -33,18 +32,29 @@
     </formElement>
     <formElement>
         <type>entry</type>
-        <label>Wsadmin Absolute Path:</label>
-        <property>wsadminabspath</property>
+        <label>Cluster Name:</label>
+        <property>wasClusterName</property>
+        <documentation>Name of cluster from which to remove/delete the members. </documentation>
         <required>1</required>
-        <documentation>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</documentation>
-        <propertyReference type="property">/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configname/wsadminPath</propertyReference>
+        <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/clusters</propertyReference>
     </formElement>
     <formElement>
-        <type>entry</type>
-        <label>Cluster Name:</label>
-        <property>clusterName</property>
-        <documentation>The name of the cluster to delete.</documentation>
+        <type>textarea</type>
+        <label>List of cluster members:</label>
+        <property>wasClusterMembers</property>
+        <documentation>List of cluster members in the form Node01:server1,Node02:server2,... to remove/delete from cluster. </documentation>
         <required>1</required>
-        <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configname/clusters</propertyReference>
+        <!-- Next release, 2.7.0, will be focused on discovery features. We will turn it on back in 2.7.0 -->
+        <!-- <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/clusters/$clusterName</propertyReference> -->
+    </formElement>
+    <formElement>
+        <label>Sync Active Nodes?:</label>
+        <property>wasSyncNodes</property>
+        <type>checkbox</type>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+        <initiallyChecked>0</initiallyChecked>
+        <required>0</required>
+        <documentation>Sync active nodes, if checked</documentation>
     </formElement>
 </editor>
