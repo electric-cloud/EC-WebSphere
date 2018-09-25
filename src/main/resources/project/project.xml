@@ -281,6 +281,11 @@
                         <propertyName>remove_cluster_members.py</propertyName>
                         <value/>
                     </property>
+                    <!-- ListClusterMembers jython script -->
+                    <property>
+                        <propertyName>list_cluster_members.py</propertyName>
+                        <value/>
+                    </property>
                 </propertySheet>
             </property>
             <property>
@@ -7586,17 +7591,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>wsadminAbsPath</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>clusterName</propertyName>
+                                    <propertyName>wasClusterName</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -7618,15 +7613,7 @@
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>wsadminAbsPath</formalParameterName>
-                <defaultValue />
-                <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
-                <required>1</required>
-                <type>entry</type>
-                <expansionDeferred>1</expansionDeferred>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>clusterName</formalParameterName>
+                <formalParameterName>wasClusterName</formalParameterName>
                 <defaultValue />
                 <description>Name of the cluster of which members to list down.  </description>
                 <required>1</required>
@@ -7643,7 +7630,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor>postp --loadProperty /myProject/listClusterMembers_matchers</postProcessor>
+                <!-- <postProcessor>postp -\-loadProperty /myProject/listClusterMembers_matchers</postProcessor> -->
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
