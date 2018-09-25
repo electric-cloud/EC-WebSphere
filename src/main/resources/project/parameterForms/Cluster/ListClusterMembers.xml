@@ -34,8 +34,17 @@
         <type>entry</type>
         <label>Cluster Name:</label>
         <property>wasClusterName</property>
-        <documentation>Name of the cluster of which members to list down. </documentation>
+        <documentation>Name of the cluster of which members to list down.</documentation>
         <required>1</required>
+        <!-- <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/clusters</propertyReference> -->
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Ouptup Property Path</label>
+        <property>wasOutputPropertyPath</property>
+        <documentation>Property where cluster members list is to be stored.</documentation>
+        <required>0</required>
+        <value>/myJob/clusterMembers</value>
         <!-- <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/clusters</propertyReference> -->
     </formElement>
 </editor>

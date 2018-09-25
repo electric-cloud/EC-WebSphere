@@ -4,6 +4,13 @@ clusterName = '''
 $[wasClusterName]
 '''.strip()
 
+propertyPath = '''
+$[wasOutputPropertyPath]
+'''.strip()
+
+if not propertyPath:
+    propertyPath = '/myJob/clusterMembers'
+
 if not isClusterExists(clusterName):
     logError("Cluster %s does not exist" % (clusterName))
     sys.exit(1)
@@ -23,5 +30,5 @@ for member in clusterMembers:
     memberPropData.append('%s:%s' % (nodeName, serverName))
     logSummary("Server %s on node %s" % (serverName, nodeName))
 
-setProperty('/myJob/members', ','.join(memberPropData))
+setProperty(propertyPath, ','.join(memberPropData))
 
