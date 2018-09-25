@@ -324,10 +324,7 @@
         <path>server/publishWSDL.pl</path>
     </file>
 
-    <file>
-        <xpath>//procedure[procedureName=&quot;ListClusterMembers&quot;]/step[stepName=&quot;ListClusterMembers&quot;]/command</xpath>
-        <path>server/listClusterMembers.pl</path>
-    </file>
+
 
     <file>
         <xpath>//procedure[procedureName=&quot;StartCluster&quot;]/step[stepName=&quot;StartCluster&quot;]/command</xpath>
@@ -498,12 +495,6 @@
     <file>
         <xpath>//procedure[procedureName=&quot;DeployOSGiApp&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
         <path>parameterForms/DeployOSGi.xml</path>
-    </file>
-
-
-    <file>
-        <xpath>//procedure[procedureName=&quot;ListClusterMembers&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/ListClusterMembers.xml</path>
     </file>
 
     <file>
@@ -915,4 +906,22 @@
         <path>server/Cluster/removeClusterMembers.pl</path>
     </file>
     <!-- End of RemoveClusterMembers procedure Files-->
+
+    <!-- ListClusterMembers procedure Files -->
+    <!-- XML Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;ListClusterMembers&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Cluster/ListClusterMembers.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;list_cluster_members.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Cluster/list_cluster_members.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;ListClusterMembers&quot;]/step[stepName=&quot;ListClusterMembers&quot;]/command</xpath>
+        <path>server/Cluster/listClusterMembers.pl</path>
+    </file>
+    <!-- End of ListClusterMembers procedure Files-->
 </fileset>

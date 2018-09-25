@@ -291,7 +291,12 @@ sub run_step {
         }
     };
 
-    my $parsed_procedure_result = $self->parseProcedureLog($self->cmd_res);
+    my $parsed_procedure_result = $self->parseProcedureLog($self->cmd_res());
+    # set properties if any
+    for my $prop (@{$parsed_procedure_result->{properties}}) {
+        # TODO: Add error handling if property was not set for some reason.
+        $self->ec()->setProperty($prop->{path}, $prop->{value});
+    }
     my $success = 1;
     if ($code) {
         $success = 0;
@@ -590,16 +595,23 @@ sub extractMagicValuesFromProcedureLog {
     my ($self, $log) = @_;
 
     my $retval = {
-        info      => [],
-        warning   => [],
-        error     => [],
-        summary   => [],
-        exception => [],
-        outcome   => []
+        info       => [],
+        warning    => [],
+        error      => [],
+        summary    => [],
+        exception  => [],
+        outcome    => [],
+        forward    => [],
+        properties => []
     };
-
+    # extract properties
+    while ($log =~ /\[OUT\]\[SETPROPERTY\]\[NAME\](.+?)\[NAME\]\[VALUE\](.+?)\[VALUE\]\[SETPROPERTY\]\[OUT\]/gms) {
+        if ($1 && $2) {
+            push @{$retval->{properties}}, {path => $1, value => $2};
+        }
+    }
     # extract error
-    for my $t (qw/WARNING ERROR INFO SUMMARY EXCEPTION OUTCOME/) {
+    for my $t (qw/WARNING ERROR INFO SUMMARY EXCEPTION OUTCOME FORWARD/) {
         while ($log =~ m|\[OUT\]\[$t\]:\s(.*?)\s:\[$t\]\[OUT\]|gms) {
             push @{$retval->{lc($t)}}, $1;
         }

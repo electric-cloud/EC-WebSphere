@@ -51,6 +51,12 @@ def logOutcome(logLine):
 def forwardException(logLine):
     logWithLevel("EXCEPTION", logLine)
 
+def forwardData(logLine):
+    logWithLevel("FORWARD", logLine)
+
+def setProperty(propertyName, propertyValue):
+    print "[OUT][SETPROPERTY][NAME]%s[NAME][VALUE]%s[VALUE][SETPROPERTY][OUT]" % (propertyName, propertyValue)
+    
 def setOutcome(outcome):
     logWithLevel("OUTCOME", logLine)
 
@@ -554,6 +560,12 @@ def stopApplicationServer8_0_0(nodeName, serverName):
     nodeAgentObjectName = getNodeAgentObjectId(nodeName)
     result = AdminControl.invoke(nodeAgentObjectName, 'terminate', serverName)
     return result
+
+def isClusterExists(clusterName):
+    return AdminClusterManagement.checkIfClusterExists(clusterName)
+
+def getClusterMembers(clusterName):
+    return AdminClusterManagement.listClusterMembers(clusterName)
 
 # Commenting it out right now
 # def getServerId(nodeName, serverName):
