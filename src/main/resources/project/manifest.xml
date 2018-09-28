@@ -38,14 +38,6 @@
         <path>wsadmin_scripts/check_node_status.py</path>
     </file>
     <file>
-        <xpath>//property[propertyName=&quot;start_cluster.py&quot;]/value</xpath>
-        <path>wsadmin_scripts/start_cluster.py</path>
-    </file>
-    <file>
-        <xpath>//property[propertyName=&quot;stop_cluster.py&quot;]/value</xpath>
-        <path>wsadmin_scripts/stop_cluster.py</path>
-    </file>
-    <file>
         <xpath>//property[propertyName=&quot;update_app.py&quot;]/value</xpath>
         <path>wsadmin_scripts/update_app.py</path>
     </file>
@@ -232,14 +224,6 @@
         <path>matchers/listClusterMembersMatchers.pl</path>
     </file>
     <file>
-        <xpath>//property[propertyName=&quot;startCluster_matchers&quot;]/value</xpath>
-        <path>matchers/startClusterMatchers.pl</path>
-    </file>
-    <file>
-        <xpath>//property[propertyName=&quot;stopCluster_matchers&quot;]/value</xpath>
-        <path>matchers/stopClusterMatchers.pl</path>
-    </file>
-    <file>
         <xpath>//property[propertyName=&quot;mailsession_matchers&quot;]/value</xpath>
         <path>matchers/mailSessionMatchers.pl</path>
     </file>
@@ -326,14 +310,7 @@
 
 
 
-    <file>
-        <xpath>//procedure[procedureName=&quot;StartCluster&quot;]/step[stepName=&quot;StartCluster&quot;]/command</xpath>
-        <path>server/startCluster.pl</path>
-    </file>
-    <file>
-        <xpath>//procedure[procedureName=&quot;StopCluster&quot;]/step[stepName=&quot;StopCluster&quot;]/command</xpath>
-        <path>server/stopCluster.pl</path>
-    </file>
+
     <file>
         <xpath>//procedure[procedureName=&quot;ConfigureSession&quot;]/step[stepName=&quot;ConfigureSession&quot;]/command</xpath>
         <path>server/configureSessionManagement.pl</path>
@@ -497,14 +474,7 @@
         <path>parameterForms/DeployOSGi.xml</path>
     </file>
 
-    <file>
-        <xpath>//procedure[procedureName=&quot;StartCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/StartCluster.xml</path>
-    </file>
-    <file>
-        <xpath>//procedure[procedureName=&quot;StopCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
-        <path>parameterForms/StopCluster.xml</path>
-    </file>
+
 
     <file>
         <xpath>//procedure[procedureName=&quot;ConfigureSession&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
@@ -924,4 +894,40 @@
         <path>server/Cluster/listClusterMembers.pl</path>
     </file>
     <!-- End of ListClusterMembers procedure Files-->
+
+    <!-- StartCluster procedure files -->
+    <!-- XML Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StartCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Cluster/StartCluster.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;start_cluster.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Cluster/start_cluster.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StartCluster&quot;]/step[stepName=&quot;StartCluster&quot;]/command</xpath>
+        <path>server/Cluster/startCluster.pl</path>
+    </file>
+    <!-- End of StartCluster procedure files -->
+
+    <!-- StopCluster procedure files -->
+    <!-- XML Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StopCluster&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Cluster/StopCluster.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;stop_cluster.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Cluster/stop_cluster.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;StopCluster&quot;]/step[stepName=&quot;StopCluster&quot;]/command</xpath>
+        <path>server/Cluster/stopCluster.pl</path>
+    </file>
+    <!-- End of StopCluster procedure files -->
 </fileset>

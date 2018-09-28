@@ -354,16 +354,6 @@
                 <expandable>0</expandable>
             </property>
             <property>
-                <propertyName>startCluster_matchers</propertyName>
-                <value></value>
-                <expandable>0</expandable>
-            </property>
-            <property>
-                <propertyName>stopCluster_matchers</propertyName>
-                <value></value>
-                <expandable>0</expandable>
-            </property>
-            <property>
                 <propertyName>deletecluster_matchers</propertyName>
                 <value></value>
                 <expandable>0</expandable>
@@ -7702,7 +7692,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>wsadminAbsPath</propertyName>
+                                    <propertyName>wasClusterName</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -7712,27 +7702,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>clusterName</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>cellName</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
-                                    <propertyName>clusterCommandTimeout</propertyName>
+                                    <propertyName>wasTimeout</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -7754,33 +7724,18 @@
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>wsadminAbsPath</formalParameterName>
-                <defaultValue />
-                <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
-                <required>1</required>
-                <type>entry</type>
-                <expansionDeferred>1</expansionDeferred>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>clusterName</formalParameterName>
+                <formalParameterName>wasClusterName</formalParameterName>
                 <defaultValue />
                 <description>Name of the cluster to be started.</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>cellName</formalParameterName>
-                <defaultValue />
-                <description>Name of the cell of the cluster.</description>
-                <required>1</required>
-                <type>entry</type>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>clusterCommandTimeout</formalParameterName>
+                <formalParameterName>wasTimeout</formalParameterName>
                 <defaultValue />
                 <description>Timeout for response waiting.</description>
-                <required>1</required>
-                <defaultValue>15</defaultValue>
+                <required>0</required>
+                <defaultValue>300</defaultValue>
                 <type>entry</type>
             </formalParameter>
             <step>
@@ -7794,12 +7749,12 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor>postp --loadProperty /myProject/startCluster_matchers</postProcessor>
+                <!-- <postProcessor>postp -\-loadProperty /myProject/startCluster_matchers</postProcessor> -->
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
                 <shell>ec-perl</shell>
-                <timeLimit>5</timeLimit>
+                <timeLimit>15</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
                 <workspaceName />
@@ -7849,16 +7804,6 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>wsadminAbsPath</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
                                     <propertyName>clusterName</propertyName>
                                     <propertySheet>
                                         <property>
@@ -7869,7 +7814,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>cellName</propertyName>
+                                    <propertyName>wasTimeout</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -7879,7 +7824,7 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>clusterCommandTimeout</propertyName>
+                                    <propertyName>wasRippleStart</propertyName>
                                     <propertySheet>
                                         <property>
                                             <propertyName>formType</propertyName>
@@ -7901,32 +7846,24 @@
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>wsadminAbsPath</formalParameterName>
-                <defaultValue />
-                <description>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. <i>/path/to/wsadmin.sh</i> or <i>wsadmin.bat</i>.</description>
-                <required>1</required>
-                <type>entry</type>
-                <expansionDeferred>1</expansionDeferred>
-            </formalParameter>
-            <formalParameter>
-                <formalParameterName>clusterName</formalParameterName>
+                <formalParameterName>wasClusterName</formalParameterName>
                 <defaultValue />
                 <description>Name of the cluster to be stopped.</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>cellName</formalParameterName>
+                <formalParameterName>wasRippleStart</formalParameterName>
                 <defaultValue />
                 <description>Name of the cluster cell.</description>
-                <required>1</required>
+                <required>0</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>clusterCommandTimeout</formalParameterName>
-                <defaultValue>15</defaultValue>
+                <formalParameterName>wasTimeout</formalParameterName>
+                <defaultValue>300</defaultValue>
                 <description>Timeout for stopping cluster.</description>
-                <required>1</required>
+                <required>0</required>
                 <type>entry</type>
             </formalParameter>
             <step>
@@ -7940,12 +7877,12 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor>postp --loadProperty /myProject/stopCluster_matchers</postProcessor>
+                <!-- <postProcessor>postp -\-loadProperty /myProject/stopCluster_matchers</postProcessor> -->
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
                 <shell>ec-perl</shell>
-                <timeLimit>5</timeLimit>
+                <timeLimit>15</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
                 <workspaceName />

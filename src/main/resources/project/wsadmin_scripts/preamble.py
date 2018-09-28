@@ -578,3 +578,63 @@ def getClusterMembers(clusterName):
 #         logError("Server %s not found on node %s" % (serverName, nodeName))
 #     print "Deleting server with id %s on node %s" % (serverName, nodeName)
 #     AdminConfig.remove(serverId)
+
+def waitForClusterStatus(status, cluster, waitTime):
+    sleepTime = 5
+    iterationsCount = waitTime / sleepTime
+    iterationsCount += 1
+    run_index = 0
+    retval = 0
+    for i in range(0, iterationsCount):
+        clusterStatus = AdminControl.getAttribute(cluster, "state")
+        if clusterStatus == status:
+            retval = 1
+            break
+        if iterationsCount != 1:
+            time.sleep(sleepTime)
+    return retval
+
+def refreshClusters():
+    return AdminControl.invoke(clusterMgr, 'retrieveClusters')
+
+def printMembersStatus(clusterName):
+    clusterId = AdminConfig.getid('/ServerCluster:' + clusterName + '/')
+    clusterList = AdminConfig.list('ClusterMember', clusterId)
+    servers = clusterList.split()
+    allStarted = 1
+    
+    for serverId in servers:
+        serverName = AdminConfig.showAttribute(serverId, "memberName")
+        server = AdminControl.completeObjectName("type=Server,name=" + serverName + ",*")
+        if server == "":
+            allStarted = 0
+        else:
+            state = AdminControl.getAttribute(server, "state")
+            if state != "STARTED":
+                allStarted = 0
+                print "Server " + serverName + " is in " + state + " state "
+    return allStarted
+
+def getClusterManager():
+    clusterMgr = AdminControl.completeObjectName('type=ClusterMgr,*')
+    return clusterMgr
+
+def getClusterObject(clusterName):
+    clusterObject = AdminControl.completeObjectName('type=Cluster,name=' + clusterName + ',*')
+    return clusterObject
+
+def getClusterNamesAsList():
+    clusters = AdminClusterManagement.listClusters()
+    retval = []
+    for member in clusters:
+        clusterName = AdminConfig.showAttribute(member, "name")
+        retval.append(clusterName)
+    return retval
+
+def getClusterNotFoundSuggestion():
+    clusters = getClusterNamesAsList()
+    if len(clusters) == 0:
+        return "Available clusters: <none>"
+    retval = ', '.join(clusters)
+    retval = "Available clusters: " + retval
+    return retval
