@@ -109,10 +109,21 @@ sub new {
     $wsadminPath ||= $configuration->{wsadminabspath};
     if (!$opts->{disabled_wsadmin_check}) {
         unless ($wsadminPath) {
-            $self->bail_out("Missing wsadmin absolute path");
+            $self->bail_out("Missing wsadmin absolute path parameter. Please, check your configuration: $configurationName");
         }
-        if (!-e $wsadminPath || -d $wsadminPath) {
-            $self->bail_out("wsadmin script does not exist or it is a directory");
+
+        if (-e $wsadminPath && -d $wsadminPath) {
+            $self->bail_out("wsadmin script exists at $wsadminPath, but it is a directory. Absolute path to wsadmin script expected. Please, check your environment");
+        }
+        elsif (!-e $wsadminPath) {
+            my $context = $self->getRunContext();
+            my $msg = sprintf(
+                'wsadmin script was not found at %s: file does not exist.
+Please, make sure that this path is correct and %s is running on proper resource.
+Current resource is %s',
+                $wsadminPath, $context, $self->get_current_resource_name()
+            );
+            $self->bail_out($msg);
         }
     }
     $self->{wsadminPath} = $wsadminPath;
@@ -500,6 +511,15 @@ sub get_param {
     return $retval;
 }
 
+sub get_current_resource_name {
+    my ($self) = @_;
+
+    my $ec = $self->ec();
+    my $resource_name = $ec->getProperty('/myResource/name')->findvalue('//value')->string_value();
+    return $resource_name;
+}
+
+
 sub get_step_parameters {
     my ($self) = @_;
 
@@ -827,7 +847,8 @@ sub setResult {
     }
     #}
     return sub {
-        print "Will execute exit $exit_code\n";
+        # print "Will execute exit $exit_code\n";
+        $self->log()->debug("setResult function will execute exit $exit_code");
         exit $exit_code;
     };
 }
@@ -1181,6 +1202,7 @@ sub bail_out {
             msg => $msg,
         }
     };
+    $self->log()->error("Fatal: $msg\n");
     my $exit = $self->setResult(%$result_params);
     $exit->();
 }
