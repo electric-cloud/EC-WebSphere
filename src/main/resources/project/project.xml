@@ -107,6 +107,10 @@
                                 <propertyName>LogTrapper.pm</propertyName>
                                 <value/>
                             </property>
+                            <property>
+                                <propertyName>POSTP.pm</propertyName>
+                                <value/>
+                            </property>
                         </propertySheet>
                     </property>
                 </propertySheet>
@@ -288,6 +292,14 @@
                     </property>
                 </propertySheet>
             </property>
+            <!-- This property is here to keep line of postp matcher loader -->
+            <property>
+                <propertyName>postp_loader</propertyName>
+                <value>ec-perl -MElectricCommander -MElectricCommander::PropMod -e "ElectricCommander::PropMod::loadPerlCodeFromProperty(ElectricCommander->new(), '/projects/@PLUGIN_KEY@-@PLUGIN_VERSION@/modules/WebSphere/POSTP.pm');EC::POSTP->run(\@ARGV)";</value>
+                <expandable>0</expandable>
+            </property>
+            <!-- End of postp_loader -->
+
             <property>
                 <propertyName>discovery_matchers</propertyName>
                 <value></value>
@@ -340,26 +352,6 @@
             </property>
             <property>
                 <propertyName>jmsprovider_matchers</propertyName>
-                <value></value>
-                <expandable>0</expandable>
-            </property>
-            <property>
-                <propertyName>createcluster_matchers</propertyName>
-                <value></value>
-                <expandable>0</expandable>
-            </property>
-            <property>
-                <propertyName>listClusterMembers_matchers</propertyName>
-                <value></value>
-                <expandable>0</expandable>
-            </property>
-            <property>
-                <propertyName>deletecluster_matchers</propertyName>
-                <value></value>
-                <expandable>0</expandable>
-            </property>
-            <property>
-                <propertyName>removeclustermember_matchers</propertyName>
                 <value></value>
                 <expandable>0</expandable>
             </property>
