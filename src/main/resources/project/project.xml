@@ -2878,7 +2878,7 @@
                 <logFileName />
                 <parallel>0</parallel>
                 <!-- <postProcessor>postp -\-loadProperty /myProject/checkapp_matchers</postProcessor> -->
-                <postProcessor />
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -3100,13 +3100,13 @@
                 <stepName>CreateOrUpdateJMSQueue</stepName>
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <command></command>
                 <condition />
                 <errorHandling>failProcedure</errorHandling>
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -3294,7 +3294,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -3407,7 +3407,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -3526,7 +3526,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -3646,7 +3646,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -3914,7 +3914,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -4118,13 +4118,13 @@
                 <stepName>CreateOrUpdateJMSTopic</stepName>
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <command></command>
                 <condition />
                 <errorHandling>failProcedure</errorHandling>
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -4251,13 +4251,13 @@
                 <stepName>DeleteJMSActivationSpec</stepName>
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <command></command>
                 <condition />
                 <errorHandling>failProcedure</errorHandling>
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -4385,12 +4385,12 @@
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
                 <command></command>
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <condition />
                 <errorHandling>failProcedure</errorHandling>
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -4517,13 +4517,13 @@
                 <stepName>DeleteJMSQueue</stepName>
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <command></command>
                 <condition />
                 <errorHandling>failProcedure</errorHandling>
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -4651,12 +4651,12 @@
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
                 <command></command>
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <condition />
                 <errorHandling>failProcedure</errorHandling>
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -4899,12 +4899,12 @@
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
                 <command></command>
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <condition />
                 <errorHandling>failProcedure</errorHandling>
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -5129,12 +5129,12 @@
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
                 <command></command>
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <condition />
                 <errorHandling>failProcedure</errorHandling>
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -5365,12 +5365,12 @@
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
                 <command></command>
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <condition />
                 <errorHandling>failProcedure</errorHandling>
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -5582,7 +5582,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -7152,7 +7152,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -7518,7 +7518,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -7629,7 +7629,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <!-- <postProcessor>postp -\-loadProperty /myProject/listClusterMembers_matchers</postProcessor> -->
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -7741,7 +7741,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <!-- <postProcessor>postp -\-loadProperty /myProject/startCluster_matchers</postProcessor> -->
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -7869,7 +7869,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <!-- <postProcessor>postp -\-loadProperty /myProject/stopCluster_matchers</postProcessor> -->
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -7980,7 +7980,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -8108,7 +8108,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <!-- <postProcessor>postp -\-loadProperty /myProject/removeclustermember_matchers</postProcessor> -->
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -11597,7 +11597,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -11806,7 +11806,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -11930,8 +11930,6 @@
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>
-
-            
             <step>
                 <stepName>DeleteApplicationServer</stepName>
                 <alwaysRun>0</alwaysRun>
@@ -11942,7 +11940,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -12114,9 +12112,6 @@
                 <required>0</required>
                 <type>textarea</type>
             </formalParameter>
-
-
-            
             <step>
                 <stepName>StopDeploymentManager</stepName>
                 <alwaysRun>0</alwaysRun>
@@ -12127,7 +12122,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -12312,7 +12307,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -12510,7 +12505,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -12726,7 +12721,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -12755,6 +12750,7 @@
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
                 <condition>$[wasStartServers]</condition>
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <description></description>
                 <errorHandling>failProcedure</errorHandling>
                 <exclusive>0</exclusive>
@@ -13050,7 +13046,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
@@ -13232,7 +13228,7 @@
                 <exclusive>0</exclusive>
                 <logFileName />
                 <parallel>0</parallel>
-                <postProcessor />
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>

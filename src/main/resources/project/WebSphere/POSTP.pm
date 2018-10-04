@@ -11,7 +11,7 @@ our $VERSION = 0.1;
 our $PATTERNS = [
     {
         start => qr/^\[(INFO|ERROR|WARNING|DEBUG|TRACE)\]/,
-        cut => qr/^\[(INFO|ERROR|WARNING|DEBUG|TRACE)\]\s+/,
+        cut => qr/^\[(INFO|ERROR|WARNING|DEBUG|TRACE)\]\s*/,
         end => qr/^\s*$/,
     },
     {
@@ -23,16 +23,16 @@ our $PATTERNS = [
 # Postp module should have run method, which will be invoked.
 sub run {
     my ($class, $argv) = @_;
-    print Dumper $argv;
+
     my $file_name = get_file_name();
     my $ec = ElectricCommander->new();
     $ec->setProperty("diagFile", $file_name);
-    print "File name: $file_name\n";
+
     my $current_line = 1;
     my $starting_line = 0;
     my $counter = 0;
     my $d = DiagReport->new();
-    print "Entering log loop\n";
+
     my $buf = '';
     my $matcher = '';
     my $state = 'seek';
@@ -40,7 +40,7 @@ sub run {
     my $cutter = undef;
     while (<>) {
         my $line = $_;
-        print "$current_line: '$line'\n";
+
         # we're looking for our patterns.
         # Once pattern is found, SM is swithching to accumulate mode.
         if ($state eq 'seek') {
@@ -59,7 +59,7 @@ sub run {
         if ($state eq 'accumulate') {
             if ($line =~ m/$terminator/s) {
                 $line =~ s/$terminator//s;
-                print "Switching to flush\n";
+
                 if ($line) {
                     $buf .= $line;
                 }
@@ -88,8 +88,6 @@ sub run {
         }
         $current_line++;
     }
-    print Dumper $d;
-    print "Done with loop, rendering\n";
     open (my $fh, '>', $file_name);
     print $fh $d->render();
     close $fh;
@@ -99,15 +97,12 @@ sub run {
 sub try_to_switch_mode {
     my ($line) = @_;
 
-    print "Analyzing line: $line\n";
     my $terminator = undef;
     my $cutter = undef;
     my $matcher = undef;
     for my $pat (@$PATTERNS) {
         if ($line =~ m/$pat->{start}/s) {
-            print "match\n";
             if ($1) {
-                print "Matcher: $1\n";
                 $matcher = lc($1);
             }
             $terminator = $pat->{end};
@@ -182,7 +177,6 @@ sub add_row {
         delete $diag_row->{name};
     }
     push @{$self->{_data}->{diagnostics}->{diagnostic}}, $diag_row;
-    print Dumper $self;
     return $self;
 }
 
