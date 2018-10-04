@@ -136,6 +136,10 @@
         <path>WebSphere/LogTrapper.pm</path>
     </file>
     <file>
+        <xpath>//property[propertyName=&quot;POSTP.pm&quot;]/value</xpath>
+        <path>WebSphere/POSTP.pm</path>
+    </file>
+    <file>
         <xpath>//property[propertyName=&quot;ui_forms&quot;]/propertySheet/property[propertyName=&quot;WebSphereCreateConfigForm&quot;]/value</xpath>
         <path>WebSphereCreateConfigForm.xml</path>
     </file>
@@ -200,14 +204,6 @@
         <path>matchers/configEJBContainerMatchers.pl</path>
     </file>
     <file>
-        <xpath>//property[propertyName=&quot;deletecluster_matchers&quot;]/value</xpath>
-        <path>matchers/deleteClusterMatcher.pl</path>
-    </file>
-    <file>
-        <xpath>//property[propertyName=&quot;createcluster_matchers&quot;]/value</xpath>
-        <path>matchers/creatClusterMatcher.pl</path>
-    </file>
-    <file>
         <xpath>//property[propertyName=&quot;deployosgi_matchers&quot;]/value</xpath>
         <path>matchers/deployOSGiMatchers.pl</path>
     </file>
@@ -220,16 +216,8 @@
         <path>matchers/configSessionMatchers.pl</path>
     </file>
     <file>
-        <xpath>//property[propertyName=&quot;listClusterMembers_matchers&quot;]/value</xpath>
-        <path>matchers/listClusterMembersMatchers.pl</path>
-    </file>
-    <file>
         <xpath>//property[propertyName=&quot;mailsession_matchers&quot;]/value</xpath>
         <path>matchers/mailSessionMatchers.pl</path>
-    </file>
-    <file>
-        <xpath>//property[propertyName=&quot;removeclustermember_matchers&quot;]/value</xpath>
-        <path>matchers/deleteClusterMembersMatchers.pl</path>
     </file>
     <file>
         <xpath>//procedure[procedureName=&quot;StartServer&quot;]/step[stepName=&quot;StartInstance&quot;]/command</xpath>
