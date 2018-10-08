@@ -1310,7 +1310,7 @@ Each configuration is given a unique name that is entered in designated paramete
             </tr>
             
             <tr>
-                <td >Ouptut Property Path</td>
+                <td >Output Property Path</td>
                 <td>Property where cluster members list is to be stored.</td>
             </tr>
             
