@@ -10,14 +10,14 @@ our $VERSION = 0.1;
 
 our $PATTERNS = [
     {
-        start => qr/^\[(INFO|ERROR|WARNING|DEBUG|TRACE)\]/,
-        cut => qr/^\[(INFO|ERROR|WARNING|DEBUG|TRACE)\]\s*/,
+        start => qr/^\[(INFO|ERROR|WARNING|TRACE)\]/,
+        cut => qr/^\[(INFO|ERROR|WARNING|TRACE)\]\s*/,
         end => qr/^\s*$/,
     },
     {
         start => qr/^\[OUT\]\[(INFO|ERROR|WARNING|DEBUG|TRACE)\]:/,
-        cut => qr/^\[OUT\]\[(INFO|ERROR|WARNING|DEBUG|TRACE)\]:\s+/,
-        end => qr/\s+:\[(INFO|ERROR|WARNING|DEBUG|TRACE)\]\[OUT\]$/,
+        cut => qr/^\[OUT\]\[(INFO|ERROR|WARNING|TRACE)\]:\s+/,
+        end => qr/\s+:\[(INFO|ERROR|WARNING|TRACE)\]\[OUT\]$/,
     }
 ];
 # Postp module should have run method, which will be invoked.

@@ -86,7 +86,6 @@ limitations under the License.
     <required>0</required>
     <documentation>Template name to be used for 1st cluster member creation.</documentation>
     <dependsOn>wasCreateFirstClusterMember</dependsOn>
-    <!-- <condition>${wasCreateFirstClusterMember} == '1'</condition> -->
     <condition>${wasCreateFirstClusterMember} == '1' AND ${wasFirstClusterMemberCreationPolicy} == 'template'</condition>
 </formElement>
 <formElement>
@@ -99,7 +98,6 @@ limitations under the License.
     <condition>
         ${wasCreateFirstClusterMember} == '1' AND (${wasFirstClusterMemberCreationPolicy} == 'existing' OR ${wasFirstClusterMemberCreationPolicy} == 'convert')
     </condition>
-    <!-- <condition>${wasCreateFirstClusterMember} == '1'</condition> -->
 </formElement>
 <formElement>
     <label>First Cluster Member Node:</label>
@@ -111,7 +109,6 @@ limitations under the License.
     <condition>
         ${wasCreateFirstClusterMember} == '1' AND (${wasFirstClusterMemberCreationPolicy} == 'template' OR ${wasFirstClusterMemberCreationPolicy} == 'existing')
     </condition>
-    <!-- <condition>${wasCreateFirstClusterMember} == '1'</condition> -->
 </formElement>
 <formElement>
     <label>First Cluster Member Name:</label>
@@ -123,7 +120,6 @@ limitations under the License.
     <condition>
         ${wasCreateFirstClusterMember} == 1 AND (${wasFirstClusterMemberCreationPolicy} == 'template' OR ${wasFirstClusterMemberCreationPolicy} == 'existing')
     </condition>
-    <!-- <condition>${wasCreateFirstClusterMember} == '1'</condition> -->
 </formElement>
 <formElement>
     <label>First Cluster Member Weight:</label>

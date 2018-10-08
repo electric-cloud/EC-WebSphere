@@ -40,7 +40,7 @@
     </formElement>
     <formElement>
         <type>entry</type>
-        <label>Ouptup Property Path</label>
+        <label>Ouptut Property Path</label>
         <property>wasOutputPropertyPath</property>
         <documentation>Property where cluster members list is to be stored.</documentation>
         <required>0</required>
