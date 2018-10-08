@@ -1,14 +1,17 @@
-<h3>Delete Cluster</h3>
-<p>To delete application server cluster, do these steps:</p>
-<ol>
-<li>Go to the DeleteCluster procedure. </li>
-<li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeleteCluster/EC-WebSphereDeleteCluster2.png" />
-</ol>
-<p>After the job runs, you can view the results, including the following job details, which show that
-cluster is deleted successfully:</p>
-<img src="../../plugins/EC-WebSphere/images/DeleteCluster/EC-WebSphereDeleteCluster3.png" />
-<p>In the <b>DeleteCluster</b> step, click the Log icon
-to see the diagnostic information. The output is similar to
-the following diagnostic
-report.</p>
-<img src="../../plugins/EC-WebSphere/images/DeleteCluster/EC-WebSphereDeleteCluster4.png" />
+
+### Delete Cluster
+
+To Delete Cluster in Flow interface, do these steps:
+
+ * Create Pipeline.
+ * Create task.
+ * In task definition choose Plugin and choose following parameters:
+   <br /><img src="../../plugins/EC-WebSphere/images/DeleteCluster/PipelinePicker.png" />
+ * Click on arrow.
+ * Enter the following parameters:
+   <br /><img src="../../plugins/EC-WebSphere/images/DeleteCluster/PipelineConfig.png" />
+
+After the pipeline runs, you can view the results, including the following step details:
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteCluster/PipelineResult.png" />
+<br />In the <b>DeleteCluster</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+<br /><img src="../../plugins/EC-WebSphere/images/DeleteCluster/PipelineLog.png" />

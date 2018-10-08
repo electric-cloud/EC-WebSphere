@@ -1,7 +1,5 @@
 excludeProcedures:
   - DiscoverResource
-  - CreateFirstClusterMember
-  - CreateClusterMembers
 
 proceduresGrouping:
   groups:
@@ -27,8 +25,8 @@ proceduresGrouping:
         - RemoveClusterMembers
         - SyncNodes
         - ConfigureEJBContainer
-        # - CreateFirstClusterMember
-        # - CreateClusterMembers
+        - CreateFirstClusterMember
+        - CreateClusterMembers
     - name: WAS Server Administration Procedures
       description: These procedures for was server administation.
       procedures:

@@ -1,3 +1,20 @@
+2.6.0:
+  - |
+    Following new procedures have been added to support application server clusters management:
+      <ul>
+        <li><a href="#CreateFirstClusterMember">CreateFirstClusterMember</a></li>
+        <li><a href="#CreateClusterMembers">CreateClusterMembers</a></li>
+      </ul>
+    Following procedures have been refactored and improved:
+      <ul>
+        <li><a href="#StartCluster">StartCluster</a></li>
+        <li><a href="#StopCluster">StopCluster</a></li>
+        <li><a href="#CreateCluster">CreateCluster</a></li>
+        <li><a href="#DeleteCluster">DeleteCluster</a></li>
+        <li><a href="#ListClusterMembers">ListClusterMembers</a></li>
+        <li><a href="#ListClusterMembers">RemoveClusterMembers</a></li>
+      </ul>
+      Error handling has been improved.
 2.5.0:
   - |
     Following New procedures have been added to support application server management:
