@@ -49,6 +49,8 @@
         <checkedValue>1</checkedValue>
         <uncheckedValue>0</uncheckedValue>
         <required>0</required>
-        <documentation>Sync nodes?</documentation>
+        <documentation>
+            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+        </documentation>
     </formElement>
 </editor>

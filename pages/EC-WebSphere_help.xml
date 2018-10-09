@@ -14,7 +14,7 @@
     <h1>@PLUGIN_KEY@</h1>
     <p>Plugin version @PLUGIN_VERSION@</p>
     
-    <p>Revised on October 08, 2018</p>
+    <p>Revised on October 09, 2018</p>
     
     <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade"/>
     <h1>Contents</h1>
@@ -40,7 +40,9 @@
 </a></li><li><a href="#ListClusterMembers">ListClusterMembers <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#RemoveClusterMembers">RemoveClusterMembers <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#SyncNodes">SyncNodes <b>(Applicable only for WebSphere Network Deployment installation.)</b>
-</a></li><li><a href="#ConfigureEJBContainer">ConfigureEJBContainer</a></li><li><a href="#CreateFirstClusterMember">CreateFirstClusterMember</a></li><li><a href="#CreateClusterMembers">CreateClusterMembers</a></li></ul><li>WAS Server Administration Procedures<br/><i>These procedures for was server administation.</i></li><ul><li><a href="#StartApplicationServers">StartApplicationServers <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#ConfigureEJBContainer">ConfigureEJBContainer</a></li><li><a href="#CreateFirstClusterMember">CreateFirstClusterMember <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#CreateClusterMembers">CreateClusterMembers <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li></ul><li>WAS Server Administration Procedures<br/><i>These procedures for was server administation.</i></li><ul><li><a href="#StartApplicationServers">StartApplicationServers <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#StopApplicationServers">StopApplicationServers <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#StartCluster">StartCluster <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#StopCluster">StopCluster <b>(Applicable only for WebSphere Network Deployment installation.)</b>
@@ -957,67 +959,85 @@ Each configuration is given a unique name that is entered in designated paramete
             </tr>
             
             <tr>
-                <td >Template Name</td>
-                <td>Template name to be used for 1st cluster member creation.</td>
+                <td >Source Template Name</td>
+                <td>
+        Name of server template to be the source for first cluster member.
+    </td>
             </tr>
             
             <tr>
                 <td >Source Server Name</td>
-                <td>Source server name</td>
+                <td>
+        Name of application server to be the source for a new server in format nodename:servername.
+    </td>
             </tr>
             
             <tr>
                 <td >First Cluster Member Node</td>
-                <td>1st member node.</td>
+                <td>Node name where first cluster member will be created.</td>
             </tr>
             
             <tr>
                 <td >First Cluster Member Name</td>
-                <td>Name of the server that will be a first cluster member.</td>
+                <td>Name of the server that will be created as a first cluster member.</td>
             </tr>
             
             <tr>
                 <td >First Cluster Member Weight</td>
-                <td>Weight of each cluster member from list.</td>
+                <td>Weight of first cluster member.</td>
             </tr>
             
             <tr>
                 <td >Generate Unique Ports for First Cluster Member?</td>
-                <td>Generate Unique Ports for 1st cluster member?</td>
+                <td>
+        By default ports generated during for first cluster member creation will be created uniquely.
+        If not checked ports in template will be used as is for server creation.
+    </td>
             </tr>
             
             <tr>
                 <td >Server Resources Promotion Policy</td>
-                <td>Specifies how resources such as data sources are initially created in the cluster.
-    Create settings at the cluster scope if the settings can be used across the entire cluster.
-    Otherwise, create settings at the cluster member (server) level.
-    Creating settings at the cluster scope reduces the amount of configuration that you maintain.
-    Default is Cluster.</td>
+                <td>
+        Specifies how resources such as data sources are initially created in the cluster.
+        Create settings at the cluster scope if the settings can be used across the entire cluster.
+        Otherwise, create settings at the cluster member (server) level.
+        Creating settings at the cluster scope reduces the amount of configuration that you maintain.
+        Default is Cluster.
+    </td>
             </tr>
             
             <tr>
                 <td >Add Cluster Members?</td>
-                <td>If checked, additional cluster members will be added</td>
+                <td>If checked, additional cluster members will be added right after cluster creation.</td>
             </tr>
             
             <tr>
-                <td >Gen Unique Ports for Cluster Members</td>
-                <td></td>
+                <td >Gen Unique Ports for Cluster Members?</td>
+                <td>
+        By default ports generated during cluster members creation will be created uniquely.
+        If not checked ports in template will be used as is for server creation.
+    </td>
             </tr>
             
             <tr>
                 <td >Weight of Each Cluster Member</td>
-                <td>Weight of each cluster member from list.</td>
+                <td>
+        Weight of each cluster member from list.
+    </td>
             </tr>
             
             <tr>
                 <td >Cluster Members List</td>
-                <td>List of cluster members to be created in format NodeName:server1, NodeName2:server2</td>
+                <td>
+        List of cluster members to be created in format NodeName:server1, NodeName2:server2.
+    </td>
             </tr>
             
             <tr>
-                <td >Sync Active Nodes?</td>
-                <td>Sync active nodes, if checked</td>
+                <td >Sync Nodes?</td>
+                <td>
+        The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+    </td>
             </tr>
             
             </tbody>
@@ -1082,7 +1102,9 @@ Each configuration is given a unique name that is entered in designated paramete
             
             <tr>
                 <td >Sync Nodes?</td>
-                <td>Sync nodes?</td>
+                <td>
+            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+        </td>
             </tr>
             
             </tbody>
@@ -1375,13 +1397,18 @@ Each configuration is given a unique name that is entered in designated paramete
             </tr>
             
             <tr>
-                <td class="required">List of cluster members</td>
-                <td>List of cluster members in the form Node01:server1,Node02:server2,... to remove/delete from cluster. </td>
+                <td class="required">List of Cluster Members</td>
+                <td>
+            List of cluster members in the form Node01:server1, Node02:server2 to remove/delete from cluster.
+            Important note: server will be not only removed from cluster, but also deleted.
+        </td>
             </tr>
             
             <tr>
-                <td >Sync Active Nodes?</td>
-                <td>Sync active nodes, if checked</td>
+                <td >Sync Nodes?</td>
+                <td>
+            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+        </td>
             </tr>
             
             </tbody>
@@ -1456,6 +1483,11 @@ Next, to make it available on each server it should be propagated to all servers
     <div id="CreateFirstClusterMember">
         <h2>CreateFirstClusterMember</h2>
         
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
+        
         
         <p>Creates first cluster member</p>
         
@@ -1487,7 +1519,9 @@ Next, to make it available on each server it should be propagated to all servers
             
             <tr>
                 <td class="required">First Cluster Member Node</td>
-                <td>Name of the node where 1st cluster member will be located</td>
+                <td>
+            Name of the server that will be created as a first cluster member.
+        </td>
             </tr>
             
             <tr>
@@ -1496,39 +1530,52 @@ Next, to make it available on each server it should be propagated to all servers
             </tr>
             
             <tr>
-                <td >Generate Unique Ports for First cluster member?</td>
-                <td>Generate Unique Ports for 1st cluster member?</td>
+                <td >Generate Unique Ports for First Cluster Member?</td>
+                <td>
+            By default ports generated during for first cluster member creation will be created uniquely.
+            If not checked ports in template will be used as is for server creation.
+        </td>
             </tr>
             
             <tr>
                 <td class="required">Server Resources Promotion Policy</td>
-                <td>Specifies how resources such as data sources are initially created in the cluster.
-Create settings at the cluster scope if the settings can be used across the entire cluster.
-Otherwise, create settings at the cluster member (server) level.
-Creating settings at the cluster scope reduces the amount of configuration that you maintain.
-Default is Cluster.</td>
+                <td>
+            Specifies how resources such as data sources are initially created in the cluster.
+            Create settings at the cluster scope if the settings can be used across the entire cluster.
+            Otherwise, create settings at the cluster member (server) level.
+            Creating settings at the cluster scope reduces the amount of configuration that you maintain.
+            Default is Cluster.
+        </td>
             </tr>
             
             <tr>
                 <td class="required">First Cluster Member Creation Policy</td>
-                <td>Controls how 1st cluster member is to be created?
-Existing - use existing server as template
-Template - use app server template to create 1st cluster member</td>
+                <td>
+            Controls how 1st cluster member is to be created?
+            Existing - use existing server as template
+            Template - use app server template to create 1st cluster member
+        </td>
             </tr>
             
             <tr>
                 <td >Source Template Name</td>
-                <td>Template name to be used as source</td>
+                <td>
+            Name of server template to be the source for first cluster member.
+        </td>
             </tr>
             
             <tr>
                 <td >Source Server Name</td>
-                <td>Node name where server that will be a source for 1st cluster member is located</td>
+                <td>
+            Name of application server to be the source for a new server in format nodename:servername.
+        </td>
             </tr>
             
             <tr>
                 <td >Sync Nodes?</td>
-                <td>Sync nodes?</td>
+                <td>
+            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+        </td>
             </tr>
             
             </tbody>
@@ -1558,6 +1605,11 @@ Template - use app server template to create 1st cluster member</td>
     
     <div id="CreateClusterMembers">
         <h2>CreateClusterMembers</h2>
+        
+
+        <p><b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</p>
+
         
         
         <p>Creates cluster members </p>
@@ -1594,13 +1646,15 @@ Template - use app server template to create 1st cluster member</td>
             </tr>
             
             <tr>
-                <td class="required">List of the cluster members</td>
+                <td class="required">List of the Cluster Members</td>
                 <td>List of the cluster members</td>
             </tr>
             
             <tr>
                 <td >Sync Nodes?</td>
-                <td>Sync nodes?</td>
+                <td>
+            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+        </td>
             </tr>
             
             </tbody>
@@ -1795,7 +1849,9 @@ Template - use app server template to create 1st cluster member</td>
             
             <tr>
                 <td >Timeout</td>
-                <td>Timeout for command execution in seconds.</td>
+                <td>
+            Specifies the waiting time before cluster start times out and returns an error.
+        </td>
             </tr>
             
             </tbody>
@@ -1860,7 +1916,9 @@ Template - use app server template to create 1st cluster member</td>
             
             <tr>
                 <td >Timeout</td>
-                <td>Timeout for command execution in seconds.</td>
+                <td>
+            Specifies the waiting time before cluster stop times out and returns an error.
+        </td>
             </tr>
             
             <tr>

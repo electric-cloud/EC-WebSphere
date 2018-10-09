@@ -30,9 +30,6 @@ limitations under the License.
         <htmlDocumentation>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" target="_blank" href="/commander/pages/@PLUGIN_NAME@/configurations">configuration page</a>.</htmlDocumentation>
         <required>1</required>
     </formElement>
-
-
-
     <formElement>
         <label>Cluster Name:</label>
         <property>wasClusterName</property>
@@ -40,8 +37,6 @@ limitations under the License.
         <required>1</required>
         <documentation>A name of the cluster where servers is to be created.</documentation>
     </formElement>
-
-
     <formElement>
         <label>Gen Unique Ports?:</label>
         <property>wasClusterMembersGenUniquePorts</property>
@@ -52,8 +47,6 @@ limitations under the License.
         <required>1</required>
         <documentation>Generate unique ports number if checked.</documentation>
     </formElement>
-
-
     <formElement>
         <label>Cluster Member Weight:</label>
         <property>wasClusterMemberWeight</property>
@@ -61,17 +54,13 @@ limitations under the License.
         <required>0</required>
         <documentation>Weight of each cluster member</documentation>
     </formElement>
-
-
     <formElement>
-        <label>List of the cluster members:</label>
+        <label>List of the Cluster Members:</label>
         <property>wasClusterMembersList</property>
         <type>textarea</type>
         <required>1</required>
         <documentation>List of the cluster members</documentation>
     </formElement>
-
-
     <formElement>
         <label>Sync Nodes?:</label>
         <property>wasSyncNodes</property>
@@ -80,6 +69,8 @@ limitations under the License.
         <uncheckedValue>0</uncheckedValue>
         <initiallyChecked>0</initiallyChecked>
         <required>0</required>
-        <documentation>Sync nodes?</documentation>
+        <documentation>
+            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+        </documentation>
     </formElement>
 </editor>

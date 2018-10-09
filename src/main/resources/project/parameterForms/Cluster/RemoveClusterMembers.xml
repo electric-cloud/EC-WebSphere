@@ -40,21 +40,26 @@
     </formElement>
     <formElement>
         <type>textarea</type>
-        <label>List of cluster members:</label>
+        <label>List of Cluster Members:</label>
         <property>wasClusterMembers</property>
-        <documentation>List of cluster members in the form Node01:server1,Node02:server2,... to remove/delete from cluster. </documentation>
+        <documentation>
+            List of cluster members in the form Node01:server1, Node02:server2 to remove/delete from cluster.
+            Important note: server will be not only removed from cluster, but also deleted.
+        </documentation>
         <required>1</required>
         <!-- Next release, 2.7.0, will be focused on discovery features. We will turn it on back in 2.7.0 -->
         <!-- <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/clusters/$clusterName</propertyReference> -->
     </formElement>
     <formElement>
-        <label>Sync Active Nodes?:</label>
+        <label>Sync Nodes?:</label>
         <property>wasSyncNodes</property>
         <type>checkbox</type>
         <checkedValue>1</checkedValue>
         <uncheckedValue>0</uncheckedValue>
         <initiallyChecked>0</initiallyChecked>
         <required>0</required>
-        <documentation>Sync active nodes, if checked</documentation>
+        <documentation>
+            The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+        </documentation>
     </formElement>
 </editor>

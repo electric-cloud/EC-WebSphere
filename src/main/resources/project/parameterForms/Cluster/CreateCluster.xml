@@ -80,11 +80,13 @@ limitations under the License.
     <condition>${wasCreateFirstClusterMember} == '1'</condition>
 </formElement>
 <formElement>
-    <label>Template Name:</label>
+    <label>Source Template Name:</label>
     <property>wasFirstClusterMemberTemplateName</property>
     <type>entry</type>
     <required>0</required>
-    <documentation>Template name to be used for 1st cluster member creation.</documentation>
+    <documentation>
+        Name of server template to be the source for first cluster member.
+    </documentation>
     <dependsOn>wasCreateFirstClusterMember</dependsOn>
     <condition>${wasCreateFirstClusterMember} == '1' AND ${wasFirstClusterMemberCreationPolicy} == 'template'</condition>
 </formElement>
@@ -93,7 +95,9 @@ limitations under the License.
     <property>wasSourceServerName</property>
     <type>entry</type>
     <required>0</required>
-    <documentation>Source server name</documentation>
+    <documentation>
+        Name of application server to be the source for a new server in format nodename:servername.
+    </documentation>
     <dependsOn>wasCreateFirstClusterMember</dependsOn>
     <condition>
         ${wasCreateFirstClusterMember} == '1' AND (${wasFirstClusterMemberCreationPolicy} == 'existing' OR ${wasFirstClusterMemberCreationPolicy} == 'convert')
@@ -104,7 +108,7 @@ limitations under the License.
     <property>wasFirstClusterMemberNode</property>
     <type>entry</type>
     <required>0</required>
-    <documentation>1st member node.</documentation>
+    <documentation>Node name where first cluster member will be created.</documentation>
     <dependsOn>wasCreateFirstClusterMember</dependsOn>
     <condition>
         ${wasCreateFirstClusterMember} == '1' AND (${wasFirstClusterMemberCreationPolicy} == 'template' OR ${wasFirstClusterMemberCreationPolicy} == 'existing')
@@ -115,7 +119,7 @@ limitations under the License.
     <property>wasFirstClusterMemberName</property>
     <type>entry</type>
     <required>0</required>
-    <documentation>Name of the server that will be a first cluster member.</documentation>
+    <documentation>Name of the server that will be created as a first cluster member.</documentation>
     <dependsOn>wasCreateFirstClusterMember</dependsOn>
     <condition>
         ${wasCreateFirstClusterMember} == 1 AND (${wasFirstClusterMemberCreationPolicy} == 'template' OR ${wasFirstClusterMemberCreationPolicy} == 'existing')
@@ -126,7 +130,7 @@ limitations under the License.
     <property>wasFirstClusterMemberWeight</property>
     <type>entry</type>
     <required>0</required>
-    <documentation>Weight of each cluster member from list.</documentation>
+    <documentation>Weight of first cluster member.</documentation>
     <dependsOn>wasCreateFirstClusterMember</dependsOn>
     <condition>${wasCreateFirstClusterMember} == '1'</condition>
 </formElement>
@@ -138,7 +142,10 @@ limitations under the License.
     <uncheckedValue>0</uncheckedValue>
     <initiallyChecked>1</initiallyChecked>
     <required>0</required>
-    <documentation>Generate Unique Ports for 1st cluster member?</documentation>
+    <documentation>
+        By default ports generated during for first cluster member creation will be created uniquely.
+        If not checked ports in template will be used as is for server creation.
+    </documentation>
     <dependsOn>wasCreateFirstClusterMember</dependsOn>
     <condition>
         ${wasCreateFirstClusterMember} == 1 AND (${wasFirstClusterMemberCreationPolicy} == 'template' OR ${wasFirstClusterMemberCreationPolicy} == 'existing')
@@ -152,16 +159,16 @@ limitations under the License.
     <option><name>server</name><value>server</value></option>
     <option><name>both</name><value>both</value></option>
     <required>0</required>
-    <documentation>Specifies how resources such as data sources are initially created in the cluster.
-    Create settings at the cluster scope if the settings can be used across the entire cluster.
-    Otherwise, create settings at the cluster member (server) level.
-    Creating settings at the cluster scope reduces the amount of configuration that you maintain.
-    Default is Cluster.</documentation>
+    <documentation>
+        Specifies how resources such as data sources are initially created in the cluster.
+        Create settings at the cluster scope if the settings can be used across the entire cluster.
+        Otherwise, create settings at the cluster member (server) level.
+        Creating settings at the cluster scope reduces the amount of configuration that you maintain.
+        Default is Cluster.
+    </documentation>
     <dependsOn>wasCreateFirstClusterMember</dependsOn>
     <condition>${wasCreateFirstClusterMember} == '1'</condition>
 </formElement>
-
-
 <!-- end of 1st cluster member creation section -->
 
 <!-- add cluster members -->
@@ -174,17 +181,20 @@ limitations under the License.
     <uncheckedValue>0</uncheckedValue>
     <initiallyChecked>0</initiallyChecked>
     <required>0</required>
-    <documentation>If checked, additional cluster members will be added</documentation>
+    <documentation>If checked, additional cluster members will be added right after cluster creation.</documentation>
 </formElement>
 <formElement>
-    <label>Gen Unique Ports for Cluster Members:</label>
+    <label>Gen Unique Ports for Cluster Members?:</label>
     <property>wasClusterMembersGenUniquePorts</property>
     <type>checkbox</type>
     <checkedValue>1</checkedValue>
     <uncheckedValue>0</uncheckedValue>
     <initiallyChecked>1</initiallyChecked>
     <required>0</required>
-    <documentation></documentation>
+    <documentation>
+        By default ports generated during cluster members creation will be created uniquely.
+        If not checked ports in template will be used as is for server creation.
+    </documentation>
     <dependsOn>wasAddClusterMembers</dependsOn>
     <condition>${wasAddClusterMembers} == '1'</condition>
 </formElement>
@@ -193,7 +203,9 @@ limitations under the License.
     <property>wasClusterMemberWeight</property>
     <type>entry</type>
     <required>0</required>
-    <documentation>Weight of each cluster member from list.</documentation>
+    <documentation>
+        Weight of each cluster member from list.
+    </documentation>
     <dependsOn>wasAddClusterMembers</dependsOn>
     <condition>${wasAddClusterMembers} == '1'</condition>
 </formElement>
@@ -202,19 +214,23 @@ limitations under the License.
     <property>wasClusterMembersList</property>
     <type>textarea</type>
     <required>0</required>
-    <documentation>List of cluster members to be created in format NodeName:server1, NodeName2:server2</documentation>
+    <documentation>
+        List of cluster members to be created in format NodeName:server1, NodeName2:server2.
+    </documentation>
     <dependsOn>wasAddClusterMembers</dependsOn>
     <condition>${wasAddClusterMembers} == '1'</condition>
 </formElement>
 <!-- end of add cluster members section -->
 <formElement>
-    <label>Sync Active Nodes?:</label>
+    <label>Sync Nodes?:</label>
     <property>wasSyncNodes</property>
     <type>checkbox</type>
     <checkedValue>1</checkedValue>
     <uncheckedValue>0</uncheckedValue>
     <initiallyChecked>0</initiallyChecked>
     <required>0</required>
-    <documentation>Sync active nodes, if checked</documentation>
+    <documentation>
+        The syncNode command forces a configuration synchronization to occur between the node and the deployment manager for the cell in which the node is configured.
+    </documentation>
 </formElement>
 </editor>
