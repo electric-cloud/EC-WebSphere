@@ -37,16 +37,16 @@
         <required>1</required>
         <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/$configName/clusterName</propertyReference>
     </formElement>
-
     <formElement>
         <type>entry</type>
         <label>Timeout:</label>
         <property>wasTimeout</property>
-        <documentation>Timeout for command execution in seconds.</documentation>
+        <documentation>
+            Specifies the waiting time before cluster stop times out and returns an error.
+        </documentation>
         <required>0</required>
         <value>300</value>
     </formElement>
-
     <formElement>
         <type>checkbox</type>
         <label>Perform Ripple Start?:</label>
