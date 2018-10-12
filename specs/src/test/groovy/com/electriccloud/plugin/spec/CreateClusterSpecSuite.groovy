@@ -43,17 +43,29 @@ class CreateClusterSpecSuite extends PluginTestHelper {
     ]
 
     @Shared
+    def promotionPolicy = [
+            both: 'both',
+            server: 'server',
+            cluster: 'cluster',
+    ]
+
+    @Shared
     def servers = [
             'default': 'server1',
             'convert': 'convertServer',
             'wrong': 'wrong',
-            'ivnalid': '?*&erver1!'
     ]
 
     @Shared
     def nodes = [
             'default': wasHost + 'Node01',
             'wrong': 'wrong',
+    ]
+
+    @Shared
+    def membersLists = [
+            'oneMember1':   nodes.default+":"+'serverC366970',
+            'someMembers1': nodes.default+":"+'serverC3669711'+','+nodes.default+":"+'serverC3669712',
     ]
 
     @Shared
@@ -66,6 +78,13 @@ class CreateClusterSpecSuite extends PluginTestHelper {
             C366955: [ ids: 'C366955', description: 'First Cluster Member Weight. creationPolicy: existing'],
             C366956: [ ids: 'C366956', description: 'UniquePorts - true'],
             C366957: [ ids: 'C366957', description: 'UniquePorts - false'],
+            C366965: [ ids: 'C366965', description: 'Server Resources Promotion Policy: both; source: existing server'],
+            C366966: [ ids: 'C366966', description: 'Server Resources Promotion Policy: cluster; source: existing server'],
+            C366967: [ ids: 'C366967', description: 'Server Resources Promotion Policy: server; source: existing server'],
+            C366970: [ ids: 'C366970', description: 'add cluster member '],
+            C366973: [ ids: 'C366973', description: 'add cluster members'],
+            C366974: [ ids: 'C366974', description: 'add cluster member'],
+            C366975: [ ids: 'C366975', description: 'add cluster members'],
     ]
 
     @Shared
@@ -73,6 +92,7 @@ class CreateClusterSpecSuite extends PluginTestHelper {
         procDeleteCluster = 'DeleteCluster',
         procCreateServer = 'CreateApplicationServer',
         procStartCluster = 'StartCluster',
+        procStopCluster = 'StopCluster',
         procRunJob = 'RunCustomJob',
         projectName = "EC-WebSphere Specs $procName Project"
 
@@ -143,6 +163,17 @@ class CreateClusterSpecSuite extends PluginTestHelper {
 
         importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
                                                             resName : wasResourceName,
+                                                            procName: procStopCluster,
+                                                            params  : [
+                                                                    configName: '',
+                                                                    wasClusterName: '',
+                                                                    wasTimeout: '',
+                                                                    wasRippleStart: ''
+                                                            ]
+        ])
+
+        importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
+                                                            resName : wasResourceName,
                                                             procName: procRunJob,
                                                             params  : [
                                                                     configname: '',
@@ -160,14 +191,22 @@ class CreateClusterSpecSuite extends PluginTestHelper {
             'serverSource': "First cluster member SERVERNAME1 has been created on node NODENAME using server SERVERNAME2 on node NODENAME as source\n",
             'templateSource': "First cluster member SERVERNAME1 has been created on node NODENAME from template default\n",
             'convertSource': "Server convertServer on node NODENAME has been converted to be the first member of cluster CLUSTERNAME\n",
+            'addMember': "Server serverC366970 on node NODENAME has been created and added as cluster member\n",
+            'addMembers': "Server serverC3669712 on node NODENAME has been created and added as cluster member\n" +
+                    "Server serverC3669711 on node NODENAME has been created and added as cluster member\n"
     ]
 
     @Shared
     def jobLogs = [
-            serverSource:   ['Creating first member from template or existing server', "'-templateServerName': 'server1'"],
-            templateSource: ["Creating first member from template or existing server", "'-templateName': 'default'"],
-            convertSource:  ["Creating first member from template or existing server", "-convertServer", "-serverName 'convertServer'"],
-            weight:         ["'-memberWeight': '5'"],
+            serverSource:    ['Creating first member from template or existing server', "'-templateServerName': 'server1'"],
+            templateSource:  ["Creating first member from template or existing server", "'-templateName': 'default'"],
+            convertSource:   ["Creating first member from template or existing server", "-convertServer", "-serverName 'convertServer'"],
+            weight:          ["'-memberWeight': '5'"],
+            uniquePorts:     ["'-genUniquePorts': 'true'"],
+            nonUniquePorts:  ["'-genUniquePorts': 'false'"],
+            resScopeBoth:    ["'-resourcesScope': 'both'"],
+            resScopeServer:  ["'-resourcesScope': 'server'"],
+            resScopeCluster: ["'-resourcesScope': 'cluster'"],
     ]
 
     def doCleanupSpec() {
@@ -237,6 +276,11 @@ class CreateClusterSpecSuite extends PluginTestHelper {
             if (!memberWeight.isEmpty()){
                 assert clusterInfo[clusterName].servers.any {(it.weight == memberWeight)}
             }
+            if (!membersList.isEmpty()){
+                for (server in membersList.split(",").collect { it.split(":")[1]}){
+                    assert clusterInfo[clusterName].servers.any {(it.memberName == server)}
+                }
+            }
 
             if (testCaseID.ids in ['C366956', 'C366957']) {
                 def resultOfStartCluster = startCluster(clusterName)
@@ -245,20 +289,28 @@ class CreateClusterSpecSuite extends PluginTestHelper {
         }
 
         cleanup: "delete cluster"
-//        deleteServer(clusterName)
+        if (testCaseID.ids == 'C366956'){
+            stopCluster(clusterName)
+        }
+        deleteServer(clusterName)
 
-
-        where: 'The following params will be:'
-        testCaseID | conf                    | addMembers | membersUniquePorts | membersList | memberWeight | clusterName   | createFirstMember | firstMemberCreationPolicy | firstMemberGenUniquePorts | firstMemberName | clusterMemberNode | clusterMemberTemplateName | firstMemberWeight | preferLocal  | serverResourcesPromotionPolicy | sourceServerName                   | syncNodes | status    | expectedSummary                            | logs
-//        TC.C366925 | confignames.correctSOAP | '0'        | '1'                | ''          | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "success" | summaries.default                          | [summaries.default]
-//        TC.C366932 | confignames.correctSOAP | '0'        | '1'                | ''          | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '0'          | ''                             | ''                                 | '1'       | "success" | summaries.default                          | [summaries.default]
-//        TC.C366946 | confignames.correctSOAP | '0'        | '1'                | ''          | ''           | 'testCluster' | '1'               | creationPolicy.existing   | '1'                       | 'clusterServer' | nodes.default     | ''                        | ''                | '1'          | ''                             | nodes.default+":"+servers.default  | '1'       | "success" | summaries.default+summaries.serverSource   | [summaries.default]+[summaries.serverSource]+jobLogs.serverSource
-//        TC.C366947 | confignames.correctSOAP | '0'        | '1'                | ''          | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | 'clusterServer' | nodes.default     | 'default'                 | ''                | '1'          | ''                             | ''                                 | '1'       | "success" | summaries.default+summaries.templateSource | [summaries.default]+[summaries.templateSource]+jobLogs.templateSource
-//        TC.C366949 | confignames.correctSOAP | '0'        | '1'                | ''          | ''           | 'testCluster' | '1'               | creationPolicy.convert    | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | nodes.default+":"+servers.convert  | '1'       | "success" | summaries.default+summaries.convertSource  | [summaries.default]+[summaries.convertSource]+jobLogs.convertSource
-//        TC.C366955 | confignames.correctSOAP | '0'        | '1'                | ''          | '5'          | 'testCluster' | '1'               | creationPolicy.existing   | '1'                       | 'clusterServer' | nodes.default     | ''                        | '5'               | '1'          | ''                             | nodes.default+":"+servers.default  | '1'       | "success" | summaries.default+summaries.serverSource   | [summaries.default]+[summaries.serverSource]+jobLogs.serverSource+jobLogs.weight
-//        TC.C366946 | confignames.correctSOAP | '0'        | '1'                | ''          | ''           | 'testCluster' | '1'               | creationPolicy.existing   | '1'                       | 'clusterServer' | nodes.default     | ''                        | ''                | '1'          | ''                             | nodes.default+":"+servers.default  | '1'       | "success" | summaries.default+summaries.serverSource   | [summaries.default]+[summaries.serverSource]+jobLogs.serverSource
-        TC.C366956 | confignames.correctSOAP | '0'        | '1'                | ''          | ''           | 'testCluster' | '1'               | creationPolicy.existing   | '1'                       | 'clusterServer' | nodes.default     | ''                        | ''                | '1'          | ''                             | nodes.default+":"+servers.default  | '1'       | "success" | summaries.default+summaries.serverSource   | [summaries.default]+[summaries.serverSource]+jobLogs.serverSource
-        TC.C366957 | confignames.correctSOAP | '0'        | '1'                | ''          | ''           | 'testCluster' | '1'               | creationPolicy.existing   | '0'                       | 'clusterServer' | nodes.default     | ''                        | ''                | '1'          | ''                             | nodes.default+":"+servers.default  | '1'       | "success" | summaries.default+summaries.serverSource   | [summaries.default]+[summaries.serverSource]+jobLogs.serverSource
+        where: 'The following params will be: '
+        testCaseID | conf                    | addMembers | membersUniquePorts | membersList               | memberWeight | clusterName   | createFirstMember | firstMemberCreationPolicy | firstMemberGenUniquePorts | firstMemberName | clusterMemberNode | clusterMemberTemplateName | firstMemberWeight | preferLocal  | serverResourcesPromotionPolicy | sourceServerName                   | syncNodes | status    | expectedSummary                                                  | logs
+        TC.C366925 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "success" | summaries.default                                                | [summaries.default]
+        TC.C366932 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '0'          | ''                             | ''                                 | '1'       | "success" | summaries.default                                                | [summaries.default]
+        TC.C366946 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.existing   | '1'                       | 'clusterServer' | nodes.default     | ''                        | ''                | '1'          | ''                             | nodes.default+":"+servers.default  | '1'       | "success" | summaries.default+summaries.serverSource                         | [summaries.default]+[summaries.serverSource]+jobLogs.serverSource
+        TC.C366947 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | 'clusterServer' | nodes.default     | 'default'                 | ''                | '1'          | ''                             | ''                                 | '1'       | "success" | summaries.default+summaries.templateSource                       | [summaries.default]+[summaries.templateSource]+jobLogs.templateSource
+        TC.C366949 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.convert    | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | nodes.default+":"+servers.convert  | '1'       | "success" | summaries.default+summaries.convertSource                        | [summaries.default]+[summaries.convertSource]+jobLogs.convertSource
+        TC.C366955 | confignames.correctSOAP | '0'        | '1'                | ''                        | '5'          | 'testCluster' | '1'               | creationPolicy.existing   | '1'                       | 'clusterServer' | nodes.default     | ''                        | '5'               | '1'          | ''                             | nodes.default+":"+servers.default  | '1'       | "success" | summaries.default+summaries.serverSource                         | [summaries.default]+[summaries.serverSource]+jobLogs.serverSource+jobLogs.weight
+        TC.C366956 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.existing   | '1'                       | 'clusterServer' | nodes.default     | ''                        | ''                | '1'          | ''                             | nodes.default+":"+servers.default  | '1'       | "success" | summaries.default+summaries.serverSource                         | [summaries.default]+[summaries.serverSource]+jobLogs.serverSource+jobLogs.uniquePorts
+        TC.C366957 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.existing   | '0'                       | 'clusterServer' | nodes.default     | ''                        | ''                | '1'          | ''                             | nodes.default+":"+servers.default  | '1'       | "success" | summaries.default+summaries.serverSource                         | [summaries.default]+[summaries.serverSource]+jobLogs.serverSource+jobLogs.nonUniquePorts
+        TC.C366965 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | 'clusterServer' | nodes.default     | 'default'                 | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "success" | summaries.default+summaries.templateSource                       | [summaries.default]+[summaries.templateSource]+jobLogs.templateSource+jobLogs.resScopeBoth
+        TC.C366966 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | 'clusterServer' | nodes.default     | 'default'                 | ''                | '1'          | promotionPolicy.cluster        | ''                                 | '1'       | "success" | summaries.default+summaries.templateSource                       | [summaries.default]+[summaries.templateSource]+jobLogs.templateSource+jobLogs.resScopeCluster
+        TC.C366967 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | 'clusterServer' | nodes.default     | 'default'                 | ''                | '1'          | promotionPolicy.server         | ''                                 | '1'       | "success" | summaries.default+summaries.templateSource                       | [summaries.default]+[summaries.templateSource]+jobLogs.templateSource+jobLogs.resScopeServer
+        TC.C366970 | confignames.correctSOAP | '1'        | '1'                | membersLists.oneMember1   | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "success" | summaries.default+summaries.addMember                            | [summaries.default]
+        TC.C366973 | confignames.correctSOAP | '1'        | '1'                | membersLists.someMembers1 | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "success" | summaries.default+summaries.addMembers                           | [summaries.default]
+        TC.C366974 | confignames.correctSOAP | '1'        | '1'                | membersLists.oneMember1   | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | 'clusterServer' | nodes.default     | 'default'                 | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "success" | summaries.default+summaries.templateSource+summaries.addMember   | [summaries.default]
+        TC.C366975 | confignames.correctSOAP | '1'        | '1'                | membersLists.someMembers1 | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | 'clusterServer' | nodes.default     | 'default'                 | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "success" | summaries.default+summaries.templateSource+summaries.addMembers  | [summaries.default]
     }
 
     def createServer(def serverName){
@@ -284,6 +336,16 @@ class CreateClusterSpecSuite extends PluginTestHelper {
         ]
         def result = runProcedure(runParams, procStartCluster)
         return getJobProperty('/myJob/outcome', result.jobId)
+    }
+
+    def stopCluster(def clusterName){
+        def runParams = [
+                configName: confignames.correctSOAP,
+                wasClusterName: clusterName,
+                wasTimeout: '60',
+                wasRippleStart: '0'
+        ]
+        runProcedure(runParams, procStopCluster)
     }
 
     def deleteServer(def clusterName){
@@ -313,7 +375,6 @@ for cluster in clusterList:
         tmp = [x.encode("ascii") for x in info.split("\\\\n")]
         server_dict = dict((x[1:-1].split(" ")[0], x[1:-1].split(" ")[1],) for x in tmp)
         servers.append(server_dict)
-        servers.append(server)
     clusterInfo["servers"] = servers
 print clustersInfo\'\''''
 
