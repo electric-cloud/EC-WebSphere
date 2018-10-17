@@ -39,7 +39,8 @@ class CreateClusterSpecSuite extends PluginTestHelper {
     def creationPolicy = [
             existing: "existing",
             template: "template",
-            convert: "convert"
+            convert: "convert",
+            wrong: "wrong",
     ]
 
     @Shared
@@ -47,6 +48,7 @@ class CreateClusterSpecSuite extends PluginTestHelper {
             both: 'both',
             server: 'server',
             cluster: 'cluster',
+            wrong: "wrong",
     ]
 
     @Shared
@@ -89,6 +91,9 @@ class CreateClusterSpecSuite extends PluginTestHelper {
             C366977: [ ids: 'C366977', description: 'add cluster member, wasClusterMembersGenUniquePorts - 0'],
             C366978: [ ids: 'C366978', description: 'add cluster member, wasClusterMemberWeight'],
             C366980: [ ids: 'C366980', description: 'sync nodes - 0'],
+            C367231: [ ids: 'C367231', description: 'empty required fields'],
+            C367232: [ ids: 'C367232', description: 'wrong values'],
+            C367233: [ ids: 'C367233', description: 'already exists'],
     ]
 
     @Shared
@@ -197,7 +202,35 @@ class CreateClusterSpecSuite extends PluginTestHelper {
             'convertSource': "Server convertServer on node NODENAME has been converted to be the first member of cluster CLUSTERNAME\n",
             'addMember': "Server serverC366970 on node NODENAME has been created and added as cluster member\n",
             'addMembers': "Server serverC3669712 on node NODENAME has been created and added as cluster member\n" +
-                    "Server serverC3669711 on node NODENAME has been created and added as cluster member\n"
+                    "Server serverC3669711 on node NODENAME has been created and added as cluster member\n",
+            'emptyConfig': "Configuration '' doesn't exist",
+            'emptyClusterName': "Failed to create a cluster.\n" +
+                    "Exception: ADMF0002E: Required parameter clusterName is not found for command clusterConfig.\n",
+            'emptyPolicy': "Failed to create a cluster.\n" +
+                    "Error: Creation Policy is mandatory when create 1st cluster member is chosen\n",
+            'emptyTemplate': "Exception: ADMG9223E: Cannot find server template .\n",
+            'emptyNameAndNode': "Failed to create a cluster.\n" +
+                    "Error: First Member Name and First Member Node should be provided when create 1st cluster member is chosen\n",
+            'emptySource': "Failed to create a cluster.\n" +
+                    "Error: Expected nodename:servername, got \n",
+            'emptyMember': "Failed to create a cluster.\n" +
+                    "Error: No members to add\n",
+            'wrongConfig': "Configuration '${confignames.incorrect}' doesn't exist",
+            'wrongPolicy': "Failed to create a cluster.\n" +
+                    "Error: Creation policy should be one of: existing, convert or template. Got wrong\n",
+            'wrongTemplate': "Exception: ADMG9223E: Cannot find server template wrong.\n",
+            'wrongNode': "Exception: ADMG9249E: Exception caught validating the memberConfig step of the createClusterMember task command: com.ibm.websphere.management.cmdframework.CommandValidationException: ADMG9218E: Cannot find node wrongNode.",
+            'wrongSourceFormat': "Failed to create a cluster.\n" +
+                    "Error: Expected nodename:servername, got wrongFormat\n",
+            'wrongFormat': "Failed to create a cluster.\n" +
+                    "Error: Expected nodename:servername, got wrongFormat\n",
+            'wrongMember': "Failed to create a cluster.\n" +
+                    "Exception: Expected nodename:servername record, got wrongFormat\n" +
+                    "Error: Expected nodename:servername record, got wrongFormat\n",
+            'wrongWeigth': "Exception: com.ibm.ws.scripting.ScriptingException: java.lang.NumberFormatException: For input string: \"wrong\"",
+            'clusterExists': "Failed to create a cluster.\n" +
+                    "Exception: ADMG9200E: Cluster CLUSTERNAME already exists.\n"
+
     ]
 
     @Shared
@@ -218,6 +251,7 @@ class CreateClusterSpecSuite extends PluginTestHelper {
     def doCleanupSpec() {
     }
 
+    @IgnoreRest
     @Unroll
     def "Create Cluster - Positive #testCaseID.ids #testCaseID.description"(){
         def testNumber = specificationContext.currentIteration.parent.iterationNameProvider.iterationCount
@@ -260,46 +294,49 @@ class CreateClusterSpecSuite extends PluginTestHelper {
         def debugLog = getJobLogs(result.jobId)
 
         def clusterInfo = getClusterBaseInfo()
+
+        def startProcedureResult = 'error'
+        if (testCaseID.ids in ['C366956', 'C366976']){
+            startProcedureResult = 'success'
+        }
+
         verifyAll {
-            assert outcome == status
-            assert jobSummary == expectedSummary.
+            outcome == status
+            jobSummary == expectedSummary.
                     replace('CLUSTERNAME', clusterName).
                     replace('SERVERNAME1', firstMemberName).
                     replace('SERVERNAME2', sourceServerName.isEmpty() ? "" : sourceServerName.split(":")[1]).
                     replace('NODENAME', clusterMemberNode.isEmpty() ? nodes.default : clusterMemberNode)
             for (log in logs){
-                assert debugLog =~ log.
+                debugLog =~ log.
                         replace('CLUSTERNAME', clusterName).
                         replace('SERVERNAME1', firstMemberName).
                         replace('SERVERNAME2', sourceServerName.isEmpty() ? "" : sourceServerName.split(":")[1]).
                         replace('NODENAME', clusterMemberNode.isEmpty() ? nodes.default : clusterMemberNode)
             }
-            assert clusterInfo[clusterName].name == clusterName
-            assert clusterInfo[clusterName].preferLocal == (preferLocal == '1') ? 'true' : 'false'
+            clusterInfo[clusterName].name == clusterName
+            clusterInfo[clusterName].preferLocal == (preferLocal == '1') ? 'true' : 'false'
+
             if (!firstMemberName.isEmpty()){
-                assert clusterInfo[clusterName].servers.any {(it.memberName == firstMemberName)}
+                clusterInfo[clusterName].servers.any {(it.memberName == firstMemberName)}
             }
+
             if (!memberWeight.isEmpty()){
-                assert clusterInfo[clusterName].servers.any {(it.weight == memberWeight)}
+                clusterInfo[clusterName].servers.any {(it.weight == memberWeight)}
             }
+
             if (!membersList.isEmpty()){
                 for (server in membersList.split(",").collect { it.split(":")[1]}){
-                    assert clusterInfo[clusterName].servers.any {(it.memberName == server)}
+                    clusterInfo[clusterName].servers.any {(it.memberName == server)}
                 }
             }
 
-            // start first cluster member, if it's ports are unitue
+            // start first cluster member, if it's ports are unique
             // it will start
-            if (testCaseID.ids in ['C366956', 'C366957']) {
+            if (testCaseID.ids in ['C366956', 'C366957', 'C366976', 'C366977']) {
                 def resultOfStartCluster = startCluster(clusterName)
-                assert resultOfStartCluster == ((testCaseID.ids == 'C366956') ? 'success' : 'error')
+                assert resultOfStartCluster == startProcedureResult
             }
-
-            if (testCaseID.ids in ['C366976', 'C366977']) {
-                def resultOfStartCluster = startCluster(clusterName)
-                assert resultOfStartCluster == ((testCaseID.ids == 'C366976') ? 'success' : 'error')
-            }            
-
 
         }
 
@@ -330,6 +367,116 @@ class CreateClusterSpecSuite extends PluginTestHelper {
         TC.C366976 | confignames.correctSOAP | '1'        | '1'                | membersLists.oneMember1   | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | 'clusterServer' | nodes.default     | 'default'                 | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "success" | summaries.default+summaries.templateSource+summaries.addMember   | [summaries.default]
         TC.C366977 | confignames.correctSOAP | '1'        | '0'                | membersLists.oneMember1   | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | 'clusterServer' | nodes.default     | 'default'                 | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "success" | summaries.default+summaries.templateSource+summaries.addMember   | [summaries.default]
         TC.C366978 | confignames.correctSOAP | '1'        | '1'                | membersLists.oneMember1   | '6'          | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | 'clusterServer' | nodes.default     | 'default'                 | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "success" | summaries.default+summaries.templateSource+summaries.addMember   | [summaries.default]+jobLogs.memberWeight
+    }
+
+    @Unroll
+    def "Create Cluster - Negative, #testCaseID.ids #testCaseID.description"() {
+        given: "Parameters for procedure"
+        def runParams = [
+                configname                         : conf,
+                wasAddClusterMembers               : addMembers,
+                wasClusterMembersGenUniquePorts    : membersUniquePorts,
+                wasClusterMembersList              : membersList,
+                wasClusterMemberWeight             : memberWeight,
+                wasClusterName                     : clusterName,
+                wasCreateFirstClusterMember        : createFirstMember,
+                wasFirstClusterMemberCreationPolicy: firstMemberCreationPolicy,
+                wasFirstClusterMemberGenUniquePorts: firstMemberGenUniquePorts,
+                wasFirstClusterMemberName          : firstMemberName,
+                wasFirstClusterMemberNode          : clusterMemberNode,
+                wasFirstClusterMemberTemplateName  : clusterMemberTemplateName,
+                wasFirstClusterMemberWeight        : firstMemberWeight,
+                wasPreferLocal                     : preferLocal,
+                wasServerResourcesPromotionPolicy  : serverResourcesPromotionPolicy,
+                wasSourceServerName                : sourceServerName,
+                wasSyncNodes                       : syncNodes,
+        ]
+
+        when: "Run procedure and wait until job is completed"
+        def result = runProcedure(runParams)
+
+        then: "Get and compare results"
+        def outcome = getJobProperty('/myJob/outcome', result.jobId)
+        def jobSummary = getJobProperty("/myJob/jobSteps/$procName/summary", result.jobId)
+        def debugLog = getJobLogs(result.jobId)
+
+        verifyAll {
+            outcome == status
+            jobSummary == expectedSummary
+            for (log in logs) {
+                debugLog =~ log
+            }
+
+        }
+        where: 'The following params will be: '
+        testCaseID | conf                    | addMembers | membersUniquePorts | membersList               | memberWeight | clusterName   | createFirstMember | firstMemberCreationPolicy | firstMemberGenUniquePorts | firstMemberName | clusterMemberNode | clusterMemberTemplateName | firstMemberWeight | preferLocal  | serverResourcesPromotionPolicy | sourceServerName                   | syncNodes | status    | expectedSummary              | logs
+        TC.C367231 | ''                      | '0'        | '1'                | ''                        | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.emptyConfig        | [summaries.emptyConfig]
+        TC.C367231 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | ''            | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.emptyClusterName   | [summaries.emptyClusterName]
+        TC.C367231 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | ''                        | '1'                       | 'clusterServer' | nodes.default     | 'default'                 | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.emptyPolicy        | [summaries.emptyPolicy]
+        TC.C367231 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | 'clusterServer' | nodes.default     | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.emptyTemplate      | [summaries.emptyTemplate]
+        TC.C367231 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | 'clusterServer' | ''                | 'default'                 | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.emptyNameAndNode   | [summaries.emptyNameAndNode]
+        TC.C367231 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | ''              | nodes.default     | 'default'                 | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.emptyNameAndNode   | [summaries.emptyNameAndNode]
+        TC.C367231 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.existing   | '1'                       | 'clusterServer' | nodes.default     | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.emptySource        | [summaries.emptySource]
+        TC.C367231 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.convert    | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.emptySource        | [summaries.emptySource]
+        TC.C367231 | confignames.correctSOAP | '1'        | '1'                | ''                        | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.emptyMember        | [summaries.emptyMember]
+        TC.C367232 | confignames.incorrect   | '0'        | '1'                | ''                        | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.wrongConfig        | [summaries.wrongConfig]
+        TC.C367232 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.wrong      | '1'                       | 'clusterServer' | nodes.default     | 'default'                 | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.wrongPolicy        | [summaries.wrongPolicy]
+        TC.C367232 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | 'clusterServer' | nodes.default     | 'wrong'                   | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.wrongTemplate      | [summaries.wrongTemplate]
+        TC.C367232 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | 'clusterServer' | 'wrongNode'       | 'default'                 | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.wrongNode          | [summaries.wrongNode]
+        TC.C367232 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.existing   | '1'                       | 'clusterServer' | nodes.default     | ''                        | ''                | '1'          | ''                             | 'wrongFormat'                      | '1'       | "error"   | summaries.wrongSourceFormat  | [summaries.wrongSourceFormat]
+        TC.C367232 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.convert    | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | 'wrongFormat'                      | '1'       | "error"   | summaries.wrongSourceFormat  | [summaries.wrongSourceFormat]
+        TC.C367232 | confignames.correctSOAP | '1'        | '1'                | 'wrongFormat'             | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.wrongMember        | [summaries.wrongMember]
+        TC.C367232 | confignames.correctSOAP | '1'        | '1'                | membersLists.oneMember1   | 'wrong'      | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.wrongWeigth        | [summaries.wrongWeigth]
+    }
+
+    @Unroll
+    def "Create Cluster - Negative, already exists #testCaseID.ids #testCaseID.description"() {
+        given: "Parameters for procedure"
+        def runParams = [
+                configname                         : conf,
+                wasAddClusterMembers               : addMembers,
+                wasClusterMembersGenUniquePorts    : membersUniquePorts,
+                wasClusterMembersList              : membersList,
+                wasClusterMemberWeight             : memberWeight,
+                wasClusterName                     : clusterName,
+                wasCreateFirstClusterMember        : createFirstMember,
+                wasFirstClusterMemberCreationPolicy: firstMemberCreationPolicy,
+                wasFirstClusterMemberGenUniquePorts: firstMemberGenUniquePorts,
+                wasFirstClusterMemberName          : firstMemberName,
+                wasFirstClusterMemberNode          : clusterMemberNode,
+                wasFirstClusterMemberTemplateName  : clusterMemberTemplateName,
+                wasFirstClusterMemberWeight        : firstMemberWeight,
+                wasPreferLocal                     : preferLocal,
+                wasServerResourcesPromotionPolicy  : serverResourcesPromotionPolicy,
+                wasSourceServerName                : sourceServerName,
+                wasSyncNodes                       : syncNodes,
+        ]
+
+        when: "Run procedure and wait until job is completed"
+        runProcedure(runParams)
+        def result = runProcedure(runParams)
+
+        then: "Get and compare results"
+        def outcome = getJobProperty('/myJob/outcome', result.jobId)
+        def jobSummary = getJobProperty("/myJob/jobSteps/$procName/summary", result.jobId)
+        def debugLog = getJobLogs(result.jobId)
+
+        verifyAll {
+            outcome == status
+            jobSummary == expectedSummary.
+                    replace('CLUSTERNAME', clusterName)
+            for (log in logs) {
+                debugLog =~ log.
+                        replace('CLUSTERNAME', clusterName)
+            }
+
+        }
+        cleanup: "delete cluster"
+        deleteServer(clusterName)
+
+        where: 'The following params will be: '
+        testCaseID | conf                    | addMembers | membersUniquePorts | membersList               | memberWeight | clusterName   | createFirstMember | firstMemberCreationPolicy | firstMemberGenUniquePorts | firstMemberName | clusterMemberNode | clusterMemberTemplateName | firstMemberWeight | preferLocal  | serverResourcesPromotionPolicy | sourceServerName                   | syncNodes | status    | expectedSummary              | logs
+        TC.C367233 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.clusterExists      | [summaries.clusterExists]
     }
 
     def createServer(def serverName){
