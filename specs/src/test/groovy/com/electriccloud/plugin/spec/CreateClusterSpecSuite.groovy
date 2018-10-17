@@ -251,7 +251,6 @@ class CreateClusterSpecSuite extends PluginTestHelper {
     def doCleanupSpec() {
     }
 
-    @IgnoreRest
     @Unroll
     def "Create Cluster - Positive #testCaseID.ids #testCaseID.description"(){
         def testNumber = specificationContext.currentIteration.parent.iterationNameProvider.iterationCount
