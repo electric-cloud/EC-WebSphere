@@ -21,11 +21,9 @@ $[wasSyncNodes]
 '''.strip()
 
 # Check if cluster is empty. Cluster members can't be created if
-print "Checking cluster for existance"
 if not isClusterExists(clusterName):
     bailOut("Cluster %s does not exist" % (clusterName))
 
-print "Checking cluster for emptiness"
 if len(getClusterMembers(clusterName)) < 1:
     bailOut("Can't add cluster members to empty cluster %s. Please, create first cluster member and try again" % (clusterName))
 
