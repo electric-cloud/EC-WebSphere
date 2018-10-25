@@ -486,6 +486,9 @@ def createClusterMembers(params):
     }
     if 'memberWeight' in params and params['memberWeight']:
         creationParams['memberConfig']['-memberWeight'] = params['memberWeight']
+
+    if 'genUniquePorts' in params:
+        creationParams['memberConfig']['-genUniquePorts'] = toBooleanString(params['genUniquePorts'])
     return createClusterMemberWrapper(creationParams)
     
     
@@ -562,7 +565,7 @@ def stopApplicationServer8_0_0(nodeName, serverName):
     return result
 
 def isClusterExists(clusterName):
-    return AdminClusterManagement.checkIfClusterExists(clusterName)
+    return toBoolean(AdminClusterManagement.checkIfClusterExists(clusterName))
 
 def getClusterMembers(clusterName):
     return AdminClusterManagement.listClusterMembers(clusterName)

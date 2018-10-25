@@ -7843,7 +7843,7 @@
             <formalParameter>
                 <formalParameterName>wasRippleStart</formalParameterName>
                 <defaultValue />
-                <description>Name of the cluster cell.</description>
+                <description>If checked, all servers within cluster will be stopped one-by-one and then started.</description>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>
@@ -8090,7 +8090,7 @@
                 <formalParameterName>wasSyncNodes</formalParameterName>
                 <defaultValue />
                 <description>Sync nodes if checked.</description>
-                <required>1</required>
+                <required>0</required>
                 <type>entry</type>
             </formalParameter>
             <step>
