@@ -74,6 +74,8 @@ if toBoolean(createFirstMember):
         bailOut("Creation policy should be one of: existing, convert or template. Got %s" % (creationPolicy))
     if creationPolicy in ['template', 'existing'] and (not firstMemberName or not firstMemberNode):
         bailOut("First Member Name and First Member Node should be provided when create 1st cluster member is chosen")
+    if not promotionPolicy:
+        bailOut("Promotion Policy is mandatory when create first cluster member is chosen");
     if promotionPolicy and promotionPolicy not in ['cluster', 'server', 'both']:
         bailOut("Promotion policy should be cluster, server, or both, got %s" % (promotionPolicy))
 
@@ -162,8 +164,12 @@ if toBoolean(addClusterMembers):
                 'clusterName': clusterName,
                 'targetNode': server['Node'],
                 'targetName': server['Server'],
-                'memberWeight': memberWeight
+                'memberWeight': memberWeight,
+                'genUniquePorts': membersGenUniquePorts
             }
+            # if toBooleanString(membersGenUniquePorts) in ['true', 'false']:
+            #     createMemberParams['genUniquePorts'] = toBooleanString(membersGenUniquePorts)
+
             createClusterMembers(createMemberParams)
         except:
             forwardException(getExceptionMsg())
