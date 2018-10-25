@@ -20,7 +20,7 @@ syncNodes = '''
 $[wasSyncNodes]
 '''.strip()
 
-# Check if cluster is empty. Cluster members can't be created if
+# Check if cluster is empty. Cluster members cannot be created of no first cluster member is present.
 if not isClusterExists(clusterName):
     bailOut("Cluster %s does not exist" % (clusterName))
 
