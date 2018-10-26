@@ -565,11 +565,32 @@ def stopApplicationServer8_0_0(nodeName, serverName):
     return result
 
 def isClusterExists(clusterName):
-    return toBoolean(AdminClusterManagement.checkIfClusterExists(clusterName))
+    retval = 0
+    try:
+        retval = toBoolean(AdminClusterManagement.checkIfClusterExists(clusterName))
+    except:
+        retval = toBoolean('0')
+    return retval
 
+def isServerExists(nodeName, serverName):
+    serverId = AdminConfig.getid("/Node:" + nodeName + "/Server:" + serverName + "/")
+    if serverId == "":
+        return toBoolean('0')
+    return toBoolean('1')
+    
 def getClusterMembers(clusterName):
     return AdminClusterManagement.listClusterMembers(clusterName)
 
+def getClusterMembersAsList(clusterName):
+    l = getClusterMembers(clusterName)
+    retval = []
+    for serverId in l:
+        v = {
+            'Node': AdminConfig.showAttribute(serverId, 'nodeName'),
+            'Server': AdminConfig.showAttribute(serverId, 'memberName')
+        }
+        retval.append(v)
+    return retval
 # Commenting it out right now
 # def getServerId(nodeName, serverName):
 #     serverId = AdminConfig.getid('/Node:%s/Server:%s/' % (nodeName, serverName))
@@ -641,3 +662,5 @@ def getClusterNotFoundSuggestion():
     retval = ', '.join(clusters)
     retval = "Available clusters: " + retval
     return retval
+
+# def isServerBelongsToCluster

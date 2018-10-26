@@ -10,12 +10,27 @@ syncNodes = '''
 $[wasSyncNodes]
 '''.strip()
 
-if not AdminClusterManagement.checkIfClusterExists(clusterName):
-    logError("Cluster %s does not exist" % (clusterName))
+if not isClusterExists(clusterName):
+    bailOut("Cluster %s does not exist" % (clusterName))
     sys.exit(1)
 
 # Cluster exists, continue
 parsedMembersList = parseServerListAsList(clusterMembers, {'filterUnique': 1})
+
+# check members
+clusterMembers = getClusterMembersAsList(clusterName);
+errors = 0
+for member in parsedMembersList:
+    if member not in clusterMembers:
+        exists = 'exists'
+        errors = 1
+        if not isServerExists(member['Node'], member['Server']):
+            exists = 'does not exist'
+            
+        logError("Server %s:%s (%s) is not a member of cluster %s, please, check your input" % (member['Node'], member['Server'], exists, clusterName))
+
+if errors > 0:
+    sys.exit(1)
 
 for member in parsedMembersList:
     try:
