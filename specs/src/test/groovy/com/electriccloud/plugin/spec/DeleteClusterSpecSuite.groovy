@@ -137,7 +137,7 @@ class DeleteClusterSpecSuite extends PluginTestHelper {
     }
 
     @Unroll
-    def "Delete Cluster - Positive #testCaseID.name #testCaseID.description"(){
+    def "Delete Cluster - Positive #testCaseID.id #testCaseID.description"(){
         def numberOfTest = specificationContext.currentIteration.parent.iterationNameProvider.iterationCount
         clusterName += numberOfTest
 
@@ -240,6 +240,7 @@ class DeleteClusterSpecSuite extends PluginTestHelper {
             wasPreferLocal: '1',
             wasSourceServerName: nodes.default + ':' + servers.default,
             wasSyncNodes: '1',
+            wasServerResourcesPromotionPolicy: 'both',
         ]
 
         def runParams = runServerParams
