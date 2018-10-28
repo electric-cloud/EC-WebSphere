@@ -80,12 +80,13 @@ class RemoveClusterMembersSpecSuite extends PluginTestHelper {
                     "Exception: WASL6040E: The serverMember:serverClusterMember2 specified argument does not exist.\n",
             deleteFromEmptyCluster: "",
             emptyConfig: "Configuration '' doesn't exist",
-            emptyClustername: "Failed to remove cluster members.",
+            emptyClustername: "Failed to remove cluster members.\n" +
+                        "Error: Cluster  does not exist\n",
             emptyList: "Failed to remove cluster members.\n" +
                     "Error: Expected nodename:servername record, got \n",
             wrongConfig: "Configuration 'incorrect' doesn't exist",
             wrongClustername: "Failed to remove cluster members.\n" +
-                    "Exception: WASL6040E: The clusterName:wrongCluster specified argument does not exist.\n",
+                    "Error: Cluster wrongCluster does not exist\n",
             wrongList: "Failed to remove cluster members.\n" +
                     "Error: Expected nodename:servername record, got wrongFormat\n",
     ]
