@@ -166,7 +166,7 @@ class StopClusterSpecSuite extends PluginTestHelper {
     }
 
     @Unroll
-    def "StartCluster  - Positive #testCaseID.ids #testCaseID.description"() {
+    def "StopCluster  - Positive #testCaseID.ids #testCaseID.description"() {
         def testNumber = specificationContext.currentIteration.parent.iterationNameProvider.iterationCount
 
         given: "Create cluster with server"
@@ -219,7 +219,7 @@ class StopClusterSpecSuite extends PluginTestHelper {
     }
 
     @Unroll
-    def "StartCluster  - Negative #testCaseID.ids #testCaseID.description"() {
+    def "StopCluster  - Negative #testCaseID.ids #testCaseID.description"() {
         def testNumber = specificationContext.currentIteration.parent.iterationNameProvider.iterationCount
 
         given: "Create cluster with server"
