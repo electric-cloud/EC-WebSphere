@@ -86,7 +86,7 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
                     "Error: Missing clusterName parameter\n",
             'wrongConfig': "Configuration '${confignames.incorrect}' doesn't exist",
             'wrongCluster': "Failed to create a cluster members.\n" +
-                    "Exception: ADMG9216E: Cannot find cluster wrongCluster.\n",
+                    "Error: Cluster wrongCluster does not exist\n",
             'wrongFormat': "Failed to create a cluster members.\n" +
                     "Exception: Expected nodename:servername record, got wrongFormat\n" +
                     "Error: Expected nodename:servername record, got wrongFormat\n",
