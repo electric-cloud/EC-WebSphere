@@ -386,6 +386,24 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
 
     }
 
+    def getServerPorts(def serverName){
+        def jythonScrpit = "print \\'STARTLINE\\'; print AdminTask.listServerPorts (\\'${serverName}\\', \\'[-nodeName ${nodes.default}]\\')"
+
+        def scriptParams = [
+                configname: confignames.correctSOAP,
+                scriptfile: jythonScrpit,
+                scriptfilesource: 'newscriptfile',
+        ]
+        def scriptResult = runProcedure(scriptParams, procRunJob)
+        def scriptLog = getJobLogs(scriptResult.jobId)
+        def serversInfo = scriptLog.split("STARTLINE\n")​[1].split("\n")
+        def ports = []
+        for (server in serversInfo){
+            ports.add(server.split("port ")[1].split("]")[0])
+        }
+        return ports
+    }
+
     def startCluster(def clusterName) {
         def runParams = [
                 configName: confignames.correctSOAP,
