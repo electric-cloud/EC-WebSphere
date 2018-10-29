@@ -44,6 +44,10 @@ def logError(logLine):
 
 def logSummary(logLine):
     logWithLevel("SUMMARY", logLine)
+def logSuccessSummary(logLine):
+    logWithLevel("SUCCESS_SUMMARY", logLine)
+def logFailureSummary(logLine):
+    logWithLevel("FAILURE_SUMMARY", logLine)
 
 def logOutcome(logLine):
     logWithLevel("OUTCOME", logLine)

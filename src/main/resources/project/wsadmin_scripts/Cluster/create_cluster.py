@@ -80,7 +80,7 @@ if toBoolean(createFirstMember):
         bailOut("Promotion policy should be cluster, server, or both, got %s" % (promotionPolicy))
     if creationPolicy == 'existing' and not sourceServerName:
         bailOut("Source Server Name is mandatory when Creation Policy is set to existing")
-    if creationPolicy == 'template' and not wasFirstClusterMemberTemplateName:
+    if creationPolicy == 'template' and not templateName:
         bailOut("First Server Template Name is mandatory when Creation Policy is set to template")
 
 # 2. Create cluster
@@ -121,9 +121,10 @@ except:
     forwardException(getExceptionMsg())
     sys.exit(1)
 
+logSuccessSummary("Cluster %s has been created" % (clusterName))
+
 if creationPolicy == 'convert':
-    logSummary("Cluster %s has been created" % (clusterName))
-    logSummary(okConvertedLog)
+    logSuccessSummary(okConvertedLog)
 
 
 # 3. Add first cluster member
@@ -153,16 +154,14 @@ if toBoolean(createFirstMember) and creationPolicy in ['template', 'existing']:
     except:
         forwardException(getExceptionMsg())
         sys.exit(1)
-    logSummary("Cluster %s has been created" % (clusterName))
     if creationPolicy == 'template':
-        logSummary("First cluster member %s has been created on node %s from template %s" % (firstMemberName, firstMemberNode, templateName))
+        logSuccessSummary("First cluster member %s has been created on node %s from template %s" % (firstMemberName, firstMemberNode, templateName))
     else:
         logLine = "First cluster member %s has been created on node %s using server %s on node %s as source" \
             % (firstMemberName, firstMemberNode, nodeServer['Server'], nodeServer['Node'])
-        logSummary(logLine)
+        logSuccessSummary(logLine)
 # 4. Add cluster members
 if toBoolean(addClusterMembers):
-    logSummary("Cluster %s has been created" % (clusterName))
     for server in parsedMembersList:
         try:
             createMemberParams = {
@@ -179,7 +178,7 @@ if toBoolean(addClusterMembers):
         except:
             forwardException(getExceptionMsg())
             sys.exit(1)
-        logSummary("Server %s on node %s has been created and added as cluster member" % (server['Server'], server['Node']))
+        logSuccessSummary("Server %s on node %s has been created and added as cluster member" % (server['Server'], server['Node']))
 
 AdminConfig.save()
 
