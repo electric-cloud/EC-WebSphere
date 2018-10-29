@@ -294,11 +294,16 @@ class CreateClusterSpecSuite extends PluginTestHelper {
 
         def clusterInfo = getClusterBaseInfo()
 
-        def startProcedureResult = 'error'
-        if (testCaseID.ids in ['C366956', 'C366976']){
-            startProcedureResult = 'success'
+        def portsOfMember, portsOfFirstMember, portsOfDefaultServer, diff1, diff2
+        if (testCaseID in [TC.C366956, TC.C366957]) {
+            portsOfFirstMember = getServerPorts(firstMemberName)
+            portsOfDefaultServer = getServerPorts(servers.default)
         }
-
+        if (testCaseID in [TC.C366976, TC.C366977]) {
+            portsOfMember = getServerPorts(membersList.split(":")[1])
+            portsOfFirstMember = getServerPorts(firstMemberName)
+            portsOfDefaultServer = getServerPorts(servers.default)
+        }
         verifyAll {
             outcome == status
             jobSummary == expectedSummary.
@@ -312,6 +317,18 @@ class CreateClusterSpecSuite extends PluginTestHelper {
                         replace('SERVERNAME1', firstMemberName).
                         replace('SERVERNAME2', sourceServerName.isEmpty() ? "" : sourceServerName.split(":")[1]).
                         replace('NODENAME', clusterMemberNode.isEmpty() ? nodes.default : clusterMemberNode)
+            }
+            if (testCaseID in [TC.C366956]){
+                portsOfFirstMember - portsOfDefaultServer != []
+            }
+            if (testCaseID in [TC.C366957]){
+                portsOfFirstMember - portsOfDefaultServer == []
+            }
+            if (testCaseID in [TC.C366976]){
+                (portsOfMember - portsOfFirstMember != []) && (portsOfMember - portsOfDefaultServer != [])
+            }
+            if (testCaseID in [TC.C366977]){
+                (portsOfMember - portsOfFirstMember == []) || (portsOfMember - portsOfDefaultServer == [])
             }
             clusterInfo[clusterName].name == clusterName
             clusterInfo[clusterName].preferLocal == (preferLocal == '1') ? 'true' : 'false'
@@ -330,19 +347,9 @@ class CreateClusterSpecSuite extends PluginTestHelper {
                 }
             }
 
-            // start first cluster member, if it's ports are unique
-            // it will start
-            if (testCaseID.ids in ['C366956', 'C366957', 'C366976', 'C366977']) {
-                def resultOfStartCluster = startCluster(clusterName)
-                assert resultOfStartCluster == startProcedureResult
-            }
-
         }
 
         cleanup: "delete cluster"
-        if (testCaseID.ids in ['C366956', 'C366976']){
-            stopCluster(clusterName)
-        }
         deleteServer(clusterName)
 
         where: 'The following params will be: '
@@ -476,6 +483,25 @@ class CreateClusterSpecSuite extends PluginTestHelper {
         where: 'The following params will be: '
         testCaseID | conf                    | addMembers | membersUniquePorts | membersList               | memberWeight | clusterName   | createFirstMember | firstMemberCreationPolicy | firstMemberGenUniquePorts | firstMemberName | clusterMemberNode | clusterMemberTemplateName | firstMemberWeight | preferLocal  | serverResourcesPromotionPolicy | sourceServerName                   | syncNodes | status    | expectedSummary              | logs
         TC.C367233 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.clusterExists      | [summaries.clusterExists]
+    }
+
+    def getServerPorts(def serverName){
+        // procedure return array of server ports
+        def jythonScript = "print \\'STARTLINE\\'; print AdminTask.listServerPorts(\\'${serverName}\\', \\'[-nodeName ${nodes.default}]\\')"
+
+        def scriptParams = [
+                configname: confignames.correctSOAP,
+                scriptfile: jythonScript,
+                scriptfilesource: 'newscriptfile',
+        ]
+        def scriptResult = runProcedure(scriptParams, procRunJob)
+        def scriptLog = getJobLogs(scriptResult.jobId)
+        def serversInfo = scriptLog.split("STARTLINE\n")[1].split("\n")
+        def ports = []
+        for (server in serversInfo){
+            ports.add(server.split("port ")[1].split("]")[0])
+        }
+        return ports
     }
 
     def createServer(def serverName){
