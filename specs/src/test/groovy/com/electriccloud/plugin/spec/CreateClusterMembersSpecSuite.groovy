@@ -85,8 +85,7 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
                     'Exception: Expected nodename:servername record, got\n' +
                     'Error: Expected nodename:servername record, got \n',
             'emptyClusterName': "Failed to create a cluster members.\n" +
-                    "Exception: 1\n" +
-                    "Error: Missing clusterName parameter\n",
+                    "Error: Cluster  does not exist\n",
             'wrongConfig': "Configuration '${confignames.incorrect}' doesn't exist",
             'wrongCluster': "Failed to create a cluster members.\n" +
                     "Error: Cluster wrongCluster does not exist\n",
