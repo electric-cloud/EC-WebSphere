@@ -271,8 +271,6 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
         TC.C367309 | confignames.correctSOAP  | '1'         | membersLists.oneMember   | ''     | 'CreateMembers'  | '1'       | 'success' | summaries.default    | [summaries.default]+jobLogs.syncNodes
         TC.C367316 | confignames.correctSOAP  | '1'         | membersLists.oneMember   | ''     | 'CreateMembers'  | '0'       | 'success' | summaries.default    | [summaries.default]
         TC.C367310 | confignames.correctSOAP  | '1'         | membersLists.twoMembers  | ''     | 'CreateMembers'  | '1'       | 'success' | summaries.twoMembers | [summaries.twoMembers]
-        TC.C367311 | confignames.correctSOAP  | '1'         | membersLists.oneMember   | ''     | 'CreateMembers'  | '1'       | 'success' | summaries.default    | [summaries.default]
-        TC.C367312 | confignames.correctSOAP  | '1'         | membersLists.twoMembers  | ''     | 'CreateMembers'  | '1'       | 'success' | summaries.twoMembers | [summaries.twoMembers]
         TC.C367313 | confignames.correctSOAP  | '1'         | membersLists.oneMember   | '5'    | 'CreateMembers'  | '1'       | 'success' | summaries.default    | [summaries.default]
         TC.C367314 | confignames.correctSOAP  | '1'         | membersLists.oneMember   | ''     | 'CreateMembers'  | '1'       | 'success' | summaries.default    | [summaries.default]
         TC.C367315 | confignames.correctSOAP  | '0'         | membersLists.oneMember   | ''     | 'CreateMembers'  | '1'       | 'success' | summaries.default    | [summaries.default]
