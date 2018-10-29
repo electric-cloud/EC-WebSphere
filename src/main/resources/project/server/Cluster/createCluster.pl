@@ -43,7 +43,7 @@ my $step_params = {
     },
     jython_script => {
         path => 'create_cluster.py',
-    },
+    }
 };
 
 eval {

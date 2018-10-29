@@ -321,6 +321,7 @@ sub run_step {
         }
     }
 
+    $self->{parsed_procedure_result} = $parsed_procedure_result;
     $self->log()->debug("Success value: $success");
     $self->log()->debug("Parsed procedure result:", Dumper $parsed_procedure_result);
     # step execution has been successful
@@ -336,7 +337,7 @@ sub run_step {
             my $pmsg = \$self->{procedure_result}->{procedure}->{msg};
             if (@{$ppr->{summary}}) {
                 $$pmsg = '';
-                for my $l (@{$ppr->{summary}}) {
+                for my $l (@{$ppr->{success_summary}}, @{$ppr->{summary}}) {
                     $$pmsg .= $l . "\n";
                 }
             }
@@ -349,7 +350,9 @@ sub run_step {
                     $$pmsg .= sprintf('WARNING: %s%s', $l, "\n");
                 }
             }
-
+            if ($params->{success_cb2} && ref $params->{success_cb2} eq 'CODE') {
+                $params->{success_cb2}->($self);
+            }
             $self->{procedure_result}->{pipeline}->{msg} = $self->{procedure_result}->{procedure}->{msg};
         }
     }
@@ -365,7 +368,7 @@ sub run_step {
             my $pmsg = \$self->{procedure_result}->{procedure}->{msg};
             if (@{$ppr->{summary}}) {
                 $$pmsg = '';
-                for my $l (@{$ppr->{summary}}) {
+                for my $l (@{$ppr->{failure_summary}}, @{$ppr->{summary}}) {
                     $$pmsg .= $l . "\n";
                 }
             }
@@ -384,6 +387,9 @@ sub run_step {
                 for my $l (@{$ppr->{error}}) {
                     $$pmsg .= sprintf('Error: %s%s', $l, "\n");
                 }
+            }
+            if ($params->{error_cb2} && ref $params->{error_cb2} eq 'CODE') {
+                $params->{error_cb2}->($self);
             }
             $self->{procedure_result}->{pipeline}->{msg} = $self->{procedure_result}->{procedure}->{msg};
         }
@@ -615,14 +621,16 @@ sub extractMagicValuesFromProcedureLog {
     my ($self, $log) = @_;
 
     my $retval = {
-        info       => [],
-        warning    => [],
-        error      => [],
-        summary    => [],
-        exception  => [],
-        outcome    => [],
-        forward    => [],
-        properties => []
+        info            => [],
+        warning         => [],
+        error           => [],
+        summary         => [],
+        exception       => [],
+        outcome         => [],
+        forward         => [],
+        properties      => [],
+        success_summary => [],
+        failure_summary => []
     };
     # extract properties
     while ($log =~ /\[OUT\]\[SETPROPERTY\]\[NAME\](.+?)\[NAME\]\[VALUE\](.+?)\[VALUE\]\[SETPROPERTY\]\[OUT\]/gms) {
@@ -631,7 +639,7 @@ sub extractMagicValuesFromProcedureLog {
         }
     }
     # extract error
-    for my $t (qw/WARNING ERROR INFO SUMMARY EXCEPTION OUTCOME FORWARD/) {
+    for my $t (qw/WARNING ERROR INFO SUMMARY EXCEPTION OUTCOME FORWARD SUCCESS_SUMMARY FAILURE_SUMMARY/) {
         while ($log =~ m|\[OUT\]\[$t\]:\s(.*?)\s:\[$t\]\[OUT\]|gms) {
             push @{$retval->{lc($t)}}, $1;
         }
