@@ -78,6 +78,10 @@ if toBoolean(createFirstMember):
         bailOut("Promotion Policy is mandatory when create first cluster member is chosen");
     if promotionPolicy and promotionPolicy not in ['cluster', 'server', 'both']:
         bailOut("Promotion policy should be cluster, server, or both, got %s" % (promotionPolicy))
+    if creationPolicy == 'existing' and not sourceServerName:
+        bailOut("Source Server Name is mandatory when Creation Policy is set to existing")
+    if creationPolicy == 'template' and not wasFirstClusterMemberTemplateName:
+        bailOut("First Server Template Name is mandatory when Creation Policy is set to template")
 
 # 2. Create cluster
 if toBoolean(preferLocal):
@@ -88,7 +92,7 @@ else:
 parsedMembersList = []
 if toBoolean(addClusterMembers):
     if not membersList:
-        bailOut("No members to add")
+        bailOut("No members to add.")
     try:
         parsedMembersList = parseServerListAsList(membersList, {'filterUnique': 1})
     except:
@@ -117,9 +121,8 @@ except:
     forwardException(getExceptionMsg())
     sys.exit(1)
 
-logSummary("Cluster %s has been created" % (clusterName))
-
 if creationPolicy == 'convert':
+    logSummary("Cluster %s has been created" % (clusterName))
     logSummary(okConvertedLog)
 
 
@@ -150,6 +153,7 @@ if toBoolean(createFirstMember) and creationPolicy in ['template', 'existing']:
     except:
         forwardException(getExceptionMsg())
         sys.exit(1)
+    logSummary("Cluster %s has been created" % (clusterName))
     if creationPolicy == 'template':
         logSummary("First cluster member %s has been created on node %s from template %s" % (firstMemberName, firstMemberNode, templateName))
     else:
@@ -158,6 +162,7 @@ if toBoolean(createFirstMember) and creationPolicy in ['template', 'existing']:
         logSummary(logLine)
 # 4. Add cluster members
 if toBoolean(addClusterMembers):
+    logSummary("Cluster %s has been created" % (clusterName))
     for server in parsedMembersList:
         try:
             createMemberParams = {
