@@ -58,6 +58,9 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
         projectName = "EC-WebSphere Specs $procCreateClusterMembers Project"
 
     @Shared
+    def firstClusterServerName = 'FirstClusterServer'
+
+    @Shared
     def TC = [
             C367309: [ ids: 'C367309, C367317', description: 'default values - add one server'],
             C367310: [ ids: 'C367310', description: 'default values - add more the one server'],
@@ -224,11 +227,14 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
         def debugLog = getJobLogs(result.jobId)
         def clusterInfo = getClusterBaseInfo()
 
-        def startProcedureResult = 'error'
-        if (testCaseID in [TC.C367314]){
-            startProcedureResult = 'success'
+        def portsOfMember, portsOfFirstMember, portsOfDefaultServer, diff1, diff2
+        if (testCaseID in [TC.C367314, TC.C367315]) {
+            portsOfMember = getServerPorts(list.split(":")[1])
+            portsOfFirstMember = getServerPorts(firstClusterServerName)
+            portsOfDefaultServer = getServerPorts(servers.default)
+            diff1 = portsOfMember - portsOfFirstMember
+            diff2 = portsOfMember - portsOfDefaultServer
         }
-
         verifyAll {
             outcome == status
             jobSummary == expectedSummary.
@@ -248,19 +254,16 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
                 clusterInfo[clusterName].servers.any {(it.weight == weight)}
             }
 
-            // start first cluster member, if it's ports are unique
-            // it will start
-            if (testCaseID in [TC.C367314, TC.C367315]) {
-                def resultOfStartCluster = startCluster(clusterName)
-                assert resultOfStartCluster == startProcedureResult
+            if (testCaseID in [TC.C367314]) {
+                (diff1 != []) && (diff2 != [])
+            }
+            if (testCaseID in [TC.C367315]) {
+                (diff1 == []) || (diff2 == [])
             }
 
         }
 
         cleanup:
-        if (testCaseID in [TC.C367314, TC.C367315]){
-            stopCluster(clusterName)
-        }
         deleteCluster(clusterName)
 
         where: 'The following params will be: '
@@ -387,16 +390,17 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
     }
 
     def getServerPorts(def serverName){
-        def jythonScrpit = "print \\'STARTLINE\\'; print AdminTask.listServerPorts (\\'${serverName}\\', \\'[-nodeName ${nodes.default}]\\')"
+        // procedure return array of server ports
+        def jythonScript = "print \\'STARTLINE\\'; print AdminTask.listServerPorts(\\'${serverName}\\', \\'[-nodeName ${nodes.default}]\\')"
 
         def scriptParams = [
                 configname: confignames.correctSOAP,
-                scriptfile: jythonScrpit,
+                scriptfile: jythonScript,
                 scriptfilesource: 'newscriptfile',
         ]
         def scriptResult = runProcedure(scriptParams, procRunJob)
         def scriptLog = getJobLogs(scriptResult.jobId)
-        def serversInfo = scriptLog.split("STARTLINE\n")​[1].split("\n")
+        def serversInfo = scriptLog.split("STARTLINE\n")[1].split("\n")
         def ports = []
         for (server in serversInfo){
             ports.add(server.split("port ")[1].split("]")[0])
@@ -444,7 +448,7 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
                 wasCreateFirstClusterMember        : '1',
                 wasFirstClusterMemberCreationPolicy: 'template',
                 wasFirstClusterMemberGenUniquePorts: '1',
-                wasFirstClusterMemberName          : 'FirstClusterServer',
+                wasFirstClusterMemberName          : firstClusterServerName,
                 wasFirstClusterMemberNode          : nodes.default,
                 wasFirstClusterMemberTemplateName  : 'default',
                 wasFirstClusterMemberWeight        : '',
