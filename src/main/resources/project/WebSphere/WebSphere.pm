@@ -335,7 +335,7 @@ sub run_step {
             my $ppr = $parsed_procedure_result;
             $self->{procedure_result}->{procedure}->{msg} = $params->{target}->{success_summary};
             my $pmsg = \$self->{procedure_result}->{procedure}->{msg};
-            if (@{$ppr->{summary}}) {
+            if (@{$ppr->{summary}} or @{$ppr->{success_summary}}) {
                 $$pmsg = '';
                 for my $l (@{$ppr->{success_summary}}, @{$ppr->{summary}}) {
                     $$pmsg .= $l . "\n";
@@ -366,7 +366,7 @@ sub run_step {
             my $ppr = $parsed_procedure_result;
             $self->{procedure_result}->{procedure}->{msg} = $params->{target}->{error_summary};
             my $pmsg = \$self->{procedure_result}->{procedure}->{msg};
-            if (@{$ppr->{summary}}) {
+            if (@{$ppr->{summary}} or @{$ppr->{failure_summary}}) {
                 $$pmsg = '';
                 for my $l (@{$ppr->{failure_summary}}, @{$ppr->{summary}}) {
                     $$pmsg .= $l . "\n";
