@@ -265,10 +265,12 @@ class CreateFirstClusterMemberSpecSuite extends PluginTestHelper {
 
         def clusterInfo = getClusterBaseInfo()
 
-        def startProcedureResult = 'error'
-        if (testCaseID.ids in ['C367248']){
-            startProcedureResult = 'success'
+        def portsOfFirstMember, portsOfDefaultServer
+        if (testCaseID in [TC.C367248, TC.C367249]) {
+            portsOfFirstMember = getServerPorts(firstMemberName)
+            portsOfDefaultServer = getServerPorts(servers.default)
         }
+
         verifyAll {
             outcome == status
             jobSummary == expectedSummary.
@@ -289,17 +291,13 @@ class CreateFirstClusterMemberSpecSuite extends PluginTestHelper {
                 clusterInfo[clusterName].servers[0].weight == firstMemberWeight
             }
 
-            if (testCaseID.ids in ['C367248', 'C367249']) {
-                def resultOfStartCluster = startCluster(clusterName)
-                assert resultOfStartCluster == startProcedureResult
+            if (testCaseID in [TC.C367248]){
+                portsOfFirstMember - portsOfDefaultServer != []
             }
 
         }
 
         cleanup: "delete cluster"
-        if (testCaseID.ids in ['C367248']){
-            stopCluster(clusterName)
-        }
         deleteServer(clusterName)
 
         where: 'The following params will be: '
@@ -440,6 +438,26 @@ class CreateFirstClusterMemberSpecSuite extends PluginTestHelper {
         TC.C367256 | confignames.correctSOAP | 'FirstMemberClusterNegative' | creationPolicy.template   | '1'                       | 'FirstClusterServer' | nodes.default     | 'default'                 | ''                | promotionPolicy.cluster        | ''                                | '1'       | 'error'   | summaries.errorSecondMember  | [summaries.errorSecondMember]
         TC.C367257 | confignames.correctSOAP | 'FirstMemberClusterNegative' | creationPolicy.template   | '1'                       | 'FirstClusterServer' | nodes.default     | 'default'                 | ''                | promotionPolicy.cluster        | ''                                | '1'       | 'error'   | summaries.errorAlreadyExists | [summaries.errorAlreadyExists]
     }
+
+    def getServerPorts(def serverName){
+        // procedure return array of server ports
+        def jythonScript = "print \\'STARTLINE\\'; print AdminTask.listServerPorts(\\'${serverName}\\', \\'[-nodeName ${nodes.default}]\\')"
+
+        def scriptParams = [
+                configname: confignames.correctSOAP,
+                scriptfile: jythonScript,
+                scriptfilesource: 'newscriptfile',
+        ]
+        def scriptResult = runProcedure(scriptParams, procRunJob)
+        def scriptLog = getJobLogs(scriptResult.jobId)
+        def serversInfo = scriptLog.split("STARTLINE\n")[1].split("\n")
+        def ports = []
+        for (server in serversInfo){
+            ports.add(server.split("port ")[1].split("]")[0])
+        }
+        return ports
+    }
+
 
     def getClusterBaseInfo(){
 // Example of jython script output
