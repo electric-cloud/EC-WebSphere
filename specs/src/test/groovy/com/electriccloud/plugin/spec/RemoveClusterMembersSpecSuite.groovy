@@ -66,6 +66,8 @@ class RemoveClusterMembersSpecSuite extends PluginTestHelper {
             C367457: [ ids: 'C367457', description: 'Delete first member from cluster, left cluster empty'],
             C367458: [ ids: 'C367458', description: 'Delete first member from cluster, left cluster empty'],
             C367459: [ ids: 'C367459', description: "delete extra servers - one server exists, another server doesn't"],
+            C367460: [ ids: 'C367460', description: "delete extra servers - use empty cluster"],
+            C367461: [ ids: 'C367461', description: "delete extra servers - first server doesn't exist, second server exist"],
             C367462: [ ids: 'C367462', description: "empty required fields"],
             C367463: [ ids: 'C367463', description: "wrong values"],
     ]
@@ -76,9 +78,13 @@ class RemoveClusterMembersSpecSuite extends PluginTestHelper {
                     "Cluster member serverClusterMember01 on node ${nodes.default} has been removed from cluster CLUSTERNAME and deleted\n",
             deleteOneCluster:  "Cluster member serverClusterMember1 on node ${nodes.default} has been removed from cluster CLUSTERNAME and deleted\n",
             deleteFirstCluster: "Cluster member FirstClusterServer on node ${nodes.default} has been removed from cluster CLUSTERNAME and deleted\n",
-            deleteOneExtraMember: "Cluster member serverClusterMember1 on node websphere90ndNode01 has been removed from cluster RemoveMembers1 and deleted\n" +
-                    "Exception: WASL6040E: The serverMember:serverClusterMember2 specified argument does not exist.\n",
-            deleteFromEmptyCluster: "",
+            deleteOneExtraMember: "Failed to remove cluster members.\n" +
+                    "Error: Server ${nodes.default}:serverClusterMember2 (does not exist) is not a member of cluster CLUSTERNAME, please, check your input\n",
+            deleteOneExtraMember2: "Failed to remove cluster members.\n" +
+                    "Error: Server ${nodes.default}:serverClusterMember1 (does not exist) is not a member of cluster CLUSTERNAME, please, check your input\n",
+            deleteFromEmptyCluster: "Failed to remove cluster members.\n" +
+                    "Error: Server ${nodes.default}:serverClusterMember1 (does not exist) is not a member of cluster CLUSTERNAME, please, check your input\n" +
+                    "Error: Server ${nodes.default}:serverClusterMember2 (does not exist) is not a member of cluster CLUSTERNAME, please, check your input\n",
             emptyConfig: "Configuration '' doesn't exist",
             emptyClustername: "Failed to remove cluster members.\n" +
                         "Error: Cluster  does not exist\n",
@@ -277,20 +283,21 @@ class RemoveClusterMembersSpecSuite extends PluginTestHelper {
         TC.C367455 | confignames.correctSOAP  | membersLists.firstMember | 'RemoveMembers'  | '1'       | 'success' | summaries.deleteFirstCluster   | jobLogs.deleteFirstCluster
     }
 
-    @Ignore
     @Unroll
     def "RemoveClusterMembers  - Negative extra servers #testCaseID.ids #testCaseID.description"() {
         def testNumber = specificationContext.currentIteration.parent.iterationNameProvider.iterationCount
         clusterName += testNumber
 
         given: "Create cluster with server"
-        if (testCaseID == TC.C367459) {
+        def initialClusterInfo
+        if (testCaseID in [TC.C367459, TC.C367461]) {
             createClusterWithAdditionalServers(clusterName, listToCreate)
+            initialClusterInfo = getClusterBaseInfo()
         }
         if (testCaseID == TC.C367460) {
             createEmptyCluster(clusterName)
         }
-        def initialClusterInfo = getClusterBaseInfo()
+
 
         and: "Parameters for procedure"
         def runParams = [
@@ -307,39 +314,33 @@ class RemoveClusterMembersSpecSuite extends PluginTestHelper {
         def outcome = getJobProperty('/myJob/outcome', result.jobId)
         def jobSummary = getJobProperty("/myJob/jobSteps/$procRemoveClusterMembers/summary", result.jobId)
         def debugLog = getJobLogs(result.jobId)
-        def clusterInfo = getClusterBaseInfo()
-
 
         verifyAll {
             outcome == status
             jobSummary == expectedSummary.
                     replace('CLUSTERNAME', clusterName)
             for (log in logs){
-                debugLog =~ log.
+                debugLog.contains(log.
                         replace('CLUSTERNAME', clusterName)
+                )
             }
-
-            if (testCaseID == TC.C367459) {
-                // verify that servers existed before the deletion
-                for (server in listToCreate.split(",").collect { it.split(":")[1]}){
-                    initialClusterInfo[clusterName].servers.any {(it.memberName == server)}
-                }
-
-                // verify that servers were removed after the procedure execution
-                for (server in listToCreate.split(",").collect { it.split(":")[1]}){
-                    clusterInfo[clusterName].servers.every {(it.memberName != server)}
+            if (testCaseID in [TC.C367459, TC.C367461]) {
+                // created servers shouldn't be deleted
+                for (server in listToCreate.split(",").collect { it.split(":")[1] }) {
+                    initialClusterInfo[clusterName].servers.any { (it.memberName == server) }
                 }
             }
+
         }
 
-//        cleanup:
-//        deleteCluster(clusterName)
+        cleanup:
+        deleteCluster(clusterName)
 
         where: 'The following params will be: '
-        testCaseID | conf                     | listToCreate                | list                        | clusterName      | syncNodes | status    | expectedSummary                | logs
-        TC.C367459 | confignames.correctSOAP  | membersLists.oneMember      | membersLists.oneExtraMember | 'RemoveMembers'  | '1'       | 'error'   | summaries.deleteOneExtraMember | jobLogs.deleteOneExtraMember
-//        TC.C367459 | confignames.correctSOAP  | membersLists.oneMember2     | membersLists.oneExtraMember | 'RemoveMembers'  | '1'       | 'error'   | summaries.deleteOneExtraMember | jobLogs.deleteOneExtraMember
-//        TC.C367460 | confignames.correctSOAP  | ''                          | membersLists.oneExtraMember | 'RemoveMembers'  | '1'       | 'error'   | summaries.deleteOneExtraMember | jobLogs.deleteOneExtraMember
+        testCaseID | conf                     | listToCreate                | list                        | clusterName      | syncNodes | status    | expectedSummary                  | logs
+        TC.C367459 | confignames.correctSOAP  | membersLists.oneMember      | membersLists.oneExtraMember | 'RemoveMembers'  | '1'       | 'error'   | summaries.deleteOneExtraMember   | [summaries.deleteOneExtraMember]
+        TC.C367461 | confignames.correctSOAP  | membersLists.oneMember2     | membersLists.oneExtraMember | 'RemoveMembers'  | '1'       | 'error'   | summaries.deleteOneExtraMember2  | [summaries.deleteOneExtraMember2]
+        TC.C367460 | confignames.correctSOAP  | ''                          | membersLists.oneExtraMember | 'RemoveMembers'  | '1'       | 'error'   | summaries.deleteFromEmptyCluster | [summaries.deleteFromEmptyCluster]
     }
 
     @Unroll
