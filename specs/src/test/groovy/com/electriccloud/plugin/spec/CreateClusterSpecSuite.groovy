@@ -196,7 +196,7 @@ class CreateClusterSpecSuite extends PluginTestHelper {
 
     @Shared
     def summaries = [
-            'default': "Cluster CLUSTERNAME has been created.\n",
+            'default': "Cluster CLUSTERNAME has been created\n",
             'serverSource': "First cluster member SERVERNAME1 has been created on node NODENAME using server SERVERNAME2 on node NODENAME as source\n",
             'templateSource': "First cluster member SERVERNAME1 has been created on node NODENAME from template default\n",
             'convertSource': "Server convertServer on node NODENAME has been converted to be the first member of cluster CLUSTERNAME\n",
@@ -208,7 +208,8 @@ class CreateClusterSpecSuite extends PluginTestHelper {
                     "Exception: ADMF0002E: Required parameter clusterName is not found for command clusterConfig.\n",
             'emptyPolicy': "Failed to create a cluster.\n" +
                     "Error: Creation Policy is mandatory when create 1st cluster member is chosen\n",
-            'emptyTemplate': "Exception: ADMG9223E: Cannot find server template .\n",
+            'emptyTemplate': "Failed to create a cluster.\n" +
+                    "Error: First Server Template Name is mandatory when Creation Policy is set to template\n",
             'emptyNameAndNode': "Failed to create a cluster.\n" +
                     "Error: First Member Name and First Member Node should be provided when create 1st cluster member is chosen\n",
             'emptySource': "Failed to create a cluster.\n" +
@@ -220,8 +221,10 @@ class CreateClusterSpecSuite extends PluginTestHelper {
             'wrongConfig': "Configuration '${confignames.incorrect}' doesn't exist",
             'wrongPolicy': "Failed to create a cluster.\n" +
                     "Error: Creation policy should be one of: existing, convert or template. Got wrong\n",
-            'wrongTemplate': "Exception: ADMG9223E: Cannot find server template wrong.\n",
-            'wrongNode': "Exception: ADMG9249E: Exception caught validating the memberConfig step of the createClusterMember task command: com.ibm.websphere.management.cmdframework.CommandValidationException: ADMG9218E: Cannot find node wrongNode.",
+            'wrongTemplate': "Failed to create a cluster.\n" +
+                    "Exception: ADMG9223E: Cannot find server template wrong.\n",
+            'wrongNode': "Failed to create a cluster.\n" +
+                    "Exception: ADMG9249E: Exception caught validating the memberConfig step of the createClusterMember task command: com.ibm.websphere.management.cmdframework.CommandValidationException: ADMG9218E: Cannot find node wrongNode.\n",
             'wrongSourceFormat': "Failed to create a cluster.\n" +
                     "Error: Expected nodename:servername, got wrongFormat\n",
             'wrongSourceFormat2': "Failed to create a cluster.\n" +
@@ -232,7 +235,8 @@ class CreateClusterSpecSuite extends PluginTestHelper {
             'wrongMember': "Failed to create a cluster.\n" +
                     "Exception: Expected nodename:servername record, got wrongFormat\n" +
                     "Error: Expected nodename:servername record, got wrongFormat\n",
-            'wrongWeigth': "Exception: com.ibm.ws.scripting.ScriptingException: java.lang.NumberFormatException: For input string: \"wrong\"",
+            'wrongWeigth': "Failed to create a cluster.\n" +
+                    "Exception: com.ibm.ws.scripting.ScriptingException: java.lang.NumberFormatException: For input string: \"wrong\"\n",
             'clusterExists': "Failed to create a cluster.\n" +
                     "Exception: ADMG9200E: Cluster CLUSTERNAME already exists.\n"
 
