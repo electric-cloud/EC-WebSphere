@@ -199,7 +199,8 @@ class CreateFirstClusterMemberSpecSuite extends PluginTestHelper {
             'emptyMemberNode': "Failed to create a first cluster member.\n" +
                     "Exception: ADMF0002E: Required parameter memberNode is not found for command memberConfig.\n",
             'emptySourceServerName': "Failed to create a first cluster member.\n" +
-                    "Exception: ADMG0261E: Could not validate Create Server Template command java.lang.NullPointerException.\n",
+                    "Exception: 1\n" +
+                    "Error: Source Node is mandatory\n",
             'wrongConfig': "Configuration '${confignames.incorrect}' doesn't exist",
             'wrongCluster': "Failed to create a first cluster member.\n" +
                     "Exception: ADMG9216E: Cannot find cluster wrong.\n",
@@ -265,10 +266,11 @@ class CreateFirstClusterMemberSpecSuite extends PluginTestHelper {
 
         def clusterInfo = getClusterBaseInfo()
 
-        def portsOfFirstMember, portsOfDefaultServer
+        def portsOfFirstMember, portsOfDefaultServer, defaultPorts2
         if (testCaseID in [TC.C367248, TC.C367249]) {
             portsOfFirstMember = getServerPorts(firstMemberName)
             portsOfDefaultServer = getServerPorts(servers.default)
+            defaultPorts2 = ["8879", "5061", "5060", "7276", "9443", "9352", "5578", "9043", "9402", "9100", "9809", "9403", "9632", "7286", "9080", "5558", "9401", "11005", "11006", "9060"]
         }
 
         verifyAll {
@@ -293,6 +295,10 @@ class CreateFirstClusterMemberSpecSuite extends PluginTestHelper {
 
             if (testCaseID in [TC.C367248]){
                 portsOfFirstMember - portsOfDefaultServer != []
+            }
+
+            if (testCaseID in [TC.C367249]){
+                (portsOfFirstMember - portsOfDefaultServer == []) || (portsOfFirstMember - defaultPorts2 == [])
             }
 
         }
