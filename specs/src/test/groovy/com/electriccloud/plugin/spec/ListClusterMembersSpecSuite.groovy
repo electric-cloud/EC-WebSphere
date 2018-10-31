@@ -76,7 +76,10 @@ class ListClusterMembersSpecSuite extends PluginTestHelper {
                     "Server serverClusterMember01 on node ${nodes.default}\n",
             'emptyCluster': "Cluster CLUSTERNAME is empty\n",
             'emptyConfig': "Configuration '' doesn't exist",
-            'emptyClusterName': "Failed to retrieve cluster members list.",
+            'emptyClusterName': "Failed to retrieve cluster members list.\n"+
+                                "Error: Cluster  does not exist\n",
+            'wrongClusterName': "Failed to retrieve cluster members list.\n"+
+                                "Error: Cluster wrongCluster does not exist\n",                                
             'wrongConfig': "Configuration '${confignames.incorrect}' doesn't exist",
     ]
 
@@ -280,7 +283,7 @@ class ListClusterMembersSpecSuite extends PluginTestHelper {
         testCaseID | conf                     | clusterName      | propertyPath             | status    | expectedSummary               | logs
         TC.C367449 | ''                       | 'ListMembers01'  | '/myJob/clusterMembers'  | 'error'   | summaries.emptyConfig         | [summaries.emptyConfig]
         TC.C367449 | confignames.correctSOAP  | ''               | '/myJob/clusterMembers'  | 'error'   | summaries.emptyClusterName    | [summaries.emptyClusterName]+jobLogs.emptyClusterName
-        TC.C367450 | confignames.correctSOAP  | 'wrongCluster'   | '/myJob/clusterMembers'  | 'error'   | summaries.emptyClusterName    | [summaries.emptyClusterName]+jobLogs.wrongCluster
+        TC.C367450 | confignames.correctSOAP  | 'wrongCluster'   | '/myJob/clusterMembers'  | 'error'   | summaries.wrongClusterName    | [summaries.wrongClusterName]
         TC.C367450 | confignames.incorrect    | 'ListMembers01'  | '/myJob/clusterMembers'  | 'error'   | summaries.wrongConfig         | [summaries.wrongConfig]
     }
 

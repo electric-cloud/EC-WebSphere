@@ -166,7 +166,7 @@ class StopClusterSpecSuite extends PluginTestHelper {
     }
 
     @Unroll
-    def "StartCluster  - Positive #testCaseID.ids #testCaseID.description"() {
+    def "StopCluster  - Positive #testCaseID.ids #testCaseID.description"() {
         def testNumber = specificationContext.currentIteration.parent.iterationNameProvider.iterationCount
 
         given: "Create cluster with server"
@@ -219,11 +219,11 @@ class StopClusterSpecSuite extends PluginTestHelper {
     }
 
     @Unroll
-    def "StartCluster  - Negative #testCaseID.ids #testCaseID.description"() {
+    def "StopCluster  - Negative #testCaseID.ids #testCaseID.description"() {
         def testNumber = specificationContext.currentIteration.parent.iterationNameProvider.iterationCount
 
         given: "Create cluster with server"
-        if ( testCaseID == TC.C367306) {
+        if (testCaseID == TC.C367306) {
             createCluster(clusterName)
         }
         if (testCaseID == TC.C367306) {
@@ -268,7 +268,6 @@ class StopClusterSpecSuite extends PluginTestHelper {
         TC.C367306 | confignames.correctSOAP | 'StopClusterNegative' | '5'     | '0'         | 'stopped'    | 'error'   | summaries.timeout      | [summaries.timeout]
         TC.C367307 | confignames.incorrect   | 'StopClusterNegative' | '300'   | '0'         | 'stopped'    | 'error'   | summaries.wrongConfig  | [summaries.wrongConfig]
         TC.C367307 | confignames.correctSOAP | 'wrongCluster'        | '300'   | '0'         | 'stopped'    | 'error'   | summaries.wrongCluster | [summaries.wrongCluster]
-
     }
 
     def getClusterState(){
@@ -305,7 +304,7 @@ print info.encode("ascii").split('.')[2]\'\''''
         runProcedure(deleteParams, procDeleteCluster)
     }
 
-    def createCluster(clusterName){
+    def createCluster(def clusterName){
         def clusterWithServer = [
                 configname                         : confignames.correctSOAP,
                 wasAddClusterMembers               : '0',
@@ -321,14 +320,14 @@ print info.encode("ascii").split('.')[2]\'\''''
                 wasFirstClusterMemberTemplateName  : 'default',
                 wasFirstClusterMemberWeight        : '',
                 wasPreferLocal                     : '1',
-                wasServerResourcesPromotionPolicy  : '',
+                wasServerResourcesPromotionPolicy  : 'both',
                 wasSourceServerName                : '',
                 wasSyncNodes                       : '1',
         ]
         runProcedure(clusterWithServer, procCreateCluster)
     }
 
-    def createEmptyCluster(clusterName){
+    def createEmptyCluster(def clusterName){
         def emptyCluster = [
                 configname                         : confignames.correctSOAP,
                 wasAddClusterMembers               : '0',
@@ -344,7 +343,7 @@ print info.encode("ascii").split('.')[2]\'\''''
                 wasFirstClusterMemberTemplateName  : '',
                 wasFirstClusterMemberWeight        : '',
                 wasPreferLocal                     : '1',
-                wasServerResourcesPromotionPolicy  : '',
+                wasServerResourcesPromotionPolicy  : 'both',
                 wasSourceServerName                : '',
                 wasSyncNodes                       : '1',
         ]

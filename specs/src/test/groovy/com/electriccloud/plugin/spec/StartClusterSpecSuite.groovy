@@ -327,7 +327,7 @@ print info.encode("ascii").split('.')[2]\'\''''
                 wasFirstClusterMemberTemplateName  : 'default',
                 wasFirstClusterMemberWeight        : '',
                 wasPreferLocal                     : '1',
-                wasServerResourcesPromotionPolicy  : '',
+                wasServerResourcesPromotionPolicy  : 'both',
                 wasSourceServerName                : '',
                 wasSyncNodes                       : '1',
         ]

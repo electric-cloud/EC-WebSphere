@@ -199,7 +199,8 @@ class CreateFirstClusterMemberSpecSuite extends PluginTestHelper {
             'emptyMemberNode': "Failed to create a first cluster member.\n" +
                     "Exception: ADMF0002E: Required parameter memberNode is not found for command memberConfig.\n",
             'emptySourceServerName': "Failed to create a first cluster member.\n" +
-                    "Exception: ADMG0261E: Could not validate Create Server Template command java.lang.NullPointerException.\n",
+                    "Exception: 1\n" +
+                    "Error: Source Node is mandatory\n",
             'wrongConfig': "Configuration '${confignames.incorrect}' doesn't exist",
             'wrongCluster': "Failed to create a first cluster member.\n" +
                     "Exception: ADMG9216E: Cannot find cluster wrong.\n",
@@ -265,10 +266,13 @@ class CreateFirstClusterMemberSpecSuite extends PluginTestHelper {
 
         def clusterInfo = getClusterBaseInfo()
 
-        def startProcedureResult = 'error'
-        if (testCaseID.ids in ['C367248']){
-            startProcedureResult = 'success'
+        def portsOfFirstMember, portsOfDefaultServer, defaultPorts2
+        if (testCaseID in [TC.C367248, TC.C367249]) {
+            portsOfFirstMember = getServerPorts(firstMemberName)
+            portsOfDefaultServer = getServerPorts(servers.default)
+            defaultPorts2 = ["8879", "5061", "5060", "7276", "9443", "9352", "5578", "9043", "9402", "9100", "9809", "9403", "9632", "7286", "9080", "5558", "9401", "11005", "11006", "9060"]
         }
+
         verifyAll {
             outcome == status
             jobSummary == expectedSummary.
@@ -289,17 +293,17 @@ class CreateFirstClusterMemberSpecSuite extends PluginTestHelper {
                 clusterInfo[clusterName].servers[0].weight == firstMemberWeight
             }
 
-            if (testCaseID.ids in ['C367248', 'C367249']) {
-                def resultOfStartCluster = startCluster(clusterName)
-                assert resultOfStartCluster == startProcedureResult
+            if (testCaseID in [TC.C367248]){
+                portsOfFirstMember - portsOfDefaultServer != []
+            }
+
+            if (testCaseID in [TC.C367249]){
+                (portsOfFirstMember - portsOfDefaultServer == []) || (portsOfFirstMember - defaultPorts2 == [])
             }
 
         }
 
         cleanup: "delete cluster"
-        if (testCaseID.ids in ['C367248']){
-            stopCluster(clusterName)
-        }
         deleteServer(clusterName)
 
         where: 'The following params will be: '
@@ -440,6 +444,26 @@ class CreateFirstClusterMemberSpecSuite extends PluginTestHelper {
         TC.C367256 | confignames.correctSOAP | 'FirstMemberClusterNegative' | creationPolicy.template   | '1'                       | 'FirstClusterServer' | nodes.default     | 'default'                 | ''                | promotionPolicy.cluster        | ''                                | '1'       | 'error'   | summaries.errorSecondMember  | [summaries.errorSecondMember]
         TC.C367257 | confignames.correctSOAP | 'FirstMemberClusterNegative' | creationPolicy.template   | '1'                       | 'FirstClusterServer' | nodes.default     | 'default'                 | ''                | promotionPolicy.cluster        | ''                                | '1'       | 'error'   | summaries.errorAlreadyExists | [summaries.errorAlreadyExists]
     }
+
+    def getServerPorts(def serverName){
+        // procedure return array of server ports
+        def jythonScript = "print \\'STARTLINE\\'; print AdminTask.listServerPorts(\\'${serverName}\\', \\'[-nodeName ${nodes.default}]\\')"
+
+        def scriptParams = [
+                configname: confignames.correctSOAP,
+                scriptfile: jythonScript,
+                scriptfilesource: 'newscriptfile',
+        ]
+        def scriptResult = runProcedure(scriptParams, procRunJob)
+        def scriptLog = getJobLogs(scriptResult.jobId)
+        def serversInfo = scriptLog.split("STARTLINE\n")[1].split("\n")
+        def ports = []
+        for (server in serversInfo){
+            ports.add(server.split("port ")[1].split("]")[0])
+        }
+        return ports
+    }
+
 
     def getClusterBaseInfo(){
 // Example of jython script output

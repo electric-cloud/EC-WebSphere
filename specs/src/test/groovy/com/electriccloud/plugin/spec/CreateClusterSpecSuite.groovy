@@ -208,26 +208,35 @@ class CreateClusterSpecSuite extends PluginTestHelper {
                     "Exception: ADMF0002E: Required parameter clusterName is not found for command clusterConfig.\n",
             'emptyPolicy': "Failed to create a cluster.\n" +
                     "Error: Creation Policy is mandatory when create 1st cluster member is chosen\n",
-            'emptyTemplate': "Exception: ADMG9223E: Cannot find server template .\n",
+            'emptyTemplate': "Failed to create a cluster.\n" +
+                    "Error: First Server Template Name is mandatory when Creation Policy is set to template\n",
             'emptyNameAndNode': "Failed to create a cluster.\n" +
                     "Error: First Member Name and First Member Node should be provided when create 1st cluster member is chosen\n",
             'emptySource': "Failed to create a cluster.\n" +
                     "Error: Expected nodename:servername, got \n",
+            'emptySource2': "Failed to create a cluster.\n" +
+                    "Error: Source Server Name is mandatory when Creation Policy is set to existing\n",
             'emptyMember': "Failed to create a cluster.\n" +
-                    "Error: No members to add\n",
+                    "Error: No members to add.\n",
             'wrongConfig': "Configuration '${confignames.incorrect}' doesn't exist",
             'wrongPolicy': "Failed to create a cluster.\n" +
                     "Error: Creation policy should be one of: existing, convert or template. Got wrong\n",
-            'wrongTemplate': "Exception: ADMG9223E: Cannot find server template wrong.\n",
-            'wrongNode': "Exception: ADMG9249E: Exception caught validating the memberConfig step of the createClusterMember task command: com.ibm.websphere.management.cmdframework.CommandValidationException: ADMG9218E: Cannot find node wrongNode.",
+            'wrongTemplate': "Failed to create a cluster.\n" +
+                    "Exception: ADMG9223E: Cannot find server template wrong.\n",
+            'wrongNode': "Failed to create a cluster.\n" +
+                    "Exception: ADMG9249E: Exception caught validating the memberConfig step of the createClusterMember task command: com.ibm.websphere.management.cmdframework.CommandValidationException: ADMG9218E: Cannot find node wrongNode.\n",
             'wrongSourceFormat': "Failed to create a cluster.\n" +
+                    "Error: Expected nodename:servername, got wrongFormat\n",
+            'wrongSourceFormat2': "Failed to create a cluster.\n" +
+                    "Exception: 1\n" +
                     "Error: Expected nodename:servername, got wrongFormat\n",
             'wrongFormat': "Failed to create a cluster.\n" +
                     "Error: Expected nodename:servername, got wrongFormat\n",
             'wrongMember': "Failed to create a cluster.\n" +
                     "Exception: Expected nodename:servername record, got wrongFormat\n" +
                     "Error: Expected nodename:servername record, got wrongFormat\n",
-            'wrongWeigth': "Exception: com.ibm.ws.scripting.ScriptingException: java.lang.NumberFormatException: For input string: \"wrong\"",
+            'wrongWeigth': "Failed to create a cluster.\n" +
+                    "Exception: com.ibm.ws.scripting.ScriptingException: java.lang.NumberFormatException: For input string: \"wrong\"\n",
             'clusterExists': "Failed to create a cluster.\n" +
                     "Exception: ADMG9200E: Cluster CLUSTERNAME already exists.\n"
 
@@ -294,11 +303,16 @@ class CreateClusterSpecSuite extends PluginTestHelper {
 
         def clusterInfo = getClusterBaseInfo()
 
-        def startProcedureResult = 'error'
-        if (testCaseID.ids in ['C366956', 'C366976']){
-            startProcedureResult = 'success'
+        def portsOfMember, portsOfFirstMember, portsOfDefaultServer, diff1, diff2
+        if (testCaseID in [TC.C366956, TC.C366957]) {
+            portsOfFirstMember = getServerPorts(firstMemberName)
+            portsOfDefaultServer = getServerPorts(servers.default)
         }
-
+        if (testCaseID in [TC.C366976, TC.C366977]) {
+            portsOfMember = getServerPorts(membersList.split(":")[1])
+            portsOfFirstMember = getServerPorts(firstMemberName)
+            portsOfDefaultServer = getServerPorts(servers.default)
+        }
         verifyAll {
             outcome == status
             jobSummary == expectedSummary.
@@ -312,6 +326,18 @@ class CreateClusterSpecSuite extends PluginTestHelper {
                         replace('SERVERNAME1', firstMemberName).
                         replace('SERVERNAME2', sourceServerName.isEmpty() ? "" : sourceServerName.split(":")[1]).
                         replace('NODENAME', clusterMemberNode.isEmpty() ? nodes.default : clusterMemberNode)
+            }
+            if (testCaseID in [TC.C366956]){
+                portsOfFirstMember - portsOfDefaultServer != []
+            }
+            if (testCaseID in [TC.C366957]){
+                portsOfFirstMember - portsOfDefaultServer == []
+            }
+            if (testCaseID in [TC.C366976]){
+                (portsOfMember - portsOfFirstMember != []) && (portsOfMember - portsOfDefaultServer != [])
+            }
+            if (testCaseID in [TC.C366977]){
+                (portsOfMember - portsOfFirstMember == []) || (portsOfMember - portsOfDefaultServer == [])
             }
             clusterInfo[clusterName].name == clusterName
             clusterInfo[clusterName].preferLocal == (preferLocal == '1') ? 'true' : 'false'
@@ -330,19 +356,9 @@ class CreateClusterSpecSuite extends PluginTestHelper {
                 }
             }
 
-            // start first cluster member, if it's ports are unique
-            // it will start
-            if (testCaseID.ids in ['C366956', 'C366957', 'C366976', 'C366977']) {
-                def resultOfStartCluster = startCluster(clusterName)
-                assert resultOfStartCluster == startProcedureResult
-            }
-
         }
 
         cleanup: "delete cluster"
-        if (testCaseID.ids in ['C366956', 'C366976']){
-            stopCluster(clusterName)
-        }
         deleteServer(clusterName)
 
         where: 'The following params will be: '
@@ -409,23 +425,23 @@ class CreateClusterSpecSuite extends PluginTestHelper {
         }
         where: 'The following params will be: '
         testCaseID | conf                    | addMembers | membersUniquePorts | membersList               | memberWeight | clusterName   | createFirstMember | firstMemberCreationPolicy | firstMemberGenUniquePorts | firstMemberName | clusterMemberNode | clusterMemberTemplateName | firstMemberWeight | preferLocal  | serverResourcesPromotionPolicy | sourceServerName                   | syncNodes | status    | expectedSummary              | logs
-        TC.C367231 | ''                      | '0'        | '1'                | ''                        | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.emptyConfig        | [summaries.emptyConfig]
-        TC.C367231 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | ''            | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.emptyClusterName   | [summaries.emptyClusterName]
-        TC.C367231 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | ''                        | '1'                       | 'clusterServer' | nodes.default     | 'default'                 | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.emptyPolicy        | [summaries.emptyPolicy]
+        TC.C367231 | ''                      | '0'        | '1'                | ''                        | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "error"   | summaries.emptyConfig        | [summaries.emptyConfig]
+        TC.C367231 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | ''            | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "error"   | summaries.emptyClusterName   | [summaries.emptyClusterName]
+        TC.C367231 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | ''                        | '1'                       | 'clusterServer' | nodes.default     | 'default'                 | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "error"   | summaries.emptyPolicy        | [summaries.emptyPolicy]
         TC.C367231 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | 'clusterServer' | nodes.default     | ''                        | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "error"   | summaries.emptyTemplate      | [summaries.emptyTemplate]
-        TC.C367231 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | 'clusterServer' | ''                | 'default'                 | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.emptyNameAndNode   | [summaries.emptyNameAndNode]
-        TC.C367231 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | ''              | nodes.default     | 'default'                 | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.emptyNameAndNode   | [summaries.emptyNameAndNode]
-        TC.C367231 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.existing   | '1'                       | 'clusterServer' | nodes.default     | ''                        | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "error"   | summaries.emptySource        | [summaries.emptySource]
+        TC.C367231 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | 'clusterServer' | ''                | 'default'                 | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "error"   | summaries.emptyNameAndNode   | [summaries.emptyNameAndNode]
+        TC.C367231 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | ''              | nodes.default     | 'default'                 | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "error"   | summaries.emptyNameAndNode   | [summaries.emptyNameAndNode]
+        TC.C367231 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.existing   | '1'                       | 'clusterServer' | nodes.default     | ''                        | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "error"   | summaries.emptySource2       | [summaries.emptySource2]
         TC.C367231 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.convert    | '1'                       | ''              | ''                | ''                        | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "error"   | summaries.emptySource        | [summaries.emptySource]
-        TC.C367231 | confignames.correctSOAP | '1'        | '1'                | ''                        | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.emptyMember        | [summaries.emptyMember]
-        TC.C367232 | confignames.incorrect   | '0'        | '1'                | ''                        | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.wrongConfig        | [summaries.wrongConfig]
-        TC.C367232 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.wrong      | '1'                       | 'clusterServer' | nodes.default     | 'default'                 | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.wrongPolicy        | [summaries.wrongPolicy]
+        TC.C367231 | confignames.correctSOAP | '1'        | '1'                | ''                        | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "error"   | summaries.emptyMember        | [summaries.emptyMember]
+        TC.C367232 | confignames.incorrect   | '0'        | '1'                | ''                        | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "error"   | summaries.wrongConfig        | [summaries.wrongConfig]
+        TC.C367232 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.wrong      | '1'                       | 'clusterServer' | nodes.default     | 'default'                 | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "error"   | summaries.wrongPolicy        | [summaries.wrongPolicy]
         TC.C367232 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | 'clusterServer' | nodes.default     | 'wrong'                   | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "error"   | summaries.wrongTemplate      | [summaries.wrongTemplate]
         TC.C367232 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.template   | '1'                       | 'clusterServer' | 'wrongNode'       | 'default'                 | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "error"   | summaries.wrongNode          | [summaries.wrongNode]
-        TC.C367232 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.existing   | '1'                       | 'clusterServer' | nodes.default     | ''                        | ''                | '1'          | promotionPolicy.both           | 'wrongFormat'                      | '1'       | "error"   | summaries.wrongSourceFormat  | [summaries.wrongSourceFormat]
+        TC.C367232 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.existing   | '1'                       | 'clusterServer' | nodes.default     | ''                        | ''                | '1'          | promotionPolicy.both           | 'wrongFormat'                      | '1'       | "error"   | summaries.wrongSourceFormat2 | [summaries.wrongSourceFormat2]
         TC.C367232 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '1'               | creationPolicy.convert    | '1'                       | ''              | ''                | ''                        | ''                | '1'          | promotionPolicy.both           | 'wrongFormat'                      | '1'       | "error"   | summaries.wrongSourceFormat  | [summaries.wrongSourceFormat]
-        TC.C367232 | confignames.correctSOAP | '1'        | '1'                | 'wrongFormat'             | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.wrongMember        | [summaries.wrongMember]
-        TC.C367232 | confignames.correctSOAP | '1'        | '1'                | membersLists.oneMember1   | 'wrong'      | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.wrongWeigth        | [summaries.wrongWeigth]
+        TC.C367232 | confignames.correctSOAP | '1'        | '1'                | 'wrongFormat'             | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "error"   | summaries.wrongMember        | [summaries.wrongMember]
+        TC.C367232 | confignames.correctSOAP | '1'        | '1'                | membersLists.oneMember1   | 'wrong'      | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | promotionPolicy.both           | ''                                 | '1'       | "error"   | summaries.wrongWeigth        | [summaries.wrongWeigth]
     }
 
     @Unroll
@@ -476,6 +492,25 @@ class CreateClusterSpecSuite extends PluginTestHelper {
         where: 'The following params will be: '
         testCaseID | conf                    | addMembers | membersUniquePorts | membersList               | memberWeight | clusterName   | createFirstMember | firstMemberCreationPolicy | firstMemberGenUniquePorts | firstMemberName | clusterMemberNode | clusterMemberTemplateName | firstMemberWeight | preferLocal  | serverResourcesPromotionPolicy | sourceServerName                   | syncNodes | status    | expectedSummary              | logs
         TC.C367233 | confignames.correctSOAP | '0'        | '1'                | ''                        | ''           | 'testCluster' | '0'               | ''                        | '1'                       | ''              | ''                | ''                        | ''                | '1'          | ''                             | ''                                 | '1'       | "error"   | summaries.clusterExists      | [summaries.clusterExists]
+    }
+
+    def getServerPorts(def serverName){
+        // procedure return array of server ports
+        def jythonScript = "print \\'STARTLINE\\'; print AdminTask.listServerPorts(\\'${serverName}\\', \\'[-nodeName ${nodes.default}]\\')"
+
+        def scriptParams = [
+                configname: confignames.correctSOAP,
+                scriptfile: jythonScript,
+                scriptfilesource: 'newscriptfile',
+        ]
+        def scriptResult = runProcedure(scriptParams, procRunJob)
+        def scriptLog = getJobLogs(scriptResult.jobId)
+        def serversInfo = scriptLog.split("STARTLINE\n")[1].split("\n")
+        def ports = []
+        for (server in serversInfo){
+            ports.add(server.split("port ")[1].split("]")[0])
+        }
+        return ports
     }
 
     def createServer(def serverName){

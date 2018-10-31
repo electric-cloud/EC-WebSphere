@@ -58,14 +58,17 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
         projectName = "EC-WebSphere Specs $procCreateClusterMembers Project"
 
     @Shared
+    def firstClusterServerName = 'FirstClusterServer'
+
+    @Shared
     def TC = [
             C367309: [ ids: 'C367309, C367317', description: 'default values - add one server'],
             C367310: [ ids: 'C367310', description: 'default values - add more the one server'],
             C367311: [ ids: 'C367311', description: 'empty cluster - add one server '],
             C367312: [ ids: 'C367312', description: 'empty cluster - add more the one server'],
             C367313: [ ids: 'C367313', description: 'server weight'],
-            C367314: [ ids: 'C367313', description: 'uniqure ports - true'],
-            C367315: [ ids: 'C367313', description: 'uniqure ports - false'],
+            C367314: [ ids: 'C367314', description: 'uniqure ports - true'],
+            C367315: [ ids: 'C367315', description: 'uniqure ports - false'],
             C367316: [ ids: 'C367316', description: 'sync node - false'],
             C367318: [ ids: 'C367318', description: 'add servers - twice'],
             C367319: [ ids: 'C367319', description: 'empty required fields'],
@@ -82,11 +85,10 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
                     'Exception: Expected nodename:servername record, got\n' +
                     'Error: Expected nodename:servername record, got \n',
             'emptyClusterName': "Failed to create a cluster members.\n" +
-                    "Exception: 1\n" +
-                    "Error: Missing clusterName parameter\n",
+                    "Error: Cluster  does not exist\n",
             'wrongConfig': "Configuration '${confignames.incorrect}' doesn't exist",
             'wrongCluster': "Failed to create a cluster members.\n" +
-                    "Exception: ADMG9216E: Cannot find cluster wrongCluster.\n",
+                    "Error: Cluster wrongCluster does not exist\n",
             'wrongFormat': "Failed to create a cluster members.\n" +
                     "Exception: Expected nodename:servername record, got wrongFormat\n" +
                     "Error: Expected nodename:servername record, got wrongFormat\n",
@@ -224,11 +226,14 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
         def debugLog = getJobLogs(result.jobId)
         def clusterInfo = getClusterBaseInfo()
 
-        def startProcedureResult = 'error'
-        if (testCaseID in [TC.C367314]){
-            startProcedureResult = 'success'
+        def portsOfMember, portsOfFirstMember, portsOfDefaultServer, diff1, diff2
+        if (testCaseID in [TC.C367314, TC.C367315]) {
+            portsOfMember = getServerPorts(list.split(":")[1])
+            portsOfFirstMember = getServerPorts(firstClusterServerName)
+            portsOfDefaultServer = getServerPorts(servers.default)
+            diff1 = portsOfMember - portsOfFirstMember
+            diff2 = portsOfMember - portsOfDefaultServer
         }
-
         verifyAll {
             outcome == status
             jobSummary == expectedSummary.
@@ -248,19 +253,16 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
                 clusterInfo[clusterName].servers.any {(it.weight == weight)}
             }
 
-            // start first cluster member, if it's ports are unique
-            // it will start
-            if (testCaseID in [TC.C367314, TC.C367315]) {
-                def resultOfStartCluster = startCluster(clusterName)
-                assert resultOfStartCluster == startProcedureResult
+            if (testCaseID in [TC.C367314]) {
+                (diff1 != []) && (diff2 != [])
+            }
+            if (testCaseID in [TC.C367315]) {
+                (diff1 == []) || (diff2 == [])
             }
 
         }
 
         cleanup:
-        if (testCaseID in [TC.C367314, TC.C367315]){
-            stopCluster(clusterName)
-        }
         deleteCluster(clusterName)
 
         where: 'The following params will be: '
@@ -268,8 +270,6 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
         TC.C367309 | confignames.correctSOAP  | '1'         | membersLists.oneMember   | ''     | 'CreateMembers'  | '1'       | 'success' | summaries.default    | [summaries.default]+jobLogs.syncNodes
         TC.C367316 | confignames.correctSOAP  | '1'         | membersLists.oneMember   | ''     | 'CreateMembers'  | '0'       | 'success' | summaries.default    | [summaries.default]
         TC.C367310 | confignames.correctSOAP  | '1'         | membersLists.twoMembers  | ''     | 'CreateMembers'  | '1'       | 'success' | summaries.twoMembers | [summaries.twoMembers]
-        TC.C367311 | confignames.correctSOAP  | '1'         | membersLists.oneMember   | ''     | 'CreateMembers'  | '1'       | 'success' | summaries.default    | [summaries.default]
-        TC.C367312 | confignames.correctSOAP  | '1'         | membersLists.twoMembers  | ''     | 'CreateMembers'  | '1'       | 'success' | summaries.twoMembers | [summaries.twoMembers]
         TC.C367313 | confignames.correctSOAP  | '1'         | membersLists.oneMember   | '5'    | 'CreateMembers'  | '1'       | 'success' | summaries.default    | [summaries.default]
         TC.C367314 | confignames.correctSOAP  | '1'         | membersLists.oneMember   | ''     | 'CreateMembers'  | '1'       | 'success' | summaries.default    | [summaries.default]
         TC.C367315 | confignames.correctSOAP  | '0'         | membersLists.oneMember   | ''     | 'CreateMembers'  | '1'       | 'success' | summaries.default    | [summaries.default]
@@ -386,6 +386,25 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
 
     }
 
+    def getServerPorts(def serverName){
+        // procedure return array of server ports
+        def jythonScript = "print \\'STARTLINE\\'; print AdminTask.listServerPorts(\\'${serverName}\\', \\'[-nodeName ${nodes.default}]\\')"
+
+        def scriptParams = [
+                configname: confignames.correctSOAP,
+                scriptfile: jythonScript,
+                scriptfilesource: 'newscriptfile',
+        ]
+        def scriptResult = runProcedure(scriptParams, procRunJob)
+        def scriptLog = getJobLogs(scriptResult.jobId)
+        def serversInfo = scriptLog.split("STARTLINE\n")[1].split("\n")
+        def ports = []
+        for (server in serversInfo){
+            ports.add(server.split("port ")[1].split("]")[0])
+        }
+        return ports
+    }
+
     def startCluster(def clusterName) {
         def runParams = [
                 configName: confignames.correctSOAP,
@@ -426,7 +445,7 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
                 wasCreateFirstClusterMember        : '1',
                 wasFirstClusterMemberCreationPolicy: 'template',
                 wasFirstClusterMemberGenUniquePorts: '1',
-                wasFirstClusterMemberName          : 'FirstClusterServer',
+                wasFirstClusterMemberName          : firstClusterServerName,
                 wasFirstClusterMemberNode          : nodes.default,
                 wasFirstClusterMemberTemplateName  : 'default',
                 wasFirstClusterMemberWeight        : '',
