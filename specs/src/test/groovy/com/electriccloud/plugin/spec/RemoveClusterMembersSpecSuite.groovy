@@ -525,7 +525,7 @@ for cluster in clusterList:
     servers = []
     for server in AdminClusterManagement.listClusterMembers(clusterName):
         info = AdminConfig.show(server)
-        tmp = [x.encode("ascii") for x in info.split("\\\\n")]
+        tmp = [x.encode("ascii").replace("\\\\r", "") for x in info.split("\\\\n")]
         server_dict = dict((x[1:-1].split(" ")[0], x[1:-1].split(" ")[1],) for x in tmp)
         servers.append(server_dict)
     clusterInfo["servers"] = servers

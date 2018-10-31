@@ -271,10 +271,14 @@ class StopClusterSpecSuite extends PluginTestHelper {
     }
 
     def getClusterState(){
-        def script = '''\'\'
-cluster = AdminControl.completeObjectName('cell=websphere90ndCell01,type=Cluster,name=StopCluster,*')
+        def cell = wasHost + "Cell01"
+        if (is_windows == "1"){
+            cell = wasHost.toUpperCase() + "Cell01"
+        }
+        def script = """\'\'
+cluster = AdminControl.completeObjectName('cell=${cell},type=Cluster,name=StartCluster,*')
 info = AdminControl.getAttribute(cluster, "state")
-print info.encode("ascii").split('.')[2]\'\''''
+print info.encode("ascii").split('.')[2]\'\'"""
 
         def runParams = [
                 configname: confignames.correctSOAP,
