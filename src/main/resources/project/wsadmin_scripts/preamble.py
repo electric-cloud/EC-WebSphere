@@ -44,8 +44,10 @@ def logError(logLine):
 
 def logSummary(logLine):
     logWithLevel("SUMMARY", logLine)
+
 def logSuccessSummary(logLine):
     logWithLevel("SUCCESS_SUMMARY", logLine)
+
 def logFailureSummary(logLine):
     logWithLevel("FAILURE_SUMMARY", logLine)
 
@@ -584,6 +586,13 @@ def isServerExists(nodeName, serverName):
     
 def getClusterMembers(clusterName):
     return AdminClusterManagement.listClusterMembers(clusterName)
+
+def getClusterState(clusterName):
+    cluster = AdminControl.completeObjectName('type=Cluster,name=' + clusterName + ',*')
+    if not cluster:
+        return ''
+    clusterState = AdminControl.getAttribute(cluster, 'state')
+    return clusterState
 
 def getClusterMembersAsList(clusterName):
     l = getClusterMembers(clusterName)
