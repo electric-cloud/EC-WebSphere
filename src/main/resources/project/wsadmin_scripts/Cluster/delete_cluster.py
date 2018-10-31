@@ -16,9 +16,7 @@ if not isClusterExists(clusterName):
 # So, we will abort this job if cluster is not stopped.
 clusterState = getClusterState(clusterName)
 if clusterState != 'websphere.cluster.stopped':
-    bailOut("Cluster %s can't be deleted because it is running.\n\
-Deletion of running cluster may damage websphere instance and leads to undefined behaviour.\n\
-Please, stop your cluster first." % (clusterName))
+    bailOut("Cluster %s can't be deleted because it is running.\nDeletion of running cluster may damage websphere instance and leads to undefined behaviour.\nPlease, stop your cluster first." % (clusterName))
 
 try:
     AdminTask.deleteCluster(['-clusterName', clusterName])
