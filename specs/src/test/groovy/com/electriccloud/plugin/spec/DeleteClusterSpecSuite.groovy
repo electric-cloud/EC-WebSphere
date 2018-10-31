@@ -46,6 +46,7 @@ class DeleteClusterSpecSuite extends PluginTestHelper {
             C366941: [ ids: 'C366941', description: 'delete running cluster with server '],
             C366942: [ ids: 'C366942', description: 'SyncNodes - 0'],
             C366943: [ ids: 'C366943', description: 'empty required fields'],
+            C366945: [ ids: 'C366945', description: 'empty required fields'],
     ]
 
     @Shared
@@ -53,7 +54,8 @@ class DeleteClusterSpecSuite extends PluginTestHelper {
             'default': "Cluster CLUSTERNAME has been deleted\n",
             'emptyConfig': "Configuration '' doesn't exist",
             'wrongConfig': "Configuration 'wrongConfig' doesn't exist",
-            'wrongCluster': "Failed to delete cluster.\nException: ADMG9216E: Cannot find cluster CLUSTERNAME.\n",
+            'wrongCluster': "Failed to delete cluster.\n" +
+                    "Error: Cluster CLUSTERNAME does not exist\n",
             'runningCluster': "Failed to delete cluster.\n" +
                     "Error: Cluster CLUSTERNAME can't be deleted because it is running.\n" +
                     "Deletion of running cluster may damage websphere instance and leads to undefined behaviour.\n" +
@@ -239,7 +241,7 @@ class DeleteClusterSpecSuite extends PluginTestHelper {
     }
 
     @Unroll
-    def "Delete Cluster - Negative #testCaseID.name #testCaseID.description"(){
+    def "Delete Cluster - Negative #testCaseID.ids #testCaseID.description"(){
         given: "Parameters for procedure"
         def runParams = [
             configname: conf,
@@ -267,9 +269,9 @@ class DeleteClusterSpecSuite extends PluginTestHelper {
         }
         where: 'The following params will be:'
         testCaseID | conf                    | clusterName     | syncNodes | status    | expectedSummary        | logs
-        TC.C366943 | confignames.correctSOAP | ''              | '1'       | 'error'   | summaries.wrongCluster | jobLogs.wrongCluster
+        TC.C366943 | confignames.correctSOAP | ''              | '1'       | 'error'   | summaries.wrongCluster | summaries.wrongCluster
         TC.C366943 | ''                      | 'DeleteCluster' | '1'       | 'error'   | summaries.emptyConfig  | [summaries.emptyConfig]
-        TC.C366945 | confignames.correctSOAP | ''              | '1'       | 'error'   | summaries.wrongCluster | jobLogs.wrongCluster
+        TC.C366945 | confignames.correctSOAP | 'Wrong'         | '1'       | 'error'   | summaries.wrongCluster | summaries.wrongCluster
         TC.C366945 | confignames.wrongConfig | 'DeleteCluster' | '1'       | 'error'   | summaries.wrongConfig  | [summaries.wrongConfig]        
     }
 
