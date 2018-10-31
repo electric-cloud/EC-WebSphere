@@ -176,9 +176,9 @@ class DeleteClusterSpecSuite extends PluginTestHelper {
         where: 'The following params will be:'
         testCaseID | conf                    | clusterName     | syncNodes | clusterType | clusterState | status    | expectedSummary   | logs
         TC.C366939 | confignames.correctSOAP | 'DeleteCluster' | '1'       | 'empty'     | 'stopped'    | 'success' | summaries.default | [summaries.default] + jobLogs.syncNodes
-        TC.C366942 | confignames.correctSOAP | 'DeleteCluster' | '0'       | 'empty'     | 'stopped'    | 'success' | summaries.default | [summaries.default] + jobLogs.noSyncNodes    
+        TC.C366942 | confignames.correctSOAP | 'DeleteCluster' | '0'       | 'empty'     | 'stopped'    | 'success' | summaries.default | [summaries.default] + jobLogs.noSyncNodes
         TC.C366940 | confignames.correctSOAP | 'DeleteCluster' | '1'       | 'notEmpty'  | 'stopped'    | 'success' | summaries.default | [summaries.default]
-        TC.C366941 | confignames.correctSOAP | 'DeleteCluster' | '1'       | 'notEmpty'  | 'run'        | 'success' | summaries.default | [summaries.default]          
+//        TC.C366941 | confignames.correctSOAP | 'DeleteCluster' | '1'       | 'notEmpty'  | 'run'        | 'success' | summaries.default | [summaries.default]
     }
 
     @Unroll
