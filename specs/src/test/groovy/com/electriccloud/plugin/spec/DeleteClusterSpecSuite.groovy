@@ -46,7 +46,7 @@ class DeleteClusterSpecSuite extends PluginTestHelper {
             C366941: [ ids: 'C366941', description: 'delete running cluster with server '],
             C366942: [ ids: 'C366942', description: 'SyncNodes - 0'],
             C366943: [ ids: 'C366943', description: 'empty required fields'],
-            C366945: [ ids: 'C366945', description: 'empty required fields'],
+            C366945: [ ids: 'C366945', description: 'wrong values'],
     ]
 
     @Shared
