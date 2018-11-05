@@ -74,8 +74,8 @@ class RemoveClusterMembersSpecSuite extends PluginTestHelper {
 
     @Shared
     def summaries = [
-            deleteTwoClusters: "Cluster member serverClusterMember02 on node ${nodes.default} has been removed from cluster CLUSTERNAME and deleted\n" +
-                    "Cluster member serverClusterMember01 on node ${nodes.default} has been removed from cluster CLUSTERNAME and deleted\n",
+            deleteTwoClusters: 'Cluster member serverClusterMember0(1|2)'+" on node ${nodes.default} has been removed from cluster CLUSTERNAME and deleted\n" +
+                    'Cluster member serverClusterMember0(1|2)'+" on node ${nodes.default} has been removed from cluster CLUSTERNAME and deleted\n",
             deleteOneCluster:  "Cluster member serverClusterMember1 on node ${nodes.default} has been removed from cluster CLUSTERNAME and deleted\n",
             deleteFirstCluster: "Cluster member FirstClusterServer on node ${nodes.default} has been removed from cluster CLUSTERNAME and deleted\n",
             deleteOneExtraMember: "Failed to remove cluster members.\n" +
@@ -253,7 +253,7 @@ class RemoveClusterMembersSpecSuite extends PluginTestHelper {
 
         verifyAll {
             outcome == status
-            jobSummary == expectedSummary.
+            jobSummary ==~ expectedSummary.
                     replace('CLUSTERNAME', clusterName)
             for (log in logs){
                 debugLog =~ log.
