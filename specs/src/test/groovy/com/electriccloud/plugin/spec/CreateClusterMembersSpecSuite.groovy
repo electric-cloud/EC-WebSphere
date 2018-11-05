@@ -78,8 +78,8 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
     @Shared
     def summaries = [
             'default': "Server serverClusterMember1 on node ${nodes.default} has been created and added to CLUSTERNAME cluster\n",
-            'twoMembers': "Server serverClusterMember02 on node ${nodes.default} has been created and added to CLUSTERNAME cluster\n"+
-            "Server serverClusterMember01 on node ${nodes.default} has been created and added to CLUSTERNAME cluster\n",
+            'twoMembers': 'Server serverClusterMember0(1|2) on node '+"${nodes.default} has been created and added to CLUSTERNAME cluster\n"+
+            'Server serverClusterMember0(1|2) on node '+"${nodes.default} has been created and added to CLUSTERNAME cluster\n",
             'emptyConfig': "Configuration '' doesn't exist",
             'emptyList': 'Failed to create a cluster members.\n' +
                     'Exception: Expected nodename:servername record, got\n' +
@@ -236,7 +236,7 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
         }
         verifyAll {
             outcome == status
-            jobSummary == expectedSummary.
+            jobSummary ==~ expectedSummary.
                     replace('CLUSTERNAME', clusterName)
             for (log in logs){
                 debugLog =~ log.
@@ -309,7 +309,7 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
 
         verifyAll {
             outcome == status
-            jobSummary == expectedSummary.
+            jobSummary ==~ expectedSummary.
                     replace('CLUSTERNAME', clusterName)
             for (log in logs){
                 debugLog =~ log.
@@ -501,7 +501,9 @@ for cluster in clusterList:
     for server in AdminClusterManagement.listClusterMembers(clusterName):
         info = AdminConfig.show(server)
         tmp = [x.encode("ascii").replace("\\\\r", "") for x in info.split("\\\\n")]
-        server_dict = dict((x[1:-1].split(" ")[0], x[1:-1].split(" ")[1],) for x in tmp)
+        server_dict = {}
+        for x in tmp:
+            server_dict[x[1:-1].split(" ")[0]] = x[1:-1].split(" ")[1]
         servers.append(server_dict)
     clusterInfo["servers"] = servers
 print clustersInfo\'\''''

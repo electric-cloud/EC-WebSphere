@@ -196,13 +196,13 @@ class CreateClusterSpecSuite extends PluginTestHelper {
 
     @Shared
     def summaries = [
-            'default': "Cluster CLUSTERNAME has been created\n",
+            'default': 'Cluster CLUSTERNAME has been created\n',
             'serverSource': "First cluster member SERVERNAME1 has been created on node NODENAME using server SERVERNAME2 on node NODENAME as source\n",
             'templateSource': "First cluster member SERVERNAME1 has been created on node NODENAME from template default\n",
             'convertSource': "Server convertServer on node NODENAME has been converted to be the first member of cluster CLUSTERNAME\n",
             'addMember': "Server serverC366970 on node NODENAME has been created and added as cluster member\n",
-            'addMembers': "Server serverC3669712 on node NODENAME has been created and added as cluster member\n" +
-                    "Server serverC3669711 on node NODENAME has been created and added as cluster member\n",
+            'addMembers': 'Server serverC366971(1|2) on node NODENAME has been created and added as cluster member\n' +
+                    'Server serverC366971(1|2) on node NODENAME has been created and added as cluster member\n',
             'emptyConfig': "Configuration '' doesn't exist",
             'emptyClusterName': "Failed to create a cluster.\n" +
                     "Exception: ADMF0002E: Required parameter clusterName is not found for command clusterConfig.\n",
@@ -315,7 +315,7 @@ class CreateClusterSpecSuite extends PluginTestHelper {
         }
         verifyAll {
             outcome == status
-            jobSummary == expectedSummary.
+            jobSummary ==~ expectedSummary.
                     replace('CLUSTERNAME', clusterName).
                     replace('SERVERNAME1', firstMemberName).
                     replace('SERVERNAME2', sourceServerName.isEmpty() ? "" : sourceServerName.split(":")[1]).
@@ -578,7 +578,9 @@ for cluster in clusterList:
     for server in AdminClusterManagement.listClusterMembers(clusterName):
         info = AdminConfig.show(server)
         tmp = [x.encode("ascii").replace("\\\\r", "") for x in info.split("\\\\n")]
-        server_dict = dict((x[1:-1].split(" ")[0], x[1:-1].split(" ")[1],) for x in tmp)
+        server_dict = {}
+        for x in tmp:
+            server_dict[x[1:-1].split(" ")[0]] = x[1:-1].split(" ")[1]
         servers.append(server_dict)
     clusterInfo["servers"] = servers
 print clustersInfo\'\''''

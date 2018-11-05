@@ -72,8 +72,8 @@ class ListClusterMembersSpecSuite extends PluginTestHelper {
                     "Server FirstClusterServer on node ${nodes.default}\n",
             'clusterWithAddServers': "Cluster CLUSTERNAME has following members:\n" +
                     "Server FirstClusterServer on node ${nodes.default}\n" +
-                    "Server serverClusterMember02 on node ${nodes.default}\n" +
-                    "Server serverClusterMember01 on node ${nodes.default}\n",
+                    'Server serverClusterMember0(1|2)'+" on node ${nodes.default}\n" +
+                    'Server serverClusterMember0(1|2)'+" on node ${nodes.default}\n",
             'emptyCluster': "Cluster CLUSTERNAME is empty\n",
             'emptyConfig': "Configuration '' doesn't exist",
             'emptyClusterName': "Failed to retrieve cluster members list.\n"+
@@ -93,7 +93,7 @@ class ListClusterMembersSpecSuite extends PluginTestHelper {
     @Shared
     def outputProperties = [
             clusterWithFirstMember: "${nodes.default}:FirstClusterServer",
-            clusterWithAddServers:  "${nodes.default}:FirstClusterServer,${nodes.default}:serverClusterMember02,${nodes.default}:serverClusterMember01",
+            clusterWithAddServers:  "${nodes.default}:FirstClusterServer,${nodes.default}:"+'serverClusterMember0(1|2),'+"${nodes.default}:"+'serverClusterMember0(1|2)',
             'emptyCluster': "",
     ]
 
@@ -214,10 +214,10 @@ class ListClusterMembersSpecSuite extends PluginTestHelper {
 
         verifyAll {
             outcome == status
-            jobSummary == expectedSummary.
+            jobSummary ==~ expectedSummary.
                     replace('CLUSTERNAME', clusterName)
             if (testCaseID != TC.C367447) {
-                output == expectedOutput
+                output ==~ expectedOutput
             }
             else {
                 jobProperties.'clusterMembers' == null

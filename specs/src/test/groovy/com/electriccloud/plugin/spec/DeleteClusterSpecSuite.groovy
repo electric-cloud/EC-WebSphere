@@ -64,7 +64,7 @@ class DeleteClusterSpecSuite extends PluginTestHelper {
 
     @Shared
     def jobLogs = [
-        syncNodes: ["Synchronizing configuration repository with nodes now", "The following nodes have been synchronized: websphere90ndNode01", "syncNodes = '''\n1"],
+        syncNodes: ["Synchronizing configuration repository with nodes now", "The following nodes have been synchronized: ${nodes.default}", "syncNodes = '''\n1"],
         noSyncNodes: ["syncNodes = '''\n0"],
         wrongCluster: ["Failed to delete cluster", "Exception: ADMG9216E: Cannot find cluster CLUSTERNAME"],        
                 ]    
