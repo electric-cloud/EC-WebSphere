@@ -170,7 +170,7 @@ class StopApplicationServers extends PluginTestHelper {
             'incorrectServers':"Failed to stop servers:\nFailed to stop server wrong_server1 on node $serverNode(\nADMF0003E: Invalid parameter value wrong_server1 for parameter serverName for command stopMiddlewareServer.)?",
             'incorrectWaitTime':"Wait time should be a positive integer, if present. Got: 9am",
             'zeroWaitTime':"Failed to stop servers:\nNode: $serverNode, Server: server1, State: (STOPPING|STARTED)\nSome servers are failed to stop",
-            'zeroWaitTimeMultiple':"Failed to stop servers:\nNode: $serverNode, Server: server1, State: (STOPPING|STARTED)\nSome servers are failed to stop"
+            'zeroWaitTimeMultiple':"Failed to stop servers:\nNode: $serverNode, Server: server1, State: (STOPPING|STARTED)\nNode: $serverNode, Server: serverStopAppServer, State: (STOPPING|STARTED)\nSome servers are failed to stop"
     ]
 
     def doSetupSpec() {
@@ -370,6 +370,11 @@ class StopApplicationServers extends PluginTestHelper {
         for (log in logs){
             assert debugLog =~ log
         }
+        cleanup:
+        if (testCaseID.name=='C363351'){
+            runParams.wasWaitTime = '50'
+            runProcedure(runParams)
+        }
         where: 'The following params will be:'
         testCaseID             | configName              | serverList                  | timeout   | expectedSummary                  | logs                           | expectedOutcome | startedServers
         testCases.systemTest9  | ''                      | serverLists.'default'       | '300'     | errors.emptyConfig               | jobLogs.error_empty_config     | 'error'         | null
@@ -380,7 +385,7 @@ class StopApplicationServers extends PluginTestHelper {
         testCases.systemTest14 | confignames.correctSOAP | serverLists.'wrongServers'  | '300'     | errors.incorrectServers          | jobLogs.error_Server           | 'error'         | serverLists.second
         testCases.systemTest15 | confignames.correctSOAP | serverLists.'default'       | '9am'     | errors.incorrectWaitTime         | jobLogs.error_WaitTime         | 'error'         | serverLists.default
         testCases.systemTest16 | confignames.correctSOAP | serverLists.'default'       | '0'       | errors.zeroWaitTime              | jobLogs.error                  | 'error'         | serverLists.default
-        testCases.systemTest17 | confignames.correctSOAP | serverLists.'multiple'      | '0'       | errors.zeroWaitTimeMultiple      | jobLogs.error_both             | 'error'         | serverLists.'multiple'
+        testCases.systemTest17 | confignames.correctSOAP | serverLists.'multiple'      | '0'       | errors.zeroWaitTimeMultiple      | [errors.zeroWaitTimeMultiple]  | 'error'         | serverLists.'multiple'
     }
     def startApplicationServer(serverList){
         def runParams = [
