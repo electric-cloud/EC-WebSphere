@@ -192,7 +192,7 @@ class StopClusterSpecSuite extends PluginTestHelper {
         def outcome = getJobProperty('/myJob/outcome', result.jobId)
         def jobSummary = getJobProperty("/myJob/jobSteps/$procStopCluster/summary", result.jobId)
         def debugLog = getJobLogs(result.jobId)
-        def clusterState = getClusterState()
+        def clusterState = getClusterState(clusterName)
 
         verifyAll {
             outcome == status
@@ -270,13 +270,13 @@ class StopClusterSpecSuite extends PluginTestHelper {
         TC.C367307 | confignames.correctSOAP | 'wrongCluster'        | '300'   | '0'         | 'stopped'    | 'error'   | summaries.wrongCluster | [summaries.wrongCluster]
     }
 
-    def getClusterState(){
+    def getClusterState(def clusterName){
         def cell = wasHost + "Cell01"
         if (is_windows == "1"){
             cell = wasHost.toUpperCase() + "Cell01"
         }
         def script = """\'\'
-cluster = AdminControl.completeObjectName('cell=${cell},type=Cluster,name=StartCluster,*')
+cluster = AdminControl.completeObjectName('cell=${cell},type=Cluster,name=${clusterName},*')
 info = AdminControl.getAttribute(cluster, "state")
 print info.encode("ascii").split('.')[2]\'\'"""
 

@@ -46,6 +46,7 @@ class DeleteClusterSpecSuite extends PluginTestHelper {
             C366941: [ ids: 'C366941', description: 'delete running cluster with server '],
             C366942: [ ids: 'C366942', description: 'SyncNodes - 0'],
             C366943: [ ids: 'C366943', description: 'empty required fields'],
+            C366945: [ ids: 'C366945', description: 'wrong values'],
     ]
 
     @Shared
@@ -53,7 +54,12 @@ class DeleteClusterSpecSuite extends PluginTestHelper {
             'default': "Cluster CLUSTERNAME has been deleted\n",
             'emptyConfig': "Configuration '' doesn't exist",
             'wrongConfig': "Configuration 'wrongConfig' doesn't exist",
-            'wrongCluster': "Failed to delete cluster.\nException: ADMG9216E: Cannot find cluster CLUSTERNAME.\n",
+            'wrongCluster': "Failed to delete cluster.\n" +
+                    "Error: Cluster CLUSTERNAME does not exist\n",
+            'runningCluster': "Failed to delete cluster.\n" +
+                    "Error: Cluster CLUSTERNAME can't be deleted because it is running.\n" +
+                    "Deletion of running cluster may damage websphere instance and leads to undefined behaviour.\n" +
+                    "Please, stop your cluster first.\n"
     ]
 
     @Shared
@@ -67,6 +73,7 @@ class DeleteClusterSpecSuite extends PluginTestHelper {
     def procCreateCluster = 'CreateCluster',
         procDeleteCluster = 'DeleteCluster',
         procStartCluster = 'StartCluster',
+        procStopCluster = 'StopCluster',
         procRunJob = 'RunCustomJob',
         projectName = "EC-WebSphere Specs $procDeleteCluster Project"
 
@@ -128,6 +135,16 @@ class DeleteClusterSpecSuite extends PluginTestHelper {
                                                             ]
         ])
 
+        importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
+                                                            resName : wasResourceName,
+                                                            procName: procStopCluster,
+                                                            params  : [
+                                                                    configName: '',
+                                                                    wasClusterName: '',
+                                                                    wasTimeout: '',
+                                                                    wasRippleStart: ''
+                                                            ]
+        ])
 
 
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
@@ -178,11 +195,53 @@ class DeleteClusterSpecSuite extends PluginTestHelper {
         TC.C366939 | confignames.correctSOAP | 'DeleteCluster' | '1'       | 'empty'     | 'stopped'    | 'success' | summaries.default | [summaries.default] + jobLogs.syncNodes
         TC.C366942 | confignames.correctSOAP | 'DeleteCluster' | '0'       | 'empty'     | 'stopped'    | 'success' | summaries.default | [summaries.default] + jobLogs.noSyncNodes
         TC.C366940 | confignames.correctSOAP | 'DeleteCluster' | '1'       | 'notEmpty'  | 'stopped'    | 'success' | summaries.default | [summaries.default]
-//        TC.C366941 | confignames.correctSOAP | 'DeleteCluster' | '1'       | 'notEmpty'  | 'run'        | 'success' | summaries.default | [summaries.default]
     }
 
     @Unroll
-    def "Delete Cluster - Negative #testCaseID.name #testCaseID.description"(){
+    def "Delete Cluster running cluster #testCaseID.id #testCaseID.description"(){
+        def numberOfTest = specificationContext.currentIteration.parent.iterationNameProvider.iterationCount
+        clusterName += numberOfTest
+
+        given: "Create Test Cluster"
+        createCluster(clusterName, clusterType)
+        startCluster(clusterName)
+
+        and: "Parameters for procedure"
+        def runParams = [
+                configname: conf,
+                wasClusterName: clusterName,
+                wasSyncNodes: syncNodes,
+        ]
+
+        when: "Run procedure and wait until job is completed"
+        def result = runProcedure(runParams)
+
+        then: "Get and compare results"
+        def outcome = getJobProperty('/myJob/outcome', result.jobId)
+        def jobSummary = getJobProperty("/myJob/jobSteps/$procDeleteCluster/summary", result.jobId)
+        def debugLog = getJobLogs(result.jobId)
+
+        verifyAll {
+            assert outcome == status
+            assert jobSummary == expectedSummary
+                    .replace('CLUSTERNAME', clusterName)
+
+            for (log in logs){
+                assert debugLog =~ log
+                        .replace('CLUSTERNAME', clusterName)
+            }
+            assert doesClusterExist(clusterName) == 'true'
+        }
+        cleanup: "Stop and delete cluster"
+        stopCluster(clusterName)
+        runProcedure(runParams)
+        where: 'The following params will be:'
+        testCaseID | conf                    | clusterName            | syncNodes | clusterType | status    | expectedSummary          | logs
+        TC.C366941 | confignames.correctSOAP | 'DeleteRunningCluster' | '1'       | 'notEmpty'  | 'error'   | summaries.runningCluster | [summaries.runningCluster]
+    }
+
+    @Unroll
+    def "Delete Cluster - Negative #testCaseID.ids #testCaseID.description"(){
         given: "Parameters for procedure"
         def runParams = [
             configname: conf,
@@ -210,9 +269,9 @@ class DeleteClusterSpecSuite extends PluginTestHelper {
         }
         where: 'The following params will be:'
         testCaseID | conf                    | clusterName     | syncNodes | status    | expectedSummary        | logs
-        TC.C366943 | confignames.correctSOAP | ''              | '1'       | 'error'   | summaries.wrongCluster | jobLogs.wrongCluster
+        TC.C366943 | confignames.correctSOAP | ''              | '1'       | 'error'   | summaries.wrongCluster | summaries.wrongCluster
         TC.C366943 | ''                      | 'DeleteCluster' | '1'       | 'error'   | summaries.emptyConfig  | [summaries.emptyConfig]
-        TC.C366945 | confignames.correctSOAP | ''              | '1'       | 'error'   | summaries.wrongCluster | jobLogs.wrongCluster
+        TC.C366945 | confignames.correctSOAP | 'Wrong'         | '1'       | 'error'   | summaries.wrongCluster | summaries.wrongCluster
         TC.C366945 | confignames.wrongConfig | 'DeleteCluster' | '1'       | 'error'   | summaries.wrongConfig  | [summaries.wrongConfig]        
     }
 
@@ -272,6 +331,15 @@ class DeleteClusterSpecSuite extends PluginTestHelper {
         return debugLog.split('\n')[-1]
     }
 
+    def stopCluster(def clusterName){
+        def runParams = [
+                configName: confignames.correctSOAP,
+                wasClusterName: clusterName,
+                wasTimeout: '60',
+                wasRippleStart: '0'
+        ]
+        runProcedure(runParams, procStopCluster)
+    }
 
     def runProcedure(def parameters, def procedureName=procDeleteCluster) {
         def parametersString = parameters.collect { k, v -> "$k: '$v'" }.join(', ')
