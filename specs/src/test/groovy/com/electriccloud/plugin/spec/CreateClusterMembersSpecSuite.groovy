@@ -78,8 +78,8 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
     @Shared
     def summaries = [
             'default': "Server serverClusterMember1 on node ${nodes.default} has been created and added to CLUSTERNAME cluster\n",
-            'twoMembers': "Server serverClusterMember02 on node ${nodes.default} has been created and added to CLUSTERNAME cluster\n"+
-            "Server serverClusterMember01 on node ${nodes.default} has been created and added to CLUSTERNAME cluster\n",
+            'twoMembers': 'Server serverClusterMember0(1|2) on node '+"${nodes.default} has been created and added to CLUSTERNAME cluster\n"+
+            'Server serverClusterMember0(1|2) on node '+"${nodes.default} has been created and added to CLUSTERNAME cluster\n",
             'emptyConfig': "Configuration '' doesn't exist",
             'emptyList': 'Failed to create a cluster members.\n' +
                     'Exception: Expected nodename:servername record, got\n' +
@@ -236,7 +236,7 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
         }
         verifyAll {
             outcome == status
-            jobSummary == expectedSummary.
+            jobSummary ==~ expectedSummary.
                     replace('CLUSTERNAME', clusterName)
             for (log in logs){
                 debugLog =~ log.
@@ -309,7 +309,7 @@ class CreateClusterMembersSpecSuite extends PluginTestHelper {
 
         verifyAll {
             outcome == status
-            jobSummary == expectedSummary.
+            jobSummary ==~ expectedSummary.
                     replace('CLUSTERNAME', clusterName)
             for (log in logs){
                 debugLog =~ log.
