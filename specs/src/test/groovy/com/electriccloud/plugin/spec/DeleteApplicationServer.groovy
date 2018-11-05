@@ -212,7 +212,7 @@ class DeleteApplicationServer extends PluginTestHelper {
         testCases.C363368   | 'incorrectConfig' | serverName    | serverNode  | '1'       | summaries.error_config         | jobLogs.error_config         | 'error'         | null
         testCases.C363369   | configname        | 'notExist'    | serverNode  | '1'       | summaries.error_not_ex_s_name  | jobLogs.error_not_ex_s_name  | 'error'         | null
         testCases.C363372   | configname        | serverName    | 'notExist'  | '1'       | summaries.error_not_ex_node    | jobLogs.error_not_ex_node    | 'error'         | null
-        testCases.C363854   | configname        | serverName    | serverNode  | '1'       | summaries.default              | jobLogs.default_cynch        | 'success'       | 1
+//        testCases.C363854   | configname        | serverName    | serverNode  | '1'       | summaries.default              | jobLogs.default_cynch        | 'success'       | 1
     }
 
     def createAppServer(node,server){
