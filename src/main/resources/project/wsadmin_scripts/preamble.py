@@ -469,18 +469,18 @@ def createClusterMemberWrapper(params):
             firstMember.append(params['firstMember'][k])
         additionParams.append(firstMember)
 
-    if 'memberWeight' in params and params['memberWeight']:
+    if 'memberWeight' in params.keys() and params['memberWeight']:
         additionParams['memberConfig']['-memberWeight'] = params['memberWeight']
 
     return AdminTask.createClusterMember(additionParams)
     
         
 def createClusterMembers(params):
-    if 'clusterName' not in params:
+    if 'clusterName' not in params.keys():
         raise ValueError('clusterName key is mandatory')
-    if 'targetNode' not in params:
+    if 'targetNode' not in params.keys():
         raise ValueError('targetNode is mandatory')
-    if 'targetName' not in params:
+    if 'targetName' not in params.keys():
         raise ValueError('targetName is mandatory')
     
     creationParams = {
@@ -509,16 +509,14 @@ def createFirstClusterMember(params):
         bailOut('Missing Target Node for 1st cluster member creation')
     if 'targetServer' not in params.keys():
         bailOut('Missing Target Server for 1st cluster member creation')
-
     if params['creationPolicy'] == 'existing':
-        if 'sourceNode' not in params or params['sourceNode'] == '':
+        if 'sourceNode' not in params.keys() or params['sourceNode'] == '':
             bailOut('Source Node is mandatory')
-        if 'sourceServer' not in params or params['sourceServer'] == '':
+        if 'sourceServer' not in params.keys() or params['sourceServer'] == '':
             bailOut('Source Server is mandatory')
     elif params['creationPolicy'] == 'template' and 'templateName' not in params.keys():
         bailOut('TemplateName is mandatory when creationPolicty is set to template')
-
-    if 'resourcesScope' not in params:
+    if 'resourcesScope' not in params.keys():
         bailOut("Missing resourcesScope parameter")
     creationPolicy = params['creationPolicy']
     additionParams = {
@@ -532,10 +530,9 @@ def createFirstClusterMember(params):
         }
     }
 
-    if 'memberWeight' in params and params['memberWeight']:
+    if 'memberWeight' in params.keys() and params['memberWeight']:
         additionParams['memberConfig']['-memberWeight'] = params['memberWeight']
-
-    if 'genUniquePorts' in params:
+    if 'genUniquePorts' in params.keys():
         gup = params['genUniquePorts']
         if gup not in ['true', 'false']:
             gup = toBooleanString(gup)
@@ -546,7 +543,6 @@ def createFirstClusterMember(params):
     else:
         additionParams['firstMember']['-templateServerNode'] = params['sourceNode']
         additionParams['firstMember']['-templateServerName'] = params['sourceServer']
-    
     return createClusterMemberWrapper(additionParams)
 
 def is_8_0_0(nodeName):
