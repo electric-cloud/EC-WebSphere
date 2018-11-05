@@ -350,16 +350,23 @@ def getServersInNode(desiredNodeName, opts):
             retval.append(serverName)
     return retval
 
+def uniqueList(l):
+  x = []
+  for a in l:
+    if a not in x:
+      x.append(a)
+  return x
+
 # This function parses pairs in format nodename:servername into python dict.
 def parseServerListAsDict(servers, opts):
     res = []
     for nextArgument in re.split(',', servers):
         res.append(nextArgument.strip())
     if 'filterUnique' in opts.keys() and opts['filterUnique'] == 1:
-        tempSet = set(res)
-        if len(tempSet) != len(res):
+        tempLen = len(res)
+        res = uniqueList(res)
+        if tempLen != len(res):
             logWarning('WARNING: Non-unique servers are detected')
-        res = list(tempSet)
     retval = {}
     for serverString in res:
         server = re.split(':', serverString)
@@ -482,7 +489,6 @@ def createClusterMembers(params):
         raise ValueError('targetNode is mandatory')
     if 'targetName' not in params.keys():
         raise ValueError('targetName is mandatory')
-    
     creationParams = {
         'clusterName': params['clusterName'],
         'memberConfig': {
@@ -490,10 +496,10 @@ def createClusterMembers(params):
             '-memberNode': params['targetNode']
         }
     }
-    if 'memberWeight' in params and params['memberWeight']:
+    if 'memberWeight' in params.keys() and params['memberWeight']:
         creationParams['memberConfig']['-memberWeight'] = params['memberWeight']
 
-    if 'genUniquePorts' in params:
+    if 'genUniquePorts' in params.keys():
         creationParams['memberConfig']['-genUniquePorts'] = toBooleanString(params['genUniquePorts'])
     return createClusterMemberWrapper(creationParams)
     
