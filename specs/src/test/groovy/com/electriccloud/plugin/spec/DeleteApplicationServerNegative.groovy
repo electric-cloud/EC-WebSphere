@@ -83,9 +83,9 @@ class DeleteApplicationServerNegative extends PluginTestHelper {
     @Shared
     def exs = [
         wrongConfig: "Configuration '$pluginConfigurationNames.incorrect' doesn't exist",
-        wrongNode: "Failed to delete application server $serverNames.correct on node $nodeNames.incorrect",
-        wrongServer: "Failed to delete application server $serverNames.incorrect on node $nodeNames.correct",
-        allWrong: "Failed to delete application server $serverNames.incorrect on node $nodeNames.incorrect",
+        wrongNode: "Failed to delete an application server.\nError: Server $nodeNames.incorrect:$serverNames.correct does not exist",
+        wrongServer: "Failed to delete an application server.\nError: Server $nodeNames.correct:$serverNames.incorrect does not exist",
+        allWrong: "Failed to delete an application server.\nError: Server $nodeNames.incorrect:$serverNames.incorrect does not exist",
     ]
 
     /**
