@@ -42,6 +42,8 @@ class DeleteApplicationServer extends PluginTestHelper {
     def procStartServer = 'StartApplicationServers'
     @Shared
     def projectName = "EC-WebSphere Specs $procName Project"
+    @Shared
+    def procStopServer = 'StopApplicationServers'
 
     @Shared
     String invalidServer = "\\!\\#\\*\\&server1"
@@ -93,13 +95,16 @@ class DeleteApplicationServer extends PluginTestHelper {
             'default': "Application server $serverName on node $serverNode has been deleted\n",
             'error_config_empty': "Configuration '' doesn't exist",
             'error_config': "Configuration 'incorrectConfig' doesn't exist",
-            'error_empty_s_name': "Failed to delete application server  on node $serverNode\nException: WASL6041E: The following argument value is not valid: serverName:.",
-            'error_empty_node': "Failed to delete application server $serverName on node \nException: WASL6041E: The following argument value is not valid: nodeName:.",
-            'error_invalid_node': "Failed to delete application server $serverName on node !#*&Node1\nException: WASL6040E: The nodeName:!#*&Node1 specified argument does not exist.",
-            'error_not_ex_node': "Failed to delete application server $serverName on node notExist\nException: WASL6040E: The nodeName:notExist specified argument does not exist.",
-            'error_invalid_s_name': "Failed to delete application server !#*&server1 on node $serverNode\nException: WASL6040E: The serverName:!#*&server1 specified argument does not exist.",
-            'error_not_ex_s_name': "Failed to delete application server notExist on node $serverNode\nException: WASL6040E: The serverName:notExist specified argument does not exist.",
-
+            'error_empty_s_name':   "Failed to delete application server  on node $serverNode\nException: WASL6041E: The following argument value is not valid: serverName:.",
+            'error_empty_node':     "Failed to delete an application server.\nError: Server :serverDeleteApplicationServer does not exist",
+            'error_invalid_node':   "Failed to delete an application server.\nError: Server !#*&Node1:serverDeleteApplicationServer does not exist",
+            'error_not_ex_node':    "Failed to delete an application server.\nError: Server notExist:serverDeleteApplicationServer does not exist",
+            'error_invalid_s_name': "Failed to delete an application server.\nError: Server $serverNode:!#*&server1 does not exist",
+            'error_not_ex_s_name':  "Failed to delete an application server.\nError: Server $serverNode:notExist does not exist",
+            'delete_running_server': "Failed to delete an application server.\n" +
+                    "Error: Server $serverNode:serverDeleteApplicationServer can't be deleted because it is running.\n" +
+                    "Deletion of running server may damage websphere instance and leads to undefined behaviour.\n" +
+                    "Please, stop your server first.\n",
     ]
 
     @Shared
@@ -108,9 +113,9 @@ class DeleteApplicationServer extends PluginTestHelper {
            'default_no_cynch':  ['success',"Application server $serverName on node $serverNode has been deleted"],
            'error_empty_node':  ['error',"Failed to delete application server $serverName on node ","Exception: WASL6041E: The following argument value is not valid: nodeName:."],
            'error_empty_s_name':  ['error',"Failed to delete application server  on node $serverNode","Exception: WASL6041E: The following argument value is not valid: serverName:."],
-           'error_invalid_node':  ['error',"Failed to delete application server $serverName on node $invalidNode","Exception: WASL6040E: The nodeName:$invalidNode specified argument does not exist."],
+           'error_invalid_node':  ['error',"Error: Server $invalidNode:serverDeleteApplicationServer does not exist"],
            'error_not_ex_node':  ['error',"Failed to delete application server $serverName on node notExist","Exception: WASL6040E: The nodeName:notExist specified argument does not exist."],
-           'error_invalid_s_name':  ['error',"Failed to delete application server $invalidServer on node $serverNode","Exception: WASL6040E: The serverName:$invalidServer specified argument does not exist."],
+           'error_invalid_s_name':  ['error',"Error: Server $serverNode:$invalidServer does not exist"],
            'error_not_ex_s_name':  ['error',"Failed to delete application server notExist on node $serverNode","Exception: WASL6040E: The serverName:notExist specified argument does not exist."],
            'error_config':  ["Error: Configuration ('incorrectConfig'|'') doesn't exist"],
     ]
@@ -151,6 +156,15 @@ class DeleteApplicationServer extends PluginTestHelper {
         importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
                                                             resName : wasResourceName,
                                                             procName: procStartServer,
+                                                            params  : [
+                                                                    configname: '',
+                                                                    wasServersList: '',
+                                                                    wasWaitTime: '',
+                                                            ]
+        ])
+        importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
+                                                            resName : wasResourceName,
+                                                            procName: procStopServer,
                                                             params  : [
                                                                     configname: '',
                                                                     wasServersList: '',
@@ -198,21 +212,26 @@ class DeleteApplicationServer extends PluginTestHelper {
         for (log in logs) {
             assert debugLog =~ log
         }
+        cleanup:
+        if (testCaseID.id == 'C363854'){
+            stopApplicationServer("$node:$server")
+            runProcedure(runParams)
+        }
 
         where: 'The following params will be:'
         testCaseID          | configName        | server        | node        | syncNodes | expectedSummary                | logs                         | expectedOutcome | createServer
         testCases.C363364   | configname        | serverName    | serverNode  | '1'       | summaries.default              | jobLogs.default_cynch        | 'success'       | 1
         testCases.C363365   | configname        | serverName    | serverNode  | '0'       | summaries.default              | jobLogs.default_no_cynch     | 'success'       | 1
         testCases.C363366_1 | ''                | serverName    | serverNode  | '1'       | summaries.error_config_empty   | jobLogs.error_config         | 'error'         | null
-        testCases.C363366_2 | configname        | serverName    | ''          | '1'       | summaries.error_empty_node     | jobLogs.error_empty_node     | 'error'         | null
-        testCases.C363366_3 | configname        | ''            | serverNode  | '1'       | summaries.error_empty_s_name   | jobLogs.error_empty_s_name   | 'error'         | null
+        testCases.C363366_2 | configname        | serverName    | ''          | '1'       | summaries.error_empty_node     | [summaries.error_empty_node]   | 'error'         | null
+        testCases.C363366_3 | configname        | ''            | serverNode  | '1'       | summaries.error_empty_s_name   | [summaries.error_empty_s_name] | 'error'         | null
         testCases.C363366_4 | configname        | serverName    | serverNode  | ''        | summaries.default              | jobLogs.default_no_cynch     | 'success'       | 1
-        testCases.C363370_1 | configname        | serverName    | '!#*&Node1' | '1'       | summaries.error_invalid_node   | jobLogs.error_invalid_node   | 'error'         | null
-        testCases.C363370_2 | configname        | '!#*&server1' | serverNode  | '1'       | summaries.error_invalid_s_name | jobLogs.error_invalid_s_name | 'error'         | null
+        testCases.C363370_1 | configname        | serverName    | '!#*&Node1' | '1'       | summaries.error_invalid_node   | jobLogs.error_invalid_node    | 'error'         | null
+        testCases.C363370_2 | configname        | '!#*&server1' | serverNode  | '1'       | summaries.error_invalid_s_name | jobLogs.error_invalid_s_name  | 'error'         | null
         testCases.C363368   | 'incorrectConfig' | serverName    | serverNode  | '1'       | summaries.error_config         | jobLogs.error_config         | 'error'         | null
-        testCases.C363369   | configname        | 'notExist'    | serverNode  | '1'       | summaries.error_not_ex_s_name  | jobLogs.error_not_ex_s_name  | 'error'         | null
-        testCases.C363372   | configname        | serverName    | 'notExist'  | '1'       | summaries.error_not_ex_node    | jobLogs.error_not_ex_node    | 'error'         | null
-//        testCases.C363854   | configname        | serverName    | serverNode  | '1'       | summaries.default              | jobLogs.default_cynch        | 'success'       | 1
+        testCases.C363369   | configname        | 'notExist'    | serverNode  | '1'       | summaries.error_not_ex_s_name  | [summaries.error_not_ex_s_name]  | 'error'         | null
+        testCases.C363372   | configname        | serverName    | 'notExist'  | '1'       | summaries.error_not_ex_node    | [summaries.error_not_ex_node]    | 'error'         | null
+        testCases.C363854   | configname        | serverName    | serverNode  | '1'       | summaries.delete_running_server| [summaries.delete_running_server]| 'error'       | 1
     }
 
     def createAppServer(node,server){
@@ -237,6 +256,15 @@ class DeleteApplicationServer extends PluginTestHelper {
                 wasWaitTime: '300',
         ]
         runProcedure(runParams, procStartServer)
+    }
+
+    def stopApplicationServer(serverList){
+        def runParams = [
+                configname: configname,
+                wasServersList: serverList,
+                wasWaitTime: '300',
+        ]
+        runProcedure(runParams, procStopServer)
     }
 
     def runProcedure(def parameters, def procedureName=procName) {
