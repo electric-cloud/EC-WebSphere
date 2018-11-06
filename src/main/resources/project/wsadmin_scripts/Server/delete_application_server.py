@@ -11,7 +11,7 @@ $[wasSyncNodes]
 '''.strip()
 
 if not isServerExists(nodeName, appServerName):
-    bailOut("Server %s:%s does not exist", % (nodeName, serverName))
+    bailOut("Server %s:%s does not exist" % (nodeName, appServerName))
     
 serverStatus = showServerStatus(nodeName, appServerName)
 if serverStatus == '':
