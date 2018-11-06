@@ -7479,7 +7479,10 @@
             <formalParameter>
                 <formalParameterName>wasClusterMembersGenUniquePorts</formalParameterName>
                 <defaultValue/>
-                <description></description>
+                <description>
+                    By default ports generated during cluster members creation will be created uniquely.
+                    If not checked ports in template will be used as is for server creation.
+                </description>
                 <required>0</required>
                 <type>checkbox</type>
             </formalParameter>
@@ -7610,7 +7613,7 @@
             <formalParameter>
                 <formalParameterName>wasOutputPropertyPath</formalParameterName>
                 <defaultValue>/myJob/clusterMembers</defaultValue>
-                <description>Path where </description>
+                <description>Property where cluster members list is to be stored.</description>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>

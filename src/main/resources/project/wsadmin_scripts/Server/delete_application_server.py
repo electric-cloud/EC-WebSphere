@@ -10,10 +10,14 @@ syncNodes = '''
 $[wasSyncNodes]
 '''.strip()
 
+if not isServerExists(nodeName, appServerName):
+    bailOut("Server %s:%s does not exist" % (nodeName, appServerName))
+    
 serverStatus = showServerStatus(nodeName, appServerName)
+if serverStatus == '':
+    bailOut("Server %s:%s is in undefined state and can't be deleted" % (nodeName, appServerName))
 if serverStatus != 'Stopped':
     bailOut("Server %s:%s can't be deleted because it is running.\nDeletion of running server may damage websphere instance and leads to undefined behaviour.\nPlease, stop your server first." % (nodeName, appServerName))
-    sys.exit(1)
 
 try:
     AdminServerManagement.deleteServer(nodeName, appServerName)
