@@ -14,7 +14,7 @@
     <h1>@PLUGIN_KEY@</h1>
     <p>Plugin version @PLUGIN_VERSION@</p>
     
-    <p>Revised on November 06, 2018</p>
+    <p>Revised on November 09, 2018</p>
     
     <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade"/>
     <h1>Contents</h1>
@@ -1489,7 +1489,7 @@ Next, to make it available on each server it should be propagated to all servers
 
         
         
-        <p>Creates first cluster member</p>
+        <p>Creates the First Cluster Member of an existing cluster.</p>
         
         
         <h3>CreateFirstClusterMember Parameters</h3>
@@ -1514,26 +1514,30 @@ Next, to make it available on each server it should be propagated to all servers
             
             <tr>
                 <td class="required">First Cluster Member Name</td>
-                <td>Name of the server that will be a first cluster member.</td>
+                <td>
+            Server Name of first cluster member.
+        </td>
             </tr>
             
             <tr>
                 <td class="required">First Cluster Member Node</td>
                 <td>
-            Name of the server that will be created as a first cluster member.
+            Node Name of first cluster member.
         </td>
             </tr>
             
             <tr>
                 <td >First Cluster Member Weight</td>
-                <td>Weight of each cluster member from list.</td>
+                <td>
+            Weight of first cluster member.
+        </td>
             </tr>
             
             <tr>
                 <td >Generate Unique Ports for First Cluster Member?</td>
                 <td>
-            By default ports generated during for first cluster member creation will be created uniquely.
-            If not checked ports in template will be used as is for server creation.
+            By default the port generated for first cluster member will be created uniquely.
+            If this option is not checked, ports in template will be used as is.
         </td>
             </tr>
             
@@ -1551,9 +1555,9 @@ Next, to make it available on each server it should be propagated to all servers
             <tr>
                 <td class="required">First Cluster Member Creation Policy</td>
                 <td>
-            Controls how 1st cluster member is to be created?
-            Existing - use existing server as template
-            Template - use app server template to create 1st cluster member
+            Controls how first cluster member is created. The values mean the following.
+            Existing - Use existing server
+            Template - Use app server template to create first cluster member
         </td>
             </tr>
             
@@ -1612,7 +1616,7 @@ Next, to make it available on each server it should be propagated to all servers
 
         
         
-        <p>Creates cluster members </p>
+        <p>Creates members under an existing cluster.</p>
         
         
         <h3>CreateClusterMembers Parameters</h3>
@@ -1646,8 +1650,8 @@ Next, to make it available on each server it should be propagated to all servers
             </tr>
             
             <tr>
-                <td class="required">List of the Cluster Members</td>
-                <td>List of the cluster members</td>
+                <td class="required">List of Cluster Members</td>
+                <td>List of cluster members.</td>
             </tr>
             
             <tr>
@@ -5301,12 +5305,12 @@ A context root for each web module is defined in the application deployment desc
     <h3>@PLUGIN_KEY@ 2.6.0</h3>
     <ul>
         
-        <li>Following new procedures have been added to support application server clusters management:
+        <li>Following new procedures have been added to support management of clusters:
   <ul>
     <li><a href="#CreateFirstClusterMember">CreateFirstClusterMember</a></li>
     <li><a href="#CreateClusterMembers">CreateClusterMembers</a></li>
   </ul>
-Following procedures have been refactored and improved:
+The Interface for the Following procedures have been Improved (for moving WSADMIN path to configuration, decoupling Application deployment from  Start, Ability to sync nodes etc.,)
   <ul>
     <li><a href="#StartCluster">StartCluster</a></li>
     <li><a href="#StopCluster">StopCluster</a></li>
@@ -5315,7 +5319,7 @@ Following procedures have been refactored and improved:
     <li><a href="#ListClusterMembers">ListClusterMembers</a></li>
     <li><a href="#ListClusterMembers">RemoveClusterMembers</a></li>
   </ul>
-  Error handling has been improved.
+Error Reporting has been improved by leveraging postp to capture granular error messages in Diagnostics.
 </li>
         
     </ul>
