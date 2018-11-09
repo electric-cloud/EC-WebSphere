@@ -1,11 +1,11 @@
 2.6.0:
   - |
-    Following new procedures have been added to support application server clusters management:
+    Following new procedures have been added to support management of clusters:
       <ul>
         <li><a href="#CreateFirstClusterMember">CreateFirstClusterMember</a></li>
         <li><a href="#CreateClusterMembers">CreateClusterMembers</a></li>
       </ul>
-    Following procedures have been refactored and improved:
+    The Interface for the Following procedures have been Improved (for moving WSADMIN path to configuration, decoupling Application deployment from  Start, Ability to sync nodes etc.,)
       <ul>
         <li><a href="#StartCluster">StartCluster</a></li>
         <li><a href="#StopCluster">StopCluster</a></li>
@@ -14,7 +14,7 @@
         <li><a href="#ListClusterMembers">ListClusterMembers</a></li>
         <li><a href="#ListClusterMembers">RemoveClusterMembers</a></li>
       </ul>
-      Error handling has been improved.
+    Error Reporting has been improved by leveraging postp to capture granular error messages in Diagnostics.
 2.5.0:
   - |
     Following New procedures have been added to support application server management:

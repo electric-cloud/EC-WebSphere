@@ -55,11 +55,11 @@ limitations under the License.
         <documentation>Weight of each cluster member</documentation>
     </formElement>
     <formElement>
-        <label>List of the Cluster Members:</label>
+        <label>List of Cluster Members:</label>
         <property>wasClusterMembersList</property>
         <type>textarea</type>
         <required>1</required>
-        <documentation>List of the cluster members</documentation>
+        <documentation>List of cluster members.</documentation>
     </formElement>
     <formElement>
         <label>Sync Nodes?:</label>
