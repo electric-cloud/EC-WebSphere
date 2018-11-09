@@ -42,7 +42,9 @@ limitations under the License.
         <property>wasFirstClusterMemberName</property>
         <type>entry</type>
         <required>1</required>
-        <documentation>Name of the server that will be a first cluster member.</documentation>
+        <documentation>
+            Server Name of first cluster member.
+        </documentation>
     </formElement>
     <formElement>
         <label>First Cluster Member Node:</label>
@@ -50,7 +52,7 @@ limitations under the License.
         <type>entry</type>
         <required>1</required>
         <documentation>
-            Name of the server that will be created as a first cluster member.
+            Node Name of first cluster member.
         </documentation>
     </formElement>
     <formElement>
@@ -58,7 +60,9 @@ limitations under the License.
         <property>wasFirstClusterMemberWeight</property>
         <type>entry</type>
         <required>0</required>
-        <documentation>Weight of each cluster member from list.</documentation>
+        <documentation>
+            Weight of first cluster member.
+        </documentation>
     </formElement>
     <formElement>
         <label>Generate Unique Ports for First Cluster Member?:</label>
@@ -69,8 +73,8 @@ limitations under the License.
         <initiallyChecked>1</initiallyChecked>
         <required>0</required>
         <documentation>
-            By default ports generated during for first cluster member creation will be created uniquely.
-            If not checked ports in template will be used as is for server creation.
+            By default the port generated for first cluster member will be created uniquely.
+            If this option is not checked, ports in template will be used as is.
         </documentation>
     </formElement>
     <formElement>
@@ -98,9 +102,9 @@ limitations under the License.
         <option><name>Using pre-created application server template</name><value>template</value></option>
         <required>1</required>
         <documentation>
-            Controls how 1st cluster member is to be created?
-            Existing - use existing server as template
-            Template - use app server template to create 1st cluster member
+            Controls how first cluster member is created. The values mean the following.
+            Existing - Use existing server
+            Template - Use app server template to create first cluster member
         </documentation>
     </formElement>
     <formElement>

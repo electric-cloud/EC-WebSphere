@@ -12793,7 +12793,7 @@
         <!-- CreateFirstClusterMember procedure -->
         <procedure>
             <procedureName>CreateFirstClusterMember</procedureName>
-            <description>Creates first cluster member</description>
+            <description>Creates the First Cluster Member of an existing cluster.</description>
             <jobNameTemplate>websphere-create-1st-cluster-member-$[jobId]</jobNameTemplate>
             <resourceName />
             <workspaceName />
@@ -12956,21 +12956,21 @@
             <formalParameter>
                 <formalParameterName>wasFirstClusterMemberName</formalParameterName>
                 <defaultValue/>
-                <description>Name of the server that will be a first cluster member.</description>
+                <description>Server Name of first cluster member.</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
                 <formalParameterName>wasFirstClusterMemberNode</formalParameterName>
                 <defaultValue/>
-                <description>Node name of first cluster member</description>
+                <description>Node Name of first cluster member.</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
             <formalParameter>
                 <formalParameterName>wasFirstClusterMemberWeight</formalParameterName>
                 <defaultValue/>
-                <description>Weight of each cluster member from list.</description>
+                <description>Weight of first cluster member.</description>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>
@@ -12979,7 +12979,10 @@
             <formalParameter>
                 <formalParameterName>wasFirstClusterMemberGenUniquePorts</formalParameterName>
                 <defaultValue/>
-                <description>Generate Unique Ports for 1st cluster member?</description>
+                <description>
+                    By default the port generated for first cluster member will be created uniquely.
+                    If this option is not checked, ports in template will be used as is.
+                </description>
                 <required>0</required>
                 <type>entry</type>
             </formalParameter>
@@ -12999,9 +13002,11 @@
             <formalParameter>
                 <formalParameterName>wasFirstClusterMemberCreationPolicy</formalParameterName>
                 <defaultValue/>
-                <description>Controls how 1st cluster member is to be created?
-                Existing - use existing server as template
-                Template - use app server template to create 1st cluster member</description>
+                <description>
+                    Controls how first cluster member is created. The values mean the following.
+                    Existing - Use existing server.
+                    Template - Use app server template to create first cluster member.
+                </description>
                 <required>1</required>
                 <type>select</type>
             </formalParameter>
@@ -13070,7 +13075,7 @@
         <!-- CreateClusterMembers procedure -->
         <procedure>
             <procedureName>CreateClusterMembers</procedureName>
-            <description>Creates cluster members </description>
+            <description>Creates members under an existing cluster.</description>
             <jobNameTemplate>websphere-create-cluster-members-$[jobId]</jobNameTemplate>
             <resourceName />
             <workspaceName />
@@ -13198,7 +13203,7 @@
             <formalParameter>
                 <formalParameterName>wasClusterMembersList</formalParameterName>
                 <defaultValue/>
-                <description>List of the cluster members</description>
+                <description>List of cluster members.</description>
                 <required>1</required>
                 <type>entry</type>
             </formalParameter>
