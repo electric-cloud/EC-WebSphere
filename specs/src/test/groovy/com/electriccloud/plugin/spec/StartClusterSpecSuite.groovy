@@ -6,19 +6,7 @@ import com.electriccloud.plugin.spec.PluginTestHelper
 import groovy.json.JsonSlurper
 
 @Requires({ System.getenv('IS_WAS_ND') == "1"})
-class StartClusterSpecSuite extends PluginTestHelper {
-
-    // Environments Variables
-    @Shared
-    def wasUserName = System.getenv('WAS_USERNAME'),
-        wasPassword = System.getenv('WAS_PASSWORD'),
-        wasHost     = System.getenv('WAS_HOST'),
-        wasPort     = System.getenv('WAS_PORT'),
-        wasConnType = System.getenv('WAS_CONNTYPE'),
-        wasDebug    = System.getenv('WAS_DEBUG'),
-        wasPath     = System.getenv('WSADMIN_PATH'),
-        wasAppPath  = System.getenv('WAS_APPPATH'),
-        is_windows  = System.getenv("IS_WINDOWS")
+class StartClusterSpecSuite extends WebSphereClusterHelper {
 
     @Shared
     def confignames = [
@@ -49,12 +37,7 @@ class StartClusterSpecSuite extends PluginTestHelper {
 
 
     @Shared
-    def procCreateCluster = 'CreateCluster',
-        procDeleteCluster = 'DeleteCluster',
-        procStartCluster = 'StartCluster',
-        procStopCluster = 'StopCluster',
-        procRunJob = 'RunCustomJob',
-        projectName = "EC-WebSphere Specs $procStartCluster Project"
+    def projectName = "EC-WebSphere Specs $procStartCluster Project"
 
     @Shared
     def TC = [
@@ -94,71 +77,11 @@ class StartClusterSpecSuite extends PluginTestHelper {
         def wasResourceName = wasHost
         createWorkspace(wasResourceName)
         createConfiguration(confignames.correctSOAP, [doNotRecreate: false])
-
-        importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
-                                                            resName : wasResourceName,
-                                                            procName: procDeleteCluster,
-                                                            params  : [
-                                                                    configname: '',
-                                                                    wasClusterName: '',
-                                                                    wasSyncNodes: '',
-                                                            ]
-        ])
-        importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
-                                                            resName : wasResourceName,
-                                                            procName: procCreateCluster,
-                                                            params  : [
-                                                                    configname: '',
-                                                                    wasAddClusterMembers: '',
-                                                                    wasClusterMembersGenUniquePorts: '',
-                                                                    wasClusterMembersList: '',
-                                                                    wasClusterMemberWeight: '',
-                                                                    wasClusterName: '',
-                                                                    wasCreateFirstClusterMember: '',
-                                                                    wasFirstClusterMemberCreationPolicy: '',
-                                                                    wasFirstClusterMemberGenUniquePorts:  '',
-                                                                    wasFirstClusterMemberName: '',
-                                                                    wasFirstClusterMemberNode: '',
-                                                                    wasFirstClusterMemberTemplateName: '',
-                                                                    wasFirstClusterMemberWeight: '',
-                                                                    wasPreferLocal: '',
-                                                                    wasServerResourcesPromotionPolicy: '',
-                                                                    wasSourceServerName: '',
-                                                                    wasSyncNodes: '',
-                                                            ]
-        ])
-
-        importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
-                                                            resName : wasResourceName,
-                                                            procName: procStartCluster,
-                                                            params  : [
-                                                                    configName: '',
-                                                                    wasClusterName: '',
-                                                                    wasTimeout: '',
-                                                            ]
-        ])
-
-        importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
-                                                            resName : wasResourceName,
-                                                            procName: procStopCluster,
-                                                            params  : [
-                                                                    configName: '',
-                                                                    wasClusterName: '',
-                                                                    wasTimeout: '',
-                                                                    wasRippleStart: ''
-                                                            ]
-        ])
-
-        importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
-                                                            resName : wasResourceName,
-                                                            procName: procRunJob,
-                                                            params  : [
-                                                                    configname: '',
-                                                                    scriptfile: '',
-                                                                    scriptfilesource: '',
-                                                            ]
-        ])
-
+        importProcedure(projectName, wasResourceName, procStartCluster)
+        importProcedure(projectName, wasResourceName, procCreateCluster)
+        importProcedure(projectName, wasResourceName, procDeleteCluster)
+        importProcedure(projectName, wasResourceName, procStopCluster)
+        importProcedure(projectName, wasResourceName, procRunJob)
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
     }
 
@@ -182,7 +105,7 @@ class StartClusterSpecSuite extends PluginTestHelper {
         ]
 
         when: "Run procedure and wait until job is completed"
-        def result = runProcedure(runParams)
+        def result = runProcedure(runParams, procStartCluster)
 
         then: "Get and compare results"
         def outcome = getJobProperty('/myJob/outcome', result.jobId)
@@ -236,7 +159,7 @@ class StartClusterSpecSuite extends PluginTestHelper {
         ]
 
         when: "Run procedure and wait until job is completed"
-        def result = runProcedure(runParams)
+        def result = runProcedure(runParams, procStartCluster)
 
         then: "Get and compare results"
         def outcome = getJobProperty('/myJob/outcome', result.jobId)
@@ -275,26 +198,7 @@ class StartClusterSpecSuite extends PluginTestHelper {
         TC.C367286 | confignames.correctSOAP | 'wrongCluster'               | '300'   | 'error'   | summaries.wrongCluster  | [summaries.wrongCluster]
         TC.C367287 | confignames.correctSOAP | 'wrongCluster'               | '300'   | 'error'   | summaries.wrongCluster2 | [summaries.wrongCluster2]
     }
-
-    def getClusterState(def clusterName){
-        def cell = wasHost + "Cell01"
-        if (is_windows == "1"){
-            cell = wasHost.toUpperCase() + "Cell01"
-        }
-        def script = """\'\'
-cluster = AdminControl.completeObjectName('cell=${cell},type=Cluster,name=StartCluster,*')
-info = AdminControl.getAttribute(cluster, "state")
-print info.encode("ascii").split('.')[2]\'\'"""
-
-        def runParams = [
-                configname: confignames.correctSOAP,
-                scriptfile: script,
-                scriptfilesource: 'newscriptfile',
-        ]
-        def result = runProcedure(runParams, procRunJob)
-        def debugLog = getJobLogs(result.jobId)
-        return debugLog.split('\n')[-1]
-    }
+    
 
     def stopCluster(def clusterName){
         def runParams = [
@@ -361,25 +265,5 @@ print info.encode("ascii").split('.')[2]\'\'"""
         runProcedure(emptyCluster, procCreateCluster)
     }
 
-    def runProcedure(def parameters, def procedureName=procStartCluster) {
-        def parametersString = parameters.collect { k, v -> "$k: '$v'" }.join(', ')
-        def code = """
-            runProcedure(
-                projectName: '$projectName',
-                procedureName: '$procedureName',
-                actualParameter: [
-                    $parametersString
-                ]
-            )
-        """
-        def result = dslWithTimeout(code)
-        waitUntil {
-            try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-        return result
-    }
+
 }
