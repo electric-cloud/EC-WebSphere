@@ -22,6 +22,18 @@ class WebSphereClusterHelper extends PluginTestHelper {
         is_windows  = System.getenv("IS_WINDOWS")
 
     @Shared
+    def procCreateCluster = 'CreateCluster',
+        procCreateClusterMembers = 'CreateClusterMembers',
+        procCreateFirstClusterMember = 'CreateFirstClusterMember',
+        procDeleteCluster = 'DeleteCluster',
+        procRemoveClusterMembers = 'RemoveClusterMembers',
+        procListClusterMembers = 'ListClusterMembers',
+        procStartCluster = 'StartCluster',
+        procStopCluster = 'StopCluster',
+        procRunJob = 'RunCustomJob'
+
+
+    @Shared
     def confignames = [
             empty: '',
             correctSOAP: 'Web-Sphere-SOAP',
@@ -48,19 +60,11 @@ class WebSphereClusterHelper extends PluginTestHelper {
     @Shared
     def membersLists = [
             'oneMember':   nodes.default+":"+'serverClusterMember1',
+            'oneMember2':  nodes.default+":"+'serverClusterMember2',
             'twoMembers':  nodes.default+":"+'serverClusterMember01'+','+nodes.default+":"+'serverClusterMember02',
+            'oneExtraMember':   nodes.default+":"+'serverClusterMember1'+','+nodes.default+":"+'serverClusterMember2',
+            'firstMember': nodes.default+":"+"${procRemoveClusterMembers}FirstClusterMember",
     ]
-
-    @Shared
-    def procCreateCluster = 'CreateCluster',
-        procCreateClusterMembers = 'CreateClusterMembers',
-        procCreateFirstClusterMember = 'CreateFirstClusterMember',
-        procDeleteCluster = 'DeleteCluster',
-        procRemoveClusterMembers = 'RemoveClusterMembers',
-        procListClusterMembers = 'ListClusterMembers',
-        procStartCluster = 'StartCluster',
-        procStopCluster = 'StopCluster',
-        procRunJob = 'RunCustomJob'
 
     @Shared
     def procedureParameters = [
@@ -92,6 +96,12 @@ class WebSphereClusterHelper extends PluginTestHelper {
                     configName: '',
                     wasClusterName: '',
                     wasOutputPropertyPath: '',
+            ],
+            (procRemoveClusterMembers): [
+                    configName : '',
+                    wasClusterMembers : '',
+                    wasClusterName : '',
+                    wasSyncNodes : '',
             ],
             (procStartCluster): [
                     configName: '',
@@ -206,7 +216,7 @@ print clustersInfo\'\''''
         runProcedure(deleteParams, procDeleteCluster)
     }
 
-    def createCluster(def clusterName, def emptyCluster = false, def additionalServers = false){
+    def createCluster(def clusterName, def emptyCluster = false, def additionalServers = false, def listMembers=''){
         def params = [
                 configname                         : confignames.correctSOAP,
                 wasAddClusterMembers               : '0',
@@ -236,7 +246,7 @@ print clustersInfo\'\''''
         }
         if (additionalServers){
             params.wasAddClusterMembers                = '1'
-            params.wasClusterMembersList               = membersLists.twoMembers
+            params.wasClusterMembersList               = listMembers
             params.wasCreateFirstClusterMember         = '1'
             params.wasFirstClusterMemberCreationPolicy = 'template'
             params.wasFirstClusterMemberName           = mainProcedure+'FirstClusterMember'
@@ -251,8 +261,8 @@ print clustersInfo\'\''''
         createCluster(clusterName, true, false)
     }
 
-    def createClusterWithAdditionalServers(clusterName){
-        createCluster(clusterName, false, true)
+    def createClusterWithAdditionalServers(clusterName, listMembers=''){
+        createCluster(clusterName, false, true, listMembers)
     }
 
 
