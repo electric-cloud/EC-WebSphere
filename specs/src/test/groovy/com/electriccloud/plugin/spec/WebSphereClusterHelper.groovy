@@ -5,6 +5,9 @@ import spock.lang.Shared
 
 class WebSphereClusterHelper extends PluginTestHelper {
 
+    @Shared
+    def projectName = "EC-WebSphere Specs $mainProcedure Project"
+
     // Environments Variables
     @Shared
     def wasUserName = System.getenv('WAS_USERNAME'),
@@ -16,6 +19,30 @@ class WebSphereClusterHelper extends PluginTestHelper {
         wasPath     = System.getenv('WSADMIN_PATH'),
         wasAppPath  = System.getenv('WAS_APPPATH'),
         is_windows  = System.getenv("IS_WINDOWS")
+
+    @Shared
+    def confignames = [
+            empty: '',
+            correctSOAP: 'Web-Sphere-SOAP',
+            correctIPC: 'Web-Sphere-IPC',
+            correctJSR160RMI: 'Web-Sphere-JSR160RMI',
+            correctNone: 'Web-Sphere-None',
+            correctRMI: 'Web-Sphere-RMI',
+            incorrect: 'incorrect'
+    ]
+
+    @Shared
+    def servers = [
+            'default': 'server1',
+            'convert': 'convertServer',
+            'wrong': 'wrong',
+    ]
+
+    @Shared
+    def nodes = [
+            'default': wasHost + 'Node01',
+            'wrong': 'wrong',
+    ]
 
     @Shared
     def procCreateCluster = 'CreateCluster',
@@ -76,7 +103,7 @@ class WebSphereClusterHelper extends PluginTestHelper {
         importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
                                                             resName : wasResourceName,
                                                             procName: procName,
-                                                            params  : procedureParameters.(procName)
+                                                            params  : procedureParameters[procName]
         ])
     }
 
@@ -100,8 +127,71 @@ print info.encode("ascii").split('.')[2]\'\'"""
         return debugLog.split('\n')[-1]
     }
 
+    def stopCluster(def clusterName){
+        def runParams = [
+                configName: confignames.correctSOAP,
+                wasClusterName: clusterName,
+                wasTimeout: '60',
+                wasRippleStart: '0'
+        ]
+        runProcedure(runParams, procStopCluster)
+    }
 
-    def runProcedure(def parameters, def procedureName) {
+    def startCluster(def clusterName){
+        def runParams = [
+                configName: confignames.correctSOAP,
+                wasClusterName: clusterName,
+                wasTimeout: '60',
+        ]
+        runProcedure(runParams, procStartCluster)
+    }
+
+    def deleteCluster(def clusterName){
+        def deleteParams = [
+                configname: confignames.correctSOAP,
+                wasClusterName: clusterName,
+                wasSyncNodes: 1,
+        ]
+        runProcedure(deleteParams, procDeleteCluster)
+    }
+
+    def createCluster(clusterName, def emptyCluster = false){
+        def params = [
+                configname                         : confignames.correctSOAP,
+                wasAddClusterMembers               : '0',
+                wasClusterMembersGenUniquePorts    : '1',
+                wasClusterMembersList              : '',
+                wasClusterMemberWeight             : '',
+                wasClusterName                     : clusterName,
+                wasCreateFirstClusterMember        : '0',
+                wasFirstClusterMemberCreationPolicy: '',
+                wasFirstClusterMemberGenUniquePorts: '1',
+                wasFirstClusterMemberName          : '',
+                wasFirstClusterMemberNode          : nodes.default,
+                wasFirstClusterMemberTemplateName  : '',
+                wasFirstClusterMemberWeight        : '',
+                wasPreferLocal                     : '1',
+                wasServerResourcesPromotionPolicy  : '',
+                wasSourceServerName                : '',
+                wasSyncNodes                       : '1',
+        ]
+        if (!emptyCluster){
+            params.wasCreateFirstClusterMember        = '1'
+            params.wasFirstClusterMemberCreationPolicy= 'template'
+            params.wasFirstClusterMemberName          = 'StartClusterServer'
+            params.wasFirstClusterMemberNode          = nodes.default
+            params.wasFirstClusterMemberTemplateName  = 'default'
+            params.wasServerResourcesPromotionPolicy  = 'both'
+        }
+        runProcedure(params, procCreateCluster)
+    }
+
+    def createEmptyCluster(clusterName){
+        createCluster(clusterName, true)
+    }
+
+
+    def runProcedure(def parameters, def procedureName=mainProcedure) {
         def parametersString = parameters.collect { k, v -> "$k: '$v'" }.join(', ')
         def code = """
             runProcedure(
