@@ -45,6 +45,12 @@ class WebSphereClusterHelper extends PluginTestHelper {
     ]
 
     @Shared
+    def membersLists = [
+            'oneMember':   nodes.default+":"+'serverClusterMember1',
+            'twoMembers':  nodes.default+":"+'serverClusterMember01'+','+nodes.default+":"+'serverClusterMember02',
+    ]
+
+    @Shared
     def procCreateCluster = 'CreateCluster',
         procCreateClusterMembers = 'CreateClusterMembers',
         procCreateFirstClusterMember = 'CreateFirstClusterMember',
@@ -80,6 +86,11 @@ class WebSphereClusterHelper extends PluginTestHelper {
                     wasServerResourcesPromotionPolicy: '',
                     wasSourceServerName: '',
                     wasSyncNodes: '',
+            ],
+            (procListClusterMembers): [
+                    configName: '',
+                    wasClusterName: '',
+                    wasOutputPropertyPath: '',
             ],
             (procStartCluster): [
                     configName: '',
@@ -155,7 +166,7 @@ print info.encode("ascii").split('.')[2]\'\'"""
         runProcedure(deleteParams, procDeleteCluster)
     }
 
-    def createCluster(clusterName, def emptyCluster = false){
+    def createCluster(def clusterName, def emptyCluster = false, def additionalServers = false){
         def params = [
                 configname                         : confignames.correctSOAP,
                 wasAddClusterMembers               : '0',
@@ -178,16 +189,30 @@ print info.encode("ascii").split('.')[2]\'\'"""
         if (!emptyCluster){
             params.wasCreateFirstClusterMember        = '1'
             params.wasFirstClusterMemberCreationPolicy= 'template'
-            params.wasFirstClusterMemberName          = 'StartClusterServer'
+            params.wasFirstClusterMemberName          = mainProcedure+'FirstClusterMember'
             params.wasFirstClusterMemberNode          = nodes.default
             params.wasFirstClusterMemberTemplateName  = 'default'
             params.wasServerResourcesPromotionPolicy  = 'both'
+        }
+        if (additionalServers){
+            params.wasAddClusterMembers                = '1'
+            params.wasClusterMembersList               = membersLists.twoMembers
+            params.wasCreateFirstClusterMember         = '1'
+            params.wasFirstClusterMemberCreationPolicy = 'template'
+            params.wasFirstClusterMemberName           = mainProcedure+'FirstClusterMember'
+            params.wasFirstClusterMemberNode           = nodes.default
+            params.wasFirstClusterMemberTemplateName   = 'default'
+            params.wasServerResourcesPromotionPolicy   = 'both'
         }
         runProcedure(params, procCreateCluster)
     }
 
     def createEmptyCluster(clusterName){
-        createCluster(clusterName, true)
+        createCluster(clusterName, true, false)
+    }
+
+    def createClusterWithAdditionalServers(clusterName){
+        createCluster(clusterName, false, true)
     }
 
 
