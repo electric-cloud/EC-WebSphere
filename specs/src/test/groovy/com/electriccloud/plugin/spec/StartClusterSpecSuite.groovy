@@ -9,35 +9,7 @@ import groovy.json.JsonSlurper
 class StartClusterSpecSuite extends WebSphereClusterHelper {
 
     @Shared
-    def confignames = [
-            /**
-             * Required
-             */
-            empty: '',
-            correctSOAP: 'Web-Sphere-SOAP',
-            correctIPC: 'Web-Sphere-IPC',
-            correctJSR160RMI: 'Web-Sphere-JSR160RMI',
-            correctNone: 'Web-Sphere-None',
-            correctRMI: 'Web-Sphere-RMI',
-            incorrect: 'incorrect'
-    ]
-
-    @Shared
-    def servers = [
-            'default': 'server1',
-            'convert': 'convertServer',
-            'wrong': 'wrong',
-    ]
-
-    @Shared
-    def nodes = [
-            'default': wasHost + 'Node01',
-            'wrong': 'wrong',
-    ]
-
-
-    @Shared
-    def projectName = "EC-WebSphere Specs $procStartCluster Project"
+    def mainProcedure = procStartCluster
 
     @Shared
     def TC = [
@@ -78,9 +50,9 @@ class StartClusterSpecSuite extends WebSphereClusterHelper {
         createWorkspace(wasResourceName)
         createConfiguration(confignames.correctSOAP, [doNotRecreate: false])
         importProcedure(projectName, wasResourceName, procStartCluster)
+        importProcedure(projectName, wasResourceName, procStopCluster)
         importProcedure(projectName, wasResourceName, procCreateCluster)
         importProcedure(projectName, wasResourceName, procDeleteCluster)
-        importProcedure(projectName, wasResourceName, procStopCluster)
         importProcedure(projectName, wasResourceName, procRunJob)
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
     }
@@ -105,7 +77,7 @@ class StartClusterSpecSuite extends WebSphereClusterHelper {
         ]
 
         when: "Run procedure and wait until job is completed"
-        def result = runProcedure(runParams, procStartCluster)
+        def result = runProcedure(runParams)
 
         then: "Get and compare results"
         def outcome = getJobProperty('/myJob/outcome', result.jobId)
@@ -159,7 +131,7 @@ class StartClusterSpecSuite extends WebSphereClusterHelper {
         ]
 
         when: "Run procedure and wait until job is completed"
-        def result = runProcedure(runParams, procStartCluster)
+        def result = runProcedure(runParams)
 
         then: "Get and compare results"
         def outcome = getJobProperty('/myJob/outcome', result.jobId)
@@ -198,72 +170,5 @@ class StartClusterSpecSuite extends WebSphereClusterHelper {
         TC.C367286 | confignames.correctSOAP | 'wrongCluster'               | '300'   | 'error'   | summaries.wrongCluster  | [summaries.wrongCluster]
         TC.C367287 | confignames.correctSOAP | 'wrongCluster'               | '300'   | 'error'   | summaries.wrongCluster2 | [summaries.wrongCluster2]
     }
-    
-
-    def stopCluster(def clusterName){
-        def runParams = [
-                configName: confignames.correctSOAP,
-                wasClusterName: clusterName,
-                wasTimeout: '60',
-                wasRippleStart: '0'
-        ]
-        runProcedure(runParams, procStopCluster)
-    }
-
-    def deleteCluster(def clusterName){
-        def deleteParams = [
-                configname: confignames.correctSOAP,
-                wasClusterName: clusterName,
-                wasSyncNodes: 1,
-        ]
-        runProcedure(deleteParams, procDeleteCluster)
-    }
-
-    def createCluster(clusterName){
-        def clusterWithServer = [
-                configname                         : confignames.correctSOAP,
-                wasAddClusterMembers               : '0',
-                wasClusterMembersGenUniquePorts    : '1',
-                wasClusterMembersList              : '',
-                wasClusterMemberWeight             : '',
-                wasClusterName                     : clusterName,
-                wasCreateFirstClusterMember        : '1',
-                wasFirstClusterMemberCreationPolicy: 'template',
-                wasFirstClusterMemberGenUniquePorts: '1',
-                wasFirstClusterMemberName          : 'StartClusterServer',
-                wasFirstClusterMemberNode          : nodes.default,
-                wasFirstClusterMemberTemplateName  : 'default',
-                wasFirstClusterMemberWeight        : '',
-                wasPreferLocal                     : '1',
-                wasServerResourcesPromotionPolicy  : 'both',
-                wasSourceServerName                : '',
-                wasSyncNodes                       : '1',
-        ]
-        runProcedure(clusterWithServer, procCreateCluster)
-    }
-
-    def createEmptyCluster(clusterName){
-        def emptyCluster = [
-                configname                         : confignames.correctSOAP,
-                wasAddClusterMembers               : '0',
-                wasClusterMembersGenUniquePorts    : '1',
-                wasClusterMembersList              : '',
-                wasClusterMemberWeight             : '',
-                wasClusterName                     : clusterName,
-                wasCreateFirstClusterMember        : '0',
-                wasFirstClusterMemberCreationPolicy: '',
-                wasFirstClusterMemberGenUniquePorts: '1',
-                wasFirstClusterMemberName          : '',
-                wasFirstClusterMemberNode          : nodes.default,
-                wasFirstClusterMemberTemplateName  : '',
-                wasFirstClusterMemberWeight        : '',
-                wasPreferLocal                     : '1',
-                wasServerResourcesPromotionPolicy  : '',
-                wasSourceServerName                : '',
-                wasSyncNodes                       : '1',
-        ]
-        runProcedure(emptyCluster, procCreateCluster)
-    }
-
-
+   
 }
