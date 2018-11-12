@@ -188,6 +188,18 @@ print clustersInfo\'\''''
         return clusterInfo
     }
 
+    def doesClusterExist(clusterName){
+        def script = "print AdminClusterManagement.checkIfClusterExists(\\'${clusterName}\\')"
+        def runParams = [
+                configname: confignames.correctSOAP,
+                scriptfile: script,
+                scriptfilesource: 'newscriptfile',
+        ]
+        def result = runProcedure(runParams, procRunJob)
+        def debugLog = getJobLogs(result.jobId)
+        return debugLog.split('\n')[-1]
+    }
+
     def stopCluster(def clusterName){
         def runParams = [
                 configName: confignames.correctSOAP,
