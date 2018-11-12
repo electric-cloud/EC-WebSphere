@@ -1,5 +1,6 @@
 package com.electriccloud.plugin.spec
 
+import groovy.json.JsonSlurper
 import spock.lang.Shared
 
 
@@ -136,6 +137,45 @@ print info.encode("ascii").split('.')[2]\'\'"""
         def result = runProcedure(runParams, procRunJob)
         def debugLog = getJobLogs(result.jobId)
         return debugLog.split('\n')[-1]
+    }
+
+    def getClusterBaseInfo(){
+// Example of jython script output
+// {'testCluster2':
+//     {'preferLocal': 'true', 'servers':
+//         [{'nodeName': 'websphere90ndNode01', 'cluster': 'testCluster2(cells/websphere90ndCell01/clusters/testCluster2|cluster.xml#ServerCluster_1539612766814)', 'memberName': 'clusterServer2', 'weight': '2', 'uniqueId': '1539612768940'},
+//         {'nodeName': 'websphere90ndNode01', 'cluster': 'testCluster2(cells/websphere90ndCell01/clusters/testCluster2|cluster.xml#ServerCluster_1539612766814)', 'memberName': 'serverC366970', 'weight': '2', 'uniqueId': '1539612769337'}],
+//     'name': 'testCluster2'}}
+
+        def jythonScrpit = '''\'\'
+clusterList = AdminClusterManagement.listClusters()
+clustersInfo = {}
+for cluster in clusterList:
+    clusterInfo = {}
+    clusterInfo["preferLocal"] = AdminConfig.showAttribute(cluster, "preferLocal").encode("ascii")
+    clusterName = AdminConfig.showAttribute(cluster, "name").encode("ascii")
+    clusterInfo["name"] = clusterName
+    clustersInfo[clusterInfo["name"]] = clusterInfo
+    servers = []
+    for server in AdminClusterManagement.listClusterMembers(clusterName):
+        info = AdminConfig.show(server)
+        tmp = [x.encode("ascii").replace("\\\\r", "") for x in info.split("\\\\n")]
+        server_dict = {}
+        for x in tmp:
+            server_dict[x[1:-1].split(" ")[0]] = x[1:-1].split(" ")[1]
+        servers.append(server_dict)
+    clusterInfo["servers"] = servers
+print clustersInfo\'\''''
+
+        def scriptParams = [
+                configname: confignames.correctSOAP,
+                scriptfile: jythonScrpit,
+                scriptfilesource: 'newscriptfile',
+        ]
+        def scriptResult = runProcedure(scriptParams, procRunJob)
+        def scriptLog = getJobLogs(scriptResult.jobId)
+        def clusterInfo = new JsonSlurper().parseText(scriptLog.split("\n")[-1].replace("'", '"'))
+        return clusterInfo
     }
 
     def stopCluster(def clusterName){
