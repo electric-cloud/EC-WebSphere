@@ -78,7 +78,7 @@ class ListClusterMembersSpecSuite extends WebSphereClusterHelper {
         }
 
         if (testCaseID == TC.C367446){
-            createClusterWithAdditionalServers(clusterName)
+            createClusterWithAdditionalServers(clusterName, membersLists.twoMembers)
         }
 
         if (testCaseID == TC.C367447){
