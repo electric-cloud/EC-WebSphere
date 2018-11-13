@@ -11,6 +11,9 @@ class CreateClusterMembersSpecSuite extends WebSphereClusterHelper {
     def mainProcedure = procCreateClusterMembers
 
     @Shared
+    def projectName = "EC-WebSphere Specs $mainProcedure Project"
+
+    @Shared
     def firstClusterServerName = mainProcedure+'FirstClusterMember'
 
     @Shared

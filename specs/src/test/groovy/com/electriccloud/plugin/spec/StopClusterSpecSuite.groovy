@@ -12,6 +12,9 @@ class StopClusterSpecSuite extends WebSphereClusterHelper {
     def mainProcedure = procStopCluster
 
     @Shared
+    def projectName = "EC-WebSphere Specs $mainProcedure Project"
+
+    @Shared
     def TC = [
             C367299: [ ids: 'C367299', description: 'Stop Running cluster'],
             C367302: [ ids: 'C367302', description: 'Stop Running cluster'],

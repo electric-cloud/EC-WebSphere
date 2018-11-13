@@ -12,6 +12,9 @@ class DeleteClusterSpecSuite extends WebSphereClusterHelper {
     def mainProcedure = procDeleteCluster
 
     @Shared
+    def projectName = "EC-WebSphere Specs $mainProcedure Project"
+
+    @Shared
     def TC = [
             C366939: [ ids: 'C366939', description: 'delete empty cluster'],
             C366940: [ ids: 'C366940', description: 'delete cluster with server'],

@@ -12,6 +12,9 @@ class ListClusterMembersSpecSuite extends WebSphereClusterHelper {
     def mainProcedure = procListClusterMembers
 
     @Shared
+    def projectName = "EC-WebSphere Specs $mainProcedure Project"
+
+    @Shared
     def TC = [
             C367445: [ ids: 'C367445', description: 'ListClusterMembers: Cluster with one first member'],
             C367446: [ ids: 'C367446', description: 'ListClusterMembers: Cluster with first member and additional servers'],

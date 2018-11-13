@@ -13,6 +13,9 @@ class CreateClusterSpecSuite extends WebSphereClusterHelper {
     def mainProcedure = procCreateCluster
 
     @Shared
+    def projectName = "EC-WebSphere Specs $mainProcedure Project"
+
+    @Shared
     def TC = [
             C366925: [ ids: 'C366925, C366934, C366979', description: 'create empty cluster'],
             C366932: [ ids: 'C366932', description: 'prefer local - false '],

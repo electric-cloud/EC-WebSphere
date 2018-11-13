@@ -6,9 +6,6 @@ import spock.lang.Shared
 
 class WebSphereClusterHelper extends PluginTestHelper {
 
-    @Shared
-    def projectName = "EC-WebSphere Specs $mainProcedure Project"
-
     // Environments Variables
     @Shared
     def wasUserName = System.getenv('WAS_USERNAME'),

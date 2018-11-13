@@ -12,6 +12,9 @@ class CreateFirstClusterMemberSpecSuite extends WebSphereClusterHelper {
     def mainProcedure = procCreateFirstClusterMember
 
     @Shared
+    def projectName = "EC-WebSphere Specs $mainProcedure Project"
+
+    @Shared
     def TC = [
             C367242: [ ids: 'C367242, C367245, C367250, C367251', description: 'only required fields: creation policy : template'],
             C367243: [ ids: 'C367243', description: 'only required fields: creation policy : existing'],

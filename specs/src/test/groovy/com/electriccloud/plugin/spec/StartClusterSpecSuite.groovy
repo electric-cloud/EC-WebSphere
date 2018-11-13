@@ -12,6 +12,9 @@ class StartClusterSpecSuite extends WebSphereClusterHelper {
     def mainProcedure = procStartCluster
 
     @Shared
+    def projectName = "EC-WebSphere Specs $mainProcedure Project"
+
+    @Shared
     def TC = [
             C367272: [ ids: 'C367272', description: 'start cluster with one server '],
             C367279: [ ids: 'C367279', description: 'set Timeout '],

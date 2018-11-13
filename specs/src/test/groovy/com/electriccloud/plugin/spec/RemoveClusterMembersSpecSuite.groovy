@@ -12,6 +12,9 @@ class RemoveClusterMembersSpecSuite extends WebSphereClusterHelper {
     def mainProcedure = procRemoveClusterMembers
 
     @Shared
+    def projectName = "EC-WebSphere Specs $mainProcedure Project"
+
+    @Shared
     def TC = [
             C367453: [ ids: 'C367453, C367457', description: 'Delete some members from cluster'],
             C367454: [ ids: 'C367454', description: 'Delete one member from cluster'],
