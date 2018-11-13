@@ -30,6 +30,7 @@ class WebSphereClusterHelper extends PluginTestHelper {
         procListClusterMembers = 'ListClusterMembers',
         procStartCluster = 'StartCluster',
         procStopCluster = 'StopCluster',
+        procCreateServer = 'CreateApplicationServer',
         procRunJob = 'RunCustomJob'
 
 
@@ -60,11 +61,30 @@ class WebSphereClusterHelper extends PluginTestHelper {
     @Shared
     def membersLists = [
             'oneMember':   nodes.default+":"+'serverClusterMember1',
+            'oneMember1':   nodes.default+":"+'serverC366970',
+            'someMembers1': nodes.default+":"+'serverC3669711'+','+nodes.default+":"+'serverC3669712',
             'oneMember2':  nodes.default+":"+'serverClusterMember2',
             'twoMembers':  nodes.default+":"+'serverClusterMember01'+','+nodes.default+":"+'serverClusterMember02',
             'oneExtraMember':   nodes.default+":"+'serverClusterMember1'+','+nodes.default+":"+'serverClusterMember2',
             'firstMember': nodes.default+":"+"${procRemoveClusterMembers}FirstClusterMember",
     ]
+
+    @Shared
+    def creationPolicy = [
+            existing: "existing",
+            template: "template",
+            convert: "convert",
+            wrong: "wrong",
+    ]
+
+    @Shared
+    def promotionPolicy = [
+            both: 'both',
+            server: 'server',
+            cluster: 'cluster',
+            wrong: "wrong",
+    ]
+
 
     @Shared
     def procedureParameters = [
@@ -113,6 +133,17 @@ class WebSphereClusterHelper extends PluginTestHelper {
                     wasClusterName: '',
                     wasTimeout: '',
                     wasRippleStart: ''
+            ],
+            (procCreateServer): [
+                    configname: '',
+                    wasAppServerName: '',
+                    wasGenUniquePorts: '',
+                    wasNodeName: '',
+                    wasSourceServerName: '',
+                    wasSourceType: '',
+                    wasSyncNodes: '',
+                    wasTemplateLocation: '',
+                    wasTemplateName: '',
             ],
             (procRunJob):   [
                     configname: '',
@@ -186,6 +217,26 @@ print clustersInfo\'\''''
         def scriptLog = getJobLogs(scriptResult.jobId)
         def clusterInfo = new JsonSlurper().parseText(scriptLog.split("\n")[-1].replace("'", '"'))
         return clusterInfo
+    }
+
+
+    def getServerPorts(def serverName){
+        // procedure return array of server ports
+        def jythonScript = "print \\'STARTLINE\\'; print AdminTask.listServerPorts(\\'${serverName}\\', \\'[-nodeName ${nodes.default}]\\')"
+
+        def scriptParams = [
+                configname: confignames.correctSOAP,
+                scriptfile: jythonScript,
+                scriptfilesource: 'newscriptfile',
+        ]
+        def scriptResult = runProcedure(scriptParams, procRunJob)
+        def scriptLog = getJobLogs(scriptResult.jobId)
+        def serversInfo = scriptLog.split("STARTLINE\n")[1].split("\n")
+        def ports = []
+        for (server in serversInfo){
+            ports.add(server.split("port ")[1].split("]")[0])
+        }
+        return ports
     }
 
     def doesClusterExist(clusterName){
@@ -277,6 +328,29 @@ print clustersInfo\'\''''
         createCluster(clusterName, false, true, listMembers)
     }
 
+    def createServer(def serverName){
+        def createParams = [
+                configname: confignames.correctSOAP,
+                wasAppServerName: serverName,
+                wasGenUniquePorts: 1,
+                wasNodeName: nodes.default,
+                wasSourceServerName: '',
+                wasSourceType: 'template',
+                wasSyncNodes: '1',
+                wasTemplateLocation: '',
+                wasTemplateName: 'default',
+        ]
+        runProcedure(createParams, procCreateServer)
+    }
+
+    def deleteServer(def clusterName){
+        def deleteParams = [
+                configname: confignames.correctSOAP,
+                wasClusterName: clusterName,
+                wasSyncNodes: 1,
+        ]
+        runProcedure(deleteParams, procDeleteCluster)
+    }
 
     def runProcedure(def parameters, def procedureName=mainProcedure) {
         def parametersString = parameters.collect { k, v -> "$k: '$v'" }.join(', ')
