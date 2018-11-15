@@ -6,54 +6,13 @@ import com.electriccloud.plugin.spec.PluginTestHelper
 import groovy.json.JsonSlurper
 
 @Requires({ System.getenv('IS_WAS_ND') == "1"})
-class ListClusterMembersSpecSuite extends PluginTestHelper {
-
-    // Environments Variables
-    @Shared
-    def wasUserName = System.getenv('WAS_USERNAME'),
-        wasPassword = System.getenv('WAS_PASSWORD'),
-        wasHost     = System.getenv('WAS_HOST'),
-        wasPort     = System.getenv('WAS_PORT'),
-        wasConnType = System.getenv('WAS_CONNTYPE'),
-        wasDebug    = System.getenv('WAS_DEBUG'),
-        wasPath     = System.getenv('WSADMIN_PATH'),
-        wasAppPath  = System.getenv('WAS_APPPATH'),
-        is_windows  = System.getenv("IS_WINDOWS")
+class ListClusterMembersSpecSuite extends WebSphereClusterHelper {
 
     @Shared
-    def confignames = [
-            /**
-             * Required
-             */
-            empty: '',
-            correctSOAP: 'Web-Sphere-SOAP',
-            correctIPC: 'Web-Sphere-IPC',
-            correctJSR160RMI: 'Web-Sphere-JSR160RMI',
-            correctNone: 'Web-Sphere-None',
-            correctRMI: 'Web-Sphere-RMI',
-            incorrect: 'incorrect'
-    ]
+    def mainProcedure = procListClusterMembers
 
     @Shared
-    def servers = [
-            'default': 'server1',
-            'convert': 'convertServer',
-            'wrong': 'wrong',
-    ]
-
-    @Shared
-    def nodes = [
-            'default': wasHost + 'Node01',
-            'wrong': 'wrong',
-    ]
-
-
-    @Shared
-    def procCreateCluster = 'CreateCluster',
-        procListClusterMembers = 'ListClusterMembers',
-        procDeleteCluster = 'DeleteCluster',
-        procRunJob = 'RunCustomJob',
-        projectName = "EC-WebSphere Specs $procListClusterMembers Project"
+    def projectName = "EC-WebSphere Specs $mainProcedure Project"
 
     @Shared
     def TC = [
@@ -69,9 +28,9 @@ class ListClusterMembersSpecSuite extends PluginTestHelper {
     @Shared
     def summaries = [
             'clusterWithFirstMember': "Cluster CLUSTERNAME has following members:\n" +
-                    "Server FirstClusterServer on node ${nodes.default}\n",
+                    "Server ${mainProcedure}FirstClusterMember on node ${nodes.default}\n",
             'clusterWithAddServers': "Cluster CLUSTERNAME has following members:\n" +
-                    "Server FirstClusterServer on node ${nodes.default}\n" +
+                    "Server ${mainProcedure}FirstClusterMember on node ${nodes.default}\n" +
                     'Server serverClusterMember0(1|2)'+" on node ${nodes.default}\n" +
                     'Server serverClusterMember0(1|2)'+" on node ${nodes.default}\n",
             'emptyCluster': "Cluster CLUSTERNAME is empty\n",
@@ -79,7 +38,7 @@ class ListClusterMembersSpecSuite extends PluginTestHelper {
             'emptyClusterName': "Failed to retrieve cluster members list.\n"+
                                 "Error: Cluster  does not exist\n",
             'wrongClusterName': "Failed to retrieve cluster members list.\n"+
-                                "Error: Cluster wrongCluster does not exist\n",                                
+                                "Error: Cluster wrongCluster does not exist\n",
             'wrongConfig': "Configuration '${confignames.incorrect}' doesn't exist",
     ]
 
@@ -92,76 +51,19 @@ class ListClusterMembersSpecSuite extends PluginTestHelper {
 
     @Shared
     def outputProperties = [
-            clusterWithFirstMember: "${nodes.default}:FirstClusterServer",
-            clusterWithAddServers:  "${nodes.default}:FirstClusterServer,${nodes.default}:"+'serverClusterMember0(1|2),'+"${nodes.default}:"+'serverClusterMember0(1|2)',
+            clusterWithFirstMember: "${nodes.default}:${mainProcedure}FirstClusterMember",
+            clusterWithAddServers:  "${nodes.default}:${mainProcedure}FirstClusterMember,${nodes.default}:"+'serverClusterMember0(1|2),'+"${nodes.default}:"+'serverClusterMember0(1|2)',
             'emptyCluster': "",
-    ]
-
-    @Shared
-    def membersLists = [
-            'oneMember':   nodes.default+":"+'serverClusterMember1',
-            'twoMembers':  nodes.default+":"+'serverClusterMember01'+','+nodes.default+":"+'serverClusterMember02',
     ]
 
     def doSetupSpec() {
         def wasResourceName = wasHost
         createWorkspace(wasResourceName)
         createConfiguration(confignames.correctSOAP, [doNotRecreate: false])
-
-        importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
-                                                            resName : wasResourceName,
-                                                            procName: procDeleteCluster,
-                                                            params  : [
-                                                                    configname: '',
-                                                                    wasClusterName: '',
-                                                                    wasSyncNodes: '',
-                                                            ]
-        ])
-
-        importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
-                                                            resName : wasResourceName,
-                                                            procName: procListClusterMembers,
-                                                            params  : [
-                                                                    configName: '',
-                                                                    wasClusterName: '',
-                                                                    wasOutputPropertyPath: '',
-                                                            ]
-        ])
-
-        importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
-                                                            resName : wasResourceName,
-                                                            procName: procCreateCluster,
-                                                            params  : [
-                                                                    configname: '',
-                                                                    wasAddClusterMembers: '',
-                                                                    wasClusterMembersGenUniquePorts: '',
-                                                                    wasClusterMembersList: '',
-                                                                    wasClusterMemberWeight: '',
-                                                                    wasClusterName: '',
-                                                                    wasCreateFirstClusterMember: '',
-                                                                    wasFirstClusterMemberCreationPolicy: '',
-                                                                    wasFirstClusterMemberGenUniquePorts:  '',
-                                                                    wasFirstClusterMemberName: '',
-                                                                    wasFirstClusterMemberNode: '',
-                                                                    wasFirstClusterMemberTemplateName: '',
-                                                                    wasFirstClusterMemberWeight: '',
-                                                                    wasPreferLocal: '',
-                                                                    wasServerResourcesPromotionPolicy: '',
-                                                                    wasSourceServerName: '',
-                                                                    wasSyncNodes: '',
-                                                            ]
-        ])
-
-        importProject(projectName, 'dsl/RunProcedure.dsl', [projName: projectName,
-                                                            resName : wasResourceName,
-                                                            procName: procRunJob,
-                                                            params  : [
-                                                                    configname: '',
-                                                                    scriptfile: '',
-                                                                    scriptfilesource: '',
-                                                            ]
-        ])
-
+        importProcedure(projectName, wasResourceName, procDeleteCluster)
+        importProcedure(projectName, wasResourceName, procListClusterMembers)
+        importProcedure(projectName, wasResourceName, procCreateCluster)
+        importProcedure(projectName, wasResourceName, procRunJob)
         dsl 'setProperty(propertyName: "/plugins/EC-WebSphere/project/ec_debug_logToProperty", value: "/myJob/debug_logs")'
     }
 
@@ -179,7 +81,7 @@ class ListClusterMembersSpecSuite extends PluginTestHelper {
         }
 
         if (testCaseID == TC.C367446){
-            createClusterWithAdditionalServers(clusterName)
+            createClusterWithAdditionalServers(clusterName, membersLists.twoMembers)
         }
 
         if (testCaseID == TC.C367447){
@@ -285,106 +187,6 @@ class ListClusterMembersSpecSuite extends PluginTestHelper {
         TC.C367449 | confignames.correctSOAP  | ''               | '/myJob/clusterMembers'  | 'error'   | summaries.emptyClusterName    | [summaries.emptyClusterName]+jobLogs.emptyClusterName
         TC.C367450 | confignames.correctSOAP  | 'wrongCluster'   | '/myJob/clusterMembers'  | 'error'   | summaries.wrongClusterName    | [summaries.wrongClusterName]
         TC.C367450 | confignames.incorrect    | 'ListMembers01'  | '/myJob/clusterMembers'  | 'error'   | summaries.wrongConfig         | [summaries.wrongConfig]
-    }
-
-    def deleteCluster(def clusterName){
-        def deleteParams = [
-                configname: confignames.correctSOAP,
-                wasClusterName: clusterName,
-                wasSyncNodes: 1,
-        ]
-        runProcedure(deleteParams, procDeleteCluster)
-    }
-
-    def createCluster(clusterName){
-        def clusterWithServer = [
-                configname                         : confignames.correctSOAP,
-                wasAddClusterMembers               : '0',
-                wasClusterMembersGenUniquePorts    : '1',
-                wasClusterMembersList              : '',
-                wasClusterMemberWeight             : '',
-                wasClusterName                     : clusterName,
-                wasCreateFirstClusterMember        : '1',
-                wasFirstClusterMemberCreationPolicy: 'template',
-                wasFirstClusterMemberGenUniquePorts: '1',
-                wasFirstClusterMemberName          : 'FirstClusterServer',
-                wasFirstClusterMemberNode          : nodes.default,
-                wasFirstClusterMemberTemplateName  : 'default',
-                wasFirstClusterMemberWeight        : '',
-                wasPreferLocal                     : '1',
-                wasServerResourcesPromotionPolicy  : 'both',
-                wasSourceServerName                : '',
-                wasSyncNodes                       : '1',
-        ]
-        runProcedure(clusterWithServer, procCreateCluster)
-    }
-
-    def createClusterWithAdditionalServers(clusterName){
-        def clusterWithServer = [
-                configname                         : confignames.correctSOAP,
-                wasAddClusterMembers               : '1',
-                wasClusterMembersGenUniquePorts    : '1',
-                wasClusterMembersList              : membersLists.twoMembers,
-                wasClusterMemberWeight             : '',
-                wasClusterName                     : clusterName,
-                wasCreateFirstClusterMember        : '1',
-                wasFirstClusterMemberCreationPolicy: 'template',
-                wasFirstClusterMemberGenUniquePorts: '1',
-                wasFirstClusterMemberName          : 'FirstClusterServer',
-                wasFirstClusterMemberNode          : nodes.default,
-                wasFirstClusterMemberTemplateName  : 'default',
-                wasFirstClusterMemberWeight        : '',
-                wasPreferLocal                     : '1',
-                wasServerResourcesPromotionPolicy  : 'both',
-                wasSourceServerName                : '',
-                wasSyncNodes                       : '1',
-        ]
-        runProcedure(clusterWithServer, procCreateCluster)
-    }
-
-    def createEmptyCluster(clusterName){
-        def emptyCluster = [
-                configname                         : confignames.correctSOAP,
-                wasAddClusterMembers               : '0',
-                wasClusterMembersGenUniquePorts    : '1',
-                wasClusterMembersList              : '',
-                wasClusterMemberWeight             : '',
-                wasClusterName                     : clusterName,
-                wasCreateFirstClusterMember        : '0',
-                wasFirstClusterMemberCreationPolicy: '',
-                wasFirstClusterMemberGenUniquePorts: '1',
-                wasFirstClusterMemberName          : '',
-                wasFirstClusterMemberNode          : nodes.default,
-                wasFirstClusterMemberTemplateName  : '',
-                wasFirstClusterMemberWeight        : '',
-                wasPreferLocal                     : '1',
-                wasServerResourcesPromotionPolicy  : '',
-                wasSourceServerName                : '',
-                wasSyncNodes                       : '1',
-        ]
-        runProcedure(emptyCluster, procCreateCluster)
-    }
-
-    def runProcedure(def parameters, def procedureName=procListClusterMembers) {
-        def parametersString = parameters.collect { k, v -> "$k: '$v'" }.join(', ')
-        def code = """
-            runProcedure(
-                projectName: '$projectName',
-                procedureName: '$procedureName',
-                actualParameter: [
-                    $parametersString
-                ]
-            )
-        """
-        def result = dslWithTimeout(code)
-        waitUntil {
-            try {
-                jobCompleted(result)
-            } catch (Exception e) {
-                println e.getMessage()
-            }
-        }
-        return result
     }
 
 }
