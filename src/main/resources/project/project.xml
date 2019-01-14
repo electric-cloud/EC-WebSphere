@@ -6,6 +6,12 @@
         <description>Integration with WebSphere</description>
         <workspaceName />
         <propertySheet>
+            <!-- Improvement for ECPAPPSERVERWEBSPHERE-600 -->
+            <property>
+                <propertyName>ec_icon</propertyName>
+                <value>images/icon-plugin.svg</value>
+            </property>
+            <!-- End of improvement for ECPAPPSERVERWEBSPHERE-600 -->
             <!-- CEV-17558 improvements -->
             <!-- EC-WebSphere doesn't have custom GWT logic. Setting it for plugin context -->
             <property>
@@ -274,7 +280,7 @@
                         <propertyName>create_cluster_members.py</propertyName>
                         <value/>
                     </property>
-                    
+
                     <!-- New properties after this line, added due refactoring. TODO: remove this comment after refactoring is done.-->
                     <property>
                         <propertyName>check_app.py</propertyName>
@@ -3159,7 +3165,7 @@
                                             <value>standard</value>
                                         </property>
                                     </propertySheet>
-                                </property>                            
+                                </property>
                                 <property>
                                     <propertyName>wasNodeName</propertyName>
                                     <propertySheet>
@@ -3170,7 +3176,7 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-                                
+
                                 <property>
                                     <propertyName>wasAppServerName</propertyName>
                                     <propertySheet>
@@ -3181,7 +3187,7 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-                                
+
                                 <property>
                                     <propertyName>wasTemplateName</propertyName>
                                     <propertySheet>
@@ -3485,7 +3491,7 @@
                                     </propertySheet>
                                 </property>
 
-                                
+
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -3503,7 +3509,7 @@
                 <formalParameterName>wasServersList</formalParameterName>
                 <defaultValue/>
                 <description>
-                    List of Servers to be started. Provide them in this format :  NodeName:ServerName. For example, 
+                    List of Servers to be started. Provide them in this format :  NodeName:ServerName. For example,
                     Node1:Server1, Node2:Server2, Node3:Server3, or Node4:* to start all servers within Node4.
                 </description>
                 <required>1</required>
@@ -3605,7 +3611,7 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-                                
+
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -3623,7 +3629,7 @@
                 <formalParameterName>wasServersList</formalParameterName>
                 <defaultValue/>
                 <description>
-                    List of Servers to be stopped. Provide them in this format :  NodeName:ServerName. For example, 
+                    List of Servers to be stopped. Provide them in this format :  NodeName:ServerName. For example,
                     Node1:Server1, Node2:Server2, Node3:Server3, or Node4:* to stop all servers within Node4.
                 </description>
                 <required>1</required>
@@ -11726,7 +11732,7 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-                                
+
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -11888,7 +11894,7 @@
                                     </propertySheet>
                                 </property>
 
-                                
+
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -11981,7 +11987,7 @@
                         <property>
                             <propertyName>parameters</propertyName>
                             <propertySheet>
-                                
+
                                 <property>
                                     <propertyName>configname</propertyName>
                                     <propertySheet>
@@ -12048,7 +12054,7 @@
                                     </propertySheet>
                                 </property>
 
-                                
+
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -12163,7 +12169,7 @@
                         <property>
                             <propertyName>parameters</propertyName>
                             <propertySheet>
-                                
+
                                 <property>
                                     <propertyName>configname</propertyName>
                                     <propertySheet>
@@ -12230,7 +12236,7 @@
                                     </propertySheet>
                                 </property>
 
-                                
+
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -12290,7 +12296,7 @@
             </formalParameter>
 
 
-            
+
             <step>
                 <stepName>StartDeploymentManager</stepName>
                 <alwaysRun>0</alwaysRun>
@@ -12348,7 +12354,7 @@
                         <property>
                             <propertyName>parameters</propertyName>
                             <propertySheet>
-                                
+
                                 <property>
                                     <propertyName>configname</propertyName>
                                     <propertySheet>
@@ -12424,7 +12430,7 @@
                                         </property>
                                     </propertySheet>
                                 </property>
-                                
+
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -12547,7 +12553,7 @@
                         <property>
                             <propertyName>parameters</propertyName>
                             <propertySheet>
-                                
+
                                 <property>
                                     <propertyName>configname</propertyName>
                                     <propertySheet>
@@ -12930,7 +12936,7 @@
                                     </propertySheet>
                                 </property>
 
-                                
+
                             </propertySheet>
                         </property>
                     </propertySheet>
@@ -12975,7 +12981,7 @@
                 <type>entry</type>
             </formalParameter>
 
-            
+
             <formalParameter>
                 <formalParameterName>wasFirstClusterMemberGenUniquePorts</formalParameterName>
                 <defaultValue/>
@@ -13160,7 +13166,7 @@
                                 </property>
 
 
-                                
+
                             </propertySheet>
                         </property>
                     </propertySheet>
