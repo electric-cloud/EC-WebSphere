@@ -32,8 +32,8 @@ $|=1;
 
 $::gInstanceName = trim(q($[instancename]));
 $::gScriptLocation = trim(q($[scriptlocation]));
-$::gAdditionalCommands = "$[additionalcommands]";
-$::gConfigName = "$[configname]";
+$::gAdditionalCommands = '$[additionalcommands]';
+$::gConfigName = '$[configname]';
 
 # -------------------------------------------------------------------------
 # Main functions

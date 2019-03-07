@@ -42,9 +42,9 @@ use constant {
 # Variables
 # -------------------------------------------------------------------------
 
-$::gConfigName = "$[configname]";
-$::gMaxElapsedTime = "$[maxelapsedtime]";
-$::gSuccessCriteria = "$[successcriteria]";
+$::gConfigName = '$[configname]';
+$::gMaxElapsedTime = '$[maxelapsedtime]';
+$::gSuccessCriteria = '$[successcriteria]';
 $::gIntervalWaitTime = 10;
 
 # -------------------------------------------------------------------------

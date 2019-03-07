@@ -69,7 +69,7 @@ my $gMailTransportProtocol = trim(q($[mailTransportProtocol]));
 my $gMailTransportUser     = trim(q($[mailTransportUser]));
 my $gStrict                = trim(q($[strict]));
 my $gWSAdminAbsPath        = trim(q($[wsadminAbsPath]));
-my $gConfigurationName     = "$[configname]";
+my $gConfigurationName     = '$[configname]';
 
 # -------------------------------------------------------------------------
 # Main functions

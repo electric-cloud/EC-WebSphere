@@ -63,7 +63,7 @@ $::gLocalRepoBundleList = trim(q($[localRepoBundleList]));
 $::gEbaPath             = trim(q($[ebaPath]));
 $::gAppName             = trim(q($[appName]));
 $::gDeployUnit          = trim(q($[deployUnit]));
-$::gConfigurationName   = "$[configName]";
+$::gConfigurationName   = '$[configName]';
 
 # -------------------------------------------------------------------------
 # Main functions
