@@ -65,7 +65,7 @@ $::gNativepath          = trim(q($[nativepath]));
 $::gProviderType        = trim(q($[providerType]));
 $::gPropertySet         = trim(q($[propertySet]));
 $::gSupportsASF         = trim(q($[supportsASF]));
-$::gConfigurationName   = "$[configname]";
+$::gConfigurationName   = '$[configname]';
 
 # -------------------------------------------------------------------------
 # Main functions

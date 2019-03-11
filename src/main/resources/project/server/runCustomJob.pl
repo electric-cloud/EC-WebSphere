@@ -37,8 +37,8 @@ $::gScriptFileAbsPath = trim(q($[scriptfileabspath]));
 $::gWSAdminAbsPath = trim(q($[wsadminabspath]));
 $::gClasspath = trim(q($[classpath]));
 $::gJavaParams = trim(q($[javaparams]));
-$::gConfigurationName = "$[configname]";
-$::gAdditionalOptions = "$[additionalcommands]";
+$::gConfigurationName = '$[configname]';
+$::gAdditionalOptions = '$[additionalcommands]';
 
 # -------------------------------------------------------------------------
 # Main functions
