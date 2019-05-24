@@ -19,7 +19,7 @@ In case you install more WebSphere instances these values will be changed.
 
 For more information about WebSphere, go to the <a href="http://www-01.ibm.com/software/websphere/">WebSphere Home Page</a>.
 
-## Electric Flow Integration to WebSphere
+## CloudBees Flow Integration to WebSphere
 You can use this plugin to interact with an IBM
 WebSphere Server. You can start and stop the server.
 You can also manage applications within the server (start,

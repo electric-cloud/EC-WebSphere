@@ -1,3 +1,9 @@
+2.6.3:
+  - Renaming from "Electric Cloud" to "CloudBees".
+2.6.2:
+  - Configurations can be created by users with "@" sign in a name.
+2.6.1:
+  - The plugin icon has been updated.<
 2.6.0:
   - |
     Following new procedures have been added to support management of clusters:
