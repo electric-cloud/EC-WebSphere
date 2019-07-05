@@ -5302,7 +5302,7 @@ A context root for each web module is defined in the application deployment desc
 
     <h1 id="releaseNotes">Release Notes</h1>
 
-    <h3>@PLUGIN_KEY@ 2.6.4</h3>
+    <h3>@PLUGIN_KEY@ 2.7.0</h3>
     <ul>
         <li>Preserve time limit settings after upgrade.</li>
     </ul>
