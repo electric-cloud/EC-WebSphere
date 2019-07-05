@@ -524,7 +524,7 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create C
     \%startServer, \%stopServer,
     \%runCustomJob, \%startApp,
     \%stopApp, \%deployApp,
-    \%undeployApp, \%checkApp, 
+    \%undeployApp, \%checkApp,
     \%createDatasource, \%deleteDatasource,
     \%createJDBCProvider, \%deleteJDBCProvider,
     \%configureSessionManagement,
@@ -569,7 +569,7 @@ if ($upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
 
     # When upgrading from older versions, find steps that call plugins procedures
-    # and remove extra outdated parameters 
+    # and remove extra outdated parameters
     my @filterList = ({ 'propertyName' => 'subproject',
          'operator' => 'equals',
          'operand1' => '/plugins/@PLUGIN_KEY@/project' });
@@ -594,7 +594,7 @@ if ($upgradeAction eq "upgrade") {
     my $old_configs_path = "/plugins/$otherPluginName/project/websphere_cfgs";
     my $configurations = $commander->getProperties({path => $old_configs_path});
     for my $configuration ($configurations->findnodes('//propertyName')) {
-    	my $conntype_path = $old_configs_path.$configuration->string_value."/conntype";
+        my $conntype_path = $old_configs_path.$configuration->string_value."/conntype";
 
         my $conntype = $commander->getProperty($conntype_path);
         if(!$conntype->find('//value')) {
@@ -605,9 +605,9 @@ if ($upgradeAction eq "upgrade") {
     my $newcfg = $query->getProperty("/plugins/$pluginName/project/websphere_cfgs");
     my $oldcfgs = $query->getProperty($old_configs_path);
     my $olddiscovery = $query->getProperty("/plugins/$otherPluginName/project/ec_discovery/discovered_data");
-	my $creds = $query->getCredentials("\$[/plugins/$otherPluginName]");
+    my $creds = $query->getCredentials("\$[/plugins/$otherPluginName]");
 
-	local $self->{abortOnError} = 0;
+    local $self->{abortOnError} = 0;
     $query->submit();
 
     # if new plugin does not already have cfgs
@@ -629,7 +629,56 @@ if ($upgradeAction eq "upgrade") {
         });
     }
 
-	# Copy configuration credentials and attach them to the appropriate steps
+    #--------------------------------------------------------------
+    # Update Time Limit
+
+    # use Data::Dumper;
+
+    my $oldProjectName = "/plugins/$otherPluginName/project";
+    my $newProjectName = "/plugins/$pluginName/project";
+
+    # print Dumper($oldProjectName);
+    # print Dumper($newProjectName);
+
+    for my $procedure ($commander->getProcedures({ projectName => $oldProjectName })->findnodes('//procedure')) {
+        my $procedureName = $procedure->findvalue('procedureName')->string_value;
+        # print("Procedure: $procedureName\n");
+        for my $oldStep ($commander->getSteps({ projectName => $oldProjectName, procedureName => $procedureName })->findnodes('//step')) {
+            my $stepName = $oldStep->findvalue('stepName')->string_value;
+            # print("\tStep: $stepName\n");
+
+            my $oldTimeLimit = $oldStep->findvalue("//timeLimit");
+            next unless($oldTimeLimit);
+
+            my $oldTimeLimitUnits = $oldStep->findvalue("//timeLimitUnits");
+            next unless($oldTimeLimitUnits);
+
+            my $newStep = $commander->getStep($newProjectName, $procedureName, $stepName);
+
+            my $newTimeLimit = $newStep->findvalue("//timeLimit");
+            next unless($newTimeLimit);
+
+            my $newTimeLimitUnits = $newStep->findvalue("//timeLimitUnits");
+            next unless($newTimeLimitUnits);
+
+            my $oldLimit = $oldTimeLimit->value;
+            my $oldLimitUnits = $oldTimeLimitUnits->value;
+            # print("\t\toldLimit: $oldLimit; $oldLimitUnits\n");
+
+            my $res = $commander->modifyStep($newProjectName, $procedureName, $stepName, {timeLimit => $oldLimit, timeLimitUnits => $oldLimitUnits});
+
+            my @errors = $res->findErrors;
+            if (@errors > 0) {
+                # print Dumper(\@errors);
+                next
+            }
+
+            # print("\t\OK\n");
+        }
+
+    }
+
+    # Copy configuration credentials and attach them to the appropriate steps
     my $nodes = $query->find($creds);
     if ($nodes) {
         my @nodes = $nodes->findnodes('credential/credentialName');
@@ -672,50 +721,50 @@ if ($upgradeAction eq "upgrade") {
                 procedureName => 'RunCustomJob',
                 stepName => 'RunJob'
             });
-            
+
             # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DeployApp',
                 stepName => 'DeployApp'
             });
-            
+
             # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'UndeployApp',
                 stepName => 'UndeployApp'
             });
-            
+
             # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'StartApp',
                 stepName => 'StartApp'
             });
-            
+
             # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'StopApp',
                 stepName => 'StopApp'
             });
-            
+
 
             # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'CheckServerStatus',
                 stepName => 'CheckServerStatus'
             });
-            
+
             # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'CheckApp',
                 stepName => 'CheckApp'
             });
-            
+
             # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'CreateDatasource',
                 stepName => 'CreateDatasource'
             });
-            
+
             # Attach the credential to the appropriate steps
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'DeleteDatasource',
@@ -876,7 +925,7 @@ if ($upgradeAction eq "upgrade") {
                 procedureName => 'DeleteJMSActivationSpec',
                 stepName => 'DeleteJMSActivationSpec'
             });
-            
+
             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
                 procedureName => 'CreateOrUpdateWMQJMSConnectionFactory',
                 stepName => 'CreateOrUpdateWMQJMSConnectionFactory'
