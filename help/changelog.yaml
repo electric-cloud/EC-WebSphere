@@ -1,3 +1,5 @@
+2.7.0:
+  - Preserve time limit settings after upgrade.
 2.6.3:
   - Renaming from "Electric Cloud" to "CloudBees".
 2.6.2:
