@@ -46,13 +46,13 @@ use constant {
 # Variables
 # -------------------------------------------------------------------------
 
-$::gURL = "$[targeturl]";
-$::gMaxElapsedTime = "$[maxelapsedtime]";
-$::gSuccessCriteria = "$[successcriteria]";
+$::gURL = '$[targeturl]';
+$::gMaxElapsedTime = '$[maxelapsedtime]';
+$::gSuccessCriteria = '$[successcriteria]';
 # This is the _name_ of the attached credential parameter, not its value! This is used to get the actual credential user/password
 $::gCredentialParam = "credentialName";
 # This is the value of the attached credential parameter (the name of the user-attached credential), for log use only
-$::gAttachedCredentialName = "$[credentialName]";
+$::gAttachedCredentialName = '$[credentialName]';
 $::gIntervalWaitTime = 10;
 $::gFailureCount = 0;
 

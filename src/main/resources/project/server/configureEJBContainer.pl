@@ -64,7 +64,7 @@ my $gCleanupInterval             = trim(q($[cleanupInterval]));
 my $gEnableSFSBFailover          = trim(q($[enableSFSBFailover]));
 my $gMessageBrokerDomainName     = trim(q($[messageBrokerDomainName]));
 my $gDataReplicationMode         = trim(q($[dataReplicationMode]));
-my $gConfigurationName           = "$[configname]";
+my $gConfigurationName           = '$[configname]';
 
 # -------------------------------------------------------------------------
 # Main functions

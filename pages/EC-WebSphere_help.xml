@@ -14,7 +14,7 @@
     <h1>@PLUGIN_KEY@</h1>
     <p>Plugin version @PLUGIN_VERSION@</p>
 
-    <p>Revised on January 31, 2019</p>
+    <p>Revised on July  5, 2019</p>
 
     <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade"/>
     <h1>Contents</h1>
@@ -77,7 +77,7 @@ It works with a number of Web servers including Apache HTTP Server, Netscape Ent
 It uses port 9060 for connection as the default administration port and port 9080 as the default website publication port.
 In case you install more WebSphere instances these values will be changed.</p>
 <p>For more information about WebSphere, go to the <a href="http://www-01.ibm.com/software/websphere/">WebSphere Home Page</a>.</p>
-<h2>Electric Flow Integration to WebSphere</h2>
+<h2>CloudBees Flow Integration to WebSphere</h2>
 <p>You can use this plugin to interact with an IBM
 WebSphere Server. You can start and stop the server.
 You can also manage applications within the server (start,
@@ -121,7 +121,7 @@ Please refer to this <a href="https://www-01.ibm.com/common/ssi/ShowDoc.wss?docU
         </p>
 
         <h3>Creating Plugin Configurations</h3>
-        <p>To create plugin configurations in ElectricFlow,
+        <p>To create plugin configurations in CloudBees Flow,
             do these steps:</p>
 
         <li>Go to <b>Administration</b> &gt; <b>Plugins</b> to open the Plugin Manager.</li>
@@ -130,7 +130,7 @@ Please refer to this <a href="https://www-01.ibm.com/common/ssi/ShowDoc.wss?docU
              Configurations page.</li>
         <li>Click <b>Create Configuration</b>.</li>
 
-        <p><b>Note: After you perform the setup below it is important to make sure that the Electric Flow agent machine on which WebSphere runs is registered as a resource that can be pinged.</b>
+        <p><b>Note: After you perform the setup below it is important to make sure that the CloudBees Flow agent machine on which WebSphere runs is registered as a resource that can be pinged.</b>
 <img src="../../plugins/EC-WebSphere/images/Config/parameters.png" /><br />
 Plugin configurations are sets of parameters that apply across some or all of the plugin procedures.
 They reduce repetition of common values, create predefined parameter sets for end users,
@@ -5302,12 +5302,33 @@ A context root for each web module is defined in the application deployment desc
 
     <h1 id="releaseNotes">Release Notes</h1>
 
-    <h2>@PLUGIN_KEY@ 2.6.1</h2>
+    <h3>@PLUGIN_KEY@ 2.7.0</h3>
     <ul>
-        <li>The plugin icon has been updated.</li>
+        <li>Preserve time limit settings after upgrade.</li>
     </ul>
 
-    <h2>@PLUGIN_KEY@ 2.6.0</h2>
+    <h3>@PLUGIN_KEY@ 2.6.3</h3>
+    <ul>
+
+        <li>Renaming from "Electric Cloud" to "CloudBees".</li>
+
+    </ul>
+
+    <h3>@PLUGIN_KEY@ 2.6.2</h3>
+    <ul>
+
+        <li>Configurations can be created by users with "@" sign in a name.</li>
+
+    </ul>
+
+    <h3>@PLUGIN_KEY@ 2.6.1</h3>
+    <ul>
+
+        <li>The plugin icon has been updated.</li>
+
+    </ul>
+
+    <h3>@PLUGIN_KEY@ 2.6.0</h3>
     <ul>
 
         <li>Following new procedures have been added to support management of clusters:
