@@ -55,8 +55,8 @@
 </a></li><li><a href="#StopDeploymentManager">StopDeploymentManager <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#StartNode">StartNode <b>(Applicable only for WebSphere Network Deployment installation.)</b>
 </a></li><li><a href="#StopNode">StopNode <b>(Applicable only for WebSphere Network Deployment installation.)</b>
-</a></li><li><a href="#StartServer">StartServer</a></li><li><a href="#StopServer">StopServer</a></li><li><a href="#RunCustomJob">RunCustomJob</a></li></ul><li>WAS Application Component Management Procedures<br/><i>These procedures for application component management.</i></li><ul><li><a href="#ConfigureSession">ConfigureSession</a></li><li><a href="#MapSharedLibrary">MapSharedLibrary</a></li><li><a href="#ModifyApplicationClassLoader">ModifyApplicationClassLoader</a></li></ul><li>WAS Application Administration Procedures<br/><i>These procedures for application administration.</i></li><ul><li><a href="#StartApp">StartApp</a></li><li><a href="#StopApp">StopApp</a></li></ul><li>WAS Datasource Management Procedures<br/><i>These procedures for datasource management.</i></li><ul><li><a href="#CreateJDBCProvider">CreateJDBCProvider</a></li><li><a href="#DeleteJDBCProvider">DeleteJDBCProvider</a></li><li><a href="#CreateDatasource">CreateDatasource</a></li><li><a href="#DeleteDatasource">DeleteDatasource</a></li></ul><li>WAS JMS Management Procedures<br/><i>These procedures for JMS resources management.</i></li><ul><li><a href="#CreateJMSProvider">CreateJMSProvider</a></li><li><a href="#DeleteJMSProvider">DeleteJMSProvider</a></li><li><a href="#CreateOrUpdateJMSQueue">CreateOrUpdateJMSQueue</a></li><li><a href="#DeleteJMSQueue">DeleteJMSQueue</a></li><li><a href="#CreateOrUpdateJMSTopic">CreateOrUpdateJMSTopic</a></li><li><a href="#DeleteJMSTopic">DeleteJMSTopic</a></li><li><a href="#CreateOrUpdateSIBJMSActivationSpec">CreateOrUpdateSIBJMSActivationSpec</a></li><li><a href="#CreateOrUpdateWMQJMSActivationSpec">CreateOrUpdateWMQJMSActivationSpec</a></li><li><a href="#DeleteJMSActivationSpec">DeleteJMSActivationSpec</a></li><li><a href="#CreateOrUpdateSIBJMSConnectionFactory">CreateOrUpdateSIBJMSConnectionFactory</a></li><li><a href="#CreateOrUpdateWMQJMSConnectionFactory">CreateOrUpdateWMQJMSConnectionFactory</a></li><li><a href="#DeleteJMSConnectionFactory">DeleteJMSConnectionFactory</a></li></ul><li>WAS Application Deployment Procedures<br/><i>These procedures for applications deployment.</i></li><ul><li><a href="#DeployApp">DeployApp</a></li><li><a href="#DeployEnterpriseApp">DeployEnterpriseApp</a></li><li><a href="#UndeployApp">UndeployApp</a></li><li><a href="#UpdateApp">UpdateApp</a></li></ul><li>Check Procedures<br/><i>Procedures for status checking</i></li><ul><li><a href="#CheckApp">CheckApp</a></li><li><a href="#CheckNodeStatus">CheckNodeStatus <b>(Applicable only for WebSphere Network Deployment installation.)</b>
-</a></li><li><a href="#CheckPageStatus">CheckPageStatus</a></li><li><a href="#CheckServerStatus">CheckServerStatus</a></li></ul><li>Other</li><ul><li><a href="#DeployOSGiApp">DeployOSGiApp</a></li><li><a href="#Discover">Discover</a></li></ul>
+</a></li><li><a href="#StartServer">StartServer</a></li><li><a href="#StopServer">StopServer</a></li><li><a href="#RunCustomJob">RunCustomJob</a></li></ul><li>WAS Application Component Management Procedures<br/><i>These procedures for application component management.</i></li><ul><li><a href="#ConfigureSession">ConfigureSession</a></li><li><a href="#MapSharedLibrary">MapSharedLibrary</a></li><li><a href="#ModifyApplicationClassLoader">ModifyApplicationClassLoader</a></li></ul><li>WAS Application Administration Procedures<br/><i>These procedures for application administration.</i></li><ul><li><a href="#StartApp">StartApp</a></li><li><a href="#StopApp">StopApp</a></li></ul><li>WAS Datasource Management Procedures<br/><i>These procedures for datasource management.</i></li><ul><li><a href="#CreateJDBCProvider">CreateJDBCProvider</a></li><li><a href="#DeleteJDBCProvider">DeleteJDBCProvider</a></li><li><a href="#CreateDatasource">CreateDatasource</a></li><li><a href="#DeleteDatasource">DeleteDatasource</a></li></ul><li>WAS JMS Management Procedures<br/><i>These procedures for JMS resources management.</i></li><ul><li><a href="#CreateJMSProvider">CreateJMSProvider</a></li><li><a href="#DeleteJMSProvider">DeleteJMSProvider</a></li><li><a href="#CreateOrUpdateJMSQueue">CreateOrUpdateJMSQueue</a></li><li><a href="#DeleteJMSQueue">DeleteJMSQueue</a></li><li><a href="#CreateOrUpdateJMSTopic">CreateOrUpdateJMSTopic</a></li><li><a href="#DeleteJMSTopic">DeleteJMSTopic</a></li><li><a href="#CreateOrUpdateSIBJMSActivationSpec">CreateOrUpdateSIBJMSActivationSpec</a></li><li><a href="#CreateOrUpdateWMQJMSActivationSpec">CreateOrUpdateWMQJMSActivationSpec</a></li><li><a href="#DeleteJMSActivationSpec">DeleteJMSActivationSpec</a></li><li><a href="#CreateOrUpdateSIBJMSConnectionFactory">CreateOrUpdateSIBJMSConnectionFactory</a></li><li><a href="#CreateOrUpdateWMQJMSConnectionFactory">CreateOrUpdateWMQJMSConnectionFactory</a></li><li><a href="#DeleteJMSConnectionFactory">DeleteJMSConnectionFactory</a></li></ul><li>WAS Application Deployment Procedures<br/><i>These procedures for applications deployment.</i></li><ul><li><a href="#DeployApp">DeployApp</a></li><li><a href="#DeployEnterpriseApp">DeployEnterpriseApp</a></li><li><a href="#DeployOSGiApp">DeployOSGiApp</a></li><li><a href="#UndeployApp">UndeployApp</a></li><li><a href="#UpdateApp">UpdateApp</a></li></ul><li>Check Procedures<br/><i>Procedures for status checking</i></li><ul><li><a href="#CheckApp">CheckApp</a></li><li><a href="#CheckNodeStatus">CheckNodeStatus <b>(Applicable only for WebSphere Network Deployment installation.)</b>
+</a></li><li><a href="#CheckPageStatus">CheckPageStatus</a></li><li><a href="#CheckServerStatus">CheckServerStatus</a></li></ul><li>Other</li><ul><li><a href="#Discover">Discover</a></li></ul>
 
     
     
@@ -5726,6 +5726,116 @@ A context root for each web module is defined in the application deployment desc
     </div>
 
     
+    <div id="DeployOSGiApp">
+        <h2>DeployOSGiApp</h2>
+        
+        
+        <p>Deploy OSGi application using the wsadmin tool</p>
+        
+        
+            <p>This procedure deploys the OSGi application.It optionally configures external OSGi bundle library if the application to be deployed reference bundles that are stored in an external bundle repository. This procedure can also add the bundles to internal bundle repository, if required.</p>
+
+        
+        <h3>DeployOSGiApp Parameters</h3>
+        <table class="grid">
+            <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+            <tr>
+                
+                <td class="required">Configuration Name</td>
+                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td class="required">Wsadmin Absolute Path</td>
+                <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. '/path/to/wsadmin.sh' or 'wsadmin.bat'.</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td >Want to add external bundle repository?</td>
+                <td>If your OSGi applications reference bundles that are stored in an external bundle repository, you must configure a link (name and URL) to the repository so that the provisioner can retrieve the bundles when required. </td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td >External Bundle Repository Name</td>
+                <td>Name of the external bundle repository to configure. </td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td >External Bundle Repository URL</td>
+                <td>URL of the external bundle repository to configure. </td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td >List of bundles to add to local repository</td>
+                <td>Comma separated list of bundles to add to internal bundle repository.E.g. C:/installableApps/com.ibm.samples.websphere.osgi.logging.api.jar,C:/installableApps/com.ibm.samples.websphere.osgi.logging.impl.jar </td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td class="required">EBA file Path</td>
+                <td>Absolute path of the OSGi application to deploy. i.e: '/path/to/blog.eba' or 'c:/mydir/blog.eba'. </td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td class="required">Application Name</td>
+                <td>Name to be given to newly deployed OSGi application.</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td class="required">Target Deployment Unit</td>
+                <td>Deployment Unit on which to deploy the OSGi application. For e.g cluster=cluster1 or node=node01,server=server1</td>
+                
+            </tr>
+            
+            </tbody>
+        </table>
+
+        
+
+        
+        <p>
+            <h3>Deploy OSGi Application</h3>
+                <p>To deploy an OSGi application, do these steps:</p>
+                <ol>
+                    <li>Go to the DeployOSGiApp procedure. </li>
+                    <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeployOSGi/EC-WebSphereDeployOSGi2.png" />
+                </ol>
+                <p>After the job runs, you can view the results, including the following job details, which show that
+                OSGi application is deployed successfully:</p>
+                <img src="../../plugins/EC-WebSphere/images/DeployOSGi/EC-WebSphereDeployOSGi3.png" />
+                <p>In the <b>DeployOSGi</b> step, click the Log icon
+                to see the diagnostic information. The output is similar to
+                the following diagnostic
+                report.</p>
+                <img src="../../plugins/EC-WebSphere/images/DeployOSGi/EC-WebSphereDeployOSGi4.png" />
+
+        </p>
+        
+    </div>
+
+    
     <div id="UndeployApp">
         <h2>UndeployApp</h2>
         
@@ -6226,116 +6336,6 @@ A context root for each web module is defined in the application deployment desc
     </div>
 
     
-    <div id="DeployOSGiApp">
-        <h2>DeployOSGiApp</h2>
-        
-        
-        <p>Deploy OSGi application using the wsadmin tool</p>
-        
-        
-            <p>This procedure deploys the OSGi application.It optionally configures external OSGi bundle library if the application to be deployed reference bundles that are stored in an external bundle repository. This procedure can also add the bundles to internal bundle repository, if required.</p>
-
-        
-        <h3>DeployOSGiApp Parameters</h3>
-        <table class="grid">
-            <thead>
-            <tr>
-                <th>Parameter</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            
-            <tr>
-                
-                <td class="required">Configuration Name</td>
-                <td>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="/commander/pages/@PLUGIN_NAME@/configurations" target="_blank">configuration page</a>.</td>
-                
-            </tr>
-            
-            <tr>
-                
-                <td class="required">Wsadmin Absolute Path</td>
-                <td>Path to wsadmin. If the location of wsadmin is in the PATH environment variable, then just the script name can be specified omitting its full path. E.g. '/path/to/wsadmin.sh' or 'wsadmin.bat'.</td>
-                
-            </tr>
-            
-            <tr>
-                
-                <td >Want to add external bundle repository?</td>
-                <td>If your OSGi applications reference bundles that are stored in an external bundle repository, you must configure a link (name and URL) to the repository so that the provisioner can retrieve the bundles when required. </td>
-                
-            </tr>
-            
-            <tr>
-                
-                <td >External Bundle Repository Name</td>
-                <td>Name of the external bundle repository to configure. </td>
-                
-            </tr>
-            
-            <tr>
-                
-                <td >External Bundle Repository URL</td>
-                <td>URL of the external bundle repository to configure. </td>
-                
-            </tr>
-            
-            <tr>
-                
-                <td >List of bundles to add to local repository</td>
-                <td>Comma separated list of bundles to add to internal bundle repository.E.g. C:/installableApps/com.ibm.samples.websphere.osgi.logging.api.jar,C:/installableApps/com.ibm.samples.websphere.osgi.logging.impl.jar </td>
-                
-            </tr>
-            
-            <tr>
-                
-                <td class="required">EBA file Path</td>
-                <td>Absolute path of the OSGi application to deploy. i.e: '/path/to/blog.eba' or 'c:/mydir/blog.eba'. </td>
-                
-            </tr>
-            
-            <tr>
-                
-                <td class="required">Application Name</td>
-                <td>Name to be given to newly deployed OSGi application.</td>
-                
-            </tr>
-            
-            <tr>
-                
-                <td class="required">Target Deployment Unit</td>
-                <td>Deployment Unit on which to deploy the OSGi application. For e.g cluster=cluster1 or node=node01,server=server1</td>
-                
-            </tr>
-            
-            </tbody>
-        </table>
-
-        
-
-        
-        <p>
-            <h3>Deploy OSGi Application</h3>
-                <p>To deploy an OSGi application, do these steps:</p>
-                <ol>
-                    <li>Go to the DeployOSGiApp procedure. </li>
-                    <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/DeployOSGi/EC-WebSphereDeployOSGi2.png" />
-                </ol>
-                <p>After the job runs, you can view the results, including the following job details, which show that
-                OSGi application is deployed successfully:</p>
-                <img src="../../plugins/EC-WebSphere/images/DeployOSGi/EC-WebSphereDeployOSGi3.png" />
-                <p>In the <b>DeployOSGi</b> step, click the Log icon
-                to see the diagnostic information. The output is similar to
-                the following diagnostic
-                report.</p>
-                <img src="../../plugins/EC-WebSphere/images/DeployOSGi/EC-WebSphereDeployOSGi4.png" />
-
-        </p>
-        
-    </div>
-
-    
     <div id="Discover">
         <h2>Discover</h2>
         
@@ -6425,7 +6425,7 @@ A context root for each web module is defined in the application deployment desc
     <h3>@PLUGIN_KEY@ 2.6.1</h3>
     <ul>
         
-        <li>The plugin icon has been updated.<</li>
+        <li>The plugin icon has been updated.</li>
         
     </ul>
     

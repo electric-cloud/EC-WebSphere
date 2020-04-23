@@ -78,6 +78,7 @@ proceduresGrouping:
       procedures:
         - DeployApp
         - DeployEnterpriseApp
+        - DeployOSGiApp
         - UndeployApp
         - UpdateApp
     - name: Check Procedures
