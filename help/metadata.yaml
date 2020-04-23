@@ -7,7 +7,6 @@ proceduresGrouping:
       description: These procedures for WAS component management
       procedures:
         - CreateEndToEndMailProvider
-        - CreateEJBContainer
         - CreateMailSession
         - PublishWSDL
     - name: WAS Server Management Procedures
@@ -24,7 +23,7 @@ proceduresGrouping:
         - ListClusterMembers
         - RemoveClusterMembers
         - SyncNodes
-        - ConfigureEJBContainer
+        - ConfigEJBContainer
         - CreateFirstClusterMember
         - CreateClusterMembers
     - name: WAS Server Administration Procedures
@@ -79,7 +78,6 @@ proceduresGrouping:
       procedures:
         - DeployApp
         - DeployEnterpriseApp
-        - DeployOSGIApp
         - UndeployApp
         - UpdateApp
     - name: Check Procedures

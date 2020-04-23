@@ -1,3 +1,7 @@
+2.8.0:
+  - Add checking connection while creating a configuration.
+  - Jobs for the successful "CreateConfiguration" and "EditConfiguration" run is now preserved.
+  - Add logging while running "CreateConfiguration".
 2.7.0:
   - Preserve time limit settings after upgrade.
 2.6.3:
@@ -5,7 +9,7 @@
 2.6.2:
   - Configurations can be created by users with "@" sign in a name.
 2.6.1:
-  - The plugin icon has been updated.<
+  - The plugin icon has been updated.
 2.6.0:
   - |
     Following new procedures have been added to support management of clusters:
