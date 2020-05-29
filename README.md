@@ -1,7 +1,7 @@
 EC-WebSphere
 ============
 
-The ElectricFlow WebSphere integration
+The CloudBees CD WebSphere integration
 
 ## Compile ##
 
@@ -20,6 +20,6 @@ Create an ecplugin.properties at the root of this repository with the following 
 These represent secrets that **should not** be checked in.
 
 #### Running tests ####
-Run the `test` task to run the system tests. You may want to specify the ElectricFlow Server to test against by way of the COMMANDER_SERVER environment variable.
+Run the `test` task to run the system tests. You may want to specify the CloudBees CD Server to test against by way of the COMMANDER_SERVER environment variable.
 
-`COMMANDER_SERVER=<ElectricFlow Server FQDN or IP> ./gradlew test`
+`COMMANDER_SERVER=<CloudBees CD Server FQDN or IP> ./gradlew test`

@@ -1,7 +1,7 @@
 
 ### Stop Node
 
-To Stop Node in Flow interface, do these steps:
+To Stop Node in CloudBees CD interface, do these steps:
 
  * Create Pipeline.
  * Create task.

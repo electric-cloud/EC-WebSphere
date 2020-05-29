@@ -1,7 +1,7 @@
 
 ### Create Cluster
 
-To Create Cluster in Flow interface, do these steps:
+To Create Cluster in CloudBees CD interface, do these steps:
 
  * Create Pipeline.
  * Create task.

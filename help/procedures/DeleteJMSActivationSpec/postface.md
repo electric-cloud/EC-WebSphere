@@ -14,7 +14,7 @@
                 diagnostic information. The output is similar to the following
                 diagnostic report.</p>
                 <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/ProcedureLog.png" />
-                <p>To delete JMS Activation Spec in Flow interface, do these steps:</p>
+                <p>To delete JMS Activation Spec in CloudBees CD interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>

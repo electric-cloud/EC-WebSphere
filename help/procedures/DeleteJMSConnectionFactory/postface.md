@@ -10,7 +10,7 @@
                 <p>After the job runs, you can view the results, including the following
                 job details:</p>
                 <img src="../../plugins/EC-WebSphere/images/DeleteJMSConnectionFactory/ProcedureResult.png" />
-                <p>To delete JMS ConnectionFactory in Flow interface, do these steps:</p>
+                <p>To delete JMS ConnectionFactory in CloudBees CD interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>

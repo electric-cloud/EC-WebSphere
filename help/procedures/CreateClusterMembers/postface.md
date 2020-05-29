@@ -1,7 +1,7 @@
 
 ### Create Cluster Members
 
-To Create Cluster Members in Flow interface, do these steps:
+To Create Cluster Members in CloudBees CD interface, do these steps:
 
  * Create Pipeline.
  * Create task.

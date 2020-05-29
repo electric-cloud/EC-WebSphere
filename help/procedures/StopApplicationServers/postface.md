@@ -1,7 +1,7 @@
 
 ### Stop Application Servers
 
-To Stop Application Servers in Flow interface, do these steps:
+To Stop Application Servers in CloudBees CD interface, do these steps:
 
  * Create Pipeline.
  * Create task.

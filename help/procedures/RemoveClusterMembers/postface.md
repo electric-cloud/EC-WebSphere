@@ -1,7 +1,7 @@
 
 ### Remove Cluster Members
 
-To Remove Cluster Members in Flow interface, do these steps:
+To Remove Cluster Members in CloudBees CD interface, do these steps:
 
  * Create Pipeline.
  * Create task.

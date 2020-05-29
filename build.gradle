@@ -3,7 +3,7 @@
 //
 // Gradle build script for EC-WebSphere plugin.
 //
-// Copyright (c) 2016 Electric Cloud, Inc.
+// Copyright (c) 2016 CloudBees, Inc.
 // All rights reserved
 
 buildscript {

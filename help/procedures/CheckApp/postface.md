@@ -8,7 +8,7 @@
                 <p>After the job runs, you can view the results, including the following job details:</p>
                 <img src="../../plugins/EC-WebSphere/images/CheckApp/ProcedureResult.png" />
 
-                <p>To check Application State in Flow interface, do these steps:</p>
+                <p>To check Application State in CloudBees CD interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>

@@ -10,7 +10,7 @@
                 <p>After the job runs, you can view the results, including the following
                 job details:</p>
                 <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/ProcedureResult.png" />
-                <p>To delete JMS Topic in Flow interface, do these steps:</p>
+                <p>To delete JMS Topic in CloudBees CD interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>

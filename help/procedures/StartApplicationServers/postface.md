@@ -1,7 +1,7 @@
 
 ### Start Application Servers
 
-To Start Application Servers in Flow interface, do these steps:
+To Start Application Servers in CloudBees CD interface, do these steps:
 
  * Create Pipeline.
  * Create task.

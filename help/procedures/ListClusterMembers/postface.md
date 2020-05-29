@@ -1,7 +1,7 @@
 
 ### List Cluster Members
 
-To List Cluster Members in Flow interface, do these steps:
+To List Cluster Members in CloudBees CD interface, do these steps:
 
  * Create Pipeline.
  * Create task.

@@ -14,7 +14,7 @@
     <h1>@PLUGIN_KEY@</h1>
     <p>Plugin version @PLUGIN_VERSION@</p>
     
-    <p>Revised on April 23, 2020</p>
+    <p>Revised on May 29, 2020</p>
     
     <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade"/>
     <h1>Contents</h1>
@@ -90,7 +90,7 @@ It works with a number of Web servers including Apache HTTP Server, Netscape Ent
 It uses port 9060 for connection as the default administration port and port 9080 as the default website publication port.
 In case you install more WebSphere instances these values will be changed.</p>
 <p>For more information about WebSphere, go to the <a href="http://www-01.ibm.com/software/websphere/">WebSphere Home Page</a>.</p>
-<h2>CloudBees Flow Integration to WebSphere</h2>
+<h2>CloudBees CD Integration to WebSphere</h2>
 <p>You can use this plugin to interact with an IBM
 WebSphere Server. You can start and stop the server.
 You can also manage applications within the server (start,
@@ -137,7 +137,7 @@ Please refer to this <a href="https://www-01.ibm.com/common/ssi/ShowDoc.wss?docU
         </p>
 
         <h3>Creating Plugin Configurations</h3>
-        <p>To create plugin configurations in CloudBees Flow,
+        <p>To create plugin configurations in CloudBees CD,
             do these steps:</p>
 
         <li>Go to <b>Administration</b> &gt; <b>Plugins</b> to open the Plugin Manager.</li>
@@ -146,7 +146,7 @@ Please refer to this <a href="https://www-01.ibm.com/common/ssi/ShowDoc.wss?docU
              Configurations page.</li>
         <li>Click <b>Create Configuration</b> as per the description of parameters below.</li>
         
-        <p><b>Note: After you perform the setup below it is important to make sure that the CloudBees Flow agent machine on which WebSphere runs is registered as a resource that can be pinged.</b>
+        <p><b>Note: After you perform the setup below it is important to make sure that the CloudBees CD agent machine on which WebSphere runs is registered as a resource that can be pinged.</b>
 <img src="../../plugins/EC-WebSphere/images/Config/parameters.png" /><br />
 Plugin configurations are sets of parameters that apply across some or all of the plugin procedures.
 They reduce repetition of common values, create predefined parameter sets for end users,
@@ -154,7 +154,8 @@ and securely store credentials where needed.
 Each configuration is given a unique name that is entered in designated parameters on procedures that use them.</p>
 
         
-        Configuration Parameters
+
+        <h2>Configuration Procedure Parameters</h2>
         <table class="grid">
             <thead>
             <tr>
@@ -827,7 +828,7 @@ Each configuration is given a unique name that is entered in designated paramete
         
         <p>
             <h3>Create Application Server</h3>
-<p>To Create Application Server in Flow interface, do these steps:</p>
+<p>To Create Application Server in CloudBees CD interface, do these steps:</p>
 <ul>
 <li>Create Pipeline.</li>
 <li>Create task.</li>
@@ -907,7 +908,7 @@ Each configuration is given a unique name that is entered in designated paramete
         
         <p>
             <h3>Delete Application Server</h3>
-<p>To Delete Application Server in Flow interface, do these steps:</p>
+<p>To Delete Application Server in CloudBees CD interface, do these steps:</p>
 <ul>
 <li>Create Pipeline.</li>
 <li>Create task.</li>
@@ -1010,7 +1011,7 @@ Each configuration is given a unique name that is entered in designated paramete
         
         <p>
             <h3>Create Application Server Template</h3>
-<p>To Create Application Server Template in Flow interface, do these steps:</p>
+<p>To Create Application Server Template in CloudBees CD interface, do these steps:</p>
 <ul>
 <li>Create Pipeline.</li>
 <li>Create task.</li>
@@ -1083,7 +1084,7 @@ Each configuration is given a unique name that is entered in designated paramete
         
         <p>
             <h3>Delete Application Server Template</h3>
-<p>To Delete Application Server Template in Flow interface, do these steps:</p>
+<p>To Delete Application Server Template in CloudBees CD interface, do these steps:</p>
 <ul>
 <li>Create Pipeline.</li>
 <li>Create task.</li>
@@ -1283,7 +1284,7 @@ Each configuration is given a unique name that is entered in designated paramete
         
         <p>
             <h3>Create Cluster</h3>
-<p>To Create Cluster in Flow interface, do these steps:</p>
+<p>To Create Cluster in CloudBees CD interface, do these steps:</p>
 <ul>
 <li>Create Pipeline.</li>
 <li>Create task.</li>
@@ -1359,7 +1360,7 @@ Each configuration is given a unique name that is entered in designated paramete
         
         <p>
             <h3>Delete Cluster</h3>
-<p>To Delete Cluster in Flow interface, do these steps:</p>
+<p>To Delete Cluster in CloudBees CD interface, do these steps:</p>
 <ul>
 <li>Create Pipeline.</li>
 <li>Create task.</li>
@@ -1437,7 +1438,7 @@ Each configuration is given a unique name that is entered in designated paramete
         
         <p>
             <h3>Export Application Server</h3>
-<p>To Export Application Server in Flow interface, do these steps:</p>
+<p>To Export Application Server in CloudBees CD interface, do these steps:</p>
 <ul>
 <li>Create Pipeline.</li>
 <li>Create task.</li>
@@ -1553,7 +1554,7 @@ Each configuration is given a unique name that is entered in designated paramete
         
         <p>
             <h3>Import Application Server</h3>
-<p>To Import Application Server in Flow interface, do these steps:</p>
+<p>To Import Application Server in CloudBees CD interface, do these steps:</p>
 <ul>
 <li>Create Pipeline.</li>
 <li>Create task.</li>
@@ -1627,7 +1628,7 @@ Each configuration is given a unique name that is entered in designated paramete
         
         <p>
             <h3>List Cluster Members</h3>
-<p>To List Cluster Members in Flow interface, do these steps:</p>
+<p>To List Cluster Members in CloudBees CD interface, do these steps:</p>
 <ul>
 <li>Create Pipeline.</li>
 <li>Create task.</li>
@@ -1713,7 +1714,7 @@ Each configuration is given a unique name that is entered in designated paramete
         
         <p>
             <h3>Remove Cluster Members</h3>
-<p>To Remove Cluster Members in Flow interface, do these steps:</p>
+<p>To Remove Cluster Members in CloudBees CD interface, do these steps:</p>
 <ul>
 <li>Create Pipeline.</li>
 <li>Create task.</li>
@@ -2047,7 +2048,7 @@ Next, to make it available on each server it should be propagated to all servers
         
         <p>
             <h3>Create First Cluster Member</h3>
-<p>To Create First Cluster Member in Flow interface, do these steps:</p>
+<p>To Create First Cluster Member in CloudBees CD interface, do these steps:</p>
 <ul>
 <li>Create Pipeline.</li>
 <li>Create task.</li>
@@ -2141,7 +2142,7 @@ Next, to make it available on each server it should be propagated to all servers
         
         <p>
             <h3>Create Cluster Members</h3>
-<p>To Create Cluster Members in Flow interface, do these steps:</p>
+<p>To Create Cluster Members in CloudBees CD interface, do these steps:</p>
 <ul>
 <li>Create Pipeline.</li>
 <li>Create task.</li>
@@ -2215,7 +2216,7 @@ Next, to make it available on each server it should be propagated to all servers
         
         <p>
             <h3>Start Application Servers</h3>
-<p>To Start Application Servers in Flow interface, do these steps:</p>
+<p>To Start Application Servers in CloudBees CD interface, do these steps:</p>
 <ul>
 <li>Create Pipeline.</li>
 <li>Create task.</li>
@@ -2289,7 +2290,7 @@ Next, to make it available on each server it should be propagated to all servers
         
         <p>
             <h3>Stop Application Servers</h3>
-<p>To Stop Application Servers in Flow interface, do these steps:</p>
+<p>To Stop Application Servers in CloudBees CD interface, do these steps:</p>
 <ul>
 <li>Create Pipeline.</li>
 <li>Create task.</li>
@@ -2365,7 +2366,7 @@ Next, to make it available on each server it should be propagated to all servers
         
         <p>
             <h3>Start Cluster</h3>
-<p>To Start Cluster in Flow interface, do these steps:</p>
+<p>To Start Cluster in CloudBees CD interface, do these steps:</p>
 <ul>
 <li>Create Pipeline.</li>
 <li>Create task.</li>
@@ -2448,7 +2449,7 @@ Next, to make it available on each server it should be propagated to all servers
         
         <p>
             <h3>Stop Cluster</h3>
-<p>To Stop Cluster in Flow interface, do these steps:</p>
+<p>To Stop Cluster in CloudBees CD interface, do these steps:</p>
 <ul>
 <li>Create Pipeline.</li>
 <li>Create task.</li>
@@ -2545,7 +2546,7 @@ Next, to make it available on each server it should be propagated to all servers
         
         <p>
             <h3>Start Deployment Manager</h3>
-<p>To Start Deployment Manager in Flow interface, do these steps:</p>
+<p>To Start Deployment Manager in CloudBees CD interface, do these steps:</p>
 <ul>
 <li>Create Pipeline.</li>
 <li>Create task.</li>
@@ -2642,7 +2643,7 @@ Next, to make it available on each server it should be propagated to all servers
         
         <p>
             <h3>Stop Deployment Manager</h3>
-<p>To Stop Deployment Manager in Flow interface, do these steps:</p>
+<p>To Stop Deployment Manager in CloudBees CD interface, do these steps:</p>
 <ul>
 <li>Create Pipeline.</li>
 <li>Create task.</li>
@@ -2753,7 +2754,7 @@ Next, to make it available on each server it should be propagated to all servers
         
         <p>
             <h3>Start Node</h3>
-<p>To Start Node in Flow interface, do these steps:</p>
+<p>To Start Node in CloudBees CD interface, do these steps:</p>
 <ul>
 <li>Create Pipeline.</li>
 <li>Create task.</li>
@@ -2857,7 +2858,7 @@ Next, to make it available on each server it should be propagated to all servers
         
         <p>
             <h3>Stop Node</h3>
-<p>To Stop Node in Flow interface, do these steps:</p>
+<p>To Stop Node in CloudBees CD interface, do these steps:</p>
 <ul>
 <li>Create Pipeline.</li>
 <li>Create task.</li>
@@ -4154,7 +4155,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
                 <p>After the job runs, you can view the results, including the following
                 job details:</p>
                 <img src="../../plugins/EC-WebSphere/images/DeleteJMSProvider/ProcedureResult.png" />
-                <p>To delete JMS Provider in Flow interface, do these steps:</p>
+                <p>To delete JMS Provider in CloudBees CD interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>
@@ -4283,7 +4284,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
                 <p>After the job runs, you can view the results, including the following
                 job details:</p>
                 <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSQueue/ProcedureResult.png" />
-                <p>To create or update JMS Queue in Flow interface, do these steps:</p>
+                <p>To create or update JMS Queue in CloudBees CD interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>
@@ -4374,7 +4375,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
                 <p>After the job runs, you can view the results, including the following
                 job details:</p>
                 <img src="../../plugins/EC-WebSphere/images/DeleteJMSQueue/ProcedureResult.png" />
-                <p>To delete JMS Queue in Flow interface, do these steps:</p>
+                <p>To delete JMS Queue in CloudBees CD interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>
@@ -4496,7 +4497,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
                 <p>After the job runs, you can view the results, including the following
                 job details:</p>
                 <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateJMSTopic/ProcedureResult.png" />
-                <p>To create or update JMS Topic in Flow interface, do these steps:</p>
+                <p>To create or update JMS Topic in CloudBees CD interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>
@@ -4587,7 +4588,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
                 <p>After the job runs, you can view the results, including the following
                 job details:</p>
                 <img src="../../plugins/EC-WebSphere/images/DeleteJMSTopic/ProcedureResult.png" />
-                <p>To delete JMS Topic in Flow interface, do these steps:</p>
+                <p>To delete JMS Topic in CloudBees CD interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>
@@ -4721,7 +4722,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
                 <p>After the job runs, you can view the results, including the following
                 job details:</p>
                 <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSActivationSpec/ProcedureResult.png" />
-                <p>To create or update JMS Topic in Flow interface, do these steps:</p>
+                <p>To create or update JMS Topic in CloudBees CD interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>
@@ -4856,7 +4857,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
                 <p>After the job runs, you can view the results, including the following
                 job details:</p>
                 <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateWMQJMSActivationSpec/ProcedureResult.png" />
-                <p>To create or update WMQ JMS Activation Spec in Flow interface, do these steps:</p>
+                <p>To create or update WMQ JMS Activation Spec in CloudBees CD interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>
@@ -4951,7 +4952,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
                 diagnostic information. The output is similar to the following
                 diagnostic report.</p>
                 <img src="../../plugins/EC-WebSphere/images/DeleteJMSActivationSpec/ProcedureLog.png" />
-                <p>To delete JMS Activation Spec in Flow interface, do these steps:</p>
+                <p>To delete JMS Activation Spec in CloudBees CD interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>
@@ -5081,7 +5082,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
                 <p>After the job runs, you can view the results, including the following
                 job details:</p>
                 <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSConnectionFactory/ProcedureResult.png" />
-                <p>To create or update JMS Topic in Flow interface, do these steps:</p>
+                <p>To create or update JMS Topic in CloudBees CD interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>
@@ -5219,7 +5220,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
                 <p>After the job runs, you can view the results, including the following
                 job details:</p>
                 <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateWMQJMSConnectionFactory/ProcedureResult.png" />
-                <p>To create or update JMS Topic in Flow interface, do these steps:</p>
+                <p>To create or update JMS Topic in CloudBees CD interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>
@@ -5312,7 +5313,7 @@ report.</p><img src="../../plugins/EC-WebSphere/images/DeleteDatasource/EC-WebSp
                 <p>After the job runs, you can view the results, including the following
                 job details:</p>
                 <img src="../../plugins/EC-WebSphere/images/DeleteJMSConnectionFactory/ProcedureResult.png" />
-                <p>To delete JMS ConnectionFactory in Flow interface, do these steps:</p>
+                <p>To delete JMS ConnectionFactory in CloudBees CD interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>
@@ -6122,7 +6123,7 @@ A context root for each web module is defined in the application deployment desc
                 </ol>
                 <p>After the job runs, you can view the results, including the following job details:</p>
                 <img src="../../plugins/EC-WebSphere/images/CheckApp/ProcedureResult.png" />
-<pre><code>            &lt;p&gt;To check Application State in Flow interface, do these steps:&lt;/p&gt;
+<pre><code>            &lt;p&gt;To check Application State in CloudBees CD interface, do these steps:&lt;/p&gt;
             &lt;ol&gt;
                 &lt;li&gt;Create Pipeline.&lt;/li&gt;
                 &lt;li&gt;Create task.&lt;/li&gt;
@@ -6390,14 +6391,10 @@ A context root for each web module is defined in the application deployment desc
 
     <h1 id="releaseNotes">Release Notes</h1>
     
-    <h3>@PLUGIN_KEY@ 2.8.0</h3>
+    <h3>@PLUGIN_KEY@ 2.7.1</h3>
     <ul>
         
-        <li>Add checking connection while creating a configuration.</li>
-        
-        <li>Jobs for the successful "CreateConfiguration" and "EditConfiguration" run is now preserved.</li>
-        
-        <li>Add logging while running "CreateConfiguration".</li>
+        <li>Rebranding from "CloudBees Flow" to "CloudBees CD".</li>
         
     </ul>
     

@@ -1,7 +1,7 @@
 
 ### Export Application Server
 
-To Export Application Server in Flow interface, do these steps:
+To Export Application Server in CloudBees CD interface, do these steps:
 
  * Create Pipeline.
  * Create task.
