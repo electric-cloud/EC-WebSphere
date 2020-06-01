@@ -1,7 +1,7 @@
 
 ### Start Deployment Manager
 
-To Start Deployment Manager in Flow interface, do these steps:
+To Start Deployment Manager in CloudBees CD interface, do these steps:
 
  * Create Pipeline.
  * Create task.

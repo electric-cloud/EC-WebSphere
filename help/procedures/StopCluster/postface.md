@@ -1,7 +1,7 @@
 
 ### Stop Cluster
 
-To Stop Cluster in Flow interface, do these steps:
+To Stop Cluster in CloudBees CD interface, do these steps:
 
  * Create Pipeline.
  * Create task.

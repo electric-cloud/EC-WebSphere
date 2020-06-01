@@ -1,7 +1,7 @@
 
 ### Import Application Server
 
-To Import Application Server in Flow interface, do these steps:
+To Import Application Server in CloudBees CD interface, do these steps:
 
  * Create Pipeline.
  * Create task.

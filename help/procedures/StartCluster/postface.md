@@ -1,7 +1,7 @@
 
 ### Start Cluster
 
-To Start Cluster in Flow interface, do these steps:
+To Start Cluster in CloudBees CD interface, do these steps:
 
  * Create Pipeline.
  * Create task.

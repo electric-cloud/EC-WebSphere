@@ -1,7 +1,7 @@
 
 ### Delete Application Server
 
-To Delete Application Server in Flow interface, do these steps:
+To Delete Application Server in CloudBees CD interface, do these steps:
 
  * Create Pipeline.
  * Create task.

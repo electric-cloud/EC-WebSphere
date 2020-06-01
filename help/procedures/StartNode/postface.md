@@ -1,7 +1,7 @@
 
 ### Start Node
 
-To Start Node in Flow interface, do these steps:
+To Start Node in CloudBees CD interface, do these steps:
 
  * Create Pipeline.
  * Create task.

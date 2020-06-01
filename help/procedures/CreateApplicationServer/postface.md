@@ -1,7 +1,7 @@
 
 ### Create Application Server
 
-To Create Application Server in Flow interface, do these steps:
+To Create Application Server in CloudBees CD interface, do these steps:
 
  * Create Pipeline.
  * Create task.

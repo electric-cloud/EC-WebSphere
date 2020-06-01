@@ -1,7 +1,7 @@
 
 ### Delete Application Server Template
 
-To Delete Application Server Template in Flow interface, do these steps:
+To Delete Application Server Template in CloudBees CD interface, do these steps:
 
  * Create Pipeline.
  * Create task.

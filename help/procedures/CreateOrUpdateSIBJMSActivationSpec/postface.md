@@ -10,7 +10,7 @@
                 <p>After the job runs, you can view the results, including the following
                 job details:</p>
                 <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSActivationSpec/ProcedureResult.png" />
-                <p>To create or update JMS Topic in Flow interface, do these steps:</p>
+                <p>To create or update JMS Topic in CloudBees CD interface, do these steps:</p>
                 <ol>
                     <li>Create Pipeline.</li>
                     <li>Create task.</li>

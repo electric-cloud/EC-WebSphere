@@ -1,7 +1,7 @@
 
 ### Create First Cluster Member
 
-To Create First Cluster Member in Flow interface, do these steps:
+To Create First Cluster Member in CloudBees CD interface, do these steps:
 
  * Create Pipeline.
  * Create task.
