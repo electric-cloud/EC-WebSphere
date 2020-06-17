@@ -1,5 +1,5 @@
 <h3>Delete JMS ConnectionFactory</h3>
-                <p>To delete JMS ConnectionFactory in Commander interface, do these steps:</p>
+                <p>To delete JMS ConnectionFactory in CloudBees CD interface, do these steps:</p>
                 <ol>
                     <li>Create procedure.</li>
                     <li>Create step, choose Plugin, choose DeleteJMSConnectionFactory from procedures

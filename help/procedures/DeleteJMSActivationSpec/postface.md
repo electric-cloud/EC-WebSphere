@@ -1,5 +1,5 @@
 <h3>Delete JMS Activation Spec</h3>
-                <p>To delete JMS Activation Spec in Commander interface, do these steps:</p>
+                <p>To delete JMS Activation Spec in CloudBees CD interface, do these steps:</p>
                 <ol>
                     <li>Create procedure.</li>
                     <li>Create step, choose Plugin, choose DeleteJMSActivationSpec from procedures
