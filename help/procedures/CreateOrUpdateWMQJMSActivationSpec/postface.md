@@ -1,5 +1,5 @@
 <h3>Create or update WMQ JMS Activation Spec</h3>
-                <p>To create or update WMQ JMS Activation Spec in Commander interface, do these steps:</p>
+                <p>To create or update WMQ JMS Activation Spec in CloudBees CD interface, do these steps:</p>
                 <ol>
                     <li>Create procedure.</li>
                     <li>Create step, choose Plugin, choose CreateOrUpdateWMQJMSActivationSpec from
