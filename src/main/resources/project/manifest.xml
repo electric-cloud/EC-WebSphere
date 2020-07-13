@@ -374,6 +374,14 @@
         <path>conf/createAndAttachCredential.pl</path>
     </file>
     <file>
+      <path>conf/attemptConnection.pl</path>
+      <xpath>//procedure[procedureName=&quot;CreateConfiguration&quot;]/step[stepName=&quot;AttemptConnection&quot;]/command</xpath>
+    </file>
+    <file>
+      <path>conf/attemptConnection.pl</path>
+      <xpath>//procedure[procedureName=&quot;EditConfiguration&quot;]/step[stepName=&quot;AttemptConnection&quot;]/command</xpath>
+    </file>
+    <file>
         <xpath>//procedure[procedureName=&quot;DeleteConfiguration&quot;]/step[stepName=&quot;DeleteConfiguration&quot;]/command</xpath>
         <path>conf/deletecfg.pl</path>
     </file>
@@ -828,7 +836,7 @@
         <path>server/Cluster/createClusterMembers.pl</path>
     </file>
     <!-- End of CreateClusterMembers procedure Files -->
-    
+
     <!-- DeleteCluster procedure Files-->
     <!-- XML Form -->
     <file>

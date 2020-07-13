@@ -22,8 +22,8 @@ use ElectricCommander;
 use ElectricCommander::PropDB;
 
 use constant {
-	SUCCESS => 0,
-	ERROR   => 1,
+    SUCCESS => 0,
+    ERROR   => 1,
 };
 
 my $opts;
@@ -40,12 +40,12 @@ my $ec = new ElectricCommander();
 $ec->abortOnError(0);
 
 # load option list from procedure parameters
-my $x = $ec->getJobDetails($ENV{COMMANDER_JOBID});
+my $x       = $ec->getJobDetails($ENV{COMMANDER_JOBID});
 my $nodeset = $x->find("//actualParameter");
 foreach my $node ($nodeset->get_nodelist) {
     my $parm = $node->findvalue("actualParameterName");
-    my $val = $node->findvalue("value");
-    $opts->{$parm}="$val";
+    my $val  = $node->findvalue("value");
+    $opts->{$parm} = "$val";
 }
 
 if (!defined $opts->{config} || "$opts->{config}" eq '') {
@@ -54,7 +54,7 @@ if (!defined $opts->{config} || "$opts->{config}" eq '') {
 }
 
 # check to see if a config with this name already exists before we do anything else
-my $xpath = $ec->getProperty("/myProject/websphere_cfgs/$opts->{config}");
+my $xpath    = $ec->getProperty("/myProject/websphere_cfgs/$opts->{config}");
 my $property = $xpath->findvalue("//response/property/propertyName");
 
 if (defined $property && "$property" ne "") {
@@ -64,13 +64,16 @@ if (defined $property && "$property" ne "") {
     exit ERROR;
 }
 
-my $cfg = new ElectricCommander::PropDB($ec,"/myProject/websphere_cfgs");
+my $cfg = new ElectricCommander::PropDB($ec, "/myProject/websphere_cfgs");
 
 # add all the options as properties
-foreach my $key (keys % {$opts}) {
-    if ($key eq 'config') { 
+foreach my $key (keys %{$opts}) {
+    if ($key eq 'config') {
         next;
     }
-    $cfg->setCol("$opts->{config}",$key,"$opts->{$key}");
+    $cfg->setCol("$opts->{config}", $key, "$opts->{$key}");
 }
+
+print "Configuration \"$opts->{config}\" created.\n";
+
 exit SUCCESS;
