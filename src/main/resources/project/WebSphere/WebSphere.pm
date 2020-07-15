@@ -1398,7 +1398,74 @@ sub procedure_result_cb_start_node {
     }
 }
 
-## internal package, required for logging
+#*****************************************************************************
+sub configurationErrorWithSuggestions  {
+    my ($self, $errmsg) = @_;
+
+    my $suggestions = q{Reasons could be due to one or more of the following. Please ensure they are correct and try again.:
+1. WebSphere Host & WebSphere Connector Port - Is your URL complete and reachable?
+2. WSAdmin Absolute Path  - Is your Path to the Script correct?
+3 Connection Type - Is the appropriate connector configured properly?
+4. Test Resource - Is your Test resource correctly wired with CloudBees CD?  Is your Test Resource correctly setup with WebSphere?
+5. Credentials - Are your credentials correct? Are you able to use these credentials to log in to WebSphere using its console?
+};
+
+    $self->ec->setProperty('/myJob/configError', $errmsg . "\n\n" . $suggestions);
+    $self->ec->setProperty('/myJobStep/summary', $errmsg . "\n\n" . $suggestions);
+
+    $self->logErrorDiag("Create Configuration failed.\n\n$errmsg");
+    $self->logInfoDiag($suggestions);
+
+    return;
+}
+
+#*****************************************************************************
+sub logInfoDiag {
+    my ($self, @params) = @_;
+
+    return $self->printDiagMessage('INFO', @params);
+}
+
+#*****************************************************************************
+sub logErrorDiag {
+    my ($self, @params) = @_;
+
+    return $self->printDiagMessage('ERROR', @params);
+}
+
+#*****************************************************************************
+sub logWarningDiag {
+    my ($self, @params) = @_;
+
+    return $self->printDiagMessage('WARNING', @params);
+}
+
+#*****************************************************************************
+sub printDiagMessage {
+    my ($self, @params) = @_;
+
+    my $level = shift @params;
+
+    if (!$level || !@params) {
+        return 0;
+    }
+
+    $level = uc $level;
+    if ($level !~ m/^(?:ERROR|WARNING|INFO)$/s) {
+        return 0;
+    }
+
+    # \n[OUT][%s]: %s :[%s][OUT]\n
+    my $begin = "\n[OUT][$level]: ";
+    my $end   = " :[$level][OUT]\n";
+
+    my $msg = join '', @params;
+    $msg = $begin . $msg . $end;
+
+    return $self->logger->info($msg);
+}
+
+## internal package, required for logging ####################################
 package EC::Plugin::Logger;
 
 use strict;

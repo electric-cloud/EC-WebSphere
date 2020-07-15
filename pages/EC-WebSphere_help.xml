@@ -14,7 +14,7 @@
     <h1>@PLUGIN_KEY@</h1>
     <p>Plugin version @PLUGIN_VERSION@</p>
     
-    <p>Revised on June 17, 2020</p>
+    <p>Revised on July 15, 2020</p>
     
     <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade"/>
     <h1>Contents</h1>
@@ -209,8 +209,22 @@ Each configuration is given a unique name that is entered in designated paramete
             
             <tr>
                 
+                    <td >Test Connection?</td>
+                    <td>Check if connection should be established during config creation to validate credentials.</td>
+                
+            </tr>
+            
+            <tr>
+                
+                    <td >Test Connection Resource</td>
+                    <td>A resource which is used for the testing connection.</td>
+                
+            </tr>
+            
+            <tr>
+                
                     <td >Debug Level</td>
-                    <td>Debug level.</td>
+                    <td>Debug level, higher debug level - more debug messages. Warning: on debug level 10 and more passwords will be revealed in a procedure logs.</td>
                 
             </tr>
             
@@ -6389,6 +6403,17 @@ report.</p>
     
 
     <h1 id="releaseNotes">Release Notes</h1>
+    
+    <h3>@PLUGIN_KEY@ 3.8.0</h3>
+    <ul>
+        
+        <li>Add checking connection while creating a configuration.</li>
+        
+        <li>Jobs for the successful "CreateConfiguration" and "EditConfiguration" run is now preserved.</li>
+        
+        <li>Add logging while running "CreateConfiguration".</li>
+        
+    </ul>
     
     <h3>@PLUGIN_KEY@ 2.7.1</h3>
     <ul>

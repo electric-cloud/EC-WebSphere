@@ -28,19 +28,17 @@ my $projName   = '$[/myProject/projectName]';
 my $pluginName = '@PLUGIN_NAME@';
 my $pluginKey  = '@PLUGIN_KEY@';
 
-my $websphere_url          = '$[websphere_url]';
-my $wlst_path             = '$[wlst_path]';
-my $java_home             = '$[java_home]';
-my $java_vendor           = '$[java_vendor]';
-my $mw_home               = '$[mw_home]';
-my $credential            = '$[credential]';
-my $enable_named_sessions = '$[enable_named_sessions]';
-my $debug_level           = '$[debug_level]';
+my $wsadminabspath = '$[wsadminabspath]';
+my $websphere_url  = '$[websphere_url]';
+my $websphere_port = '$[websphere_port]';
+my $conntype       = '$[conntype]';
+my $credential     = '$[credential]';
+my $debug_level    = '$[debug]';
 
 ElectricCommander::PropMod::loadPerlCodeFromProperty($ec, '/myProject/EC::Plugin::Core');
 ElectricCommander::PropMod::loadPerlCodeFromProperty($ec, '/myProject/EC::WebSphere');
 
-my $wl = EC::WebSphere->new(
+my $ws = EC::WebSphere->new(
     project_name => $projName,
     plugin_name  => $pluginName,
     plugin_key   => $pluginKey
@@ -50,12 +48,12 @@ my $cred_xpath = $ec->getFullCredential($credential);
 my $username   = $cred_xpath->findvalue("//userName");
 my $password   = $cred_xpath->findvalue("//password");
 
-$wl->logger->level($debug_level);
-$wl->debug_level($debug_level + 1);
+$ws->logger->level($debug_level);
+$ws->debug_level($debug_level + 1);
 
-# $wl->logger->debug(Dumper(['#001', ''.$username, ''.$password]));
-# $wl->logger->debug(Dumper(['#002', $projName, $pluginName, $pluginKey]));
-# $wl->logger->debug(Dumper(['#003', $websphere_url, $wlst_path, $java_home, $java_vendor, $mw_home, $credential, $enable_named_sessions]));
+# $ws->logger->debug(Dumper(['#001', ''.$username, ''.$password]));
+# $ws->logger->debug(Dumper(['#002', $projName, $pluginName, $pluginKey]));
+# $ws->logger->debug(Dumper(['#003', $wsadminabspath, $websphere_url, $websphere_port, $conntype, $credential]));
 
 #*****************************************************************************
 sub genFileName {
@@ -159,28 +157,37 @@ sub runCommand {
 
 #*****************************************************************************
 sub checkConnection {
-    if ($java_home) {
-        $ENV{JAVA_HOME} = $java_home;
-        $wl->out(LEVEL_INFO, "JAVA_HOME was set to '$java_home'");
+
+    #~ ./wsadmin.sh -lang jython -host 127.0.0.1 -port 8879 -conntype SOAP -user wsadmin -password changeme -c 'AdminApp.list()'
+
+    my @args = (
+        '-lang',
+        'jython',
+        '-c',
+        'AdminApp.list()',
+    );
+
+    if ($conntype) {
+        push(@args, '-conntype', $conntype);
     }
 
-    if ($java_vendor) {
-        $ENV{JAVA_VENDOR} = $java_vendor;
-        $wl->out(LEVEL_INFO, "JAVA_VENDOR was set to '$java_vendor'");
+    if ($websphere_url) {
+        push(@args, ($conntype eq 'IPC') ? '-ipchost' : '-host', $websphere_url);
     }
 
-    if ($mw_home) {
-        $ENV{MW_HOME} = $mw_home;
-        $wl->out(LEVEL_INFO, "MW_HOME was set to '$mw_home'");
+    if ($websphere_port) {
+        push(@args, '-port', $websphere_port);
     }
 
-    my $script = $ENV{COMMANDER_WORKSPACE} . '/do_ls';
+    if ($username) {
+        push(@args, '-user', $username);
+    }
 
-    open FH, '>', $script;
-    print FH "connect('$username','$password','$websphere_url'); ls(); disconnect()\n";
-    close FH;
+    if ($password) {
+        push(@args, '-password', $password);
+    }
 
-    return runCommand($wlst_path, $script);
+    return runCommand($wsadminabspath, @args);
 } ## end sub checkConnection
 
 #*****************************************************************************
@@ -198,23 +205,28 @@ if ($evalError) {
     $code ||= 1;
 }
 
-$wl->out(LEVEL_INFO, 'STDOUT: ', $stdout) if ($stdout);
-$wl->out(LEVEL_INFO, 'STDERR: ', $stderr) if ($stderr);
-$wl->out(LEVEL_INFO, 'ERRMSG: ', $errmsg) if ($errmsg);
-$wl->out(LEVEL_INFO, 'EXIT_CODE: ', $code);
+if ($stderr) {
+    $ws->out(LEVEL_INFO, 'STDERR: ', $stderr);
+
+    if (isWin() && ($log =~ m/[\w\d]{8}E:/ms)) {
+        $ws->logger->debug("Detected an error on windows. Changing code to 1.");
+        code = 1;
+    }
+}
+
+$ws->out(LEVEL_INFO, 'STDOUT: ', $stdout) if ($stdout);
+$ws->out(LEVEL_INFO, 'ERRMSG: ', $errmsg) if ($errmsg);
+$ws->out(LEVEL_INFO, 'EXIT_CODE: ', $code);
 
 if ($code) {
     $errmsg ||= $stderr || $stdout;
-    $errmsg =~ s/^(.+?)WLSTException:\s+//s;
-    $errmsg =~ s/^(.+?)(?:nested exception is:.*)$/$1/s;
-    $errmsg =~ s/^(.+?)(?:Use dumpStack.*)$/$1/s;
 
-    $wl->configurationErrorWithSuggestions($errmsg);
+    $ws->configurationErrorWithSuggestions($errmsg);
 
     exit(ERROR);
 }
 else {
-    $wl->logger->info("Connection succeeded");
+    $ws->logger->info("Connection succeeded");
     exit(SUCCESS);
 }
 
