@@ -137,14 +137,11 @@ sub escArgs {
 
 #*****************************************************************************
 sub hidePwd {
-    my (@args) = @_;
+    my ($str) = @_;
 
-    for my $arg (@args) {
-        next unless (defined($arg));
-        $arg =~ s/-password.+?\s/-password *** /s;
-    }
+    $str =~ s/['"]?-password["']?\s+\S+(?:\s+|$)/-password ******** /gs;
 
-    return @args;
+    return $str;
 }
 
 #*****************************************************************************
@@ -168,7 +165,7 @@ sub readOut {
 sub runCommand {
     my (@args) = escArgs(@_);
 
-    printf("Run Command: %s\n", join(' ', hidePwd(@args)));
+    printf("Run Command: %s\n", hidePwd(join(' ', @args)));
 
     if (isWin) {
         print("MSWin32 detected\n");
@@ -209,7 +206,7 @@ sub runCommand {
 #*****************************************************************************
 sub checkConnection {
 
-    #~ ./wsadmin.sh -lang jython -host 127.0.0.1 -port 8879 -conntype SOAP -user wsadmin -password changeme -c 'AdminApp.list()'
+    #~ ./wsadmin.sh -lang jython -host 127.0.0.1 -port 8879 -conntype SOAP -user wsadmin -password **** -c 'AdminApp.list()'
 
     my @args = (
         '-lang',
@@ -257,7 +254,7 @@ if ($evalError) {
 }
 
 if ($stderr) {
-    print('STDERR: ', $stderr);
+    print("STDERR: $stderr\n");
 
     if (isWin() && ($stderr =~ m/[\w\d]{8}E:/ms)) {
         print("Detected an error on windows. Changing code to 1.\n");
@@ -265,9 +262,9 @@ if ($stderr) {
     }
 }
 
-print('STDOUT: ', $stdout) if ($stdout);
-print('ERRMSG: ', $errmsg) if ($errmsg);
-print('EXIT_CODE: ', $code);
+print("STDOUT: $stdout\n") if ($stdout);
+print("ERRMSG: $errmsg\n") if ($errmsg);
+print("EXIT_CODE: $code\n");
 
 if ($code) {
     $errmsg ||= $stderr || $stdout;
@@ -277,7 +274,7 @@ if ($code) {
     exit(ERROR);
 }
 else {
-    print("Connection succeeded");
+    print("Connection succeeded\n");
     exit(SUCCESS);
 }
 

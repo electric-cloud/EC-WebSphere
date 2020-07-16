@@ -74,7 +74,7 @@ sub main {
     # # If the job was successful and the debug flag is not set, delete it
     # my $debug = $cgiArgs->{debug};
     # if (!defined $debug || "$debug" ne "1") {
-    # $ec->deleteJob($jobId);
+    #   $ec->deleteJob($jobId);
     # }
 
     # Report the job's success
@@ -101,7 +101,7 @@ sub abortJobAndReportError($$$) {
     # Try to abort the job
     my $xpath  = $ec->abortJob($jobId);
     my $errors = $ec->checkAllErrors($xpath);
-    if ("$errors" ne "") {
+    if ("$errors" ne '') {
         reportError($cgi, $errMsg . "\n" . $errors);
     }
 
@@ -137,8 +137,9 @@ sub reportJobErrors($$$) {
     my ($cgi, $ec, $jobId) = @_;
 
     # Get job details
-    my $xpath  = $ec->getJobDetails($jobId);
-    my $errors = $ec->checkAllErrors($xpath);
+    my $xpath         = $ec->getJobDetails($jobId);
+    my $procedureName = eval {$xpath->findvalue('//job/procedureName')->string_value();};
+    my $errors        = $ec->checkAllErrors($xpath);
     if ("$errors" ne "") {
         reportError($cgi, $errors);
     }
@@ -158,7 +159,7 @@ sub reportJobErrors($$$) {
 
     # Report a generic error message if we couldn't find a specific one on the
     # job
-    if ($procedureName && $procedureName eq 'EditConfiguration') {
+    if ($procedureName && ($procedureName eq 'EditConfiguration')) {
         reportError($cgi, "Edit configuration failed");
     }
     else {
