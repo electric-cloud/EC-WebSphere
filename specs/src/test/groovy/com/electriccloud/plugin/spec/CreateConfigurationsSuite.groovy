@@ -16,11 +16,16 @@ import com.electriccloud.plugin.spec.PluginTestHelper
  */
 @Stepwise
 class CreateConfigurationsSute extends PluginTestHelper {
+    @Shared
+    String resourceName
+
     def doSetupSpec() {
+        resourceName = createWebSphereResource()
     }
 
     def doCleanupSpec() {
     }
+
     String  conntype
     def "Creation SOAP configuration for testing - Positive" () {
         conntype = "SOAP"
@@ -28,13 +33,15 @@ class CreateConfigurationsSute extends PluginTestHelper {
         when: 'Creation Runs'
         def wasResourceName = System.getenv('WAS_HOST');
         createWorkspace(wasResourceName)
-        def inputData =[
+        def inputData = [
             username : System.getenv('WAS_USERNAME') ?: 'wsadmin',
             password : System.getenv('WAS_PASSWORD') ?: 'changeme',
             websphere_url : System.getenv('WAS_HOST'),
             websphere_port : System.getenv('WAS_PORT') ?: '',
             wsadminabspath : System.getenv('WSADMIN_PATH') ?: '',
             conntype: conntype,
+            test_connection: 1,
+            test_connection_res: resourceName,
             debug: 1
         ]
         println "Log: inputData:: $inputData"
@@ -57,6 +64,8 @@ class CreateConfigurationsSute extends PluginTestHelper {
             websphere_port : System.getenv('WAS_PORT') ?: '',
             wsadminabspath : System.getenv('WSADMIN_PATH') ?: '',
             conntype: conntype,
+            test_connection: 1,
+            test_connection_res: resourceName,
             debug: 1
         ]
         println "Log: inputData:: $inputData"
@@ -79,6 +88,8 @@ class CreateConfigurationsSute extends PluginTestHelper {
             websphere_port : System.getenv('WAS_PORT') ?: '',
             wsadminabspath : System.getenv('WSADMIN_PATH') ?: '',
             conntype: conntype,
+            test_connection: 1,
+            test_connection_res: resourceName,
             debug: 1
         ]
         println "Log: inputData:: $inputData"
@@ -101,6 +112,8 @@ class CreateConfigurationsSute extends PluginTestHelper {
             websphere_port : System.getenv('WAS_PORT') ?: '',
             wsadminabspath : System.getenv('WSADMIN_PATH') ?: '',
             conntype: conntype,
+            test_connection: 1,
+            test_connection_res: resourceName,
             debug: 1
         ]
         println "Log: inputData:: $inputData"
@@ -123,6 +136,8 @@ class CreateConfigurationsSute extends PluginTestHelper {
             websphere_port : System.getenv('WAS_PORT') ?: '',
             wsadminabspath : System.getenv('WSADMIN_PATH') ?: '',
             conntype: conntype,
+            test_connection: 1,
+            test_connection_res: resourceName,
             debug: 1
         ]
         println "Log: inputData:: $inputData"
