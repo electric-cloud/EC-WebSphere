@@ -2,8 +2,8 @@ use strict;
 use warnings;
 
 use ElectricCommander;
-use ElectricCommander::PropDB;
-use ElectricCommander::PropMod;
+use ElectricCommander::PropMod qw(/myProject/modules);
+use WebSphere::WebSphere;
 
 use Data::Dumper;
 
@@ -24,10 +24,6 @@ use constant {
 my $ec = ElectricCommander->new();
 # $ec->abortOnError(0);
 
-my $projName   = '$[/myProject/projectName]';
-my $pluginName = '@PLUGIN_NAME@';
-my $pluginKey  = '@PLUGIN_KEY@';
-
 my $wsadminabspath = '$[wsadminabspath]';
 my $websphere_url  = '$[websphere_url]';
 my $websphere_port = '$[websphere_port]';
@@ -35,25 +31,80 @@ my $conntype       = '$[conntype]';
 my $credential     = '$[credential]';
 my $debug_level    = '$[debug]';
 
-ElectricCommander::PropMod::loadPerlCodeFromProperty($ec, '/myProject/EC::Plugin::Core');
-ElectricCommander::PropMod::loadPerlCodeFromProperty($ec, '/myProject/EC::WebSphere');
-
-my $ws = EC::WebSphere->new(
-    project_name => $projName,
-    plugin_name  => $pluginName,
-    plugin_key   => $pluginKey
-);
-
 my $cred_xpath = $ec->getFullCredential($credential);
 my $username   = $cred_xpath->findvalue("//userName");
 my $password   = $cred_xpath->findvalue("//password");
 
-$ws->logger->level($debug_level);
-$ws->debug_level($debug_level + 1);
+# print(Dumper(['#001', ''.$username, ''.$password]));
+# print(Dumper(['#002', $projName, $pluginName, $pluginKey]));
+# print(Dumper(['#003', $wsadminabspath, $websphere_url, $websphere_port, $conntype, $credential]));
 
-# $ws->logger->debug(Dumper(['#001', ''.$username, ''.$password]));
-# $ws->logger->debug(Dumper(['#002', $projName, $pluginName, $pluginKey]));
-# $ws->logger->debug(Dumper(['#003', $wsadminabspath, $websphere_url, $websphere_port, $conntype, $credential]));
+#*****************************************************************************
+sub configurationErrorWithSuggestions {
+    my ($errmsg) = @_;
+
+    my $suggestions = q{Reasons could be due to one or more of the following. Please ensure they are correct and try again.:
+1. WebSphere Host & WebSphere Connector Port - Is your URL complete and reachable?
+2. WSAdmin Absolute Path  - Is your Path to the Script correct?
+3 Connection Type - Is the appropriate connector configured properly?
+4. Test Resource - Is your Test resource correctly wired with CloudBees CD?  Is your Test Resource correctly setup with WebSphere?
+5. Credentials - Are your credentials correct? Are you able to use these credentials to log in to WebSphere using its console?
+};
+
+    $ec->setProperty('/myJob/configError', $errmsg . "\n\n" . $suggestions);
+    $ec->setProperty('/myJobStep/summary', $errmsg . "\n\n" . $suggestions);
+
+    logErrorDiag("Create Configuration failed.\n\n$errmsg");
+    logInfoDiag($suggestions);
+
+    return;
+}
+
+#*****************************************************************************
+sub logInfoDiag {
+    my (@params) = @_;
+
+    return printDiagMessage('INFO', @params);
+}
+
+#*****************************************************************************
+sub logErrorDiag {
+    my (@params) = @_;
+
+    return printDiagMessage('ERROR', @params);
+}
+
+#*****************************************************************************
+sub logWarningDiag {
+    my (@params) = @_;
+
+    return printDiagMessage('WARNING', @params);
+}
+
+#*****************************************************************************
+sub printDiagMessage {
+    my (@params) = @_;
+
+    my $level = shift @params;
+
+    if (!$level || !@params) {
+        return 0;
+    }
+
+    $level = uc $level;
+    if ($level !~ m/^(?:ERROR|WARNING|INFO)$/s) {
+        return 0;
+    }
+
+    # \n[OUT][%s]: %s :[%s][OUT]\n
+    my $begin = "\n[OUT][$level]: ";
+    my $end   = " :[$level][OUT]\n";
+
+    my $msg = join '', @params;
+    $msg = $begin . $msg . $end;
+
+    return print($msg);
+} ## end sub printDiagMessage
 
 #*****************************************************************************
 sub genFileName {
@@ -73,7 +124,7 @@ sub escArgs {
 
     for my $arg (@args) {
         next unless (defined($arg));
-        next unless ($arg =~ m/[\s'"]/s);
+        next if ($arg =~ m/['"]/s);
 
         my $esca = (isWin) ? q{"} : q{'};
 
@@ -164,7 +215,7 @@ sub checkConnection {
         '-lang',
         'jython',
         '-c',
-        'AdminApp.list()',
+        "'AdminApp.list()'",
     );
 
     if ($conntype) {
@@ -206,27 +257,27 @@ if ($evalError) {
 }
 
 if ($stderr) {
-    $ws->out(LEVEL_INFO, 'STDERR: ', $stderr);
+    print('STDERR: ', $stderr);
 
-    if (isWin() && ($log =~ m/[\w\d]{8}E:/ms)) {
-        $ws->logger->debug("Detected an error on windows. Changing code to 1.");
-        code = 1;
+    if (isWin() && ($stderr =~ m/[\w\d]{8}E:/ms)) {
+        print("Detected an error on windows. Changing code to 1.\n");
+        $code = 1;
     }
 }
 
-$ws->out(LEVEL_INFO, 'STDOUT: ', $stdout) if ($stdout);
-$ws->out(LEVEL_INFO, 'ERRMSG: ', $errmsg) if ($errmsg);
-$ws->out(LEVEL_INFO, 'EXIT_CODE: ', $code);
+print('STDOUT: ', $stdout) if ($stdout);
+print('ERRMSG: ', $errmsg) if ($errmsg);
+print('EXIT_CODE: ', $code);
 
 if ($code) {
     $errmsg ||= $stderr || $stdout;
 
-    $ws->configurationErrorWithSuggestions($errmsg);
+    configurationErrorWithSuggestions($errmsg);
 
     exit(ERROR);
 }
 else {
-    $ws->logger->info("Connection succeeded");
+    print("Connection succeeded");
     exit(SUCCESS);
 }
 
