@@ -1,3 +1,7 @@
+3.8.0:
+  - Add checking connection while creating a configuration.
+  - Jobs for the successful "CreateConfiguration" and "EditConfiguration" run is now preserved.
+  - Add logging while running "CreateConfiguration".
 2.7.1:
   - Rebranding from "CloudBees Flow" to "CloudBees CD".
 2.7.0:
@@ -195,4 +199,4 @@
   - The absolute path of executable files now requires the path and filename with an extension.
 1.1.0:
   - RunCustomJob procedure has been added.
-  
+

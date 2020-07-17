@@ -540,7 +540,7 @@ sub get_step_parameters {
         my $value = $self->get_param($name);
 
         my $name_in_list = $name;
-        # $name_in_list =~ s/ecp_weblogic_//;
+        # $name_in_list =~ s/ecp_websphere_//;
         if ($param->findvalue('type')->string_value eq 'credential') {
             my $cred = $self->ec->getFullCredential($value);
             my $username = $cred->findvalue('//userName')->string_value;
@@ -1398,7 +1398,7 @@ sub procedure_result_cb_start_node {
     }
 }
 
-## internal package, required for logging
+## internal package, required for logging ####################################
 package EC::Plugin::Logger;
 
 use strict;

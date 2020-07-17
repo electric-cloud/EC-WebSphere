@@ -22,14 +22,14 @@ use ElectricCommander;
 use ElectricCommander::PropDB;
 
 use constant {
-	SUCCESS => 0,
-	ERROR   => 1,
+    SUCCESS => 0,
+    ERROR   => 1,
 };
 
 my $opts;
 
 my $PLUGIN_NAME = 'EC-WebSphere';
-my $projName = "@PLUGIN_KEY@-@PLUGIN_VERSION@";
+my $projName    = "@PLUGIN_KEY@-@PLUGIN_VERSION@";
 
 if (!defined $PLUGIN_NAME) {
     print "PLUGIN_NAME must be defined\n";
@@ -48,9 +48,9 @@ if (!defined $opts->{config} || "$opts->{config}" eq '') {
     exit ERROR;
 }
 
-# check to see if a config with this name already exists before 
+# check to see if a config with this name already exists before
 # we do anything else
-my $xpath = $ec->getProperty("/myProject/websphere_cfgs/$opts->{config}");
+my $xpath    = $ec->getProperty("/myProject/websphere_cfgs/$opts->{config}");
 my $property = $xpath->findvalue("//response/property/propertyName");
 
 if (!defined $property || "$property" eq '') {
@@ -62,4 +62,7 @@ if (!defined $property || "$property" eq '') {
 
 $ec->deleteProperty("/myProject/websphere_cfgs/$opts->{config}");
 $ec->deleteCredential($projName, $opts->{config});
+
+print "Configuration \"$opts->{config}\" deleted.\n";
+
 exit SUCCESS;
