@@ -1,6 +1,11 @@
-<h3>Publish WSDL</h3>
-<p>To publish WSDL files, do these steps:</p>
-<ol>
-  <li>Go to the PublishWSDL procedure.</li>
-  <li> Enter the following parameters: </li><img src="../../plugins/EC-WebSphere/images/PublishWSDL/EC-WebSpherePublishWSDL2.png" />
-</ol>
+### Publish WSDL
+
+To publish WSDL files, do these steps:
+
+* Go to the PublishWSDL procedure.
+
+*  Enter the following parameters: 
+
+![image](images/PublishWSDL/EC-WebSpherePublishWSDL2.png)
+
+

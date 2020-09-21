@@ -1,3 +1,5 @@
+3.8.1:
+  - The documentation has been migrated to the main documentation site.
 3.8.0:
   - Add checking connection while creating a configuration.
   - Jobs for the successful "CreateConfiguration" and "EditConfiguration" run is now preserved.
@@ -15,55 +17,55 @@
 2.6.0:
   - |
     Following new procedures have been added to support management of clusters:
-      <ul>
-        <li><a href="#CreateFirstClusterMember">CreateFirstClusterMember</a></li>
-        <li><a href="#CreateClusterMembers">CreateClusterMembers</a></li>
-      </ul>
+
+    * link:#CreateFirstClusterMember[CreateFirstClusterMember]
+    * link:#CreateClusterMembers[CreateClusterMembers]
+
     The Interface for the Following procedures have been Improved (for moving WSADMIN path to configuration, decoupling Application deployment from  Start, Ability to sync nodes etc.,)
-      <ul>
-        <li><a href="#StartCluster">StartCluster</a></li>
-        <li><a href="#StopCluster">StopCluster</a></li>
-        <li><a href="#CreateCluster">CreateCluster</a></li>
-        <li><a href="#DeleteCluster">DeleteCluster</a></li>
-        <li><a href="#ListClusterMembers">ListClusterMembers</a></li>
-        <li><a href="#ListClusterMembers">RemoveClusterMembers</a></li>
-      </ul>
+    
+      * link:#StartCluster[StartCluster]
+      * link:#StopCluster[StopCluster]
+      * link:#CreateCluster[CreateCluster]
+      * link:#DeleteCluster[DeleteCluster]
+      * link:#ListClusterMembers[ListClusterMembers]
+      * link:#ListClusterMembers[RemoveClusterMembers]
+    
     Error Reporting has been improved by leveraging postp to capture granular error messages in Diagnostics.
 2.5.0:
   - |
     Following New procedures have been added to support application server management:
-      <ul>
-      <li><a href="#CreateApplicationServer">CreateApplicationServer</a></li>
-      <li><a href="#DeleteApplicationServer">DeleteApplicationServer</a></li>
-      <li><a href="#CreateApplicationServerTemplate">CreateApplicationServerTemplate</a></li>
-      <li><a href="#DeleteApplicationServerTemplate">DeleteApplicationServerTemplate</a></li>
-      <li><a href="#ExportApplicationServer">ExportApplicationServer</a></li>
-      <li><a href="#ImportApplicationServer">ImportApplicationServer</a></li>
-      <li><a href="#StartApplicationServers">StartApplicationServers</a></li>
-      <li><a href="#StopApplicationServers">StopApplicationServers</a></li>
-      </ul>
-      <li>Following New procedures have been added to support start and stop of Node and Deployment Manager:</li>
-      <ul>
-      <li><a href="#StartDeploymentManager">StartDeploymentManager</a></li>
-      <li><a href="#StopDeploymentManager">StopDeploymentManager</a></li>
-      <li><a href="#StartNode">StartNode</a></li>
-      <li><a href="#StopNode">StopNode</a></li>
-      </ul>
-      <li>WSAdmin Absolute path has been changed from non-required to required in plugin configuration.</li>
+      
+      * link:#CreateApplicationServer[CreateApplicationServer]
+      * link:#DeleteApplicationServer[DeleteApplicationServer]
+      * link:#CreateApplicationServerTemplate[CreateApplicationServerTemplate]
+      * link:#DeleteApplicationServerTemplate[DeleteApplicationServerTemplate]
+      * link:#ExportApplicationServer[ExportApplicationServer]
+      * link:#ImportApplicationServer[ImportApplicationServer]
+      * link:#StartApplicationServers[StartApplicationServers]
+      * link:#StopApplicationServers[StopApplicationServers]
+      
+      Following New procedures have been added to support start and stop of Node and Deployment Manager:
+      
+      * link:#StartDeploymentManager[StartDeploymentManager]
+      * link:#StopDeploymentManager[StopDeploymentManager]
+      * link:#StartNode[StartNode]
+      * link:#StopNode[StopNode]
+      
+      WSAdmin Absolute path has been changed from non-required to required in plugin configuration.
 2.4.1:
   - Configured the plugin to allow the ElectricFlow UI to create configs inline of procedure form.
 2.4.0:
   - |
     Following New procedures have been added to support the entire set of IBM JMS functionality:
-      <ul>
-        <li><a href="#CreateOrUpdateSIBJMSActivationSpec">CreateOrUpdateSIBJMSActivationSpec</a></li>
-        <li><a href="#CreateOrUpdateWMQJMSActivationSpec">CreateOrUpdateWMQJMSActivationSpec</a></li>
-        <li><a href="#CreateOrUpdateSIBJMSConnectionFactory">CreateOrUpdateSIBJMSConnectionFactory</a></li>
-        <li><a href="#CreateOrUpdateWMQJMSConnectionFactory">CreateOrUpdateWMQJMSConnectionFactory</a></li>
-        <li><a href="#DeleteJMSActivationSpec">DeleteJMSActivationSpec</a></li>
-        <li><a href="#DeleteJMSConnectionFactory">DeleteJMSConnectionFactory</a></li>
-        <li><a href="#DeleteJMSProvider">DeleteJMSProvider</a></li>
-      </ul>
+      
+    * link:#CreateOrUpdateSIBJMSActivationSpec[CreateOrUpdateSIBJMSActivationSpec]
+    * link:#CreateOrUpdateWMQJMSActivationSpec[CreateOrUpdateWMQJMSActivationSpec]
+    * link:#CreateOrUpdateSIBJMSConnectionFactory[CreateOrUpdateSIBJMSConnectionFactory]
+    * link:#CreateOrUpdateWMQJMSConnectionFactory[CreateOrUpdateWMQJMSConnectionFactory]
+    * link:#DeleteJMSActivationSpec[DeleteJMSActivationSpec]
+    * link:#DeleteJMSConnectionFactory[DeleteJMSConnectionFactory]
+    * link:#DeleteJMSProvider[DeleteJMSProvider]
+      
 2.3.1:
   - Help links have been updated for DeleteJMSTopic and DeleteJMSQueue procedures.
   - Configured the plugin to allow the ElectricFlow UI to render the plugin procedure parameters entirely using the configured form XMLs.
@@ -71,56 +73,45 @@
 2.3.0:
   - |
     Following New procedures have been added:
-      <ul>
-        <li><a href="#DeleteJMSQueue">DeleteJMSQueue</a></li>
-        <li><a href="#DeleteJMSTopic">DeleteJMSTopic</a></li>
-        <li><a href="#CreateOrUpdateJMSQueue">CreateOrUpdateJMSQueue</a></li>
-        <li><a href="#CreateOrUpdateJMSTopic">CreateOrUpdateJMSTopic</a></li>
-      </ul>
-      </li>
-      <li>
-        Fixed non-ascii characters in plugin forms.
-      </li>
-      <li>
-        Following procedures have been extended to support Websphere 9.0:
-        <ul>
-          <li><a href="#StartApp">StartApp</a></li>
-          <li><a href="#StopApp">StopApp</a></li>
-          <li><a href="#StopCluster">StopCluster</a></li>
-        </ul>
-      </li>
-      <li>The Debug Level checkbox has been changed to a dropdown. The level will be defaulted to INFO if no value is chosen.</li>
-      <li>
-        WSAdmin Absolute Path has been added to configuration and made as an optional parameter for all the following procedures:
-        <ul>
-          <li><a href="#CreateJMSProvider">CreateJMSProvider</a></li>
-          <li><a href="#RunCustomJob">RunCustomJob</a></li>
-          <li><a href="#DeployEnterpriseApp">DeployEnterpriseApp</a></li>
-          <li><a href="#CreateJDBCProvider">CreateJDBCProvider</a></li>
-          <li><a href="#CheckApp">CheckApp</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#DeployEnterpriseApp">DeployEnterpriseApp</a>
-        <ul>
-          <li>
-            Fixed an issue when application was not started on all servers during deployment if server name and node name are the same.
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="#CreateJDBCProvider">CreateJDBCProvider</a>
-        <ul>
-          <li>
-            Fixed an error with attached credentials when in some cases it was not possible to create new JDBC provider.
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="#CheckApp">CheckApp</a>
-        <ul>
-          <li>Procedure has been improved and now it could check for different application states.</li>
-      </ul>
+      
+    * link:#DeleteJMSQueue[DeleteJMSQueue]
+    * link:#DeleteJMSTopic[DeleteJMSTopic]
+    * link:#CreateOrUpdateJMSQueue[CreateOrUpdateJMSQueue]
+    * link:#CreateOrUpdateJMSTopic[CreateOrUpdateJMSTopic]
+
+    Fixed non-ascii characters in plugin forms.
+
+
+    Following procedures have been extended to support Websphere 9.0:
+
+    * link:#StartApp[StartApp]
+    * link:#StopApp[StopApp]
+    * link:#StopCluster[StopCluster]
+
+      
+    The Debug Level checkbox has been changed to a dropdown. The level will be defaulted to INFO if no value is chosen.
+
+    WSAdmin Absolute Path has been added to configuration and made as an optional parameter for all the following procedures:
+
+      * link:#CreateJMSProvider[CreateJMSProvider]
+      * link:#RunCustomJob[RunCustomJob]
+      * link:#DeployEnterpriseApp[DeployEnterpriseApp]
+      * link:#CreateJDBCProvider[CreateJDBCProvider]
+      * link:#CheckApp[CheckApp]
+
+    link:#DeployEnterpriseApp[DeployEnterpriseApp]
+        
+          
+  Fixed an issue when application was not started on all servers during deployment if server name and node name are the same.
+
+    link:#CreateJDBCProvider[CreateJDBCProvider]
+          
+    Fixed an error with attached credentials when in some cases it was not possible to create new JDBC provider.
+      
+    link:#CheckApp[CheckApp]
+        
+    Procedure has been improved and now it could check for different application states.
+      
 2.2.4:
   - Documentation has been improved.
   - Cluster Scope field has been added to CreateJDBCProvider procedure.
@@ -133,10 +124,10 @@
   - Added new procedures - SyncNodes, CheckNodeStatus.
   - |
     Added following optional parameters to DeployEnterpriseApplication procedure:
-      <ul>
-        <li>"Synchronize active nodes": Sync active nodes after application deployment. Enabled by default.</li>
-        <li>"Start application": Start the deployed application after deploying the application. Enabled by default.</li>
-      </ul>
+      
+    * "Synchronize active nodes": Sync active nodes after application deployment. Enabled by default.
+    * "Start application": Start the deployed application after deploying the application. Enabled by default.
+      
   - Changed default value for "Distribute application" from unchecked to checked. (Deploy Enterprise Application procedure).
 2.2.1:
   - Added new procedures - StartCluster, StopCluster, MapSharedLibrary, ModifyApplicationClassLoader.
@@ -172,7 +163,7 @@
 2.0.5:
   - Fix minor bugs.
 2.0.4:
-  - Add four new procedures: CreateDatasources, DeleteDatasources, CreateJDBCProviders, and DeleteJDBCProviders.
+  - 'Add four new procedures: CreateDatasources, DeleteDatasources, CreateJDBCProviders, and DeleteJDBCProviders.'
   - Fix minor bugs.
 2.0.3:
   - Change the procedure names in the step picker section.

@@ -34,4 +34,5 @@
 			</javascript>
 		</component>
 	</components>
+<hasAdoc>true</hasAdoc>
 </plugin>

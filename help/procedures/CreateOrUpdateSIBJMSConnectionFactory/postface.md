@@ -1,30 +1,46 @@
-<h3>Create or update SIB JMS Connection Factory</h3>
-                <p>To create or update SIB JMS Connection Factory in CloudBees CD interface, do these steps:</p>
-                <ol>
-                    <li>Create procedure.</li>
-                    <li>Create step, choose Plugin, choose CreateOrUpdateSIBJMSConnectionFactory from
-                    procedures picker.</li>
-                    <li>Enter the following parameters: </li>
-                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSConnectionFactory/ProcedureConfig.png" />
-                </ol>
-                <p>After the job runs, you can view the results, including the following
-                job details:</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSConnectionFactory/ProcedureResult.png" />
-                <p>To create or update JMS Topic in CloudBees CD interface, do these steps:</p>
-                <ol>
-                    <li>Create Pipeline.</li>
-                    <li>Create task.</li>
-                    <li>In task definition choose Plugin and choose following parameters:
-                    <p><img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSConnectionFactory/PipelinePicker.png" /></p>
-                    </li>
-                    <li>Click on arrow.</li>
-                    <li>Enter the following parameters: </li>
-                    <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSConnectionFactory/PipelineConfig.png" />
-                </ol>
-                <p>After the pipeline runs, you can view the results, including the
-                following step details:</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSConnectionFactory/PipelineResult.png" />
-                <p>In the <b>CreateOrUpdateSIBJMSConnectionFactory</b> step, click the Log icon to see
-                the diagnostic information. The output is similar to the following
-                diagnostic report.</p>
-                <img src="../../plugins/EC-WebSphere/images/CreateOrUpdateSIBJMSConnectionFactory/ProcedureLog.png" />
+### Create or update SIB JMS Connection Factory
+
+To create or update SIB JMS Connection Factory in CloudBees CD interface, do these steps:
+
+* Create procedure.
+
+* Create step, choose Plugin, choose CreateOrUpdateSIBJMSConnectionFactory from
+                    procedures picker.
+
+* Enter the following parameters: 
+
+![image](images/CreateOrUpdateSIBJMSConnectionFactory/ProcedureConfig.png)
+
+
+After the job runs, you can view the results, including the following
+job details:
+
+![image](images/CreateOrUpdateSIBJMSConnectionFactory/ProcedureResult.png)
+
+To create or update JMS Topic in CloudBees CD interface, do these steps:
+
+* Create Pipeline.
+
+* Create task.
+
+* In task definition choose Plugin and choose following parameters:
+
+![image](images/CreateOrUpdateSIBJMSConnectionFactory/PipelinePicker.png)
+
+* Click on arrow.
+
+* Enter the following parameters: 
+
+![image](images/CreateOrUpdateSIBJMSConnectionFactory/PipelineConfig.png)
+
+               
+After the pipeline runs, you can view the results, including the
+following step details:
+
+![image](images/CreateOrUpdateSIBJMSConnectionFactory/PipelineResult.png)
+
+In the **CreateOrUpdateSIBJMSConnectionFactory** step, click the Log icon to see
+the diagnostic information. The output is similar to the following
+diagnostic report.
+
+![image](images/CreateOrUpdateSIBJMSConnectionFactory/ProcedureLog.png)

@@ -1,1 +1,3 @@
-<img src="../../plugins/EC-WebSphere/images/CheckServerStatus/CSSparameters.png" />
+
+
+![image](images/CheckServerStatus/CSSparameters.png)
