@@ -34,4 +34,6 @@
 			</javascript>
 		</component>
 	</components>
+	<hasAdoc>true</hasAdoc>
+	<catalogLabel>WebSphere</catalogLabel>
 </plugin>
