@@ -68,6 +68,7 @@
 
     <formElement>
         <type>credential</type>
+        <supportsCredentialReference>true</supportsCredentialReference>
         <label>Login as:</label>
         <property>credential</property>
         <value></value>
