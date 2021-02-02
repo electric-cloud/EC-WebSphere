@@ -1148,24 +1148,26 @@ sub _getConfiguration {
 
     my $flowpdf = $self->{flowpdf};
     my $cfg = undef;
-    print "CALLING FLOWPDF:\n";
     try {
         $cfg = $flowpdf->getContext()->getConfigValuesAsHashref();
     } catch {
         my ($e) = @_;
         unless (ref $e) {
-            $self->bail_out($e);
+            print "Error: $e\n";
+            my $error_string = "Configuration '$configurationName' doesn't exist";
+            $self->setSummary($error_string);
         }
-        my $err_msg  = $e->getMessage();
-        if ($e->is('FlowPDF::Exception::ConfigDoesNotExist')) {
-            if ($err_msg =~ m/Configuration\s'(.*?)'/s) {
-                $err_msg = qq|Configuration "$1" does not exist|;
-            }
+        else {
+            my $err_msg  = $e->getMessage();
+            print "Error: $err_msg\n";
+            my $error_string = "Configuration '$configurationName' doesn't exist";
+            print "Error: $error_string\n";
+            $self->setSummary($error_string);
         }
-        $self->error($err_msg);
-        $self->bail_out($err_msg);
     };
-    print "FLOWPDF RESULT: ", Dumper $cfg;
+    if (!defined $cfg) {
+        return undef;
+    }
     my %configuration = %$cfg;
     $configuration{configurationName} = $configurationName;
 

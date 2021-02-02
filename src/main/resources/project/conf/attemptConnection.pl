@@ -31,7 +31,9 @@ my $conntype       = '$[conntype]';
 my $credential     = '$[credential]';
 my $debug_level    = '$[debug]';
 
+print "Got credential: $credential\n";
 my $cred_xpath = $ec->getFullCredential($credential);
+print "CRED XML: $cred_xpath->{_xml}\n";
 my $username   = $cred_xpath->findvalue("//userName");
 my $password   = $cred_xpath->findvalue("//password");
 
