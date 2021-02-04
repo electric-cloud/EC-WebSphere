@@ -4424,16 +4424,16 @@ Discover WebSphere instance configuration on a resources or environment
 [[rns]]
 == Release notes
 
-=== EC-WebSphere 3.9.0
+=== EC-WebSphere 2.9.0
 
 - External credentials support has been added.
 
-=== EC-WebSphere 3.8.1
+=== EC-WebSphere 2.8.1
 
 - The documentation has been migrated to the main documentation site.
 
 
-=== EC-WebSphere 3.8.0
+=== EC-WebSphere 2.8.0
 
 - Add checking connection while creating a configuration.
 
