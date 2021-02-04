@@ -31,9 +31,7 @@ my $conntype       = '$[conntype]';
 my $credential     = '$[credential]';
 my $debug_level    = '$[debug]';
 
-print "Got credential: $credential\n";
 my $cred_xpath = $ec->getFullCredential($credential);
-print "CRED XML: $cred_xpath->{_xml}\n";
 my $username   = $cred_xpath->findvalue("//userName");
 my $password   = $cred_xpath->findvalue("//password");
 
@@ -200,6 +198,12 @@ sub runCommand {
         else {
             $errmsg .= $err;
         }
+    }
+
+    # sometimes it returns exit code 1 instead of 0.
+    if ($code == 0 && $stdout =~ m/java\.lang/s && $stdout =~ m/Exception/s && $stdout =~ m/Caused\sby/s) {
+        $errmsg = "Error occurred while trying to create the configuration. Check the job log for more details.\n";
+        $code = 1;
     }
 
     return ($code, $stdout, $stderr, $errmsg);

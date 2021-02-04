@@ -184,8 +184,28 @@ try {
         )
     }
 
-    def createCustomConfigurationWithExternalCredentials(String configName, def parameters, def credentialReferences) {
+    def createCustomConfigurationWithExternalCredentials(String configName, def parameters, def credentialReferences, boolean recreate=true) {
         parameters.config = configName
+
+        if (recreate) {
+            def deleteConfigCode = """
+                runProcedure(
+                    "projectName": '/plugins/EC-WebSphere/project',
+                    "procedureName": 'DeleteConfiguration',
+                    "actualParameter": [
+                        "config": "$configName"
+                    ]
+                )
+            """
+            def deleteResult = dslWithTimeout(deleteConfigCode)
+            waitUntil {
+                try {
+                    jobCompleted(deleteResult)
+                } catch (Exception e) {
+                    println e.getMessage()
+                }
+            }
+        }
         def parametersString = parameters.collect { k, v -> "$k: '$v'" }.join(', ')
         def credRefString = credentialReferences.collect { k, v -> "$k: '$v'" }.join(', ')
         def code = """
@@ -297,6 +317,12 @@ try {
     def createCDCredential(projectName, credentialName, userName, password) {
         def result = """
             try {
+                deleteCredential([
+                    "projectName": "$projectName",
+                    "credentialName": "$credentialName",
+                ])
+            } catch (Exception e) {}
+            try {
                 createCredential([
                     "projectName": "$projectName",
                     "credentialName": "$credentialName",
@@ -308,6 +334,15 @@ try {
             }
         """
         return dsl(result)
+    }
+    def createProjectForCreateConfiguration(projectName) {
+        def code = """
+            try {
+                createProject("$projectName")
+            }
+            catch (Exception e) {}
+        """
+        return dsl(code)
     }
 
 }

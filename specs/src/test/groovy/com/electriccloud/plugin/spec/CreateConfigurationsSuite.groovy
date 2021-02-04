@@ -1,5 +1,6 @@
 package com.electriccloud.plugin.spec
 
+import jdk.nashorn.internal.objects.Global
 import spock.lang.*
 import com.electriccloud.spec.SpockTestSupport
 import com.electriccloud.plugin.spec.PluginTestHelper
@@ -18,12 +19,40 @@ import com.electriccloud.plugin.spec.PluginTestHelper
 class CreateConfigurationsSuite extends PluginTestHelper {
     @Shared
     String resourceName
+    @Shared
+    String testProjectName = "CreateConfigurationTestProject"
+    @Shared
+    def external_credentials = [
+            correct_cred_project: testProjectName,
+            correct_cred_name: 'websphere_credential',
+            incorrect_cred_project: testProjectName,
+            incorrect_cred_name : 'websphere_credential_wrong'
+    ]
+    @Shared
+    String correct_external_cred_path =
+            "/projects/${external_credentials.correct_cred_project}/credentials/${external_credentials.correct_cred_name}"
+
+    @Shared
+    String incorrect_external_cred_path =
+            "/projects/${external_credentials.incorrect_cred_project}/credentials/${external_credentials.incorrect_cred_name}"
 
     def doSetupSpec() {
-        // TODO: Move credentials from Default project to the project that has been created specially for CreateConfiguration tests.
+        createProjectForCreateConfiguration(external_credentials.correct_cred_project)
         def username = System.getenv('WAS_USERNAME') ?: 'wsadmin'
         def password = System.getenv('WAS_PASSWORD') ?: 'changeme'
-        createCDCredential("Default", "websphere_credential", username, password)
+        def wrong_username = 'wcadmin'
+        createCDCredential(
+                external_credentials.correct_cred_project,
+                external_credentials.correct_cred_name,
+                username,
+                password
+        )
+        createCDCredential(
+                external_credentials.incorrect_cred_project,
+                external_credentials.incorrect_cred_name,
+                wrong_username,
+                password
+        )
         resourceName = createWebSphereResource()
     }
 
@@ -31,7 +60,7 @@ class CreateConfigurationsSuite extends PluginTestHelper {
     }
 
     String  conntype
-    @IgnoreRest
+
     def "Creation of Configuration that has external credential - Positive" () {
         conntype = "SOAP"
         when: 'Creation Runs'
@@ -44,16 +73,48 @@ class CreateConfigurationsSuite extends PluginTestHelper {
                 conntype:            conntype,
                 wsadminabspath:      System.getenv('WSADMIN_PATH') ?: '',
                 test_connection:     1,
-                credential: 'websphere_credential',
+                credential:          external_credentials.correct_cred_name,
                 test_connection_res: wasResourceName,
                 debug: 1
         ]
         def credentialReferences = [
-                websphere_credential: "/projects/Default/credentials/websphere_credential"
+                "${external_credentials.correct_cred_name}": correct_external_cred_path
         ]
-        createCustomConfigurationWithExternalCredentials("ConfigWithExternalCred", inputData, credentialReferences)
+        def jobResult = createCustomConfigurationWithExternalCredentials("ConfigWithExternalCred", inputData, credentialReferences)
         then: 'Wait until job is completed.'
+        def outcome = getJobProperty('/myJob/outcome', jobResult.jobId)
+        assert outcome == "success"
     }
+
+
+    def "Creation of Configuration that has external credential - Negative" () {
+        conntype = "SOAP"
+        when: 'Creation Runs'
+        def wasResourceName = System.getenv('WAS_HOST');
+        createWorkspace(wasResourceName)
+        def inputData = [
+                websphere_url:       System.getenv('WAS_HOST'),
+                websphere_port:      System.getenv('WAS_PORT') ?: '',
+
+                conntype:            conntype,
+                wsadminabspath:      System.getenv('WSADMIN_PATH') ?: '',
+                test_connection:     1,
+                credential:          external_credentials.incorrect_cred_name,
+                test_connection_res: wasResourceName,
+                debug: 1
+        ]
+        def credentialReferences = [
+                "${external_credentials.incorrect_cred_name}": incorrect_external_cred_path
+        ]
+
+        def jobResult = createCustomConfigurationWithExternalCredentials("ConfigWithExternalCred", inputData, credentialReferences)
+        then: 'Wait until job is completed.'
+        def outcome = getJobProperty('/myJob/outcome', jobResult.jobId)
+        assert outcome == "error"
+        def jobSummary = getJobProperty("/myJob/jobSteps/AttemptConnection/summary", jobResult.jobId)
+        assert jobSummary =~ "Error occurred while trying to create the configuration. Check the job log for more details."
+    }
+
     def "Creation SOAP configuration for testing - Positive" () {
         conntype = "SOAP"
 
