@@ -1,5 +1,5 @@
 Plugin version @PLUGIN_VERSION@
-Revised on September 21, 2020
+Revised on February 1, 2021
 
 
 == Integrated Version
@@ -4424,13 +4424,16 @@ Discover WebSphere instance configuration on a resources or environment
 [[rns]]
 == Release notes
 
+=== EC-WebSphere 2.9.0
 
-=== EC-WebSphere 3.8.1
+- External credentials support has been added.
+
+=== EC-WebSphere 2.8.1
 
 - The documentation has been migrated to the main documentation site.
 
 
-=== EC-WebSphere 3.8.0
+=== EC-WebSphere 2.8.0
 
 - Add checking connection while creating a configuration.
 

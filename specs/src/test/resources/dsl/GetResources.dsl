@@ -42,8 +42,21 @@ procedure 'GetResources', {
     description = ''
     alwaysRun = '0'
     broadcast = '0'
-    command = '''URL penny = new URL(\'$[fileURL]\')
-new File(\'$[filePath]\') << penny.openStream()
+    command = '''
+use strict;
+use warnings;
+use Data::Dumper;
+use LWP::UserAgent;
+my $file_path = '$[filePath]';
+
+my $ua = LWP::UserAgent->new();
+my $url = '$[fileURL]';
+my $response = $ua->get($url);
+open (my $fh, '>', $file_path) or die "Cant open file: $!\\n";
+binmode $fh;
+
+my $content = $response->decoded_content();
+print $fh $content;
 
 '''
     condition = ''
@@ -56,7 +69,7 @@ new File(\'$[filePath]\') << penny.openStream()
     projectName = testProjectName
     releaseMode = 'none'
     resourceName = '$[wasResourceName]'
-    shell = 'ec-groovy'
+    shell = 'ec-perl'
     subprocedure = null
     subproject = null
     timeLimit = ''

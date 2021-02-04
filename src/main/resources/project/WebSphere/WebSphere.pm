@@ -17,6 +17,51 @@ All rights reserved
 
 use strict;
 no strict "subs";
+
+BEGIN {
+    require ElectricCommander;
+    import ElectricCommander;
+
+    my $ec = ElectricCommander->new();
+    my @locations = (
+        '/myProject/pdk/',
+        # '/myProject/perl/core/lib/',
+        # '/myProject/perl/lib/'
+    );
+    my $display;
+    my $pdk_loader = sub {
+        my ($self, $target) = @_;
+
+        $display = '[EC]@PLUGIN_KEY@-@PLUGIN_VERSION@/' . $target;
+        # Undo perl'd require transformation
+        # Retrieving framework part and lib part.
+        my $code;
+        for my $prefix (@locations) {
+            my $prop = $target;
+            # $prop =~ s#\.pm$##;
+
+            $prop = "$prefix$prop";
+            $code = eval {
+                $ec->getProperty("$prop")->findvalue('//value')->string_value;
+            };
+            last if $code;
+        }
+        return unless $code; # let other module paths try ;)
+
+        # Prepend comment for correct error attribution
+        $code = qq{# line 1 "$display"\n$code};
+
+        # We must return a file in perl < 5.10, in 5.10+ just return \$code
+        #    would suffice.
+        open my $fd, "<", \$code
+            or die "Redirect failed when loading $target from $display";
+
+        return $fd;
+    };
+
+    push @INC, $pdk_loader;
+}
+
 use ElectricCommander;
 use ElectricCommander::PropDB;
 use JSON;
@@ -24,6 +69,10 @@ use Carp;
 use Data::Dumper;
 use WebSphere::Util;
 use File::Copy qw/cp/;
+use FlowPDF;
+use FlowPDF::Context;
+use FlowPDF::ContextFactory;
+use Try::Tiny;
 
 $| = 1;
 
@@ -53,6 +102,8 @@ $| = 1;
     }
 
 };
+
+# Loading PDK
 
 =head1 METHODS
 
@@ -90,6 +141,23 @@ sub new {
         # wsadminPath => $wsadminPath
     };
     bless $self, $class;
+
+    ### FlowPDF part. Detecting procedure name and step name:
+    my $procedureName = $ec->getProperty('/myProcedure/procedureName')->findvalue('//value')->string_value();
+    my $stepName = $ec->getProperty('/myJobStep/stepName')->findvalue('//value')->string_value();
+    ###
+    my $flowpdf = FlowPDF->new({
+        pluginName      => '@PLUGIN_KEY@',
+        pluginVersion   => '@PLUGIN_VERSION@',
+        configFields    => ['config', 'config_name', 'configurationName', 'configName', 'configname'],
+        configLocations => ['websphere_cfgs', 'ec_plugin_cfgs'],
+        contextFactory  => FlowPDF::ContextFactory->new({
+            procedureName => $procedureName,
+            stepName      => $stepName
+        })
+    });
+    $self->{flowpdf} = $flowpdf;
+    ### End of flowpdf part
     my $log = EC::Plugin::Logger->new(0);
     $self->{_log} = $log;
 
@@ -1076,28 +1144,54 @@ sub _create_runfile {
 }
 
 sub _getConfiguration {
-    my ( $self, $configurationName ) = @_;
-    my $ec = $self->{ec};
+    my ($self, $configurationName) = @_;
 
-    my $configurations =
-      new ElectricCommander::PropDB( $ec, '/myProject/websphere_cfgs' );
-    my %configuration = $configurations->getRow($configurationName);
-
-    # Check if configuration exists
-    unless ( keys(%configuration) ) {
-        my $error_string = "Configuration '$configurationName' doesn't exist";
-        print "Error: $error_string\n";
-        $self->setSummary("$error_string");
+    my $flowpdf = $self->{flowpdf};
+    my $cfg = undef;
+    try {
+        $cfg = $flowpdf->getContext()->getConfigValuesAsHashref();
+    } catch {
+        my ($e) = @_;
+        unless (ref $e) {
+            print "Error: $e\n";
+            my $error_string = "Configuration '$configurationName' doesn't exist";
+            $self->setSummary($error_string);
+        }
+        else {
+            my $err_msg  = $e->getMessage();
+            print "Error: $err_msg\n";
+            my $error_string = "Configuration '$configurationName' doesn't exist";
+            print "Error: $error_string\n";
+            $self->setSummary($error_string);
+        }
+    };
+    if (!defined $cfg) {
         return undef;
     }
-
-    # Get user/password out of credential
-    my $xpath = $ec->getFullCredential( $configuration{credential} );
-    $configuration{user}              = $xpath->findvalue("//userName");
-    $configuration{password}          = $xpath->findvalue("//password");
+    my %configuration = %$cfg;
     $configuration{configurationName} = $configurationName;
 
     return \%configuration;
+    # my $ec = $self->{ec};
+
+    # my $configurations = new ElectricCommander::PropDB($ec, '/myProject/websphere_cfgs');
+    # my %configuration = $configurations->getRow($configurationName);
+
+    # # Check if configuration exists
+    # unless ( keys(%configuration) ) {
+    #     my $error_string = "Configuration '$configurationName' doesn't exist";
+    #     print "Error: $error_string\n";
+    #     $self->setSummary("$error_string");
+    #     return undef;
+    # }
+
+    # # Get user/password out of credential
+    # my $xpath = $ec->getFullCredential( $configuration{credential} );
+    # $configuration{user}              = $xpath->findvalue("//userName");
+    # $configuration{password}          = $xpath->findvalue("//password");
+    # $configuration{configurationName} = $configurationName;
+
+    # return \%configuration;
 }
 
 =head2 write_jython_script
