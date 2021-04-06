@@ -10,7 +10,7 @@ buildscript {
     repositories {
         maven { url 'http://dl.bintray.com/ecpluginsdev/maven' }
 
-        jcenter()
+        maven { url "http://art.nimbus.beescloud.com/artifactory/jcenter" }
     }
     dependencies {
         classpath group: 'com.electriccloud.plugins', name: 'flow-gradle-plugin', version: '2.+'
@@ -22,32 +22,42 @@ repositories {
 	// 	url "http://artifactory.electric-cloud.com/artifactory/repo"
 	// }
     maven {
+        url 'https://nexus-internal.cloudbees.com/content/groups/mirror/'
+        credentials {
+            username = System.getenv('NEXUS_USERNAME') ?: nexusUsername
+            password = System.getenv('NEXUS_PASSWORD') ?: nexusPassword
+        }
+    }
+    maven {
         url 'https://nexus-internal.cloudbees.com/content/repositories/snapshots'
         credentials {
-            username = nexusUsername
-            password = nexusPassword
+            username = System.getenv('NEXUS_USERNAME') ?: nexusUsername
+            password = System.getenv('NEXUS_PASSWORD') ?: nexusPassword
         }
     }
     maven {
         url 'https://nexus-internal.cloudbees.com/service/local/staging/deploy/maven2'
         credentials {
-            username = nexusUsername
-            password = nexusPassword
+            username = System.getenv('NEXUS_USERNAME') ?: nexusUsername
+            password = System.getenv('NEXUS_PASSWORD') ?: nexusPassword
         }
     }
     maven {
         url 'http://35.234.102.60/artifactory/ec'
         credentials {
-                username = System.getenv('ARTIFACTORY_USERNAME') ?: 'build'
-                password = System.getenv('ARTIFACTORY_PASSWORD')
+            username = System.getenv('ARTIFACTORY_USERNAME') ?: 'build'
+            password = System.getenv('ARTIFACTORY_PASSWORD')
         }
     }
     maven {
         url "http://35.234.102.60/artifactory/thirdparty"
         credentials {
-                username = System.getenv('ARTIFACTORY_USERNAME') ?: 'build'
-                password = System.getenv('ARTIFACTORY_PASSWORD')
+            username = System.getenv('ARTIFACTORY_USERNAME') ?: 'build'
+            password = System.getenv('ARTIFACTORY_PASSWORD')
         }
+    }
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots"
     }
 }
 
