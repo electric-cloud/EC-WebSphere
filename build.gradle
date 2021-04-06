@@ -27,7 +27,7 @@ buildscript {
         }
 
         maven {
-            url 'https://nexus-internal.cloudbees.com/service/local/repositories/hosted-1082/content'
+            url 'https://nexus-internal.cloudbees.com/service/local/repositories/hosted-1083/content'
             credentials {
                 username = nexusUsername
                 password = nexusPassword
@@ -35,13 +35,16 @@ buildscript {
         }
     }
     dependencies {
-        classpath group: 'com.electriccloud.plugins', name: 'flow-gradle-plugin', version: '2.+'
+        classpath group: 'com.electriccloud.plugins', name: 'flow-gradle-plugin', version: '2.4'
     }
 }
 
 repositories {
     mavenCentral()
 
+    // maven {
+    //     url "https://repo.cloudbees.com/content/repositories/dev-connect"
+    // }
     maven {
         url 'https://nexus-internal.cloudbees.com/content/repositories/snapshots'
         credentials {
