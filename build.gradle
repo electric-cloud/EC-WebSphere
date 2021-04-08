@@ -9,7 +9,6 @@
 buildscript {
     repositories {
         maven { url 'http://dl.bintray.com/ecpluginsdev/maven' }
-        maven { url "http://art.nimbus.beescloud.com/artifactory/jcenter" }
     }
     dependencies {
         classpath group: 'com.electriccloud.plugins', name: 'flow-gradle-plugin', version: '2.+'
@@ -18,7 +17,6 @@ buildscript {
 
 repositories {
     mavenCentral()
-    maven { url "http://art.nimbus.beescloud.com/artifactory/jcenter" }
     maven {
         url 'https://nexus-internal.cloudbees.com/content/repositories/hosted-releases/'
         credentials {

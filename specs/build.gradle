@@ -12,9 +12,6 @@ defaultTasks 'test'
 repositories {
     mavenCentral()
     maven {
-        url  "http://art.nimbus.beescloud.com/artifactory/jcenter"
-    }
-    maven {
         url 'https://oss.sonatype.org/content/repositories/snapshots'
     }
 
