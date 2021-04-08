@@ -9,7 +9,6 @@
 buildscript {
     repositories {
         maven { url 'http://dl.bintray.com/ecpluginsdev/maven' }
-
         maven { url "http://art.nimbus.beescloud.com/artifactory/jcenter" }
     }
     dependencies {
@@ -18,9 +17,9 @@ buildscript {
 }
 
 repositories {
-	// maven {
-	// 	url "http://artifactory.electric-cloud.com/artifactory/repo"
-	// }
+    maven { url "http://art.nimbus.beescloud.com/artifactory/jcenter" }
+
+    // commander-client:10.2.0-SNAPSHOT
     maven {
         url 'https://nexus-internal.cloudbees.com/content/groups/mirror/'
         credentials {
@@ -28,44 +27,32 @@ repositories {
             password = System.getenv('NEXUS_PASSWORD') ?: nexusPassword
         }
     }
+
+    // gwt-user:2.5.0-ec3, gwt-dev:2.5.0-ec1
     maven {
-        url 'https://nexus-internal.cloudbees.com/content/repositories/snapshots'
+        url 'https://nexus-internal.cloudbees.com/content/repositories/releases/'
         credentials {
             username = System.getenv('NEXUS_USERNAME') ?: nexusUsername
             password = System.getenv('NEXUS_PASSWORD') ?: nexusPassword
         }
     }
+
+    //commander-sdk:6.1.2
+    //ec_internal:6.1.2
     maven {
-        url 'https://nexus-internal.cloudbees.com/service/local/staging/deploy/maven2'
+        url 'https://nexus-internal.cloudbees.com/content/repositories/hosted-releases/'
         credentials {
             username = System.getenv('NEXUS_USERNAME') ?: nexusUsername
             password = System.getenv('NEXUS_PASSWORD') ?: nexusPassword
         }
-    }
-    maven {
-        url 'http://35.234.102.60/artifactory/ec'
-        credentials {
-            username = System.getenv('ARTIFACTORY_USERNAME') ?: 'build'
-            password = System.getenv('ARTIFACTORY_PASSWORD')
-        }
-    }
-    maven {
-        url "http://35.234.102.60/artifactory/thirdparty"
-        credentials {
-            username = System.getenv('ARTIFACTORY_USERNAME') ?: 'build'
-            password = System.getenv('ARTIFACTORY_PASSWORD')
-        }
-    }
-    maven {
-        url "https://oss.sonatype.org/content/repositories/snapshots"
     }
 }
 
 configurations.all {
 	resolutionStrategy {
-		force group: 'com.electriccloud', name: 'commander-client', version: '2020.10.0-SNAPSHOT'
-		force group: 'com.electriccloud', name: 'commander-sdk', version: '6.1.0-SNAPSHOT'
-		force group: 'com.electriccloud', name: 'ec_internal', version: '6.1.0-SNAPSHOT'
+        force group: 'com.electriccloud', name: 'commander-client', version: '10.2.0-SNAPSHOT'
+		force group: 'com.electriccloud', name: 'commander-sdk', version: '6.1.2'
+		force group: 'com.electriccloud', name: 'ec_internal', version: '6.1.2'
 		force group: 'com.google.gwt', name: 'gwt-user', version: '2.5.0-ec3'
 		force group: 'com.google.gwt', name: 'gwt-dev', version: '2.5.0-ec1'
 
