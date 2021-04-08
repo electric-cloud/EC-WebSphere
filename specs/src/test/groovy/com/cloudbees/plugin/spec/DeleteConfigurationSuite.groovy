@@ -7,17 +7,10 @@ import com.cloudbees.pdk.hen.Utils
 import com.cloudbees.pdk.hen.WebSphere
 import com.cloudbees.pdk.hen.procedures.WebSphereConfig
 import com.electriccloud.plugins.annotations.Sanity
-import spock.lang.Requires
 import spock.lang.Specification
 import spock.lang.Unroll
 
 import static com.cloudbees.pdk.hen.Utils.setConfigurationValues
-import static com.cloudbees.pdk.hen.Utils.setConfigurationValues
-import static com.cloudbees.pdk.hen.Utils.setConfigurationValues
-import static com.cloudbees.pdk.hen.Utils.verifyExistenceOfPluginsCredentials
-import static com.cloudbees.pdk.hen.Utils.verifyExistenceOfPluginsCredentials
-import static com.cloudbees.pdk.hen.Utils.verifyExistenceOfPluginsCredentials
-import static com.cloudbees.pdk.hen.Utils.verifyExistenceOfPluginsCredentials
 
 class DeleteConfigurationSuite extends Specification{
 
@@ -46,9 +39,8 @@ class DeleteConfigurationSuite extends Specification{
     }
 
     @Sanity
-    @Requires({!System.getenv("EF_PROXY_URL")})
     @Unroll
-    def "Sanity without proxy. Delete Configuration"() {
+    def "Sanity. Delete Configuration"() {
         when: "Create plugin config"
         WebSphere webSpherePlugin = WebSphere.createWithoutConfig()
         WebSphereConfig webSphereConfig = WebSphereConfig.create(webSpherePlugin)
@@ -63,7 +55,6 @@ class DeleteConfigurationSuite extends Specification{
 
 
         setConfigurationValues(Utils.CredsStates.RUNTIME, "credential", new Credential(userName: wsUsername, password: wsPassword), webSphereConfig)
-//        setConfigurationValues(initProxyCredential, credsProxyFieldName, proxyCredsByState[initProxyCredential], gitConfig)
         webSpherePlugin.configure(webSphereConfig)
 
         and: "Run Plugin Procedure - checkNodeStatus"
@@ -82,7 +73,7 @@ class DeleteConfigurationSuite extends Specification{
         when: "Delete  Configuration "
         webSpherePlugin.deleteConfiguration(webSpherePlugin.configName)
 
-        and: "run plugin procedure again without configuration"
+        and: "Run plugin procedure again without configuration"
         def secondResult = webSpherePlugin.checkNodeStatus
                 .run()
 
