@@ -10,13 +10,12 @@ sourceCompatibility = 1.8
 defaultTasks 'test'
 
 repositories {
-    jcenter()
     mavenCentral()
     maven {
         url 'https://oss.sonatype.org/content/repositories/snapshots'
     }
     maven {
-        url  "https://dl.bintray.com/ecpluginsdev/maven"
+        url "https://repo.cloudbees.com/content/repositories/dev-connect"
     }
 //     maven {
 // //        Local snapshots
@@ -28,8 +27,7 @@ dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.5:indy'
     compile 'org.spockframework:spock-core:1.1-groovy-2.4'
     compile 'com.electriccloud:ec-specs-plugins-core:1.9.2'
-    // compile 'com.electriccloud:ec-specs-plugins-core:1.5.0'
-    // compile 'com.electriccloud:ec-specs-plugins-core:1.5.0-SNAPSHOT'
+
     compile 'com.jayway.restassured:rest-assured:2.4.0'
     testCompile( 'com.athaydes:spock-reports:1.6.0' ) {
         transitive = false // this avoids affecting your version of Groovy/Spock
