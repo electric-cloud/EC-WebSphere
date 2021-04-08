@@ -29,24 +29,14 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
     static final String wsAdminPath = System.getenv('WSADMIN_PATH')
     static final String wasPort = System.getenv('WAS_PORT')
 
-//    TODO: Proxy is not implemented in EC-WebSphere and all lines codes related to proxy are commented
-//    TODO: they can be deleted or be left for better times
-//    static final String proxyUrl = System.getenv("EF_PROXY_URL") ?: ""
-//    static final String proxyUsername = System.getenv("EF_PROXY_USERNAME") ?: ""
-//    static final String proxyPassword = System.getenv("EF_PROXY_PASSWORD") ?: ""
-
     static String cdFlowProject = "WebSphereCredsProject"
     static String cdFlowProjectCredsName = "WebSphereCreds"
     static String cdFlowProjectNegativeCredsName = "negativeWebSphereCreds"
-
-//    static String cdFlowProjectNegativeProxyCredsName = "negativeProxyCreds"
-//    static String cdFlowProjectProxyCredsName = "proxyCreds"
 
     static String wrongUsername = "wrongUser"
     static String wrongPassword = "wrongPassword"
 
     static String credsFieldName = "credential"
-    static String credsProxyFieldName = "proxy_credential"
 
     static String deleteCredentialDsl = """
         def credProject = args.project
@@ -62,11 +52,6 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
     static Credential creds = new Credential(userName: wsUsername, password: wsPassword)
     static Credential wrongCreds = new Credential(userName: wrongUsername, password: wrongPassword)
     static Map<Utils.CredsStates, Credential> credsByState = [:]
-
-//    static Credential proxyCreds = new Credential(userName: proxyUsername, password: proxyPassword)
-//    static Credential wrongProxyCreds = new Credential(userName: wrongUsername, password: wrongPassword)
-//    static Map<Utils.CredsStates, Credential> proxyCredsByState = [:]
-
 
     def setupSpec() {
         // Create credential in the project
@@ -94,9 +79,8 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
     }
 
     @Sanity
-    @Requires({!System.getenv("EF_PROXY_URL")})
     @Unroll
-    def "Sanity without proxy. Create Config with credential reference/runtime credentials"() {
+    def "Sanity. Create Config with credential reference/runtime credentials"() {
         when: "Create plugin config"
         WebSphere webSpherePlugin = WebSphere.createWithoutConfig()
         WebSphereConfig webSphereConfig = WebSphereConfig.create(webSpherePlugin)
@@ -111,7 +95,6 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
 
 
         setConfigurationValues(initCredential, credsFieldName, credsByState[initCredential], webSphereConfig)
-//        setConfigurationValues(initProxyCredential, credsProxyFieldName, proxyCredsByState[initProxyCredential], gitConfig)
         webSpherePlugin.configure(webSphereConfig)
 
         and: "Run Plugin Procedure - CheckNodeStatus"
@@ -133,12 +116,10 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
         then: "Verify that procedure completed as expected and credentials in plugin exist or not exist"
         assert result.isSuccessful()
         verifyExistenceOfPluginsCredentials(initCredential, webSpherePlugin.configName, webSpherePlugin)
-//        verifyExistenceOfPluginsCredentials(initProxyCredential, webSpherePlugin.configName + "_" + credsProxyFieldName, webSpherePlugin)
 //         ---------------------------------------------------------------
 
         when: "Edit Configuration to second state"
         setConfigurationValues(toCredential, credsFieldName, credsByState[toCredential], webSpherePlugin.editConfiguration)
-//        setConfigurationValues(toProxyCredential, credsProxyFieldName, proxyCredsByState[toProxyCredential], gitPlugin.editConfiguration)
         def resultOfEditConfig = webSpherePlugin.editConfig()
                 .wsadminabspath(wsAdminPath)
                 .conntype("SOAP")
@@ -147,7 +128,6 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
                 .testconnection(toTestConn)
                 .testconnectionres(wsHost)
                 .debug("1")
-//                .httpproxy(toProxyCredential == Utils.CredsStates.EMPTY ? "" : proxyUrl)
                 .runNaked()
 
         and: "run plugin procedure again with edited configuration"
@@ -158,12 +138,10 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
         assert resultOfEditConfig.isSuccessful()
         assert secondResult.isSuccessful()
         verifyExistenceOfPluginsCredentials(toCredential, webSpherePlugin.configName, webSpherePlugin)
-//        verifyExistenceOfPluginsCredentials(toProxyCredential, gitPlugin.configName+ "_" + credsProxyFieldName, gitPlugin)
         // ---------------------------------------------------------------
 
         when: "Edit Configuration - back to initial state"
         setConfigurationValues(initCredential, credsFieldName, credsByState[initCredential], webSpherePlugin.editConfiguration)
-//        setConfigurationValues(initProxyCredential, credsProxyFieldName, proxyCredsByState[initProxyCredential], gitPlugin.editConfiguration)
         def resultOfEditConfigToInitState = webSpherePlugin.editConfig()
                 .wsadminabspath(wsAdminPath)
                 .conntype("SOAP")
@@ -172,7 +150,6 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
                 .testconnection(initTestConn)
                 .testconnectionres(wsHost)
                 .debug("1")
-//                .httpproxy(toProxyCredential == Utils.CredsStates.EMPTY ? "" : proxyUrl)
                 .runNaked()
 
         and: "run plugin procedure again with edited configuration"
@@ -183,7 +160,6 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
         assert resultOfEditConfigToInitState.isSuccessful()
         assert thirdResult.isSuccessful()
         verifyExistenceOfPluginsCredentials(initCredential, webSpherePlugin.configName, webSpherePlugin)
-//        verifyExistenceOfPluginsCredentials(initProxyCredential, gitPlugin.configName + "_" + credsProxyFieldName, gitPlugin)
         // ---------------------------------------------------------------
 
         when: "Delete plugin configuration"
@@ -191,7 +167,6 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
 
         then: "Verify that there are no  credential and configuration after configuration deleting"
         verifyExistenceOfPluginsCredentials(Utils.CredsStates.DELETED, webSpherePlugin.configName, webSpherePlugin)
-//        verifyExistenceOfPluginsCredentials(Utils.CredsStates.DELETED, gitPlugin.configName + '_' + credsProxyFieldName, gitPlugin)
 
         cleanup:
 //         if test failed for some reason and configuration wasn't delete in the last step of test,
@@ -199,20 +174,18 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
         webSpherePlugin.deleteConfiguration(webSpherePlugin.configName)
 
         where:
-        initCredential              | initProxyCredential     | toCredential                | toProxyCredential       | initTestConn    | toTestConn
-        Utils.CredsStates.RUNTIME   | Utils.CredsStates.EMPTY | Utils.CredsStates.REFERENCE | Utils.CredsStates.EMPTY | false           | false
-        Utils.CredsStates.RUNTIME   | Utils.CredsStates.EMPTY | Utils.CredsStates.REFERENCE | Utils.CredsStates.EMPTY | false           | true
-        Utils.CredsStates.REFERENCE | Utils.CredsStates.EMPTY | Utils.CredsStates.RUNTIME   | Utils.CredsStates.EMPTY | true            | false
-        Utils.CredsStates.REFERENCE | Utils.CredsStates.EMPTY | Utils.CredsStates.RUNTIME   | Utils.CredsStates.EMPTY | true            | true
+        initCredential              | toCredential                | initTestConn    | toTestConn
+        Utils.CredsStates.RUNTIME   | Utils.CredsStates.REFERENCE | false           | false
+        Utils.CredsStates.RUNTIME   | Utils.CredsStates.REFERENCE | false           | true
+        Utils.CredsStates.REFERENCE | Utils.CredsStates.RUNTIME   | true            | false
+        Utils.CredsStates.REFERENCE | Utils.CredsStates.RUNTIME   | true            | true
     }
 
     // TODO: remove ignore after bug https://cloudbees.atlassian.net/browse/FLOWPLUGIN-9056 will be fixed
     @Ignore
     @NewFeature(pluginVersion = "2.9.0")
-    @Requires({!System.getenv("EF_PROXY_URL")})
     @Unroll
-    def "Negative without proxy. Create Config with credential reference/runtime credentials"() {
-        // TODO uncomment lines with proxyCreds, when proxy creds will be added to Plugin
+    def "Negative. Create Config with credential reference/runtime credentials"() {
         when: "Create plugin config"
         WebSphere webSpherePlugin = WebSphere.createWithoutConfig()
         WebSphereConfig webSphereConfig = WebSphereConfig.create(webSpherePlugin)
@@ -226,7 +199,6 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
                 .debug(true)
 
         setConfigurationValues(initCredential, credsFieldName, credsByState[initCredential], webSphereConfig)
-//        setConfigurationValues(initProxyCredential, credsProxyFieldName, proxyCredsByState[initProxyCredential], gitConfig)
 
         def configCreationResult = webSpherePlugin.configure(webSphereConfig, expResultOfCreatingConfig)
 
@@ -243,11 +215,10 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
         assert configCreationResult.outcome == expResultOfCreatingConfig
         if (expResultOfCreatingConfig == JobOutcome.SUCCESS) {
             verifyExistenceOfPluginsCredentials(initCredential, webSpherePlugin.configName, webSpherePlugin)
-//            verifyExistenceOfPluginsCredentials(initProxyCredential, gitPlugin.configName + "_" + credsProxyFieldName, gitPlugin)
         }
         if (expResultOfCreatingConfig == JobOutcome.ERROR) {
             verifyExistenceOfPluginsCredentials(Utils.CredsStates.DELETED, webSpherePlugin.configName, webSpherePlugin)
-//            verifyExistenceOfPluginsCredentials(Utils.CredsStates.DELETED, gitPlugin.configName + "_" + credsProxyFieldName, gitPlugin)
+
             // no sense to continue test scenario, because configuration wasn't created
             // so test will be skipped
             Assume.assumeFalse(true)
@@ -257,7 +228,6 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
 
         when: "Edit Configuration to second state"
         setConfigurationValues(toCredential, credsFieldName, credsByState[toCredential], webSpherePlugin.editConfiguration)
-//        setConfigurationValues(toProxyCredential, credsProxyFieldName, proxyCredsByState[toProxyCredential], gitPlugin.editConfiguration)
         def resultOfEditConfig = webSpherePlugin.editConfig()
                 .wsadminabspath(wsAdminPath)
                 .conntype("SOAP")
@@ -266,7 +236,6 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
                 .testconnection(toTestConn)
                 .testconnectionres(wsHost)
                 .debug(true)
-//                .httpproxy(toProxyCredential == Utils.CredsStates.EMPTY ? "" : proxyUrl)
                 .runNaked()
 
         and: "run plugin procedure again with edited configuration"
@@ -279,18 +248,15 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
 
         if (expResultOfEditingConfig == JobOutcome.SUCCESS) {
             verifyExistenceOfPluginsCredentials(toCredential, webSpherePlugin.configName, webSpherePlugin)
-//            verifyExistenceOfPluginsCredentials(toProxyCredential, gitPlugin.configName + "_" + credsProxyFieldName, gitPlugin)
         }
         if (expResultOfEditingConfig == JobOutcome.ERROR) {
             verifyExistenceOfPluginsCredentials(initCredential, webSpherePlugin.configName, webSpherePlugin)
-//            verifyExistenceOfPluginsCredentials(initProxyCredential, gitPlugin.configName + "_" + credsProxyFieldName, gitPlugin)
         }
 
         // ---------------------------------------------------------------
 
         when: "Edit Configuration - back to initial state"
         setConfigurationValues(initCredential, credsFieldName, credsByState[initCredential], webSpherePlugin.editConfiguration)
-//        setConfigurationValues(initProxyCredential, credsProxyFieldName, proxyCredsByState[initProxyCredential], gitPlugin.editConfiguration)
         def resultOfEditConfigToInitState = webSpherePlugin.editConfig()
                 .wsadminabspath(wsAdminPath)
                 .conntype("SOAP")
@@ -299,7 +265,6 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
                 .testconnection(initTestConn)
                 .testconnectionres(wsHost)
                 .debug(true)
-//                .httpproxy(toProxyCredential == Utils.CredsStates.EMPTY ? "" : proxyUrl)
                 .runNaked()
 
         and: "run plugin procedure again with edited configuration"
@@ -312,11 +277,9 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
 
         if (expResultOfCreatingConfig == JobOutcome.SUCCESS) {
             verifyExistenceOfPluginsCredentials(initCredential, webSpherePlugin.configName, webSpherePlugin)
-//            verifyExistenceOfPluginsCredentials(initProxyCredential, gitPlugin.configName + "_" + credsProxyFieldName, gitPlugin)
         }
         if (expResultOfCreatingConfig == JobOutcome.ERROR) {
             verifyExistenceOfPluginsCredentials(toCredential, webSpherePlugin.configName, webSpherePlugin)
-//            verifyExistenceOfPluginsCredentials(toProxyCredential, gitPlugin.configName + "_" + credsProxyFieldName, gitPlugin)
         }
 
         // ---------------------------------------------------------------
@@ -326,7 +289,6 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
 
         then: "Verify that there are no  credential and configuration after configuration deleting"
         verifyExistenceOfPluginsCredentials(Utils.CredsStates.DELETED, webSpherePlugin.configName, webSpherePlugin)
-//        verifyExistenceOfPluginsCredentials(Utils.CredsStates.DELETED, gitPlugin.configName + '_' + credsProxyFieldName, gitPlugin)
 
         cleanup:
 //         if test failed for some reason and configuration wasn't delete in the last step of test,
@@ -334,12 +296,12 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
         webSpherePlugin.deleteConfiguration(webSpherePlugin.configName)
 
         where:
-        initCredential                  | initProxyCredential     | toCredential                    | toProxyCredential       | initTestConn | toTestConn | expResultOfCreatingConfig | expResultOfEditingConfig | initExpectedJobResult | afterEditingJobResult
-        Utils.CredsStates.RUNTIME       | Utils.CredsStates.EMPTY | Utils.CredsStates.WRONG_RUNTIME | Utils.CredsStates.EMPTY | false        | false      | JobOutcome.SUCCESS        | JobOutcome.SUCCESS       | JobOutcome.SUCCESS    | JobOutcome.ERROR
-        Utils.CredsStates.RUNTIME       | Utils.CredsStates.EMPTY | Utils.CredsStates.WRONG_RUNTIME | Utils.CredsStates.EMPTY | false        | true       | JobOutcome.SUCCESS        | JobOutcome.ERROR         | JobOutcome.SUCCESS    | JobOutcome.SUCCESS
-        Utils.CredsStates.EMPTY         | Utils.CredsStates.EMPTY | Utils.CredsStates.RUNTIME       | Utils.CredsStates.EMPTY | false        | false      | JobOutcome.SUCCESS        | JobOutcome.SUCCESS       | JobOutcome.ERROR      | JobOutcome.SUCCESS
-        Utils.CredsStates.WRONG_RUNTIME | Utils.CredsStates.EMPTY | Utils.CredsStates.RUNTIME       | Utils.CredsStates.EMPTY | true         | false      | JobOutcome.ERROR          | JobOutcome.SUCCESS       | JobOutcome.ERROR      | JobOutcome.SUCCESS
-        Utils.CredsStates.WRONG_RUNTIME | Utils.CredsStates.EMPTY | Utils.CredsStates.RUNTIME       | Utils.CredsStates.EMPTY | false        | true       | JobOutcome.SUCCESS        | JobOutcome.SUCCESS       | JobOutcome.ERROR      | JobOutcome.SUCCESS
+        initCredential                  | toCredential                    | initTestConn | toTestConn | expResultOfCreatingConfig | expResultOfEditingConfig | initExpectedJobResult | afterEditingJobResult
+        Utils.CredsStates.RUNTIME       | Utils.CredsStates.WRONG_RUNTIME | false        | false      | JobOutcome.SUCCESS        | JobOutcome.SUCCESS       | JobOutcome.SUCCESS    | JobOutcome.ERROR
+        Utils.CredsStates.RUNTIME       | Utils.CredsStates.WRONG_RUNTIME | false        | true       | JobOutcome.SUCCESS        | JobOutcome.ERROR         | JobOutcome.SUCCESS    | JobOutcome.SUCCESS
+        Utils.CredsStates.EMPTY         | Utils.CredsStates.RUNTIME       | false        | false      | JobOutcome.SUCCESS        | JobOutcome.SUCCESS       | JobOutcome.ERROR      | JobOutcome.SUCCESS
+        Utils.CredsStates.WRONG_RUNTIME | Utils.CredsStates.RUNTIME       | true         | false      | JobOutcome.ERROR          | JobOutcome.SUCCESS       | JobOutcome.ERROR      | JobOutcome.SUCCESS
+        Utils.CredsStates.WRONG_RUNTIME | Utils.CredsStates.RUNTIME       | false        | true       | JobOutcome.SUCCESS        | JobOutcome.SUCCESS       | JobOutcome.ERROR      | JobOutcome.SUCCESS
     }
 
 
