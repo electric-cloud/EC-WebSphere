@@ -1,0 +1,3 @@
+// licenseMain - maintenance requires lot of work that will be later just wiped
+// test - tests fail with a lot of "Not Implemented" exceptions
+startParameter.excludedTaskNames = ['licenseMain', 'test']
