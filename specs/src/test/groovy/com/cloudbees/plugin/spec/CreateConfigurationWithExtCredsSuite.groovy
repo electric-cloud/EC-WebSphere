@@ -53,7 +53,6 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
     static Credential wrongCreds = new Credential(userName: wrongUsername, password: wrongPassword)
     static Map<Utils.CredsStates, Credential> credsByState = [:]
 
-
     def setupSpec() {
         // Create credential in the project
         serverHandler.dsl("createProject([projectName: '${cdFlowProject}', ])")
@@ -219,6 +218,7 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
         }
         if (expResultOfCreatingConfig == JobOutcome.ERROR) {
             verifyExistenceOfPluginsCredentials(Utils.CredsStates.DELETED, webSpherePlugin.configName, webSpherePlugin)
+
             // no sense to continue test scenario, because configuration wasn't created
             // so test will be skipped
             Assume.assumeFalse(true)
