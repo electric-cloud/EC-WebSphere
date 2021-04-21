@@ -184,6 +184,53 @@ try {
         )
     }
 
+    def createCustomConfigurationWithExternalCredentials(String configName, def parameters, def credentialReferences, boolean recreate=true) {
+        parameters.config = configName
+
+        if (recreate) {
+            def deleteConfigCode = """
+                runProcedure(
+                    "projectName": '/plugins/EC-WebSphere/project',
+                    "procedureName": 'DeleteConfiguration',
+                    "actualParameter": [
+                        "config": "$configName"
+                    ]
+                )
+            """
+            def deleteResult = dslWithTimeout(deleteConfigCode)
+            waitUntil {
+                try {
+                    jobCompleted(deleteResult)
+                } catch (Exception e) {
+                    println e.getMessage()
+                }
+            }
+        }
+        def parametersString = parameters.collect { k, v -> "$k: '$v'" }.join(', ')
+        def credRefString = credentialReferences.collect { k, v -> "$k: '$v'" }.join(', ')
+        def code = """
+            runProcedure(
+                "projectName": '/plugins/EC-WebSphere/project',
+                "procedureName": 'CreateConfiguration',
+                "actualParameter": [
+                    $parametersString                 
+                ],
+                "credentialReferenceParameter": [
+                    $credRefString
+                ]
+            )
+        """
+        def result = dslWithTimeout(code)
+        waitUntil {
+            try {
+                jobCompleted(result)
+            } catch (Exception e) {
+                println e.getMessage()
+            }
+        }
+        return result
+    }
+
     def createWebSphereResource() {
         def hostname = System.getenv('WEBSPHERE_RESOURCE_HOST')
         def resources = dsl "getResources()"
@@ -255,16 +302,47 @@ try {
         def shell = System.getenv('IS_WINDOWS') == "1" ? 'powershell' : 'bash'
         def result = """
             runProcedure(
-                projectName: '$projectName',
-                procedureName: 'runCustomShellCommand',
-                actualParameter: [
-                    cli_command: '$command',
-                    stepRes:     '$res',
-                    shellCommand:'$shell',
+                "projectName": '$projectName',
+                "procedureName": 'runCustomShellCommand',
+                "actualParameter": [
+                    "cli_command": '$command',
+                    "stepRes":     '$res',
+                    "shellCommand":'$shell',
                 ]
             )
         """
         return dslWithTimeout(result)
+    }
+
+    def createCDCredential(projectName, credentialName, userName, password) {
+        def result = """
+            try {
+                deleteCredential([
+                    "projectName": "$projectName",
+                    "credentialName": "$credentialName",
+                ])
+            } catch (Exception e) {}
+            try {
+                createCredential([
+                    "projectName": "$projectName",
+                    "credentialName": "$credentialName",
+                    "userName" : "$userName",
+                    "password" : "$password"
+                ])
+                } catch (Exception e) {
+                    println(e.getMessage())
+            }
+        """
+        return dsl(result)
+    }
+    def createProjectForCreateConfiguration(projectName) {
+        def code = """
+            try {
+                createProject("$projectName")
+            }
+            catch (Exception e) {}
+        """
+        return dsl(code)
     }
 
 }

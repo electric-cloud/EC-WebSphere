@@ -36,6 +36,7 @@ $::gCommands = q($[commands]);
 
 my $gClusterName       = trim(q($[clusterName]));
 my $gServerName        = trim(q($[serverName]));
+$::gAppName            = trim(q($[appname]));
 
 if ($gClusterName) {
     $::gScriptFile = "AdminApplication.stopApplicationOnCluster('$::gAppName', '$gClusterName')";
@@ -49,6 +50,7 @@ else {
         'AdminControl.invoke(appmgr,\'stopApplication\',\'' . $::gAppName . '\')';
 }
 
+# my $wsadmin_abs_path = trim(q($[wsadminabspath]));
 $::gWSAdminAbsPath = trim(q($[wsadminabspath]));
 $::gClasspath = trim(q($[classpath]));
 $::gJavaParams = trim(q($[javaparams]));
@@ -87,7 +89,9 @@ sub main() {
     if ($::gConfigurationName ne '') {
         %configuration = getConfiguration($ec, $::gConfigurationName);
     }
-
+    if (!$::gWSAdminAbsPath) {
+        $fixedLocation = $::gWSAdminAbsPath = $configuration{wsadminabspath};
+    }
     push(@args, '"'.$fixedLocation.'"');
 
     if ($::gAdditionalOptions && $::gAdditionalOptions ne '') {

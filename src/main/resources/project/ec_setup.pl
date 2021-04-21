@@ -13,7 +13,11 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #
-
+use ElectricCommander::Util;
+# External Credential Manageent Update:
+# We're retrieving the steps with attached creds from property sheet
+use JSON;
+my $stepsWithCredentials = getStepsWithCredentials();
 # Data that drives the create step picker registration for this plugin.
 my %checkPageStatus = (
     label       => "WebSphere - Check Page Status",
@@ -711,298 +715,70 @@ if ($upgradeAction eq "upgrade") {
                 });
             }
 
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'StopServer',
-                stepName => 'StopInstance'
-            });
-
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'RunCustomJob',
-                stepName => 'RunJob'
-            });
-
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'DeployApp',
-                stepName => 'DeployApp'
-            });
-
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'UndeployApp',
-                stepName => 'UndeployApp'
-            });
-
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'StartApp',
-                stepName => 'StartApp'
-            });
-
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'StopApp',
-                stepName => 'StopApp'
-            });
-
-
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CheckServerStatus',
-                stepName => 'CheckServerStatus'
-            });
-
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CheckApp',
-                stepName => 'CheckApp'
-            });
-
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CreateDatasource',
-                stepName => 'CreateDatasource'
-            });
-
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'DeleteDatasource',
-                stepName => 'DeleteDatasource'
-            });
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CreateJDBCProvider',
-                stepName => 'CreateJDBCProvider'
-            });
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'DeleteJDBCProvider',
-                stepName => 'DeleteJDBCProvider'
-            });
-
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'DeployEnterpriseApp',
-                stepName => 'DeployEnterpriseApp'
-            });
-
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'ConfigEJBContainer',
-                stepName => 'ConfigEJBContainer'
-            });
-
-             # Attach the credential to the appropriate steps
-             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'UpdateApp',
-                stepName => 'UpdateApp'
-             });
-
-             # Attach the credential to the appropriate steps
-             $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CreateEndToEndMailProvider',
-                stepName => 'CreateEndToEndMailProvider'
-             });
-
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'DeployOSGiApp',
-                stepName => 'DeployOSGiApp'
-            });
-
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'PublishWSDL',
-                stepName => 'PublishWSDL'
-            });
-
-             # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'RemoveClusterMembers',
-                stepName => 'RemoveClusterMembers'
-            });
-
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'DeleteCluster',
-                stepName => 'DeleteCluster'
-            });
-
-
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CreateCluster',
-                stepName => 'CreateCluster'
-            });
-
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'StartCluster',
-                stepName => 'StartCluster'
-            });
-
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'StopCluster',
-                stepName => 'StopCluster'
-            });
-
-             # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'ConfigureSession',
-                stepName => 'ConfigureSession'
-            });
-
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CreateJMSProvider',
-                stepName => 'CreateJMSProvider'
-            });
-
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'ListClusterMembers',
-                stepName => 'ListClusterMembers'
-            });
-
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CreateMailSession',
-                stepName => 'CreateMailSession'
-            });
-
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'Discover',
-                stepName => 'DiscoverResources'
-            });
-            # Attach the credential to the appropriate steps
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'DiscoverResource',
-                stepName => 'DiscoverResource'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'MapSharedLibrary',
-                stepName => 'MapSharedLibrary'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'ModifyApplicationClassLoader',
-                stepName => 'ModifyApplicationClassLoader'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'SyncNodes',
-                stepName => 'SyncNodes'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CheckNodeStatus',
-                stepName => 'CheckNodeStatus'
-            });
-
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CreateOrUpdateJMSQueue',
-                stepName => 'CreateOrUpdateJMSQueue'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CreateOrUpdateJMSTopic',
-                stepName => 'CreateOrUpdateJMSTopic'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'DeleteJMSQueue',
-                stepName => 'DeleteJMSQueue'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'DeleteJMSTopic',
-                stepName => 'DeleteJMSTopic'
-            });
-
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CreateOrUpdateWMQJMSActivationSpec',
-                stepName => 'CreateOrUpdateWMQJMSActivationSpec'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CreateOrUpdateSIBJMSActivationSpec',
-                stepName => 'CreateOrUpdateSIBJMSActivationSpec'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'DeleteJMSActivationSpec',
-                stepName => 'DeleteJMSActivationSpec'
-            });
-
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CreateOrUpdateWMQJMSConnectionFactory',
-                stepName => 'CreateOrUpdateWMQJMSConnectionFactory'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CreateOrUpdateSIBJMSConnectionFactory',
-                stepName => 'CreateOrUpdateSIBJMSConnectionFactory'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'DeleteJMSConnectionFactory',
-                stepName => 'DeleteJMSConnectionFactory'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'DeleteJMSProvider',
-                stepName => 'DeleteJMSProvider'
-            });
-            # CreateApplicationServer
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CreateApplicationServer',
-                stepName => 'CreateApplicationServer'
-            });
-
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CreateApplicationServerTemplate',
-                stepName => 'CreateApplicationServerTemplate'
-            });
-
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'DeleteApplicationServerTemplate',
-                stepName => 'DeleteApplicationServerTemplate'
-            });
-
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'StartApplicationServers',
-                stepName => 'StartApplicationServers'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'StopApplicationServers',
-                stepName => 'StopApplicationServers'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'ExportApplicationServer',
-                stepName      => 'ExportApplicationServer'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'ImportApplicationServer',
-                stepName      => 'ImportApplicationServer'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'DeleteApplicationServer',
-                stepName      => 'DeleteApplicationServer'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'StopDeploymentManager',
-                stepName      => 'StopDeploymentManager'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'StartDeploymentManager',
-                stepName      => 'StartDeploymentManager'
-            });
-
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'StopNode',
-                stepName      => 'StopNode'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'StartNode',
-                stepName      => 'StartNode'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CreateFirstClusterMember',
-                stepName      => 'CreateFirstClusterMember'
-            });
-            $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
-                procedureName => 'CreateClusterMembers',
-                stepName      => 'CreateClusterMembers'
-            });
+            for my $step (@$stepsWithCredentials) {
+                # Attach the credential to the appropriate steps
+                $batch->attachCredential("\$[/plugins/$pluginName/project]", $cred, {
+                    procedureName => $step->{procedureName},
+                    stepName => $step->{stepName}
+                });
+            }
         }
     }
+}
+
+
+sub reattachExternalCredentials {
+    my ($otherPluginName) = @_;
+
+    my $configName = getConfigLocation($otherPluginName);
+    my $configsPath = "/plugins/$otherPluginName/project/$configName";
+
+    my $xp = $commander->getProperty($configsPath);
+
+    my $id = $xp->findvalue('//propertySheetId')->string_value();
+    my $props = $commander->getProperties({propertySheetId => $id});
+    for my $node ($props->findnodes('//property/propertySheetId')) {
+        my $configPropertySheetId = $node->string_value();
+        my $config = $commander->getProperties({propertySheetId => $configPropertySheetId});
+
+        # iterate through props to get credentials.
+        for my $configRow ($config->findnodes('//property')) {
+            my $propName = $configRow->findvalue('propertyName')->string_value();
+            my $propValue = $configRow->findvalue('value')->string_value();
+            # print "Name $propName, value: $propValue\n";
+            if ($propName =~ m/credential$/s && $propValue =~ m|^\/|s) {
+                for my $step (@$stepsWithCredentials) {
+                    $batch->attachCredential({
+                        projectName    => $pluginName,
+                        procedureName  => $step->{procedureName},
+                        stepName       => $step->{stepName},
+                        credentialName => $propValue,
+                    });
+                    #    debug "Attached credential to $step->{stepName}";
+                }
+                print "Reattaching $propName with val: $propValue\n";
+            }
+        }
+        # exit 0;
+    }
+}
+
+sub getConfigLocation {
+    my ($otherPluginName) = @_;
+
+    my $configName = 'websphere_cfgs';
+    # my $configName = eval {
+    #     $commander->getProperty("/plugins/$otherPluginName/project/ec_configPropertySheet")->findvalue('//value')->string_value
+    # } || 'ec_plugin_cfgs';
+    return $configName;
+}
+
+sub getStepsWithCredentials {
+    my $retval = [];
+    eval {
+        my $pluginName = '@PLUGIN_NAME@';
+        my $stepsJson = $commander->getProperty("/projects/$pluginName/procedures/CreateConfiguration/ec_stepsWithAttachedCredentials")->findvalue('//value')->string_value;
+        $retval = decode_json($stepsJson);
+    };
+    return $retval;
 }

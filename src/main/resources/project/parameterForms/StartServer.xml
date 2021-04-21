@@ -16,7 +16,7 @@
 
 -->
 <editor>
-    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#StartServer</help>
+    <help>https://docs.cloudbees.com/docs/cloudbees-cd/latest/plugins/ec-websphere#StartServer</help>
     <formElement>
         <type>entry</type>
         <label>StartServer Absolute Path:</label>

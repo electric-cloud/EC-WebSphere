@@ -7,7 +7,7 @@ C<WebSphere::Discovery> - Discovery routines for WebSphere
 =head1 DESCRIPTION
 
 WebSphere discovery routines, used to discover various installation properties
-for WebSphere instance, located at ElectricFlow resource.
+for WebSphere instance, located at CloudBees CD resource.
 
 =head1 COPYRIGHT
 

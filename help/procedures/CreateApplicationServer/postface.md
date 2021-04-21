@@ -1,17 +1,28 @@
 
 ### Create Application Server
 
-To Create Application Server in Flow interface, do these steps:
+To Create Application Server in CloudBees CD interface, do these steps:
 
- * Create Pipeline.
- * Create task.
- * In task definition choose Plugin and choose following parameters:
-   <br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServer/PipelinePicker.png" />
- * Click on arrow.
- * Enter the following parameters:
-   <br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServer/PipelineConfig.png" />
+* Create Pipeline.
+
+* Create task.
+
+* In task definition choose Plugin and choose following parameters:
+
+![image](images/CreateApplicationServer/PipelinePicker.png)
+
+* Click on arrow.
+
+* Enter the following parameters:
+
+![image](images/CreateApplicationServer/PipelineConfig.png)
+
 
 After the pipeline runs, you can view the results, including the following step details:
-<br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServer/PipelineResult.png" />
-<br />In the <b>CreateApplicationServer</b> step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
-<br /><img src="../../plugins/EC-WebSphere/images/CreateApplicationServer/PipelineLog.png" />
+
+![image](images/CreateApplicationServer/PipelineResult.png)
+
+In the **CreateApplicationServer** step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
+
+![image](images/CreateApplicationServer/PipelineLog.png)
+

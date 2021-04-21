@@ -19,7 +19,7 @@
 <plugin>
 	<key>@PLUGIN_KEY@</key>
 	<version>@PLUGIN_VERSION@</version>
-    <label>@PLUGIN_KEY@</label>
+	<label>@PLUGIN_KEY@</label>
 	<description>WebSphere Application Server</description>
 	<configure>configurations.xml</configure>
 	<help>EC-WebSphere_help.xml</help>
@@ -34,4 +34,12 @@
 			</javascript>
 		</component>
 	</components>
+	<hasAdoc>true</hasAdoc>
+    <detailedDescription>
+        Use this plugin to interact with an IBM WebSphere Server:
+        * Start and stop the server.
+        * Manage applications within the server (start, deploy, undeploy, stop or custom task) using the provided WebSphere scripts in the bin directory under the installation home directory (wsadmin, startServer, stopServer).
+        * Run Jython scripts that are provided by the user or defined when a procedure is created.
+    </detailedDescription>
+	<catalogLabel>WebSphere</catalogLabel>
 </plugin>

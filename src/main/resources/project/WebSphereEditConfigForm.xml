@@ -16,14 +16,16 @@
 
 -->
 <editor>
+
     <formElement>
         <type>entry</type>
         <label>WSAdmin Absolute Path:</label>
         <property>wsadminabspath</property>
         <value></value>
         <documentation>Absolute path to wsadmin script.</documentation>
-		<required>1</required>
+        <required>1</required>
     </formElement>
+
     <formElement>
         <type>select</type>
         <label>Connection Type:</label>
@@ -36,7 +38,8 @@
         <option><name>JSR160RMI</name><value>JSR160RMI</value></option>
         <option><name>IPC</name><value>IPC</value></option>
     </formElement>
-  	<formElement>
+
+    <formElement>
         <type>entry</type>
         <label>WebSphere Host:</label>
         <property>websphere_url</property>
@@ -44,32 +47,67 @@
         <documentation>
             Hostname of the WebSphere Application Server to administer using wsadmin tool. For example: 10.200.1.234 or yourWSServer.
         </documentation>
-		<required>1</required>
+        <required>1</required>
     </formElement>
+
     <formElement>
         <type>entry</type>
         <label>WebSphere Connector Port:</label>
         <property>websphere_port</property>
         <value></value>
         <documentation>Port of WebSphere Application server to which wsadmin should connect.Give the port number based on the type of connection you choose.For example, if you want to connect to application server using SOAP connection give the port number of SOAP connector of that server.</documentation>
-		<required>0</required>
+        <required>0</required>
     </formElement>
+
     <formElement>
         <type>credential</type>
+        <supportsCredentialReference>true</supportsCredentialReference>
         <label>Login as:</label>
         <property>credential</property>
         <value></value>
         <required>0</required>
         <documentation>Credentials used to connect to WebSphere instance.</documentation>
     </formElement>
+
+    <formElement>
+        <type>checkbox</type>
+        <label>Test Connection?:</label>
+        <property>test_connection</property>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+        <required>0</required>
+        <documentation>Check if connection should be established during config creation to validate credentials.</documentation>
+    </formElement>
+
+    <formElement>
+        <type>entry</type>
+        <label>Test Connection Resource:</label>
+        <property>test_connection_res</property>
+        <value></value>
+        <documentation>A resource which is used for the testing connection.</documentation>
+        <required>0</required>
+        <dependsOn>test_connection</dependsOn>
+        <condition>${test_connection} == 1</condition>
+    </formElement>
+
     <formElement>
         <label>Debug Level:</label>
         <property>debug</property>
         <documentation>Debug level.</documentation>
         <required>0</required>
         <type>select</type>
-        <option><name>INFO</name><value>0</value></option>
-        <option><name>DEBUG</name><value>1</value></option>
-        <option><name>TRACE</name><value>2</value></option>
+        <option>
+            <value>0</value>
+            <name>Info</name>
+        </option>
+        <option>
+            <value>1</value>
+            <name>Debug</name>
+        </option>
+        <option>
+            <value>2</value>
+            <name>Trace</name>
+        </option>
     </formElement>
+
 </editor>
