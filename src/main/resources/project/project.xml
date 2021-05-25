@@ -641,6 +641,11 @@
                         <propertyName>list_cluster_members.py</propertyName>
                         <value/>
                     </property>
+                    <!-- Check entity for existence -->
+                    <property>
+                        <propertyName>check_entity_for_existence.py</propertyName>
+                        <value/>
+                    </property>
                 </propertySheet>
             </property>
             <!-- This property is here to keep line of postp matcher loader -->
@@ -13885,5 +13890,184 @@
         </procedure>
 
         <!-- End of CreateClusterMembers procedure -->
+
+
+        <!-- CheckEntityForExistence procedure -->
+        <procedure>
+            <procedureName>CheckEntityForExistence</procedureName>
+            <description>Checks whether entity does exist</description>
+            <jobNameTemplate>websphere-check-entity-for-existence-$[jobId]</jobNameTemplate>
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <expandable>1</expandable>
+                    <value></value>
+                </property>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+
+                                <property>
+                                    <propertyName>configname</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>wasEntityName</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>wasEntityType</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+                                <property>
+                                    <propertyName>wasEntityScope</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+                                <property>
+                                    <propertyName>wasProcedureHandlingLogic</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+                                <property>
+                                    <propertyName>wasOutputPropertyPath</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+
+
+                            </propertySheet>
+                        </property>
+                    </propertySheet>
+                </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>configname</formalParameterName>
+                <defaultValue/>
+                <description>Name of the configuration to be used. URL, port and credentials are retrieved from the given configuration.
+                To view or create a new configuration,
+                go to the Administration -> Plugins tab, and select 'Configure' action for @PLUGIN_KEY@ plugin.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>wasEntityName</formalParameterName>
+                <defaultValue/>
+                <description>WAS Entity Type To Check</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>wasEntityType</formalParameterName>
+                <defaultValue/>
+                <description>WAS Entity Type To Check</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>wasEntityScope</formalParameterName>
+                <defaultValue/>
+                <description>WAS entity scope</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>wasProcedureHandlingLogic</formalParameterName>
+                <defaultValue/>
+                <description>WAS Procedure Handling Logic</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+
+            <formalParameter>
+                <formalParameterName>wasOutputPropertyPath</formalParameterName>
+                <defaultValue/>
+                <description>WAS Output Property Path</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+
+
+            <step>
+                <stepName>CheckEntityForExistence</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command></command>
+                <condition />
+                <errorHandling>failProcedure</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName />
+                <parallel>0</parallel>
+                <!-- <postProcessor>$[/myProject/postp_loader]</postProcessor> -->
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName />
+                <retries>0</retries>
+                <shell>ec-perl</shell>
+                <timeLimit>5</timeLimit>
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory />
+                <workspaceName />
+                <procedureName>CheckEntityForExistence</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+            </step>
+        </procedure>
+        <!-- End of CheckEntityForExistence procedure -->
     </project>
 </exportedData>

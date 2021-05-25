@@ -678,4 +678,20 @@ def getClusterNotFoundSuggestion():
     retval = "Available clusters: " + retval
     return retval
 
+def checkEntityForExistence(entityScope, entityType, entityName):
+    currentEntities = AdminConfig.list(entityType, AdminConfig.getid(entityScope)).splitlines()
+    found = False
+
+    for e in currentEntities:
+        if entityName == AdminConfig.showAttribute(e, "name"):
+            found = True
+
+    if found:
+        print "the entity does exist"
+        found = True
+    else:
+        print "the entity does not exist"
+
+    print "Returning true...";
+    return found
 # def isServerBelongsToCluster
