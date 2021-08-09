@@ -46,7 +46,7 @@ To create plugin configurations in {CD}, do these steps:
 
 *Note: After you perform the setup below it is important to make sure that the {CD} agent machine on which WebSphere runs is registered as a resource that can be pinged.*
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/config/parameters.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/config/parameters.png[image]
 
 Plugin configurations are sets of parameters that apply across some or all of the plugin procedures.
 They reduce repetition of common values, create predefined parameter sets for end users,
@@ -197,19 +197,19 @@ To create a new mail provider along with protocol provider and mail session, do 
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createendtoendmailprovider/ec-webspherecreateendtoendmailprovider2.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createendtoendmailprovider/ec-webspherecreateendtoendmailprovider2.png[image]
 
 After the job runs, you can view the results, including the following job details, which show that
 OSGi application is deployed successfully:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createendtoendmailprovider/ec-webspherecreateendtoendmailprovider3.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createendtoendmailprovider/ec-webspherecreateendtoendmailprovider3.png[image]
 
 In the *CreateEndToEndMailProvider* step, click the Log icon
 to see the diagnostic information. The output is similar to
 the following diagnostic
 report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createendtoendmailprovider/ec-webspherecreateendtoendmailprovider4.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createendtoendmailprovider/ec-webspherecreateendtoendmailprovider4.png[image]
 
 
 
@@ -295,19 +295,19 @@ To create a mail session for default mail provider, do these steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createmailsession/ec-webspherecreatemailsession2.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createmailsession/ec-webspherecreatemailsession2.png[image]
 
 After the job runs, you can view the results, including the following job details, which show that
 mail session is created successfully:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createmailsession/ec-webspherecreatemailsession3.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createmailsession/ec-webspherecreatemailsession3.png[image]
 
 In the *CreateMailSession* step, click the Log icon
 to see the diagnostic information. The output is similar to
 the following diagnostic
 report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createmailsession/ec-webspherecreatemailsession4.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createmailsession/ec-webspherecreatemailsession4.png[image]
 
 
 
@@ -366,7 +366,7 @@ To publish WSDL files, do these steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/publishwsdl/ec-webspherepublishwsdl2.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/publishwsdl/ec-webspherepublishwsdl2.png[image]
 
 
 
@@ -446,21 +446,21 @@ To Create Application Server in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createapplicationserver/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createapplicationserver/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createapplicationserver/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createapplicationserver/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createapplicationserver/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createapplicationserver/pipelineresult.png[image]
 
 In the *CreateApplicationServer* step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createapplicationserver/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createapplicationserver/pipelinelog.png[image]
 
 
 
@@ -509,21 +509,21 @@ To Delete Application Server in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deleteapplicationserver/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deleteapplicationserver/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deleteapplicationserver/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deleteapplicationserver/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deleteapplicationserver/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deleteapplicationserver/pipelineresult.png[image]
 
 In the *DeleteApplicationServer* step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deleteapplicationserver/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deleteapplicationserver/pipelinelog.png[image]
 
 
 
@@ -583,21 +583,21 @@ To Create Application Server Template in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createapplicationservertemplate/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createapplicationservertemplate/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createapplicationservertemplate/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createapplicationservertemplate/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createapplicationservertemplate/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createapplicationservertemplate/pipelineresult.png[image]
 
 In the *CreateApplicationServerTemplate* step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createapplicationservertemplate/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createapplicationservertemplate/pipelinelog.png[image]
 
 
 
@@ -643,21 +643,21 @@ To Delete Application Server Template in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deleteapplicationservertemplate/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deleteapplicationservertemplate/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deleteapplicationservertemplate/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deleteapplicationservertemplate/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deleteapplicationservertemplate/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deleteapplicationservertemplate/pipelineresult.png[image]
 
 In the *DeleteApplicationServerTemplate* step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deleteapplicationservertemplate/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deleteapplicationservertemplate/pipelinelog.png[image]
 
 
 
@@ -773,21 +773,21 @@ To Create Cluster in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createcluster/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createcluster/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createcluster/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createcluster/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createcluster/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createcluster/pipelineresult.png[image]
 
 In the *CreateCluster* step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createcluster/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createcluster/pipelinelog.png[image]
 
 
 
@@ -835,21 +835,21 @@ To Delete Cluster in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletecluster/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletecluster/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletecluster/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletecluster/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletecluster/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletecluster/pipelineresult.png[image]
 
 In the *DeleteCluster* step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletecluster/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletecluster/pipelinelog.png[image]
 
 
 
@@ -896,21 +896,21 @@ To Export Application Server in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/exportapplicationserver/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/exportapplicationserver/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/exportapplicationserver/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/exportapplicationserver/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/exportapplicationserver/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/exportapplicationserver/pipelineresult.png[image]
 
 In the *ExportApplicationServer* step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/exportapplicationserver/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/exportapplicationserver/pipelinelog.png[image]
 
 
 
@@ -979,21 +979,21 @@ To Import Application Server in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/importapplicationserver/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/importapplicationserver/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/importapplicationserver/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/importapplicationserver/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/importapplicationserver/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/importapplicationserver/pipelineresult.png[image]
 
 In the *ImportApplicationServer* step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/importapplicationserver/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/importapplicationserver/pipelinelog.png[image]
 
 
 
@@ -1039,21 +1039,21 @@ To List Cluster Members in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/listclustermembers/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/listclustermembers/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/listclustermembers/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/listclustermembers/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/listclustermembers/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/listclustermembers/pipelineresult.png[image]
 
 In the *ListClusterMembers* step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/listclustermembers/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/listclustermembers/pipelinelog.png[image]
 
 
 
@@ -1107,21 +1107,21 @@ To Remove Cluster Members in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/removeclustermembers/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/removeclustermembers/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/removeclustermembers/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/removeclustermembers/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/removeclustermembers/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/removeclustermembers/pipelineresult.png[image]
 
 In the *RemoveClusterMembers* step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/removeclustermembers/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/removeclustermembers/pipelinelog.png[image]
 
 
 
@@ -1223,19 +1223,19 @@ To Configure EJB Container, do these steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/configejbcontainer/ec-websphereconfigejbcontainer2.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/configejbcontainer/ec-websphereconfigejbcontainer2.png[image]
 
 After the job runs, you can view the results, including the following job details, which show that
 EJB container is configured successfully:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/configejbcontainer/ec-websphereconfigejbcontainer3.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/configejbcontainer/ec-websphereconfigejbcontainer3.png[image]
 
 In the *ConfigEJBContainer* step, click the Log icon
 to see the diagnostic information. The output is similar to
 the following diagnostic
 report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/configejbcontainer/ec-websphereconfigejbcontainer4.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/configejbcontainer/ec-websphereconfigejbcontainer4.png[image]
 
 
 
@@ -1328,21 +1328,21 @@ To Create First Cluster Member in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createfirstclustermember/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createfirstclustermember/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createfirstclustermember/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createfirstclustermember/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createfirstclustermember/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createfirstclustermember/pipelineresult.png[image]
 
 In the *CreateFirstClusterMember* step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createfirstclustermember/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createfirstclustermember/pipelinelog.png[image]
 
 
 
@@ -1397,21 +1397,21 @@ To Create Cluster Members in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createclustermembers/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createclustermembers/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createclustermembers/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createclustermembers/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createclustermembers/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createclustermembers/pipelineresult.png[image]
 
 In the *CreateClusterMembers* step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createclustermembers/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createclustermembers/pipelinelog.png[image]
 
 
 
@@ -1458,21 +1458,21 @@ To Start Application Servers in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/startapplicationservers/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/startapplicationservers/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/startapplicationservers/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/startapplicationservers/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/startapplicationservers/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/startapplicationservers/pipelineresult.png[image]
 
 In the *StartApplicationServers* step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/startapplicationservers/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/startapplicationservers/pipelinelog.png[image]
 
 
 
@@ -1519,21 +1519,21 @@ To Stop Application Servers in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/stopapplicationservers/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/stopapplicationservers/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/stopapplicationservers/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/stopapplicationservers/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/stopapplicationservers/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/stopapplicationservers/pipelineresult.png[image]
 
 In the *StopApplicationServers* step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/stopapplicationservers/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/stopapplicationservers/pipelinelog.png[image]
 
 
 
@@ -1581,21 +1581,21 @@ To Start Cluster in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/startcluster/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/startcluster/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/startcluster/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/startcluster/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/startcluster/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/startcluster/pipelineresult.png[image]
 
 In the *StartCluster* step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/startcluster/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/startcluster/pipelinelog.png[image]
 
 
 
@@ -1646,21 +1646,21 @@ To Stop Cluster in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/stopcluster/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/stopcluster/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/stopcluster/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/stopcluster/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/stopcluster/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/stopcluster/pipelineresult.png[image]
 
 In the *StopCluster* step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/stopcluster/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/stopcluster/pipelinelog.png[image]
 
 
 
@@ -1718,21 +1718,21 @@ To Start Deployment Manager in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/startdeploymentmanager/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/startdeploymentmanager/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/startdeploymentmanager/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/startdeploymentmanager/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/startdeploymentmanager/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/startdeploymentmanager/pipelineresult.png[image]
 
 In the *StartDeploymentManager* step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/startdeploymentmanager/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/startdeploymentmanager/pipelinelog.png[image]
 
 
 
@@ -1790,21 +1790,21 @@ To Stop Deployment Manager in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/stopdeploymentmanager/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/stopdeploymentmanager/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/stopdeploymentmanager/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/stopdeploymentmanager/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/stopdeploymentmanager/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/stopdeploymentmanager/pipelineresult.png[image]
 
 In the *StopDeploymentManager* step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/stopdeploymentmanager/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/stopdeploymentmanager/pipelinelog.png[image]
 
 
 
@@ -1868,21 +1868,21 @@ To Start Node in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/startnode/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/startnode/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/startnode/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/startnode/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/startnode/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/startnode/pipelineresult.png[image]
 
 In the *StartNode* step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/startnode/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/startnode/pipelinelog.png[image]
 
 
 
@@ -1943,21 +1943,21 @@ To Stop Node in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/stopnode/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/stopnode/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/stopnode/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/stopnode/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/stopnode/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/stopnode/pipelineresult.png[image]
 
 In the *StopNode* step, click the Log icon to see the diagnostic information. The output is similar to the following diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/stopnode/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/stopnode/pipelinelog.png[image]
 
 
 
@@ -2149,19 +2149,19 @@ To Configure Session Management for application, do these steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/configuresession/ec-websphereconfiguresession2.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/configuresession/ec-websphereconfiguresession2.png[image]
 
 After the job runs, you can view the results, including the following job details, which show that
 the cluster was created successfully:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/configuresession/ec-websphereconfiguresession3.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/configuresession/ec-websphereconfiguresession3.png[image]
 
 In the *ConfigureSession* step, click the Log icon
 to see the diagnostic information. The output is similar to
 the following diagnostic
 report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/configuresession/ec-websphereconfiguresession4.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/configuresession/ec-websphereconfiguresession4.png[image]
 
 
 
@@ -2205,18 +2205,18 @@ To map shared library to application, do these steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/mapsharedlibrary/ec-webspheremapsharedlibrary2.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/mapsharedlibrary/ec-webspheremapsharedlibrary2.png[image]
 
 After the job runs, you can view the results, including the following job details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/mapsharedlibrary/ec-webspheremapsharedlibrary3.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/mapsharedlibrary/ec-webspheremapsharedlibrary3.png[image]
 
 In the *MapSharedLibrary* step, click the Log icon
 to see the diagnostic information. The output is similar to
 the following diagnostic
 report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/mapsharedlibrary/ec-webspheremapsharedlibrary4.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/mapsharedlibrary/ec-webspheremapsharedlibrary4.png[image]
 
 
 
@@ -2263,18 +2263,18 @@ To modify Application's ClassLoader do the following steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/modifyapplicationclassloader/ec-webspheremodifyapplicationclassloader2.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/modifyapplicationclassloader/ec-webspheremodifyapplicationclassloader2.png[image]
 
 After the job runs, you can view the results, including the following job details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/modifyapplicationclassloader/ec-webspheremodifyapplicationclassloader3.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/modifyapplicationclassloader/ec-webspheremodifyapplicationclassloader3.png[image]
 
 In the *ModifyApplicationClassLoader* step, click the Log icon
 to see the diagnostic information. The output is similar to
 the following diagnostic
 report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/modifyapplicationclassloader/ec-webspheremodifyapplicationclassloader4.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/modifyapplicationclassloader/ec-webspheremodifyapplicationclassloader4.png[image]
 
 
 
@@ -2333,20 +2333,20 @@ To start an application, do these steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/startapp/startapp2.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/startapp/startapp2.png[image]
 
 After the job runs, you can view the results, including the following job details,
 which show that application was started
 successfully:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/startapp/startapp3.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/startapp/startapp3.png[image]
 
 In the *StartApp* step, click the Log icon to
 see the diagnostic information. The output is similar to the
 following diagnostic
 report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/startapp/startapp4.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/startapp/startapp4.png[image]
 
 
 
@@ -2405,20 +2405,20 @@ To stop an application, do these steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/stopapp/stopapp2.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/stopapp/stopapp2.png[image]
 
 After the job runs, you can view the results, including the following job details, which show that
 the application was stoped
 successfully:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/stopapp/stopapp3.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/stopapp/stopapp3.png[image]
 
 In the *StopApp* step, click the Log icon to
 see the diagnostic information. The output is similar to the
 following diagnostic
 report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/stopapp/stopapp4.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/stopapp/stopapp4.png[image]
 
 
 
@@ -2480,19 +2480,19 @@ To create a JDBC provider, do these steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createjdbcprovider/ec-webspherecreatejdbcprovider2.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createjdbcprovider/ec-webspherecreatejdbcprovider2.png[image]
 
 After the job runs, you can view the results, including the following job details,
 which show that JDBC provider was successfully created:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createjdbcprovider/ec-webspherecreatejdbcprovider3.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createjdbcprovider/ec-webspherecreatejdbcprovider3.png[image]
 
 In the *CreateJDBCProvider* step, click the Log icon
 to see the diagnostic information. The output is similar to
 the following diagnostic
 report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createjdbcprovider/ec-webspherecreatejdbcprovider4.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createjdbcprovider/ec-webspherecreatejdbcprovider4.png[image]
 
 
 
@@ -2533,19 +2533,19 @@ To delete a JDBC provider, do these steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejdbcprovider/ec-webspheredeletejdbcprovider2.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejdbcprovider/ec-webspheredeletejdbcprovider2.png[image]
 
 After the job runs, you can view the results, including the following job details, which show that
 the JDBC provider was deleted successfully:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejdbcprovider/ec-webspheredeletejdbcprovider3.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejdbcprovider/ec-webspheredeletejdbcprovider3.png[image]
 
 In the *DeleteJDBCProvider* step, click the Log icon
 to see the diagnostic information. The output is similar to
 the following diagnostic
 report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejdbcprovider/ec-webspheredeletejdbcprovider4.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejdbcprovider/ec-webspheredeletejdbcprovider4.png[image]
 
 
 
@@ -2602,19 +2602,19 @@ To create a datasource, do the following steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createdatasource/ec-webspherecreatedatasource2.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createdatasource/ec-webspherecreatedatasource2.png[image]
 
 After the job runs, you can view the results, including the following job details,
 which show that the datasource was successfully created:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createdatasource/ec-webspherecreatedatasource3.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createdatasource/ec-webspherecreatedatasource3.png[image]
 
 In the *CreateDatasource* step, click the Log icon
 to see the diagnostic information. The output is similar to
 the following diagnostic
 report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createdatasource/ec-webspherecreatedatasource4.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createdatasource/ec-webspherecreatedatasource4.png[image]
 
 
 
@@ -2655,19 +2655,19 @@ To delete a datasource, do these steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletedatasource/ec-webspheredeletedatasource2.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletedatasource/ec-webspheredeletedatasource2.png[image]
 
 After the job runs, you can view the results, including the following job details, which show that the datasource was deleted
 successfully:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletedatasource/ec-webspheredeletedatasource3.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletedatasource/ec-webspheredeletedatasource3.png[image]
 
 In the *DeleteDatasource* step, click the Log icon
 to see the diagnostic information. The output is similar to
 the following diagnostic
 report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletedatasource/ec-webspheredeletedatasource4.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletedatasource/ec-webspheredeletedatasource4.png[image]
 
 
 
@@ -2738,7 +2738,7 @@ To create a new JMS provider, do these steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createjmsprovider/ec-webspherecreatejmsprovider2.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createjmsprovider/ec-webspherecreatejmsprovider2.png[image]
 
 
 
@@ -2782,12 +2782,12 @@ picker.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsprovider/procedureconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsprovider/procedureconfig.png[image]
 
 After the job runs, you can view the results, including the following
 job details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsprovider/procedureresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsprovider/procedureresult.png[image]
 
 To delete JMS Provider in {CD} interface, do these steps:
 
@@ -2797,24 +2797,24 @@ To delete JMS Provider in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsprovider/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsprovider/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsprovider/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsprovider/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the
 following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsprovider/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsprovider/pipelineresult.png[image]
 
 In the *DeleteJMSProvider* step, click the Log icon to see the
 diagnostic information. The output is similar to the following
 diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsprovider/procedurelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsprovider/procedurelog.png[image]
 
 
 
@@ -2879,12 +2879,12 @@ To create or update JMS Queue in {CD} interface, do these steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmsqueue/procedureconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmsqueue/procedureconfig.png[image]
 
 After the job runs, you can view the results, including the following
 job details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmsqueue/procedureresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmsqueue/procedureresult.png[image]
 
 To create or update JMS Queue in {CD} interface, do these steps:
 
@@ -2894,24 +2894,24 @@ To create or update JMS Queue in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmsqueue/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmsqueue/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmsqueue/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmsqueue/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the
 following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmsqueue/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmsqueue/pipelineresult.png[image]
 
 In the *CreateOrUpdateJMSQueue* step, click the Log icon to see
 the diagnostic information. The output is similar to the following
 diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmsqueue/procedurelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmsqueue/procedurelog.png[image]
 
 
 
@@ -2958,12 +2958,12 @@ picker.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsqueue/procedureconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsqueue/procedureconfig.png[image]
 
 After the job runs, you can view the results, including the following
 job details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsqueue/procedureresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsqueue/procedureresult.png[image]
 
 To delete JMS Queue in {CD} interface, do these steps:
 
@@ -2973,24 +2973,24 @@ To delete JMS Queue in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsqueue/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsqueue/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsqueue/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsqueue/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the
 following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsqueue/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsqueue/pipelineresult.png[image]
 
 In the *DeleteJMSQueue* step, click the Log icon to see the
 diagnostic information. The output is similar to the following
 diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsqueue/procedurelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsqueue/procedurelog.png[image]
 
 
 
@@ -3052,12 +3052,12 @@ To create or update JMS Topic in {CD} interface, do these steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmstopic/procedureconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmstopic/procedureconfig.png[image]
 
 After the job runs, you can view the results, including the following
 job details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmstopic/procedureresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmstopic/procedureresult.png[image]
 
 To create or update JMS Topic in {CD} interface, do these steps:
 
@@ -3067,24 +3067,24 @@ To create or update JMS Topic in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmstopic/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmstopic/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmstopic/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmstopic/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the
 following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmstopic/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmstopic/pipelineresult.png[image]
 
 In the *CreateOrUpdateJMSTopic* step, click the Log icon to see
 the diagnostic information. The output is similar to the following
 diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmstopic/procedurelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatejmstopic/procedurelog.png[image]
 
 
 
@@ -3131,12 +3131,12 @@ picker.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmstopic/procedureconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmstopic/procedureconfig.png[image]
 
 After the job runs, you can view the results, including the following
 job details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmstopic/procedureresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmstopic/procedureresult.png[image]
 
 To delete JMS Topic in {CD} interface, do these steps:
 
@@ -3146,24 +3146,24 @@ To delete JMS Topic in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmstopic/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmstopic/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmstopic/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmstopic/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the
 following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmstopic/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmstopic/pipelineresult.png[image]
 
 In the *DeleteJMSTopic* step, click the Log icon to see the
 diagnostic information. The output is similar to the following
 diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmstopic/procedurelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmstopic/procedurelog.png[image]
 
 
 
@@ -3233,12 +3233,12 @@ To create or update JMS Activation Spec in {CD} interface, do these steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsactivationspec/procedureconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsactivationspec/procedureconfig.png[image]
 
 After the job runs, you can view the results, including the following
 job details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsactivationspec/procedureresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsactivationspec/procedureresult.png[image]
 
 To create or update JMS Topic in {CD} interface, do these steps:
 
@@ -3248,24 +3248,24 @@ To create or update JMS Topic in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsactivationspec/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsactivationspec/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsactivationspec/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsactivationspec/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the
 following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsactivationspec/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsactivationspec/pipelineresult.png[image]
 
 In the *CreateOrUpdateSIBJMSActivationSpec* step, click the Log icon to see
 the diagnostic information. The output is similar to the following
 diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsactivationspec/procedurelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsactivationspec/procedurelog.png[image]
 
 
 
@@ -3332,12 +3332,12 @@ To create or update WMQ JMS Activation Spec in {CD} interface, do these steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsactivationspec/procedureconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsactivationspec/procedureconfig.png[image]
 
 After the job runs, you can view the results, including the following
 job details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsactivationspec/procedureresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsactivationspec/procedureresult.png[image]
 
 To create or update WMQ JMS Activation Spec in {CD} interface, do these steps:
 
@@ -3347,24 +3347,24 @@ To create or update WMQ JMS Activation Spec in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsactivationspec/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsactivationspec/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsactivationspec/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsactivationspec/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the
 following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsactivationspec/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsactivationspec/pipelineresult.png[image]
 
 In the *CreateOrUpdateWMQJMSActivationSpec* step, click the Log icon to see
 the diagnostic information. The output is similar to the following
 diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsactivationspec/procedurelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsactivationspec/procedurelog.png[image]
 
 
 
@@ -3411,18 +3411,18 @@ To delete JMS Activation Spec in {CD} interface, do these steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsactivationspec/procedureconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsactivationspec/procedureconfig.png[image]
 
 After the job runs, you can view the results, including the following
 job details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsactivationspec/procedureresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsactivationspec/procedureresult.png[image]
 
 In the *DeleteJMSActivationSpec* step, click the Log icon to see the
 diagnostic information. The output is similar to the following
 diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsactivationspec/procedurelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsactivationspec/procedurelog.png[image]
 
 To delete JMS Activation Spec in {CD} interface, do these steps:
 
@@ -3432,24 +3432,24 @@ To delete JMS Activation Spec in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsactivationspec/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsactivationspec/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsactivationspec/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsactivationspec/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the
 following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsactivationspec/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsactivationspec/pipelineresult.png[image]
 
 In the pipeline tasks click on "Update SIB JMS Activation Spec", then click the Log icon to see the
 diagnostic information. The output is similar to the following
 diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsactivationspec/pipelinelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsactivationspec/pipelinelog.png[image]
 
 
 
@@ -3519,12 +3519,12 @@ To create or update SIB JMS Connection Factory in {CD} interface, do these steps
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsconnectionfactory/procedureconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsconnectionfactory/procedureconfig.png[image]
 
 After the job runs, you can view the results, including the following
 job details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsconnectionfactory/procedureresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsconnectionfactory/procedureresult.png[image]
 
 To create or update JMS Topic in {CD} interface, do these steps:
 
@@ -3534,24 +3534,24 @@ To create or update JMS Topic in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsconnectionfactory/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsconnectionfactory/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsconnectionfactory/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsconnectionfactory/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the
 following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsconnectionfactory/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsconnectionfactory/pipelineresult.png[image]
 
 In the *CreateOrUpdateSIBJMSConnectionFactory* step, click the Log icon to see
 the diagnostic information. The output is similar to the following
 diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsconnectionfactory/procedurelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatesibjmsconnectionfactory/procedurelog.png[image]
 
 
 
@@ -3625,12 +3625,12 @@ To create or update WMQ JMS Connection Factory in {CD} interface, do these steps
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsconnectionfactory/procedureconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsconnectionfactory/procedureconfig.png[image]
 
 After the job runs, you can view the results, including the following
 job details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsconnectionfactory/procedureresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsconnectionfactory/procedureresult.png[image]
 
 To create or update JMS Topic in {CD} interface, do these steps:
 
@@ -3640,24 +3640,24 @@ To create or update JMS Topic in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsconnectionfactory/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsconnectionfactory/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsconnectionfactory/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsconnectionfactory/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the
 following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsconnectionfactory/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsconnectionfactory/pipelineresult.png[image]
 
 In the *CreateOrUpdateWMQJMSConnectionFactory* step, click the Log icon to see
 the diagnostic information. The output is similar to the following
 diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsconnectionfactory/procedurelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/createorupdatewmqjmsconnectionfactory/procedurelog.png[image]
 
 
 
@@ -3706,12 +3706,12 @@ picker.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsconnectionfactory/procedureconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsconnectionfactory/procedureconfig.png[image]
 
 After the job runs, you can view the results, including the following
 job details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsconnectionfactory/procedureresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsconnectionfactory/procedureresult.png[image]
 
 To delete JMS ConnectionFactory in {CD} interface, do these steps:
 
@@ -3721,24 +3721,24 @@ To delete JMS ConnectionFactory in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsconnectionfactory/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsconnectionfactory/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsconnectionfactory/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsconnectionfactory/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the
 following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsconnectionfactory/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsconnectionfactory/pipelineresult.png[image]
 
 In the *DeleteJMSConnectionFactory* step, click the Log icon to see the
 diagnostic information. The output is similar to the following
 diagnostic report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsconnectionfactory/procedurelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deletejmsconnectionfactory/procedurelog.png[image]
 
 
 
@@ -3796,20 +3796,20 @@ step:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deployapp/deployapp2.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deployapp/deployapp2.png[image]
 
 After the job runs, you can view the results, including the following job details, which show that the
 application was deployed
 successfully:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deployapp/deployapp3.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deployapp/deployapp3.png[image]
 
 In the *DeployApp* step, click the Log icon to
 see the diagnostic information. The output is similar to the
 following diagnostic
 report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deployapp/deployapp4.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deployapp/deployapp4.png[image]
 
 
 
@@ -3948,19 +3948,19 @@ To deploy an enterprise application, do these steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deployenterpriseapp/ec-webspheredeployenterpriseapp2.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deployenterpriseapp/ec-webspheredeployenterpriseapp2.png[image]
 
 After the job runs, you can view the results, including the following job details, which show that
 enterprise application is deployed successfully:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deployenterpriseapp/ec-webspheredeployenterpriseapp3.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deployenterpriseapp/ec-webspheredeployenterpriseapp3.png[image]
 
 In the *DeployEnterpriseApp* step, click the Log icon
 to see the diagnostic information. The output is similar to
 the following diagnostic
 report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deployenterpriseapp/ec-webspheredeployenterpriseapp4.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deployenterpriseapp/ec-webspheredeployenterpriseapp4.png[image]
 
 
 
@@ -4019,19 +4019,19 @@ To deploy an OSGi application, do these steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deployosgi/ec-webspheredeployosgi2.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deployosgi/ec-webspheredeployosgi2.png[image]
 
 After the job runs, you can view the results, including the following job details, which show that
 OSGi application is deployed successfully:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deployosgi/ec-webspheredeployosgi3.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deployosgi/ec-webspheredeployosgi3.png[image]
 
 In the *DeployOSGi* step, click the Log icon
 to see the diagnostic information. The output is similar to
 the following diagnostic
 report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/deployosgi/ec-webspheredeployosgi4.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/deployosgi/ec-webspheredeployosgi4.png[image]
 
 
 
@@ -4083,20 +4083,20 @@ To undeploy an application, do these steps:
 Go to the UndeployApp procedure.
 Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/undeployapp/undeployapp2.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/undeployapp/undeployapp2.png[image]
 
 After the job runs, you can view the results, including the following job details, which show that
 the application was undeployed
 successfully:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/undeployapp/undeployapp3.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/undeployapp/undeployapp3.png[image]
 
 In the *UndeployApp* step, click the Log icon
 to see the diagnostic information. The output is similar to
 the following diagnostic
 report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/undeployapp/undeployapp4.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/undeployapp/undeployapp4.png[image]
 
 
 
@@ -4158,19 +4158,19 @@ To update application , do these steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/updateapp/ec-websphereupdateapp2.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/updateapp/ec-websphereupdateapp2.png[image]
 
 After the job runs, you can view the results, including the following job details, which show that
 WSDL files are published successfully:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/updateapp/ec-websphereupdateapp3.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/updateapp/ec-websphereupdateapp3.png[image]
 
 In the *UpdateApp* step, click the Log icon
 to see the diagnostic information. The output is similar to
 the following diagnostic
 report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/updateapp/ec-websphereupdateapp4.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/updateapp/ec-websphereupdateapp4.png[image]
 
 
 
@@ -4222,11 +4222,11 @@ To check Application State, do these steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/checkapp/procedureconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/checkapp/procedureconfig.png[image]
 
 After the job runs, you can view the results, including the following job details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/checkapp/procedureresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/checkapp/procedureresult.png[image]
 
 To check Application State in {CD} interface, do these steps:
 
@@ -4236,24 +4236,24 @@ To check Application State in {CD} interface, do these steps:
 
 * In task definition choose Plugin and choose following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/checkapp/pipelinepicker.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/checkapp/pipelinepicker.png[image]
 
 * Click on arrow.
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/checkapp/pipelineconfig.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/checkapp/pipelineconfig.png[image]
 
 After the pipeline runs, you can view the results, including the following step details:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/checkapp/pipelineresult.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/checkapp/pipelineresult.png[image]
 
 In the *CheckApp* step, click the Log icon
 to see the diagnostic information. The output is similar to
 the following diagnostic
 report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/checkapp/procedurelog.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/checkapp/procedurelog.png[image]
 
 
 
@@ -4332,21 +4332,21 @@ To check the status of page at a specific URL, do the following steps:
 
 * Enter the following parameters:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/checkpagestatus/parameterstoenter.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/checkpagestatus/parameterstoenter.png[image]
 
 * Click *Run*.
 
 After the job runs, you can view the results, including the following job details,
 which show that the criteria was reached:
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/checkpagestatus/checkpagestatus5.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/checkpagestatus/checkpagestatus5.png[image]
 
 In the *CheckPageStatus* step, click the Log
 icon to see the diagnostic info. The output is similar
 to the following diagnostic
 report.
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/checkpagestatus/checkpagestatus6.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/checkpagestatus/checkpagestatus6.png[image]
 
 
 
@@ -4379,7 +4379,7 @@ This procedure checks the status of the specified server URL.
 
 
 
-image:cloudbees-common-sda::cd-plugins/ec-websphere/checkserverstatus/cssparameters.png[image]
+image::cloudbees-common-sda::cd-plugins/ec-websphere/checkserverstatus/cssparameters.png[image]
 
 
 
