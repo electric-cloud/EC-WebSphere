@@ -4424,6 +4424,10 @@ Discover WebSphere instance configuration on a resources or environment
 [[rns]]
 == Release notes
 
+=== EC-WebSphere 2.9.1
+
+- Added session validation.
+
 === EC-WebSphere 2.9.0
 
 - External credentials support has been added.
