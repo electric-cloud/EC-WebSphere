@@ -1,6 +1,10 @@
-3.8.1:
+2.9.1:
+  - Added session validation.
+2.9.0:
+  - External credentials support has been added.
+2.8.1:
   - The documentation has been migrated to the main documentation site.
-3.8.0:
+2.8.0:
   - Add checking connection while creating a configuration.
   - Jobs for the successful "CreateConfiguration" and "EditConfiguration" run is now preserved.
   - Add logging while running "CreateConfiguration".

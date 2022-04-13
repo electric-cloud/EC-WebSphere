@@ -43,7 +43,7 @@ configurations.all {
 
 group = 'com.electriccloud'
 description = 'Plugins : EC-WebSphere'
-version = '2.9.0'
+version = '2.9.1'
 
 apply plugin: 'flow-gradle-plugin'
 
