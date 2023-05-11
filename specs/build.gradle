@@ -6,7 +6,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.cloudbees.cd.plugins:hen:1.3.1"
+        classpath "com.cloudbees.cd.plugins:hen:1.8.13"
     }
 }
 
@@ -46,7 +46,7 @@ dependencies {
     testImplementation( 'com.athaydes:spock-reports:1.6.0' ) {
         transitive = false // this avoids affecting your version of Groovy/Spock
     }
-    implementation("com.cloudbees.cd.plugins:hen:1.3.1") {
+    implementation("com.cloudbees.cd.plugins:hen:1.8.13") {
         exclude(group: "org.codehaus.groovy", module: "groovy-all")
     }
 }
