@@ -11,7 +11,7 @@ services:
     hostname: "efserver"
     tty: true
   websphere:
-    image: "electricflow/websphere70s"
+    image: "us-east1-docker.pkg.dev/cloudbees-artifact-registry/flow/plugin-specs/electricflow/websphere70s:latest"
     ports:
       - "7808:7808"
       - "9060:9060"
