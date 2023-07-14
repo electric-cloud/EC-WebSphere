@@ -1,7 +1,7 @@
 version: '3'
 services:
   electric-flow:
-    image: "us-east1-docker.pkg.dev/cloudbees-artifact-registry/flow/plugin-specs/electricflow/efserver:full-CloudBeesFlow-x64-10.11.0.159109"
+    image: "us-east1-docker.pkg.dev/cloudbees-artifact-registry/flow/plugin-specs/electricflow/efserver:full-CloudBeesFlow-x64-2023.03.1.161626"
     ports:
       - "8000:8000"
       - "8443:8443"
