@@ -1,7 +1,7 @@
 version: '3'
 services:
   electric-flow:
-    image: "us-east1-docker.pkg.dev/cloudbees-artifact-registry/flow/plugin-specs/electricflow/efserver:latest"
+    image: "us-east1-docker.pkg.dev/cloudbees-artifact-registry/flow/plugin-specs/electricflow/efserver:full-CloudBeesFlow-x64-2023.03.1.161626"
     ports:
       - "8000:8000"
       - "8443:8443"
@@ -11,7 +11,7 @@ services:
     hostname: "efserver"
     tty: true
   websphere:
-    image: "electricflow/websphere90s"
+    image: "us-east1-docker.pkg.dev/cloudbees-artifact-registry/flow/plugin-specs/electricflow/websphere90s:latest"
     ports:
       - "7808:7808"
       - "9060:9060"
