@@ -646,7 +646,7 @@
             <!-- This property is here to keep line of postp matcher loader -->
             <property>
                 <propertyName>postp_loader</propertyName>
-                <value>ec-perl -MElectricCommander -MElectricCommander::PropMod -e "ElectricCommander::PropMod::loadPerlCodeFromProperty(ElectricCommander->new(), '/projects/@PLUGIN_KEY@-@PLUGIN_VERSION@/modules/WebSphere/POSTP.pm');EC::POSTP->run(\@ARGV)";</value>
+                <value>cb-perl -MElectricCommander -MElectricCommander::PropMod -e "ElectricCommander::PropMod::loadPerlCodeFromProperty(ElectricCommander->new(), '/projects/@PLUGIN_KEY@-@PLUGIN_VERSION@/modules/WebSphere/POSTP.pm');EC::POSTP->run(\@ARGV)";</value>
                 <expandable>0</expandable>
             </property>
             <!-- End of postp_loader -->
@@ -961,7 +961,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName>$[test_connection_res]</resourceName>
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit/>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory/>
@@ -999,7 +999,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName>local</resourceName>
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -1200,7 +1200,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName>$[test_connection_res]</resourceName>
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit/>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory/>
@@ -1238,7 +1238,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName>local</resourceName>
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -1313,7 +1313,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName>local</resourceName>
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -1406,7 +1406,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName/>
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory/>
@@ -1549,7 +1549,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName/>
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory/>
@@ -1675,7 +1675,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName/>
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory/>
@@ -1744,7 +1744,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName/>
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory/>
@@ -1853,7 +1853,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -1981,7 +1981,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -2240,7 +2240,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -2454,7 +2454,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -2668,7 +2668,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -2865,7 +2865,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -3045,7 +3045,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -3195,7 +3195,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -3362,7 +3362,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -3513,7 +3513,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -3741,7 +3741,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -3929,7 +3929,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -4042,7 +4042,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -4161,7 +4161,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -4281,7 +4281,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -4545,7 +4545,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -4755,7 +4755,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -4888,7 +4888,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -5021,7 +5021,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -5154,7 +5154,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -5287,7 +5287,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -5535,7 +5535,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -5765,7 +5765,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -6001,7 +6001,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -6213,7 +6213,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -6426,7 +6426,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -6537,7 +6537,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -6768,7 +6768,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -6879,7 +6879,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -7357,7 +7357,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -7669,7 +7669,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -7783,7 +7783,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -8152,7 +8152,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -8263,7 +8263,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -8375,7 +8375,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>15</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -8503,7 +8503,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>15</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -8614,7 +8614,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -8742,7 +8742,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -8956,7 +8956,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -9185,7 +9185,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -9761,7 +9761,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -10158,7 +10158,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -10498,7 +10498,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -10870,7 +10870,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
@@ -11876,7 +11876,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -11970,7 +11970,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName/>
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory/>
@@ -12096,7 +12096,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName/>
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory/>
@@ -12228,7 +12228,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -12435,7 +12435,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -12569,7 +12569,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -12751,7 +12751,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -12936,7 +12936,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -13134,7 +13134,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -13350,7 +13350,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -13680,7 +13680,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
@@ -13862,7 +13862,7 @@
                 <releaseExclusive>0</releaseExclusive>
                 <resourceName />
                 <retries>0</retries>
-                <shell>ec-perl</shell>
+                <shell>cb-perl</shell>
                 <timeLimit>5</timeLimit>
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory />
