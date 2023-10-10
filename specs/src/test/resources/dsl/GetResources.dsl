@@ -69,7 +69,7 @@ print $fh $content;
     projectName = testProjectName
     releaseMode = 'none'
     resourceName = '$[wasResourceName]'
-    shell = 'ec-perl'
+    shell = 'cb-perl'
     subprocedure = null
     subproject = null
     timeLimit = ''
