@@ -14129,16 +14129,6 @@
                                     </propertySheet>
                                 </property>
                                 <property>
-                                    <propertyName>test_connection</propertyName>
-                                    <propertySheet>
-                                        <property>
-                                            <propertyName>formType</propertyName>
-                                            <expandable>1</expandable>
-                                            <value>standard</value>
-                                        </property>
-                                    </propertySheet>
-                                </property>
-                                <property>
                                     <propertyName>test_connection_res</propertyName>
                                     <propertySheet>
                                         <property>
@@ -14196,13 +14186,6 @@
                 <type>checkbox</type>
             </formalParameter>
             <formalParameter>
-                <formalParameterName>test_connection</formalParameterName>
-                <defaultValue/>
-                <description>Check if connection should be established during config creation to validate credentials.</description>
-                <required>0</required>
-                <type>checkbox</type>
-            </formalParameter>
-            <formalParameter>
                 <formalParameterName>test_connection_res</formalParameterName>
                 <defaultValue/>
                 <description>A resource which is used for the testing connection.</description>
@@ -14214,7 +14197,7 @@
                 <alwaysRun>0</alwaysRun>
                 <broadcast>0</broadcast>
                 <command/>
-                <condition>$[test_connection]</condition>
+                <!-- <condition>$[test_connection]</condition> -->
                 <description/>
                 <errorHandling>abortJob</errorHandling>
                 <exclusive>0</exclusive>
@@ -14229,7 +14212,7 @@
                 <timeLimitUnits>minutes</timeLimitUnits>
                 <workingDirectory/>
                 <workspaceName/>
-                <procedureName>CreateConfiguration</procedureName>
+                <procedureName>TestConfiguration</procedureName>
                 <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
                 <propertySheet>
                     <property>
