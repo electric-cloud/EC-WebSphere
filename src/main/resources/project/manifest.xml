@@ -398,7 +398,7 @@
     </file>
     <file>
         <path>conf/attemptConnection.pl</path>
-        <xpath>//procedure[procedureName="TestConfiguration"]/step[stepName"AttemptConnection"]/command</xpath>
+        <xpath>//procedure[procedureName=&quot;TestConfiguration&quot;]/step[stepName=&quot;AttemptConnection&quot;]/command</xpath>
     </file>
     <file>
             <path>conf/editConfiguration.pl</path>

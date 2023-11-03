@@ -1279,8 +1279,10 @@ sub _readPluginConfiguration {
                 }
             }
             my $cred = $self->getEc()->getFullCredential($path);
-            $fields->{$name}->{userName} = $cred->findvalue('//userName')->string_value();
-            $fields->{$name}->{password} = $cred->findvalue('//password')->string_value();
+            $fields->{$name} = {
+                userName => $cred->findvalue('//userName')->string_value(),
+                password => $cred->findvalue('//password')->string_value()
+            };
 
             if ($fields->{$name}->{password}) {
                 FlowPDF::Log->setMaskPatterns($fields->{$name}->{password});
