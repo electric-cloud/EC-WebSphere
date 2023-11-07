@@ -370,10 +370,11 @@
         <!-- <path>conf/createcfg.pl</path> -->
         <path>conf/createConfiguration.pl</path>
     </file>
-    <file>
-        <xpath>//procedure[procedureName=&quot;CreateConfiguration&quot;]/step[stepName=&quot;CreateAndAttachCredential&quot;]/command</xpath>
-        <path>conf/createAndAttachCredential.pl</path>
-    </file>
+    <!-- Create and attach credential is deprecated and should be removed -->
+    <!-- <file> -->
+    <!--     <xpath>//procedure[procedureName=&quot;CreateConfiguration&quot;]/step[stepName=&quot;CreateAndAttachCredential&quot;]/command</xpath> -->
+    <!--     <path>conf/createAndAttachCredential.pl</path> -->
+    <!-- </file> -->
     <!-- Adding steps with credentials into the CreateConfiguration to be referenced during build-->
     <file>
         <xpath>//procedure[procedureName=&quot;CreateConfiguration&quot;]/propertySheet/property[propertyName=&quot;ec_stepsWithAttachedCredentials&quot;]/value</xpath>
@@ -937,6 +938,30 @@
         <path>server/Cluster/stopCluster.pl</path>
     </file>
     <!-- End of StopCluster procedure files -->
+
+
+
+    <!-- CheckEntityForExistence procedure files -->
+    <!-- XML Form -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CheckEntityForExistence&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value</xpath>
+        <path>parameterForms/Entity/CheckEntityForExistence.xml</path>
+    </file>
+    <!-- Python script -->
+    <file>
+        <xpath>//property[propertyName=&quot;check_entity_for_existence.py&quot;]/value</xpath>
+        <path>wsadmin_scripts/Entity/check_entity_for_existence.py</path>
+    </file>
+    <!-- Perl script -->
+    <file>
+        <xpath>//procedure[procedureName=&quot;CheckEntityForExistence&quot;]/step[stepName=&quot;CheckEntityForExistence&quot;]/command</xpath>
+        <path>server/Entity/checkEntityForExistence.pl</path>
+    </file>
+    <!-- End of CheckEntityForExistence procedure files -->
+
+
+
+    
 
     <!-- PDK Perl Libs-->
 

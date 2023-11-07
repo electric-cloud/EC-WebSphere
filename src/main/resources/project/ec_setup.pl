@@ -433,6 +433,12 @@ my %createClusterMembers = (
     category    => "Application Server"
 );
 
+my %checkEntityForExistence = (
+    label       => "WebSphere - Check Entity for Existence",
+    procedure   => 'CheckEntityForExistence',
+    description => 'Check whether entity exists',
+    category    => 'Application Server',
+);
 
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Start App");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Stop App");
@@ -523,6 +529,10 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create C
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create First Cluster Member");
 $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create Cluster Members");
 
+# Check Entities for Existence
+$batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Check Entity for Existence");
+
+
 @::createStepPickerSteps = (
     \%checkPageStatus, \%checkServerStatus,
     \%startServer, \%stopServer,
@@ -566,7 +576,9 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create C
     \%createCluster,
     # Create 1st cluster member
     # Uncomment after 2.5.0 release
-    \%createFirstClusterMember, \%createClusterMembers
+    \%createFirstClusterMember, \%createClusterMembers,
+    # Check Entity for existence
+    \%checkEntityForExistence
 );
 
 if ($upgradeAction eq "upgrade") {
