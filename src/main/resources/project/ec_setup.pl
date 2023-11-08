@@ -589,6 +589,108 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create C
 );
 
 if ($upgradeAction eq "upgrade") {
+
+    ## EC-WebSphere specific code
+    my $query = $commander->newBatch();
+
+    # When upgrading from older versions, find steps that call plugins procedures
+    # and remove extra outdated parameters
+    my @filterList = ({ 'propertyName' => 'subproject',
+        'operator' => 'equals',
+        'operand1' => '/plugins/@PLUGIN_KEY@/project' });
+
+    my $result = $commander->findObjects('procedureStep', {
+        filter => [ { operator => 'and', filter => \@filterList} ]
+    });
+
+    for my $procedureStep ($result->findnodes('//step')) {
+        my $projectName = $procedureStep->find('projectName')->string_value;
+        my $procedureName = $procedureStep->find('procedureName')->string_value;
+        my $stepName = $procedureStep->find('stepName')->string_value;
+
+        if($procedureName eq 'UpdateApp') {
+            $query->deleteActualParameter($projectName, $procedureName, $stepName, 'isAppOnCluster');
+        }
+
+        $query->deleteActualParameter($projectName, $procedureName, $stepName, 'connectionType');
+    }
+
+    # Update old configs, set conntype to SOAP if it does not exists
+    my $old_configs_path = "/plugins/$otherPluginName/project/websphere_cfgs";
+    my $configurations = $commander->getProperties({path => $old_configs_path});
+    for my $configuration ($configurations->findnodes('//propertyName')) {
+        my $conntype_path = $old_configs_path.$configuration->string_value."/conntype";
+
+        my $conntype = $commander->getProperty($conntype_path);
+        if(!$conntype->find('//value')) {
+            $query->setProperty($conntype_path, 'SOAP');
+        }
+    }
+
+    my $olddiscovery = $query->getProperty("/plugins/$otherPluginName/project/ec_discovery/discovered_data");
+
+    local $self->{abortOnError} = 0;
+    $query->submit();
+
+    # Copy discovered data
+    if ($query->findvalue($olddiscovery, "code") ne "NoSuchProperty") {
+        $batch->clone({
+            path => "/plugins/$otherPluginName/project/ec_discovery/discovered_data",
+            cloneName => "/plugins/$pluginName/project/ec_discovery/discovered_data"
+        });
+    }
+
+    #--------------------------------------------------------------
+    # Update Time Limit
+
+    # use Data::Dumper;
+
+    my $oldProjectName = "/plugins/$otherPluginName/project";
+    my $newProjectName = "/plugins/$pluginName/project";
+
+    # print Dumper($oldProjectName);
+    # print Dumper($newProjectName);
+
+    for my $procedure ($commander->getProcedures({ projectName => $oldProjectName })->findnodes('//procedure')) {
+        my $procedureName = $procedure->findvalue('procedureName')->string_value;
+        # print("Procedure: $procedureName\n");
+        for my $oldStep ($commander->getSteps({ projectName => $oldProjectName, procedureName => $procedureName })->findnodes('//step')) {
+            my $stepName = $oldStep->findvalue('stepName')->string_value;
+            # print("\tStep: $stepName\n");
+
+            my $oldTimeLimit = $oldStep->findvalue("//timeLimit");
+            next unless($oldTimeLimit);
+
+            my $oldTimeLimitUnits = $oldStep->findvalue("//timeLimitUnits");
+            next unless($oldTimeLimitUnits);
+
+            my $newStep = $commander->getStep($newProjectName, $procedureName, $stepName);
+
+            my $newTimeLimit = $newStep->findvalue("//timeLimit");
+            next unless($newTimeLimit);
+
+            my $newTimeLimitUnits = $newStep->findvalue("//timeLimitUnits");
+            next unless($newTimeLimitUnits);
+
+            my $oldLimit = $oldTimeLimit->value;
+            my $oldLimitUnits = $oldTimeLimitUnits->value;
+            # print("\t\toldLimit: $oldLimit; $oldLimitUnits\n");
+
+            my $res = $commander->modifyStep($newProjectName, $procedureName, $stepName, {timeLimit => $oldLimit, timeLimitUnits => $oldLimitUnits});
+
+            my @errors = $res->findErrors;
+            if (@errors > 0) {
+                # print Dumper(\@errors);
+                next
+            }
+
+            # print("\t\OK\n");
+        }
+
+    }
+
+    ## End of EC-WebSphere specific code
+
     migrateConfigurations($otherPluginName);
     migrateProperties($otherPluginName);
     debug "Migrated properties";
