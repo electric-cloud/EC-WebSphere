@@ -3,7 +3,6 @@ package com.cloudbees.pdk.hen.procedures
 import groovy.transform.AutoClone
 import com.cloudbees.pdk.hen.*
 
-@AutoClone
 //generated
 class WebSphereConfig extends Procedure {
 
@@ -18,7 +17,24 @@ class WebSphereConfig extends Procedure {
 
     WebSphereConfig flush() {
         this.flushParams()
+        this.contextUser = null
         return this
+    }
+
+    WebSphereConfig withUser(User user) {
+        this.contextUser = user
+        return this
+    }
+
+
+    WebSphereConfig clone() {
+        WebSphereConfig cloned = new WebSphereConfig(procedureName: 'CreateConfiguration', plugin: plugin, credentials: [
+                    
+                    'credential': null,
+                    
+                ])
+        cloned.parameters = this.parameters.clone()
+        return cloned
     }
 
     //Generated

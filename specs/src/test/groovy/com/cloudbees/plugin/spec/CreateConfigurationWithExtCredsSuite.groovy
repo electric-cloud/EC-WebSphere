@@ -1,5 +1,6 @@
 package com.cloudbees.plugin.spec
 
+import com.cloudbees.pdk.hen.ConfigurationHandling
 import com.cloudbees.pdk.hen.Credential
 import com.cloudbees.pdk.hen.ServerHandler
 import com.cloudbees.pdk.hen.Utils
@@ -83,6 +84,7 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
     def "Sanity. Create Config with credential reference/runtime credentials"() {
         when: "Create plugin config"
         WebSphere webSpherePlugin = WebSphere.createWithoutConfig()
+        webSpherePlugin.configurationHandling = ConfigurationHandling.OLD
         WebSphereConfig webSphereConfig = WebSphereConfig.create(webSpherePlugin)
 
         webSphereConfig.wsadminabspath(wsAdminPath)
@@ -304,5 +306,44 @@ class CreateConfigurationWithExtCredsSuite extends Specification {
         Utils.CredsStates.WRONG_RUNTIME | Utils.CredsStates.RUNTIME       | false        | true       | JobOutcome.SUCCESS        | JobOutcome.SUCCESS       | JobOutcome.ERROR      | JobOutcome.SUCCESS
     }
 
+    @Sanity
+    @Unroll
+    def "Sanity. Create new configuration with credential reference/runtime credentials"() {
+        when: "Create plugin config"
+        WebSphere webSpherePlugin = WebSphere.createWithNewConfig()
 
+        and: "Run Plugin Procedure - CheckNodeStatus"
+        def result = webSpherePlugin.checkNodeStatus
+                .wsadminAbsPath(wsAdminPath)
+                .nodeName(wsHost + "Node01")
+                .successCriteria("ALL_RUNNING")
+                .run()
+
+        then: "Verify that procedure completed as expected and credentials in plugin exist or not exist"
+        assert result.isSuccessful()
+        verifyExistenceOfPluginsCredentials(Utils.CredsStates.REFERENCE, webSpherePlugin.configName, webSpherePlugin)
+
+        cleanup:
+        webSpherePlugin.deleteConfiguration(webSpherePlugin.configName)
+    }
+
+    @Unroll
+    def "Negative. Create new configuration with credential reference/runtime credentials"() {
+        when: "Create plugin config"
+        WebSphere webSpherePlugin = WebSphere.createWithNewWrongConfig()
+
+        and: "Run Plugin Procedure - CheckNodeStatus"
+        def result = webSpherePlugin.checkNodeStatus
+                .wsadminAbsPath(wsAdminPath)
+                .nodeName(wsHost + "Node01")
+                .successCriteria("ALL_RUNNING")
+                .run()
+
+        then: "Verify that procedure completed as expected"
+        assert result.outcome == JobOutcome.ERROR
+        verifyExistenceOfPluginsCredentials(Utils.CredsStates.REFERENCE, webSpherePlugin.configName, webSpherePlugin)
+
+        cleanup:
+        webSpherePlugin.deleteConfiguration(webSpherePlugin.configName)
+    }
 }
