@@ -14056,7 +14056,7 @@
 
         <procedure>
             <procedureName>TestConfiguration</procedureName>
-            <description>>TestConfiguration</description>
+            <description>TestConfiguration</description>
             <jobNameTemplate>websphere-test-config-$[jobId]</jobNameTemplate>
             <resourceName />
             <workspaceName />
