@@ -401,7 +401,7 @@ This method returns a L<FlowPDF::Config> object that represents plugin configura
 
 =over 4
 
-=item None
+=item (Optional) (HASH ref) parameters: configName: Optional configuration to get by name ignoring default autoresolve logic.
 
 =back
 
@@ -422,6 +422,8 @@ This method returns a L<FlowPDF::Config> object that represents plugin configura
     if ($cred) {
         print "Secret value is: ", $cred->getSecretValue(), "\n";
     }
+    # or get other config of the current plugin:
+    my $configValues = $context->getConfigValues({configName => 'myOtherConfig'});
 
 %%%LANG%%%
 
