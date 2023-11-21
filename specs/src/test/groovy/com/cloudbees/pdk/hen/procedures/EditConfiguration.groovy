@@ -3,7 +3,6 @@ package com.cloudbees.pdk.hen.procedures
 import groovy.transform.AutoClone
 import com.cloudbees.pdk.hen.*
 
-@AutoClone
 //generated
 class EditConfiguration extends Procedure {
 
@@ -18,7 +17,24 @@ class EditConfiguration extends Procedure {
 
     EditConfiguration flush() {
         this.flushParams()
+        this.contextUser = null
         return this
+    }
+
+    EditConfiguration withUser(User user) {
+        this.contextUser = user
+        return this
+    }
+
+
+    EditConfiguration clone() {
+        EditConfiguration cloned = new EditConfiguration(procedureName: 'EditConfiguration', plugin: plugin, credentials: [
+                    
+                    'credential': null,
+                    
+                ])
+        cloned.parameters = this.parameters.clone()
+        return cloned
     }
 
     //Generated

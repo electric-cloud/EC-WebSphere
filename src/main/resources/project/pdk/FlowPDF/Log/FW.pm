@@ -235,7 +235,7 @@ sub setLogToProperty {
     # 1st case, when param 1 is a reference, we are going to set log to property for current object.
     # but if this reference is not a FlowPDF::Log reference, it will bailOut
     if (ref $param1 and ref $param1 ne __PACKAGE__) {
-        croak(q|Expected a reference to FlowPDF::Log, not a '| . ref $param1 . q|' reference|);
+        croak (sprintf(q|Expected a reference to FlowPDF::Log::FW, not a '%s' reference|, ref $param1));
     }
 
     if (ref $param1) {
@@ -274,7 +274,7 @@ sub setLogToFile {
     # 1st case, when param 1 is a reference, we are going to set log to file for current object.
     # but if this reference is not a FlowPDF::Log reference, it will bailOut
     if (ref $param1 and ref $param1 ne __PACKAGE__) {
-        croak(q|Expected a reference to FlowPDF::Log, not a '| . ref $param1 . q|' reference|);
+        croak (sprintf(q|Expected a reference to FlowPDF::Log::FW, not a '%s' reference|, ref $param1));
     }
 
     if (ref $param1) {
@@ -322,7 +322,7 @@ sub setLogLevel {
     my ($param1, $param2) = @_;
 
     if (ref $param1 and ref $param1 ne __PACKAGE__) {
-        croak (q|Expected a reference to FlowPDF::Log, not a '| . ref $param1 . q|' reference|);
+        croak (sprintf(q|Expected a reference to FlowPDF::Log::FW, not a '%s' reference|, ref $param1));
     }
 
     if (ref $param1) {

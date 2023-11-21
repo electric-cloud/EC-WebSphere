@@ -385,7 +385,7 @@ sub setLogLevel {
     my ($param1, $param2) = @_;
 
     if (ref $param1 and ref $param1 ne __PACKAGE__) {
-        croak (q|Expected a reference to FlowPDF::Log, not a '| . ref $param1 . q|' reference|);
+        croak (sprintf(q|Expected a reference to FlowPDF::Log, not a '%s' reference|, ref $param1));
     }
 
     if (ref $param1) {

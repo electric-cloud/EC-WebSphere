@@ -1,5 +1,6 @@
 package com.cloudbees.plugin.spec
 
+import com.cloudbees.pdk.hen.ConfigurationHandling
 import com.cloudbees.pdk.hen.Credential
 import com.cloudbees.pdk.hen.JobOutcome
 import com.cloudbees.pdk.hen.ServerHandler
@@ -43,6 +44,7 @@ class DeleteConfigurationSuite extends Specification{
     def "Sanity. Delete Configuration"() {
         when: "Create plugin config"
         WebSphere webSpherePlugin = WebSphere.createWithoutConfig()
+        webSpherePlugin.configurationHandling = ConfigurationHandling.OLD
         WebSphereConfig webSphereConfig = WebSphereConfig.create(webSpherePlugin)
 
         webSphereConfig.wsadminabspath(wsAdminPath)

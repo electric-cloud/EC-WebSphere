@@ -14,9 +14,28 @@
 #  limitations under the License.
 #
 use ElectricCommander::Util;
+use strict;
+use warnings;
+no warnings 'redefine';
+use Data::Dumper;
+
+use ElectricCommander;
+use JSON qw(decode_json);
+use subs qw(debug);
+use Time::HiRes qw(time gettimeofday tv_interval);
+
+my @logs = ();
+sub debug($) {
+    my ($message) = @_;
+    push @logs, scalar time . ": " . $message;
+
+    if ($ENV{EC_SETUP_DEBUG}) {
+        print scalar time . ": $message\n";
+    }
+}
+
 # External Credential Manageent Update:
 # We're retrieving the steps with attached creds from property sheet
-use JSON;
 my $stepsWithCredentials = getStepsWithCredentials();
 # Data that drives the create step picker registration for this plugin.
 my %checkPageStatus = (
@@ -570,6 +589,116 @@ $batch->deleteProperty("/server/ec_customEditors/pickerStep/WebSphere - Create C
 );
 
 if ($upgradeAction eq "upgrade") {
+
+    ## EC-WebSphere specific code
+    my $query = $commander->newBatch();
+
+    # When upgrading from older versions, find steps that call plugins procedures
+    # and remove extra outdated parameters
+    my @filterList = ({ 'propertyName' => 'subproject',
+        'operator' => 'equals',
+        'operand1' => '/plugins/@PLUGIN_KEY@/project' });
+
+    my $result = $commander->findObjects('procedureStep', {
+        filter => [ { operator => 'and', filter => \@filterList} ]
+    });
+
+    for my $procedureStep ($result->findnodes('//step')) {
+        my $projectName = $procedureStep->find('projectName')->string_value;
+        my $procedureName = $procedureStep->find('procedureName')->string_value;
+        my $stepName = $procedureStep->find('stepName')->string_value;
+
+        if($procedureName eq 'UpdateApp') {
+            $query->deleteActualParameter($projectName, $procedureName, $stepName, 'isAppOnCluster');
+        }
+
+        $query->deleteActualParameter($projectName, $procedureName, $stepName, 'connectionType');
+    }
+
+    # Update old configs, set conntype to SOAP if it does not exists
+    my $old_configs_path = "/plugins/$otherPluginName/project/websphere_cfgs";
+    my $configurations = $commander->getProperties({path => $old_configs_path});
+    for my $configuration ($configurations->findnodes('//propertyName')) {
+        my $conntype_path = $old_configs_path.$configuration->string_value."/conntype";
+
+        my $conntype = $commander->getProperty($conntype_path);
+        if(!$conntype->find('//value')) {
+            $query->setProperty($conntype_path, 'SOAP');
+        }
+    }
+
+    my $olddiscovery = $query->getProperty("/plugins/$otherPluginName/project/ec_discovery/discovered_data");
+
+    local $self->{abortOnError} = 0;
+    $query->submit();
+
+    # Copy discovered data
+    if ($query->findvalue($olddiscovery, "code") ne "NoSuchProperty") {
+        $batch->clone({
+            path => "/plugins/$otherPluginName/project/ec_discovery/discovered_data",
+            cloneName => "/plugins/$pluginName/project/ec_discovery/discovered_data"
+        });
+    }
+
+    #--------------------------------------------------------------
+    # Update Time Limit
+
+    # use Data::Dumper;
+
+    my $oldProjectName = "/plugins/$otherPluginName/project";
+    my $newProjectName = "/plugins/$pluginName/project";
+
+    # print Dumper($oldProjectName);
+    # print Dumper($newProjectName);
+
+    for my $procedure ($commander->getProcedures({ projectName => $oldProjectName })->findnodes('//procedure')) {
+        my $procedureName = $procedure->findvalue('procedureName')->string_value;
+        # print("Procedure: $procedureName\n");
+        for my $oldStep ($commander->getSteps({ projectName => $oldProjectName, procedureName => $procedureName })->findnodes('//step')) {
+            my $stepName = $oldStep->findvalue('stepName')->string_value;
+            # print("\tStep: $stepName\n");
+
+            my $oldTimeLimit = $oldStep->findvalue("//timeLimit");
+            next unless($oldTimeLimit);
+
+            my $oldTimeLimitUnits = $oldStep->findvalue("//timeLimitUnits");
+            next unless($oldTimeLimitUnits);
+
+            my $newStep = $commander->getStep($newProjectName, $procedureName, $stepName);
+
+            my $newTimeLimit = $newStep->findvalue("//timeLimit");
+            next unless($newTimeLimit);
+
+            my $newTimeLimitUnits = $newStep->findvalue("//timeLimitUnits");
+            next unless($newTimeLimitUnits);
+
+            my $oldLimit = $oldTimeLimit->value;
+            my $oldLimitUnits = $oldTimeLimitUnits->value;
+            # print("\t\toldLimit: $oldLimit; $oldLimitUnits\n");
+
+            my $res = $commander->modifyStep($newProjectName, $procedureName, $stepName, {timeLimit => $oldLimit, timeLimitUnits => $oldLimitUnits});
+
+            my @errors = $res->findErrors;
+            if (@errors > 0) {
+                # print Dumper(\@errors);
+                next
+            }
+
+            # print("\t\OK\n");
+        }
+
+    }
+
+    ## End of EC-WebSphere specific code
+
+    migrateConfigurations($otherPluginName);
+    migrateProperties($otherPluginName);
+    debug "Migrated properties";
+    reattachExternalCredentials($otherPluginName);
+}
+
+# Disabling this branch of logic temporary
+if (0 && $upgradeAction eq "upgrade") {
     my $query = $commander->newBatch();
 
     # When upgrading from older versions, find steps that call plugins procedures
@@ -726,6 +855,18 @@ if ($upgradeAction eq "upgrade") {
     }
 }
 
+if ($promoteAction eq "promote") {
+    reattachExternalConfigurations($otherPluginName);
+}
+
+sub get_major_minor {
+    my ($version) = @_;
+
+    if ($version =~ m/^(\d+\.\d+)/) {
+        return $1;
+    }
+    return undef;
+}
 
 sub reattachExternalCredentials {
     my ($otherPluginName) = @_;
@@ -766,10 +907,9 @@ sub reattachExternalCredentials {
 sub getConfigLocation {
     my ($otherPluginName) = @_;
 
-    my $configName = 'websphere_cfgs';
-    # my $configName = eval {
-    #     $commander->getProperty("/plugins/$otherPluginName/project/ec_configPropertySheet")->findvalue('//value')->string_value
-    # } || 'ec_plugin_cfgs';
+    my $configName = eval {
+        $commander->getProperty("/plugins/$otherPluginName/project/ec_configPropertySheet")->findvalue('//value')->string_value
+    } || 'websphere_cfgs';
     return $configName;
 }
 
@@ -781,4 +921,139 @@ sub getStepsWithCredentials {
         $retval = decode_json($stepsJson);
     };
     return $retval;
+}
+
+sub reattachExternalConfigurations {
+    my ($otherPluginName) = @_;
+
+    my %migrated = ();
+    # For the configurations that exists while the plugin was deleted
+    # The api is new so it requires the upgraded version of the agent
+    eval {
+        my $cfgs = $commander->getPluginConfigurations({
+            pluginKey => '@PLUGIN_KEY@',
+        });
+        my @creds = ();
+        for my $cfg ($cfgs->findnodes('//pluginConfiguration/credentialMappings/parameterDetail')) {
+            my $value = $cfg->findvalue('parameterValue')->string_value();
+            push @creds, $value;
+        }
+
+        for my $cred (@creds) {
+            next if $migrated{$cred};
+            for my $stepWithCreds (@$stepsWithCredentials) {
+                $commander->attachCredential({
+                    projectName => "/plugins/$pluginName/project",
+                    credentialName => $cred,
+                    procedureName => $stepWithCreds->{procedureName},
+                    stepName => $stepWithCreds->{stepName}
+                });
+            }
+            $migrated{$cred} = 1;
+            debug "Migrated $cred";
+        }
+        1;
+    } or do {
+        debug "getPluginConfiguration API is not supported on the promoting agent, falling back";
+        for my $stepWithCreds (@$stepsWithCredentials) {
+            my $step = $commander->getStep({
+                projectName => "/plugins/$otherPluginName/project",
+                procedureName => $stepWithCreds->{procedureName},
+                stepName => $stepWithCreds->{stepName},
+            });
+            for my $attachedCred ($step->findnodes('//attachedCredentials/credentialName')) {
+                my $credName = $attachedCred->string_value();
+                $commander->attachCredential({
+                    projectName => "/plugins/$pluginName/project",
+                    credentialName => $credName,
+                    procedureName => $stepWithCreds->{procedureName},
+                    stepName => $stepWithCreds->{stepName}
+                });
+                $migrated{$credName} = 1;
+                debug "Migrated credential $credName to $stepWithCreds->{procedureName}";
+            }
+        }
+    };
+}
+
+sub migrateConfigurations {
+    my ($otherPluginName) = @_;
+
+    my $configName = getConfigLocation($otherPluginName);
+    # my $configName = eval {
+    #     $commander->getProperty("/plugins/$otherPluginName/project/ec_configPropertySheet")->findvalue('//value')->string_value
+    # } || 'ec_plugin_cfgs';
+
+    $commander->clone({
+        path      => "/plugins/$otherPluginName/project/$configName",
+        cloneName => "/plugins/$pluginName/project/$configName"
+    });
+
+    my $xpath = $commander->getCredentials("/plugins/$otherPluginName/project");
+    for my $credential ($xpath->findnodes('//credential')) {
+        my $credName = $credential->findvalue('credentialName')->string_value;
+
+        # If credential name starts with "/", it means that it is a reference.
+        # We do not need to clone it.
+        # if ($credName !~ m|^\/|s) {
+        debug "Migrating old configuration $credName";
+        $batch->clone({
+            path      => "/plugins/$otherPluginName/project/credentials/$credName",
+            cloneName => "/plugins/$pluginName/project/credentials/$credName"
+        });
+        $batch->deleteAclEntry({
+            principalName  => "project: $otherPluginName",
+            projectName    => $pluginName,
+            credentialName => $credName,
+            principalType  => 'user'
+        });
+        $batch->deleteAclEntry({
+            principalType  => 'user',
+            principalName  => "project: $pluginName",
+            credentialName => $credName,
+            projectName    => $pluginName,
+        });
+
+        $batch->createAclEntry({
+            principalType              => 'user',
+            principalName              => "project: $pluginName",
+            projectName                => $pluginName,
+            credentialName             => $credName,
+            objectType                 => 'credential',
+            readPrivilege              => 'allow',
+            modifyPrivilege            => 'allow',
+            executePrivilege           => 'allow',
+            changePermissionsPrivilege => 'allow'
+        });
+        #}
+
+        for my $step (@$stepsWithCredentials) {
+            $batch->attachCredential({
+                projectName    => $pluginName,
+                procedureName  => $step->{procedureName},
+                stepName       => $step->{stepName},
+                credentialName => $credName,
+            });
+            debug "Attached credential to $step->{stepName}";
+        }
+    }
+}
+
+sub migrateProperties {
+    my ($otherPluginName) = @_;
+    my $clonedPropertySheets = eval {
+        decode_json($commander->getProperty("/plugins/$otherPluginName/project/ec_clonedProperties")->findvalue('//value')->string_value);
+    };
+    unless ($clonedPropertySheets) {
+        debug "No properties to migrate";
+        return;
+    }
+
+    for my $prop (@$clonedPropertySheets) {
+        $commander->clone({
+            path      => "/plugins/$otherPluginName/project/$prop",
+            cloneName => "/plugins/$pluginName/project/$prop"
+        });
+        debug "Cloned $prop"
+    }
 }

@@ -8,6 +8,33 @@ import static com.cloudbees.pdk.hen.Utils.env
 class WebSphere extends Plugin {
 
     String resourceName = System.getenv('WAS_HOST') ?: "wsResource"
+    String wsUsername = System.getenv('WAS_USERNAME') ?: ""
+    String wsPassword = System.getenv('WAS_PASSWORD') ?: ""
+    String wsHost = System.getenv('WAS_HOST') ?: ""
+    String wsPort = System.getenv('WAS_PORT') ?: ""
+    String wsAdminPath = System.getenv('WSADMIN_PATH') ?: ""
+    String wsConnType = System.getenv('WAS_CONNTYPE') ?: ""
+    Credential cred = new Credential(userName: wsUsername, password: wsPassword)
+
+    WebSphereConfig newConfig = WebSphereConfig
+        .create(this)
+        .conntype(wsConnType)
+        .wsadminabspath(wsAdminPath)
+        .websphereurl(wsHost)
+        .websphereport(wsPort)
+        .testconnectionres(wsHost)
+        .debug("1")
+        .credential(cred.userName, cred.password)
+
+    WebSphereConfig newWrongConfig = WebSphereConfig
+        .create(this)
+        .conntype(wsConnType)
+        .wsadminabspath(wsAdminPath)
+        .websphereurl(wsHost + "zxcds")
+        .websphereport(wsPort)
+        .testconnectionres(wsHost)
+        .debug("1")
+        .credential(cred.userName, cred.password)
 
     static WebSphere create() {
         WebSphere plugin = new WebSphere(name: 'EC-WebSphere')
@@ -16,7 +43,34 @@ class WebSphere extends Plugin {
     }
     static WebSphere createWithoutConfig() {
         // todo: possible problem is that different procedures contains different field name  for configuration value
-        WebSphere plugin = new WebSphere(name: 'EC-WebSphere', configPath: 'websphere_cfgs', configFieldName: 'configurationName')
+        WebSphere plugin = new WebSphere(
+                name: 'EC-WebSphere',
+                configPath: 'websphere_cfgs',
+                configFieldName: 'configurationName',
+                configurationHandling: ConfigurationHandling.OLD
+        )
+        return plugin
+    }
+
+    static WebSphere createWithNewConfig() {
+        WebSphere plugin = new WebSphere(
+                name: 'EC-WebSphere',
+                configPath: 'websphere_cfgs',
+                configFieldName: 'configurationName',
+                configurationHandling: ConfigurationHandling.NEW
+        )
+        plugin.configure(plugin.newConfig)
+        return plugin
+    }
+
+    static WebSphere createWithNewWrongConfig() {
+        WebSphere plugin = new WebSphere(
+                name: 'EC-WebSphere',
+                configPath: 'websphere_cfgs',
+                configFieldName: 'configurationName',
+                configurationHandling: ConfigurationHandling.NEW
+        )
+        plugin.configure(plugin.newWrongConfig)
         return plugin
     }
 
@@ -153,4 +207,5 @@ class WebSphere extends Plugin {
 
     UpdateApp updateApp = UpdateApp.create(this)
 
+    TestConfiguration testConfiguration = TestConfiguration.create(this)
 }

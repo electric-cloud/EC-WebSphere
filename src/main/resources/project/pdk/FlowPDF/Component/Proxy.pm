@@ -125,6 +125,27 @@ and be sure that proxy is set.
 sub apply {
     my ($self) = @_;
 
+    if ($self->is_legacy_perl()){
+        return $self->apply_5_8_9();
+    }
+
+    return $self->apply_5_32_1();
+
+}
+
+sub apply_5_32_1 {
+    my ($self) = @_;
+
+    ## At this moment we do not need to set the proxy envs.
+    ## but for the reason of backward compatibility, we have to set
+    ## HTTPS_PROXY_USERNAME and HTTPS_PROXY_PASSWORD
+    $self->apply_5_8_9();
+    return $self;
+}
+
+sub apply_5_8_9 {
+    my ($self) = @_;
+
     unless ($self->url()) {
         $self->debug_msg("No proxy url has been provided. Nothing to do.");
     }
@@ -168,6 +189,24 @@ Disables proxy for a whole context. It could be useful sometimes to revert all c
 =cut
 
 sub detach {
+    my ($self) = @_;
+
+    if ($self->is_legacy_perl()) {
+        return $self->detach_5_8_9();
+    }
+    return $self->detach_5_32_1();
+}
+
+
+sub detach_5_32_1 {
+    my ($self) = @_;
+
+    $self->detach_5_8_9();
+    return $self;
+}
+
+
+sub detach_5_8_9 {
     my ($self) = @_;
 
     while (my $e = pop(@{$self->{__detach_list}})) {
@@ -305,6 +344,24 @@ Augments HTTP::Request object with proxy headers.
 sub augment_request {
     my ($self, $request_object) = @_;
 
+    if ($self->is_legacy_perl()){
+        return $self->augment_request_5_8_9($request_object);
+    }
+    return $self->augment_request_5_32_1($request_object);
+}
+
+
+sub augment_request_5_32_1 {
+    my ($self, $request_object) = @_;
+
+    $request_object = $self->augment_request_5_8_9($request_object);
+    return $request_object;
+}
+
+
+sub augment_request_5_8_9 {
+    my ($self, $request_object) = @_;
+
     if (!$request_object) {
         croak "Request object could not be empty";
     }
@@ -349,6 +406,41 @@ Augments LWP::UserAgent object with proxy information.
 =cut
 
 sub augment_lwp {
+    my ($self, $ua) = @_;
+
+    if ($self->is_legacy_perl()) {
+        return $self->augment_lwp_5_8_9($ua);
+    }
+    return $self->augment_lwp_5_32_1($ua);
+
+}
+
+
+sub augment_lwp_5_32_1 {
+    my ($self, $ua) = @_;
+
+    if (!$ua) {
+        croak "LWP object could not be empty";
+    }
+    if (ref $ua ne 'LWP::UserAgent') {
+        croak "LWP::UserAgent object expected, got: ", ref $ua;
+    }
+    my $proxy_url = $self->url();
+    if ($proxy_url) {
+        $self->debug_msg("Augmenting LWP object with HTTP AND HTPS proxy settings: ", $proxy_url);
+        if ($proxy_url =~ m/^https:/s) {
+            $ua->proxy(['https'] => $proxy_url);
+        }
+        elsif ($proxy_url =~ m/^http:/s) {
+            $ua->proxy(['http'] => $proxy_url);
+        }
+    }
+
+    return $ua;
+}
+
+
+sub augment_lwp_5_8_9 {
     my ($self, $ua) = @_;
 
     if (!$ua) {
@@ -401,6 +493,16 @@ sub debug_msg {
         print $msg, "\n";
     }
     return 1;
+}
+
+## private
+# This function returns whether the perl is legacy or new. The way of handling the proxy settings is completely different
+# in these 2 perls.
+sub is_legacy_perl {
+    if ($] <= 5.008009) {
+        return 1;
+    }
+    return 0;
 }
 
 1;

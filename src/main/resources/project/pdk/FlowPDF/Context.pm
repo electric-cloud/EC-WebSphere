@@ -55,6 +55,7 @@ use Try::Tiny;
 use FlowPDF::Exception::ConfigDoesNotExist;
 use FlowPDF::Exception::EntityDoesNotExist;
 use FlowPDF::Exception::RuntimeException;
+use FlowPDF::Exception::UnexpectedEmptyValue;
 
 use FlowPDF::Constants qw/
     DEBUG_LEVEL_PROPERTY
@@ -400,7 +401,7 @@ This method returns a L<FlowPDF::Config> object that represents plugin configura
 
 =over 4
 
-=item None
+=item (Optional) (HASH ref) parameters: configName: Optional configuration to get by name ignoring default autoresolve logic.
 
 =back
 
@@ -421,16 +422,30 @@ This method returns a L<FlowPDF::Config> object that represents plugin configura
     if ($cred) {
         print "Secret value is: ", $cred->getSecretValue(), "\n";
     }
+    # or get other config of the current plugin:
+    my $configValues = $context->getConfigValues({configName => 'myOtherConfig'});
 
 %%%LANG%%%
 
 =cut
 
 sub getConfigValues {
-    my ($context, $optionalConfigName) = @_;
+    my ($context, $params) = @_;
 
-    if (my $retval = $context->getCurrentStepConfigValues()) {
-        return $retval;
+    my $configName = undef;
+    my $autoDetectConfig = 1;
+
+    # Get config name. Otherwise the function will determine automatically
+    # where to get the config and will return it.
+    if ($params->{configName}) {
+        $configName = $params->{configName};
+        $autoDetectConfig = 0;
+        fwLogTrace("Optional configName => $configName has been provided to getConfigValues call.");
+    }
+
+    # TODO: Implement caching for custom configs if required.
+    if ($autoDetectConfig && $context->getCurrentStepConfigValues()) {
+        return $context->getCurrentStepConfigValues();
     }
 
     # This case is special. During CreateConfiguration we don't have config itself.
@@ -451,34 +466,59 @@ sub getConfigValues {
     my $configFields    = $po->getConfigFields();
 
     my $configField = undef;
-    for my $field (@$configFields) {
-        if ($stepParameters->isParameterExists($field)) {
-            $configField = $field;
-            last;
+    if ($autoDetectConfig) {
+        for my $field (@$configFields) {
+            if ($stepParameters->isParameterExists($field)) {
+                $configField = $field;
+                last;
+            }
+        }
+        if ($autoDetectConfig && !$configField && $context->getHasConfigField()) {
+            FlowPDF::Exception::EntityDoesNotExist->new(
+                "No config field detected in current step parameters"
+            )->throw();
         }
     }
-
-    if (!$configField && $context->getHasConfigField()) {
-        FlowPDF::Exception::EntityDoesNotExist->new(
-            "No config field detected in current step parameters"
-        )->throw();
-    }
     my $configHash = undef;
-    if ($context->getHasConfigField()) {
-        for my $location (@$configLocations) {
-            my $tempConfig = $context->retrieveConfigByNameAndLocation(
-                $stepParameters->getParameter($configField)->getValue(),
-                $location
+
+    if (!$autoDetectConfig || $context->getHasConfigField()) {
+        my $configNameToGet = undef;
+        if (defined $configName) {
+            $configNameToGet = $configName;
+        }
+        else {
+            $configNameToGet = $stepParameters->getParameter($configField)->getValue();
+        }
+
+        if ($configNameToGet =~ m|^/|) {
+            # New configuration object
+            my $plugin_project_name = sprintf(
+                '%s-%s',
+                $po->getPluginName(),
+                $po->getPluginVersion()
             );
 
-            if ($tempConfig) {
-                $configHash = $tempConfig;
-                last;
+            $configHash = $context->_readPluginConfiguration($configNameToGet, $po, $plugin_project_name);
+        }
+        else {
+            for my $location (@$configLocations) {
+                my $tempConfig = $context->retrieveConfigByNameAndLocation(
+                    $configNameToGet,
+                    $location
+                );
+
+                if ($tempConfig) {
+                    $configHash = $tempConfig;
+                    last;
+                }
             }
         }
     }
     # TODO: Improve this error message.
-    if (!$configHash && $context->getHasConfigField()) {
+    # This exception is being thrown in 1 of 2 scenarios:
+    #   1. When current step has config field and config does not exist.
+    #   2. When optional config name is provided and config does not exist.
+    if ((!$autoDetectConfig || $context->getHasConfigField()) && !$configHash) {
         FlowPDF::Exception::ConfigDoesNotExist->new({
             configName => $stepParameters->getParameter($configField)->getValue()
         })->throw();
@@ -486,26 +526,6 @@ sub getConfigValues {
     my $keys = [];
     my $configValuesHash = {};
     $context->populateDefaultConfigValues($configHash);
-
-    # handling user defined default config values.
-    # my $defaultConfigValues = $po->getDefaultConfigValues();
-    # $defaultConfigValues ||= {};
-
-    # for my $cv (keys %$defaultConfigValues) {
-    #     if (defined $configHash->{$cv}) {
-    #         logWarning("The config field '$cv' that was set to default value in plugin code is present in configuration. Default value from plugin code is ignored.");
-    #         next;
-    #     }
-    #     if ($cv =~ m/_credential$/s) {
-    #         if (!defined $defaultConfigValues->{$cv}->{userName} && !defined $defaultConfigValues->{$cv}->{password}) {
-    #             logWarning("Missing userName and password for the default credential");
-    #             next;
-    #         }
-    #     }
-
-    #     $configHash->{$cv} = $defaultConfigValues->{$cv};
-    # }
-    # end of handling default config values
 
     for my $k (keys %$configHash) {
         push @$keys, $k;
@@ -536,7 +556,11 @@ sub getConfigValues {
         parameters => $configValuesHash
     });
 
-    $context->setCurrentStepConfigValues($retval);
+    # We're caching config values if and only if
+    # the default logic is being executed.
+    if ($autoDetectConfig) {
+        $context->setCurrentStepConfigValues($retval);
+    }
     return $retval;
 }
 
@@ -1085,7 +1109,7 @@ sub isCheckConnectionInCreateConfigurationContext {
 
     my $procedureName = $self->getProcedureName();
     my $stepName = $self->getStepName();
-    if ($stepName eq 'checkConnection' && $procedureName eq 'CreateConfiguration') {
+    if ($stepName eq 'checkConnection' && ($procedureName eq 'CreateConfiguration' || $procedureName eq 'TestConfiguration') ) {
         return 1;
     }
     return 0;
@@ -1193,4 +1217,88 @@ sub isCredential {
     }
     return 0;
 }
+
+# private
+# handling of the new pluginConfiguration object
+sub _readPluginConfiguration {
+    my ($self, $configName, $po, $pluginProjectName) = @_;
+
+    my (undef, undef, $configProjectName, undef, $cfgName) = split(/\// => $configName);
+
+    my $cfg;
+    eval {
+        $cfg = $self->getEc()->getPluginConfiguration({
+            projectName => $configProjectName,
+            pluginConfigurationName => $cfgName
+        });
+        1
+    } or do {
+        my $err = $@;
+        if ($err =~ /NoSuchPluginConfiguration/) {
+            FlowPDF::Exception::UnexpectedEmptyValue->new("Plugin configuration '$cfgName' does not exist in the project '$configProjectName'")->throw();
+        }
+        else {
+            die $err;
+        }
+    };
+
+    # todo procedure does not exist
+    my $formalParameters = $self->getEc()->getFormalParameters({
+        projectName => $pluginProjectName,
+        procedureName => 'ConfigurationParametersHolder'
+    });
+
+    my $fields = {};
+    for my $f ($cfg->findnodes('//fields/parameterDetail')) {
+        my $name = $f->findvalue('parameterName')->string_value();
+        my $value = $f->findvalue('parameterValue')->string_value();
+        if ($value =~ /\$\[/) {
+            $value = $self->getEc()->expandString({value => $value, jobId => $ENV{COMMANDER_JOBID}})->findvalue('//value')->string_value();
+        }
+        $fields->{$name} = $value;
+    }
+
+    my $credentials = {};
+    for my $cred ($cfg->findnodes('//credentialMappings/parameterDetail')) {
+        my $name = $cred->findvalue('parameterName')->string_value();
+        my $value = $cred->findvalue('parameterValue')->string_value();
+        $credentials->{$name} = $value;
+    }
+
+    for my $formalParameter ($formalParameters->findnodes('//formalParameter')) {
+        my $name = $formalParameter->findvalue('formalParameterName')->string_value();
+        my $type = $formalParameter->findvalue('type')->string_value();
+        my $required = $formalParameter->findvalue('required')->string_value();
+
+        if ($type eq 'credential') {
+            my $path = $credentials->{$name};
+            unless($path) {
+                if ($required eq '1' || $required eq 'true') {
+                    FlowPDF::Exception::UnexpectedEmptyValue->new("Credential $name is required but not provided by the configuration")->throw();
+                }
+                else {
+                    next;
+                }
+            }
+            my $cred = $self->getEc()->getFullCredential($path);
+            $fields->{$name} = {
+                userName => $cred->findvalue('//userName')->string_value(),
+                password => $cred->findvalue('//password')->string_value()
+            };
+
+            if ($fields->{$name}->{password}) {
+                FlowPDF::Log->setMaskPatterns($fields->{$name}->{password});
+            }
+        }
+
+        if ($required eq '1' || $required eq 'true') {
+            unless($fields->{$name}) {
+                FlowPDF::Exception::UnexpectedEmptyValue->new("Parameter $name is required but not provided by the configuration")->throw();
+            }
+        }
+    }
+
+    return $fields;
+}
+
 1;

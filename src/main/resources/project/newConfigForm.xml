@@ -1,0 +1,101 @@
+<!--
+
+     Copyright 2015 CloudBees, Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+<editor>
+
+    <formElement>
+        <type>entry</type>
+        <label>WSAdmin Absolute Path:</label>
+        <property>wsadminabspath</property>
+        <value></value>
+        <documentation>Absolute path to wsadmin script.</documentation>
+        <required>1</required>
+    </formElement>
+
+    <formElement>
+        <type>select</type>
+        <label>Connection Type:</label>
+        <property>conntype</property>
+        <required>1</required>
+        <documentation>Specifies type of connection to use to connect to the application server that you want to administer.</documentation>
+        <option><name>SOAP</name><value>SOAP</value></option>
+        <option><name>None</name><value>None</value></option>
+        <option><name>RMI</name><value>RMI</value></option>
+        <option><name>JSR160RMI</name><value>JSR160RMI</value></option>
+        <option><name>IPC</name><value>IPC</value></option>
+    </formElement>
+
+    <formElement>
+        <type>entry</type>
+        <label>WebSphere Host:</label>
+        <property>websphere_url</property>
+        <value></value>
+        <documentation>Hostname of the WebSphere Application Server to administer using wsadmin tool. For example: 10.200.1.234 or yourWSServer.</documentation>
+        <required>1</required>
+    </formElement>
+
+    <formElement>
+        <type>entry</type>
+        <label>WebSphere Connector Port:</label>
+        <property>websphere_port</property>
+        <value></value>
+        <documentation>Port of WebSphere Application server to which wsadmin should connect.Give the port number based on the type of connection you choose.For example, if you want to connect to application server using SOAP connection give the port number of SOAP connector of that server.</documentation>
+        <required>0</required>
+    </formElement>
+
+    <formElement>
+        <type>credential</type>
+        <supportsCredentialReference>true</supportsCredentialReference>
+        <label>Login as:</label>
+        <property>credential</property>
+        <value></value>
+        <required>0</required>
+        <documentation>Credentials used to connect to WebSphere instance.</documentation>
+    </formElement>
+
+    <formElement>
+        <label>Debug Level:</label>
+        <property>debug</property>
+        <documentation>Debug level, higher debug level - more debug messages. Warning: on debug level 10 and more passwords will be revealed in a procedure logs.</documentation>
+        <required>0</required>
+        <type>select</type>
+        <option>
+            <value>0</value>
+            <name>Info</name>
+        </option>
+        <option>
+            <value>1</value>
+            <name>Debug</name>
+        </option>
+        <option>
+            <value>2</value>
+            <name>Trace</name>
+        </option>
+    </formElement>
+
+    <formElement>
+        <type>entry</type>
+        <label>Test Connection Resource:</label>
+        <property>test_connection_res</property>
+        <value></value>
+        <documentation>A resource which is used for the testing connection.</documentation>
+        <required>0</required>
+        <!-- <dependsOn>test_connection</dependsOn> -->
+        <!-- <condition>${test_connection} == 1</condition> -->
+    </formElement>
+
+</editor>

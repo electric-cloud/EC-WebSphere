@@ -364,9 +364,18 @@
                 <value>true</value>
             </property>
             <property>
+                <propertyName>ec_configCompliant</propertyName>
+                <value>true</value>
+            </property>
+            <property>
                 <propertyName>ec_config</propertyName>
                 <description/>
                 <propertySheet>
+                    <property>
+                        <propertyName>stepsWithAttachedCredentials</propertyName>
+                        <expandable>0</expandable>
+                        <value />
+                    </property>
                     <property>
                         <propertyName>configLocation</propertyName>
                         <expandable>0</expandable>
@@ -13885,5 +13894,345 @@
         </procedure>
 
         <!-- End of CreateClusterMembers procedure -->
+
+        <!-- Service Procedures for new configurations -->
+
+        <!-- Begin of ConfigurationParametersHolder procedure -->
+
+        <procedure>
+            <procedureName>ConfigurationParametersHolder</procedureName>
+            <description>ConfigurationParametersHolder</description>
+            <jobNameTemplate>websphere-holder-$[jobId]</jobNameTemplate>
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_parameterForm</propertyName>
+                    <value></value>
+                </property>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>wsadminabspath</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>conntype</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>websphere_url</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>websphere_port</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>credential</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>debug</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <!-- <property> -->
+                                <!--     <propertyName>test_connection</propertyName> -->
+                                <!--     <propertySheet> -->
+                                <!--         <property> -->
+                                <!--             <propertyName>formType</propertyName> -->
+                                <!--             <expandable>1</expandable> -->
+                                <!--             <value>standard</value> -->
+                                <!--         </property> -->
+                                <!--     </propertySheet> -->
+                                <!-- </property> -->
+                            </propertySheet>
+                        </property>
+                    </propertySheet>
+                </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>wsadminabspath</formalParameterName>
+                <defaultValue />
+                <description>wsadmin absolute path </description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>conntype</formalParameterName>
+                <defaultValue />
+                <description>Specifies type of connection to use to connect to the application server that you want to administer.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>websphere_url</formalParameterName>
+                <defaultValue />
+                <description>Hostname of the WebSphere Application Server to administer using wsadmin tool.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>websphere_port</formalParameterName>
+                <defaultValue />
+                <description>Port of WebSphere Application server to which wsadmin should connect.Give the port number based on the type of connection you choose.For example, if you want to connect to application server using SOAP connection give the port number of SOAP connector of that server.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>credential</formalParameterName>
+                <defaultValue />
+                <description />
+                <required>0</required>
+                <type>credential</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>debug</formalParameterName>
+                <defaultValue/>
+                <description>Enable debugging.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <!-- <formalParameter> -->
+            <!--     <formalParameterName>test_connection</formalParameterName> -->
+            <!--     <defaultValue/> -->
+            <!--     <description>Check if connection should be established during config creation to validate credentials.</description> -->
+            <!--     <required>0</required> -->
+            <!--     <type>checkbox</type> -->
+            <!-- </formalParameter> -->
+            <formalParameter>
+                <formalParameterName>test_connection_res</formalParameterName>
+                <defaultValue/>
+                <description>A resource which is used for the testing connection.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+        </procedure>
+
+        <!-- End of ConfigurationParametersHolder procedure -->
+
+        <!-- Begin of TestConfiguration procedure -->
+
+        <procedure>
+            <procedureName>TestConfiguration</procedureName>
+            <description>TestConfiguration</description>
+            <jobNameTemplate>websphere-test-config-$[jobId]</jobNameTemplate>
+            <resourceName />
+            <workspaceName />
+            <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+            <propertySheet>
+                <property>
+                    <propertyName>ec_customEditorData</propertyName>
+                    <propertySheet>
+                        <property>
+                            <propertyName>parameters</propertyName>
+                            <propertySheet>
+                                <property>
+                                    <propertyName>wsadminabspath</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>conntype</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>websphere_url</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>websphere_port</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>credential</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>debug</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
+                                    <propertyName>test_connection_res</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                            </propertySheet>
+                        </property>
+                    </propertySheet>
+                </property>
+            </propertySheet>
+            <formalParameter>
+                <formalParameterName>wsadminabspath</formalParameterName>
+                <defaultValue />
+                <description>wsadmin absolute path </description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>conntype</formalParameterName>
+                <defaultValue />
+                <description>Specifies type of connection to use to connect to the application server that you want to administer.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>websphere_url</formalParameterName>
+                <defaultValue />
+                <description>Hostname of the WebSphere Application Server to administer using wsadmin tool.</description>
+                <required>1</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>websphere_port</formalParameterName>
+                <defaultValue />
+                <description>Port of WebSphere Application server to which wsadmin should connect.Give the port number based on the type of connection you choose.For example, if you want to connect to application server using SOAP connection give the port number of SOAP connector of that server.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>credential</formalParameterName>
+                <defaultValue />
+                <description />
+                <required>0</required>
+                <type>credential</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>debug</formalParameterName>
+                <defaultValue/>
+                <description>Enable debugging.</description>
+                <required>0</required>
+                <type>checkbox</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>test_connection_res</formalParameterName>
+                <defaultValue/>
+                <description>A resource which is used for the testing connection.</description>
+                <required>0</required>
+                <type>entry</type>
+            </formalParameter>
+            <step>
+                <stepName>AttemptConnection</stepName>
+                <alwaysRun>0</alwaysRun>
+                <broadcast>0</broadcast>
+                <command/>
+                <!-- <condition>$[test_connection]</condition> -->
+                <description/>
+                <errorHandling>abortJob</errorHandling>
+                <exclusive>0</exclusive>
+                <logFileName/>
+                <parallel>0</parallel>
+                <postProcessor>$[/myProject/postp_loader]</postProcessor>
+                <releaseExclusive>0</releaseExclusive>
+                <resourceName>$[test_connection_res]</resourceName>
+                <retries>0</retries>
+                <shell>cb-perl</shell>
+                <timeLimit/>
+                <timeLimitUnits>minutes</timeLimitUnits>
+                <workingDirectory/>
+                <workspaceName/>
+                <procedureName>TestConfiguration</procedureName>
+                <projectName>@PLUGIN_KEY@-@PLUGIN_VERSION@</projectName>
+                <propertySheet>
+                    <property>
+                        <propertyName>ec_customEditorData</propertyName>
+                        <propertySheet>
+                            <property>
+                                <propertyName>formType</propertyName>
+                                <expandable>1</expandable>
+                                <value>command</value>
+                            </property>
+                        </propertySheet>
+                    </property>
+                </propertySheet>
+                <attachedParameters>
+                    <formalParameterName>credential</formalParameterName>
+                </attachedParameters>
+            </step>
+        </procedure>
+
+        <!-- End of TestConfiguration procedure -->
+
     </project>
 </exportedData>

@@ -144,6 +144,14 @@
         <path>WebSphereCreateConfigForm.xml</path>
     </file>
     <file>
+        <path>newConfigForm.xml</path>
+        <xpath>//procedure[procedureName=&quot;ConfigurationParametersHolder&quot;]/propertySheet/property[propertyName="ec_parameterForm&quot;]/value</xpath>
+    </file>
+    <file>
+        <path>stepsWithAttachedCredentials.json</path>
+        <xpath>//property[propertyName=&quot;ec_config&quot;]/propertySheet/property[propertyName=&quot;stepsWithAttachedCredentials&quot;]/value</xpath>
+    </file>
+    <file>
         <xpath>//property[propertyName=&quot;ui_forms&quot;]/propertySheet/property[propertyName=&quot;WebSphereEditConfigForm&quot;]/value</xpath>
         <path>WebSphereEditConfigForm.xml</path>
     </file>
@@ -377,7 +385,7 @@
     <!-- Adding steps with credentials into the CreateConfiguration to be referenced during build-->
     <file>
         <xpath>//procedure[procedureName=&quot;CreateConfiguration&quot;]/propertySheet/property[propertyName=&quot;ec_stepsWithAttachedCredentials&quot;]/value</xpath>
-        <path>procedures_with_credentials.json</path>
+        <path>stepsWithAttachedCredentials.json</path>
     </file>
     <!-- End of adding steps with credentials into the CreateConfiguration to be referenced during build-->
     <file>
@@ -387,6 +395,10 @@
     <file>
       <path>conf/attemptConnection.pl</path>
       <xpath>//procedure[procedureName=&quot;EditConfiguration&quot;]/step[stepName=&quot;AttemptConnection&quot;]/command</xpath>
+    </file>
+    <file>
+        <path>conf/attemptConnection.pl</path>
+        <xpath>//procedure[procedureName=&quot;TestConfiguration&quot;]/step[stepName=&quot;AttemptConnection&quot;]/command</xpath>
     </file>
     <file>
             <path>conf/editConfiguration.pl</path>

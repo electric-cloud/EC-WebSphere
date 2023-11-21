@@ -4428,6 +4428,8 @@ Discover WebSphere instance configuration on a resources or environment
 
 - Upgraded from Perl 5.8 to Perl 5.32. The plugin is not backward compatible with {PRODUCT} versions prior to 10.3. Starting from this release, a new agent is required to run EC-WebSphere plugin procedures.
 
+- The support of new configurations has been added.
+
 
 === EC-WebSphere 2.9.1
 
