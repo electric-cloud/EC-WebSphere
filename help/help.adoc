@@ -4426,7 +4426,7 @@ Discover WebSphere instance configuration on a resources or environment
 
 === EC-WebSphere 3.0.1
 
-- Fixed an issue that prevented to run UpdateApp procedure.
+- Fixed an issue that prevented the *UpdateApp* procedure from running.
 
 === EC-WebSphere 3.0.0
 
