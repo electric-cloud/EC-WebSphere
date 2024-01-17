@@ -37,7 +37,7 @@ updateCommand = r'''
 [-operation $[operation] -contents $[content]
 '''.strip()
 if contentURI:
-    updateCommand + ' ' # just whitespace - as a delimeter
+    updateCommand += ' ' # just whitespace - as a delimeter
     updateCommand += r'''-contenturi $[contentURI]'''.strip()
 
 additionalParams = r'''$[additionalParams]'''.strip()

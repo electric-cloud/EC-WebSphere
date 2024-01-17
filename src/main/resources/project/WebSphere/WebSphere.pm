@@ -1140,7 +1140,7 @@ sub _create_runfile {
         $options_string .= " ".join(" ", @args);
     }
 
-    return qq{"$self->{wsadminPath}"$options_string-f "$runfile"};
+    return qq{"$self->{wsadminPath}"$options_string -f "$runfile"};
 }
 
 sub _getConfiguration {
