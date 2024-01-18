@@ -1,3 +1,5 @@
+3.0.1:
+  - Fixed an issue that prevented the *UpdateApp* procedure from running.
 3.0.0:
   - Upgraded from Perl 5.8 to Perl 5.32. The plugin is not backward compatible with {PRODUCT} versions prior to 10.3. Starting from this release, a new agent is required to run EC-WebSphere plugin procedures.
   - The support of new configurations has been added.

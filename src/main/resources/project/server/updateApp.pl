@@ -71,6 +71,21 @@ sub main {
         print "Error: neither server name nor cluster name was specified";
         exit 1;
     }
+    push(@args, '-appName ' . $gAppName);
+    if($gClusterName ne ''){
+        push(@args, '-clusterName ' . $gClusterName);
+    }
+    if($gServerName ne '') {
+        push(@args, '-serverName ' . $gServerName);
+    }
+    push(@args, '-contentType ' . $gContentType);
+    push(@args, '-contentURI ' . $gContentURI);
+    push(@args, '-content ' . $gContent);
+    push(@args, '-operation ' . $gOperation);
+    if($gAdditionalParams ne '') {
+        push(@args, '-additionalParams ' . $gAdditionalParams);
+    }
+
 
     my $config_name = q{$[configname]};
     my $websphere = WebSphere::WebSphere->new($ec, $config_name, $gWSAdminAbsPath);
