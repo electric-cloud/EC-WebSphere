@@ -31,13 +31,21 @@ $[contentURI]
 serverName = r'''
 $[serverName]
 '''.strip()
-
-
-updateCommand = r'''
-[-operation $[operation] -contents $[content]
+content = r'''
+$[content]
 '''.strip()
-if contentURI:
+restart = r'''
+$[restart]
+'''.strip()
+
+updateCommand = r'''[-operation $[operation] '''.strip()
+
+if content:
     updateCommand += ' ' # just whitespace - as a delimeter
+    updateCommand += r'''-contents $[content]'''.strip()
+
+if contentURI:
+    updateCommand += ' ' # another delimeter
     updateCommand += r'''-contenturi $[contentURI]'''.strip()
 
 additionalParams = r'''$[additionalParams]'''.strip()
@@ -58,41 +66,42 @@ while result != 'true':
     result = AdminApp.isAppReady(appName)
     print 'Is App Ready = ' + result
     sleep(3)
-print 'The application is ready to restart.'
 
-
-if clusterName:
-    result = AdminClusterManagement.checkIfClusterExists(clusterName)
-    if result == "false":
-        print 'Error : Cluster ' + clusterName + ' does not exist.'
-        sys.exit(1)
-
-    cluster = AdminControl.completeObjectName('type=Cluster,name=' + clusterName + ',*')
-    print cluster
-    print "Restarting every member of cluster after application is updated."
-    AdminControl.invoke(cluster, 'rippleStart')
-    status = AdminControl.getAttribute(cluster, 'state')
-    desiredStatus = 'websphere.cluster.running'
-    print 'Cluster status = ' + status
-    while 1:
-        status = AdminControl.getAttribute(cluster, 'state')
-        print 'Cluster status = ' + status
-        if status == desiredStatus:
-            break
-        else:
-            sleep(3)
-    print 'Application is UP!'
-
+if restart == '0':
+    print 'Application updated successfully.'
 else:
+    print 'The application is ready to restart.'
+    if clusterName:
+        result = AdminClusterManagement.checkIfClusterExists(clusterName)
+        if result == "false":
+            print 'Error : Cluster ' + clusterName + ' does not exist.'
+            sys.exit(1)
 
-    appManager = AdminControl.queryNames('type=ApplicationManager,process=' + serverName + ',*')
-    print appManager
-    result = AdminControl.invoke(appManager,'stopApplication', appName)
-    print result
-    result = AdminControl.invoke(appManager,'startApplication', appName)
-    print result
-    appstatus = AdminControl.completeObjectName('type=Application,name=' + appName + ',*')
-    if appstatus:
+        cluster = AdminControl.completeObjectName('type=Cluster,name=' + clusterName + ',*')
+        print cluster
+        print "Restarting every member of cluster after application is updated."
+        AdminControl.invoke(cluster, 'rippleStart')
+        status = AdminControl.getAttribute(cluster, 'state')
+        desiredStatus = 'websphere.cluster.running'
+        print 'Cluster status = ' + status
+        while 1:
+            status = AdminControl.getAttribute(cluster, 'state')
+            print 'Cluster status = ' + status
+            if status == desiredStatus:
+                break
+            else:
+                sleep(3)
         print 'Application is UP!'
+
     else:
-        print 'Application is not UP.'
+        appManager = AdminControl.queryNames('type=ApplicationManager,process=' + serverName + ',*')
+        print appManager
+        result = AdminControl.invoke(appManager,'stopApplication', appName)
+        print result
+        result = AdminControl.invoke(appManager,'startApplication', appName)
+        print result
+        appstatus = AdminControl.completeObjectName('type=Application,name=' + appName + ',*')
+        if appstatus:
+            print 'Application is UP!'
+        else:
+            print 'Application is not UP.'

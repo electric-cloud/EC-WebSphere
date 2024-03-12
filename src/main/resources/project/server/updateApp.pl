@@ -39,8 +39,9 @@ my $gContentType       = trim(q($[contentType]));
 my $gOperation         = trim(q($[operation]));
 my $gContent           = trim(q($[content]));
 my $gContentURI        = trim(q($[contentURI]));
-my $gAdditionalParams    = trim(q($[additionalParams]));
+my $gAdditionalParams  = trim(q($[additionalParams]));
 my $gConfigurationName = q{$[configname]};
+my $gRestart           = trim(q($[restart]));
 
 # -------------------------------------------------------------------------
 # Main functions
@@ -82,6 +83,7 @@ sub main {
     push(@args, '-contentURI ' . $gContentURI);
     push(@args, '-content ' . $gContent);
     push(@args, '-operation ' . $gOperation);
+    push(@args, '-restart ' . $gRestart);
     if($gAdditionalParams ne '') {
         push(@args, '-additionalParams ' . $gAdditionalParams);
     }

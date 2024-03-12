@@ -10778,6 +10778,31 @@
                                     </propertySheet>
                                 </property>
                                 <property>
+                                    <propertyName>restart</propertyName>
+                                    <propertySheet>
+                                        <property>
+                                            <propertyName>checkedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>formType</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>standard</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>initiallyChecked</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>1</value>
+                                        </property>
+                                        <property>
+                                            <propertyName>uncheckedValue</propertyName>
+                                            <expandable>1</expandable>
+                                            <value>0</value>
+                                        </property>
+                                    </propertySheet>
+                                </property>
+                                <property>
                                     <propertyName>additionalParams</propertyName>
                                     <propertySheet>
                                         <property>
@@ -10856,6 +10881,13 @@
                 <description>Name of the server on which application is deployed.</description>
                 <required>0</required>
                 <type>entry</type>
+            </formalParameter>
+            <formalParameter>
+                <formalParameterName>restart</formalParameterName>
+                <defaultValue />
+                <description>If select, forcing to restart the application/cluster.</description>
+                <required>0</required>
+                <type>checkbox</type>
             </formalParameter>
             <formalParameter>
                 <formalParameterName>additionalParams</formalParameterName>
