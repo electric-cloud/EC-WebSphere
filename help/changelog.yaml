@@ -1,6 +1,6 @@
 3.1.0:
-  - Fixed an issue that prevented the *UpdateApp* procedure running while using *Delete* operation.
-  - Provided an option in *UpdateApp* procedure to update an app without forced restart of the application/cluster.
+  - Fixed an issue that prevented the *UpdateApp* procedure from running while using a *Delete* operation.
+  - Added option in the *UpdateApp* procedure to update applications without forcing application/cluster to restart.
 3.0.1:
   - Fixed an issue that prevented the *UpdateApp* procedure from running.
 3.0.0:

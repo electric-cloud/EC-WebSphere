@@ -10885,7 +10885,7 @@
             <formalParameter>
                 <formalParameterName>restart</formalParameterName>
                 <defaultValue />
-                <description>If select, forcing to restart the application/cluster.</description>
+                <description>If selected, the application/cluster is restarted to apply updates.</description>
                 <required>0</required>
                 <type>checkbox</type>
             </formalParameter>

@@ -107,7 +107,7 @@
         <type>checkbox</type>
         <label>Restart the application/cluster:</label>
         <property>restart</property>
-        <documentation>If select, forcing to restart the application/cluster.</documentation>
+        <documentation>If selected, the application/cluster is restarted to apply updates.</documentation>
         <required>0</required>
         <checkedValue>1</checkedValue>
         <uncheckedValue>0</uncheckedValue>
