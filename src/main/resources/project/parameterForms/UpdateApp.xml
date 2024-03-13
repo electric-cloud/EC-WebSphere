@@ -104,6 +104,16 @@
         <required>0</required>
     </formElement>
     <formElement>
+        <type>checkbox</type>
+        <label>Restart the application/cluster:</label>
+        <property>restart</property>
+        <documentation>If selected, the application/cluster is restarted to apply updates.</documentation>
+        <required>0</required>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+        <initiallyChecked>1</initiallyChecked>
+    </formElement>
+    <formElement>
         <type>textarea</type>
         <label>Additional Parameters:</label>
         <property>additionalParams</property>

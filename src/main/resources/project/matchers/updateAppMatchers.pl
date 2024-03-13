@@ -87,6 +87,16 @@ push (@::gMatchers,
                  $description = "Application is updated and started successfully.";
                  setProperty("summary", $description . "\n");
       },
+  },
+  {
+      id =>        "success4",
+      pattern =>          q{Application updated successfully.},
+      action =>           q{
+                 my $description = ((defined $::gProperties{"summary"}) ?
+                       $::gProperties{"summary"} : '');
+                 $description = "Application is updated successfully.";
+                 setProperty("summary", $description . "\n");
+      },
   }
 );
 
