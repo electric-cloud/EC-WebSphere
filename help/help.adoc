@@ -4141,6 +4141,7 @@ This procedure updates already deployed application in units of files, modules o
 
 | Server Name | Name of the server on which application is deployed.
 
+| Restart the application/cluster | If selected, the application/cluster is restarted to apply updates.
 
 | Additional Parameters | Additional parameters to pass while updating entire application or module/s, if required. For e.g. -nodeployejb, -BindJndiForEJBNonMessageBinding etc.
 
