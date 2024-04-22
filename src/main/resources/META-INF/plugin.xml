@@ -37,10 +37,7 @@
 	</components>
 	<hasAdoc>true</hasAdoc>
     <detailedDescription>
-        Use this plugin to interact with an IBM WebSphere Server:
-        * Start and stop the server.
-        * Manage applications within the server (start, deploy, undeploy, stop or custom task) using the provided WebSphere scripts in the bin directory under the installation home directory (wsadmin, startServer, stopServer).
-        * Run Jython scripts that are provided by the user or defined when a procedure is created.
+        Use this plugin to interact with an IBM WebSphere Server, and perform actions such as starting and stoping servers, managing applications on your servers, and running user-defined Jython scripting.
     </detailedDescription>
 	<catalogLabel>WebSphere</catalogLabel>
 </plugin>
