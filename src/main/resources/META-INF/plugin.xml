@@ -37,7 +37,7 @@
 	</components>
 	<hasAdoc>true</hasAdoc>
     <detailedDescription>
-        Use this plugin to interact with an IBM WebSphere Server, and perform actions such as starting and stoping servers, managing applications on your servers, and running user-defined Jython scripting.
+        Use this plugin to interact with an IBM WebSphere Server, and perform actions such as starting and stopping servers, managing applications on your servers, and running user-defined Jython scripting.
     </detailedDescription>
 	<catalogLabel>WebSphere</catalogLabel>
 </plugin>
