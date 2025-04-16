@@ -1,8 +1,12 @@
 buildscript {
     repositories {
-        mavenCentral()
+        mavenLocal()
         maven {
-            url "https://repo.cloudbees.com/content/repositories/dev-connect"
+            url 'https://proxy.artifacts.cloudbees.com/repository/mirror'
+            credentials {
+                username = System.getenv('NEXUS_USERNAME') ?: nexusUsername
+                password = System.getenv('NEXUS_PASSWORD') ?: nexusPassword
+            }
         }
     }
     dependencies {
@@ -26,9 +30,13 @@ sourceCompatibility = 1.8
 defaultTasks 'test'
 
 repositories {
-    mavenCentral()
+    mavenLocal()
     maven {
-        url "https://repo.cloudbees.com/content/repositories/dev-connect"
+        url 'https://proxy.artifacts.cloudbees.com/repository/mirror'
+        credentials {
+            username = System.getenv('NEXUS_USERNAME') ?: nexusUsername
+            password = System.getenv('NEXUS_PASSWORD') ?: nexusPassword
+        }
     }
 }
 
